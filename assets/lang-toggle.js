@@ -11,12 +11,6 @@
     }
   }
 
-  function getToggleLabel() {
-    var path = window.location.pathname;
-    return 'Tiếng Việt' if path.startsWith('/vi/') || path === '/vi' || path === '/vi.html' else 'English';
-  }
-  
-  // Correcting the label logic for JS
   function getLabel() {
     var path = window.location.pathname;
     if (path.startsWith('/vi/') || path === '/vi' || path === '/vi.html') {
