@@ -1,0 +1,162 @@
+/*
+ * floating-nav.css
+ *
+ * Styles for the floating Home/Previous/Next action bar (FAB) injected
+ * by floating-nav.js. The FAB is fixed to the bottom-right corner of
+ * the viewport, hidden by default, and fades in once the user starts
+ * scrolling. It disappears at the very bottom of the page so it
+ * doesn't overlap the bottom-of-page nav bar from sidebar-nav.js.
+ *
+ * Three buttons in a row: [⌂ Home] [← Previous] [Next →]
+ *   - On wide screens: shows icon + label
+ *   - On narrow screens (< 60em): shows icon only, label as tooltip
+ *   - Disabled buttons (first/last page) are greyed out
+ *   - On very narrow screens (< 40em): only show Home + Next (most-used)
+ */
+
+/* ---- Container ---- */
+
+.hh-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-primary-fg-color);
+  border-radius: 2rem;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Hidden by default; JS adds .hh-fab--visible to fade in */
+  opacity: 0;
+  transform: translateY(1.5rem) scale(0.85);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hh-fab--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ---- Buttons ---- */
+
+.hh-fab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.85rem;
+  border-radius: 1.6rem;
+  background: transparent;
+  color: var(--md-primary-fg-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.hh-fab-btn:hover {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hh-fab-btn:active {
+  transform: translateY(0);
+}
+
+.hh-fab-btn--disabled,
+.hh-fab-btn--disabled:hover {
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.45;
+}
+
+/* ---- Icon + label sizing ---- */
+
+.hh-fab-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.hh-fab-label {
+  font-size: 0.82rem;
+}
+
+/* ---- Responsive: icon-only on narrow screens ---- */
+
+@media (max-width: 60em) {
+  .hh-fab {
+    bottom: 1rem;
+    right: 1rem;
+    gap: 0.25rem;
+    padding: 0.3rem;
+  }
+  .hh-fab-btn {
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 0.55rem;
+  }
+  .hh-fab-label {
+    /* Show only the most important label (Home) on narrow screens */
+  }
+  .hh-fab-prev .hh-fab-label,
+  .hh-fab-next .hh-fab-label {
+    display: none;
+  }
+  .hh-fab-home .hh-fab-label {
+    display: none;
+  }
+}
+
+@media (max-width: 40em) {
+  /* On very narrow screens, hide Previous to make room */
+  .hh-fab-prev {
+    display: none;
+  }
+  .hh-fab {
+    bottom: 0.7rem;
+    right: 0.7rem;
+  }
+}
+
+/* ---- Dark mode adjustment ---- */
+
+[data-md-color-scheme="slate"] .hh-fab {
+  background: var(--md-default-bg-color);
+  border-color: var(--md-primary-fg-color);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ---- Print: hide the FAB so it doesn't appear in PDFs ---- */
+
+@media print {
+  .hh-fab {
+    display: none !important;
+  }
+}

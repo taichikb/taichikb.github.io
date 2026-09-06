@@ -1,0 +1,89 @@
+/* ==========================================================================
+   sidebar-nav.css
+   ==========================================================================
+   Styles for the Home / Previous / Next navigation bars injected by
+   sidebar-nav.js. Theme-aware via Material's CSS variables.
+   ========================================================================== */
+
+.hh-nav-bar {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.85rem;
+}
+
+.hh-nav-bar--top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--md-default-bg-color) 85%, transparent);
+}
+
+.hh-nav-bar--bottom {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hh-nav-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.45rem 0.5rem;
+  border-radius: 0.3rem;
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-primary-fg-color);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background-color 0.15s, color 0.15s, transform 0.15s;
+  overflow: hidden;
+}
+
+.hh-nav-btn:hover {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  transform: translateY(-1px);
+}
+
+.hh-nav-btn--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.hh-nav-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  margin-bottom: 0.1rem;
+}
+
+.hh-nav-label {
+  display: none;
+}
+
+.hh-nav-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+@media (max-width: 60em) {
+  .hh-nav-eyebrow { display: none; }
+  .hh-nav-home .hh-nav-label { display: none; }
+}
+
+@media print {
+  .hh-nav-bar { display: none !important; }
+}

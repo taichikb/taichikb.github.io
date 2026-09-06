@@ -1,0 +1,111 @@
+/*
+ * expand-sidebar.css
+ *
+ * Three jobs:
+ *
+ * 1. Force all sidebar sections (Forehand, Serve, Lob and Overhead, etc.) to
+ *    expand by default, so the user can see all 20 deep-dive folders and their
+ *    sub-pages without clicking each toggle triangle.
+ *
+ *    MkDocs Material 9.x hides nested sections by default using the CSS rule:
+ *      .md-nav__toggle ~ .md-nav {
+ *        display: grid;
+ *        opacity: 0;
+ *        transform: translateX(100%);
+ *        visibility: collapse;
+ *      }
+ *
+ *    This rule activates when the parent checkbox (.md-nav__toggle) is NOT
+ *    checked. We override it below with a higher-specificity selector that
+ *    forces the children to always be visible.
+ *
+ * 2. Hide the deep-dive top tabs. The nav: block lists all 20 folders as
+ *    top-level entries so they appear in the sidebar, but that also makes
+ *    them appear in the top tab bar. We hide tabs 5-24 (n+5) so only the
+ *    first 4 tabs remain visible.
+ *
+ * 3. Make the top-tab links open external Tennis Future Lab URLs in a new
+ *    tab. The .md-tabs__link[href*="tennislab"] and .md-tabs__link[href*="rss.com"]
+ *    selectors get target="_blank" via the [target="_blank"] attribute
+ *    pattern (added by the navigation.html override in mkdocs.yml).
+ *
+ *    NOTE: external links in top tabs are handled via the JavaScript snippet
+ *    injected by `extra_javascript` (see mkdocs.yml) — see open-external-links.js
+ *    which auto-adds target="_blank" to any link with href starting with http.
+ */
+
+/* ---- Job 1: sidebar expansion ---- */
+
+/* Override Material's hidden rule. We match the same sibling selector but
+   force the children to be visible. The :not() selector ensures we win
+   over the original rule regardless of checked state. */
+.md-nav__item--nested > .md-nav__toggle ~ .md-nav,
+.md-nav__toggle ~ .md-nav {
+  display: block !important;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  grid-template-rows: 1fr !important;
+  height: auto !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Force the checkbox to appear "checked" by adding :checked selector with
+   display: block on the children — this makes the toggle triangle point
+   down (open) without us actually having to set the checked attribute. */
+.md-nav__item--nested .md-nav__toggle:checked ~ .md-nav,
+.md-nav__item--nested .md-toggle--indeterminate ~ .md-nav {
+  /* This is the OPEN state. We achieve the open state always by overriding
+     the CLOSED state above. */
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  display: block;
+}
+
+/* Hide the toggle triangle indicator (no longer needed since sections
+   are always open). */
+.md-nav__item--nested > .md-nav__link .md-nav__icon,
+.md-nav__item--nested > label .md-nav__icon {
+  display: none !important;
+}
+
+/* Adjust spacing for nested items since the toggle is hidden */
+.md-nav__item--nested > .md-nav__link {
+  padding-right: 0.5rem !important;
+}
+
+/* Make nested children clearly indented and visible. Material's
+   collapsed state uses transform: translateX(100%) which slides the
+   children off-screen; our override above fixes that, but we also
+   add some padding for readability. */
+.md-nav__item--nested > .md-nav {
+  padding-left: 0.6rem !important;
+}
+
+/* Make the top-level folder label look like a proper section header
+   (since the toggle triangle is hidden, the label is purely decorative). */
+.md-nav__item--nested > .md-nav__link,
+.md-nav__item--nested > label.md-nav__link {
+  font-weight: 700 !important;
+  color: var(--md-default-fg-color--light) !important;
+  border-top: 1px solid var(--md-default-fg-color--lightest) !important;
+  margin-top: 0.4rem !important;
+  padding-top: 0.6rem !important;
+}
+
+/* ---- Job 2: hide deep-dive top tabs ---- */
+
+/* Hide top tabs 5 through 24 (the 20 deep-dive folders).
+   Keep only the first 4 tabs (Home, Tennis Future Lab Website,
+   Tennis Future Lab Audio Podcast, Contact) visible. */
+.md-tabs__item:nth-child(n+5) {
+  display: none !important;
+}
+
+/* Smooth the top bar visually after hiding 20 tabs */
+.md-tabs__list {
+  justify-content: flex-start !important;
+  gap: 0.5rem !important;
+}
