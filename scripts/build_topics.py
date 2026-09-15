@@ -120,6 +120,28 @@ TOPICS = [
                         "7 Lỗi \"Chết Người\" Của Học Viên 3.0"),
     ("nghich-ly-cang",  "The Tension Paradox — Why Strong Muscles Make Weak Taichi",
                         "Nghịch Lý Căng Cứng — Tại Sao Cơ Bắp Mạnh Lại Tạo Thái Cực Yếu"),
+    # Batch 3 — definitions, three treasures, foundations, stance, rollback,
+    # 24-form overview, breathing, diagnostic, 50+ body
+    ("taichi-la-gi",    "What Is Taichi, Really? — The 3 Golden Rules of 3.0 Taichi",
+                        "Thái Cực Quyền Thực Sự Là Gì? — 3 Quy Tắc Vàng Của 3.0"),
+    ("tam-bao",         "The Three Treasures (Tam Bảo) — Jing, Qi, Shen",
+                        "Tam Bảo — Tinh, Khí, Thần"),
+    ("am-duong",        "Yin-Yang and the Dance of Opposites",
+                        "Âm Dương Và Điệu Múa Của Các Cặp Đối Lập"),
+    ("so-do-co-the",    "The Body Schema — Weight, Ground, Alignment",
+                        "Sơ Đồ Cơ Thể — Trọng Lượng, Mặt Đất, Trục"),
+    ("vo-vi-tru-the",   "The Wu Wei Stance (Vô Vi) and the Standing Post (Trụ Thế)",
+                        "Tư Thế Vô Vi Và Trụ Thế Cơ Bản"),
+    ("lay",             "Lu · Rollback (Lãy / 履) — Yielding and Redirecting",
+                        "Lãy (履) — Nhường Và Chuyển Hướng"),
+    ("24-thuc-tong-quat","The 24-Form at a Glance",
+                        "24 Thức Nhìn Tổng Quan"),
+    ("tho-dan-dien",    "Dan Tian Breathing — Lower Abdomen, Lower Dantian",
+                        "Thở Đan Điền — Hạ Bộ, Hạ Tiêu"),
+    ("ba-mo-neo",       "The 3-Anchor Check, 3-Question Diagnostic, One-Word Cues",
+                        "3 Mỏ Neo Kiểm Tra, 3 Câu Hỏi Chẩn Đoán, Câu Nhắc Một Từ"),
+    ("co-the-50-cong-cu","The 50+ Body as Taichi's Perfect Instrument",
+                        "Cơ Thể 50+ Là Nhạc Cụ Hoàn Hảo Của Thái Cực"),
 ]
 
 # Body content: list of (en_card_html, vi_card_html) per topic.
@@ -654,6 +676,260 @@ CONTENT = {
         '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Strong muscles make weak Tai Chi. Springy fascia makes powerful Tai Chi."</p>',
         '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
         '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Cơ bắp mạnh tạo Thái Cực yếu. Cân mạc có lò xo tạo Thái Cực mạnh."</p>',
+    ),
+],
+
+# ---------- Batch 3 — Definitions, foundations, practice tools ----------
+
+"taichi-la-gi": [
+    (
+        "<h3>What Taichi Is, Really</h3>"
+        "<p>Taichi Chuan is not the slow-motion wave-hands you see in the park. It is a complete <em>internal</em> martial system: 8 Gates, 24-Form, Zhan Zhuang, silk reeling, push hands, sword, and the philosophy underneath. Most students never see 80% of the system from casual observation. The art's full depth only opens to a daily practice of years.</p>"
+        "<p>The art is unusual in that <em>how</em> you do a movement matters more than <em>what</em> movement you do. A slow walking step with the correct internal sequence teaches more than a flashy kick done with muscular force. This is why teachers so often repeat the same simple movement for years.</p>",
+        "<h3>Thái Cực Quyền Thực Sự Là Gì</h3>"
+        "<p>Thái Cực Quyền không phải vẫy tay chậm ngoài công viên. Đó là một hệ thống võ thuật <em>nội gia</em> hoàn chỉnh: Bát Môn, 24 Thức, Trụ Thế, Chân Tư, Thôi Thủ, Kiếm, và triết lý bên dưới. Hầu hết học viên không bao giờ thấy 80% hệ thống từ quan sát thông thường. Chiều sâu đầy đủ của môn chỉ mở ra với thực hành hằng ngày nhiều năm.</p>"
+        "<p>Môn này khác thường ở chỗ <em>cách</em> bạn thực hiện chuyển động quan trọng hơn <em>chuyển động</em> nào bạn làm. Một bước chậm với chuỗi nội tại đúng dạy nhiều hơn một cú đá hào nhoáng bằng lực cơ bắp. Vì thế các thầy thường lặp lại cùng một chuyển động đơn giản trong nhiều năm.</p>",
+    ),
+    (
+        "<h3>The 3 Golden Rules of 3.0 Taichi</h3>"
+        "<p><strong>1. Slow is fast.</strong> The 30-minute slow form packs more learning than a 10-minute fast form because the brain has time to absorb each layer. <strong>2. The breath leads.</strong> Breath descends into the lower dantian before any movement begins; the body then follows the breath, not the other way around. <strong>3. The waist is the master.</strong> When the waist is loose, the limbs move freely; when the waist is rigid, no amount of arm technique can save the form. Memorise these three and live with them for a year.</p>",
+        "<h3>3 Quy Tắc Vàng Của Thái Cực 3.0</h3>"
+        "<p><strong>1. Chậm là nhanh.</strong> Bài quyền chậm 30 phút đóng gói nhiều học hơn bài quyền nhanh 10 phút vì não có thời gian hấp thụ mỗi lớp. <strong>2. Hơi thở dẫn đầu.</strong> Hơi thở chìm xuống Đan Điền dưới trước khi bất kỳ chuyển động nào bắt đầu; thân sau đó theo hơi thở, không phải ngược lại. <strong>3. Eo là bậc thầy.</strong> Khi eo lỏng, tứ chi di chuyển tự do; khi eo cứng, không có kỹ thuật tay nào cứu nổi bài quyền. Ghi nhớ ba điều này và sống với chúng một năm.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Slow is fast. Breath leads. The waist is the master."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Chậm là nhanh. Hơi thở dẫn đầu. Eo là bậc thầy."</p>',
+    ),
+],
+
+"tam-bao": [
+    (
+        "<h3>The Three Treasures</h3>"
+        "<p>The <strong>Tam Bảo (Three Treasures)</strong> are the three layers of the human system that Tai Chi refines in order: <strong>Jing (精)</strong> essence, stored in the kidneys; <strong>Qi (氣)</strong> life energy, cultivated at the Dantian; <strong>Shen (神)</strong> spirit, expressed through the eyes and the will. The practice refines Jing into Qi, and Qi into Shen. This is not a metaphor &mdash; it is a description of what actually happens to the body and mind with daily practice.</p>",
+        "<h3>Tam Bảo</h3>"
+        "<p><strong>Tam Bảo (Ba Bảo)</strong> là ba tầng của hệ thống con người mà Thái Cực Quyền tinh luyện theo thứ tự: <strong>Tinh (精)</strong> tinh hoa, tồn tại tại thận; <strong>Khí (氣)</strong> năng lượng sống, tu tại Đan Điền; <strong>Thần (神)</strong> thần trí, biểu hiện qua mắt và ý chí. Thực hành tinh luyện Tinh thành Khí, Khí thành Thần. Đây không phải ẩn dụ &mdash; đó là mô tả những gì thực sự xảy ra với cơ thể và tâm trí qua thực hành hằng ngày.</p>",
+    ),
+    (
+        "<h3>How the Three Refine</h3>"
+        "<p><strong>Jing to Qi</strong> happens through breath and movement: deep dantian breathing pulls essence upward through the spine; silk-reeling movement circulates it through the limbs. <strong>Qi to Shen</strong> happens through stillness: when the mind stops chasing, the eyes sharpen and the will focuses. The Shen is what gives the Tai Chi practitioner their calm-gaze quality &mdash; it is visible to anyone who has spent time around senior students.</p>",
+        "<h3>Cách Tam Bảo Tinh Luyện</h3>"
+        "<p><strong>Tinh thành Khí</strong> xảy ra qua hơi thở và chuyển động: thở Đan Điền sâu kéo tinh hoa lên qua cột sống; chuyển động Chân Tư luân chuyển qua tứ chi. <strong>Khí thành Thần</strong> xảy ra qua tĩnh lặng: khi tâm ngừng đuổi theo, mắt sắc lại và ý chí tập trung. Thần là điều mang lại cho người tập Thái Cực phẩm chất ánh mắt bình thản &mdash; nó hiện rõ với bất kỳ ai đã dành thời gian bên các học viên cao cấp.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Essence becomes Energy. Energy becomes Spirit."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Tinh thành Khí. Khí thành Thần."</p>',
+    ),
+],
+
+"am-duong": [
+    (
+        "<h3>The Dance</h3>"
+        "<p>Yin-Yang is not a static symbol. It is a <em>dance</em>: every Yang contains a seed of Yin, every Yin contains a seed of Yang, and the boundary between them is curved &mdash; not a clean line. In Tai Chi, every movement embodies this dance: open and close, advance and retreat, hard and soft, full and empty. The art teaches you to <em>see</em> the dance, then to <em>be</em> the dance.</p>",
+        "<h3>Điệu Múa</h3>"
+        "<p>Âm Dương không phải biểu tượng tĩnh. Đó là một <em>điệu múa</em>: mỗi Dương chứa một mầm Âm, mỗi Âm chứa một mầm Dương, và ranh giới giữa chúng là đường cong &mdash; không phải đường thẳng. Trong Thái Cực Quyền, mỗi chuyển động thể hiện điệu múa này: mở và đóng, tiến và lùi, cứng và mềm, thực và hư. Môn võ dạy bạn <em>nhìn</em> điệu múa, rồi <em>trở thành</em> điệu múa.</p>",
+    ),
+    (
+        "<h3>Where You See It in the Form</h3>"
+        "<p>The 24-Form demonstrates Yin-Yang in every phrase. <em>Commencing Form</em> opens (Yang) and closes (Yin). <em>Parting the Wild Horse's Mane</em> is the Yang phase of a Yang-Yin pair. <em>White Crane Spreads Its Wings</em> is the most Yin movement in the form &mdash; the body lifts upward and the weight retreats into the back foot. <em>Step Back and Repulse the Monkey</em> shows the same Yang action retreating into a Yin posture. <strong>Once you see the dance, you cannot un-see it.</strong></p>",
+        "<h3>Bạn Thấy Nó Ở Đâu Trong Bài Quyền</h3>"
+        "<p>24 Thức thể hiện Âm Dương trong mỗi cụm. <em>Khởi Thức</em> mở (Dương) rồi đóng (Âm). <em>Dã Mã Phân Tung</em> là pha Dương của một cặp Dương-Âm. <em>Bạch Hạc Lượng Sí</em> là chuyển động Âm nhất trong bài quyền &mdash; thân nâng lên và trọng lượng rút về chân sau. <em>Đảo Toản Hầu</em> cho thấy cùng hành động Dương rút vào tư thế Âm. <strong>Một khi bạn nhìn thấy điệu múa, bạn không thể nhìn không thấy nữa.</strong></p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Every Yang has a Yin seed. Every Yin has a Yang seed."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Mỗi Dương có một mầm Âm. Mỗi Âm có một mầm Dương."</p>',
+    ),
+],
+
+"so-do-co-the": [
+    (
+        "<h3>Three Maps You Always Carry</h3>"
+        "<p>Every Tai Chi movement is the body's answer to three questions: <strong>where is my weight?</strong> (forward/back/left/right); <strong>where is the ground?</strong> (which points of the foot are pressing, which are light); <strong>where is my alignment?</strong> (is the spine vertical, is the breath unobstructed). Most beginners carry only one of these maps at a time. Experienced practitioners carry all three simultaneously, and the body answers them without thinking.</p>",
+        "<h3>Ba Bản Đồ Bạn Luôn Mang Theo</h3>"
+        "<p>Mỗi chuyển động Thái Cực Quyền là câu trả lời của cơ thể cho ba câu hỏi: <strong>trọng lượng ở đâu?</strong> (trước/sau/trái/phải); <strong>mặt đất ở đâu?</strong> (điểm nào của bàn chân đang ấn, điểm nào nhẹ); <strong>trục của tôi ở đâu?</strong> (cột sống có thẳng không, hơi thở có thông không). Hầu hết người mới chỉ mang một trong ba bản đồ này tại một thời điểm. Người tập có kinh nghiệm mang cả ba cùng lúc, và cơ thể trả lời chúng mà không cần suy nghĩ.</p>",
+    ),
+    (
+        "<h3>Drill: The Three Maps in One Minute</h3>"
+        "<p>Set a one-minute timer. Stand in a slight bow stance. For 20 seconds, say out loud where your weight is. For 20 seconds, name the points of the foot that touch the ground. For 20 seconds, trace your spine from tailbone to crown with your attention. The drill forces the three maps to become <em>separate conscious tasks</em>; eventually they fuse into a single felt sense.</p>",
+        "<h3>Bài Tập: Ba Bản Đồ Trong Một Phút</h3>"
+        "<p>Đặt đồng hồ một phút. Đứng ở tư thế cung nhẹ. Trong 20 giây, nói to trọng lượng của bạn ở đâu. Trong 20 giây, gọi tên các điểm của bàn chân đang chạm mặt đất. Trong 20 giây, lần theo cột sống từ xương cụt đến đỉnh đầu bằng sự chú ý. Bài tập ép ba bản đồ trở thành <em>các nhiệm vụ ý thức riêng biệt</em>; cuối cùng chúng hợp nhất thành một cảm giác đơn nhất.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Weight. Ground. Alignment. One body, three maps."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Trọng lượng. Mặt đất. Trục. Một cơ thể, ba bản đồ."</p>',
+    ),
+],
+
+"vo-vi-tru-the": [
+    (
+        "<h3>The Stance and the Post</h3>"
+        "<p>The <strong>Wu Wei (Vô Vi) Stance</strong> is the basic standing position: feet shoulder-width apart, knees soft, tailbone dropping, crown suspended. The <strong>Standing Post (Trụ Thế / Zhan Zhuang)</strong> is what you do in that stance: stand, breathe, wait. Both look identical from the outside. The first is a position; the second is a practice.</p>"
+        "<p>The Wu Wei stance without Zhan Zhuang is just posture. Zhan Zhuang without the Wu Wei stance is just standing. Together they form the seed of the entire art. Five minutes a day for a month produces visible changes in any beginner.</p>",
+        "<h3>Tư Thế Và Trụ Thế</h3>"
+        "<p><strong>Tư Thế Vô Vi</strong> là vị trí đứng cơ bản: hai chân rộng bằng vai, gối mềm, xương cụt hạ, đỉnh đầu treo. <strong>Trụ Thế (站樁)</strong> là điều bạn làm ở tư thế đó: đứng, thở, chờ. Cả hai trông giống nhau từ bên ngoài. Cái thứ nhất là vị trí; cái thứ hai là thực hành.</p>"
+        "<p>Tư thế Vô Vi không có Trụ Thế chỉ là tư thế. Trụ Thế không có tư thế Vô Vi chỉ là đứng. Cùng nhau chúng tạo thành hạt giống của toàn bộ môn võ. Năm phút mỗi ngày trong một tháng tạo ra thay đổi rõ ràng ở bất kỳ người mới nào.</p>",
+    ),
+    (
+        "<h3>What Happens in Five Minutes</h3>"
+        "<p>In the first minute the body settles. In the second minute the mind starts to wander. In the third minute you notice the wandering and bring yourself back. In the fourth minute the wandering happens again. In the fifth minute you notice it again. This is the entire practice &mdash; settling, wandering, returning. <em>There is nothing else to do.</em> The next five minutes are the same, only the wandering is subtler.</p>",
+        "<h3>Chuyện Gì Xảy Ra Trong Năm Phút</h3>"
+        "<p>Phút đầu tiên cơ thể an trụ. Phút thứ hai tâm bắt đầu lang thang. Phút thứ ba bạn nhận ra sự lang thang và đưa mình trở lại. Phút thứ tư sự lang thang xảy ra lại. Phút thứ năm bạn lại nhận ra nó. Đây là toàn bộ thực hành &mdash; an trụ, lang thang, trở lại. <em>Không có gì khác để làm.</em> Năm phút tiếp theo cũng vậy, chỉ là sự lang thang tinh tế hơn.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Settle. Wander. Return. Settle. Wander. Return."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"An trụ. Lang thang. Trở lại. An trụ. Lang thang. Trở lại."</p>',
+    ),
+],
+
+"lay": [
+    (
+        "<h3>Rollback as Yielding</h3>"
+        "<p><strong>Lu (Lãy / 履)</strong> is the second of the Eight Methods. Where Peng is the sphere of readiness around the body, Lu is the act of <em>yielding</em> to the opponent's force in such a way that it follows its own momentum into emptiness. Lu does not block. Lu does not push. Lu redirects.</p>"
+        "<p>The mechanism: as the opponent's energy arrives, your hands and arms create a sideways curve. Their force follows the curve. By the time they realize what is happening, their balance is moving past their center of gravity, and a small additional push (Ji) or pull (An) finishes them. Four ounces redirecting a thousand pounds.</p>",
+        "<h3>Lãy Là Nhường</h3>"
+        "<p><strong>Lãy (履)</strong> là phương pháp thứ hai của Bát Pháp. Trong khi Phòng là khối cầu sẵn sàng quanh cơ thể, Lãy là hành động <em>nhường</em> trước lực đối phương theo cách khiến nó theo chính quán tính của nó vào khoảng trống. Lãy không chặn. Lãy không đẩy. Lãy chuyển hướng.</p>"
+        "<p>Cơ chế: khi năng lượng đối phương đến, tay và cánh tay bạn tạo một đường cong sang bên. Lực của họ theo đường cong. Đến lúc họ nhận ra chuyện gì đang xảy ra, thăng bằng của họ đã đi qua trọng tâm, và một cú đẩy nhỏ (Tỳ) hoặc kéo (Án) hoàn thành. Bốn lạng chuyển hướng nghìn cân.</p>",
+    ),
+    (
+        "<h3>Three Common Errors</h3>"
+        "<p><strong>Pulling instead of yielding</strong> &mdash; the body retreats actively; the opponent senses the pull and braces. <strong>Yielding with arms only</strong> &mdash; the upper body complies but the feet and waist stay rigid; the opponent's force runs into the rigidity and bounces back. <strong>Yielding too fast</strong> &mdash; the body outpaces the opponent's arrival, the curve is empty when they arrive, they read the trap and adjust.</p>",
+        "<h3>Ba Lỗi Phổ Biến</h3>"
+        "<p><strong>Kéo thay vì nhường</strong> &mdash; cơ thể rút lui tích cực; đối phương cảm nhận lực kéo và chống lại. <strong>Nhường bằng tay</strong> &mdash; phần trên tuân theo nhưng chân và eo vẫn cứng; lực đối phương chạm vào sự cứng và bật lại. <strong>Nhường quá nhanh</strong> &mdash; cơ thể vượt trước sự đến của đối phương, đường cong trống rỗng khi họ đến, họ đọc được bẫy và điều chỉnh.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Don&rsquo;t block. Don&rsquo;t push. Redirect."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Đừng chặn. Đừng đẩy. Hãy chuyển hướng."</p>',
+    ),
+],
+
+"24-thuc-tong-quat": [
+    (
+        "<h3>Why the 24-Form Exists</h3>"
+        "<p>The <strong>24-Form (Nhị Thập Tứ Thức)</strong> was standardised by the Chinese Sports Commission in 1956, distilled from the Yang tradition into a complete beginner's curriculum. It is not the deepest practice in the art. It is the <em>easiest entry point</em> that still carries the full structure of Tai Chi: 8 Gates, 5 Steps, soft-hard alternation, breath coordination, weight transfer. It completes in 5&ndash;8 minutes and can be practised almost anywhere.</p>"
+        "<p>Most Western students start here. Many stay here for years. A few move on to the 42-form, the 48-form, the Yang 85, or the Chen old-frame. All of those start from the 24.</p>",
+        "<h3>Tại Sao Có 24 Thức</h3>"
+        "<p><strong>24 Thức (Nhị Thập Tứ Thức)</strong> được Ủy ban Thể thao Trung Quốc chuẩn hóa năm 1956, cô đọng từ truyền thống Dương thành chương trình cho người mới hoàn chỉnh. Đó không phải thực hành sâu nhất trong môn. Đó là <em>điểm vào dễ nhất</em> vẫn mang cấu trúc đầy đủ của Thái Cực Quyền: Bát Môn, Ngũ Bộ, luân phiên mềm-cứng, phối hợp hơi thở, chuyển trọng lượng. Hoàn thành trong 5&ndash;8 phút và có thể tập ở hầu hết mọi nơi.</p>"
+        "<p>Hầu hết học viên phương Tây bắt đầu ở đây. Nhiều người ở đây nhiều năm. Một số chuyển sang 42 thức, 48 thức, Dương 85, hoặc Trần Lão Gia. Tất cả đều bắt đầu từ 24.</p>",
+    ),
+    (
+        "<h3>The Six Phrases</h3>"
+        "<p>The 24 movements cluster into six phrases that share an internal logic:</p>"
+        "<ol>"
+        "<li><strong>Opening (1&ndash;4)</strong>: Commencing Form, Parting the Wild Horse's Mane, White Crane Spreads Wings, Brush Knee and Twist Step. The body settles and the breath finds the dantian.</li>"
+        "<li><strong>Lateral (5&ndash;7)</strong>: Strum the Lute, Step Back and Repulse the Monkey, Grasp the Bird's Tail (left). Side-to-side weight transfer becomes natural.</li>"
+        "<li><strong>Vertical (8&ndash;9)</strong>: Grasp the Bird's Tail (right), Single Whip. The body learns to organise forward energy through the waist.</li>"
+        "<li><strong>Cloud (10&ndash;13)</strong>: Cloud Hands, High Pat on Horse, Right Heel Kick, Strike with Both Fists. The diagonal pathways open.</li>"
+        "<li><strong>Balance (14&ndash;19)</strong>: Turn and Kick with Left Heel, Snake Creeps Down Left, Snake Creeps Down Right, Golden Rooster Stands on One Leg Left, Golden Rooster Right, Lotus Kick. Single-leg balance integrates.</li>"
+        "<li><strong>Closing (20&ndash;24)</strong>: Bow the Arrow, Flash the Arm, Step Forward and Deflect Downward, Cross Hands, Closing Form. The energy returns to centre.</li>"
+        "</ol>",
+        "<h3>Sáu Cụm</h3>"
+        "<p>24 chuyển động phân thành sáu cụm có logic nội tại chung:</p>"
+        "<ol>"
+        "<li><strong>Khai (1&ndash;4)</strong>: Khởi Thức, Dã Mã Phân Tung, Bạch Hạc Lượng Sí, Lâu Tất Ảo Bộ. Thân an trụ và hơi thở tìm Đan Điền.</li>"
+        "<li><strong>Bên (5&ndash;7)</strong>: Thủ Huy Tỳ Bà, Đảo Toản Hầu, Tả Lãm Tước Vỹ. Chuyển trọng lượng sang bên trở nên tự nhiên.</li>"
+        "<li><strong>Dọc (8&ndash;9)</strong>: Hữu Lãm Tước Vỹ, Đơn Tiên. Thân học tổ chức năng lượng tới qua eo.</li>"
+        "<li><strong>Mây (10&ndash;13)</strong>: Vân Thủ, Cao Thám Mã, Hữu Đạp Cước, Song Phong Quán Nhĩ. Con đường chéo mở ra.</li>"
+        "<li><strong>Thăng Bằng (14&ndash;19)</strong>: Tả Đạp Liên Hoàn Thối, Tả Thế Xà Điện, Hữu Thế Xà Điện, Tả Kim Kê Độc Lập, Hữu Kim Kê Độc Lập, Đạp Liên Hoàn Thối. Thăng bằng một chân tích hợp.</li>"
+        "<li><strong>Thu (20&ndash;24)</strong>: Lộ Mã Lộc Chuyển Thân, Thương Quyên Lộc, Tiến Bộ Chuyển Đả, Thập Tự Thủ, Thu Thức. Năng lượng trở về trung tâm.</li>"
+        "</ol>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Six phrases. One form. Twenty-four movements."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Sáu cụm. Một bài. Hai mươi bốn thức."</p>',
+    ),
+],
+
+"tho-dan-dien": [
+    (
+        "<h3>What Dan Tian Breathing Is</h3>"
+        "<p><strong>Dan Tian breathing</strong> means breathing into the lower abdomen &mdash; not the chest, not the shoulders, but the area roughly 3 cm below the navel, deep inside the pelvis. On inhale the belly expands outward; on exhale it draws back in. Most adults have lost this pattern (stress, posture, sedentary habits). Children breathe this way naturally. Tai Chi restores it.</p>"
+        "<p>The lower dantian is the body's centre of mass. Breathing there puts the breath where the weight is &mdash; which makes every movement initiated from the centre automatically more stable than one initiated from the chest.</p>",
+        "<h3>Thở Đan Điền Là Gì</h3>"
+        "<p><strong>Thở Đan Điền</strong> nghĩa là thở vào bụng dưới &mdash; không phải ngực, không phải vai, mà là vùng khoảng 3 cm dưới rốn, sâu trong khung chậu. Khi hít vào, bụng phồng ra ngoài; khi thở ra, bụng rút vào. Hầu hết người lớn đã mất mô hình này (căng thẳng, tư thế, thói quen ít vận động). Trẻ em thở theo cách này một cách tự nhiên. Thái Cực Quyền phục hồi nó.</p>"
+        "<p>Đan Điền dưới là trọng tâm của cơ thể. Thở ở đó đặt hơi thở ở nơi trọng lượng &mdash; điều này làm cho mọi chuyển động khởi phát từ trung tâm tự động ổn định hơn một chuyển động khởi phát từ ngực.</p>",
+    ),
+    (
+        "<h3>Drill for the First Two Weeks</h3>"
+        "<p>Lying on the back, place one hand on the lower abdomen. Breathe in through the nose for 4 seconds; the hand should rise. Breathe out through the mouth for 6 seconds; the hand should fall. After 10 cycles, switch to sitting. After 10 more, switch to standing. After two weeks of this daily, the pattern is established enough to use in the form.</p>",
+        "<h3>Bài Tập Cho Hai Tuần Đầu</h3>"
+        "<p>Nằm ngửa, đặt một tay lên bụng dưới. Thở vào qua mũi 4 giây; tay nên nâng lên. Thở ra qua miệng 6 giây; tay nên hạ xuống. Sau 10 chu kỳ, chuyển sang ngồi. Sau 10 chu kỳ nữa, chuyển sang đứng. Sau hai tuần làm hằng ngày, mô hình đã đủ thiết lập để dùng trong bài quyền.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Breath goes where the weight is."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Hơi thở đi đến nơi trọng lượng ở."</p>',
+    ),
+],
+
+"ba-mo-neo": [
+    (
+        "<h3>The 3-Anchor Check</h3>"
+        "<p>The three anchors are <strong>weight</strong>, <strong>breath</strong>, and <strong>intention</strong>. Run them every few minutes during practice. Where is my weight right now &mdash; forward, back, left, right? Where is my breath &mdash; high in the chest, low in the dantian, somewhere in between? Where is my intention &mdash; on the movement in front of me, on the next movement, wandering in thought?</p>"
+        "<p>The check is a 5-second audit. It does not interrupt the practice &mdash; it deepens it. The anchors become internal GPS coordinates the body uses to organise itself.</p>",
+        "<h3>Kiểm Tra 3 Mỏ Neo</h3>"
+        "<p>Ba mỏ neo là <strong>trọng lượng</strong>, <strong>hơi thở</strong>, và <strong>ý chí</strong>. Chạy qua chúng vài phút một lần trong thực hành. Trọng lượng của tôi đang ở đâu &mdash; trước, sau, trái, phải? Hơi thở của tôi ở đâu &mdash; cao trong ngực, thấp trong Đan Điền, đâu đó ở giữa? Ý chí của tôi ở đâu &mdash; trên chuyển động trước mặt tôi, trên chuyển động tiếp theo, lang thang trong suy nghĩ?</p>"
+        "<p>Việc kiểm tra là một cuộc kiểm toán 5 giây. Nó không làm gián đoạn thực hành &mdash; nó làm sâu nó. Các mỏ neo trở thành tọa độ GPS nội tại mà cơ thể dùng để tự tổ chức.</p>",
+    ),
+    (
+        "<h3>The 3-Question Diagnostic</h3>"
+        "<p>If the form feels off, run three questions in order:</p>"
+        "<ol>"
+        "<li><strong>Am I holding tension I don't need?</strong> &mdash; if yes, release the shoulder, jaw, lower back, or wherever the tension is. Try the movement again.</li>"
+        "<li><strong>Am I moving from the waist or from the limbs?</strong> &mdash; if from the limbs, slow down and find the waist. Try the movement again.</li>"
+        "<li><strong>Is the breath synchronized with the movement?</strong> &mdash; if not, separate breath and movement for a moment, then re-attach them. Try the movement again.</li>"
+        "</ol>"
+        "<p>Almost every form issue resolves through one of these three questions.</p>",
+        "<h3>Chẩn Đoán 3 Câu Hỏi</h3>"
+        "<p>Nếu bài quyền có cảm giác sai, chạy ba câu hỏi theo thứ tự:</p>"
+        "<ol>"
+        "<li><strong>Tôi có đang giữ căng thẳng mà không cần không?</strong> &mdash; nếu có, thả vai, hàm, lưng dưới, hoặc bất cứ nơi nào căng. Thử chuyển động lại.</li>"
+        "<li><strong>Tôi đang di chuyển từ eo hay từ tứ chi?</strong> &mdash; nếu từ tứ chi, chậm lại và tìm eo. Thử chuyển động lại.</li>"
+        "<li><strong>Hơi thở có đồng bộ với chuyển động không?</strong> &mdash; nếu không, tách hơi thở và chuyển động trong một khoảnh khắc, rồi gắn lại. Thử chuyển động lại.</li>"
+        "</ol>"
+        "<p>Gần như mọi vấn đề của bài quyền được giải quyết qua một trong ba câu hỏi này.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Three anchors. Three questions. One practice."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Ba mỏ neo. Ba câu hỏi. Một thực hành."</p>',
+    ),
+],
+
+"co-the-50-cong-cu": [
+    (
+        "<h3>Why the 50+ Body Is Perfect</h3>"
+        "<p>The 50+ body is not a diminished 30-year-old body. It is a different instrument &mdash; one that Tai Chi was essentially designed for. The art's slow pace matches a metabolism that no longer tolerates explosive training. Its attention to breath supports the cardiovascular system as arteries stiffen. Its balance work prevents the falls that are the leading cause of injury death in older adults. Its weight-bearing slow movements maintain bone density better than moderate-impact exercise.</p>"
+        "<p>Most important: the 50+ body has had decades to accumulate <em>proprioceptive wisdom</em>. The nervous system is slower but more integrated. A 50-year-old who has played tennis, raised children, navigated a career, and stayed curious has a body that knows how to <em>learn</em>. Tai Chi simply gives that learning a daily structure.</p>",
+        "<h3>Tại Sao Cơ Thể 50+ Là Hoàn Hảo</h3>"
+        "<p>Cơ thể 50+ không phải cơ thể 30 tuổi bị suy giảm. Đó là một nhạc cụ khác &mdash; một nhạc cụ mà Thái Cực Quyền về cơ bản được thiết kế cho. Nhịp độ chậm của môn khớp với trao đổi chất không còn chịu được tập huấn nổ. Sự chú ý đến hơi thở hỗ trợ hệ tim mạch khi động mạch cứng lại. Công việc thăng bằng ngăn ngừa các cú té &mdash; nguyên nhân hàng đầu gây tử vong do chấn thương ở người lớn tuổi. Các chuyển động chậm chịu tải trọng duy trì mật độ xương tốt hơn tập cường độ trung bình.</p>"
+        "<p>Quan trọng nhất: cơ thể 50+ đã có hàng thập kỷ để tích lũy <em>trí tuệ cảm giác bản thể</em>. Hệ thần kinh chậm hơn nhưng tích hợp hơn. Một người 50 tuổi đã chơi tennis, nuôi con, điều hành sự nghiệp, và giữ sự tò mò có một cơ thể biết cách <em>học</em>. Thái Cực Quyền chỉ đơn giản cho sự học đó một cấu trúc hằng ngày.</p>",
+    ),
+    (
+        "<h3>The Ten-Year Arc</h3>"
+        "<p>If you start Tai Chi at 52 and practise daily for a decade, expect this arc: <strong>Year 1&ndash;2</strong> &mdash; learn the form, build the habit, feel balance and stress improve. <strong>Year 3&ndash;5</strong> &mdash; understand the principles, begin push hands, blood pressure and sleep noticeably improve. <strong>Year 6&ndash;10</strong> &mdash; Tai Chi becomes invisible in your life. You are 62 with the fitness, flexibility and mental sharpness of someone in their 50s. People stop asking when you retired.</p>",
+        "<h3>Cung 10 Năm</h3>"
+        "<p>Nếu bạn bắt đầu Thái Cực Quyền ở tuổi 52 và tập hằng ngày trong một thập kỷ, hãy kỳ vọng cung này: <strong>Năm 1&ndash;2</strong> &mdash; học bài quyền, xây dựng thói quen, cảm nhận thăng bằng và căng thẳng cải thiện. <strong>Năm 3&ndash;5</strong> &mdash; hiểu các nguyên lý, bắt đầu Thôi Thủ, huyết áp và giấc ngủ cải thiện rõ rệt. <strong>Năm 6&ndash;10</strong> &mdash; Thái Cực Quyền trở nên vô hình trong cuộc sống bạn. Bạn 62 tuổi với thể lực, sự linh hoạt và sắc bén tinh thần của người 50. Mọi người ngừng hỏi khi nào bạn nghỉ hưu.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"The 50+ body is the body Tai Chi was designed for."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Cơ thể 50+ là cơ thể mà Thái Cực Quyền được thiết kế cho."</p>',
     ),
 ],
 
