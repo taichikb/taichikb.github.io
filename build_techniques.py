@@ -303,7 +303,7 @@ def build_techniques_vi():
     content = '''<main class="techniques-page" role="main">
     <article class="technique-content">
         <header class="page-header">
-            <h1>Kỹ Thuật Thiền Võ Chen</h1>
+            <h1>Kỹ Thuật Trần thức Thái cực quyền</h1>
             <p class="page-subtitle">Các phương pháp và nguyên lý cơ bản từ truyền thống họ Chen</p>
         </header>
         
@@ -361,7 +361,7 @@ def build_techniques_vi():
             <h2>Lịch Sử & Truyền Thống</h2>
             <div class="technique-card">
                 <h3>Nguồn Gốc Làng Chen</h3>
-                <p>Thiền Võ Chen bắt nguồn từ Làng Chen (Chenjiagou), huyện Wen, tỉnh Hà Nam, Trung Quốc. Nghệ thuật được sáng lập bởi Trần Vương Đình (Chen Wangting, 1600-1680), người thế hệ 9 của gia tộc Chen, người đã tổng hợp quyền gia truyền với tu hành Khí, triết học Đạo giáo và chiến thuật quân sự.</p>
+                <p>Trần thức Thái cực quyền bắt nguồn từ Làng Chen (Chenjiagou), huyện Wen, tỉnh Hà Nam, Trung Quốc. Nghệ thuật được sáng lập bởi Trần Vương Đình (Chen Wangting, 1600-1680), người thế hệ 9 của gia tộc Chen, người đã tổng hợp quyền gia truyền với tu hành Khí, triết học Đạo giáo và chiến thuật quân sự.</p>
             </div>
             <div class="technique-card">
                 <h3>Các Thế Hệ Then Chốt</h3>
@@ -553,7 +553,7 @@ def build_landing_page():
         <div class="hero-content">
             <h1>Taichi Knowledge Base</h1>
             <p class="tagline">Chen Style Tai Chi — Techniques, History, and Internal Arts</p>
-            <p class="subtitle">Thiền Võ Chen — Kỹ Thuật, Lịch Sử, và Nội Công</p>
+            <p class="subtitle">Trần thức Thái cực quyền — Kỹ Thuật, Lịch Sử, và Nội Công</p>
         </div>
     </header>
     

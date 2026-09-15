@@ -93,7 +93,7 @@ def build_index_en():
     <span class="taiji-large">{TAIJI_LOGO}</span>
     <h1>TaichiKB</h1>
     <p class="tagline">Chen Style Tai Chi — Techniques, History, Internal Arts</p>
-    <p style="color: var(--gray-mid); font-style: italic;">Thiền Võ Chen — Kỹ Thuật, Lịch Sử, Nội Công</p>
+    <p style="color: var(--gray-mid); font-style: italic;">Trần thức Thái cực quyền — Kỹ Thuật, Lịch Sử, Nội Công</p>
 </section>
 
 <section class="section">
@@ -226,7 +226,7 @@ def build_index_vi():
 <section class="hero">
     <span class="taiji-large">{TAIJI_LOGO}</span>
     <h1>TaichiKB</h1>
-    <p class="tagline">Thiền Võ Chen — Kỹ Thuật, Lịch Sử, Nội Công</p>
+    <p class="tagline">Trần thức Thái cực quyền — Kỹ Thuật, Lịch Sử, Nội Công</p>
     <p style="color: var(--gray-mid); font-style: italic;">Chen Style Tai Chi — Techniques, History, Internal Arts</p>
 </section>
 
@@ -351,7 +351,7 @@ def build_index_vi():
     </div>
 </section>
 '''
-    return page_shell("vi", "TaichiKB — Thiền Võ Chen", body, active="home")
+    return page_shell("vi", "TaichiKB — Trần thức Thái cực quyền", body, active="home")
 
 
 def build_techniques_vi():
@@ -359,7 +359,7 @@ def build_techniques_vi():
     body = '''
 <article class="technique-content">
     <header class="page-header" style="text-align:center; padding:4rem 0 2rem;">
-        <h1>Kỹ Thuật Thiền Võ Chen</h1>
+        <h1>Kỹ Thuật Trần thức Thái cực quyền</h1>
         <p style="color: var(--gray-mid); font-style: italic; font-size:1.2rem;">
         Các phương pháp và nguyên lý cơ bản từ truyền thống họ Chen</p>
     </header>
@@ -426,7 +426,7 @@ def build_techniques_vi():
         <h2>Lịch Sử & Truyền Thống</h2>
         <div class="technique-card">
             <h3>Nguồn Gốc Làng Chen</h3>
-            <p>Thiền Võ Chen bắt nguồn từ Làng Chen (Chenjiagou), huyện Wen, tỉnh Hà Nam, Trung Quốc. Nghệ thuật được sáng lập bởi <strong>Trần Vương Đình (Chen Wangting, 1600-1680)</strong>, người thế hệ 9 của gia tộc Chen, người đã tổng hợp quyền gia truyền với tu hành Khí, triết học Đạo giáo và chiến thuật quân sự.</p>
+            <p>Trần thức Thái cực quyền bắt nguồn từ Làng Chen (Chenjiagou), huyện Wen, tỉnh Hà Nam, Trung Quốc. Nghệ thuật được sáng lập bởi <strong>Trần Vương Đình (Chen Wangting, 1600-1680)</strong>, người thế hệ 9 của gia tộc Chen, người đã tổng hợp quyền gia truyền với tu hành Khí, triết học Đạo giáo và chiến thuật quân sự.</p>
         </div>
         <div class="technique-card">
             <h3>Các Thế Hệ Then Chốt</h3>
