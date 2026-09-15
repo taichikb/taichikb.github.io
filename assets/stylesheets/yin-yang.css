@@ -1,0 +1,512 @@
+/* ============================================================
+   TAICHIKB — YIN YANG THEME
+   Black & White Taiji Design System
+   ============================================================ */
+
+:root {
+  --yin: #000000;
+  --yang: #ffffff;
+  --gray-dark: #2a2a2a;
+  --gray-mid: #888888;
+  --gray-light: #e8e8e8;
+  --gray-bg: #fafafa;
+  --accent-gold: #c9a961;
+  --serif: 'Cormorant Garamond', 'Playfair Display', 'Times New Roman', serif;
+  --sans: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --cjk: 'Noto Serif SC', 'Source Han Serif', serif;
+}
+
+/* ============================================================
+   GLOBAL RESET — Strip MkDocs Material defaults
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--yang);
+  color: var(--yin);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide MkDocs chrome */
+.md-header, .md-nav, .md-sidebar, .md-tabs,
+[data-md-component="header"], [data-md-component="sidebar"],
+[data-md-component="tabs"], .md-search, .md-footer-meta,
+.md-banner, .md-source, .md-article__edit,
+.md-header__button, .md-icon, .md-clipboard {
+  display: none !important;
+}
+
+.md-content, .md-main, .md-main__inner, .md-content__inner,
+.md-typeset, .md-content__article, article {
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  padding: 4rem 2rem !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove MkDocs background colors */
+body, .md-container, .md-main {
+  background: var(--yang) !important;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--yin);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin: 3rem 0 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0 0.8rem;
+  font-style: italic;
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.6rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1.2rem;
+}
+
+a {
+  color: var(--yin);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-mid);
+  transition: border-color 0.3s ease;
+}
+
+a:hover {
+  border-bottom-color: var(--yin);
+}
+
+ul, ol {
+  padding-left: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+blockquote {
+  border-left: 3px solid var(--yin);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--gray-dark);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--gray-light);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--gray-light);
+  margin: 3rem 0;
+}
+
+/* ============================================================
+   TAIJI LOGO / BRAND
+   ============================================================ */
+
+.taiji-logo {
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+  vertical-align: middle;
+  filter: invert(0);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--yin);
+}
+
+/* ============================================================
+   HEADER / NAV (minimal, top)
+   ============================================================ */
+
+.site-header {
+  border-bottom: 1px solid var(--gray-light);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--yang);
+}
+
+.site-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.site-nav a {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  border-bottom-color: var(--yin);
+}
+
+.lang-switch {
+  font-size: 0.9rem !important;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--yin) !important;
+  border-radius: 999px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--gray-mid);
+  margin-bottom: 0.5rem;
+}
+
+.hero .taiji-large {
+  width: 140px;
+  height: 140px;
+  margin: 2rem auto;
+  display: block;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.section {
+  padding: 4rem 0;
+  border-top: 1px solid var(--gray-light);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  display: inline-block;
+  border-bottom: none;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 1px;
+  background: var(--yin);
+}
+
+/* ============================================================
+   CARDS / GRIDS
+   ============================================================ */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.card {
+  padding: 2rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background: var(--yang);
+}
+
+.card:hover {
+  border-color: var(--yin);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-style: normal;
+}
+
+.card .card-meta {
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   TECHNIQUE / SECTION CARDS (Taiji-specific)
+   ============================================================ */
+
+.technique-card {
+  padding: 2rem;
+  margin: 2rem 0;
+  border-left: 3px solid var(--yin);
+  background: var(--gray-bg);
+  border-radius: 0 4px 4px 0;
+}
+
+.technique-card h3 {
+  margin-top: 0;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.technique-card .han {
+  font-family: var(--cjk);
+  color: var(--gray-mid);
+  font-size: 1.1rem;
+}
+
+/* ============================================================
+   TECHNIQUE NAV (sidebar of techniques page)
+   ============================================================ */
+
+.technique-nav {
+  background: var(--gray-bg);
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 2rem 0 3rem;
+}
+
+.technique-nav ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem;
+}
+
+.technique-nav a {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  border-bottom: none;
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.technique-nav a:hover,
+.technique-nav a.active {
+  border-left-color: var(--yin);
+  background: var(--yang);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.site-footer {
+  border-top: 1px solid var(--gray-light);
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--gray-mid);
+  font-size: 0.9rem;
+  margin-top: 6rem;
+}
+
+.site-footer p {
+  margin: 0.4rem 0;
+}
+
+/* ============================================================
+   LANDING PAGE FEATURE BLOCKS
+   ============================================================ */
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin: 4rem 0;
+}
+
+.feature-row.reverse {
+  direction: rtl;
+}
+
+.feature-row.reverse > * {
+  direction: ltr;
+}
+
+.feature-image {
+  background: var(--gray-bg);
+  border: 1px solid var(--gray-light);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.feature-image .taiji-large {
+  width: 70%;
+  height: 70%;
+}
+
+.feature-text h2 {
+  border-bottom: none;
+  margin-top: 0;
+}
+
+/* ============================================================
+   PAGE FOOTER NAV (Prev/Home/Next)
+   ============================================================ */
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4rem 0 0;
+  padding: 2rem 0 0;
+  border-top: 1px solid var(--gray-light);
+  font-size: 0.9rem;
+}
+
+.page-nav a {
+  border-bottom: none;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.page-nav a:hover {
+  border-color: var(--yin);
+  background: var(--yin);
+  color: var(--yang);
+}
+
+.page-nav .home {
+  border-color: var(--yin);
+}
+
+/* ============================================================
+   YIN YANG SPINNER (loading indicator, optional)
+   ============================================================ */
+
+.taiji-spin {
+  animation: taiji-rotate 4s linear infinite;
+  display: inline-block;
+}
+
+@keyframes taiji-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .site-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  h1 { font-size: 2.5rem; }
+  .hero h1 { font-size: 3rem; }
+  .feature-row {
+    grid-template-columns: 1fr;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   DARK MODE (auto)
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --yin: #ffffff;
+    --yang: #0a0a0a;
+    --gray-dark: #d4d4d4;
+    --gray-mid: #888888;
+    --gray-light: #1f1f1f;
+    --gray-bg: #111111;
+  }
+  .taiji-logo, .hero .taiji-large {
+    filter: invert(1);
+  }
+}
