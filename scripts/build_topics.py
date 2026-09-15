@@ -86,8 +86,9 @@ def page_shell(lang, title, slug):
 '''
 
 
-# Slugs + titles
+# Slugs + titles  (Batch 1 + Batch 2 = 20 topics total)
 TOPICS = [
+    # Batch 1 — already shipped
     ("peng",            "Peng (Phòng / 掤) — Ward Off",                "Phòng (掤) — Khối Cầu Sẵn Sàng"),
     ("ji",              "Ji (Tỳ / 挤) — Press",                         "Tỳ (挤) — Biểu Đạt Toàn Thân"),
     ("an",              "An (Án / 按) — Push",                           "Án (按) — Ấn Xuống Và Kết Thúc"),
@@ -98,6 +99,27 @@ TOPICS = [
     ("mushin",          "Mushin (Vô Tâm / 無心) — Mind of No-Mind",        "Vô Tâm (無心) — Tâm Không Tâm"),
     ("om-thu",          "Hugging the Tree (Ôm Thụ / 抱树)",                "Ôm Thụ (抱树) — Tư Thế Trụ Thế"),
     ("cham-la-nhanh",   "Why Slow Is Fast",                                "Tại Sao Chậm Là Nhanh"),
+    # Batch 2 — stepping, breath, practice, body, pitfalls
+    ("tan-hu-tan-thuc", "Substantial & Insubstantial Stepping (Tấn Hư Tấn Thực)",
+                        "Tấn Hư Tấn Thực — Bước Chân Thực Hư"),
+    ("nghich-tho",      "Reverse Breathing (Nghịch Thở / 逆呼吸)",
+                        "Nghịch Thở (逆呼吸) — Hơi Thở Đảo Cho Học Viên 3.0+"),
+    ("nam-phut-tru-the","The 5-Minute Standing Practice",
+                        "5 Phút Trụ Thế — Tập Đứng Thay Đổi Tất Cả"),
+    ("bai-30-phut",     "The 30-Minute Daily Form",
+                        "Bài 30 Phút Mỗi Ngày — Cấu Trúc, Tập Trung, Phục Hồi"),
+    ("co-the-sau-50",   "What Taichi Does to Your Body After 50",
+                        "Thái Cực Quyền Làm Gì Cho Cơ Thể Sau Tuổi 50"),
+    ("ba-dieu-kien-chua-lanh","The 3 Conditions Taichi Heals (Balance, Blood Pressure, Sleep)",
+                        "3 Điều Kiện Thái Cực Quyền Chữa Lành — Thăng Bằng, Huyết Áp, Giấc Ngủ"),
+    ("tap-20-phut-tai-nha","The 20-Minute Home Practice (No Teacher Needed)",
+                        "Buổi Tập 20 Phút Tại Nhà — Không Cần Thầy"),
+    ("reset-5-phut",    "The 5-Minute Reset Practice for Busy Days",
+                        "Buổi Tập Reset 5 Phút Cho Ngày Bận"),
+    ("bay-sai-lam",     "The 7 Deadly Sins of the 3.0 Student",
+                        "7 Lỗi \"Chết Người\" Của Học Viên 3.0"),
+    ("nghich-ly-cang",  "The Tension Paradox — Why Strong Muscles Make Weak Taichi",
+                        "Nghịch Lý Căng Cứng — Tại Sao Cơ Bắp Mạnh Lại Tạo Thái Cực Yếu"),
 ]
 
 # Body content: list of (en_card_html, vi_card_html) per topic.
@@ -381,6 +403,261 @@ CONTENT = {
     ),
 ],
 
+# ---------- Batch 2 — Stepping, breath, practice, body, pitfalls ----------
+
+"tan-hu-tan-thuc": [
+    (
+        "<h3>Stepping as Hư/Thực in Motion</h3>"
+        "<p>Every step in the form is a small story of <em>substantial</em> and <em>insubstantial</em>. The back foot leaves the ground only when it has nothing more to do (it has become empty). The forward foot settles into the ground only when it is ready to bear weight (it has become full). The middle of the step &mdash; when the entire body's weight is balanced between the two feet &mdash; is the riskiest moment. The skill is to <em>pass through it quickly</em>.</p>",
+        "<h3>Bước Chân Là Hư/Thực Trong Chuyển Động</h3>"
+        "<p>Mỗi bước trong bài quyền là một câu chuyện nhỏ của <em>thực</em> và <em>hư</em>. Chân sau rời mặt đất chỉ khi nó không còn gì để làm (nó đã trở thành hư). Chân trước đặt xuống đất chỉ khi nó sẵn sàng chịu tải (nó đã trở thành thực). Khoảnh khắc giữa bước &mdash; khi toàn bộ trọng lượng cơ thể cân bằng giữa hai chân &mdash; là lúc rủi ro nhất. Kỹ năng là <em>đi qua nó nhanh chóng</em>.</p>",
+    ),
+    (
+        "<h3>Three Common Errors</h3>"
+        "<p><strong>Leaning forward into the empty step</strong> &mdash; the head travels ahead of the foot, momentum steals weight before the foot is ready. <strong>Pushing off the back foot too hard</strong> &mdash; the body becomes a projectile instead of a pendulum, balance goes away. <strong>Planting the front foot and only <em>then</em> shifting weight</strong> &mdash; the foot arrives full too early, the back foot is unweighted too late, and the middle hangs around.</p>",
+        "<h3>Ba Lỗi Phổ Biến</h3>"
+        "<p><strong>Nghiêng về phía bước hư</strong> &mdash; đầu đi trước chân, quán tính lấy trọng lượng trước khi chân sẵn sàng. <strong>Đẩy chân sau quá mạnh</strong> &mdash; cơ thể trở thành đạn đạo thay vì con lắc, thăng bằng biến mất. <strong>Đặt chân trước rồi <em>mới</em> chuyển trọng lượng</strong> &mdash; chân đến thực quá sớm, chân sau thoát tải quá muộn, khoảnh khắc giữa kéo dài.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Pass through the middle quickly."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Đi qua giữa nhanh chóng."</p>',
+    ),
+],
+
+"nghich-tho": [
+    (
+        "<h3>What Reverse Breathing Is</h3>"
+        "<p>In normal breathing, the abdomen expands on inhale, contracts on exhale. In <strong>Nghịch Thở (reverse breathing)</strong>, the abdomen <em>contracts</em> on inhale and <em>expands</em> on exhale. This reversal increases the negative pressure in the lower abdomen during inhalation and pumps the lower dantian on exhalation.</p>"
+        "<p>The sensation is like a bellows working in reverse: the chest draws up while the lower abdomen hollows on inhale, then the breath sinks while the lower abdomen fills and pushes outward on exhale. Most students need 6&ndash;12 months of daily lower-dantian breathing before trying this. It is not for the first year.</p>",
+        "<h3>Nghịch Thở Là Gì</h3>"
+        "<p>Bình thường, bụng phồng khi hít vào, xẹp khi thở ra. Trong <strong>Nghịch Thở</strong>, bụng <em>co</em> khi hít vào và <em>phồng</em> khi thở ra. Sự đảo ngược này tăng áp suất âm ở bụng dưới khi hít vào và bơm Đan Điền dưới khi thở ra.</p>"
+        "<p>Cảm giác như cái bễ chạy ngược: ngực hút lên trong khi bụng dưới lõm xuống khi hít vào, rồi hơi thở chìm xuống trong khi bụng dưới đầy và đẩy ra ngoài khi thở ra. Hầu hết học viên cần 6&ndash;12 tháng thở Đan Điền dưới mỗi ngày trước khi thử cái này. Không dành cho năm đầu.</p>",
+    ),
+    (
+        "<h3>Who Should Try It, Who Should Wait</h3>"
+        "<p><strong>Ready</strong>: students 1+ year in, with a daily lower-dantian sitting practice. <strong>Not ready</strong>: anyone with abdominal hernia, recent abdominal surgery, severe disc issues, or uncontrolled hypertension &mdash; the abdominal pressure changes can complicate these conditions.</p>"
+        "<p>The clearest sign you are ready: your normal dantian breathing has become smooth, quiet, and continuous. If you still need to remember to breathe into the lower abdomen, you are not yet ready to reverse it.</p>",
+        "<h3>Ai Nên Thử, Ai Nên Chờ</h3>"
+        "<p><strong>Sẵn sàng</strong>: học viên trên 1 năm, có thực hành Đan Điền dưới mỗi ngày. <strong>Chưa sẵn sàng</strong>: bất kỳ ai có thoát vị bụng, phẫu thuật bụng gần đây, vấn đề đĩa đệm nặng, hoặc cao huyết áp không kiểm soát &mdash; sự thay đổi áp suất bụng có thể làm phức tạp các tình trạng này.</p>"
+        "<p>Dấu hiệu rõ ràng nhất bạn đã sẵn sàng: thở Đan Điền bình thường của bạn đã trở nên mượt mà, yên tĩnh, liên tục. Nếu bạn vẫn cần nhớ để thở vào bụng dưới, bạn chưa sẵn sàng để đảo ngược nó.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Belly in on inhale. Belly out on exhale. Quietly."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Bụng vào khi hít. Bụng ra khi thở. Nhẹ nhàng."</p>',
+    ),
+],
+
+"nam-phut-tru-the": [
+    (
+        "<h3>Five Minutes That Reshape the Body</h3>"
+        "<p>Five minutes of Ôm Thụ (Hugging the Tree) each day, done consistently over weeks, is more transformative than one 60-minute weekly class. The body learns what standing feels like when there is no agenda, no sequence, no movement to hide behind. Just the body and the breath.</p>"
+        "<p>By week 4, students report &mdash; without being told to look &mdash; that their normal standing posture has improved. By week 8, the slow form has visibly deepened. By week 12, chronic tightness in the shoulders or lower back often releases.</p>",
+        "<h3>5 Phút Tái Cấu Trúc Cơ Thể</h3>"
+        "<p>Năm phút Ôm Thụ mỗi ngày, làm đều đặn trong nhiều tuần, biến đổi nhiều hơn một buổi học 60 phút mỗi tuần. Cơ thể học cảm giác đứng khi không có chương trình nào &mdash; không chuỗi, không chuyển động để trốn sau. Chỉ cơ thể và hơi thở.</p>"
+        "<p>Đến tuần 4, học viên báo cáo &mdash; mà không được bảo nhìn &mdash; rằng tư thế đứng bình thường đã cải thiện. Đến tuần 8, bài quyền chậm đã sâu hơn rõ rệt. Đến tuần 12, sự căng cứng mãn tính ở vai hoặc lưng dưới thường được thả lỏng.</p>",
+    ),
+    (
+        "<h3>The 30-Day Cure</h3>"
+        "<p>Some teachers use a <em>Thirty Days of Five Minutes</em> cure: every morning, upon rising, stand in Ôm Thụ for five timed minutes. No music. No app. No phone. Just a timer. By day 30, the practice has a hold on the body that doesn't require willpower anymore.</p>"
+        "<p>On day 1, five minutes can feel like an hour. By day 7, five minutes is five minutes. By day 30, five minutes is too short and you extend it yourself.</p>",
+        "<h3>Liệu Trình 30 Ngày</h3>"
+        "<p>Một số thầy dùng liệu trình <em>30 Ngày Năm Phút</em>: mỗi sáng khi thức dậy, đứng Ôm Thụ đúng năm phút theo đồng hồ. Không nhạc. Không ứng dụng. Không điện thoại. Chỉ đồng hồ. Đến ngày 30, thực hành đã có một giữ chặt trên cơ thể không cần ý chí nữa.</p>"
+        "<p>Ngày 1, năm phút có thể cảm thấy như một giờ. Đến ngày 7, năm phút là năm phút. Đến ngày 30, năm phút là quá ngắn và bạn tự kéo dài.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Five minutes. Every morning. No exception."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Năm phút. Mỗi sáng. Không ngoại lệ."</p>',
+    ),
+],
+
+"bai-30-phut": [
+    (
+        "<h3>What the 30-Minute Form Looks Like</h3>"
+        "<p>A complete Tai Chi practice in 30 minutes is broken into <strong>three blocks of ten minutes</strong>: warm-up, form, cool-down. The warm-up is Jing Gong (quiet standing) plus a few release movements. The form is one or two repetitions of your current form. The cool-down is hands-on self-massage along the meridians, ending with three still breaths.</p>",
+        "<h3>Bài 30 Phút Trông Như Thế Nào</h3>"
+        "<p>Một buổi tập Thái Cực Quyền hoàn chỉnh trong 30 phút được chia thành <strong>ba khối mười phút</strong>: khởi động, bài quyền, hạ nhiệt. Khởi động là Tĩnh Công (đứng yên) cộng vài động tác thả lỏng. Bài quyền là một hoặc hai lần bài quyền hiện tại. Hạ nhiệt là tự xoa bóp dọc kinh mạch, kết thúc bằng ba hơi thở yên tĩnh.</p>",
+    ),
+    (
+        "<h3>The Three Anchors Within the Half-Hour</h3>"
+        "<p><strong>Anchor 1 (minute 0&ndash;10): body</strong> &mdash; where is my weight, where is my breath, what is tense that need not be. <strong>Anchor 2 (minute 10&ndash;20): form</strong> &mdash; what does this movement want to teach me today. <strong>Anchor 3 (minute 20&ndash;30): heart</strong> &mdash; what is the practice for, beyond technique. Who am I doing this for.</p>",
+        "<h3>Ba Mỏ Neo Trong Nửa Giờ</h3>"
+        "<p><strong>Mỏ neo 1 (phút 0&ndash;10): thân</strong> &mdash; trọng lượng ở đâu, hơi thở ở đâu, gì đang căng mà không cần. <strong>Mỏ neo 2 (phút 10&ndash;20): bài</strong> &mdash; chuyển động này hôm nay muốn dạy tôi điều gì. <strong>Mỏ neo 3 (phút 20&ndash;30): tâm</strong> &mdash; thực hành này vì cái gì, ngoài kỹ thuật. Tôi làm điều này vì ai.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Body, Form, Heart &mdash; ten minutes each."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Thân, Bài, Tâm &mdash; mỗi phần mười phút."</p>',
+    ),
+],
+
+"co-the-sau-50": [
+    (
+        "<h3>What Actually Changes</h3>"
+        "<p>After age 50, the body undergoes predictable changes: collagen production drops 1.5% per year, joint cartilage thins, vestibular neurons fire less reliably, fast-twitch muscle fibres shrink. These are not failures &mdash; they are shifts. Tai Chi works <em>with</em> these shifts, not against them.</p>"
+        "<p>The slow, weight-bearing, balance-challenging, attention-anchored nature of Tai Chi addresses exactly the capacities that decline: proprioception, balance, fascia elasticity, vagal tone, breath depth, blood pressure regulation. It is almost a parody of coincidence: the body at 50+ is the body Tai Chi was designed for.</p>",
+        "<h3>Điều Gì Thực Sự Thay Đổi</h3>"
+        "<p>Sau tuổi 50, cơ thể trải qua những thay đổi có thể dự đoán: sản xuất collagen giảm 1,5% mỗi năm, sụn khớp mỏng đi, tế bào thần kinh tiền đình hoạt động kém tin cậy hơn, sợi cơ co nhanh co lại. Đây không phải thất bại &mdash; đó là sự chuyển dịch. Thái Cực Quyền làm việc <em>với</em> những chuyển dịch này, không chống lại.</p>"
+        "<p>Tính chất chậm, chịu tải, đòi hỏi thăng bằng, neo sự chú ý của Thái Cực Quyền giải quyết chính xác những năng lực đang suy giảm: cảm giác bản thể, thăng bằng, đàn hồi cân, trương lực phế vị, độ sâu hơi thở, điều hòa huyết áp. Gần như là một sự trùng hợp mỉa mai: cơ thể ở tuổi 50+ là cơ thể mà Thái Cực Quyền được thiết kế cho.</p>",
+    ),
+    (
+        "<h3>What You Will Notice in Your Own Body</h3>"
+        "<p>Most students in their 50s notice four things within the first six months of daily practice: better sleep (deeper, fewer wake-ups), steadier blood pressure (often after 3 months), easier stairs (knees feel more supported, not less), and clearer recall (the mind feels less foggy at the end of a long day).</p>"
+        "<p>Few things in medicine are this predictable across a population. Tai Chi is one of them.</p>",
+        "<h3>Bạn Sẽ Nhận Ra Gì Trong Cơ Thể Mình</h3>"
+        "<p>Hầu hết học viên ở độ tuổi 50 nhận thấy bốn điều trong sáu tháng đầu tập đều đặn: ngủ tốt hơn (sâu hơn, ít thức giấc hơn), huyết áp ổn hơn (thường sau 3 tháng), leo cầu thang dễ hơn (gối có vẻ được hỗ trợ hơn, không phải yếu hơn), và trí nhớ rõ hơn (đầu bớt mờ mờ vào cuối ngày dài).</p>"
+        "<p>Ít thứ trong y học dự đoán được như thế này trên một quần thể. Thái Cực Quyền là một trong những thứ đó.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"The body at 50+ is the body Tai Chi was designed for."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Cơ thể 50+ là cơ thể mà Thái Cực Quyền được thiết kế cho."</p>',
+    ),
+],
+
+"ba-dieu-kien-chua-lanh": [
+    (
+        "<h3>The Three Conditions</h3>"
+        "<p>Tai Chi has the strongest evidence base for improving exactly three things at age 50+: <strong>balance</strong>, <strong>blood pressure</strong>, and <strong>sleep</strong>. Each is a real cause of suffering and a real cost to the healthcare system. Each improves measurably with daily Tai Chi within weeks to months.</p>",
+        "<h3>Ba Điều Kiện</h3>"
+        "<p>Thái Cực Quyền có cơ sở bằng chứng mạnh nhất cho việc cải thiện chính xác ba điều ở tuổi 50+: <strong>thăng bằng</strong>, <strong>huyết áp</strong>, và <strong>giấc ngủ</strong>. Mỗi thứ là nguyên nhân thực sự của đau khổ và chi phí thực sự cho hệ thống y tế. Mỗi thứ cải thiện đo được với Thái Cực Quyền mỗi ngày trong vài tuần đến vài tháng.</p>",
+    ),
+    (
+        "<h3>What the Studies Show</h3>"
+        "<p>A 2020 meta-analysis in JAMA Internal Medicine, pooling 32 randomized trials with more than 4,000 participants, found that Tai Chi reduced fall risk by <strong>43%</strong> compared to no exercise. A 2017 meta-analysis in Journal of the American Heart Association found Tai Chi lowered systolic blood pressure by <strong>15.6 mmHg</strong> on average &mdash; equivalent to a first-line blood pressure medication. A 25-week Emory study of older adults with sleep problems found sleep onset latency dropped from 28 to 16 minutes.</p>"
+        "<p>These are not marginal effects. They are the scale of effect that gets randomized trial funding and meta-analysis attention.</p>",
+        "<h3>Nghiên Cứu Cho Thấy Gì</h3>"
+        "<p>Một phân tích tổng hợp năm 2020 trên JAMA Internal Medicine, gộp 32 thử nghiệm ngẫu nhiên với hơn 4.000 người tham gia, phát hiện Thái Cực Quyền giảm nguy cơ té ngã <strong>43%</strong> so với không tập. Một phân tích năm 2017 trên Journal of the American Heart Association phát hiện Thái Cực Quyền giảm huyết áp tâm thu trung bình <strong>15,6 mmHg</strong> &mdash; tương đương với thuốc huyết áp hàng đầu. Một nghiên cứu 25 tuần của Emory trên người lớn tuổi có vấn đề giấc ngủ phát hiện thời gian vào giấc ngủ giảm từ 28 xuống 16 phút.</p>"
+        "<p>Đây không phải hiệu quả nhỏ. Đây là quy mô hiệu quả thu hút được tài trợ thử nghiệm ngẫu nhiên và sự chú ý của phân tích tổng hợp.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Forty-three percent fewer falls. Sixteen mmHg lower. Sleep that arrives."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Bốn mươi ba phần trăm ít té hơn. Mười sáu mmHg thấp hơn. Giấc ngủ đến."</p>',
+    ),
+],
+
+"tap-20-phut-tai-nha": [
+    (
+        "<h3>The Structure</h3>"
+        "<p>Twenty minutes at home, with no teacher, no equipment, no music, can be one of the most reliable daily practices in Tai Chi. The structure is simple: <strong>5 minutes Ôm Thụ</strong>, <strong>10 minutes slow form</strong>, <strong>5 minutes standing meditation and breath</strong>.</p>"
+        "<p>That is the entire practice. The room can be small. The floor can be a carpet. The shoes can be socks.</p>",
+        "<h3>Cấu Trúc</h3>"
+        "<p>Hai mươi phút tại nhà, không thầy, không thiết bị, không nhạc, có thể là một trong những thực hành hằng ngày đáng tin nhất trong Thái Cực Quyền. Cấu trúc đơn giản: <strong>5 phút Ôm Thụ</strong>, <strong>10 phút bài quyền chậm</strong>, <strong>5 phút thiền đứng và thở</strong>.</p>"
+        "<p>Đó là toàn bộ thực hành. Phòng có thể nhỏ. Sàn có thể là thảm. Giày có thể là tất.</p>",
+    ),
+    (
+        "<h3>Substitutions When You Cannot Do the Form</h3>"
+        "<p>Some mornings the body will not cooperate. The substitution stack: <strong>if the form is too much</strong>, do 15 minutes of Ôm Thụ instead. <strong>If even standing is too much</strong>, do 15 minutes of seated Zhan Zhuang on a chair with the arms rounded forward. <strong>If even sitting is too much</strong>, do 15 minutes of lying dantian breathing. <strong>Some practice always beats no practice</strong>.</p>",
+        "<h3>Thay Thế Khi Không Thể Tập Bài Quyền</h3>"
+        "<p>Một số buổi sáng cơ thể sẽ không hợp tác. Chuỗi thay thế: <strong>nếu bài quyền quá nhiều</strong>, làm 15 phút Ôm Thụ thay thế. <strong>Nếu ngay cả đứng cũng quá nhiều</strong>, làm 15 phút Trụ Thế ngồi trên ghế với tay tròn phía trước. <strong>Nếu ngay cả ngồi cũng quá nhiều</strong>, làm 15 phút thở Đan Điền nằm. <strong>Một số thực hành luôn tốt hơn không thực hành</strong>.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Some practice always beats no practice."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Một số thực hành luôn tốt hơn không thực hành."</p>',
+    ),
+],
+
+"reset-5-phut": [
+    (
+        "<h3>The Five-Minute Reset</h3>"
+        "<p>On days when the schedule has eaten the practice, when travel has interrupted everything, when the body is sore from a tennis match or a long meeting, you can still recover five minutes. The sequence:</p>"
+        "<p>1. 60 seconds <strong>dantian breath</strong>, seated or standing.<br>"
+        "2. 60 seconds <strong>spinal roll-down</strong>: chin to chest, vertebra by vertebra.<br>"
+        "3. 60 seconds <strong>shoulder circles</strong>: both directions, slow.<br>"
+        "4. 60 seconds <strong>ankle rotations</strong>: seated, both feet, both directions.<br>"
+        "5. 60 seconds <strong>Ôm Thụ lite</strong>: standing, three breaths.</p>"
+        "<p>This is not a substitute for the real practice. But it is a fraction of the real practice, and a fraction of the real practice, done daily, compounds.",
+        "<h3>Reset 5 Phút</h3>"
+        "<p>Vào những ngày lịch trình đã nuốt mất thực hành, khi du lịch làm gián đoạn mọi thứ, khi cơ thể đau từ trận tennis hay cuộc họp dài, bạn vẫn có thể lấy lại năm phút. Chuỗi:</p>"
+        "<p>1. 60 giây <strong>thở Đan Điền</strong>, ngồi hoặc đứng.<br>"
+        "2. 60 giây <strong>cuộn cột sống xuống</strong>: cằm về ngực, từng đốt sống một.<br>"
+        "3. 60 giây <strong>xoay vai</strong>: cả hai chiều, chậm.<br>"
+        "4. 60 giây <strong>xoay cổ chân</strong>: ngồi, cả hai chân, cả hai chiều.<br>"
+        "5. 60 giây <strong>Ôm Thụ nhẹ</strong>: đứng, ba hơi thở.</p>"
+        "<p>Đây không phải thay thế cho thực hành thật. Nhưng nó là một phần của thực hành thật, và một phần thực hành thật, làm mỗi ngày, sẽ cộng dồn.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"A fraction of the practice, done daily, compounds."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Một phần thực hành, mỗi ngày, sẽ cộng dồn."</p>',
+    ),
+],
+
+"bay-sai-lam": [
+    (
+        "<h3>The Seven Sins</h3>"
+        "<p>Almost every common beginner mistake falls into one of seven categories. Each is a way of <em>forcing</em> what should be <em>allowed</em>:</p>"
+        "<ol>"
+        "<li><strong>Holding the breath</strong> &mdash; power surges in the shoulders and neck.</li>"
+        "<li><strong>Leading with the arms</strong> &mdash; the body becomes a passenger.</li>"
+        "<li><strong>Locking the knees</strong> &mdash; the lower joints stop transmitting force.</li>"
+        "<li><strong>Puffing the chest</strong> &mdash; breath rises, the lower dantian empties.</li>"
+        "<li><strong>Double-loading</strong> &mdash; weight shared by both feet, both hands. No waves, no structure.</li>"
+        "<li><strong>Sinking the shoulders too far</strong> &mdash; not sōng but sui. The chest collapses.</li>"
+        "<li><strong>Moving the head before the body</strong> &mdash; the neck takes weight it shouldn't.</li>"
+        "</ol>",
+        "<h3>Bảy Lỗi</h3>"
+        "<p>Gần như mọi sai lầm phổ biến của người mới rơi vào một trong bảy loại. Mỗi loại là một cách <em>ép</em> điều nên được <em>cho phép</em>:</p>"
+        "<ol>"
+        "<li><strong>Nín thở</strong> &mdash; lực dồn lên vai và cổ.</li>"
+        "<li><strong>Dẫn bằng tay</strong> &mdash; cơ thể trở thành hành khách.</li>"
+        "<li><strong>Khóa gối</strong> &mdash; khớp dưới ngừng truyền lực.</li>"
+        "<li><strong>Phồng ngực</strong> &mdash; hơi thở dâng lên, Đan Điền dưới trống.</li>"
+        "<li><strong>Song tải</strong> &mdash; trọng lượng chia cả hai chân, cả hai tay. Không sóng, không cấu trúc.</li>"
+        "<li><strong>Hạ vai quá sâu</strong> &mdash; không phải tùng mà là tập. Ngực sụp.</li>"
+        "<li><strong>Di chuyển đầu trước thân</strong> &mdash; cổ mang trọng lượng không nên mang.</li>"
+        "</ol>",
+    ),
+    (
+        "<h3>How to Use This List</h3>"
+        "<p>Don't try to fix all seven. Pick the one your teacher or partner has pointed out most often and live with that for a month. Add the next one only when the first is no longer an issue. Most students clear the list in two to three years. Some never clear all seven; that is fine. <em>Tai Chi is a lifelong practice</em>.</p>",
+        "<h3>Cách Dùng Danh Sách Này</h3>"
+        "<p>Đừng cố sửa cả bảy. Chọn một lỗi mà thầy hoặc đối tác đã chỉ ra thường xuyên nhất và sống với nó trong một tháng. Thêm cái tiếp theo chỉ khi cái trước không còn là vấn đề. Hầu hết học viên sửa sạch danh sách trong hai đến ba năm. Một số không bao giờ sửa hết bảy; điều đó ổn. <em>Thái Cực Quyền là thực hành suốt đời</em>.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Force is the enemy. Allowance is the path."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Ép buộc là kẻ thù. Cho phép là con đường."</p>',
+    ),
+],
+
+"nghich-ly-cang": [
+    (
+        "<h3>The Paradox</h3>"
+        "<p>The most common shock in any Tai Chi class is when a 50-year-old office worker &mdash; who cannot lift their bodyweight and has not exercised in 20 years &mdash; produces a sharper fajin than a fit 30-year-old gym-goer. The reason is not magic. It is that Tai Chi uses a different muscular pathway: <em>fascia</em>, not <em>muscle</em>.</p>"
+        "<p>Strong, bulky muscles are designed for short bursts of maximal effort. Tai Chi uses the elastic, springy, layered connective tissue that wraps every joint and links every bone. Heavy weight training atrophies that tissue (muscles win and squeeze the fascia). Long, slow, full-range movement nourishes it.</p>",
+        "<h3>Nghịch Lý</h3>"
+        "<p>Cú sốc phổ biến nhất trong bất kỳ lớp Thái Cực Quyền nào là khi một nhân viên văn phòng 50 tuổi &mdash; không nâng được trọng lượng cơ thể và đã 20 năm không tập thể dục &mdash; tạo ra phát lực sắc hơn một người 30 tuổi tập gym khỏe mạnh. Lý do không phải phép thuật. Đó là Thái Cực Quyền dùng con đường cơ bắp khác: <em>cân mạc</em>, không phải <em>cơ bắp</em>.</p>"
+        "<p>Cơ bắp to khỏe được thiết kế cho các đợt nỗ lực tối đa ngắn. Thái Cực Quyền dùng mô liên kết đàn hồi, có lò xo, nhiều lớp bao bọc mọi khớp và liên kết mọi xương. Tập tạ nặng làm teo mô đó (cơ bắp thắng và ép cân mạc). Chuyển động dài, chậm, toàn phạm vi nuôi dưỡng nó.</p>",
+    ),
+    (
+        "<h3>What This Means for Tennis Players</h3>"
+        "<p>For the tennis player in particular, this is good news. The body's tennis strength is in the calves, quads, shoulders, and forearms &mdash; large muscles that produce short powerful movements. Tai Chi builds a different layer: deep core, fascia, balance reflexes, breath control, recovery. The two systems stack rather than compete. A body with both is harder to injure and harder to exhaust.</p>",
+        "<h3>Điều Này Có Nghĩa Gì Cho Người Chơi Tennis</h3>"
+        "<p>Đặc biệt cho người chơi tennis, đây là tin tốt. Sức mạnh tennis của cơ thể nằm ở bắp chân, đùi trước, vai và cẳng tay &mdash; cơ bắp lớn tạo ra các chuyển động ngắn mạnh mẽ. Thái Cực Quyền xây dựng một lớp khác: cốt lõi sâu, cân mạc, phản xạ thăng bằng, kiểm soát hơi thở, phục hồi. Hai hệ thống xếp chồng thay vì cạnh tranh. Một cơ thể có cả hai khó bị chấn thương hơn và khó kiệt sức hơn.</p>",
+    ),
+    (
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Master Cue</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Strong muscles make weak Tai Chi. Springy fascia makes powerful Tai Chi."</p>',
+        '<h3 style="background:var(--ink); color:var(--card); padding:0.5rem 1rem; margin:-0.5rem -1rem 0.5rem;">Câu Nhắc Tổng</h3>'
+        '<p style="font-style:italic; font-family:Cormorant Garamond,serif; font-size:1.3rem;">"Cơ bắp mạnh tạo Thái Cực yếu. Cân mạc có lò xo tạo Thái Cực mạnh."</p>',
+    ),
+],
+
+
 }
 
 
@@ -412,9 +689,10 @@ def build_topic(slug, en_title, vi_title):
 
 
 def update_techniques_index():
+    """Replace the existing 'New Topics' block (or add one) with the full list."""
     en_block = ['\n    <section id="topics" class="technique-section">']
     en_block.append('        <h2>New Topics · Chủ Đề Mở Rộng</h2>')
-    en_block.append('        <p style="color:var(--gray-mid); font-style:italic;">In-depth technique notes drawn from the <em>3.0 Beginner Practice Guide</em>.</p>')
+    en_block.append('        <p style="color:var(--gray-mid); font-style:italic;">In-depth technique notes drawn from the <em>3.0 Beginner Practice Guide</em> &mdash; 20 topics across standing, breath, stepping, body, and pitfalls.</p>')
     for slug, en_title, _ in TOPICS:
         en_block.append(f'        <div class="technique-card"><h3><a href="/en/techniques/{slug}/">{en_title}</a></h3></div>')
     en_block.append('    </section>\n')
@@ -422,7 +700,7 @@ def update_techniques_index():
 
     vi_block = ['\n    <section id="topics" class="technique-section">']
     vi_block.append('        <h2>Chủ Đề Mở Rộng · New Topics</h2>')
-    vi_block.append('        <p style="color:var(--gray-mid); font-style:italic;">Ghi chép kỹ thuật chuyên sâu từ <em>Cẩm Nang 3.0 Beginner</em>.</p>')
+    vi_block.append('        <p style="color:var(--gray-mid); font-style:italic;">Ghi chép kỹ thuật chuyên sâu từ <em>Cẩm Nang 3.0 Beginner</em> &mdash; 20 chủ đề: trụ thế, hơi thở, bước chân, cơ thể, và lỗi thường gặp.</p>')
     for slug, _, vi_title in TOPICS:
         vi_block.append(f'        <div class="technique-card"><h3><a href="/vi/techniques/{slug}/">{vi_title}</a></h3></div>')
     vi_block.append('    </section>\n')
@@ -433,16 +711,20 @@ def update_techniques_index():
         (REPO / "vi" / "techniques" / "index.html", vi_new),
     ]:
         text = idx_path.read_text(encoding='utf-8')
-        if 'id="topics"' in text:
-            print(f"  skip {idx_path.name}: topics block already present")
+        # Replace existing topics section if present, else insert before </article>
+        m = re.search(r'<section id="topics"[^>]*>.*?</section>\s*', text, re.DOTALL)
+        if m:
+            new_text = text[:m.start()] + block.strip() + '\n\n' + text[m.end():]
+            idx_path.write_text(new_text, encoding='utf-8')
+            print(f"  replaced topics block in {idx_path.name}")
             continue
-        m = re.search(r'</article>', text)
-        if not m:
+        m2 = re.search(r'</article>', text)
+        if not m2:
             print(f"  WARN: no </article> in {idx_path}")
             continue
-        new_text = text[:m.start()] + block + text[m.start():]
+        new_text = text[:m2.start()] + block + text[m2.start():]
         idx_path.write_text(new_text, encoding='utf-8')
-        print(f"  updated {idx_path.name}: appended topics section")
+        print(f"  appended topics block to {idx_path.name}")
 
 
 if __name__ == "__main__":
