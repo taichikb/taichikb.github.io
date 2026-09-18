@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khí Công Thái Cực Toàn Thư (Tai Chi Qigong: The Internal Foundation) — Tiến sĩ Dương Tuấn Mẫn</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Khí Công Thái Cực Toàn Thư của Dr. Yang Jwing-Ming - Nền tảng nội công Thái Cực, kinh lạc, hô hấp Đan Điền nghịch, Tiểu Chu Thiên và chuyển hóa Khí thành Kình.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/tai-chi-qigong_-the-internal-foundation-of-tai-chi-chuan/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#dai-cuong-khi-cong" class="active">1. Đại Cương Khí & Khí Công (Qigong Science)</a></li>
+        <li><a href="#kinh-lac-tieu-chu-thien">2. Hệ Thống Kinh Lạc & Vòng Tiểu Chu Thiên</a></li>
+        <li><a href="#tam-dieu">3. Tam Đại Cương Lĩnh: Điều Thân, Điều Tức & Điều Tâm</a></li>
+        <li><a href="#ho-hap-dan-dien">4. Hô Hấp Đan Điền: Thuận Hô Hấp vs Nghịch Hô Hấp</a></li>
+        <li><a href="#dong-cong-khi-cong">5. Bộ Động Công Thái Cực Khí Công Đứng</a></li>
+        <li><a href="#chuyen-khi-thanh-kinh">6. Chuyển Hóa Khí Thành Kình (Qi to Jin)</a></li>
+        <li><a href="#toa-thien-duong-khi">7. Tọa Thiền Tĩnh Tọa & Đan Điền Dưỡng Khí</a></li>
+        <li><a href="#phong-ngua-lech-lac">8. Phòng Ngừa Tẩu Hỏa & Lệch Lạc Khí Huyết</a></li>
+        <li><a href="#loi-ket-tien-si-duong">9. Lời Kết & Lộ Trình Tu Tập Suốt Đời</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Khí Công Học Viện YMAA · Bản Dịch Việt Ngữ Chuyên Sâu</span>
+      <h1>Khí Công Thái Cực Toàn Thư</h1>
+      <div class="subtitle">Tai Chi Qigong: The Internal Foundation of Tai Chi Chuan &mdash; Dr. Yang, Jwing-Ming (Tiến sĩ Dương Tuấn Mẫn)</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-graduate"></i> Tác giả: Tiến sĩ Dương Tuấn Mẫn (Học viện YMAA Hoa Kỳ)</span>
+        <span><i class="fa-solid fa-diagram-project"></i> 213 Đồ Giải Kinh Lạc &amp; Động Tác</span>
+        <span><i class="fa-solid fa-file-lines"></i> 355 Trang Công Phu Nội Gia</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="dai-cuong-khi-cong">
+      <h2>1. Đại Cương Khí & Khí Công (Qigong Science)</h2>
+
+      <p>Dưới góc nhìn khoa học hiện đại kết hợp y học cổ truyền phương Đông của Tiến sĩ <strong>Dương Tuấn Mẫn (Dr. Yang Jwing-Ming)</strong>, <strong>Khí (Qi &mdash; 氣)</strong> chính là năng lượng sinh học điện từ (Bio-electromagnetic Energy) luân chuyển tuần hoàn bên trong mọi sinh vật sống. Cơ thể con người giống như một bộ pin sinh học: khi lượng điện tích dồi dào và các mạch dẫn thông suốt, cơ thể khỏe mạnh, miễn dịch kiên cố; khi dòng điện suy kiệt hoặc bị tắc nghẽn, bệnh tật và suy thoái lập tức phát sinh.</p>
+
+      <div class="callout">
+        <p><strong>Khí Công (Qigong &mdash; 氣功)</strong> được cấu thành bởi hai chữ: <em>Khí</em> (năng lượng sinh mệnh) và <em>Công</em> (thời gian, nỗ lực và kỹ thuật rèn luyện chuyên sâu). Do đó, Khí Công là môn khoa học nghiên cứu và điều khiển năng lượng nội thể thông qua sự phối hợp nhịp nhàng giữa hơi thở, tư thế và ý niệm.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p004_01.jpeg" alt="Tiến sĩ Dương Tuấn Mẫn thị phạm khí công nội gia">
+        <figcaption>Hình 1: Tiến sĩ Dương Tuấn Mẫn (Dr. Yang, Jwing-Ming) &mdash; Người sáng lập học viện YMAA nổi tiếng toàn cầu.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="kinh-lac-tieu-chu-thien">
+      <h2>2. Hệ Thống Kinh Lạc & Vòng Tiểu Chu Thiên</h2>
+
+      <p>Năng lượng Khí không lưu thông tự do hỗn loạn mà vận hành dọc theo một mạng lưới kinh lạc tinh vi gồm <strong>12 Chính Kinh</strong> liên kết với ngũ tạng lục phủ và <strong>Kỳ Kinh Bát Mạch</strong> (8 mạch kỳ diệu đóng vai trò như các hồ chứa dự trữ năng lượng).</p>
+
+      <p>Trong số Bát Mạch, hai mạch tối quan trọng cho người luyện Thái Cực Quyền là:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Mạch Kinh</th>
+              <th>Thuộc Tính Âm Dương</th>
+              <th>Lộ Trình Giải Phẫu Sinh Học</th>
+              <th>Vai Trò Khí Công</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mạch Nhâm (Conception Vessel &mdash; 任脈)</strong></td>
+              <td>Âm Mạch Chi Hải (Biển của các kinh âm)</td>
+              <td>Bắt đầu từ Hội Âm (đáy chậu), chạy ngược lên giữa bụng qua rốn (Đan Điền), qua ngực, cổ họng và tận cùng tại môi dưới (huyệt Thừa Tương).</td>
+              <td>Dẫn khí êm dịu, hạ hỏa, tĩnh tâm, bồi dưỡng dịch thể và nuôi dưỡng lục phủ ngũ tạng.</td>
+            </tr>
+            <tr>
+              <td><strong>Mạch Đốc (Governing Vessel &mdash; 督脈)</strong></td>
+              <td>Dương Mạch Chi Hải (Biển của các kinh dương)</td>
+              <td>Bắt đầu từ Trường Cường (xương cùng cụt), men theo cột sống thắt lưng qua Mệnh Môn, Đại Chùy, lên đỉnh đầu (Bách Hội) và vòng xuống nướu răng hàm trên.</td>
+              <td>Kích hoạt tủy sống, thăng hoa sinh lực, phát xuất kình lực phòng thủ và tấn công dũng mãnh.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p073_01.jpeg" alt="Đồ giải mạch Nhâm Đốc và Thái cực Bát quái">
+        <figcaption>Hình 2: Sơ đồ Thái Cực Bát Quái và đường đi tuần hoàn của kinh mạch Nhâm - Đốc.</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-infinity"></i> Vòng Tuần Hoàn Tiểu Chu Thiên (Microcosmic Orbit):</h4>
+        <p>Để nối liền hai mạch Nhâm và Đốc thành một vòng tuần hoàn khép kín, người tập phải luôn luôn <strong>chạm đầu lưỡi nhẹ lên vòm họng trên</strong> (tạo thành cây cầu ô thước &ldquo;Thước Kiều&rdquo;). Khí hít vào thăng theo mạch Đốc sau lưng lên Bách Hội, thở ra giáng theo mạch Nhâm trước ngực quy về Hạ Đan Điền.</p>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="tam-dieu">
+      <h2>3. Tam Đại Cương Lĩnh: Điều Thân, Điều Tức & Điều Tâm</h2>
+
+      <p>Muốn khai mở tiềm năng nội công Thái Cực, người luyện cần nắm vững và thực thi <em>Tam Điều (Three Regulations)</em>:</p>
+
+      <ul>
+        <li><strong>Điều Thân (Tiaoshen &mdash; 調身):</strong> Căn chỉnh thân thể. Huyệt Bách Hội (đỉnh đầu) treo lơ lửng như có sợi chỉ tơ kéo lên; xương cụt thu nhẹ (Liễm Đồn); ngực hàm nhẹ (Hàm Hung Bạt Bối); huyệt Dũng Tuyền (Yongquan K-1) ở lòng bàn chân bám rễ vững chắc như cây tùng trên núi đá.</li>
+        <li><strong>Điều Tức (Tiaoxi &mdash; 調息):</strong> Điều hòa hơi thở đạt 8 tiêu chí: <em>Lạc (Êm), Tế (Mảnh), Thâm (Sâu), Trường (Dài), Quân (Đều), Hữu Ý (Có ý thức), Vô Thanh (Không nghe tiếng thở), Miên Miên (Liên tục không đứt quãng)</em>.</li>
+        <li><strong>Điều Tâm (Tiaoxin &mdash; 調心):</strong> Điều ngự tâm trí. Dùng <strong>Ý (Yi)</strong> chứ không dùng <strong>Tâm (Xin - tâm vọng động)</strong>. &ldquo;Dĩ Ý Lãnh Khí, Dĩ Khí Vận Thân&rdquo; &mdash; Ý niệm đi đến đâu, dòng điện sinh học Khí lập tức chảy đến đó, và máu huyết cùng cơ bắp chuyển động theo.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p053_01.jpeg" alt="Vị trí huyệt Dũng Tuyền và gốc rễ thăng bằng">
+        <figcaption>Hình 3: Huyệt Dũng Tuyền (K-1 Yongquan) &mdash; Gốc rễ tiếp thu Địa khí và ổn định trung tâm cơ thể.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="ho-hap-dan-dien">
+      <h2>4. Hô Hấp Đan Điền: Thuận Hô Hấp vs Nghịch Hô Hấp</h2>
+
+      <p>Hơi thở chính là máy bơm cơ học thúc đẩy dòng Khí luân chuyển. Tiến sĩ Dương Tuấn Mẫn phân tích sâu hai phương pháp hô hấp cơ hoành:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Đặc Điểm</th>
+              <th>Hô Hấp Đan Điền Thuận (Abdominal Breathing)</th>
+              <th>Hô Hấp Đan Điền Nghịch (Reverse Abdominal Breathing)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Khi Hít Vào (Inhale)</strong></td>
+              <td>Bụng dưới phình nhẹ ra ngoài, đáy chậu thả lỏng hạ xuống.</td>
+              <td>Bụng dưới hóp nhẹ vào trong, đáy chậu (Hội Âm) hơi nhíu nhẹ lên.</td>
+            </tr>
+            <tr>
+              <td><strong>Khi Thở Ra (Exhale)</strong></td>
+              <td>Bụng dưới hóp nhẹ vào, đẩy khí cặn ra ngoài.</td>
+              <td>Bụng dưới phình nhẹ ra ngoài, kình lực dồn xuống Đan Điền và phóng ra tứ chi.</td>
+            </tr>
+            <tr>
+              <td><strong>Mục Đích Sử Dụng</strong></td>
+              <td>Dưỡng sinh, tĩnh tâm, hạ huyết áp, thư giãn thần kinh phó giao cảm.</td>
+              <td><strong>Võ thuật chiến đấu, phát kình (Fajin), nén khí vào tủy xương, tạo lực bộc phát tức thì.</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p135_01.jpeg" alt="Đồ giải chu kỳ hô hấp Đạo gia và lộ trình kinh mạch">
+        <figcaption>Hình 4: Chu kỳ hô hấp Đạo gia &mdash; Lãnh đạo dòng khí giữa sống lưng và Đan Điền.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="dong-cong-khi-cong">
+      <h2>5. Bộ Động Công Thái Cực Khí Công Đứng (Standing Qigong Forms)</h2>
+
+      <p>Hệ thống động công Thái Cực Khí Công của Tiến sĩ Dương Tuấn Mẫn gồm những thức động tác mẫu mực rèn luyện từng kinh mạch:</p>
+
+      <h3>1. Quán Khí Bách Hội (Baihui Guan Qi &mdash; 百會貫氣)</h3>
+      <p>Hai tay mở rộng sang hai bên như ôm trọn bầu trời, hít thiên khí vào lòng bàn tay rồi từ từ hạ tay xuống qua đỉnh đầu (Bách Hội), rót luồng sinh khí thanh khiết xuyên qua não bộ, tủy sống và rửa sạch toàn bộ thân thể.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p168_01.jpeg" alt="Thế động công Bách Hội Quán Khí">
+        <figcaption>Hình 5: Quán Khí Bách Hội &mdash; Dẫn dắt thiên khí vũ trụ tắm mát hệ thống thần kinh trung ương.</figcaption>
+      </div>
+
+      <h3>2. Đẩy Sóng Nước & Cối Xay Gió Chuyển Động</h3>
+      <p>Động tác đẩy hai tay về phía trước theo nhịp thở ra (Nghịch hô hấp), phối hợp với chuyển trọng tâm chân trước &mdash; chân sau, mô phỏng sức mạnh vô tận của sóng biển đại dương dâng tràn.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p195_01.jpeg" alt="Động tác đẩy sóng và xoay chuyển kình lực">
+        <figcaption>Hình 6: Phối hợp kình lực hai tay và chuyển trọng tâm trong bài tập Đẩy Sóng Nước.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p220_01.jpeg" alt="Thế cối xay gió khai mở cột sống thắt lưng">
+        <figcaption>Hình 7: Khai mở cột sống và bồi dưỡng huyệt Mệnh Môn qua chuyển động xoay tròn Cối Xay Gió.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="chuyen-khi-thanh-kinh">
+      <h2>6. Chuyển Hóa Khí Thành Kình (Qi to Jin)</h2>
+
+      <p>Điểm khác biệt tối cao giữa Thái Cực Quyền và các môn thể thao cơ bắp thông thường nằm ở khái niệm <strong>Kình (Jin &mdash; 勁)</strong>:</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">以 意 領 氣 ， 以 氣 催 勁 ， 勁 由 脊 發 。</span>
+        &ldquo;Dĩ Ý lãnh Khí, dĩ Khí thôi Kình, Kình do tích phát &mdash; Dùng ý dẫn dắt khí, dùng khí thúc đẩy kình, kình lực bắt nguồn từ cột sống phát ra.&rdquo;
+      </div>
+
+      <p>Lực cơ bắp (Lực &mdash; Li) là lực co thắt thô thiển của sợi cơ sinh học, mang tính cục bộ và nhanh chóng kiệt sức. Trong khi đó, <strong>Nội Kình (Jin)</strong> là lực tổng hợp cơ học sinh học được tiếp sức bởi dòng điện sinh học Khí, xuyên suốt toàn bộ hệ thống gân cốt và màng mạc (Fascia), có thể phát phóng uy lực ngàn cân mà không làm hao tổn nguyên khí.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p250_01.jpeg" alt="Cấu trúc phát kình Thái Cực Quyền">
+        <figcaption>Hình 8: Tư thế chuẩn bị phát kình (Fajin) &mdash; Khí nén chặt ở Đan Điền sẵn sàng bộc phát qua đầu ngón tay.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="toa-thien-duong-khi">
+      <h2>7. Tọa Thiền Tĩnh Tọa & Đan Điền Dưỡng Khí</h2>
+
+      <p>Sau khi động công làm ấm nóng kinh mạch, tĩnh công ngồi thiền là phương pháp thu liễm khí về kho dự trữ Hạ Đan Điền (vùng huyệt Khí Hải và Quan Nguyên):</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-tai-chi-qigong/qigong_p280_01.jpeg" alt="Tư thế ngồi thiền dưỡng khí chuẩn mực">
+        <figcaption>Hình 9: Tư thế tọa thiền Đạo gia &mdash; Cột sống dựng thẳng, mắt khép hờ nhìn xuống chóp mũi, tâm an trụ Đan Điền.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="phong-ngua-lech-lac">
+      <h2>8. Phòng Ngừa Tẩu Hỏa & Lệch Lạc Khí Huyết</h2>
+
+      <p>Tiến sĩ Dương Tuấn Mẫn đặc biệt cảnh báo những sai lầm có thể dẫn đến lệch lạc khí huyết (thường gọi là &ldquo;Tẩu Hỏa Nhập Ma&rdquo;):</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Hiện Tượng Lệch Lạc</th>
+              <th>Nguyên Nhân Thường Gặp</th>
+              <th>Phương Pháp Hóa Giải Ngay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Căng tức đỉnh đầu, nhức thái dương</strong></td>
+              <td>Dẫn khí lên đầu quá mạnh nhưng không biết dẫn khí xuống; ý niệm quá gồng ép.</td>
+              <td>Dừng tập ngay, ngồi xuống, tập trung ý niệm hoàn toàn vào huyệt Dũng Tuyền ở lòng bàn chân; uống nước ấm.</td>
+            </tr>
+            <tr>
+              <td><strong>Nặng ngực, khó thở, nghẹn họng</strong></td>
+              <td>Gồng cứng lồng ngực, cố nín thở hoặc ép hơi thở sâu quá mức tự nhiên.</td>
+              <td>Thở dài tự nhiên qua miệng vài lần, xoa bóp nhẹ huyệt Đản Trung ở giữa xương ức.</td>
+            </tr>
+            <tr>
+              <td><strong>Lạnh tay chân sau khi tập</strong></td>
+              <td>Tập ở nơi gió lùa, mặc không đủ ấm hoặc tâm trí phân tán lo âu khi tập.</td>
+              <td>Xoa xát hai lòng bàn tay vào nhau thật ấm, xoa dọc cẳng chân và vùng thắt lưng.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 9 -->
+    <section id="loi-ket-tien-si-duong">
+      <h2>9. Lời Kết & Lộ Trình Tu Tập Suốt Đời</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Khí Công không phải là một đích đến cố định, mà là một hành trình tu dưỡng trọn đời. Mỗi ngày bạn dành 20 phút để lắng nghe cơ thể, điều hòa hơi thở và thanh lọc tâm trí, bạn đang bồi đắp thêm một viên gạch vững chắc cho lâu đài sinh mệnh của chính mình.&rdquo;</em> &mdash; <strong>TS. Dương Tuấn Mẫn</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/ken_gullette_silk_reeling_energy_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Triền Ty Kình (Ken Gullette)</a>
+        <a href="/vi/books/complete_idiots_guide_tai_chi_qigong_vi.html">Đọc Tiếp: Cẩm Nang Thái Cực & Khí Công (Idiot's Guide) <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

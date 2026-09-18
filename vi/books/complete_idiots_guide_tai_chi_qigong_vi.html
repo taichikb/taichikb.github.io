@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang Thái Cực Quyền & Khí Công Đồ Giải (The Complete Idiot's Guide to Tai Chi & QiGong Illustrated) — Angela Wong Douglas</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Complete Idiot's Guide to Tai Chi & QiGong Illustrated - Cẩm nang nhập môn đồ giải trực quan toàn diện nhất về Thái Cực Quyền, Khí Công, Mã Bộ, chiêu thức từng bước và Thôi Thủ.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/the-complete-idiots-guide-to-tai-chi-qigong-illustrated/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-gioi-thieu" class="active">1. Nhập Môn: Thái Cực Quyền Cho Mọi Người</a></li>
+        <li><a href="#dan-dien-va-truc-chinh" class="active">2. Tìm Về Tâm Điểm: Đan Điền & Trục Thẳng Đứng</a></li>
+        <li><a href="#ma-bo-nguyen-tac">3. Thế Đứng Mã Bộ & "Không Làm Rách Tờ Giấy Mỏng"</a></li>
+        <li><a href="#khoi-dong-khai-khi">4. Khởi Động & Khai Mở Khí Huyết Toàn Thân</a></li>
+        <li><a href="#do-giai-chieu-thuc">5. Đồ Giải Từng Bước Các Chiêu Thức Kinh Điển</a>
+          <ul>
+            <li><a href="#chieu-1-lam-tuoc-vi" class="sub-item">&bull; Lãm Tước Vĩ (Grasp the Bird's Tail)</a></li>
+            <li><a href="#chieu-2-don-tien" class="sub-item">&bull; Đơn Tiên (Single Whip)</a></li>
+            <li><a href="#chieu-3-bach-hac" class="sub-item">&bull; Bạch Hạc Lượng Xí (White Crane)</a></li>
+            <li><a href="#chieu-4-lau-tat" class="sub-item">&bull; Lâu Tất Ảo Bộ (Brush Knee Step)</a></li>
+            <li><a href="#chieu-5-nhu-phong" class="sub-item">&bull; Như Phong Tự Bế (Apparent Closing)</a></li>
+          </ul>
+        </li>
+        <li><a href="#thoi-thu-push-hands">6. Thôi Thủ (Push Hands) & Ứng Dụng Tương Tác</a></li>
+        <li><a href="#moc-lan-quyen">7. Nghệ Thuật Khí Giới Mộc Lan Quyền (Phiến & Kiếm)</a></li>
+        <li><a href="#tri-lieu-va-cong-so">8. Ứng Dụng Trị Liệu & Thái Cực Nơi Công Sở</a></li>
+        <li><a href="#loi-ket-cung-angela">9. Lời Kết & Bí Quyết Duy Trì Cảm Hứng</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Cẩm Nang Đồ Giải Bestseller Quốc Tế · Bản Dịch Việt Ngữ Chuyên Sâu</span>
+      <h1>Cẩm Nang Thái Cực Quyền & Khí Công Đồ Giải</h1>
+      <div class="subtitle">The Complete Idiot's Guide to Tai Chi & QiGong Illustrated &mdash; Angela Wong Douglas</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-person-chalkboard"></i> Tác giả: Angela Wong Douglas</span>
+        <span><i class="fa-solid fa-images"></i> 767 Ảnh Minh Họa Đồ Giải Trực Quan</span>
+        <span><i class="fa-solid fa-book-open"></i> 370 Trang Thực Hành Chi Tiết</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="loi-gioi-thieu">
+      <h2>1. Nhập Môn: Thái Cực Quyền Dành Cho Mọi Người</h2>
+
+      <p>Bạn không cần phải là một võ sư dày dạn kinh nghiệm, không cần phải uốn dẻo như diễn viên xiếc, và cũng không cần bất kỳ trang thiết bị đắt tiền nào để bắt đầu. <strong>Thái Cực Quyền và Khí Công là món quà vô giá của tự nhiên dành cho mọi lứa tuổi và mọi thể trạng</strong>.</p>
+
+      <div class="callout">
+        <p>Thái Cực Quyền hoạt động như một loại &ldquo;Thuốc Bổ Toàn Năng&rdquo; (All-Purpose Medicine) và liệu pháp trẻ hóa tối thượng. Nó gột rửa toàn bộ hệ thống thần kinh, chuyển đổi cơ chế phản ứng của cơ thể từ tình trạng căng thẳng hoảng loạn (Fight-or-Flight của người tiền sử) sang trạng thái nghỉ ngơi, phục hồi và tái sinh tế bào (Rest-and-Digest).</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p015_01.jpeg" alt="Chuyển động thư giãn tự nhiên của Thái Cực Quyền">
+        <figcaption>Hình 1: Khởi động với tâm thế buông lỏng và nụ cười nội tâm &mdash; Cội nguồn của sức khỏe dẻo dai.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="dan-dien-va-truc-chinh">
+      <h2>2. Tìm Về Tâm Điểm: Đan Điền & Trục Thẳng Đứng</h2>
+
+      <p>Nhiều người bước vào cuộc sống với tâm trí lơ lửng ở vùng đầu, đầy ắp lo âu và căng thẳng. Thái Cực kéo toàn bộ sự chú ý của bạn trở về <strong>Hạ Đan Điền (Dan Tien)</strong> &mdash; vị trí nằm dưới rốn khoảng 3 đốt ngón tay và sâu vào bên trong cơ thể 1/3 khoảng cách trước &mdash; sau.</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-compass"></i> Nguyên Tắc Trục Thẳng Đứng (The Vertical Axis):</h4>
+        <p>Hãy hình dung một sợi chỉ vàng vô hình kéo đỉnh đầu bạn (huyệt Bách Hội) hướng thẳng lên các vì sao, trong khi xương cụt buông thõng xuống lòng đất như quả dọi của người thợ xây. Giữa trời và đất, cột sống bạn trở thành một trục xoay hoàn mỹ không tốn sức bắp thịt để chống đỡ.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p035_02.png" alt="Sơ đồ căn chỉnh trục thẳng đứng và vị trí Đan Điền">
+        <figcaption>Hình 2: Trục trung chính cơ thể và sự kết nối giữa Đan Điền với mặt đất.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="ma-bo-nguyen-tac">
+      <h2>3. Thế Đứng Mã Bộ & "Không Làm Rách Tờ Giấy Mỏng"</h2>
+
+      <p>Thế đứng <strong>Mã Bộ (Horse Stance)</strong> là nền tảng cốt tử. Tác giả Angela Wong Douglas đưa ra một hình ảnh ẩn dụ tuyệt vời: <em>&ldquo;Don't tear the rice paper!&rdquo; (Đừng làm rách tờ giấy bồi mỏng manh dưới lòng bàn chân!)</em>.</p>
+
+      <ul>
+        <li>Hai bàn chân song song rộng hơn vai một chút, trọng lượng dàn đều 50/50 trên hai chân.</li>
+        <li>Hông hạ xuống như sắp ngồi lên một chiếc ghế cao, đầu gối mở tròn không hướng vào trong.</li>
+        <li><strong>Xương chuyển động chủ động bên dưới lớp cơ buông mềm (Active bones under soft muscle):</strong> Bạn dùng cấu trúc hình học của bộ xương để chịu tải chứ không gồng cứng cơ bắp đùi. Cảm giác đôi chân cắm sâu vào lòng đất như rễ cây cổ thụ.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p108_01.jpeg" alt="Thế đứng Mã bộ chuẩn xác của Thái Cực Quyền">
+        <figcaption>Hình 3: Tư thế Mã Bộ chuẩn &mdash; Giữ lưng thẳng, đáy chậu hơi thót nhẹ và thở sâu bằng bụng dưới.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="khoi-dong-khai-khi">
+      <h2>4. Khởi Động & Khai Mở Khí Huyết Toàn Thân</h2>
+
+      <p>Trước khi tập luyện bất kỳ bài quyền nào, việc làm ấm các khớp và khai mở huyệt đạo là bắt buộc để tránh chấn thương và giúp máu huyết lưu thông tự do:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Động Tác Khởi Động</th>
+              <th>Vùng Cơ Khớp Tác Động</th>
+              <th>Công Dụng Dưỡng Sinh Khí Huyết</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Vung Tay Đập Eo (Swinging Arms)</strong></td>
+              <td>Khớp vai, thắt lưng, huyệt Mệnh Môn & Thận Du</td>
+              <td>Đánh thức thận khí, giải tỏa ứ trệ thắt lưng, làm ấm tạng phủ.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Xoay Tròn Cổ Chân & Khớp Gối</strong></td>
+              <td>Dây chằng đầu gối, gân Achilles, khớp cổ chân</td>
+              <td>Tăng cường chất nhờn sụn khớp, bám rễ vững vàng trên mặt đất.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Mở Ngực Vươn Vai (Chest Expansions)</strong></td>
+              <td>Huyệt Đản Trung, cơ liên sườn, phế quản</td>
+              <td>Mở rộng dung tích phổi, xua tan cảm giác ngột ngạt lồng ngực.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p122_02.png" alt="Các động tác khởi động khí công tuần hoàn">
+        <figcaption>Hình 4: Chuỗi khởi động khí công kích hoạt 12 đường kinh lạc chính của cơ thể.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="do-giai-chieu-thuc">
+      <h2>5. Đồ Giải Từng Bước Các Chiêu Thức Kinh Điển</h2>
+
+      <p>Đây là phần trọng tâm nhất của tác phẩm, hướng dẫn từng chiêu thức mẫu mực kèm hình ảnh đồ giải trực quan vô cùng dễ hiểu:</p>
+
+      <!-- CHIÊU 1 -->
+      <h3 id="chieu-1-lam-tuoc-vi">1. Lãm Tước Vĩ &mdash; Nắm Đuôi Chim Sẻ (Grasp the Bird's Tail)</h3>
+      <p>Chiêu thức linh hồn của Thái Cực Quyền Dương Gia, chứa đựng đầy đủ 4 cửa kình căn bản: <strong>Bằng (Peng), Lý (Lu), Tê (Ji), Án (An)</strong>.</p>
+      
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p192_03.png" alt="Đồ giải chiêu thức Lãm Tước Vĩ từng bước">
+        <figcaption>Hình 5: Đồ giải chi tiết Lãm Tước Vĩ &mdash; Chuyển trọng tâm chân sau sang chân trước và đẩy vòng kình lực hình cầu.</figcaption>
+      </div>
+
+      <!-- CHIÊU 2 -->
+      <h3 id="chieu-2-don-tien">2. Đơn Tiên &mdash; Roi Đơn (Single Whip)</h3>
+      <p>Thế mở rộng toàn diện, một tay tạo thành móc câu (Điếu thủ) giữ sau lưng, một tay đẩy chưởng về phía trước với ngực mở rộng và bờ vai buông lỏng.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p189_02.png" alt="Đồ giải chiêu thức Đơn Tiên">
+        <figcaption>Hình 6: Đơn Tiên &mdash; Mở rộng biên độ lồng ngực, khai thông phế khí và kết nối kình lực ngang thân.</figcaption>
+      </div>
+
+      <!-- CHIÊU 3 -->
+      <h3 id="chieu-3-bach-hac">3. Bạch Hạc Lượng Xí &mdash; Hạc Trắng Xòe Cánh (White Crane Cools Its Wings)</h3>
+      <p>Thế đứng Hư Bộ (chân trước chạm nhẹ bằng mũi chân), một tay che đầu như cánh hạc vươn lên đón nắng, một tay hạ chưởng áp xuống bên hông bảo vệ hạ bộ.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p194_02.png" alt="Đồ giải Bạch Hạc Lượng Xí">
+        <figcaption>Hình 7: Bạch Hạc Lượng Xí &mdash; Thăng bằng trên một chân trụ và giải phóng căng thẳng cột sống.</figcaption>
+      </div>
+
+      <!-- CHIÊU 4 & 5 -->
+      <h3 id="chieu-4-lau-tat">4. Lâu Tất Ảo Bộ & Như Phong Tự Bế (Brush Knee & Apparent Closing)</h3>
+      <p>Kỹ thuật gạt tay qua đầu gối bước tới đẩy chưởng (Lâu Tất) và kỹ thuật thu hai tay kéo về rồi phóng kình đẩy kép (Như Phong Tự Bế), hoàn thiện vòng tròn khí lực trước khi thu thế.</p>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="thoi-thu-push-hands">
+      <h2>6. Thôi Thủ (Push Hands) & Ứng Dụng Tương Tác</h2>
+
+      <p>Thôi Thủ (Push Hands) là bài tập hai người chạm cổ tay vào nhau để kiểm tra sự thăng bằng, độ nhạy cảm xúc giác và khả năng hóa giải ngoại lực:</p>
+
+      <div class="callout">
+        <p>Trong Thôi Thủ, mục tiêu không phải là xô ngã đối phương bằng sức mạnh bạo lực, mà là <strong>học cách đọc được ý niệm và hướng lực của đối phương ngay khi nó vừa khởi phát</strong> (Thính Kình). Khi đối phương đẩy tới, ta nhường bước theo đường vòng cung; khi đối phương rút lui, ta dính theo như keo dán (Triền Niêm Bất Xả).</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p250_02.png" alt="Thực hành Thôi Thủ đẩy tay đối kháng tương tác">
+        <figcaption>Hình 8: Bài tập Thôi Thủ tương tác &mdash; Luyện tập phản xạ dính bám và triệt tiêu lực đẩy của đối phương.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="moc-lan-quyen">
+      <h2>7. Nghệ Thuật Khí Giới Mộc Lan Quyền (Phiến & Kiếm)</h2>
+
+      <p>Tác giả dành riêng một phần đặc biệt cho các nữ học viên và những ai yêu thích vẻ đẹp thẩm mỹ mềm mại của <strong>Mộc Lan Quyền (Mulan Quan)</strong>:</p>
+
+      <ul>
+        <li><strong>Mộc Lan Phiến (Mulan Fan):</strong> Điệu múa quạt Thái Cực uyển chuyển nhưng bất ngờ bung quạt phát ra âm thanh giòn giã chấn động tinh thần đối thủ.</li>
+        <li><strong>Mộc Lan Kiếm (Mulan Sword):</strong> Thanh kiếm trở thành cánh tay nối dài, dẫn dắt dòng khí vút bay thanh thoát như rồng lượn phượng múa giữa không trung.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/idiots-guide-tai-chi/idiots_p285_02.png" alt="Động tác Mộc Lan Quyền Phiến duyên dáng">
+        <figcaption>Hình 9: Khí công nghệ thuật Mộc Lan &mdash; Kết hợp sự thanh nhã thẩm mỹ và nội lực uyển chuyển.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="tri-lieu-va-cong-so">
+      <h2>8. Ứng Dụng Trị Liệu & Thái Cực Nơi Công Sở (Corporate Tai Chi)</h2>
+
+      <p>Nhân viên văn phòng ngồi máy tính 8 tiếng mỗi ngày thường bị đau lưng dưới, thoái hóa đốt sống cổ, hội chứng ống cổ tay và mất ngủ triền miên. Thái Cực Quyền công sở cung cấp các bài tập 3 phút ngay tại bàn làm việc:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Vấn Đề Văn Phòng</th>
+              <th>Bài Tập 3 Phút Đề Xuất</th>
+              <th>Hiệu Quả Tức Thì</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mỏi mắt, đau nửa đầu do nhìn màn hình</strong></td>
+              <td>Xoa ấm lòng bàn tay úp lên hốc mắt, kết hợp thở sâu 10 nhịp xuống bụng.</td>
+              <td>Làm dịu võng mạc, tăng tuần hoàn máu lên não, giảm nhức đầu căng thẳng.</td>
+            </tr>
+            <tr>
+              <td><strong>Cứng vai gáy & đau đốt sống cổ C6-C7</strong></td>
+              <td>Động tác &ldquo;Rùa thụt cổ&rdquo; và xoay tròn khớp vai ra sau theo hình elip.</td>
+              <td>Giải phóng co thắt cơ thang, thông thoáng động mạch cảnh cấp máu não.</td>
+            </tr>
+            <tr>
+              <td><strong>Đau mỏi thắt lưng L4-L5 do ngồi lâu</strong></td>
+              <td>Đứng dậy tại chỗ, gập nhẹ khớp háng (Khoa), lắc hông xoay tròn theo chiều kim đồng hồ.</td>
+              <td>Kéo dãn các đĩa đệm, giải tỏa áp lực chèn ép rễ thần kinh tọa.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 9 -->
+    <section id="loi-ket-cung-angela">
+      <h2>9. Lời Kết & Bí Quyết Duy Trì Cảm Hứng</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Đừng lo lắng nếu bạn chưa làm được động tác hoàn hảo như ảnh mẫu ngay trong tuần đầu tiên. Bản chất của Thái Cực Quyền là sự tận hưởng quá trình, chứ không phải một bài kiểm tra áp lực. Hãy thở, hãy mỉm cười và hãy bước đi trên con đường của chính bạn.&rdquo;</em> &mdash; <strong>Angela Wong Douglas</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/yang_jwing_ming_tai_chi_qigong_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Khí Công Thái Cực (Dương Tuấn Mẫn)</a>
+        <a href="/vi/books/"><i class="fa-solid fa-book"></i> Về Thư Viện Sách Tiếng Việt <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

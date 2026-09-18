@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triền Ty Kình Trần Gia (Silk-Reeling Energy - Chan Szu Chin) — Ken Gullette</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Triền Ty Kình (Chan Szu Chin) của Ken Gullette - Giải mã chuyển động xoắn ốc toàn thân, 6 kỹ năng cơ học nội gia và 18 bài tập thực chiến có minh họa.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/silk-reeling-energy-by-ken-gullette/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#giai-ao-trien-ty" class="active">1. Giải Ảo: Triền Ty Kình Thực Chất Là Gì?</a></li>
+        <li><a href="#sau-ky-nang-noi-gia">2. Sáu Kỹ Năng Cơ Học Nội Gia Tuyệt Kỹ</a></li>
+        <li><a href="#thuan-trien-nghich-trien">3. Thuận Triền & Nghịch Triền (Inward & Outward Spiraling)</a></li>
+        <li><a href="#cac-bai-tap-can-ban">4. Nhóm Bài Tập Triền Ty Căn Bản (Bài 1 - 4)</a></li>
+        <li><a href="#cac-bai-tap-nang-cao">5. Nhóm Bài Tập Biến Hóa Góc Độ (Bài 5 - 8)</a></li>
+        <li><a href="#trien-ty-chi-tiet-khop">6. Triền Ty Từng Khớp & Đan Điền (Bài 9 - 16)</a></li>
+        <li><a href="#trien-ty-cuoc-phap">7. Triền Ty Cước Pháp (Vòng Chân Bài 17 - 18)</a></li>
+        <li><a href="#sai-lam-pho-bien">8. Sai Lầm Phổ Biến & Cách Sửa Chữa</a></li>
+        <li><a href="#loi-ket">9. Lời Kết & Giáo Trình Tự Luyện 20 Phút</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Trần Gia Thái Cực Quyền · Bản Dịch Việt Ngữ Chuyên Sâu</span>
+      <h1>Triền Ty Kình (Silk-Reeling Energy)</h1>
+      <div class="subtitle">Chan Szu Chin (纏絲勁) &mdash; Sức Mạnh Vận Động Xoắn Ốc Toàn Thân Nội Gia Võ Thuật</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-ninja"></i> Tác giả: Ken Gullette (Huấn luyện viên Nội gia quyền)</span>
+        <span><i class="fa-solid fa-camera"></i> 180 Ảnh Minh Họa Thực Tế</span>
+        <span><i class="fa-solid fa-book"></i> 156 Trang Chuyên Đề</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="giai-ao-trien-ty">
+      <h2>1. Giải Ảo: Triền Ty Kình Thực Chất Là Gì?</h2>
+
+      <p>Trước khi bắt đầu đi sâu vào kỹ thuật, chúng ta cần phải làm sáng tỏ một sự thật mang tính bước ngoặt: <strong>Triền Ty Kình (Silk-Reeling Energy / Chan Szu Chin &mdash; 纏絲勁) hoàn toàn không phải là một loại ma thuật thần bí</strong>, cũng không phải là thứ năng lượng vô hình bay lượn huyền ảo trong không khí như phim kiếm hiệp.</p>
+
+      <div class="callout">
+        <p><strong>Triền Ty Kình là một kỹ năng cơ sinh học (Physical Body Mechanics Skill)</strong> &mdash; đòi hỏi sự liên kết chuẩn xác và phối hợp đồng bộ giữa xương, gân, cơ bắp, khớp háng (Khoa), cột sống và tâm trí để tạo nên lực xoắn ốc chuyển động xuyên suốt từ bàn chân lên đến đầu ngón tay.</p>
+      </div>
+
+      <p>Trong các thư tịch cổ của Trần Gia Thái Cực Quyền, các bậc tiền bối từng truyền dạy một câu danh ngôn bất hủ:</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">不 懂 纏 絲 ， 便 不 懂 太 極 。</span>
+        &ldquo;Bất đổng Triền Ty, tiện bất đổng Thái Cực &mdash; Không thấu hiểu và vận hành được Triền Ty Kình, thì vĩnh viễn không bao giờ hiểu được Thái Cực Quyền.&rdquo;
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p004_01.jpeg" alt="Tác giả Ken Gullette hướng dẫn cơ sinh học Triền Ty Kình">
+        <figcaption>Hình 1: Ken Gullette thị phạm trục thăng bằng và chuyển động vặn xoắn cơ bản.</figcaption>
+      </div>
+
+      <p>Tại sao hàng triệu người tập luyện Thái Cực Quyền trên khắp thế giới lại không hiểu được điều này? Bởi vì họ học các bài quyền một cách hình thức: vung vẫy cánh tay một cách cô lập mà không có sự liên kết với Đan Điền, làm biến mất cấu trúc Bằng Kình (Peng Jin) và triệt tiêu toàn bộ sức mạnh phát lực nội gia.</p>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="sau-ky-nang-noi-gia">
+      <h2>2. Sáu Kỹ Năng Cơ Học Nội Gia Tuyệt Kỹ</h2>
+
+      <p>Để Triền Ty Kình có thể hiển lộ, võ sinh bắt buộc phải tích hợp đồng thời <strong>6 cơ chế cơ sinh học nội gia</strong> nền tảng (áp dụng cho cả Thái Cực Quyền, Hình Ý Quyền và Bát Quái Chưởng):</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Kỹ Năng</th>
+              <th>Tên Gọi Nội Gia</th>
+              <th>Nguyên Lý Vận Hành Cơ Học</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Căn Cước Bám Đất (Ground Path)</strong></td>
+              <td>Trầm bộ, thực cước</td>
+              <td>Mọi lực đẩy tác động vào cơ thể bạn phải được truyền trực tiếp xuống đất qua chân sau; và mọi lực phát ra phải bắt nguồn từ lực phản hồi của mặt đất (Ground Reaction Force).</td>
+            </tr>
+            <tr>
+              <td><strong>2. Cấu Trúc Bằng Kình (Peng Jin)</strong></td>
+              <td>Viên đương, kình đàn hồi</td>
+              <td>Cơ thể luôn duy trì sự trương phồng đa hướng như quả cầu cao su bơm căng khí. Không gồng cứng, nhưng tuyệt đối không để các khớp sụp đổ khi chịu tải.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Khai Hợp Khớp Háng (Kua)</strong></td>
+              <td>Khai Hợp Khoa</td>
+              <td>Khớp háng (nếp gấp bẹn) phải gập mở linh hoạt để chuyển trọng tâm và xoay cơ thể mà KHÔNG làm vặn xoắn gãy trục khớp gối.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Đan Điền Xoay Chuyển (Dan T'ien Rotation)</strong></td>
+              <td>Đan Điền lãnh đạo</td>
+              <td>Vùng bụng dưới xoay chuyển dẫn dắt mọi động tác của tay và chân. Đan Điền xoay sang trái, toàn bộ phần thân trên xoay sang trái; Đan Điền dừng, động tác dừng.</td>
+            </tr>
+            <tr>
+              <td><strong>5. Toàn Thân Hợp Nhất (Whole-Body Connection)</strong></td>
+              <td>Tiết tiết quán xuyến</td>
+              <td>&ldquo;Một nơi động thì toàn thân đều động, một nơi tĩnh thì toàn thân đều tĩnh&rdquo;. Cánh tay không tự ý chuyển động rời rạc mà được gắn chặt với thân mình.</td>
+            </tr>
+            <tr>
+              <td><strong>6. Xoắn Ốc Triền Ty (Silk-Reeling Spirals)</strong></td>
+              <td>Thuận / Nghịch triền</td>
+              <td>Mọi đường đi của chi thể đều uốn lượn theo hình xoắn ốc (helical/spiral), triệt tiêu góc chết và làm chệch hướng xung lực của đối phương.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p006_01.jpeg" alt="Cấu trúc liên kết toàn thân trong thế đứng Trần Gia">
+        <figcaption>Hình 2: Căn cước bám đất và tư thế mở khớp háng (Kua) giữ cho đầu gối ổn định theo hướng mũi chân.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="thuan-trien-nghich-trien">
+      <h2>3. Thuận Triền & Nghịch Triền (Inward & Outward Spiraling)</h2>
+
+      <p>Trong vận động xoắn ốc của cánh tay và chân, Triền Ty Kình được phân thành hai trạng thái xoay chuyển đối ngẫu tương hỗ:</p>
+
+      <ul>
+        <li><strong>Thuận Triền (Shun Chan / Inward Reeling):</strong> Cánh tay xoay vào trong theo chiều ngón út dẫn dắt, lòng bàn tay từ hướng ra ngoài xoay lật ngửa hướng vào mặt hoặc Đan Điền. Thường đi liền với hành động <em>Hấp khí, Nhu hòa, Thu liễm, Hóa giải đòn đánh</em>.</li>
+        <li><strong>Nghịch Triền (Ni Chan / Outward Reeling):</strong> Cánh tay xoay ra ngoài theo chiều ngón cái xoay lật úp xuống hoặc hướng ra xa cơ thể. Thường đi liền với hành động <em>Hô khí, Cương kình, Phát lực (Fajin), Đánh bật đối thủ</em>.</li>
+      </ul>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-arrows-spin"></i> Nguyên Tắc Vận Hành Vô Cùng Quan Trọng:</h4>
+        <p>Bàn tay không tự xoay bằng cách vặn cổ tay đơn thuần! Sự xoắn ốc bắt đầu từ lực đẩy của chân &rarr; truyền qua khớp gối &rarr; mở nếp gấp Khoa &rarr; xoay Đan Điền &rarr; truyền lực lên đốt sống lưng &rarr; xoay bả vai &rarr; xoay khuỷu tay &rarr; cuối cùng mới hiển lộ ra cẳng tay và ngón tay.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p012_01.jpeg" alt="Minh họa xoắn ốc cẳng tay Thuận và Nghịch">
+        <figcaption>Hình 3: Quá trình xoắn ốc cẳng tay phối hợp xoay hông và chuyển dịch trọng tâm.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="cac-bai-tap-can-ban">
+      <h2>4. Nhóm Bài Tập Triền Ty Căn Bản (Bài 1 &mdash; 4)</h2>
+
+      <h3>Bài Tập 1: Triền Ty Đơn Thủ Tại Chỗ (Single Arm Reeling)</h3>
+      <p>Đây là bài tập vỡ lòng nhưng là bài tập quan trọng nhất của toàn bộ hệ phái Trần Gia. Học viên đứng tấn Mã Bộ trung bình, tay trái đặt nhẹ lên hông trái hoặc giữ ở bụng dưới. Tay phải vẽ một hình elip xoắn ốc liên tục:</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p014_01.jpeg" alt="Bài tập 1: Triền ty đơn thủ">
+        <figcaption>Hình 4: Bài tập 1 &mdash; Chuyển trọng tâm từ phải sang trái kết hợp mở và xoay bàn tay phải theo chiều xoắn ốc.</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-circle-check"></i> Các Điểm Trọng Yếu Khi Luyện Bài 1:</h4>
+        <ol>
+          <li>Khi chuyển trọng tâm sang chân phải: Đan Điền xoay sang phải khoảng 45 độ, khớp háng phải gập sâu (Thu Khoa), tay phải xoay ngửa lòng bàn tay lên trên (Thuận Triền) thu về phía trước sườn phải.</li>
+          <li>Khi chuyển trọng tâm trở lại chân trái: Đan Điền xoay sang trái, cẳng tay phải lật úp ra ngoài (Nghịch Triền), đẩy nhẹ về phía trước ở tầm ngang ngực với lực Bằng Kình tròn đầy.</li>
+        </ol>
+      </div>
+
+      <h3>Bài Tập 2: Triền Ty Đơn Thủ Tiến Thoái Bộ (Single Arm Reeling with Stepping)</h3>
+      <p>Đưa chuyển động của Bài 1 vào bước chân tiến lùi. Trọng tâm phải giữ thấp và bình ổn, đầu không nhấp nhô lên xuống khi di chuyển bước chân.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p024_01.jpeg" alt="Bài tập 2: Tiến thoái bộ đơn thủ">
+        <figcaption>Hình 5: Bài tập 2 &mdash; Phối hợp chuyển bước chân (Mã Bộ sang Cung Bộ) trong khi duy trì dòng xoắn ốc liên tục.</figcaption>
+      </div>
+
+      <h3>Bài Tập 3 & 4: Triền Ty Song Thủ (Double-Hand Silk-Reeling)</h3>
+      <p>Hai cánh tay chuyển động đối xứng theo hình số 8 vô tận (&infin;), một tay Thuận Triền thì tay kia Nghịch Triền, một tay đi lên thì tay kia đi xuống, tạo thành một hệ thống bánh răng sinh học luân hồi bất tận.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p030_01.jpeg" alt="Bài tập 3: Triền ty song thủ">
+        <figcaption>Hình 6: Bài tập 3 &mdash; Song thủ Triền Ty, cánh tay phối hợp luân chuyển đối xứng tuyệt đối qua trục cơ thể.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="cac-bai-tap-nang-cao">
+      <h2>5. Nhóm Bài Tập Biến Hóa Góc Độ (Bài 5 &mdash; 8)</h2>
+
+      <p>Các bài tập từ 5 đến 8 phá vỡ mặt phẳng ngang đơn điệu, đưa Triền Ty Kình vào các quỹ đạo đường chéo, nâng lên cao và hạ xuống sâu nhằm ứng dụng trong các kỹ thuật giật ngã (Suai Jiao) và cầm nã (Qin Na):</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p045_01.jpeg" alt="Bài tập 5: Đường chéo thượng hạ">
+        <figcaption>Hình 7: Bài tập 5 &mdash; Đường chéo thượng hạ: Một tay vươn bổng bảo vệ vùng đầu, một tay nhấn hạ khóa chặt vùng hạ bàn.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p058_01.jpeg" alt="Bài tập 7: Thôi xuất và Thao hạ">
+        <figcaption>Hình 8: Bài tập 7 &mdash; Thôi xuất / Thao hạ: Động tác phát lực đẩy ngang thân và giật lùi chuyển hóa kình lực.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="trien-ty-chi-tiet-khop">
+      <h2>6. Triền Ty Từng Khớp & Đan Điền (Bài 9 &mdash; 16)</h2>
+
+      <p>Trong giai đoạn công phu tinh tế, Triền Ty Kình không chỉ vận hành ở quy mô lớn (Đại biên) mà thu nhỏ dần vào từng khớp cục bộ (Tiểu biên) và ngay trong ổ bụng Đan Điền:</p>
+
+      <ul>
+        <li><strong>Xoắn ốc bờ vai (Bài 10 & 11):</strong> Tháo gỡ sự căng cứng cơ thang và cơ delta, mở khớp vai để dẫn truyền lực từ lưng ra cánh tay mà không bị tắc nghẽn.</li>
+        <li><strong>Xoắn ốc khuỷu tay (Bài 13 & 14 - Trửu Kình):</strong> Khuỷu tay luôn hướng xuống đất (Trầm Kiên Trụy Trửu), chuyển động xoắn ốc tạo ra đòn công phá cự ly ngắn cực kỳ nguy hiểm.</li>
+        <li><strong>Xoay Đan Điền Hoành & Trực (Bài 15 & 16):</strong> Tập xoay quả cầu năng lượng Đan Điền theo mặt phẳng nằm ngang (như đĩa hát quay) và mặt phẳng thẳng đứng (như bánh xe lăn), tôi luyện cơ bụng sâu và đáy chậu.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p085_01.jpeg" alt="Minh họa xoắn ốc bả vai và khuỷu tay">
+        <figcaption>Hình 9: Động tác xoắn ốc bờ vai và điều phối khuỷu tay trong Bài tập 11 &amp; 13.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p125_01.jpeg" alt="Đan Điền xoay chuyển theo mặt phẳng nằm ngang">
+        <figcaption>Hình 10: Bài tập 15 &mdash; Kỹ thuật xoay Đan Điền trục hoành kết hợp đóng mở hai bên bờ Khoa.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="trien-ty-cuoc-phap">
+      <h2>7. Triền Ty Cước Pháp (Vòng Chân Bài 17 &mdash; 18)</h2>
+
+      <p>Chân không phải là hai chiếc cột nhà thụ động! Đôi chân trong Thái Cực Quyền là cội nguồn của toàn bộ kình lực. Bài 17 và 18 huấn luyện cách xoắn ốc đôi chân:</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p138_01.jpeg" alt="Bài tập 17: Triền ty vòng chân cước pháp">
+        <figcaption>Hình 11: Bài tập 17 &mdash; Triền ty cước pháp: Vẽ vòng tròn bằng gót chân và mũi chân, rèn luyện cơ đùi trong và dây chằng bẹn.</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-shoe-prints"></i> Bí Quyết Vận Hành Đôi Bàn Chân:</h4>
+        <p>Bàn chân bám đất bằng 3 điểm (Tam điểm tiếp địa): gót chân, đệm ngón chân cái và đệm ngón chân út, trong khi lòng bàn chân (Dũng Tuyền) hõm nhẹ lên trên như giác hút cao su. Khi xoay chân, khớp gối không bao giờ được lắc lư sang hai bên mà di chuyển đồng trục với ngón chân giữa.</p>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="sai-lam-pho-bien">
+      <h2>8. Sai Lầm Phổ Biến & Cách Sửa Chữa</h2>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Sai Lầm Phổ Biến</th>
+              <th>Hậu Quả Sinh Học & Kỹ Thuật</th>
+              <th>Cách Khắc Phục Chuẩn Xác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Sụp Khớp Gối Vào Trong (Knee Collapsing)</strong></td>
+              <td>Gây chấn thương dây chằng chéo trước và rách sụn chêm đầu gối; mất hoàn toàn gốc bám đất.</td>
+              <td>Luôn giữ cho đầu gối mở rộng theo hướng mũi chân. Tưởng tượng có một quả bóng giữa hai đùi (Viên Đương).</td>
+            </tr>
+            <tr>
+              <td><strong>2. Nhấc Bờ Vai Lên Khi Tay Lên Cao</strong></td>
+              <td>Làm tắc nghẽn luồng khí và kình lực tại đốt sống cổ C7; ngực bị gồng cứng.</td>
+              <td>Trầm kiên (thả lỏng xương bả vai trượt xuống phía lưng dưới). Dù tay vươn cao đến đâu, bờ vai vẫn phải chìm.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Chỉ Vặn Cổ Tay Thay Vì Xoay Toàn Thân</strong></td>
+              <td>Biến Triền Ty Kình thành động tác múa hời hợt, lực phát ra yếu ớt dễ dàng bị gãy gập.</td>
+              <td>Khóa chặt góc khuỷu tay tương đối và xoay toàn bộ thân mình từ Đan Điền để bàn tay xoay theo tự nhiên.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Lắc Lư Thắt Lưng Thay Vì Gập Khoa</strong></td>
+              <td>Gây đau cột sống thắt lưng L4-L5; cơ thể bị tròng trành mất trục trung chính.</td>
+              <td>Giữ lưng thẳng, đáy chậu hơi thắt nhẹ, gập vào nếp gấp bẹn (Khoa) như thể đang ngồi xuống một chiếc ghế đẩu cao.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/ken-gullette-silk-reeling/silkreeling_p150_01.jpeg" alt="Tư thế hoàn thiện chuẩn mực của tác giả">
+        <figcaption>Hình 12: Tư thế đạt chuẩn &mdash; Cột sống thẳng trục, háng mở tròn (Viên Đương), kình lực thông suốt toàn thân.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 9 -->
+    <section id="loi-ket">
+      <h2>9. Lời Kết & Giáo Trình Tự Luyện 20 Phút Mỗi Ngày</h2>
+
+      <p>Triền Ty Kình không thể đạt được qua một vài ngày tập luyện hời hợt. Đó là kết quả của sự rèn luyện kiên nhẫn để <em>tái cấu trúc toàn bộ hệ thần kinh cơ bắp</em> của bạn.</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-stopwatch"></i> Giáo Trình Tự Luyện Triền Ty Kình Chuẩn 20 Phút Mỗi Ngày:</h4>
+        <ol>
+          <li><strong>00:00 &mdash; 03:00 (Khởi động):</strong> Xoay cổ chân, xoay gối, mở gập khớp Khoa nhẹ nhàng, điều hòa hơi thở Đan Điền.</li>
+          <li><strong>03:00 &mdash; 08:00 (Bài 1 Đơn Thủ):</strong> Mỗi bên tay luyện 2.5 phút với tốc độ thật chậm, tập trung 100% cảm giác vào chân bám đất và xoay Đan Điền.</li>
+          <li><strong>08:00 &mdash; 13:00 (Bài 3 Song Thủ):</strong> Thực hiện 5 phút liên tục Triền ty hai tay hình số 8, duy trì lực Bằng Kình tròn đầy không lúc nào gián đoạn.</li>
+          <li><strong>13:00 &mdash; 17:00 (Bài 5 & 7 Biến Hóa):</strong> Luyện các chuyển động thượng hạ và thôi xuất, cảm nhận kình lực dâng trào từ gót chân.</li>
+          <li><strong>17:00 &mdash; 20:00 (Thu công tĩnh tọa):</strong> Đứng ôm cầu trước Đan Điền, tĩnh lặng theo dõi luồng nhiệt ấm ran tỏa khắp hai bàn tay và thắt lưng.</li>
+        </ol>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/waysun_liao_tai_chi_essence_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Tinh Hoa Thái Cực (Waysun Liao)</a>
+        <a href="/vi/books/yang_jwing_ming_tai_chi_qigong_vi.html">Đọc Tiếp: Khí Công Thái Cực (Dương Tuấn Mẫn) <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

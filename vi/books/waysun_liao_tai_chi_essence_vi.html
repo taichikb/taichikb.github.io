@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinh Hoa Thái Cực Quyền & Khí Công (Tai Chi: The Book of Essence) — Bản Dịch Việt Ngữ Chuyên Sâu</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Tinh Hoa Thái Cực Quyền & Khí Công - Phân tích Tinh - Khí - Thần, Đan Điền, Ngũ Hành, Tam Tài Thiên-Địa-Nhân và bộ đồ giải Thông Tuệ Lộ Khí Công.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/tai-chi-the-book-of-essence/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#tong-quan" class="active">1. Lời Mở Đầu: Tinh Hoa Thái Cực Quyền</a></li>
+        <li><a href="#tinh-khi-than">2. Tinh - Khí - Thần: Tam Bảo Nội Gia</a></li>
+        <li><a href="#khi-cong-la-gi">3. Khí Công Là Gì? (Năng Lượng Sinh Mệnh)</a></li>
+        <li><a href="#ngu-hanh-thai-cuc-thao">4. Thái Cực Thao & Học Thuyết Ngũ Hành</a></li>
+        <li><a href="#phan-biet-quyen-va-thao">5. Phân Biệt Thái Cực Quyền & Thái Cực Thao</a></li>
+        <li><a href="#thien-dinh-chanh-niem">6. Thiền Định, Chánh Niệm & Buông Lỏng Tự Nhiên</a></li>
+        <li><a href="#tu-ve-thuc-chien">7. Thái Cực Quyền & Khả Năng Tự Vệ Thực Chiến</a></li>
+        <li><a href="#thien-dia-nhan">8. Tam Tài Tương Thông: Trời - Đất - Con Người</a></li>
+        <li><a href="#mat-phap-khi-cong">9. Bộ Đồ Giải Mật Pháp Khí Công Độc Bản</a>
+          <ul>
+            <li><a href="#khi-cong-bai-1" class="sub-item">&bull; Bài 1: Đùa Giỡn Quả Cầu Năng Lượng</a></li>
+            <li><a href="#khi-cong-bai-2" class="sub-item">&bull; Bài 2: Mở Cửa Vòm Trời Đón Sinh Khí</a></li>
+            <li><a href="#khi-cong-bai-3" class="sub-item">&bull; Bài 3: Thông Tuệ Lộ Khí Công</a></li>
+          </ul>
+        </li>
+        <li><a href="#loi-ket-phu-luc">10. Lời Kết & Phương Pháp Tu Dưỡng</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Nội Gia Quyền Kinh Điển · Bản Dịch Tiếng Việt Tương Tác</span>
+      <h1>Tinh Hoa Thái Cực Quyền & Khí Công</h1>
+      <div class="subtitle">Tai Chi: The Book of Essence &mdash; Master Waysun Liao (Liêu Triệu Luân)</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-feather-pointed"></i> Đại sư Liêu Triệu Luân &amp; Ban Huấn Nghệ Eemsmond</span>
+        <span><i class="fa-solid fa-diagram-project"></i> 37 Minh Họa &amp; Đồ Giải Độc Bản</span>
+        <span><i class="fa-solid fa-clock"></i> 35 phút đọc chuyên sâu</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1: TỔNG QUAN -->
+    <section id="tong-quan">
+      <h2>1. Lời Mở Đầu: Tinh Hoa Thái Cực Quyền</h2>
+
+      <p>Thái Cực Quyền (Tai Chi Chuan) và Khí Công (Chi Kung) không đơn thuần là một chuỗi các động tác múa chậm rãi dành cho người cao tuổi trong công viên, cũng không chỉ là một môn võ đối kháng đơn thuần. Ẩn sâu bên dưới bề mặt của những vòng tròn uyển chuyển là một <strong>hệ thống triết học, y lý và công phu nội gia hoàn chỉnh</strong> đã được tôi luyện qua hàng ngàn năm lịch sử phương Đông.</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">太 極 拳 者 ， 圓 活 靈 通 ， 內 勁 貫 穿 ， 陰 陽 互 濟 。</span>
+        &ldquo;Thái Cực Quyền là sự tròn đầy linh hoạt, nội kình thông suốt, âm dương nương tựa lẫn nhau, lấy tĩnh chế động, lấy nhu thắng cương.&rdquo;
+      </div>
+
+      <p>Cuốn sách này mở ra cánh cửa dẫn vào cõi tinh hoa của nội lực &mdash; nơi con người hiện đại tìm lại sự cân bằng tuyệt đối giữa tâm trí căng thẳng và thể xác mệt mỏi, chuyển hóa năng lượng tiêu cực thành sinh khí dồi dào.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p001_01.jpeg" alt="Bìa tác phẩm Tinh Hoa Thái Cực Quyền & Khí Công">
+        <figcaption>Hình 1: Tác phẩm Tinh Hoa Thái Cực Quyền &amp; Khí Công (Tai Chi: The Book of Essence) &mdash; Nền tảng Đạo gia truyền thống.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: TINH - KHÍ - THẦN -->
+    <section id="tinh-khi-than">
+      <h2>2. Tinh - Khí - Thần: Tam Bảo Nội Gia</h2>
+
+      <p>Trong y học Đạo gia và truyền thống của Đại sư <strong>Liêu Triệu Luân (Waysun Liao)</strong>, sinh mệnh con người được cấu thành bởi ba trụ cột cơ bản gọi là <em>Tam Bảo (Three Treasures)</em>: <strong>Tinh (Jing), Khí (Qi), và Thần (Shen)</strong>.</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Yếu Tố</th>
+              <th>Khái Niệm Cốt Lõi</th>
+              <th>Biểu Hiện Sinh Học</th>
+              <th>Phương Pháp Tu Luyện Thái Cực</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tinh (Jing)</strong></td>
+              <td>Tinh hoa vật chất, năng lượng gốc di truyền từ cha mẹ</td>
+              <td>Tủy xương, nội tiết tố, dịch sinh lý, cơ bắp và gân cốt</td>
+              <td>Luyện Đan Điền, giữ gìn sinh lực, trầm vai trụ gối, bồi đắp tủy</td>
+            </tr>
+            <tr>
+              <td><strong>Khí (Qi)</strong></td>
+              <td>Năng lượng sinh mệnh lưu chuyển trong kinh mạch</td>
+              <td>Hơi thở sâu, tuần hoàn máu, điện sinh học tế bào</td>
+              <td>Luyện ý dẫn khí (Dĩ Ý Lãnh Khí), hô hấp cơ hoành Đan Điền nghịch/thuận</td>
+            </tr>
+            <tr>
+              <td><strong>Thần (Shen)</strong></td>
+              <td>Ánh sáng nhận thức, trí huệ, linh hồn và ý chí</td>
+              <td>Sự minh mẫn, trực giác bén nhạy, ánh mắt ngưng tụ tĩnh lặng</td>
+              <td>Luyện Khí hóa Thần, buông bỏ tạp niệm, hợp nhất thân tâm trong động tác</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p007_02.jpeg" alt="Dòng chảy năng lượng và tuần hoàn kinh mạch">
+        <figcaption>Hình 2: Chu trình tuần hoàn năng lượng nội tại kết nối Đan Điền và các đại huyệt cơ thể.</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-gem"></i> Quy Luật Chuyển Hóa Cốt Lõi:</h4>
+        <p><strong>Luyện Tinh Hóa Khí &rarr; Luyện Khí Hóa Thần &rarr; Luyện Thần Hoàn Hư (Về với Đạo)</strong>. Nếu không có Tinh vững chắc ở hạ bộ và tủy sống, Khí sẽ không có gốc và Thần sẽ tiêu tán. Thái Cực Quyền bắt đầu từ việc uốn nắn xương khớp (chân đạp đất vững chãi) để bảo tồn Tinh, dẫn dắt hơi thở để tụ Khí, và giữ tâm tĩnh lặng để chiếu rọi Thần.</p>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: KHÍ CÔNG LÀ GÌ -->
+    <section id="khi-cong-la-gi">
+      <h2>3. Khí Công Là Gì? (Năng Lượng Sinh Mệnh)</h2>
+
+      <p>Khí Công (Chi Kung hoặc Qi Gong) theo nghĩa đen là <em>công phu rèn luyện và nuôi dưỡng dòng sinh khí</em>. Có hàng ngàn dòng phái Khí công khác nhau từ cổ chí kim: Khí công Mô phỏng Ngũ Cầm (Hổ, Hươu, Gấu, Vượn, Chim), Bát Đoạn Cẩm, Dịch Cân Kinh, hay Quy Tức Công (Khí công Thở Rùa).</p>
+
+      <p>Dù theo trường phái nào, bản chất tối thượng của Khí công đều quy về 3 nguyên lý điều chỉnh căn bản:</p>
+      <ul>
+        <li><strong>Điều Thân (Tiaoshen):</strong> Chỉnh đốn tư thế cơ thể đạt đến trạng thái thư giãn tối đa nhưng không rũ rượi, giữ cột sống thẳng tự nhiên như chuỗi ngọc treo lơ lửng.</li>
+        <li><strong>Điều Tức (Tiaoxi):</strong> Điều hòa hơi thở sâu, dài, êm, nhẹ (Thâm, Trường, Tế, Quân), đưa hơi thở xuống tận Đan Điền.</li>
+        <li><strong>Điều Tâm (Tiaoxin):</strong> Dẫn dắt tâm trí vào cõi tĩnh lặng tuyệt đối, loại bỏ vọng tưởng, hợp nhất ý thức với từng chuyển động của cơ bắp và kinh lạc.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p009_02.jpeg" alt="Tập luyện Khí công dưỡng sinh kết hợp thiên nhiên">
+        <figcaption>Hình 3: Thực hành hòa nhập nhịp thở nội tại với sinh khí trời đất (Thiên Địa Chi Khí).</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4: NGŨ HÀNH THÁI CỰC THAO -->
+    <section id="ngu-hanh-thai-cuc-thao">
+      <h2>4. Thái Cực Thao & Học Thuyết Ngũ Hành</h2>
+
+      <p>Phương pháp <strong>Thái Cực Thao (Tai Chi Tao)</strong> được sáng lập và hoàn thiện dựa trên sự tích hợp sâu sắc của <em>Học thuyết Ngũ Hành (Kim - Mộc - Thủy - Hỏa - Thổ)</em> vào từng chuyển động và tạng phủ tương ứng:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Hành</th>
+              <th>Tạng Phủ Tương Ứng</th>
+              <th>Cảm Xúc Cần Chuyển Hóa</th>
+              <th>Chuyển Động & Hướng Kình</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Thủy (Water)</strong></td>
+              <td>Thận & Bàng Quang</td>
+              <td>Chuyển nỗi sợ hãi thành ý chí kiên định</td>
+              <td>Dòng chảy uốn lượn, mềm mại thấm sâu, hạ trầm kình lực xuống đất</td>
+            </tr>
+            <tr>
+              <td><strong>Mộc (Wood)</strong></td>
+              <td>Gan & Túi Mật</td>
+              <td>Chuyển giận dữ thành lòng trắc ẩn, linh hoạt</td>
+              <td>Vươn tỏa như cành cây mùa xuân, mở rộng khớp vai và hông</td>
+            </tr>
+            <tr>
+              <td><strong>Hỏa (Fire)</strong></td>
+              <td>Tim & Ruột Non</td>
+              <td>Chuyển hoảng hốt, bồn chồn thành niềm hoan hỷ</td>
+              <td>Phát xuất ấm áp, thăng hoa lên thượng bộ, ánh mắt rực sáng</td>
+            </tr>
+            <tr>
+              <td><strong>Thổ (Earth)</strong></td>
+              <td>Tỳ (Lách) & Dạ Dày</td>
+              <td>Chuyển âu lo, suy nghĩ quá độ thành sự bình ổn</td>
+              <td>Trụ tấn vững vàng như núi thái sơn, trung tâm Đan Điền ổn định</td>
+            </tr>
+            <tr>
+              <td><strong>Kim (Metal)</strong></td>
+              <td>Phổi & Ruột Già</td>
+              <td>Chuyển đau buồn, bi ai thành sự can đảm, buông bỏ</td>
+              <td>Thu liễm năng lượng, hô hấp thanh lọc cặn bã trong phổi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p011_02.jpeg" alt="Biểu tượng Âm Dương Ngũ Hành và sự cân bằng năng lượng">
+        <figcaption>Hình 4: Vòng tương sinh tương khắc Ngũ Hành &mdash; Bản đồ cân bằng tạng phủ trong Thái Cực Thao.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5: PHÂN BIỆT QUYỀN VÀ THAO -->
+    <section id="phan-biet-quyen-va-thao">
+      <h2>5. Phân Biệt Thái Cực Quyền (Chuan) & Thái Cực Thao (Tao)</h2>
+
+      <p>Nhiều học viên phương Tây thường nhầm lẫn giữa hai thuật ngữ này. Tác phẩm làm rõ sự khác biệt cốt tử:</p>
+
+      <ul>
+        <li><strong>Thái Cực Quyền (Tai Chi Chuan / Thái Cực Quyền Pháp):</strong> Là một môn <em>quyền thuật chiến đấu (Martial Art)</em> tối thượng. Mỗi thức động tác (Bằng, Lý, Tê, Án, Thái, Liệt, Trửu, Kháo) đều chứa đựng đòn thế triệt hạ, bẻ khớp (Cầm nã), phát kình đánh bật đối phương hoặc hóa giải lực công kích theo nguyên lý <em>&ldquo;Tứ lạng bạt thiên cân&rdquo;</em> (Bốn lạng bạt ngàn cân).</li>
+        <li><strong>Thái Cực Thao (Tai Chi Tao / Đạo Thao Dưỡng Sinh):</strong> Là phương pháp tập trung vào <em>Đạo sống, thư giãn, trị liệu và phục hồi năng lượng</em>. Các bài tập thường ngắn hơn, nhẹ nhàng hơn, không đặt nặng áp lực chiến đấu hay độ khó của đòn đá, giúp mọi lứa tuổi dễ dàng hấp thu sinh khí và hồi sinh sức khỏe mỗi ngày.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p013_02.jpeg" alt="Tập luyện động tác uyển chuyển của Thái Cực Thao">
+        <figcaption>Hình 5: Động tác mở lồng ngực đón nhận dưỡng khí trong bài tập Thái Cực Thao dưỡng sinh.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6: THIỀN ĐỊNH & CHÁNH NIỆM -->
+    <section id="thien-dinh-chanh-niem">
+      <h2>6. Thiền Định, Chánh Niệm & Buông Lỏng Tự Nhiên</h2>
+
+      <p>Thời hiện đại ngập tràn thông tin khiến tâm trí con người luôn trong tình trạng phân tán và căng thẳng tột độ. Thái Cực chính là <strong>Động Thiền (Moving Meditation)</strong> &mdash; thiền định giữa lòng chuyển động.</p>
+
+      <div class="callout">
+        <h4><i class="fa-solid fa-leaf"></i> Bí Quyết "Phóng Tùng" (Song / Thư Giãn Tuyệt Đối):</h4>
+        <p>Phóng tùng không phải là buông xuôi ẻo lả như sợi bún nguội, mà là <strong>loại bỏ mọi lực gồng cứng thừa thãi ở cơ bắp</strong> trong khi cấu trúc khung xương bên trong vẫn duy trì sự kiên cố như tre ngà trước gió bão. Tâm trí tập trung nhận biết từng milimet cử động của bàn tay, bàn chân và luồng hơi thở đi vào đi ra qua cánh mũi.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p014_02.jpeg" alt="Thái độ thiền định và sự tĩnh lặng nội tâm">
+        <figcaption>Hình 6: Trạng thái tĩnh lãng như gương mặt hồ phẳng lặng khi bước vào bài tập nội công.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7: TỰ VỆ THỰC CHIẾN -->
+    <section id="tu-ve-thuc-chien">
+      <h2>7. Thái Cực Quyền & Khả Năng Tự Vệ Thực Chiến</h2>
+
+      <p>Mặc dù phần lớn người học hôm nay tìm đến Thái Cực vì mục đích sức khỏe, sự thấu hiểu về tự vệ là chìa khóa để vận hành các động tác đúng chuẩn xác về mặt cơ sinh học:</p>
+
+      <ul>
+        <li><strong>Không đối đầu lực chống lực:</strong> Khi đối phương dùng lực ngàn cân lao tới, tuyệt đối không dùng cơ bắp chặn đứng. Thái Cực dạy cách <em>&ldquo;Dẫn tiến lạc không&rdquo;</em> (Dụ địch vào chỗ hư không), khiến lực đấm của đối thủ hẫng hụt vào khoảng trống.</li>
+        <li><strong>Lắng nghe lực (Thính Kình):</strong> Tiếp xúc nhẹ với cổ tay hoặc cẳng tay đối thủ để cảm nhận hướng lực di chuyển trước khi đòn đánh kịp phát huy uy lực.</li>
+        <li><strong>Phát kình toàn thân (Thân kình hợp nhất):</strong> Lực không phát ra từ cánh tay mà bắt đầu từ gót chân, truyền qua đầu gối, điều khiển bởi eo (Yêu) và phóng xuất qua đầu ngón tay như mũi tên rời cung.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p016_02.jpeg" alt="Ứng dụng tự vệ và hóa giải lực">
+        <figcaption>Hình 7: Nguyên lý Thính Kình và hóa giải lực đẩy trong ứng dụng cận chiến tự vệ.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 8: TAM TÀI THIÊN - ĐỊA - NHÂN -->
+    <section id="thien-dia-nhan">
+      <h2>8. Tam Tài Tương Thông: Trời - Đất - Con Người</h2>
+
+      <p>Con người sinh ra đứng giữa Trời và Đất. Bàn chân bám chặt mặt đất thu nhận <strong>Địa Khí (Yin / Đất Mẹ)</strong>; đỉnh đầu mở huyệt Bách Hội đón nhận <strong>Thiên Khí (Yang / Ánh Sáng Vũ Trụ)</strong>. Bản thân người tập Thái Cực là chiếc cầu nối kỳ diệu giao hòa hai nguồn năng lượng đó tại Đan Điền.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p018_04.jpeg" alt="Sự kết nối Tam Tài Thiên Địa Nhân">
+        <figcaption>Hình 8: Tư thế hợp nhất năng lượng vũ trụ và địa khí &mdash; Tam Tài quy nguyên.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 9: MẬT PHÁP KHÍ CÔNG ĐỒ GIẢI -->
+    <section id="mat-phap-khi-cong">
+      <h2>9. Bộ Đồ Giải Mật Pháp Khí Công Độc Bản (The Wise Path Qi Qong)</h2>
+
+      <p>Phần quý giá và độc đáo bậc nhất của tác phẩm chính là <strong>Bộ bài giảng đồ giải nguyên bản</strong> được chuyển giao từ dòng truyền thừa Douwe Geluk và Yvonne Huizinga. Dưới đây là 3 bài tập nội công dưỡng sinh siêu đẳng với biểu đồ chi tiết:</p>
+
+      <!-- BÀI 1 -->
+      <h3 id="khi-cong-bai-1">Bài 1: Hí Cầu Khí Công &mdash; Đùa Giỡn Quả Cầu Năng Lượng (Play with the Ball)</h3>
+      <p>Bài tập tạo lập cảm giác khí giữa hai lòng bàn tay (Huyệt Lao Cung), kích thích từ trường sinh học và nuôi dưỡng tạng tâm.</p>
+      
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p026_02.jpeg" alt="Đồ giải chi tiết Bài 1: Đùa Giỡn Quả Cầu Năng Lượng">
+        <figcaption>Hình 9: Đồ giải nguyên bản Bài tập 1 &mdash; Play with the Ball (Vận hành quả cầu khí giữa hai bàn tay).</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-list-check"></i> Hướng Dẫn Kỹ Thuật Đồ Giải Bài 1:</h4>
+        <ol>
+          <li><strong>Khởi thế:</strong> Đứng chân rộng bằng vai, hai đầu gối chùng nhẹ, hai tay ôm trước ngực như đang giữ một quả cầu khí vô hình ấm áp.</li>
+          <li><strong>Hít vào:</strong> Từ từ mở rộng hai bàn tay sang hai bên, hình dung quả cầu khí nở to ra, các ngón tay căng nhẹ nhưng thả lỏng cổ tay.</li>
+          <li><strong>Thở ra:</strong> Nhẹ nhàng ép hai lòng bàn tay về phía nhau (nhưng không chạm), cảm nhận lực cản đàn hồi như hai cực nam châm cùng dấu đẩy nhau giữa hai huyệt Lao Cung.</li>
+          <li><strong>Xoay cầu:</strong> Đưa tay phải lên trên, tay trái xuống dưới ôm cầu, rồi xoay ngược lại kết hợp với chuyển trọng tâm chân nhẹ nhàng.</li>
+        </ol>
+      </div>
+
+      <!-- BÀI 2 -->
+      <h3 id="khi-cong-bai-2">Bài 2: Khai Thiên Khí Công &mdash; Mở Cửa Vòm Trời Đón Sinh Khí (Open the Heaven)</h3>
+      <p>Động tác thanh lọc phế khí (phổi), giải tỏa u uất lồng ngực và khai mở các đại huyệt ở lưng vai.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p027_02.jpeg" alt="Đồ giải chi tiết Bài 2: Mở Cửa Vòm Trời Đón Sinh Khí">
+        <figcaption>Hình 10: Đồ giải nguyên bản Bài tập 2 &mdash; Open the Heaven (Khai mở kinh mạch vùng ngực và vươn đón sinh khí).</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-list-check"></i> Hướng Dẫn Kỹ Thuật Đồ Giải Bài 2:</h4>
+        <ol>
+          <li><strong>Hạ thế:</strong> Hai tay đan chéo trước bụng dưới hizu huyệt Khí Hải, thở hết khí cặn ra ngoài.</li>
+          <li><strong>Thăng thiên:</strong> Hít vào sâu qua mũi, từ từ nâng hai tay lên dọc theo trục cơ thể qua ngực, lật lòng bàn tay hướng lên trời khi ngang mắt.</li>
+          <li><strong>Đẩy vòm trời:</strong> Vươn hai cánh tay lên cao nhẹ nhàng, kéo dãn toàn bộ cột sống, ngẩng đầu nhìn theo tay, cảm nhận sinh khí từ vũ trụ rót thẳng vào đỉnh đầu qua huyệt Bách Hội.</li>
+          <li><strong>Hạ tùng:</strong> Thở ra chậm rãi, tách hai cánh tay sang hai bên hạ xuống thành vòng tròn lớn bao bọc quanh người, mang năng lượng quy về lại Đan Điền.</li>
+        </ol>
+      </div>
+
+      <!-- BÀI 3 -->
+      <h3 id="khi-cong-bai-3">Bài 3: Thông Tuệ Lộ Khí Công &mdash; Con Đường Trí Huệ Tỉnh Thức (The Wise Path)</h3>
+      <p>Bài tập kết hợp chuyển động thân trên và thân dưới, kích hoạt kinh Can - Thận và lưu thông mạch Nhâm - Đốc.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p028_02.jpeg" alt="Đồ giải chi tiết Bài 3 Phần A: Thông Tuệ Lộ Khí Công">
+        <figcaption>Hình 11: Đồ giải nguyên bản Bài tập 3 (Phần A) &mdash; Các bước chuyển chân và vặn xoắn eo theo trục trung tâm.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/waysun-liao-essence/essence_p029_02.jpeg" alt="Đồ giải chi tiết Bài 3 Phần B: Thông Tuệ Lộ Khí Công">
+        <figcaption>Hình 12: Đồ giải nguyên bản Bài tập 3 (Phần B) &mdash; Thu thế hồi quang phản chiếu và tụ khí quy nguyên.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 10: LỜI KẾT -->
+    <section id="loi-ket-phu-luc">
+      <h2>10. Lời Kết & Phương Pháp Tu Dưỡng Hàng Ngày</h2>
+
+      <p>Hành trình bước vào thế giới Thái Cực và Khí Công không đòi hỏi người học phải có sức mạnh cơ bắp phi thường hay độ dẻo dai uốn éo như xiếc. Điều cốt lõi nằm ở hai chữ: <strong>ĐƠN GIẢN</strong> và <strong>KIÊN TRÌ</strong>.</p>
+
+      <div class="callout">
+        <p><em>&ldquo;Một giọt nước nhỏ đều đặn mỗi ngày có thể xuyên thủng phiến đá hoa cương. Luyện tập Thái Cực 15 phút mỗi ngày với tâm trí thuần khiết còn quý giá hơn ngàn lần việc tập dồn dập 5 tiếng trong một ngày chủ nhật rồi bỏ bê cả tuần.&rdquo;</em></p>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-sun"></i> Lộ Trình Thực Hành Đề Xuất Cho Người Bận Rộn (15 Phút/Ngày):</h4>
+        <ul>
+          <li><strong>Phút 01 &mdash; 03:</strong> Đứng Tự Nhiên Tĩnh Lặng (Vô Cực Trang) &mdash; Thả lỏng toàn thân từ đỉnh đầu xuống ngón chân, đưa tâm trí về hơi thở.</li>
+          <li><strong>Phút 04 &mdash; 08:</strong> Luyện Bài 1 &ldquo;Hí Cầu&rdquo; và Bài 2 &ldquo;Khai Thiên&rdquo; mỗi bài 8 đến 12 lần liên tục.</li>
+          <li><strong>Phút 09 &mdash; 13:</strong> Đi một bài quyền Thái Cực ngắn (8 thức hoặc 24 thức) với tốc độ thật chậm, chú trọng chuyển trọng tâm mượt mà.</li>
+          <li><strong>Phút 14 &mdash; 15:</strong> Xoa ấm hai lòng bàn tay chà xát mặt, vuốt dọc cổ gáy, áp hai bàn tay ấm lên vùng thắt lưng (huyệt Thận Du) để bồi dưỡng thận khí.</li>
+        </ul>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> Về Thư Viện Sách</a>
+        <a href="/vi/books/ken_gullette_silk_reeling_energy_vi.html">Đọc Tiếp: Sách Triền Ty Kình (Ken Gullette) <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
