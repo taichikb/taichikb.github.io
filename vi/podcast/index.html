@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taichi NOW Podcast — Chuỗi Podcast Thái Cực Quyền & Khí Công (12 Tập) — TaichiNOW</title>
+<meta name="description" content="Kênh Podcast chính thức của TaichiNOW: Tuyển tập 12 tập chuyên sâu xuyên suốt 2 mùa giải mã cơ sinh học Thái Cực Quyền, bản chất Khí, chuỗi động học và trị liệu dưỡng sinh.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --primary-accent: #047857;
+  --primary-accent-light: #ecfdf5;
+  --card-bg: #ffffff;
+  --card-border: #e4e4e7;
+  --text-muted: #71717a;
+  --radius-md: 14px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-hover: 0 12px 28px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background-color: #fafafa;
+  color: #18181b;
+  font-family: var(--sans);
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border, #e4e4e7);
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-nav {
+  display: flex;
+  gap: 1.3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #27272a;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+  transition: all 0.2s;
+}
+.site-nav a:hover,
+.site-nav a.active {
+  color: #000000;
+  border-bottom-color: var(--yin, #18181b);
+  font-weight: 600;
+}
+
+/* Hero */
+.podcast-hero {
+  background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+  color: #ffffff;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #1e293b;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.podcast-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.podcast-hero p {
+  max-width: 820px;
+  margin: 0 auto 1.5rem;
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  line-height: 1.7;
+}
+.hero-actions-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.btn-rss-channel {
+  background: #f97316;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+}
+.btn-rss-channel:hover {
+  background: #ea580c;
+  transform: translateY(-2px);
+}
+.btn-feed-xml {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  transition: all 0.2s;
+}
+.btn-feed-xml:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.hero-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #e2e8f0;
+}
+
+/* Container */
+.podcast-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* Featured Channel Player Box */
+.channel-player-card {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.channel-player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.channel-player-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+.channel-player-title i {
+  color: #047857;
+}
+
+/* Search & Filters */
+.toolbar {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+.search-box-row {
+  margin-bottom: 1.25rem;
+  display: flex;
+  gap: 1rem;
+}
+.search-input-wrap {
+  position: relative;
+  flex: 1;
+}
+.search-input-wrap i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a1a1aa;
+  font-size: 1rem;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 46px;
+  border: 1px solid #d4d4d8;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.search-input:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15);
+}
+.filter-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-pill {
+  border: 1px solid #e4e4e7;
+  background: #f4f4f5;
+  color: #52525b;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.filter-pill:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+.filter-pill.active {
+  background: #047857;
+  color: #ffffff;
+  border-color: #047857;
+}
+.count-badge {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.filter-pill.active .count-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Episodes Grid */
+.podcast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.8rem;
+}
+
+/* Podcast Card */
+.podcast-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.podcast-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #a7f3d0;
+}
+.card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 240px;
+  background: #064e3b;
+  overflow: hidden;
+}
+.card-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.podcast-card:hover .card-thumb-wrap img {
+  transform: scale(1.03);
+}
+.season-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(4, 120, 87, 0.9);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.duration-tag {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Card Content */
+.card-content {
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.ep-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.ep-order-tag {
+  font-weight: 700;
+  color: #047857;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ep-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 0.6rem 0;
+  color: #18181b;
+}
+.ep-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+/* Native Audio Player in Card */
+.audio-player-wrap {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 1rem;
+}
+.audio-player-wrap audio {
+  width: 100%;
+  height: 38px;
+  outline: none;
+}
+
+/* Action links */
+.card-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 0.8rem;
+  border-top: 1px solid #f1f5f9;
+}
+.btn-rss-link {
+  color: #f97316;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.15s;
+}
+.btn-rss-link:hover {
+  color: #c2410c;
+  text-decoration: underline;
+}
+.btn-embed-player {
+  background: #1e293b;
+  color: #ffffff !important;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+.btn-embed-player:hover {
+  background: #047857;
+}
+
+/* Modal Player */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-backdrop.active {
+  display: flex;
+}
+.modal-content {
+  background: #18181b;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  border: 1px solid #27272a;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #27272a;
+  color: #ffffff;
+}
+.modal-title-wrap h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.btn-close-modal:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.1);
+}
+.modal-frame-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: #000000;
+}
+.modal-frame-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #71717a;
+  display: none;
+}
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #cbd5e1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .podcast-hero h1 { font-size: 2rem; }
+  .podcast-grid { grid-template-columns: 1fr; }
+  .toolbar { padding: 1rem; }
+  .site-header { padding: 1rem; flex-direction: column; gap: 0.8rem; }
+  .site-nav { gap: 0.8rem; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/vi/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/" class="">Trang Chủ</a>
+    <a href="/vi/techniques/" class="">Kỹ Thuật</a>
+    <a href="/vi/books/" class="">Thư Viện Sách</a>
+    <a href="/vi/videos/" class="">Video</a>
+    <a href="/vi/podcast/" class="active">Podcast</a>
+    <a href="/vi/philosophy/" class="">Triết Lý</a>
+    <a href="/vi/history/" class="">Lịch Sử</a>
+    <a href="/vi/contact/" class="">Liên Hệ</a>
+    <a href="/podcast/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<section class="podcast-hero">
+  <span class="hero-badge"><i class="fa-solid fa-podcast"></i> Kênh Âm Thanh Chính Thức</span>
+  <h1>Taichi NOW Podcast Series</h1>
+  <p>Khám phá chiều sâu Thái Cực Quyền, Khí Công, Chuỗi Động Lực Học, Nội Công Đạo Gia và Triết Lý Dưỡng Sinh hiện đại qua định dạng âm thanh chất lượng cao. Tuyển tập trọn vẹn 12 tập phát sóng qua 2 mùa chuyên đề.</p>
+  <div class="hero-actions-row">
+    <a href="https://rss.com/podcasts/taichi-now-podcast-series/" target="_blank" rel="noopener noreferrer" class="btn-rss-channel">
+      <i class="fa-solid fa-square-rss"></i> Kênh Podcast trên RSS.com &rarr;
+    </a>
+    <a href="https://rss.com/podcasts/taichi-now-podcast-series/feed.xml" target="_blank" rel="noopener noreferrer" class="btn-feed-xml">
+      <i class="fa-solid fa-rss"></i> RSS Feed XML
+    </a>
+  </div>
+  <div class="hero-stats-row">
+    <span class="stat-pill"><i class="fa-solid fa-microphone-lines"></i> 12 Tập Trọn Bộ</span>
+    <span class="stat-pill"><i class="fa-solid fa-layer-group"></i> 2 Mùa Chuyên Đề</span>
+    <span class="stat-pill"><i class="fa-solid fa-headphones"></i> Phát Trực Tiếp Không Quảng Cáo</span>
+    <span class="stat-pill"><i class="fa-solid fa-bolt"></i> Tra Cứu Tức Thì</span>
+  </div>
+</section>
+
+<main class="podcast-container">
+
+  <!-- Featured Master Channel Player -->
+  <div class="channel-player-card">
+    <div class="channel-player-header">
+      <h2 class="channel-player-title"><i class="fa-solid fa-circle-play"></i> Trình Phát Kênh Toàn Bộ Mùa & Tập (RSS.com Embedded Player)</h2>
+      <span class="stat-pill" style="color: #047857; background: #ecfdf5; border-color: #a7f3d0;"><i class="fa-solid fa-podcast"></i> Taichi NOW Series</span>
+    </div>
+    <iframe src="https://player.rss.com/taichi-now-podcast-series" style="width: 100%; height: 320px; border-radius: 12px; border: 1px solid #e2e8f0;" title="Taichi NOW Podcast Series" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <!-- Toolbar: Search & Season Filters -->
+  <div class="toolbar">
+    <div class="search-box-row">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="podcastSearch" class="search-input" placeholder="Tìm kiếm tập podcast theo tên, chủ đề (Khí, Cơ sinh học, Kua, Chuỗi động học, Tam Tiêu, AI...)...">
+      </div>
+    </div>
+    <div class="filter-pills" id="seasonFilters">
+      <button class="filter-pill active" data-season="all">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Tất Cả Các Tập</span>
+        <span class="count-badge">12</span>
+      </button>
+      <button class="filter-pill" data-season="1">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Mùa 1: Nền Tảng Thái Cực (Taichi Foundation)</span>
+        <span class="count-badge">6</span>
+      </button>
+      <button class="filter-pill" data-season="2">
+        <i class="fa-solid fa-hand-holding-medical"></i>
+        <span>Mùa 2: Ứng Dụng Thực Tiễn (Taichi Applications)</span>
+        <span class="count-badge">6</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Podcast Grid -->
+  <div class="podcast-grid" id="podcastGrid">
+    <div class="podcast-card" data-season="1" data-title="cơ học hay năng lượng trong khí" data-id="2864005">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_090556_fa1675e7aed4fafd22ee6e8b584458c4.png" alt="Cơ học hay năng lượng trong Khí" loading="lazy">
+        <span class="season-badge">Mùa 1 · Tập 1</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 18 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #1 (Mùa 1)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Cơ học hay năng lượng trong Khí</h3>
+        <p class="ep-desc">Phân tích bản chất của 'Khí' dưới góc độ vật lý cơ học chuyển động so với quan niệm năng lượng huyền bí; làm rõ cách cơ thể tối ưu hóa vector lực đẩy và sự cân bằng động trong từng chuyển động tròn.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864005/taichi-now-podcast-series/2026_05_27_21_40_11_39d202af-26bb-4554-93d8-63df5379c7fa.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864005', 'Cơ học hay năng lượng trong Khí')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864005" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="1" data-title="khí hay là cơ sinh học" data-id="2864042">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_090554_35d8dac82a8b578a9337a059bdccaf33.png" alt="Khí hay là cơ sinh học" loading="lazy">
+        <span class="season-badge">Mùa 1 · Tập 2</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 13 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #2 (Mùa 1)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Khí hay là cơ sinh học</h3>
+        <p class="ep-desc">Khám phá sự tương đồng bất ngờ giữa các thuật ngữ cổ xưa về kinh mạch, khí tức với khoa học cơ sinh học hiện đại: chuỗi liên kết cân mạc (fascia), độ đàn hồi gân cốt và giải phóng áp lực khớp.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864042/taichi-now-podcast-series/2026_05_27_21_57_13_3bdf8f08-cbd5-425f-bf4b-fcc46cd5f0ef.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864042', 'Khí hay là cơ sinh học')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864042" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="1" data-title="iron wrapped in cotton: cơ sinh học thái cực quyền" data-id="2864047">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_090558_360d4d322d2c119417103109cdc6d93b.png" alt="Iron Wrapped In Cotton: Cơ sinh học Thái Cực Quyền" loading="lazy">
+        <span class="season-badge">Mùa 1 · Tập 3</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 6 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #3 (Mùa 1)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Iron Wrapped In Cotton: Cơ sinh học Thái Cực Quyền</h3>
+        <p class="ep-desc">Nguyên lý 'Thiết bao miên' (Sắt bọc trong bông): Thả lỏng toàn bộ cơ bắp bề ngoài (Tùng) để hình thành cấu trúc lò xo đàn hồi nén ép cốt tủy bên trong, vững chãi như thép nguội mà linh hoạt như nước.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864047/taichi-now-podcast-series/2026_05_27_22_10_14_bcee40ce-4993-4730-ab06-10a539c5c7ae.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864047', 'Iron Wrapped In Cotton: Cơ sinh học Thái Cực Quyền')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864047" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="1" data-title="the insight engine: giải mã chuỗi động học thái cực" data-id="2864056">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100540_4e7b544de4dd3e7996ffbae6d5ada77c.png" alt="The Insight Engine: Giải mã chuỗi động học Thái Cực" loading="lazy">
+        <span class="season-badge">Mùa 1 · Tập 4</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 6 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #4 (Mùa 1)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">The Insight Engine: Giải mã chuỗi động học Thái Cực</h3>
+        <p class="ep-desc">Bóc tách chuỗi động lực học từ phản lực mặt đất qua bàn chân (gốc rễ), điều tiết qua trục nếp gấp háng (Kua), định hướng bởi eo lưng và phát tiết trọn vẹn ra đầu ngón tay không bị đứt đoạn.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864056/taichi-now-podcast-series/2026_05_27_22_02_45_5a843332-435b-48bb-bfe2-117e8bdec0ae.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864056', 'The Insight Engine: Giải mã chuỗi động học Thái Cực')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864056" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="1" data-title="khoa học đằng sau nội công" data-id="2864063">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100545_55baaf241e6bf49e6cf8836a275d011a.png" alt="Khoa học đằng sau nội công" loading="lazy">
+        <span class="season-badge">Mùa 1 · Tập 5</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 19 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #5 (Mùa 1)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Khoa học đằng sau nội công</h3>
+        <p class="ep-desc">Giải thích cơ sở sinh học và phản xạ thần kinh của Nội công: điều khiển trương lực cơ sâu, phản xạ co cơ đẳng trường tĩnh và cách hệ thần kinh phó giao cảm tái tạo sinh lực nội tại.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864063/taichi-now-podcast-series/2026_05_27_22_05_00_4457340e-891c-4f73-88b9-c946c8882b6c.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864063', 'Khoa học đằng sau nội công')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864063" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="1" data-title="động cơ ẩn của thái cực quyền" data-id="2864068">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/podcast_cover_20260527_090513_59012c142c40435aa09d5f37653e76c0.png" alt="Động cơ ẩn của Thái Cực Quyền" loading="lazy">
+        <span class="season-badge">Mùa 1 · Tập 6</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 6 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #6 (Mùa 1)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Động cơ ẩn của Thái Cực Quyền</h3>
+        <p class="ep-desc">Khám phá động cơ truyền động vô hình bên trong quyền thức: sự xoắn vặn của cơ hoành, đan điền và sự chuyển giao lực nén đàn hồi không phụ thuộc vào cơ bắp co kéo cục bộ.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864068/taichi-now-podcast-series/2026_05_27_22_07_21_db8a14a5-0f7d-456c-9dd4-ff102218d2da.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864068', 'Động cơ ẩn của Thái Cực Quyền')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864068" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="2" data-title="cỗ máy trị liệu thái cực quyền" data-id="2864075">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100515_aa0dc0f6529d1359361197d529dcea67.png" alt="Cỗ máy trị liệu Thái Cực Quyền" loading="lazy">
+        <span class="season-badge">Mùa 2 · Tập 1</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 12 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #1 (Mùa 2)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Cỗ máy trị liệu Thái Cực Quyền</h3>
+        <p class="ep-desc">Ứng dụng y học dưỡng sinh hiện đại: Cơ chế chuyển động chậm rãi giúp phục hồi hệ thần kinh tự chủ, điều hòa huyết áp tim mạch, tái tạo mật độ xương và làm chậm lão hóa tế bào.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864075/taichi-now-podcast-series/2026_05_27_22_12_31_7a78dd04-abc7-4f47-8ad5-49534f90b07f.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864075', 'Cỗ máy trị liệu Thái Cực Quyền')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864075" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="2" data-title="giải mã 10 lỗi sai phổ biến trong thái cực quyền" data-id="2864080">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100545_f844fc0a6057a19caef7b2a35041d469.png" alt="Giải mã 10 lỗi sai phổ biến trong Thái Cực Quyền" loading="lazy">
+        <span class="season-badge">Mùa 2 · Tập 2</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 10 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #2 (Mùa 2)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Giải mã 10 lỗi sai phổ biến trong Thái Cực Quyền</h3>
+        <p class="ep-desc">Phân tích 10 sai lầm điển hình nhất của người tập: gập gối quá mũi chân, nhô mông hở sườn, ngắt đoạn kình lực, mất trục trung chính và gồng cứng vùng cổ vai gáy.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864080/taichi-now-podcast-series/2026_05_27_22_13_55_61686443-3095-4bb4-bf92-718cc3469959.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864080', 'Giải mã 10 lỗi sai phổ biến trong Thái Cực Quyền')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864080" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="2" data-title="bản đồ năng lượng và tâm trí" data-id="2864085">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100546_e1130ffe3f14e83ca64ec6bbf445c176.png" alt="Bản đồ năng lượng và tâm trí" loading="lazy">
+        <span class="season-badge">Mùa 2 · Tập 3</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 20 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #3 (Mùa 2)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Bản đồ năng lượng và tâm trí</h3>
+        <p class="ep-desc">Mối quan hệ biện chứng giữa Ý, Khí và Kình: 'Ý đáo thì Khí đáo, Khí đáo thì Kình đáo'; phương pháp huấn luyện sự tập trung tĩnh lặng tuyệt đối giữa biến động bên ngoài.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864085/taichi-now-podcast-series/2026_05_27_22_16_08_c217f272-b0b8-468f-ab4c-effafd02380e.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864085', 'Bản đồ năng lượng và tâm trí')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864085" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="2" data-title="tam tiêu và bí mật hồi quang" data-id="2864094">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100507_d4037c9a844ec2366ecc6bcb74e8d115.png" alt="Tam Tiêu và bí mật Hồi Quang" loading="lazy">
+        <span class="season-badge">Mùa 2 · Tập 4</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 21 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #4 (Mùa 2)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Tam Tiêu và bí mật Hồi Quang</h3>
+        <p class="ep-desc">Đạo pháp nội tu cổ truyền: Bí mật vận hóa thủy hỏa của đường kinh Tam Tiêu và phương pháp Hồi Quang Phản Chiếu gom thần tụ khí, khai mở tuệ giác và phục hồi tạng phủ.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864094/taichi-now-podcast-series/2026_05_27_22_19_24_0e4fa1e0-490c-4a6e-b31d-a2432e773f5d.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864094', 'Tam Tiêu và bí mật Hồi Quang')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864094" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="2" data-title="giải mã khí: xưa và nay" data-id="2864105">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100541_9204756e1ca0c5e3ca328034bb6d18f6.png" alt="Giải mã Khí: Xưa và Nay" loading="lazy">
+        <span class="season-badge">Mùa 2 · Tập 5</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 6 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #5 (Mùa 2)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Giải mã Khí: Xưa và Nay</h3>
+        <p class="ep-desc">Đối chiếu định nghĩa Khí trong các y thư và quyền phổ hoàng kim với các phát hiện về điện sinh học, tuần hoàn mao mạch và trường xung nhịp sinh học cơ thể thời nay.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864105/taichi-now-podcast-series/2026_05_27_22_22_49_bc8432e8-3342-44f7-a034-ea6142939a5b.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864105', 'Giải mã Khí: Xưa và Nay')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864105" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="podcast-card" data-season="2" data-title="sức sống từ chính khí đến ai" data-id="2864106">
+      <div class="card-thumb-wrap">
+        <img src="https://img.rss.com/taichi-now-podcast-series/900/ep_cover_20260527_100527_dd066e004bb0310020805c29c7a325b8.png" alt="Sức sống từ Chính Khí đến AI" loading="lazy">
+        <span class="season-badge">Mùa 2 · Tập 6</span>
+        <span class="duration-tag"><i class="fa-solid fa-clock"></i> 13 phút</span>
+      </div>
+      <div class="card-content">
+        <div class="ep-meta-row">
+          <span class="ep-order-tag">Podcast #6 (Mùa 2)</span>
+          <span>Tháng 5, 2026</span>
+        </div>
+        <h3 class="ep-title">Sức sống từ Chính Khí đến AI</h3>
+        <p class="ep-desc">Tầm nhìn tương lai: Nuôi dưỡng 'Chính Khí' nội tại để giữ vững sự bình an thân tâm, khả năng tự chữa lành và tư duy sáng suốt giữa kỷ nguyên bùng nổ công nghệ AI.</p>
+        
+        <div class="audio-player-wrap">
+          <audio controls preload="none" src="https://content.rss.com/episodes/388569/2864106/taichi-now-podcast-series/2026_05_27_22_24_37_1f49c7ea-1bd4-4de0-8fd7-6383a6ca92d3.mp3"></audio>
+        </div>
+        
+        <div class="card-actions-row">
+          <button class="btn-embed-player" onclick="openPodcastModal('2864106', 'Sức sống từ Chính Khí đến AI')">
+            <i class="fa-solid fa-play"></i> Nghe Player
+          </button>
+          <a href="https://rss.com/podcasts/taichi-now-podcast-series/2864106" target="_blank" rel="noopener noreferrer" class="btn-rss-link">
+            <i class="fa-solid fa-square-rss"></i> Mở trên RSS.com &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState">
+      <i class="fa-solid fa-microphone-slash"></i>
+      <h3>Không tìm thấy tập podcast phù hợp</h3>
+      <p>Hãy thử tìm kiếm với từ khóa khác hoặc bấm "Tất Cả Các Tập" để nghe toàn bộ danh sách.</p>
+    </div>
+  </div>
+</main>
+
+<!-- Modal Player -->
+<div class="modal-backdrop" id="podcastModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <h4 id="modalPodcastTitle">Đang phát tập podcast</h4>
+      </div>
+      <button class="btn-close-modal" onclick="closePodcastModal()" aria-label="Đóng">&times;</button>
+    </div>
+    <div class="modal-frame-wrap">
+      <iframe id="podcastIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+    <p>Built with ❤️ for the global Tai Chi community by Phạm Đức Hải</p>
+</footer>
+
+<script>
+// Modal Player Logic
+const modal = document.getElementById('podcastModal');
+const iframe = document.getElementById('podcastIframe');
+const modalTitle = document.getElementById('modalPodcastTitle');
+
+function openPodcastModal(epId, title) {
+  modalTitle.textContent = title;
+  iframe.src = 'https://player.rss.com/taichi-now-podcast-series/' + epId;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePodcastModal() {
+  modal.classList.remove('active');
+  iframe.src = '';
+  document.body.style.overflow = '';
+}
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closePodcastModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    closePodcastModal();
+  }
+});
+
+// Filter & Search Logic
+const searchInput = document.getElementById('podcastSearch');
+const filterPills = document.querySelectorAll('.filter-pill');
+const podcastCards = document.querySelectorAll('.podcast-card');
+const emptyState = document.getElementById('emptyState');
+
+let currentSeason = 'all';
+let currentSearch = '';
+
+function filterPodcasts() {
+  let visibleCount = 0;
+  const q = currentSearch.toLowerCase().trim();
+
+  podcastCards.forEach(card => {
+    const s = card.getAttribute('data-season');
+    const title = card.getAttribute('data-title');
+
+    const matchSeason = (currentSeason === 'all' || s === currentSeason);
+    const matchSearch = (!q || title.includes(q));
+
+    if (matchSeason && matchSearch) {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (visibleCount === 0) {
+    emptyState.style.display = 'block';
+  } else {
+    emptyState.style.display = 'none';
+  }
+}
+
+filterPills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    filterPills.forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    currentSeason = pill.getAttribute('data-season');
+    filterPodcasts();
+  });
+});
+
+searchInput.addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  filterPodcasts();
+});
+</script>
+</body>
+</html>
