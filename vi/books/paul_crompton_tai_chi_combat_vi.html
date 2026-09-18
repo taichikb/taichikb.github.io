@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thực Chiến Thái Cực Quyền (Tai Chi Combat) — Đại sư Paul Crompton</title>
+<meta name="description" content="Bản dịch Việt ngữ tác phẩm Thực Chiến Thái Cực Quyền của Đại sư Paul Crompton - Cẩm nang giải mã võ tính, chuyển động xoắn ốc và trọn bộ ứng dụng đối kháng tự vệ thực tế.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1420px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; text-align: justify; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--ink);
+}
+.callout.martial-principle {
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.05);
+}
+
+.figure-box {
+  margin: 30px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.figure-box img {
+  width: 100%;
+  max-height: 620px;
+  object-fit: contain;
+  background: #f8fafc;
+  display: block;
+}
+.figure-box figcaption {
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  line-height: 1.5;
+}
+.figure-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0;
+}
+@media (max-width: 768px) {
+  .figure-grid-2 { grid-template-columns: 1fr; }
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px 80px; }
+  .book-hero h1 { font-size: 2.2rem; }
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.tech-table th, .tech-table td {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  text-align: left;
+}
+.tech-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.tech-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.step-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+}
+.step-card h5 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--gold);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+  z-index: 90;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/vi/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-arrow-left"></i> <span>Tủ Sách</span></a>
+    <button class="btn-control" id="theme-toggle" aria-label="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- Sidebar TOC -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-mo-dau">Lời Mở Đầu (Introduction)</a></li>
+        <li><a href="#chuong-1">Chương 1: Suy Ngẫm Về Bản Chất Âm - Dương</a></li>
+        <li><a href="#chuong-2">Chương 2: Lời Khuyên Nhập Môn Người Mới</a></li>
+        <li><a href="#chuong-3">Chương 3: Danh Xưng & Nguồn Gốc Chiêu Thức</a></li>
+        <li><a href="#chuong-4">Chương 4: Từ Điển Thuật Ngữ Kình Lực Mới</a></li>
+        <li><a href="#chuong-5">Chương 5: Hiện Thực Hóa Sang Hành Động</a></li>
+        <li><a href="#chuong-6">Chương 6: Bát Hướng & Động Học Xoắn Ốc</a></li>
+        <li><a href="#chuong-7">Chương 7: Toàn Bộ Ứng Dụng Thực Chiến Chi Tiết</a></li>
+        <li><a href="#chuong-8">Chương 8: Khoảng Cách Giữa Lý Thuyết & Thực Tế</a></li>
+        <li><a href="#chuong-9">Chương 9: Giai Thoại & Bài Học Đối Kháng Cổ Truyền</a></li>
+        <li><a href="#chuong-10">Chương 10: Vận Động Không Đứt Đoạn</a></li>
+        <li><a href="#loi-ket">Lời Kết (Conclusion)</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="book-content">
+    <article>
+      <header class="book-hero">
+        <span class="badge">Võ Thuật Thực Chiến · Đối Kháng Chân Truyền</span>
+        <h1>Thực Chiến Thái Cực Quyền</h1>
+        <div class="subtitle">Tai Chi Combat — Master Paul Crompton</div>
+        <div class="meta-row">
+          <span><i class="fa-solid fa-user-ninja"></i> Tác giả: Paul Crompton</span>
+          <span><i class="fa-solid fa-camera"></i> Nhiếp ảnh: Louanne Richards</span>
+          <span><i class="fa-solid fa-book-open"></i> 138 trang &middot; 138 hình ảnh</span>
+          <span><i class="fa-solid fa-language"></i> Bản dịch Việt ngữ TaichiNOW</span>
+        </div>
+      </header>
+
+      <!-- Lời Mở Đầu -->
+      <section id="loi-mo-dau">
+        <h2>Lời Mở Đầu: Đánh Thức Bản Năng Thực Chiến Của Thái Cực Quyền</h2>
+        <p>
+          Trong suốt nửa thế kỷ qua tại phương Tây và trong phong trào dưỡng sinh hiện đại, Thái Cực Quyền (T'ai Chi Chuan) đã bị định hình gần như tuyệt đối như một môn "thiền động" êm dịu, thuần túy thư thái và dành riêng cho người cao tuổi hoặc những ai tìm kiếm sự an bình tĩnh lặng. Người ta say mê những chuyển động chậm rãi, mượt mà như mây trôi nước chảy, nhưng lại vô tình hay hữu ý lãng quên chữ <strong>"Quyền" (Ch'uan / 拳)</strong> — nghĩa là quyền pháp, là đòn đấm, là một hệ thống chiến đấu tay không sinh tử được tôi luyện qua hàng trăm năm trên các chiến trường cổ xưa của Trung Hoa.
+        </p>
+        <p>
+          Mục đích cốt lõi của cuốn sách này không phải là khuyến khích sự bạo lực hay thù địch, mà là lập lại sự cân bằng chân chính của vòng Âm Dương: <em>"Trong Nhu phải có Cương, trong Âm phải hàm chứa Dương"</em>. Khi một võ sinh Thái Cực chỉ rèn luyện khía cạnh Âm mềm mại mà không bao giờ thấu hiểu cách phát xuất năng lượng Dương cương mãnh, họ mới chỉ nắm được một nửa bức tranh. Sự thấu hiểu đích thực (Real Understanding) đòi hỏi bạn không chỉ biết nói về nguyên lý buông lỏng trên lý thuyết, mà thân thể bạn phải phản xạ được trong tích tắc trước một đòn tấn công bất ngờ với tốc độ và uy lực tối đa.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p001_img00.jpeg" alt="Bìa sách Thực Chiến Thái Cực Quyền - Tai Chi Combat của Paul Crompton">
+          <figcaption><strong>Hình 1:</strong> Nguyên tác "Tai Chi Combat" của Đại sư Paul Crompton — Tác phẩm tiên phong phơi bày toàn bộ góc khuất võ tính và ứng dụng chiến đấu thực tế của Thái Cực Quyền.</figcaption>
+        </figure>
+
+        <div class="callout martial-principle">
+          <h4>Nguyên Lý Võ Học Cốt Lõi:</h4>
+          <p>
+            <em>"Thái Cực Quyền khởi thủy là một môn chiến đấu sắc bén và đầy uy lực bao gồm các đòn đấm, đá, vật ngã và khóa khớp ở cự ly hiểm. Khi xã hội phát triển theo hướng hòa bình, các chiêu thức dần được tinh giản thành mềm mại uyển chuyển, nhưng linh hồn võ chiến sinh tồn của nó vẫn luôn chảy ngầm dưới từng thớ cơ và mạch máu."</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- Chương 1 -->
+      <section id="chuong-1">
+        <h2>Chương 1: Suy Ngẫm Về Bản Chất Âm - Dương & Sự Lãng Quên Khía Cạnh Võ Thuật</h2>
+        <p>
+          Tại sao khía cạnh thực chiến (Yang side) của Thái Cực Quyền lại bị lu mờ ở phương Tây? Paul Crompton phân tích hai nguyên nhân lịch sử lớn:
+        </p>
+        <ol style="margin-left: 24px; margin-bottom: 20px;">
+          <li><strong>Ảnh hưởng của làn sóng văn hóa thập niên 1960–1970:</strong> Thời kỳ phản chiến, hòa bình, tìm kiếm sự an tịnh nội tâm đã khiến giới trẻ phương Tây đón nhận khía cạnh nhượng bộ (yielding) thuần Âm của Thái Cực như một liều thuốc giải tỏa căng thẳng công nghiệp, vô tình tạo ra định kiến rằng Thái Cực không dùng để đánh nhau.</li>
+          <li><strong>Phương pháp truyền dạy của Đại sư Trịnh Mạn Thanh (Cheng Man-ch'ing):</strong> Dù bản thân Trịnh Mạn Thanh là một võ sư thượng thừa có khả năng phát kình khủng khiếp, nhưng khi giảng dạy đại trà tại Đài Loan và New York, ông chủ yếu nhấn mạnh sự buông lỏng (Tùng) và bài quyền ngắn 37 thức dưỡng sinh để phổ cập đại chúng, hiếm khi tổ chức các buổi tập đối kháng tự do công khai.</li>
+        </ol>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p006_img00.jpeg" alt="Paul Crompton phân tích tư thế chiến đấu đối kháng">
+          <figcaption><strong>Hình 2:</strong> Tư thế phòng thủ và hóa giải lực cơ bản — Trục thân trung chính, hai tay giữ vòng tròn Bằng Kình bao bọc trung lộ.</figcaption>
+        </figure>
+
+        <p>
+          Ba dòng tư tưởng lớn định hình nên hệ thống thực chiến Thái Cực:
+        </p>
+        <ul>
+          <li><strong>Đạo gia (Taoist Way):</strong> Vận hành theo quy luật Âm Dương của Hoàng Đế Nội Kinh và Đạo Đức Kinh — <em>"Dĩ nhu chế cương, tỵ thực kích hư"</em>. Không bao giờ đối đầu trực diện với lực đối phương mà dẫn dụ lực vào khoảng không rồi mượn lực phản công.</li>
+          <li><strong>Phật gia & Thiếu Lâm (Buddhist Influence):</strong> Thể lực dẻo dai, gân cốt kiên cố, sự vững chãi của hạ bàn và các đòn phát kình bộc phát điểm huyệt.</li>
+          <li><strong>Y học Cổ truyền Trung Hoa:</strong> Hiểu biết tường tận về 12 đường kinh lạc, huyệt đạo hiểm yếu để vừa tự phục hồi sinh lực, vừa có khả năng vô hiệu hóa đối thủ trong chớp mắt.</li>
+        </ul>
+      </section>
+
+      <!-- Chương 2 -->
+      <section id="chuong-2">
+        <h2>Chương 2: Lời Khuyên Nhập Môn Cho Người Mới Khởi Đầu</h2>
+        <p>
+          Đối với người mới bắt đầu tiếp cận khía cạnh thực chiến, thách thức lớn nhất không phải là tập các đòn thế hiểm hóc, mà là <strong>tái lập cấu trúc cơ thể</strong>. Nếu cơ bắp vẫn gồng cứng (khuynh hướng tự nhiên khi đối diện nguy hiểm), người tập sẽ tự triệt tiêu tốc độ và độ nhạy bén của chính mình.
+        </p>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-check-circle"></i> 1. Xả Bỏ Căng Thẳng Vùng Vai & Ngực (Song Kiên Trầm Trửu)</h5>
+          <p>Khi đối phương tung đòn, bản năng người chưa tập là co rút vai và nín thở. Điều này làm trọng tâm bốc lên ngực, chân mất gốc. Phải chủ động buông chìm hai vai, hạ cùi chỏ, thở sâu xuống Đan Điền.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-check-circle"></i> 2. Xác Lập Chân Đế Vững Chắc (Trầm Căn - Rooting)</h5>
+          <p>Mọi lực đánh mạnh mẽ không xuất phát từ cánh tay mà bắt đầu từ bàn chân bám rễ xuống mặt đất, truyền qua khớp háng (Khóa), xoay chuyển ở eo và phóng thích qua bàn tay.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-check-circle"></i> 3. Giữ Khoảng Cách An Toàn (Cự Ly Chiến Đấu - Ma-ai)</h5>
+          <p>Luôn duy trì nhận thức về vùng không gian bảo vệ xung quanh thân thể. Không để đối thủ xâm nhập quá sâu vào vòng kiểm soát của tay trước khi có phản xạ tiếp xúc.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p012_img00.jpeg" alt="Tập luyện căn bản hạ bàn và tiếp xúc tay đối kháng">
+          <figcaption><strong>Hình 3:</strong> Bài tập căn bản thiết lập điểm tiếp xúc — Giữ vững trục thắt lưng trong khi thân trên linh hoạt điều hướng lực ép của bạn tập.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 3 -->
+      <section id="chuong-3">
+        <h2>Chương 3: Danh Xưng Và Nguồn Gốc Hệ Thống Chiêu Thức</h2>
+        <p>
+          Tên gọi của các thức Thái Cực Quyền thường mang màu sắc thi ca hoặc gắn liền với thế giới tự nhiên như: <em>Bạch Hạc Lượng Dực (Hạc trắng dang cánh), Đảo Liễn Hầu (Lùi bước đuổi khỉ), Lãm Tước Vĩ (Nắm đuôi chim sẻ), Kim Kê Độc Lập (Gà vàng đứng một chân)...</em>
+        </p>
+        <p>
+          Tuy nhiên, Paul Crompton chỉ ra rằng đằng sau những mỹ từ đó là <strong>những cạm bẫy chiến thuật chết người</strong>. Ví dụ:
+        </p>
+        <ul>
+          <li><strong>Bạch Hạc Lượng Dực:</strong> Không phải là một tư thế múa biểu diễn, mà là đòn hóa giải một cú đấm thẳng vào mặt bằng tay dưới, đồng thời tay trên chém xéo vào cổ họng hoặc mắt đối thủ trong khi chân trước sẵn sàng tung một cú đá triệt hạ vào đầu gối đối phương.</li>
+          <li><strong>Đảo Liễn Hầu:</strong> Kỹ thuật lùi bộ né tránh liên hoàn đòn tấn công, tay trước gạt đỡ bẻ cổ tay đối phương, tay sau lập tức phóng chưởng thẳng vào hạ sườn hoặc cằm.</li>
+          <li><strong>Đơn Tiên (Single Whip):</strong> Cú đánh cực kỳ uy lực bằng sống cổ tay (Móc tiêm) khóa cổ tay đối phương, xoay người mượn đà toàn thân quất một đòn roi chưởng vào thái dương hoặc ngực.</li>
+        </ul>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p018_img00.jpeg" alt="Chiêu thức Bạch Hạc Lượng Dực trong thực tế">
+          <figcaption><strong>Hình 4:</strong> Thực chiến của chiêu "Bạch Hạc Lượng Dực" — Cánh tay mở rộng phá vỡ thế bao vây, tạo góc mở tấn công thẳng vào yết hầu đối phương.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 4 -->
+      <section id="chuong-4">
+        <h2>Chương 4: Từ Điển Thuật Ngữ Kình Lực & Chuyển Động Mới</h2>
+        <p>
+          Để hiểu cơ học chiến đấu của Thái Cực, người tập phương Tây cần một hệ thống thuật ngữ mới mô tả chính xác chuyển động cơ thể thay cho những khái niệm trừu tượng:
+        </p>
+
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Thuật Ngữ Cổ Truyền</th>
+              <th>Thuật Ngữ Khoa Học Thực Chiến</th>
+              <th>Cơ Chế Chiến Đấu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bằng Kình (掤 - Peng)</strong></td>
+              <td>Ward Off / Elastic Sphere</td>
+              <td>Tạo khối cầu căng phồng đàn hồi quanh thân, ngăn cản đòn đánh của đối phương lún sâu vào cơ thể.</td>
+            </tr>
+            <tr>
+              <td><strong>Lý Kình (捋 - Lu)</strong></td>
+              <td>Rollback / Yielding Deflection</td>
+              <td>Thuận theo hướng đẩy của đối phương, dắt đối phương đi tiếp vào khoảng trống khiến họ mất thăng bằng.</td>
+            </tr>
+            <tr>
+              <td><strong>Tê / Cơ Kình (擠 - Ji)</strong></td>
+              <td>Press / Squeeze Expansion</td>
+              <td>Gia tăng áp lực tiếp xúc đột ngột bằng hai tay hoặc cẳng tay, bắn đối thủ văng ra xa khi họ vừa chới với.</td>
+            </tr>
+            <tr>
+              <td><strong>Án Kình (按 - An)</strong></td>
+              <td>Push / Downward-Forward Wave</td>
+              <td>Đè chìm lực đối phương xuống chân của họ rồi phóng thích lực sóng tới phía trước để đánh bật gốc (Up-rooting).</td>
+            </tr>
+            <tr>
+              <td><strong>Thính Kình (聽勁 - Ting Jin)</strong></td>
+              <td>Sensing Energy / Tactile Listening</td>
+              <td>Khả năng "lắng nghe" hướng lực, độ lớn và ý đồ phát lực của đối thủ ngay tại điểm tiếp xúc da thịt.</td>
+            </tr>
+            <tr>
+              <td><strong>Đổng Kình (懂勁 - Dong Jin)</strong></td>
+              <td>Understanding Energy</td>
+              <td>Hiểu rõ đối phương muốn làm gì trước khi họ kịp hoàn tất động tác, từ đó hành động đi trước một bước.</td>
+            </tr>
+            <tr>
+              <td><strong>Phát Kình (發勁 - Fa Jin)</strong></td>
+              <td>Explosive Discharge</td>
+              <td>Giải phóng toàn bộ nội kình tích lũy từ chân và eo ra một điểm tiếp xúc cực nhỏ trong phần trăm giây.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p028_img00.jpeg" alt="Cơ chế phát kình và hóa lực">
+          <figcaption><strong>Hình 5:</strong> Phân tích cơ học Bằng Kình (Peng) và Lý Kình (Lu) khi tiếp nhận áp lực trực diện từ đối thủ.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 5 -->
+      <section id="chuong-5">
+        <h2>Chương 5: Hiện Thực Hóa Thuật Ngữ Thành Hành Động Thực Tiễn</h2>
+        <p>
+          Làm thế nào để chuyển hóa những thuật ngữ trên trang giấy thành phản xạ thân thể vô điều kiện khi bị tấn công?
+        </p>
+        <p>
+          Paul Crompton hướng dẫn chuỗi bài tập chuyển tiếp từ tĩnh sang động:
+        </p>
+        <ol style="margin-left: 24px; line-height: 1.9;">
+          <li><strong>Đơn Thôi Thủ (Single Push Hands):</strong> Tập làm quen với chuyển động tròn và cảm nhận lực ép, giữ cánh tay tròn đều không bị xẹp lép khi đối phương đè tới.</li>
+          <li><strong>Song Thôi Thủ Định Bộ (Fixed Step Double Push Hands):</strong> Kết hợp cả 4 kình Bằng - Lý - Tê - Án theo chu trình tuần hoàn kín, luyện tập sự nhạy bén của hai cẳng tay và thắt lưng.</li>
+          <li><strong>Hoạt Bộ Thôi Thủ (Moving Step Push Hands):</strong> Vừa hóa giải kình lực vừa di chuyển bộ pháp tiến - thoái - sang ngang, rèn luyện khả năng giữ gốc khi đang bước đi.</li>
+          <li><strong>Phá Vỡ Khuôn Khổ (Free Play & Countering):</strong> Bạn tập bất ngờ thay đổi tiết tấu, tung ra một cú đấm thẳng hoặc đòn bẻ khóa ngoài kịch bản định sẵn để kiểm tra phản xạ tự nhiên của cơ thể.</li>
+        </ol>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/paul-crompton-tai-chi-combat/p036_img00.jpeg" alt="Song thôi thủ rèn luyện thính kình">
+            <figcaption><strong>Hình 6A:</strong> Song Thôi Thủ — Rèn luyện khả năng dính bám (Niêm - Triêm) không rời tay đối thủ.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/paul-crompton-tai-chi-combat/p038_img00.jpeg" alt="Hóa giải và đổi hướng đòn tấn công">
+            <figcaption><strong>Hình 6B:</strong> Khoảnh khắc chuyển hướng — Khi đối phương phát lực đẩy, người tập xoay eo dẫn lực trượt ra ngoài.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Chương 6 -->
+      <section id="chuong-6">
+        <h2>Chương 6: Bát Hướng & Động Học Xoắn Ốc Đa Chiều (Dynamic Spirals)</h2>
+        <p>
+          Trong cơ học chiến đấu thực tế, không có đòn tấn công nào di chuyển trên một đường thẳng tuyệt đối mà không mang theo góc nghiêng hoặc lực xoáy. Thái Cực Quyền giải quyết bài toán này thông qua <strong>Động Học Xoắn Ốc (Dynamic Spirals)</strong>:
+        </p>
+
+        <div class="callout martial-principle">
+          <p>
+            <em>"Một đường thẳng dễ bị chặn lại bởi một bức tường kiên cố, nhưng một mũi khoan xoắn ốc có thể xuyên qua mọi rào cản. Chuyển động xoắn ốc vừa giúp phân tán ngoại lực tác động vào ta, vừa tạo ra sức xuyên phá khủng khiếp khi ta phát lực vào đối phương."</em>
+          </p>
+        </div>
+
+        <p>
+          Bát Hướng trong chiến đấu Thái Cực bao gồm:
+        </p>
+        <ul>
+          <li><strong>Tứ Chính (4 hướng chính):</strong> Trước - Sau - Trái - Phải (tương ứng Bằng, Lý, Tê, Án).</li>
+          <li><strong>Tứ Ngu (4 góc chéo):</strong> Đông Bắc, Đông Nam, Tây Bắc, Tây Nam (tương ứng Thải, Liệt, Trửu, Khào).</li>
+        </ul>
+        <p>
+          Khi đối phương lao thẳng vào ngực ta theo đường thẳng (Tứ Chính), ta không lùi thẳng mà xoay người né tránh theo đường chéo (Tứ Ngu), khiến toàn bộ quán tính đòn đánh của đối phương rơi vào hư không.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p045_img00.jpeg" alt="Động học xoắn ốc trong bộ pháp và thủ pháp">
+          <figcaption><strong>Hình 7:</strong> Quỹ đạo vận động xoắn ốc của tay và hông — Bí quyết giúp võ sĩ nhỏ con hóa giải đối thủ to lớn gấp đôi thể trọng.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 7 -->
+      <section id="chuong-7">
+        <h2>Chương 7: Toàn Bộ Ứng Dụng Thực Chiến Chi Tiết Từng Chiêu</h2>
+        <p>
+          Đây là phần cốt lõi và đồ sộ nhất của cuốn sách, phơi bày từng đòn thế thực chiến chi tiết qua các bức ảnh thị phạm trực tiếp:
+        </p>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-hand-fist"></i> 1. Ứng Dụng Khởi Thức (Opening Form Application)</h5>
+          <p>Khi đối phương nắm chặt hai cổ tay bạn từ phía trước: Không gồng giằng lại. Hít sâu, hạ chìm trọng tâm, nâng hai cùi chỏ lên cao xoay nhẹ cổ tay ra ngoài để giải phóng khớp cổ tay, sau đó bổ hai lòng bàn tay xuống xương đòn hoặc ngực đối phương khiến họ bật ngửa.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p060_img00.jpeg" alt="Ứng dụng thực chiến Khởi Thức">
+          <figcaption><strong>Hình 8:</strong> Hóa giải đòn bóp cổ hoặc túm cổ tay — Chuyển động lên - xuống của Khởi Thức phá vỡ cấu trúc khớp của kẻ tấn công.</figcaption>
+        </figure>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-hand-fist"></i> 2. Ứng Dụng Bằng Kình (Ward Off Left & Right)</h5>
+          <p>Đối phương tung cú đấm thẳng tay phải vào mặt. Bước chân trái chéo 45 độ né đòn, cánh tay trái vung lên tạo vòng cung Bằng Kình đón lấy mặt ngoài cẳng tay đối thủ, đồng thời cẳng tay phải chém thẳng vào sườn hoặc mang tai đối phương.</p>
+        </div>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/paul-crompton-tai-chi-combat/p066_img00.jpeg" alt="Bằng kình đón đỡ cú đấm">
+            <figcaption><strong>Hình 9A:</strong> Tiếp nhận đòn đấm bằng mặt ngoài cánh tay uốn cong hình cánh cung.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/paul-crompton-tai-chi-combat/p068_img00.jpeg" alt="Phản công bằng cẳng tay và hông">
+            <figcaption><strong>Hình 9B:</strong> Đòn phản công tức thì — Xoay eo phát lực chém cẳng tay vào vùng hiểm yếu.</figcaption>
+          </figure>
+        </div>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-hand-fist"></i> 3. Ứng Dụng Lý Kình (Rollback Takedown)</h5>
+          <p>Khi đối thủ ra đòn quá mạnh và hung hãn lao tới. Tay trước bắt lấy cổ tay đối thủ, tay sau đặt nhẹ lên cùi chỏ đối phương. Xoay tròn hông về phía sau dẫn toàn bộ trọng lượng đối phương chúi về phía trước, kết hợp gạt chân sau khiến đối thủ ngã chổng vó xuống đất.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p074_img00.jpeg" alt="Kỹ thuật quật ngã bằng Lý Kình">
+          <figcaption><strong>Hình 10:</strong> Đòn quật ngã bằng Lý Kình — Lực dẫn dụ kết hợp xoay eo khiến đối phương hoàn toàn mất kiểm soát trọng tâm cơ thể.</figcaption>
+        </figure>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-hand-fist"></i> 4. Ứng Dụng Đơn Tiên (Single Whip Strike & Chin Na)</h5>
+          <p>Đối phương tấn công từ phía hông hoặc túm áo ngực. Tay trái gạt mở phòng tuyến đối thủ, tay phải chụm năm đầu ngón tay tạo thành "Mỏ Tiêm" đâm thẳng vào hốc mắt, yết hầu hoặc huyệt Khuyết Bồn, chân sau tiến lên quét trụ chân đối thủ.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p082_img00.jpeg" alt="Đòn roi Đơn Tiên trong cận chiến">
+          <figcaption><strong>Hình 11:</strong> Đơn Tiên trong cận chiến — Đòn quất roi toàn thân với sức công phá tập trung vào các điểm huyệt chết người.</figcaption>
+        </figure>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-hand-fist"></i> 5. Ứng Dụng Đề Thủ Thượng Thức & Bạch Hạc Lượng Dực</h5>
+          <p>Kỹ thuật phá vỡ thế ôm siết từ phía sau hoặc hóa giải đòn đấm móc kép. Nâng hai cùi chỏ mở rộng lồng ngực ép gãy khớp ngón tay đối phương, xoay người tung đòn chém cùi chỏ (Trửu Kình) vào mạn sườn.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p090_img00.jpeg" alt="Hóa giải thế kẹp và phản đòn chỏ">
+          <figcaption><strong>Hình 12:</strong> Thoát hiểm khỏi thế kẹp nách cận chiến và bồi tiếp đòn Trửu Kình (Elbow Strike) kết liễu.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 8 -->
+      <section id="chuong-8">
+        <h2>Chương 8: Khoảng Cách Giữa Lý Thuyết & Thực Tế Đối Kháng Đích Thực</h2>
+        <p>
+          Trong phòng tập yên tĩnh với bạn tập quen thuộc, mọi kỹ thuật Thái Cực đều trông thật hoàn mỹ và dễ dàng. Nhưng trên đường phố hoặc trên võ đài tự do (San Shou / MMA), thực tế hoàn toàn tàn khốc:
+        </p>
+        <ul>
+          <li><strong>Tốc độ và sự hỗn loạn:</strong> Kẻ tấn công không đứng yên cho bạn bắt tay, họ lao vào với chuỗi đòn đấm đá túi bụi ở cự ly hỗn tạp.</li>
+          <li><strong>Adrenaline và nỗi sợ hãi:</strong> Nhịp tim tăng vọt khiến các kỹ thuật tinh tế bị tê liệt, chỉ còn lại những phản xạ bản năng thô sơ nhất.</li>
+          <li><strong>Yếu tố bất ngờ:</strong> Đòn đánh xảy ra trong chớp nhoáng khi bạn chưa kịp chuẩn bị tư thế tấn hoàn chỉnh.</li>
+        </ul>
+        <p>
+          Để thu hẹp khoảng cách này, Paul Crompton đề xuất phương pháp luyện tập <strong>"Tập Có Kháng Cự Tăng Dần" (Progressive Resistance Training)</strong>. Bạn tập phải đóng vai kẻ tấn công thực sự, đấm với tốc độ tăng dần và chủ động giãy giụa chống cự khi bị khóa, buộc võ sinh Thái Cực phải ứng biến bằng cảm giác xúc giác (Thính Kình) chứ không thể dựa vào kịch bản ghi nhớ.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p098_img00.jpeg" alt="Luyện tập đối kháng có kháng cự thực tế">
+          <figcaption><strong>Hình 13:</strong> Luyện tập đối kháng tự do — Kiểm tra độ vững vàng của hạ bàn trước những cú va chạm mạnh đầy bất ngờ.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 9 -->
+      <section id="chuong-9">
+        <h2>Chương 9: Giai Thoại & Bài Học Đối Kháng Cổ Truyền</h2>
+        <p>
+          Tác giả dẫn lại những trận tỉ thí huyền thoại của các đại tông sư Thái Cực như Dương Lộ Thiền (Yang Lu-chan — "Dương Vô Địch") tại Bắc Kinh, Dương Thiếu Hầu (Yang Shao-hou) với phong cách cận chiến tàn độc, và Dương Trừng Phủ (Yang Cheng-fu) với kỹ năng Phát Kình bạt căn làm đối thủ bay xa hàng mét.
+        </p>
+        <p>
+          Những bài học rút ra từ các bậc tiền bối:
+        </p>
+        <div class="callout">
+          <p><strong>1. Đừng cố gắng thắng bằng sức mạnh cơ bắp:</strong> Nếu bạn dùng cơ bắp chống lại kẻ mạnh hơn, bạn chắc chắn sẽ thất bại. Hãy để họ tự ngã bởi chính sức mạnh của họ.</p>
+          <p><strong>2. Tuyệt đối không phô trương:</strong> Một cao thủ Thái Cực thực chiến trên đường phố trông không khác gì một người bình thường đang bước đi thong thả. Mọi đòn đánh đều kín kẽ, không có động tác thừa.</p>
+          <p><strong>3. Nhất tâm bất loạn:</strong> Tâm trí phải tĩnh lặng như mặt nước hồ mùa thu. Mặt hồ phẳng lặng mới phản chiếu chính xác mọi chuyển động của cành cây ngọn cỏ xung quanh.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p110_img00.jpeg" alt="Minh họa kỹ thuật phát kình bạt căn">
+          <figcaption><strong>Hình 14:</strong> Thao diễn kỹ thuật Phát Kình (Fa Jin) — Sử dụng sức bật của Đan Điền để phóng đối thủ văng ra xa mà không cần gồng tay.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 10 -->
+      <section id="chuong-10">
+        <h2>Chương 10: Vận Động Liên Tục Không Đứt Đoạn</h2>
+        <p>
+          Bí mật tối hậu của Thái Cực Quyền nằm ở cụm từ: <strong>"Kình đoạn ý bất đoạn, ý đoạn thần liên"</strong> (Kình lực có thể ngưng nhưng ý niệm không dứt, ý niệm có ngưng thì thần khí vẫn nối liền).
+        </p>
+        <p>
+          Trong chiến đấu, nếu bạn dừng lại sau một chiêu thức để xem kết quả, bạn sẽ bị phản đòn ngay lập tức. Mọi chuyển động phải liên miên bất tuyệt như sóng biển lớp này gối lên lớp khác. Một cú đấm bị đỡ gạt sẽ lập tức biến thành một cú quẹt cùi chỏ; một đòn khóa bị tuột sẽ biến thành một cú quét chân. Thân thể bạn phải trở thành một dòng nước cuồn cuộn không có khởi đầu và không có kết thúc.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p124_img00.jpeg" alt="Tính liên tục trong vận động Thái Cực">
+          <figcaption><strong>Hình 15:</strong> Dòng chảy chuyển động liên tục — Chuyển dịch nhịp nhàng giữa phòng thủ và tấn công mà không hề có điểm dừng.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Lời Kết -->
+      <section id="loi-ket">
+        <h2>Lời Kết: Trở Về Với Cội Nguồn Viên Mãn</h2>
+        <p>
+          Hành trình nghiên cứu thực chiến Thái Cực Quyền của Paul Crompton không nhằm mục đích biến người tập thành những kẻ hiếu chiến ngoài xã hội, mà ngược lại, giúp họ đạt được <strong>sự tự tin tuyệt đối từ sâu thẳm nội tâm</strong>.
+        </p>
+        <p>
+          Một người biết rõ mình có khả năng tự vệ và chiến đấu hiệu quả sẽ không còn cảm giác sợ hãi hay bất an. Khi nỗi sợ hãi tan biến, người đó mới có thể thực sự buông lỏng (Tùng) trọn vẹn, bao dung và sống hòa ái với thế giới xung quanh. Đó chính là ý nghĩa tối cao của chữ <em>"Võ" (武) — ngăn chặn binh đao, chấm dứt bạo lực</em> — mà các bậc cổ thánh tiên hiền đã gửi gắm trong di sản Thái Cực Quyền muôn đời.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/paul-crompton-tai-chi-combat/p136_img00.jpeg" alt="Tư thế hoàn nguyên và tĩnh lặng">
+          <figcaption><strong>Hình 16:</strong> Tư thế Thu Thức — Thu liễm thần khí trở về Đan Điền, tĩnh lặng trong tâm thức, viên mãn trọn vẹn vòng Âm Dương.</figcaption>
+        </figure>
+      </section>
+
+    </article>
+  </main>
+</div>
+
+<a href="#" class="back-to-top" id="back-to-top" title="Lên đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+
+<script>
+// Theme toggle
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  }
+});
+
+// Reading Progress
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+
+  // Back to top
+  const btt = document.getElementById('back-to-top');
+  if (winScroll > 300) {
+    btt.classList.add('visible');
+  } else {
+    btt.classList.remove('visible');
+  }
+});
+
+// TOC Active link tracking
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      document.querySelectorAll('.toc-nav a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+document.querySelectorAll('section[id]').forEach(sec => {
+  observer.observe(sec);
+});
+</script>
+</body>
+</html>
