@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chiến Lược Quyền Thuật Dương Gia (Yang Style Boxing Strategies) — Bản Dịch Việt Ngữ Chuyên Sâu</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Yang Style Boxing Strategies - Giải mã mật truyền chiến thuật đối kháng Dương gia, bí quyết Vuông & Tròn, Trí tuệ ứng dụng và Cực Tính Nội Công.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/tai-chi-chuan-yang-style-boxing-strategies/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-mo-dau" class="active">1. Lời Mở Đầu: Bí Mật Quyền Thuật Dương Gia</a></li>
+        <li><a href="#giai-ma-truyen-khau">2. Khẩu Quyết Bí Truyền & Thập Nhị Trọng Điểm</a></li>
+        <li><a href="#phuong-vien-tuong-te">3. Triết Lý Vuông & Tròn (Square & Sphere)</a></li>
+        <li><a href="#chien-luoc-tan-cong">4. Chiến Lược Tấn Công: Dẫn Tiến Lạc Không</a></li>
+        <li><a href="#tri-tue-ung-dung">5. Trí Tuệ Ứng Dụng Trong Từng Thế Quyền</a></li>
+        <li><a href="#cuc-tinh-noi-cong">6. Cực Tính Nội Công (Polar Nei Kung)</a></li>
+        <li><a href="#chien-thuat-giap-la-ca">7. Chiến Thuật Áp Sát & Phát Kình Bộc Phát</a></li>
+        <li><a href="#loi-ket-chien-luoc">8. Lời Kết: Bản Lĩnh Người Luyện Võ Nội Gia</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Bí Truyền Quyền Thuật Dương Gia · Bản Dịch Tiếng Việt Chuyên Sâu</span>
+      <h1>Chiến Lược Quyền Thuật Dương Gia</h1>
+      <div class="subtitle">Tai Chi Chuan: Yang Style Boxing Strategies &mdash; William Beattie & YMAA Transmission</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-feather-pointed"></i> Tác giả: William Beattie (Fightmonks Martial Lineage)</span>
+        <span><i class="fa-solid fa-camera"></i> 170 Ảnh Minh Họa Thị Phạm &amp; Cổ Thư</span>
+        <span><i class="fa-solid fa-scroll"></i> 201 Trang Chiến Thuật Đối Kháng</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="loi-mo-dau">
+      <h2>1. Lời Mở Đầu: Bí Mật Quyền Thuật Dương Gia</h2>
+
+      <p>Trong lịch sử võ học Trung Hoa, gia tộc họ Dương (Dương Lộ Thiền, Dương Ban Hầu, Dương Thiếu Hầu, Dương Trừng Phủ) nổi danh với biệt hiệu <strong>&ldquo;Dương Vô Địch&rdquo; (Yang the Invincible)</strong>. Khi Thái Cực Quyền được truyền bá rộng rãi ra thế giới, phần lớn công chúng chỉ biết đến khía cạnh dưỡng sinh chậm rãi, mềm mại mà ít ai được tiếp cận <strong>kho tàng chiến lược quyền thuật thực chiến (Boxing Strategies)</strong> ẩn giấu bên trong.</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">彼 不 動 ， 己 不 動 ； 彼 微 動 ， 己 先 動 。</span>
+        &ldquo;Bỉ bất động, kỷ bất động; bỉ vi động, kỷ tiên động &mdash; Đối phương chưa động, ta chưa động; đối phương vừa chớm động, ta đã tới trước đón đầu.&rdquo;
+      </div>
+
+      <p>Cuốn sách này vén bức màn bí mật về cách thức các đại sư Dương gia sử dụng sự buông lỏng, cấu trúc góc độ cơ thể và khả năng &ldquo;Thính Kình&rdquo; (nghe lực) để kiểm soát, dẫn dụ và tiêu diệt mọi đòn công kích mãnh liệt của đối phương.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p001_01.jpeg" alt="Đại sư Dương Trừng Phủ và các bậc tiền bối Dương gia">
+        <figcaption>Hình 1: Đại sư Dương Trừng Phủ (bên trái trung tâm) &mdash; Người định hình phong cách Dương Gia quyền hiện đại.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="giai-ma-truyen-khau">
+      <h2>2. Khẩu Quyết Bí Truyền & Thập Nhị Trọng Điểm</h2>
+
+      <p>Nền tảng của chiến lược Dương gia bắt đầu từ việc tuân thủ nghiêm ngặt <strong>10 Yếu Lĩnh Cốt Tử của Dương Trừng Phủ</strong> kết hợp với các khẩu quyết khẩu truyền:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Khẩu Quyết Cốt Lõi</th>
+              <th>Ý Nghĩa Cơ Học Thể Thao</th>
+              <th>Ứng Dụng Chiến Lược Khi Đối Kháng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hư Linh Đỉnh Kình (虛靈頂勁)</strong></td>
+              <td>Đầu ngay cổ thẳng, đỉnh đầu treo nhẹ</td>
+              <td>Giữ cho thần kinh tỉnh táo, tầm nhìn 360 độ không bị hạn chế khi né đòn.</td>
+            </tr>
+            <tr>
+              <td><strong>Hàm Hung Bạt Bối (含胸拔背)</strong></td>
+              <td>Lồng ngực buông lỏng, lưng mở rộng</td>
+              <td>Tích lũy khí lực tại lưng dưới; chịu được lực đấm trực diện mà không bị nghẹn thở.</td>
+            </tr>
+            <tr>
+              <td><strong>Trầm Kiên Trụy Trửu (沉肩墜肘)</strong></td>
+              <td>Bờ vai buông chìm, cùi chỏ chúc xuống</td>
+              <td>Khóa chốt các khớp tay tạo thành cấu trúc vòm cầu kiên cố, không bị đẩy lùi.</td>
+            </tr>
+            <tr>
+              <td><strong>Dĩ Ý Bất Dĩ Lực (以意不用力)</strong></td>
+              <td>Dùng ý niệm dẫn dắt, không dùng cơ bắp thô</td>
+              <td>Cơ bắp không bị căng cứng giúp phản xạ nhanh hơn vận tốc đòn đấm của đối thủ.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p025_01.jpeg" alt="Cấu trúc cơ sinh học trong chiến lược Dương gia">
+        <figcaption>Hình 2: Cấu trúc cơ sinh học của thân pháp Dương gia &mdash; Duy trì trục trung chính khi di chuyển.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="phuong-vien-tuong-te">
+      <h2>3. Triết Lý Vuông & Tròn (Understanding Square & Sphere)</h2>
+
+      <p>Chiến lược tối cao của quyền pháp Dương gia được định nghĩa qua hai hình tượng hình học: <strong>Phương (Vuông &mdash; Square)</strong> và <strong>Viên (Tròn &mdash; Sphere)</strong>:</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-shapes"></i> Phương Viên Tương Tế (Vuông Bên Ngoài, Tròn Bên Trong):</h4>
+        <ul>
+          <li><strong>Hình Cầu (The Sphere / Viên):</strong> Cơ thể người tập Thái Cực là một quả cầu cao su khổng lồ đàn hồi. Khi đối phương tung đòn đấm vào quả cầu, lực đấm tự nhiên bị trượt theo bề mặt cong tiếp tuyến, không bao giờ tìm thấy điểm tựa để phát huy uy lực.</li>
+          <li><strong>Hình Vuông (The Square / Phương):</strong> Khi phóng lực phát kình (Fajin), kình lực không đi vòng vo mà đi thẳng theo đường góc cạnh ngắn nhất, góc vuông sắc lẹm chém thẳng vào sơ hở của đối phương.</li>
+        </ul>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p050_01.jpeg" alt="Sơ đồ lực hình cầu và các tiếp tuyến hóa giải">
+        <figcaption>Hình 3: Nguyên lý tiếp tuyến hình cầu &mdash; Hóa giải ngoại lực theo quy luật góc nghiêng phản xạ.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="chien-luoc-tan-cong">
+      <h2>4. Chiến Lược Tấn Công: Dẫn Tiến Lạc Không</h2>
+
+      <p>Phương châm chiến thuật hàng đầu của Dương gia gồm 4 bước liên hoàn:</p>
+
+      <ol>
+        <li><strong>Dẫn Tiến (Lead into):</strong> Không chặn đứng đòn đánh của địch, mà dùng xúc giác nhẹ nhàng hút lấy cánh tay hoặc nắm đấm của địch, thuận theo đà lao tới của đối phương.</li>
+        <li><strong>Lạc Không (Fall into Emptiness):</strong> Chuyển dịch hông (Kua) vài cm để hướng đòn đánh của đối phương rơi tõm vào khoảng chân không hẫng hụt. Đối phương mất trọng tâm hoàn toàn.</li>
+        <li><strong>Tứ Lạng Bạt Thiên Cân (Four Ounces Deflect 1,000 Pounds):</strong> Khi đối thủ đã chới với, ta chỉ cần dùng một lực nhẹ như bốn lạng (vài chục gram) đặt đúng điểm tựa đòn bẩy.</li>
+        <li><strong>Hậu Phát Tiên Chí (Arrive First by Striking Later):</strong> Phát kình bộc phát đẩy đối thủ bay bổng ra xa như bị quả bom nội lực thổi bay.</li>
+      </ol>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p074_01.jpeg" alt="Kỹ thuật Dẫn Tiến Lạc Không trên sàn đấu">
+        <figcaption>Hình 4: Đòn thế Dẫn Tiến Lạc Không &mdash; Đối phương mất thăng bằng khi đánh trúng vào hư không.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="tri-tue-ung-dung">
+      <h2>5. Trí Tuệ Ứng Dụng Trong Từng Thế Quyền</h2>
+
+      <p>Mỗi thế quyền trong chuỗi Dương gia đều mang một chiến lược cụ thể:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Chiêu Thức</th>
+              <th>Chiến Lược Chủ Đạo</th>
+              <th>Cách Thức Triệt Hạ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Lãm Tước Vĩ (Nắm đuôi chim)</strong></td>
+              <td>Kiểm soát 4 phương kình lực</td>
+              <td>Bằng (che chắn), Lý (dẫn lệch đà), Tê (chèn ép khớp), Án (đẩy sập lồng ngực).</td>
+            </tr>
+            <tr>
+              <td><strong>Bạch Hạc Lượng Xí</strong></td>
+              <td>Phân tách hai hướng tấn công</td>
+              <td>Một tay nâng cằm đối thủ gạt đòn cao, một tay nhấn hạ khóa chặt chân hoặc mạng sườn dưới.</td>
+            </tr>
+            <tr>
+              <td><strong>Thiểm Thông Bối</strong></td>
+              <td>Chiến thuật phản đòn bất ngờ qua lưng</td>
+              <td>Khai thác sức mạnh xoay của cơ lưng rộng để hất văng đối thủ đang ôm ghì từ phía sau.</td>
+            </tr>
+            <tr>
+              <td><strong>Chuyển Thân Ban Lan Chùy</strong></td>
+              <td>Xoay người đổi góc chết</td>
+              <td>Gạt phăng tay đối thủ, lách người sang sườn trống và đấm thẳng vào xương sườn cụt.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p100_01.jpeg" alt="Chi tiết kỹ thuật ứng dụng đòn đánh cận chiến">
+        <figcaption>Hình 5: Đòn thế khóa tay và phản đòn chớp nhoáng trong ứng dụng chiến lược Dương gia.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="cuc-tinh-noi-cong">
+      <h2>6. Cực Tính Nội Công (Polar Nei Kung)</h2>
+
+      <p>Chương 5 của tác phẩm đề cập đến mật pháp <strong>Cực Tính Nội Công (Polar Nei Kung)</strong> &mdash; kỹ thuật phân cực năng lượng giữa hai bàn tay và hai bàn chân:</p>
+
+      <div class="callout">
+        <p>Bàn tay phát lực mang điện tích <strong>Dương (Cực đẩy)</strong>, bàn tay hút bám mang điện tích <strong>Âm (Cực hút)</strong>. Người luyện thuần thục có thể hút dính tay đối phương như sắt gặp nam châm (Triền Niêm Kình), khiến đối thủ cử động càng mạnh thì càng bị quấn chặt không lối thoát.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p135_01.jpeg" alt="Mật pháp phân cực năng lượng Polar Nei Kung">
+        <figcaption>Hình 6: Sơ đồ dòng điện sinh học và phân cực cực tính trong bài tập Cực Tính Nội Công.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="chien-thuat-giap-la-ca">
+      <h2>7. Chiến Thuật Áp Sát & Phát Kình Bộc Phát</h2>
+
+      <p>Ở cự ly cận chiến giáp lá cà, chiến lược Dương gia không dùng đấm đá cự ly xa mà sử dụng <strong>Trửu Kình (Chỏ)</strong> và <strong>Kháo Kình (Húc vai / Hông)</strong>:</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-boxing-strategies/yangstrat_p171_01.jpeg" alt="Thế Kháo Kình va đập toàn thân cận chiến">
+        <figcaption>Hình 7: Kháo Kình &mdash; Đòn va đập toàn thân cực mạnh hạ gục đối thủ trong gang tấc.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="loi-ket-chien-luoc">
+      <h2>8. Lời Kết: Bản Lĩnh Người Luyện Võ Nội Gia</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Võ thuật tối cao của Dương Gia không phải là để đả thương người khác, mà là khả năng tự chủ tuyệt đối trước mọi bão tố cuộc đời. Khi tâm bạn không loạn, kình lực tự khắc tròn đầy; khi bạn không đối kháng, đối phương tự khắc bị hóa giải.&rdquo;</em> &mdash; <strong>William Beattie</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> Về Thư Viện Sách</a>
+        <a href="/vi/books/tom_bisio_art_of_ba_gua_zhang_vi.html">Đọc Tiếp: Nghệ Thuật Bát Quái Chưởng <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

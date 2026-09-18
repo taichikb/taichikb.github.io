@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nghệ Thuật Bát Quái Chưởng (The Art of Ba Gua Zhang) — Tom Bisio</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm The Art of Ba Gua Zhang của Tom Bisio - Khám phá Thiền định Bước đi vòng tròn, Kinh Dịch, Bát Đại Chưởng và kỹ pháp tự vệ biến ảo nội gia.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/the-art-of-ba-gua-zhang-by-tom-bisio/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#tong-quan-bat-quai" class="active">1. Bát Quái Chưởng Là Gì? (The Art of Ba Gua Zhang)</a></li>
+        <li><a href="#bat-quai-va-kinh-dich">2. Mối Tương Quan Giữa Bát Quái Chưởng & Kinh Dịch</a></li>
+        <li><a href="#thien-dinh-buoc-tron">3. Thiền Định Bước Đi Vòng Tròn (Circle Walking)</a></li>
+        <li><a href="#duong-sinh-va-noi-luc">4. Dưỡng Sinh Kinh Lạc & Sức Mạnh Xoắn Ốc Thân Cốt</a></li>
+        <li><a href="#bat-dai-chuong">5. Bát Đại Chưởng (The Eight Mother Palms)</a></li>
+        <li><a href="#chien-luoc-tu-ve">6. Chiến Lược Tự Vệ: Di Chuyển Ra Sau Lưng Đối Thủ</a></li>
+        <li><a href="#loi-ket-tom-bisio">7. Lời Kết: Hòa Nhập Vào Dòng Chảy Vũ Trụ</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Tuyệt Phẩm Bát Quái Chưởng · Bản Dịch Tiếng Việt Chuyên Sâu</span>
+      <h1>Nghệ Thuật Bát Quái Chưởng</h1>
+      <div class="subtitle">The Art of Ba Gua Zhang: Meditation, Health, Self-Defense &mdash; Tom Bisio</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-yin-yang"></i> Tác giả: Tom Bisio (Danh gia Nội Gia Quyền & Y học Cổ truyền)</span>
+        <span><i class="fa-solid fa-camera"></i> 90 Hình Ảnh Minh Họa Động Tác</span>
+        <span><i class="fa-solid fa-compass"></i> 174 Trang Nghiên Cứu &amp; Thực Hành</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="tong-quan-bat-quai">
+      <h2>1. Bát Quái Chưởng Là Gì? (The Art of Ba Gua Zhang)</h2>
+
+      <p>Cùng với <strong>Thái Cực Quyền</strong> và <strong>Hình Ý Quyền</strong>, <strong>Bát Quái Chưởng (Ba Gua Zhang &mdash; 八卦掌)</strong> tạo nên &ldquo;Tam Đại Nội Gia Quyền&rdquo; lừng danh thế giới. Môn võ được sáng lập vào thế kỷ 19 bởi Đại tông sư <strong>Đổng Hải Xuyên (Dong Hai Chuan, 1797–1882)</strong> dựa trên sự kết hợp giữa các bài tập bước đi thiền định vòng tròn của Đạo gia Toàn Chân Phái với kỹ pháp chưởng thuật thực chiến.</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">行 步 如 流 水 ， 轉 身 似 旋 風 ， 穿 梭 游 龍 變 幻 莫 測 。</span>
+        &ldquo;Hành bộ như lưu thủy, chuyển thân tự toàn phong, xuyên thoa du long biến huyễn mạc trắc &mdash; Bước đi êm như dòng nước chảy, xoay người nhanh tựa gió lốc, luồn lách như rồng bơi biến ảo khôn lường.&rdquo;
+      </div>
+
+      <p>Điểm độc nhất vô nhị của Bát Quái Chưởng là người tập <strong>không bao giờ đứng yên một chỗ và không bao giờ di chuyển theo đường thẳng</strong>. Toàn bộ bài tập diễn ra trên quỹ đạo một vòng tròn tròn trịa, rèn luyện thân thể có thể xoay trở đa hướng và triệt tiêu lực tấn công của đối thủ từ mọi góc độ bất ngờ nhất.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/tom-bisio-ba-gua-zhang/bagua_p001_01.jpeg" alt="Bìa tác phẩm The Art of Ba Gua Zhang của Tom Bisio">
+        <figcaption>Hình 1: Tác phẩm Nghệ Thuật Bát Quái Chưởng &mdash; Khám phá thiền định, dưỡng sinh và tự vệ nội gia.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="bat-quai-va-kinh-dich">
+      <h2>2. Mối Tương Quan Giữa Bát Quái Chưởng & Kinh Dịch</h2>
+
+      <p>Bát Quái Chưởng lấy triết lý của <strong>Kinh Dịch (I Ching / Book of Changes)</strong> làm linh hồn. Vũ trụ không ngừng biến đổi, và võ sinh Bát Quái chính là người làm chủ sự chuyển hóa đó thông qua 8 quẻ căn bản:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Quẻ Bát Quái</th>
+              <th>Tượng Trưng Tự Nhiên</th>
+              <th>Đặc Tính Năng Lượng</th>
+              <th>Chưởng Pháp Tương Ứng Trong Bát Quái Chưởng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Càn (&equiv;)</strong></td><td>Trời (Heaven)</td><td>Cương kiện, mạnh mẽ không ngừng</td><td>Sư Tử Chưởng (Lion Palm) &mdash; Uy lực bao trùm</td></tr>
+            <tr><td><strong>Khôn (&equiv;&equiv;)</strong></td><td>Đất (Earth)</td><td>Nhu thuận, chở che bao dung</td><td>Lân Chưởng (Kirin Palm) &mdash; Chìm trầm ổn định</td></tr>
+            <tr><td><strong>Khảm (&ne;)</strong></td><td>Nước (Water)</td><td>Uốn lượn, hiểm sâu, thấm đẫm</td><td>Xà Chưởng (Snake Palm) &mdash; Luồn lách sát đất</td></tr>
+            <tr><td><strong>Ly (&ne;)</strong></td><td>Lửa (Fire)</td><td>Bốc cao, sáng chói, thăng hoa</td><td>Ưng Chưởng (Hawk Palm) &mdash; Lao vút tầng không</td></tr>
+            <tr><td><strong>Cấn (&ne;)</strong></td><td>Núi (Mountain)</td><td>Vững chãi, dừng lại tĩnh lặng</td><td>Hùng Chưởng (Bear Palm) &mdash; Trọng tấn ngàn cân</td></tr>
+            <tr><td><strong>Đoài (&ne;)</strong></td><td>Đầm hồ (Lake)</td><td>Mềm mại, thấm nhuần, hoan hỷ</td><td>Hầu Chưởng (Monkey Palm) &mdash; Nhanh nhạy biến chuyển</td></tr>
+            <tr><td><strong>Tốn (&ne;)</strong></td><td>Gió (Wind)</td><td>Thấm sâu, vô hình, lướt qua mọi kẽ hở</td><td>Phong Chưởng (Phoenix Palm) &mdash; Xoay lướt thân mình</td></tr>
+            <tr><td><strong>Chấn (&ne;)</strong></td><td>Sấm sét (Thunder)</td><td>Bộc phát, chấn động dữ dội</td><td>Long Chưởng (Dragon Palm) &mdash; Vặn xoắn phóng kình</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/tom-bisio-ba-gua-zhang/bagua_p007_01.jpeg" alt="Sơ đồ Bát Quái và Kinh Dịch">
+        <figcaption>Hình 2: Đồ hình Bát Quái Tiên Thiên &amp; Hậu Thiên &mdash; Bản đồ chuyển hóa năng lượng sinh học.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="thien-dinh-buoc-tron">
+      <h2>3. Thiền Định Bước Đi Vòng Tròn (Circle Walking)</h2>
+
+      <p>Trọng tâm tu luyện Bát Quái Chưởng là bài tập <strong>Bước Đi Vòng Tròn (Walking the Circle &mdash; Trẩu Quyển)</strong>. Đây là phương pháp Động Thiền độc nhất vô nhị của Đạo gia:</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-arrows-spin"></i> Kỹ Thuật Bước Bùn Lầy (Tang Ni Bu / Mud-Stepping Footwork):</h4>
+        <ul>
+          <li>Bàn chân lướt sát mặt đất như thể đang bước đi trong bùn lầy đặc quánh &mdash; chân không nhấc lên quá cao mà luôn giữ song song với mặt đất.</li>
+          <li>Bàn chân trong bước thẳng theo cung tròn, bàn chân ngoài xoay nhẹ móc vào trong (Khấu bộ) tạo thành đường cong khép kín.</li>
+          <li>Thân trên xoay 90 độ hướng vào tâm vòng tròn, mắt nhìn vào tâm điểm, rốn hướng vào tâm; tạo nên lực vặn xoắn toàn bộ cột sống từ xương cụt lên tới đỉnh đầu.</li>
+        </ul>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/tom-bisio-ba-gua-zhang/bagua_p020_01.jpeg" alt="Tác giả Tom Bisio thị phạm bước đi vòng tròn">
+        <figcaption>Hình 3: Tom Bisio thị phạm kỹ thuật đi vòng tròn kết hợp giữ thân xoắn ốc hướng tâm.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="duong-sinh-va-noi-luc">
+      <h2>4. Dưỡng Sinh Kinh Lạc & Sức Mạnh Xoắn Ốc Thân Cốt</h2>
+
+      <p>Dưới góc nhìn giải phẫu học và Đông y của Tom Bisio, bước đi vòng tròn xoắn vặn mang lại những giá trị dưỡng sinh phi thường:</p>
+
+      <ul>
+        <li><strong>Massage tạng phủ:</strong> Sự vặn xoắn liên tục giữa lồng ngực và xương chậu liên tục xoa bóp gan, lách, dạ dày và thận, thúc đẩy tuần hoàn máu và thải độc nội tạng.</li>
+        <li><strong>Tăng tính đàn hồi của màng mạc (Fascia):</strong> Mạng lưới mô liên kết được kéo giãn theo đường xoắn chéo (Spiral line), giúp khớp hông và cột sống dẻo dai phi thường.</li>
+        <li><strong>Bồi dưỡng Thận Thủy:</strong> Huyệt Dũng Tuyền ở lòng bàn chân liên tục bám và vuốt trên mặt đất, kích hoạt kinh Thận và làm dịu hỏa nhiệt ở vùng đầu.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/tom-bisio-ba-gua-zhang/bagua_p047_01.jpeg" alt="Cấu trúc vặn xoắn thân mình giải phóng tắc nghẽn">
+        <figcaption>Hình 4: Vặn xoắn cột sống giải phóng các điểm chèn ép thần kinh và khai thông Đới Mạch.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="bat-dai-chuong">
+      <h2>5. Bát Đại Chưởng (The Eight Mother Palms)</h2>
+
+      <p>Từ bước đi vòng tròn căn bản, Bát Quái Chưởng phát triển thành <strong>Bát Đại Chưởng (8 Bài Chưởng Mẹ)</strong>. Hai bài chưởng cốt lõi nhất gồm:</p>
+
+      <ol>
+        <li><strong>Đơn Hoán Chưởng (Single Palm Change &mdash; 單換掌):</strong> Động tác đổi hướng vòng tròn cơ bản nhất. Võ sinh xoay người lật chưởng, biến đổi thế đứng từ chiều kim đồng hồ sang ngược chiều kim đồng hồ trong một cái chớp mắt.</li>
+        <li><strong>Song Hoán Chưởng (Double Palm Change &mdash; 雙換掌):</strong> Hai cánh tay đan chéo luân chuyển liên hoàn, một tay hóa giải bên trên, một tay luồn lách chọc thủng phòng tuyến bên dưới.</li>
+      </ol>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/tom-bisio-ba-gua-zhang/bagua_p071_01.jpeg" alt="Động tác Đơn Hoán Chưởng chuẩn mực">
+        <figcaption>Hình 5: Thế Đơn Hoán Chưởng &mdash; Chuyển hướng kình lực và thân pháp trên đường tròn.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="chien-luoc-tu-ve">
+      <h2>6. Chiến Lược Tự Vệ: Di Chuyển Ra Sau Lưng Đối Thủ</h2>
+
+      <p>Trong khi hầu hết các môn võ khác đối đầu trực diện với nắm đấm của đối thủ, <strong>chiến lược của Bát Quái Chưởng là KHÔNG BAO GIỜ ĐỨNG Ở CHÍNH DIỆN ĐỐI THỦ</strong>:</p>
+
+      <div class="callout">
+        <p>Khi đối phương tung cú đấm thẳng vào mặt bạn, người luyện Bát Quái Chưởng dùng bước chân xoay vòng lướt ra góc mù (Blind Spot) bên sườn hoặc luồn thẳng ra sau lưng đối phương. Trước khi đối thủ kịp xoay người lại, họ đã bị đẩy ngã hoặc đánh bật bởi đòn đánh từ phía sau lưng.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/tom-bisio-ba-gua-zhang/bagua_p100_01.jpeg" alt="Ứng dụng lách góc mù và kiểm soát đối thủ">
+        <figcaption>Hình 6: Ứng dụng chiến thuật lách ra phía sau lưng và triệt tiêu trọng tâm đối phương.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="loi-ket-tom-bisio">
+      <h2>7. Lời Kết: Hòa Nhập Vào Dòng Chảy Vũ Trụ</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Bát Quái Chưởng không dạy bạn cách chống lại thế giới, mà dạy bạn cách nhảy múa cùng với sự thay đổi của cuộc đời. Khi bạn học được cách uyển chuyển như dòng nước trên vòng tròn, không có bất kỳ nghịch cảnh nào có thể giam cầm bạn.&rdquo;</em> &mdash; <strong>Tom Bisio</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/yang_jwing_ming_yang_style_strategies_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Chiến Lược Quyền Thuật Dương Gia</a>
+        <a href="/vi/books/douwe_geluk_18_methods_of_the_mind_vi.html">Đọc Tiếp: 18 Pháp Rèn Luyện Tâm Thức <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

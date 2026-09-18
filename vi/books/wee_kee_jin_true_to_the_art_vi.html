@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chân Thực Với Nghệ Thuật Thái Cực Quyền (Tàijíquán – True to the Art) — Wee Kee Jin</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Tàijíquán – True to the Art của Wee Kee Jin - Dòng truyền thừa Hoàng Tính Hiền & Trịnh Mạn Thanh: Giải mã bí quyết Phóng Tùng, Thôi Thủ nhổ rễ và 5 bài tập buông lỏng kinh điển.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/taijiquan-true-to-the-art/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#thuc-trang-thai-cuc" class="active">1. Thực Trạng Thái Cực Quyền Đương Đại</a></li>
+        <li><a href="#ban-do-chi-duong">2. Bản Đồ Chỉ Đường Vào Đại Điện Thái Cực</a></li>
+        <li><a href="#giai-ma-truong-tam-phong">3. Giải Mã Thái Cực Quyền Kinh Của Trương Tam Phong</a></li>
+        <li><a href="#nghe-thuat-phong-tung">4. Nghệ Thuật Phóng Tùng (The Art of Song)</a></li>
+        <li><a href="#nam-bai-tap-buong-long">5. Năm Bài Tập Thả Lỏng Kinh Điển Của Hoàng Tính Hiền</a></li>
+        <li><a href="#thoi-thu-va-nho-re">6. Thôi Thủ & Kỹ Năng Nhổ Rễ (Rooting & Uprooting)</a></li>
+        <li><a href="#loi-ket-wee-kee-jin">7. Lời Kết: Trung Thành Với Tinh Hoa Nghệ Thuật</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Truyền Thừa Hoàng Tính Hiền & Trịnh Mạn Thanh · Bản Dịch Tiếng Việt</span>
+      <h1>Chân Thực Với Nghệ Thuật Thái Cực Quyền</h1>
+      <div class="subtitle">Tàijíquán &mdash; True to the Art &mdash; Wee Kee Jin (Chân truyền Hoàng Tính Hiền)</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-feather-pointed"></i> Tác giả: Wee Kee Jin (Học trò trưởng của Đại sư Hoàng Tính Hiền)</span>
+        <span><i class="fa-solid fa-book-open"></i> 70 Trang Công Phu Tinh Tuyển</span>
+        <span><i class="fa-solid fa-tree"></i> Phóng Tùng (Song) &amp; Thôi Thủ Bạt Căn</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="thuc-trang-thai-cuc">
+      <h2>1. Thực Trạng Thái Cực Quyền Đương Đại</h2>
+
+      <p>Sư tổ sáng lập Ý Quyền (Yiquan), Đại sư Vương Hương Trai (Wang Xiangzhai) từng thốt lên một nhận xét xót xa: <em>&ldquo;Chất lượng Thái Cực Quyền ngày nay đang tụt dốc thảm hại. Khi nhìn các 'nhà vô địch' biểu diễn bài quyền, trông nó giống như một điệu múa ballet chậm rãi hơn là một môn võ thuật nội gia thượng thừa&rdquo;</em>.</p>
+
+      <p>Trong tác phẩm này, võ sư <strong>Wee Kee Jin</strong> &mdash; đệ tử ruột đồng hành suốt nhiều năm cùng Đại sư <strong>Hoàng Tính Hiền (Huang Sheng Shyan, 1910–1992)</strong>, vị đệ tử xuất chúng nhất của Đại sư Trịnh Mạn Thanh &mdash; đã thẳng thắn phân chia Thái Cực Quyền ngày nay thành 5 cấp bậc:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Cấp Bậc</th>
+              <th>Đặc Điểm Biểu Hiện</th>
+              <th>Đánh Giá Chuyên Môn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Thể dục Thái Cực (Taiji Exercise)</strong></td>
+              <td>Tập luyện đơn thuần như bài thể dục dưỡng sinh cho người cao tuổi; hoàn toàn không hiểu gì về kình lực hay cấu trúc.</td>
+              <td>Có lợi nhẹ cho sức khỏe nhưng đánh mất toàn bộ linh hồn võ học.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Múa Thái Cực (Taiji Dance)</strong></td>
+              <td>Động tác hoa mỹ, uốn lượn đẹp mắt để thi đấu biểu diễn kiếm điểm số; thân thể lỏng lẻo không có căn gốc bám đất.</td>
+              <td>Chỉ có vẻ bề ngoài, hoàn toàn vô dụng khi va chạm thực chiến.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Thái Cực Gồng Cứng (Rigid Taiji)</strong></td>
+              <td>Dùng cơ bắp cố gắng chống đỡ ngoại lực, nhầm lẫn giữa sức gồng cứng của tay với Bằng Kình.</td>
+              <td>Dễ gây chấn thương xương khớp và bế tắc khí huyết.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Thái Cực Quyền Thuật (Martial Taiji)</strong></td>
+              <td>Hiểu rõ chiêu thức, ứng dụng tự vệ và đòn đánh; có lực bộc phát.</td>
+              <td>Đạt cấp độ quyền thuật nhưng chưa chạm tới cảnh giới thượng thừa.</td>
+            </tr>
+            <tr>
+              <td><strong>5. Đạo Thái Cực (Taiji Dao / True Art)</strong></td>
+              <td>Đạt đến trạng thái Phóng Tùng (Song) triệt để, phát kình bạt căn không tốn sức, tâm an trụ cõi vô vi.</td>
+              <td><strong>Cảnh giới chân thực cao nhất của các bậc đại danh sư.</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/wee-kee-jin-true-art/trueart_p041_01.jpeg" alt="Bìa sách Tàijíquán True to the Art">
+        <figcaption>Hình 1: Tác phẩm Chân Thực Với Nghệ Thuật Thái Cực Quyền của Wee Kee Jin.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="ban-do-chi-duong">
+      <h2>2. Bản Đồ Chỉ Đường Vào Đại Điện Thái Cực</h2>
+
+      <p>Khi lái xe trong một thành phố xa lạ, bạn bắt buộc phải có một tấm bản đồ chuẩn xác. Trong Thái Cực Quyền, <strong>các bài Cổ Thư (Taiji Classics)</strong> chính là tấm bản đồ dẫn đường đó:</p>
+
+      <div class="callout">
+        <p>Đừng chỉ đọc thuộc lòng những câu quyền ca như một con vẹt! Mỗi câu chữ trong quyền kinh là sự đúc kết bằng máu và mồ hôi của tiền nhân. Khi trình độ bạn nâng lên một nấc, bạn đọc lại cùng một câu văn đó sẽ ngộ ra một tầng ý nghĩa hoàn toàn mới.</p>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="giai-ma-truong-tam-phong">
+      <h2>3. Giải Mã Thái Cực Quyền Kinh Của Trương Tam Phong</h2>
+
+      <p>Wee Kee Jin giải mã từng câu kinh điển của Tổ sư Trương Tam Phong:</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">一 動 無 有 不 動 ， 一 靜 無 有 不 靜 。</span>
+        &ldquo;Nhất động vô hữu bất động, nhất tĩnh vô hữu bất tĩnh &mdash; Một nơi chuyển động thì toàn thân không có chỗ nào không động, một nơi tĩnh lặng thì toàn thân không có chỗ nào không tĩnh.&rdquo;
+      </div>
+
+      <ul>
+        <li><strong>Kình khởi vu cước, phát vu thoái, chủ tể vu yêu, hình vu thủ chỉ:</strong> Kình lực bắt đầu từ bàn chân đạp đất, phát qua đầu gối, điều khiển bởi thắt lưng và hiển lộ ra đầu ngón tay. Nếu một khớp nào bị gồng cứng, chuỗi mắt xích lập tức bị đứt đoạn.</li>
+      </ul>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="nghe-thuat-phong-tung">
+      <h2>4. Nghệ Thuật Phóng Tùng (The Art of Song)</h2>
+
+      <p>Chữ quan trọng nhất trong toàn bộ hệ thống Thái Cực Trịnh gia và Hoàng gia là chữ <strong>TÙNG (Song &mdash; 松)</strong>:</p>
+
+        <figure class="reader-figure">
+          <img src="/assets/images/books/wee-kee-jin-true-art/trueart_p046_01.jpeg" alt="Nghệ Thuật Phóng Tùng trong Thái Cực Quyền">
+          <figcaption>Hình 2: Trạng thái Phóng Tùng (Song) — Thả lỏng toàn bộ các khớp, giải phóng cơ bắp để tạo không gian cho nội khí chuyển dịch liên tục.</figcaption>
+        </figure>
+
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-feather"></i> Giải Ảo Về Chữ "Tùng":</h4>
+        <p><strong>Tùng không phải là buông xuôi ẻo lả như một xác chết!</strong> Buông lỏng lười biếng sẽ làm sụp đổ cấu trúc bộ xương. Tùng là trạng thái <em>thư giãn chủ động tối đa của cơ bắp trong khi các khớp xương được mở rộng và treo giữ kiên cố bởi dây chằng</em>. Nó giống như một sợi dây thừng đàn hồi cực mạnh được kéo căng nhẹ nhàng chứ không phải sợi bún nhũn.</p>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="nam-bai-tap-buong-long">
+      <h2>5. Năm Bài Tập Thả Lỏng Kinh Điển Của Hoàng Tính Hiền</h2>
+
+      <p>Đại sư Hoàng Tính Hiền nổi tiếng khắp Đông Nam Á nhờ sáng tạo ra <strong>5 Bài Tập Thả Lỏng Căn Bản (5 Loosening Exercises)</strong>:</p>
+
+        <figure class="reader-figure">
+          <img src="/assets/images/books/wee-kee-jin-true-art/trueart_p051_01.jpeg" alt="Năm Bài Tập Thả Lỏng Hoàng Tính Hiền">
+          <figcaption>Hình 3: Chuỗi 5 bài tập nới lỏng nòng cốt (Song Shen Wu Fa) giúp giải phóng khớp hông gối, giãn khớp bả vai và đánh thức căn bản kình lực.</figcaption>
+        </figure>
+
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Bài Tập</th>
+              <th>Động Tác Cơ Bản</th>
+              <th>Mục Tiêu Tháo Gỡ Khớp Xương</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bài 1: Xoay Hông Thả Lỏng Cánh Tay</strong></td>
+              <td>Đứng thẳng, xoay hông sang trái và phải, để hai cánh tay vung vẩy hoàn toàn tự nhiên theo đà xoay của eo.</td>
+              <td>Mở khớp háng (Khoa), tháo gỡ sự căng cứng cơ vai và đốt sống cổ.</td>
+            </tr>
+            <tr>
+              <td><strong>Bài 2: Nâng Cánh Tay Bằng Đầu Gối</strong></td>
+              <td>Chùng gối hạ trọng tâm, dùng lực dội từ mặt đất nâng cánh tay lên rồi buông rơi tự do.</td>
+              <td>Dạy cho cánh tay biết chuyển động nhờ lực chân chứ không dùng cơ bắp vai.</td>
+            </tr>
+            <tr>
+              <td><strong>Bài 3: Xoay Vặn Thắt Lưng Mở Rộng Lồng Ngực</strong></td>
+              <td>Vặn xoắn thân mình theo đường chéo, chuyển trọng tâm 100% sang một chân.</td>
+              <td>Khai thông các kinh mạch sườn ngực, kích hoạt cơ đùi trong.</td>
+            </tr>
+            <tr>
+              <td><strong>Bài 4: Đẩy & Thu Kình Đàn Hồi</strong></td>
+              <td>Đưa hai tay về phía trước như ôm quả cầu cao su rồi ép kình chìm xuống gót chân.</td>
+              <td>Rèn luyện phản xạ Bằng Kình đàn hồi đa hướng.</td>
+            </tr>
+            <tr>
+              <td><strong>Bài 5: Hạ Tấn Bám Đất Sâu</strong></td>
+              <td>Ngồi sâu xuống Khoa mà cột sống vẫn thẳng tắp như quả dọi.</td>
+              <td>Gia tăng gốc rễ bám đất (Rooting) tuyệt đối.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="thoi-thu-va-nho-re">
+      <h2>6. Thôi Thủ & Kỹ Năng Nhổ Rễ (Rooting & Uprooting)</h2>
+
+      <p>Khi hai người tiếp xúc tay trong bài Thôi Thủ, người nào gồng cứng cơ bắp thì người đó sẽ lập tức cung cấp điểm tựa đòn bẩy cho đối phương. Đại sư Hoàng Tính Hiền nổi tiếng với khả năng phóng đối thủ bay xa 5 mét chỉ bằng một cú rung nhẹ ở cổ tay:</p>
+
+        <figure class="reader-figure">
+          <img src="/assets/images/books/wee-kee-jin-true-art/trueart_p058_01.jpeg" alt="Thôi Thủ và Nhổ Rễ trong Thái Cực Quyền">
+          <figcaption>Hình 4: Kỹ thuật Thôi Thủ và Nhổ Rễ (Rooting & Uprooting) — Lắng nghe biến thiên trọng tâm để mượn lực đẩy bay đối thủ.</figcaption>
+        </figure>
+
+
+      <div class="callout">
+        <p>Bí quyết của việc <strong>Nhổ Rễ (Uprooting)</strong> là làm cho lực đẩy của đối phương đi thẳng xuống chân bạn rồi trả ngược lại họ. Khi đối thủ mất rễ và nhón gót, chỉ cần một ý niệm nhẹ nhàng là họ sẽ bay bổng vào không trung.</p>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="loi-ket-wee-kee-jin">
+      <h2>7. Lời Kết: Trung Thành Với Tinh Hoa Nghệ Thuật</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Đừng tìm kiếm những thứ quyền pháp thần bí xa xôi. Kho báu tối thượng của Thái Cực Quyền nằm ngay trong sự buông lỏng thuần khiết, trong sự trung thực với từng động tác cơ thể và sự kiên trì dụng công mỗi ngày.&rdquo;</em> &mdash; <strong>Wee Kee Jin</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/douwe_geluk_18_methods_of_the_mind_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: 18 Pháp Rèn Luyện Tâm Thức</a>
+        <a href="/vi/books/"><i class="fa-solid fa-book-open"></i> Về Thư Viện Sách Tiếng Việt <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
