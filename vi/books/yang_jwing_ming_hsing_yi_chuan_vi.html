@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hình Ý Quyền Toàn Thư (Hsing-I Chuan: Theory & Applications) — Lương Thủ Dũ & TS. Dương Tuấn Mẫn</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Hình Ý Quyền Toàn Thư của Đại sư Lương Thủ Dũ và TS. Dương Tuấn Mẫn - Giải mã Lục Hợp, Tam Thể Thức, Ngũ Hành Quyền, Thập Nhị Hình và ứng dụng thực chiến nội gia.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/hsing-yi-chuan_-theory-and-applications-liang-shou-yu-1943-yang-jwing-ming/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#tong-quan-hsing-yi" class="active">1. Tổng Quan Về Hình Ý Quyền (Hsing-I Chuan)</a></li>
+        <li><a href="#luc-hop-nguyen-ly">2. Lục Hợp Cốt Lõi: Ngoại Tam Hợp & Nội Tam Hợp</a></li>
+        <li><a href="#tam-the-thuc">3. Tam Thể Thức (San Ti Shi) — Cội Nguồn Vạn Pháp</a></li>
+        <li><a href="#ngu-hanh-quyen">4. Ngũ Hành Quyền (Five Elements Fists)</a>
+          <ul>
+            <li><a href="#phach-quyen" class="sub-item">&bull; Phách Quyền (Pi Quan — Kim / Phổi)</a></li>
+            <li><a href="#bang-quyen" class="sub-item">&bull; Băng Quyền (Beng Quan — Mộc / Gan)</a></li>
+            <li><a href="#toan-quyen" class="sub-item">&bull; Toản Quyền (Zuan Quan — Thủy / Thận)</a></li>
+            <li><a href="#phao-quyen" class="sub-item">&bull; Pháo Quyền (Pao Quan — Hỏa / Tim)</a></li>
+            <li><a href="#hoanh-quyen" class="sub-item">&bull; Hoành Quyền (Heng Quan — Thổ / Tỳ)</a></li>
+          </ul>
+        </li>
+        <li><a href="#thap-nhi-hinh">5. Thập Nhị Hình Quyền (12 Loài Linh Thú)</a></li>
+        <li><a href="#khi-phap-va-kinh-phap">6. Khí Pháp & Cơ Chế Phát Kình Nội Gia</a></li>
+        <li><a href="#doi-luyen-thuc-chien">7. Đối Luyện Thực Chiến & An Thân Pháo</a></li>
+        <li><a href="#loi-ket-hsing-yi">8. Lời Kết & Bí Quyết Tu Luyện Trọn Đời</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Tuyệt Phẩm Nội Gia Quyền YMAA · Bản Dịch Tiếng Việt Chuyên Sâu</span>
+      <h1>Hình Ý Quyền Toàn Thư</h1>
+      <div class="subtitle">Hsing-I Chuan: Theory and Applications (形意拳) &mdash; Đại sư Lương Thủ Dũ & TS. Dương Tuấn Mẫn</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-ninja"></i> Tác giả: Đại sư Lương Thủ Dũ &amp; TS. Dương Tuấn Mẫn</span>
+        <span><i class="fa-solid fa-camera"></i> 438 Ảnh Minh Họa Thị Phạm Thực Tế</span>
+        <span><i class="fa-solid fa-book"></i> 244 Trang Nghiên Cứu Chuyên Sâu</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="tong-quan-hsing-yi">
+      <h2>1. Tổng Quan Về Hình Ý Quyền (Hsing-I Chuan)</h2>
+
+      <p>Cùng với <strong>Thái Cực Quyền (Taijiquan)</strong> và <strong>Bát Quái Chưởng (Baguazhang)</strong>, <strong>Hình Ý Quyền (Hsing-I Chuan &mdash; 形意拳)</strong> tạo nên bộ ba đỉnh cao của võ thuật Nội Gia Trung Hoa (Wudang Internal Martial Arts). Nếu Thái Cực Quyền như dòng nước êm dịu ẩn chứa kình lực đàn hồi hình cầu, Bát Quái Chưởng như cơn lốc xoáy lướt quanh biến ảo khôn lường, thì Hình Ý Quyền chính là <strong>mũi tên sắt sắc lẹm bắn thẳng xuyên phá</strong> mọi rào cản.</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">起 如 風 ， 落 如 箭 ， 打 倒 還 嫌 慢 。</span>
+        &ldquo;Khởi như phong, lạc như tiễn, đả đảo hoàn hiềm mạn &mdash; Xuất chiêu nhanh như gió cuốn, hạ đòn găm thẳng như tên bắn, đánh gục đối phương rồi mà vẫn còn chê là chậm.&rdquo;
+      </div>
+
+      <p>Theo truyền thuyết và các văn bia cổ, Hình Ý Quyền được sáng lập bởi võ thánh <strong>Nhạc Phi (Marshal Yueh Fei, 1103–1142)</strong> thời Nam Tống dựa trên kỹ pháp đâm thương trận mạc (Lục Hợp Thương) chuyển hóa thành quyền pháp tay không. Trải qua các đại tôn sư Cơ Long Phong, Lý Phi Vũ, Quách Vân Thâm, môn phái đã tôi luyện thành một công phu thực chiến vang danh thiên hạ.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p007_01.jpeg" alt="Đại sư Lương Thủ Dũ trong tư thế Hình Ý Quyền">
+        <figcaption>Hình 1: Đại sư Lương Thủ Dũ (Master Liang, Shou-Yu) &mdash; Truyền nhân xuất chúng của Hình Ý Quyền thế giới.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="luc-hop-nguyen-ly">
+      <h2>2. Lục Hợp Cốt Lõi: Ngoại Tam Hợp & Nội Tam Hợp</h2>
+
+      <p>Bản chất của chữ <strong>Hình (Hsing - Thể xác, cấu trúc bên ngoài)</strong> và <strong>Ý (I - Tâm ý, năng lượng bên trong)</strong> được vận hành thông qua quy luật <em>Lục Hợp (Six Harmonies)</em> bất biến:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Hệ Thống Lục Hợp</th>
+              <th>Ba Mối Tương Hợp</th>
+              <th>Bản Chất Sinh Cơ Học & Khí Công</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ngoại Tam Hợp (External Harmonies)</strong><br><em>Liên kết cấu trúc khung xương</em></td>
+              <td>
+                1. <strong>Thủ dữ túc hợp:</strong> Tay hợp với chân<br>
+                2. <strong>Trửu dữ tất hợp:</strong> Khuỷu tay hợp với đầu gối<br>
+                3. <strong>Kiên dữ khóa hợp:</strong> Bờ vai hợp với khớp háng (Khoa)
+              </td>
+              <td>Mọi cử động của tay đều có sự đồng điệu với chân; khi vai xoay, hông xoay cùng biên độ; khuỷu tay bảo vệ phía trên đồng trục với đầu gối che chắn bên dưới. Cơ thể hợp thành một khối kim cang kiên cố.</td>
+            </tr>
+            <tr>
+              <td><strong>Nội Tam Hợp (Internal Harmonies)</strong><br><em>Liên kết tâm thức và kình lực</em></td>
+              <td>
+                1. <strong>Tâm dữ ý hợp:</strong> Tâm hợp với ý thức<br>
+                2. <strong>Ý dữ khí hợp:</strong> Ý thức dẫn dắt sinh khí<br>
+                3. <strong>Khí dữ lực hợp:</strong> Khí hóa thành kình lực bộc phát
+              </td>
+              <td>Tâm trí tĩnh lặng khởi phát Ý chí kiên định; Ý dẫn dòng điện sinh học Khí nén vào Đan Điền; Khí bộc phát giải phóng thành Kình lực chấn động xuyên phá (Fajin).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="tam-the-thuc">
+      <h2>3. Tam Thể Thức (San Ti Shi) — Cội Nguồn Vạn Pháp</h2>
+
+      <p>Trong Hình Ý Quyền, thức đứng <strong>Tam Thể Thức (San Ti Shi &mdash; 三體式)</strong> là cội rễ của toàn bộ quyền pháp. Các đại sư từng nói: <em>&ldquo;Vạn biến không rời Tam Thể Thức&rdquo;</em>.</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-tree"></i> Cấu Trúc Vàng Của Tam Thể Thức:</h4>
+        <ul>
+          <li><strong>Trọng tâm chân:</strong> Chân sau chịu 70% trọng lượng (Chân thực), chân trước chịu 30% (Chân hư), tạo thế đạp đất bùng nổ tức thì như lò xo nén.</li>
+          <li><strong>Tam tiêm tương chiếu (Ba điểm thẳng hàng):</strong> Mũi bàn tay trước, mũi chân trước và mũi nhìn thẳng trên một đường thẳng đứng.</li>
+          <li><strong>Hàm hung bạt bối & Khí trầm Đan Điền:</strong> Lồng ngực thả lỏng tự nhiên, lưng giãn rộng, hơi thở chìm sâu xuống bụng dưới tạo sự ổn định tuyệt đối.</li>
+        </ul>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p020_02.jpeg" alt="Tư thế Tam Thể Thức chuẩn mực">
+        <figcaption>Hình 2: Tư thế Tam Thể Thức (San Ti Shi) &mdash; Nền tảng mẹ tôi luyện gân cốt và nội khí Hình Ý.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="ngu-hanh-quyen">
+      <h2>4. Ngũ Hành Quyền (Five Elements Fists)</h2>
+
+      <p>Năm cú đấm căn bản của Hình Ý Quyền gắn liền với 5 hành tố vũ trụ và 5 tạng phủ bên trong cơ thể người:</p>
+
+      <!-- PHÁCH QUYỀN -->
+      <h3 id="phach-quyen">1. Phách Quyền (Pi Quan &mdash; 劈拳) · Hành Kim (Phổi)</h3>
+      <p>Cú bổ chém từ trên xuống như nhát rìu chẻ củi. Khí vận hành khai mở kinh Phế, giúp phổi thông thoáng, tăng cường trao đổi oxy và giải tỏa nỗi buồn u uất.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p035_02.jpeg" alt="Thế Phách Quyền bổ chém">
+        <figcaption>Hình 3: Phách Quyền (Kim) &mdash; Kình lực bổ xuống theo phương thẳng đứng kết hợp bước chân trượt tới.</figcaption>
+      </div>
+
+      <!-- BĂNG QUYỀN -->
+      <h3 id="bang-quyen">2. Băng Quyền (Beng Quan &mdash; 崩拳) · Hành Mộc (Gan)</h3>
+      <p>Cú đấm thẳng xuyên thấu mạnh mẽ như mũi tên rời cung. Tương truyền Đại sư Quách Vân Thâm chỉ dùng một chiêu <em>&ldquo;Bán bộ Băng Quyền&rdquo;</em> (Băng quyền nửa bước) đã bất khả chiến bại khắp chốn giang hồ. Băng Quyền nuôi dưỡng tạng Can (gan), điều hòa tính khí nóng nảy.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p050_02.jpeg" alt="Thế Băng Quyền đấm thẳng bùng nổ">
+        <figcaption>Hình 4: Băng Quyền (Mộc) &mdash; Bước tiến nửa bước (Thuận bộ) giải phóng kình lực xoắn xuyên phá.</figcaption>
+      </div>
+
+      <!-- TOẢN QUYỀN -->
+      <h3 id="toan-quyen">3. Toản Quyền (Zuan Quan &mdash; 鑽拳) · Hành Thủy (Thận)</h3>
+      <p>Cú đấm khoan xoắn ốc từ dưới cằm bốc lên như tia chớp rạch màn đêm. Vận động của Toản Quyền bồi bổ thận thủy, kích thích tủy sống và tăng cường sức bền gân cốt.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p075_02.jpeg" alt="Thế Toản Quyền khoan xoắn">
+        <figcaption>Hình 5: Toản Quyền (Thủy) &mdash; Nắm đấm xoắn ngược hướng lên trên kết hợp chuyển trọng tâm linh hoạt.</figcaption>
+      </div>
+
+      <!-- PHÁO QUYỀN -->
+      <h3 id="phao-quyen">4. Pháo Quyền (Pao Quan &mdash; 炮拳) · Hành Hỏa (Tim)</h3>
+      <p>Đòn thế nổ bùng như đại bác: một tay gạt chéo đỡ đòn tấn công trên đầu, tay kia phóng thẳng nắm đấm vào ngực đối phương. Pháo Quyền nuôi dưỡng tâm hỏa, tăng cường tuần hoàn tim mạch.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p100_02.jpeg" alt="Thế Pháo Quyền công thủ toàn diện">
+        <figcaption>Hình 6: Pháo Quyền (Hỏa) &mdash; Sự phối hợp đồng thời giữa hóa giải và phản công cực mạnh.</figcaption>
+      </div>
+
+      <!-- HOÀNH QUYỀN -->
+      <h3 id="hoanh-quyen">5. Hoành Quyền (Heng Quan &mdash; 橫拳) · Hành Thổ (Tỳ)</h3>
+      <p>Cú đấm gạt ngang uốn tròn như quả cầu lăn. Hoành Quyền tượng trưng cho Đất Mẹ (Thổ), điều hòa tỳ vị (lách và dạ dày), mang lại sự bình ổn và vững chắc cho toàn bộ cơ thể.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p125_02.jpeg" alt="Thế Hoành Quyền gạt xoay tròn">
+        <figcaption>Hình 7: Hoành Quyền (Thổ) &mdash; Kình xoắn ốc ngang hóa giải ngoại lực và mở đường tấn công bất ngờ.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="thap-nhi-hinh">
+      <h2>5. Thập Nhị Hình Quyền (12 Loài Linh Thú)</h2>
+
+      <p>Sau khi tinh thông Ngũ Hành Quyền, võ sinh bước vào nghiên cứu <strong>Thập Nhị Hình</strong> &mdash; mô phỏng tinh thần và kỹ năng sinh tồn của 12 loài động vật:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Linh Thú</th>
+              <th>Đặc Tính Nổi Bật</th>
+              <th>Ứng Dụng Kỹ Thuật</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>1. Long (Rồng)</strong></td><td>Co duỗi thần tốc, thăng giáng khôn lường</td><td>Khai mở cột sống, chuyển thân linh hoạt</td></tr>
+            <tr><td><strong>2. Hổ (Cọp)</strong></td><td>Vồ mồi dũng mãnh, khí thế áp đảo</td><td>Song chưởng vồ xé, đè bẹp phòng tuyến</td></tr>
+            <tr><td><strong>3. Hầu (Khỉ)</strong></td><td>Nhanh nhẹn, né tránh thoăn thoắt</td><td>Thu mình né đòn, chộp giật điểm huyệt</td></tr>
+            <tr><td><strong>4. Mã (Ngựa)</strong></td><td>Chạy nước kiệu, tung vó đạp thẳng</td><td>Đạp chân tiến mãnh liệt, song quyền đấm bồi</td></tr>
+            <tr><td><strong>5. Thoa (Rùa nước)</strong></td><td>Thu liễm kiên cố, kình lực bọc lót</td><td>Khóa khớp, lặn sâu luồn lách né tránh</td></tr>
+            <tr><td><strong>6. Kê (Gà trống)</strong></td><td>Đứng một chân vững, mổ hạt quyết liệt</td><td>Kim kê độc lập, chỏ gối cận chiến</td></tr>
+            <tr><td><strong>7. Đãi (Diều hâu)</strong></td><td>Lao vút từ tầng không xuống mặt đất</td><td>Bổ chưởng sấm sét từ trên cao xuống</td></tr>
+            <tr><td><strong>8. Yến (Chim én)</strong></td><td>Lướt sát mặt nước, đổi hướng cực nhanh</td><td>Thân pháp lả lướt, luồn ra sau lưng đối thủ</td></tr>
+            <tr><td><strong>9. Xà (Rắn)</strong></td><td>Uốn lượn bò sát đất, quấn chặt con mồi</td><td>Triền nương cầm nã, tấn công hạ bàn</td></tr>
+            <tr><td><strong>10. Đà (Thằn lằn nước)</strong></td><td>Trôi nổi trên nước, cân bằng kỳ diệu</td><td>Hóa giải lực xô đẩy, giữ thăng bằng tuyệt đối</td></tr>
+            <tr><td><strong>11. Ưng (Đại bàng)</strong></td><td>Móng vuốt sắc bén, quắp chặt không buông</td><td>Ưng trảo cầm nã, giật bẻ cổ tay đối phương</td></tr>
+            <tr><td><strong>12. Hùng (Gấu)</strong></td><td>Trầm tĩnh uy dũng, bờ vai va đập ngàn cân</td><td>Kháo kình (húc vai), đánh bật đối thủ áp sát</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p150_02.jpeg" alt="Minh họa hình thái linh thú trong Hình Ý Quyền">
+        <figcaption>Hình 8: Thế vồ mồi Hổ Hình và trảo pháp Ưng Hình trong Thập Nhị Hình Quyền.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="khi-phap-va-kinh-phap">
+      <h2>6. Khí Pháp & Cơ Chế Phát Kình Nội Gia</h2>
+
+      <p>Sức công phá khủng khiếp của Hình Ý Quyền bắt nguồn từ <strong>Thốn Kình (Inch Power &mdash; kình lực phát ra ở cự ly cực ngắn)</strong>:</p>
+
+      <div class="callout">
+        <p>Trước khoảnh khắc va chạm một phần mười giây, toàn thân hoàn toàn buông lỏng và bay lướt. Khi tiếp xúc bề mặt đối thủ, Đan Điền thắt đột ngột, bàn chân sau đạp đất chặn lực phản hồi, các khớp khóa chốt trong chớp mắt, phóng ra luồng xung kích chấn động xuyên thấu nội tạng đối phương.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p175_02.jpeg" alt="Cơ chế cơ sinh học phát kình thấu nội tạng">
+        <figcaption>Hình 9: Quỹ đạo truyền kình từ gót chân qua sống lưng và phóng xuất qua đầu nắm đấm.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="doi-luyen-thuc-chien">
+      <h2>7. Đối Luyện Thực Chiến & An Thân Pháo</h2>
+
+      <p>Bài đối luyện <strong>An Thân Pháo (An Shen Pao)</strong> là viên ngọc quý rèn luyện khả năng phản xạ hai người: phối hợp nhịp nhàng giữa tấn công và phòng thủ, thấu hiểu nhịp thở và khoảng cách cự ly chiến đấu thực tế.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-hsing-yi/hsingyi_p200_02.jpeg" alt="Bài đối luyện thực chiến An Thân Pháo">
+        <figcaption>Hình 10: Đại sư Lương Thủ Dũ thị phạm đòn đối luyện cận chiến thực tế trong bài An Thân Pháo.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="loi-ket-hsing-yi">
+      <h2>8. Lời Kết & Bí Quyết Tu Luyện Trọn Đời</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Hình Ý Quyền là con đường rèn luyện ý chí sắt đá, tôi luyện thân thể thành bức tường thành kiên cố và nuôi dưỡng một tâm hồn quả cảm, chính trực. Hãy giữ tâm khiêm nhường và không ngừng tinh tấn.&rdquo;</em> &mdash; <strong>Đại sư Lương Thủ Dũ & TS. Dương Tuấn Mẫn</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/yang_jwing_ming_simplified_tai_chi_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Thái Cực Quyền Giản Hóa</a>
+        <a href="/vi/books/bruce_frantzis_insiders_guide_tai_chi_vi.html">Đọc Tiếp: Cẩm Nang Người Trong Cuộc (Bruce Frantzis) <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

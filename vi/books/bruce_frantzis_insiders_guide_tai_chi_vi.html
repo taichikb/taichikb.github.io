@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền (The Insider's Guide to Tai Chi) — Bruce Kumar Frantzis</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm The Insider's Guide to Tai Chi của Đại sư Bruce Frantzis - Khám phá Khoa học 16 Nội Công, Quy tắc 70%, Đạo gia Truyền thống Nước và liệu pháp xua tan căng thẳng.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/insiders-guide-to-tai-chi-by-bruce-frantzis/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#giai-phap-thai-cuc" class="active">1. Cuộc Khủng Hoảng Căng Thẳng & Giải Pháp Thái Cực</a></li>
+        <li><a href="#thai-cuc-la-gi">2. Bản Chất Thực Của Thái Cực Quyền & Cơ Chế Vận Hành</a></li>
+        <li><a href="#khoa-hoc-16-noi-cong">3. Khoa Học 16 Thành Phần Nội Công (Neigong)</a></li>
+        <li><a href="#truyen-thong-nuoc">4. Đạo Gia Truyền Thống Nước & Kỹ Thuật Hòa Tan</a></li>
+        <li><a href="#quy-tac-70-phan-tram">5. Quy Tắc 70% Vàng (The 70% Rule)</a></li>
+        <li><a href="#bon-tang-nang-luong">6. Bốn Tầng Năng Lượng Nội Thể Của Con Người</a></li>
+        <li><a href="#suc-manh-vo-thuat">7. Từ Dưỡng Sinh Phục Hồi Đến Uy Lực Nội Gia</a></li>
+        <li><a href="#loi-khuyen-chon-thay">8. Lời Kết & Lời Khuyên Chọn Thầy Học Đạo</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Đạo Gia Long Môn Phái · Bản Dịch Tiếng Việt Chuyên Sâu</span>
+      <h1>Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền</h1>
+      <div class="subtitle">The Insider's Guide to Tai Chi: Health, Stress Reduction, Energy & Martial Power &mdash; Bruce Kumar Frantzis</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-doctor"></i> Tác giả: Đại sư Bruce Kumar Frantzis (Energy Arts)</span>
+        <span><i class="fa-solid fa-brain"></i> Giải Mã 16 Thành Phần Nội Công (Neigong)</span>
+        <span><i class="fa-solid fa-water"></i> Triết Lý Đạo Gia Truyền Thống Nước</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="giai-phap-thai-cuc">
+      <h2>1. Cuộc Khủng Hoảng Căng Thẳng & Giải Pháp Thái Cực</h2>
+
+      <p>Xã hội hiện đại đang chứng kiến một cuộc khủng hoảng sức khỏe âm thầm nhưng tàn khốc: <strong>Căng thẳng mãn tính (Chronic Stress)</strong>. Hàng triệu người sống trong tình trạng cơ bắp co cứng liên tục, hơi thở nông cạn ở phần ngực trên, huyết áp tăng vọt và hệ thống thần kinh giao cảm luôn bị kích hoạt quá mức ở trạng thái báo động đỏ.</p>
+
+      <div class="callout">
+        <p><strong>Giải Pháp Thái Cực (The Tai Chi Solution):</strong> Đại sư Bruce Kumar Frantzis &mdash; đệ tử chân truyền của Đạo sĩ Lưu Bồi Trung (Liu Hung Chieh) thuộc Long Môn phái (Dragon Gate Taoist Lineage) &mdash; chỉ ra rằng Thái Cực Quyền không chỉ là một môn thể dục nhẹ nhàng, mà là một hệ thống <em>tái cấu trúc thần kinh và năng lượng sinh học</em> tinh vi nhất từng được nhân loại sáng tạo.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p001_01.jpeg" alt="Đại sư Bruce Frantzis hướng dẫn Thái Cực Quyền">
+        <figcaption>Hình 1: Đại sư Bruce Kumar Frantzis &mdash; Người tiên phong đưa Nội Công Đạo gia đích thực sang phương Tây.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="thai-cuc-la-gi">
+      <h2>2. Bản Chất Thực Của Thái Cực Quyền & Cơ Chế Vận Hành</h2>
+
+      <p>Rất nhiều người học tập Thái Cực chỉ dừng lại ở lớp vỏ ngoài: bắt chước những chuyển động tay chân uốn éo. Nếu không có <strong>Nội Công (Neigong &mdash; 內功)</strong> ẩn bên trong, những động tác đó hoàn toàn vô hồn và không mang lại bất kỳ sự chuyển hóa sâu sắc nào cho tạng phủ hay kình lực.</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-yin-yang"></i> 3 Cấp Độ Tiến Hóa Của Người Tập:</h4>
+        <ol>
+          <li><strong>Cấp độ 1 &mdash; Thể xác (Physical Healing):</strong> Giải phóng các khối cơ co rút, uốn nắn cột sống, bôi trơn các bao hoạt dịch khớp và chữa lành các chấn thương cũ.</li>
+          <li><strong>Cấp độ 2 &mdash; Năng lượng sinh học (Qi Cultivation):</strong> Khơi thông 12 đường kinh lạc, kích hoạt dòng tuần hoàn tủy sống và tích lũy điện thế nội tại tại Đan Điền.</li>
+          <li><strong>Cấp độ 3 &mdash; Tĩnh tâm & Tỉnh thức (Spiritual Stillness):</strong> Nhập vào cõi tĩnh lặng tuyệt đối giữa lòng chuyển động, hòa tan bản ngã vào dòng chảy tự nhiên của Đạo.</li>
+        </ol>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p005_01.jpeg" alt="Chuyển động dòng chảy năng lượng trong Thái Cực Quyền">
+        <figcaption>Hình 2: Trạng thái buông lỏng hoàn toàn và dòng chảy năng lượng nội tại。</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="khoa-hoc-16-noi-cong">
+      <h2>3. Khoa Học 16 Thành Phần Nội Công (Neigong)</h2>
+
+      <p>Đóng góp vĩ đại nhất của Đại sư Bruce Frantzis cho cộng đồng võ thuật thế giới là việc hệ thống hóa <strong>16 Thành Phần Nội Công Cốt Tử (The 16 Neigong Components)</strong> của Đạo gia truyền thống:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Nhóm Thành Phần</th>
+              <th>Các Kỹ Thuật Nội Công Trọng Yếu</th>
+              <th>Tác Dụng Chuyển Hóa Cơ Thể</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Căn Chỉnh Cấu Trúc Khung Xương</strong></td>
+              <td>Treo đỉnh đầu, hạ xương cùng, mở rộng các đốt sống thắt lưng</td>
+              <td>Loại bỏ áp lực đè nén lên đĩa đệm cột sống, giải phóng dây thần kinh tọa và mạch máu tủy.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Hô Hấp Cơ Hoành Đạo Gia</strong></td>
+              <td>Thở bụng đa chiều 360 độ (phình nở cả bụng trước, hai bên hông sườn và vùng thắt lưng)</td>
+              <td>Massage sâu các cơ quan nội tạng (tim, phổi, gan, thận), kích hoạt hệ thần kinh phó giao cảm giúp an thần sâu.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Căng Kéo & Xoắn Ốc Cân Mạc (Fascia)</strong></td>
+              <td>Dẫn dắt mạng lưới mô liên kết (Fascial Web) co giãn nhịp nhàng</td>
+              <td>Tạo ra kình lực đàn hồi vô tận mà không cần gồng cứng cơ bắp; tăng tuổi thọ gân cốt.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Hòa Tan Khối Tắc Nghẽn (Dissolving)</strong></td>
+              <td>Phương pháp "Từ Băng tan thành Nước, từ Nước bốc hơi thành Khí"</td>
+              <td>Tìm kiếm điểm co cứng, căng tức cảm xúc và dùng ý niệm chuyển hóa nó thành dòng chảy mềm mại.</td>
+            </tr>
+            <tr>
+              <td><strong>5. Vận Khí Qua Các Đan Điền</strong></td>
+              <td>Lưu thông năng lượng giữa Hạ Đan Điền, Trung Đan Điền và Thượng Đan Điền</td>
+              <td>Chuyển hóa Tinh thành Khí, Khí thành Thần; bồi đắp trực giác nhạy bén và bình an nội tại.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p007_01.jpeg" alt="Khái niệm cấu trúc cơ học bên trong">
+        <figcaption>Hình 3: Căn chỉnh cấu trúc cơ học bên trong để tạo đường dẫn năng lượng không bị bế tắc.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="truyen-thong-nuoc">
+      <h2>4. Đạo Gia Truyền Thống Nước & Kỹ Thuật Hòa Tan</h2>
+
+      <p>Đạo gia phân chia các trường phái tu luyện thành hai dòng chính: <strong>Truyền Thống Lửa (Fire Tradition)</strong> và <strong>Truyền Thống Nước (Water Tradition)</strong>:</p>
+
+      <ul>
+        <li><strong>Truyền Thống Lửa:</strong> Sử dụng ý chí sắt đá gượng ép, thở gấp, đẩy năng lượng cưỡng bức qua các luân xa hay kinh mạch. Phương pháp này dễ dẫn đến nóng trong, tăng huyết áp hoặc tẩu hỏa nếu tâm trí còn vọng động.</li>
+        <li><strong>Truyền Thống Nước (Con đường của Lão Tử):</strong> Lấy <em>Thượng thiện nhược thủy</em> (Tốt lành bậc nhất như nước) làm kim chỉ nam. Nước luôn tìm chỗ thấp mà chảy tới, mềm mại bao bọc mọi chướng ngại vật nhưng có thể xói mòn cả vách đá hoa cương kiên cố nhất.</li>
+      </ul>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">上 善 若 水 ， 水 善 利 萬 物 而 不 爭 。</span>
+        &ldquo;Thượng thiện nhược thủy, thủy thiện lợi vạn vật nhi bất tranh &mdash; Người lương thiện cao nhất như nước, nước làm lợi cho muôn loài mà không hề tranh giành.&rdquo;
+      </div>
+
+      <p>Kỹ thuật <strong>Hòa Tan (Inner Dissolving)</strong> của Truyền Thống Nước là chìa khóa vàng: Bất cứ khi nào bạn cảm thấy căng thẳng hay đau nhức ở bất kỳ điểm nào trên cơ thể, hãy tưởng tượng điểm đó như một tảng băng cứng; dùng hơi thở ấm áp làm cho tảng băng đó tan chảy thành nước lỏng; rồi tiếp tục để làn nước đó bốc hơi tiêu tán vào hư không.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p022_01.jpeg" alt="Thái độ tĩnh lặng và thiền định hòa tan">
+        <figcaption>Hình 4: Trạng thái hòa tan tâm trí và buông lỏng toàn thân theo dòng Nước Đạo gia.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="quy-tac-70-phan-tram">
+      <h2>5. Quy Tắc 70% Vàng (The 70% Rule)</h2>
+
+      <p>Một trong những nguyên tắc mang tính cách mạng mà Đại sư Bruce Frantzis truyền dạy cho các đệ tử phương Tây là <strong>Quy Tắc 70%</strong>:</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-gauge-high"></i> Định Luật 70% Tuyệt Đối Không Gượng Ép:</h4>
+        <p>Khi thực hiện bất kỳ động tác kéo dãn, hạ tấn, thở sâu hay xoay chuyển nào, <strong>chỉ sử dụng tối đa 70% giới hạn tối đa của bạn</strong>. Giữ lại 30% khoảng trống thong dong dự trữ.</p>
+        <ul>
+          <li>Nếu bạn cố gắng đạt 100%, hệ thần kinh sẽ lập tức cảnh giác và kích hoạt phản xạ co thắt bảo vệ, khiến cơ bắp bị khóa chặt và ngăn dòng khí chảy qua.</li>
+          <li>Khi bạn chỉ dừng lại ở mức 70%, cơ thể cảm thấy an toàn tuyệt đối, hệ thần kinh thả lỏng và lớp năng lượng bên trong tự động tràn ngập, giúp khả năng hồi phục tăng lên gấp 10 lần.</li>
+        </ul>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p031_01.jpeg" alt="Tư thế giữ khoảng cách an toàn 70%">
+        <figcaption>Hình 5: Thực hành động tác trong ngưỡng an toàn 70% &mdash; Bí quyết không chấn thương và tăng trưởng năng lượng bền vững.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="bon-tang-nang-luong">
+      <h2>6. Bốn Tầng Năng Lượng Nội Thể Của Con Người</h2>
+
+      <p>Cơ thể con người không chỉ có da thịt mà gồm 4 tầng năng lượng đồng tâm lồng vào nhau:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Tầng Năng Lượng</th>
+              <th>Thành Phần Cấu Tạo</th>
+              <th>Cách Thức Thái Cực Tác Động Chuyển Hóa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Thể Xác (Physical Body)</strong></td>
+              <td>Xương cốt, cơ bắp, mạch máu, tạng phủ</td>
+              <td>Giải phóng sự căng cứng mãn tính, cân bằng axit-kiềm và phục hồi độ mềm dẻo.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Thể Khí (Etheric / Qi Body)</strong></td>
+              <td>Mạng lưới 12 kinh lạc, 8 kỳ mạch và các luân xa</td>
+              <td>Tăng cường mật độ điện từ sinh học, sạc đầy pin Đan Điền và bảo vệ hào quang cơ thể.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Thể Cảm Xúc (Emotional Body)</strong></td>
+              <td>Những nỗi sợ hãi, giận dữ, tổn thương tâm lý dồn nén</td>
+              <td>Hòa tan các nút thắt cảm xúc bị chôn vùi trong màng mạc và tạng phủ qua hơi thở sâu.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Thể Tâm Trí (Mental Body)</strong></td>
+              <td>Các khuôn mẫu suy nghĩ định kiến, định hình bản ngã</td>
+              <td>Dẫn dắt tâm trí vào cõi tĩnh lặng nguyên sơ, khai mở trực giác và sự thấu suốt.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p058_01.jpeg" alt="Sự liên kết các tầng năng lượng thân tâm">
+        <figcaption>Hình 6: Sự kết nối đồng bộ giữa chuyển động thể xác và luồng ánh sáng nhận thức.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="suc-manh-vo-thuat">
+      <h2>7. Từ Dưỡng Sinh Phục Hồi Đến Uy Lực Nội Gia</h2>
+
+      <p>Bruce Frantzis từng chiến thắng nhiều giải đấu võ tự do và dành hơn một thập kỷ tại Trung Quốc học tập với những cao thủ hàng đầu. Ông khẳng định: <em>&ldquo;Sức mạnh tự vệ chân chính của Thái Cực không bao giờ đến từ sự hung hãn cơ bắp&rdquo;</em>.</p>
+
+      <p>Khi cơ thể đã được thanh lọc qua 16 Nội Công và đạt đến trạng thái buông lỏng tối đa, người tập phát triển một dạng uy lực gọi là <strong>Hư Kình (Empty Force)</strong> và <strong>Bằng Kình Toàn Thân</strong>. Bất kỳ ai cố gắng đẩy hoặc đánh vào cơ thể bạn sẽ có cảm giác như đang đâm đầu vào một đệm hơi khổng lồ không đáy, rồi bị phản hồi xung lực hất văng ra xa mà bạn không tốn một chút mồ hôi.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/bruce-frantzis-insiders-guide/insider_p081_01.jpeg" alt="Ứng dụng phát kình buông lỏng tự nhiên">
+        <figcaption>Hình 7: Đại sư Bruce Frantzis hóa giải lực công kích và phát kình đẩy bật đối phương.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="loi-khuyen-chon-thay">
+      <h2>8. Lời Kết & Lời Khuyên Chọn Thầy Học Đạo</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Một người thầy Thái Cực giỏi không phải là người phô diễn những động tác đẹp mắt trên sân khấu, mà là người có thể giúp bạn giải tỏa được cơn đau nhức thể xác, làm êm dịu những cơn bão trong tâm trí và dẫn dắt bạn trở về với sự tĩnh lặng của Đạo. Hãy lắng nghe trực giác của trái tim bạn.&rdquo;</em> &mdash; <strong>Đại sư Bruce Kumar Frantzis</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/yang_jwing_ming_hsing_yi_chuan_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Hình Ý Quyền Toàn Thư</a>
+        <a href="/vi/books/"><i class="fa-solid fa-book-open"></i> Về Thư Viện Sách Tiếng Việt <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

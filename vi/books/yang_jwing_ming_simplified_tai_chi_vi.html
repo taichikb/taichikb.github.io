@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thái Cực Quyền Giản Hóa: 24 & 48 Thức (Simplified Tai Chi Chuan) — TS. Dương Tuấn Mẫn & Lương Thủ Dũ</title>
+<meta name="description" content="Bản dịch Việt ngữ tương tác tác phẩm Thái Cực Quyền Giản Hóa 24 & 48 Thức của TS. Dương Tuấn Mẫn và Đại sư Lương Thủ Dũ - Nền tảng quyền pháp, chiêu thức từng bước và ứng dụng tự vệ thực chiến.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/simplifiedtaichichuan/" class="btn-control lang-switch">🇬🇧 Original English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-mo-dau" class="active">1. Lời Mở Đầu & Lịch Sử Hình Thành 24 & 48 Thức</a></li>
+        <li><a href="#nen-tang-ly-luan">2. Nền Tảng Lý Luận: Âm Dương & Ngũ Hành</a></li>
+        <li><a href="#tu-dai-can-ban">3. Tứ Đại Căn Bản: Thân - Bộ - Thủ - Nhãn</a></li>
+        <li><a href="#chuoi-24-thuc">4. Toàn Bộ Chuỗi 24 Thức Giản Hóa (Bắc Kinh)</a></li>
+        <li><a href="#chuoi-48-thuc">5. Chuỗi 48 Thức Hỗn Hợp & Biến Hóa</a></li>
+        <li><a href="#ung-dung-tu-ve">6. Ứng Dụng Tự Vệ & Phát Kình Thực Chiến</a></li>
+        <li><a href="#lo-trinh-luyen-tap">7. Lộ Trình Rèn Luyện Cho Mọi Trình Độ</a></li>
+        <li><a href="#loi-ket-dong-tac-gia">8. Lời Kết Của Các Đại Sư</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Ấn Bản Võ Thuật YMAA · Bản Dịch Tiếng Việt Tương Tác</span>
+      <h1>Thái Cực Quyền Giản Hóa: 24 & 48 Thức</h1>
+      <div class="subtitle">Simplified Tai Chi Chuan: 24 & 48 Postures with Applications &mdash; TS. Dương Tuấn Mẫn & Đại sư Lương Thủ Dũ</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-ninja"></i> Tác giả: TS. Dương Tuấn Mẫn &amp; Đại sư Lương Thủ Dũ</span>
+        <span><i class="fa-solid fa-camera"></i> 45 Hình Ảnh &amp; Biểu Đồ Kỹ Thuật</span>
+        <span><i class="fa-solid fa-shield-halved"></i> Phân Tích Ứng Dụng Tự Vệ Thực Tế</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <section id="loi-mo-dau">
+      <h2>1. Lời Mở Đầu & Lịch Sử Hình Thành 24 & 48 Thức</h2>
+
+      <p>Thái Cực Quyền truyền thống ban đầu sở hữu những bài quyền rất dài (từ 88 đến 108 thức) với độ phức tạp cao, đòi hỏi nhiều năm tháng rèn luyện liên tục và diện tích sân bãi rộng lớn. Nhằm đưa môn nghệ thuật vô giá này đến với đại chúng và phục vụ mục tiêu cải thiện sức khỏe toàn dân, năm 1956, Ủy ban Thể dục Thể thao Quốc gia Trung Quốc đã tập hợp các đại danh sư Dương gia để biên soạn bài <strong>Thái Cực Quyền 24 Thức Giản Hóa</strong> (thường gọi là <em>Bắc Kinh 24 Thức</em>).</p>
+
+      <div class="callout">
+        <p>Bài 24 thức lược bỏ những động tác trùng lặp, giữ lại toàn bộ tinh hoa vận động tròn đều, buông lỏng và chuyển trọng tâm mượt mà của Dương Gia truyền thống, chỉ mất từ 5 đến 6 phút để hoàn thành một lượt quyền.</p>
+      </div>
+
+      <p>Sau thành công vang dội của bài 24 thức, vào năm 1979, bài <strong>48 Thức Hỗn Hợp</strong> tiếp tục ra đời. Đây là một bước tiến vượt bậc kết hợp những nét tinh túy nhất của bốn trường phái lớn: <em>sự khoan thai tròn đầy của Dương gia (Yang), tính chất vặn xoắn bộc phát lực của Trần gia (Chen), sự linh hoạt thân pháp của Ngô gia (Wu) và bộ pháp tiến thoái nhanh nhẹn của Tôn gia (Sun)</em>.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-simplified-tai-chi/simplified_p001_01.jpeg" alt="Bìa tác phẩm Simplified Tai Chi Chuan">
+        <figcaption>Hình 1: Tác phẩm Thái Cực Quyền Giản Hóa của TS. Dương Tuấn Mẫn và Đại sư Lương Thủ Dũ.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 2 -->
+    <section id="nen-tang-ly-luan">
+      <h2>2. Nền Tảng Lý Luận: Âm Dương & Ngũ Hành</h2>
+
+      <p>Mặc dù được giản lược về số lượng thức, nền tảng lý luận của quyền pháp vẫn tuyệt đối trung thành với triết lý cổ thư:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Khái Niệm</th>
+              <th>Biểu Hiện Triết Học</th>
+              <th>Vận Hành Trong Quyền Thức</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hư & Thực (Yin & Yang)</strong></td>
+              <td>Âm Dương đối ngẫu, tương sinh tương khắc</td>
+              <td>Chân chịu 70% trọng lượng là Chân Thực (Dương), chân chịu 30% hoặc không chịu tải là Chân Hư (Âm). Luôn phân định rõ ràng, không bao giờ rơi vào thế "song trọng" (hai chân chịu lực bằng nhau một cách cứng nhắc).</td>
+            </tr>
+            <tr>
+              <td><strong>Cương & Nhu</strong></td>
+              <td>Trong Nhu có Cương, ngoài Nhu trong Cương</td>
+              <td>Bề ngoài chuyển động êm dịu như dòng suối chảy, nhưng bên trong gân cốt ngập tràn Bằng Kình (Peng Jin) đàn hồi như thép bọc trong nhung lụa.</td>
+            </tr>
+            <tr>
+              <td><strong>Ngũ Bộ (Ngũ Hành)</strong></td>
+              <td>Kim, Mộc, Thủy, Hỏa, Thổ</td>
+              <td>Tiến bộ (Tiến), Thoái bộ (Lùi), Tả cố (Nhìn trái), Hữu phán (Nhìn phải), Trung định (Trụ vững ở giữa).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-simplified-tai-chi/simplified_p011_01.jpeg" alt="Đại sư Lương Thủ Dũ thị phạm tư thế trung định">
+        <figcaption>Hình 2: Đại sư Lương Thủ Dũ thị phạm tư thế Đan Điền trung chính và trục thăng bằng.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 3 -->
+    <section id="tu-dai-can-ban">
+      <h2>3. Tứ Đại Căn Bản: Thân - Bộ - Thủ - Nhãn</h2>
+
+      <p>Người tập muốn quyền thế toát lên khí phách và hiệu quả tự vệ cần tôi luyện 4 yếu tố phối hợp đồng bộ:</p>
+
+      <ul>
+        <li><strong>Thân Pháp (Body Posture):</strong> Đầu ngay, cổ thẳng, huyệt Bách Hội như treo trên không trung; ngực hơi lõm nhẹ (Hàm Hung), lưng mở rộng (Bạt Bối); eo làm trục xoay chính cho mọi cử động của tứ chi.</li>
+        <li><strong>Bộ Pháp (Footwork):</strong> Bước chân nhẹ nhàng như mèo đi săn (&ldquo;Hành khí như cửu khúc châu, vận kình như bách luyện cương&rdquo;). Gót chân chạm đất trước rồi mới dàn đều lòng bàn chân khi tiến; mũi chân chạm đất trước khi lùi.</li>
+        <li><strong>Thủ Pháp (Hand Techniques):</strong> Chưởng tròn ngón tay giãn tự nhiên, cổ tay không gãy gập, cẳng tay luôn tạo thành góc cung tròn chịu lực.</li>
+        <li><strong>Nhãn Pháp (Eye Direction):</strong> Mắt đi theo hướng của bàn tay dẫn dắt chính; ánh mắt tĩnh tại nhưng bao quát toàn diện không gian xung quanh.</li>
+      </ul>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-simplified-tai-chi/simplified_p012_01.jpeg" alt="Cơ chế cơ sinh học bàn tay và khuỷu tay">
+        <figcaption>Hình 3: Cấu trúc cơ sinh học của cánh tay &mdash; Trầm kiên trụy trửu (Hạ vai chìm khuỷu).</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 4 -->
+    <section id="chuoi-24-thuc">
+      <h2>4. Toàn Bộ Chuỗi 24 Thức Giản Hóa (Bắc Kinh)</h2>
+
+      <p>Danh sách 24 thức quyền kinh điển được dịch nghĩa Hán-Việt chuẩn xác:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Thức</th>
+              <th>Tên Hán - Việt</th>
+              <th>Tên Tiếng Anh</th>
+              <th>Đặc Điểm Vận Động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Khởi Thế</strong></td><td>Starting Posture</td><td>Đứng tự nhiên, nâng hạ hai tay điều tức khí</td></tr>
+            <tr><td>2</td><td><strong>Tả Hữu Dã Mã Phân Tung</strong></td><td>Parting the Wild Horse's Mane</td><td>Bước chéo mở cánh tay phân tách bờm ngựa</td></tr>
+            <tr><td>3</td><td><strong>Bạch Hạc Lượng Xí</strong></td><td>White Crane Spreads Its Wings</td><td>Đứng Hư Bộ, xòe hai cánh tay như hạc trắng</td></tr>
+            <tr><td>4</td><td><strong>Tả Hữu Lâu Tất Ảo Bộ</strong></td><td>Brush Knee and Twist Step</td><td>Gạt tay qua đầu gối, đẩy chưởng ngang ngực</td></tr>
+            <tr><td>5</td><td><strong>Thủ Huy Tỳ Bà</strong></td><td>Play the Lute</td><td>Hư bộ, hai tay ôm trước ngực như gảy đàn tỳ bà</td></tr>
+            <tr><td>6</td><td><strong>Tả Hữu Đảo Niệm Hầu</strong></td><td>Repulse the Monkey</td><td>Lùi bộ xoay chưởng đẩy bật đối thủ</td></tr>
+            <tr><td>7</td><td><strong>Tả Lãm Tước Vĩ</strong></td><td>Grasp the Bird's Tail (Left)</td><td>Bằng, Lý, Tê, Án bên trái</td></tr>
+            <tr><td>8</td><td><strong>Hữu Lãm Tước Vĩ</strong></td><td>Grasp the Bird's Tail (Right)</td><td>Bằng, Lý, Tê, Án bên phải</td></tr>
+            <tr><td>9</td><td><strong>Đơn Tiên</strong></td><td>Single Whip</td><td>Móc câu điếu thủ bên phải, đẩy chưởng bên trái</td></tr>
+            <tr><td>10</td><td><strong>Vân Thủ</strong></td><td>Wave Hands Like Clouds</td><td>Di chuyển bước ngang xoay vần mây trời</td></tr>
+            <tr><td>11</td><td><strong>Đơn Tiên</strong></td><td>Single Whip</td><td>Khóa chốt nhịp chuyển hướng</td></tr>
+            <tr><td>12</td><td><strong>Cao Thám Mã</strong></td><td>High Pat on Horse</td><td>Hư bộ nhón gót, phóng chưởng ngang cằm</td></tr>
+            <tr><td>13</td><td><strong>Hữu Đặng Cước</strong></td><td>Right Heel Kick</td><td>Nâng gối đạp gót chân phải sang bên</td></tr>
+            <tr><td>14</td><td><strong>Song Phong Quán Nhĩ</strong></td><td>Strike to Ears with Both Fists</td><td>Hai nắm đấm vòng cung đánh vào hai thái dương</td></tr>
+            <tr><td>15</td><td><strong>Chuyển Thân Tả Đặng Cước</strong></td><td>Turn Body and Left Heel Kick</td><td>Xoay người 180 độ đạp gót chân trái</td></tr>
+            <tr><td>16</td><td><strong>Tả Hạ Thế Độc Lập</strong></td><td>Left Lower Form and Stand on One Leg</td><td>Hạ tấn sát đất, vươn người đứng trên một chân (Kim Kê Độc Lập)</td></tr>
+            <tr><td>17</td><td><strong>Hữu Hạ Thế Độc Lập</strong></td><td>Right Lower Form and Stand on One Leg</td><td>Hạ tấn bên phải, Kim Kê Độc Lập bên phải</td></tr>
+            <tr><td>18</td><td><strong>Tả Hữu Ngọc Nữ Xuyên Thoa</strong></td><td>Fair Lady Works the Shuttles</td><td>Đưa thoi dệt lụa bốn phương</td></tr>
+            <tr><td>19</td><td><strong>Hải Đề Châm</strong></td><td>Needle at Sea Bottom</td><td>Chọc mũi tay thẳng xuống đất mò kim đáy biển</td></tr>
+            <tr><td>20</td><td><strong>Thiểm Thông Bối</strong></td><td>Fan Through the Back</td><td>Vung chưởng mở rộng như quạt xòe sau lưng</td></tr>
+            <tr><td>21</td><td><strong>Chuyển Thân Ban Lan Chùy</strong></td><td>Turn Body, Deflect, Parry, and Punch</td><td>Xoay người gạt đòn, mở đường và đấm thẳng</td></tr>
+            <tr><td>22</td><td><strong>Như Phong Tự Bế</strong></td><td>Apparent Closing</td><td>Khép hai tay thu kình rồi đẩy kép về trước</td></tr>
+            <tr><td>23</td><td><strong>Thập Tự Thủ</strong></td><td>Cross Hands</td><td>Bắt chéo hai tay trước ngực cân bằng âm dương</td></tr>
+            <tr><td>24</td><td><strong>Thu Thế</strong></td><td>Closing Form</td><td>Hạ hai tay xuống hai bên đùi, quy khí về Đan Điền</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PHẦN 5 -->
+    <section id="chuoi-48-thuc">
+      <h2>5. Chuỗi 48 Thức Hỗn Hợp & Biến Hóa</h2>
+
+      <p>Bài 48 thức nâng tầm người tập lên mức độ nghệ thuật toàn diện. Điểm đặc sắc nhất là sự xuất hiện của các đòn đá xoay gót, các thế phát kình bộc phát của Trần Gia (Fajin) xen kẽ những đoạn lượn sóng mềm mại của Dương gia và Ngô gia.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-simplified-tai-chi/simplified_p025_01.jpeg" alt="Động tác chuyển tiếp trong bài quyền 48 thức">
+        <figcaption>Hình 4: Động tác xoay người chuyển tấn linh hoạt trong chuỗi 48 thức nâng cao.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 6 -->
+    <section id="ung-dung-tu-ve">
+      <h2>6. Ứng Dụng Tự Vệ & Phát Kình Thực Chiến</h2>
+
+      <p>TS. Dương Tuấn Mẫn và Đại sư Lương Thủ Dũ nhấn mạnh: <em>&ldquo;Học quyền mà không hiểu ứng dụng tự vệ cũng giống như học bắn cung mà không có mũi tên&rdquo;</em>. Dưới đây là phân tích các ứng dụng điển hình:</p>
+
+      <div class="styled-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Thế Quyền</th>
+              <th>Tình Huống Đối Kháng</th>
+              <th>Hành Động Tự Vệ & Triệt Hạ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Lâu Tất Ảo Bộ</strong></td>
+              <td>Đối thủ tung cú đấm thẳng vào ngực hoặc đá vào hạ bộ.</td>
+              <td>Tay trước gạt nhẹ đòn đánh sang một bên đầu gối (Dẫn tiến lạc không), đồng thời bước lướt vào áp sát, phóng chưởng thẳng vào chấn thủy hoặc mạng sườn đối thủ.</td>
+            </tr>
+            <tr>
+              <td><strong>Đơn Tiên</strong></td>
+              <td>Đối thủ túm lấy cổ áo hoặc cổ tay của bạn.</td>
+              <td>Dùng điếu thủ khóa chặt cổ tay đối phương, xoay hông bẻ gập khớp cổ tay đối thủ và dùng cạnh cẳng tay kia đánh bật vào ngực đối phương.</td>
+            </tr>
+            <tr>
+              <td><strong>Thủ Huy Tỳ Bà</strong></td>
+              <td>Đối thủ lao vào định ôm vật hoặc tung đòn đấm móc.</td>
+              <td>Hai tay kẹp chặt khớp khuỷu tay đối thủ theo đòn bẻ khớp (Cầm Nã / Chin Na), khiến đối thủ lập tức mất thăng bằng và quỳ gối chịu trói.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/yang-simplified-tai-chi/simplified_p026_01.jpeg" alt="Ứng dụng đối kháng tự vệ cận chiến">
+        <figcaption>Hình 5: Ứng dụng khóa bẻ khớp (Cầm Nã) và đánh bật đối thủ trong đòn thế Thái Cực Quyền.</figcaption>
+      </div>
+    </section>
+
+    <!-- PHẦN 7 -->
+    <section id="lo-trinh-luyen-tap">
+      <h2>7. Lộ Trình Rèn Luyện Cho Mọi Trình Độ</h2>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-graduation-cap"></i> 3 Giai Đoạn Huấn Luyện Chuẩn Mực:</h4>
+        <ol>
+          <li><strong>Giai đoạn 1 (Thuộc hình thức & Bộ vị):</strong> Tập từng thế đơn lẻ, chú trọng đầu gối không vượt quá mũi chân, lưng thẳng, động tác to rộng rõ ràng (Đại biên).</li>
+          <li><strong>Giai đoạn 2 (Liên kết khí tức & Buông lỏng):</strong> Nối liền 24 thức thành một dòng chảy liên tục không ngừng nghỉ; hít thở tự nhiên đồng nhịp với động tác mở/đóng.</li>
+          <li><strong>Giai đoạn 3 (Nội ý dẫn kình):</strong> Động tác thu nhỏ dần (Tiểu biên), cảm nhận lực Bằng Kình bao bọc toàn thân và thấu suốt mục đích tự vệ của từng phân đoạn cử động.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 -->
+    <section id="loi-ket-dong-tac-gia">
+      <h2>8. Lời Kết Của Các Đại Sư</h2>
+
+      <div class="callout">
+        <p><em>&ldquo;Thái Cực Quyền Giản Hóa không phải là sự hạ thấp tiêu chuẩn, mà là nhịp cầu tuyệt diệu giúp hàng triệu người trên trái đất chạm tay vào kho báu văn hóa võ học nội gia nghìn năm. Hãy tập luyện bằng sự tĩnh lặng và niềm say mê thuần khiết.&rdquo;</em> &mdash; <strong>TS. Dương Tuấn Mẫn & Đại sư Lương Thủ Dũ</strong></p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/yang_jwing_ming_tai_chi_qigong_vi.html"><i class="fa-solid fa-arrow-left"></i> Đọc Trước: Khí Công Thái Cực Toàn Thư</a>
+        <a href="/vi/books/yang_jwing_ming_hsing_yi_chuan_vi.html">Đọc Tiếp: Hình Ý Quyền Toàn Thư <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
