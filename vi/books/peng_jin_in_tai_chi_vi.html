@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B?ng K?nh Trong Th?i C?c Quy?n (Peng Jin in Tai Chi) ? B?n D?ch Vi?t Ng? Chuy?n S?u</title>
+<meta name="description" content="B?n d?ch Vi?t ng? t??ng t?c t?c ph?m Peng Jin in Tai Chi - Gi?i m? k?nh l?c ??n h?i h?nh c?u, nguy?n l? ph?ng t?ng v? 8 c?a k?nh ph?p Th?i C?c.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 24px;
+  font-size: 0.85rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 48px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.qa-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.qa-question {
+  padding: 16px 20px;
+  font-weight: 600;
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qa-answer {
+  padding: 18px 20px;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.chapter-nav a:hover {
+  background: var(--border);
+}
+
+@media (max-width: 900px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Th? Vi?n Tinh Hoa</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Th? Vi?n S?ch</a>
+    <button class="btn-control" id="font-down" title="Gi?m c? ch?">A-</button>
+    <button class="btn-control" id="font-up" title="T?ng c? ch?">A+</button>
+    <button class="btn-control" id="theme-toggle" title="??i giao di?n T?i/S?ng"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <aside class="book-sidebar">
+    <div class="toc-title">M?c L?c S?ch</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#chuong-1" class="active">1. B?ng K?nh L? G?? (Peng Jin)</a></li>
+        <li><a href="#chuong-2">2. Nguy?n L? T?nh T?i & Tr?c C? Th?</a></li>
+        <li><a href="#chuong-2-1" class="sub-item">&bull; ??nh v? Kh?p H?ng (H?ng/Kua)</a></li>
+        <li><a href="#chuong-2-2" class="sub-item">&bull; L?ng D??i & C?t S?ng</a></li>
+        <li><a href="#chuong-2-3" class="sub-item">&bull; Th? L?ng Kh?p Vai</a></li>
+        <li><a href="#chuong-3">3. Luy?n Tr?m Trang & Tri?n Ty K?nh</a></li>
+        <li><a href="#chuong-4">4. B?t Qu?i & T? ??i K?nh Ph?p</a></li>
+        <li><a href="#chuong-4-1" class="sub-item">&bull; B?ng (Ward Off)</a></li>
+        <li><a href="#chuong-4-2" class="sub-item">&bull; L? (Roll Back)</a></li>
+        <li><a href="#chuong-4-3" class="sub-item">&bull; T? (Squeeze Press)</a></li>
+        <li><a href="#chuong-4-4" class="sub-item">&bull; ?n (Push Down)</a></li>
+        <li><a href="#chuong-5">5. Ph?ng T?ng (Fang Song) & C?n M?c</a></li>
+        <li><a href="#chuong-6">6. Th?n B? ??n Ho?ng K?nh (H?i - ??p)</a></li>
+        <li><a href="#chuong-7">7. L?i K?t & Ph??ng Ph?p R?n Luy?n</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">N?i Gia Quy?n H?c &middot; B?n To?n D?ch Tinh Hoa</span>
+      <h1>B?ng K?nh Trong Th?i C?c Quy?n</h1>
+      <div class="subtitle">Peng Jin in Tai Chi &mdash; Gi?i M? N?i L?c ??n H?i H?nh C?u & Ngh? Thu?t Ph?ng T?ng ??nh Cao</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-pen-nib"></i> Tuy?n t?p N?i K?nh Kinh ?i?n</span>
+        <span><i class="fa-solid fa-language"></i> B?n d?ch: TaichiNOW Editorial</span>
+        <span><i class="fa-solid fa-file-lines"></i> 47 trang PDF &middot; 7 Ch??ng</span>
+      </div>
+    </div>
+
+    <!-- CH??NG 1 -->
+    <section id="chuong-1">
+      <h2>Ch??ng 1: B?n Ch?t C?a B?ng K?nh (What is Peng Jin?)</h2>
+      
+      <p>Trong t?t c? c?c phong c?ch Th?i C?c Quy?n (Tr?n, D??ng, V?, Ng?, T?n), <strong>B?ng K?nh (?? - Peng Jin)</strong> ???c t?n vinh l? <em>K?nh L?c M?</em>, l? n?n t?ng s?ng c?n chi ph?i to?n b? k? thu?t c?a quy?n ph?p n?i gia. Thi?u B?ng K?nh, c?c ??ng t?c Th?i C?c Quy?n ch? c?n l? nh?ng v? ?i?u r?ng tu?ch, ho?n to?n m?t ?i kh? n?ng chuy?n h?a l?c v? ph?t k?nh t? v?.</p>
+
+      <div class="callout chinese-quote">
+        <span class="cjk-text">????????????????????????</span>
+        <strong>L?i b?n c?a C? Nh?n:</strong> <em>"B?ng k?nh gi?i ngh?a ra sao? T?a nh? n??c n?ng ?? thuy?n tr?i. Tr??c ti?n ??nh ??u ph?i nh? treo, ? th?c gi? B?ng kh?ng ???c m? h? n?a v?i."</em>
+      </div>
+
+      <p>B?ng K?nh kh?ng ph?i l? l?c g?ng c?ng c?a c? b?p th?ng th??ng. Khi c? B?ng K?nh, c? th? b?n t?o ra m?t <strong>tr??ng l?c c?ng ??n h?i 3 chi?u (Omnidirectional Expansion)</strong>, t?a nh? m?t qu? b?ng cao su b?m c?ng kh?: b? m?t ti?p x?c m?m m?i, bi?n h?a linh ho?t theo ngo?i l?c, nh?ng b?n trong ch?a ??ng m?t ?p su?t ??n h?i kh?ng l? c? th? b?t tung b?t k? k? t?n c?ng n?o.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/peng-jin/peng_jin_p03_01.jpeg" alt="C?u tr?c ??n h?i ?a h??ng c?a B?ng K?nh">
+        <figcaption>H?nh 1.1: Kh?i ni?m tr??ng l?c ??n h?i ?a h??ng (Peng Jin) t?a ??u ra m?i ph?a t? ?an ?i?n.</figcaption>
+      </div>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-check-circle"></i> Ba Tr? C?t H?nh Th?nh B?ng K?nh (The Core Triad)</h4>
+        <p><strong>B?ng K?nh = C?n Ch?nh Tr?c (Alignment) + Bu?ng L?ng (Relaxation / Song) + ? Ni?m H??ng Ngo?i (Expansive Intention)</strong>. Khi ba y?u t? n?y h?a h?p, l?c ?p t? ??i ph??ng s? kh?ng ?? b?p b?n, m? ngay l?p t?c ???c truy?n th?ng xu?ng ??t qua c?u tr?c c? th?, r?i d?i ng??c tr? l?i ??i th?.</p>
+      </div>
+    </section>
+
+    <!-- CH??NG 2 -->
+    <section id="chuong-2">
+      <h2>Ch??ng 2: Nguy?n L? T?nh T?i & C?n Ch?nh Tr?c C? Th? (Neutral Alignment)</h2>
+      
+      <p>?? nu?i d??ng B?ng K?nh, h?c vi?n kh?ng th? b?t ??u b?ng vi?c c? g?ng ph?t l?c, m? ph?i b?t ??u t? tr?ng th?i <strong>T?nh</strong> v? c?n ch?nh ch?nh x?c t?ng kh?p x??ng tr?n c? th?. N?u khung x??ng b? l?ch l?c, c?c nh?m c? s? bu?c ph?i g?ng si?t ?? b? tr?, d?n ??n t?c ngh?n d?ng n?ng l??ng (Kh?) v? tri?t ti?u B?ng K?nh.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/peng-jin/peng_jin_p07_01.jpeg" alt="Tr?c c? th? trung ch?nh Neutral Alignment">
+        <figcaption>H?nh 2.1: Tr?c c? th? trung ch?nh (Neutral Alignment) &mdash; ??nh ??u treo th?ng, x??ng c?t thu v? tr??c, kh? tr?m ?an ?i?n.</figcaption>
+      </div>
+
+      <h3 id="chuong-2-1">1. Kh?p H?ng (H?ng B? / Kua)</h3>
+      <p>Kh?p h?ng l? "tr?m ch? huy" k?t n?i ph?n th?n tr?n v?i hai ch?n. C? nh?n g?i l? <em>Kh? Tr?m ?an ?i?n, L?c H?ng (??)</em>. Kh?p h?ng ph?i m? v? ch?m xu?ng nh? ng?i tr?n m?t chi?c gh? cao v? h?nh. N?u kh?p h?ng b? kh?a c?ng, b?n s? b? m?t th?ng b?ng ngay khi c? l?c t?c ??ng ngang.</p>
+
+      <h3 id="chuong-2-2">2. L?ng D??i & C?t S?ng (Lower Back & Spine)</h3>
+      <p>V?ng th?t l?ng (M?nh M?n - ??) c?n ???c th? l?ng v? h?i ??y nh? ra sau nh?m l?m ph?ng ?? cong qu? m?c c?a ??t s?ng th?t l?ng. ??t s?ng c?ng (x??ng c?t) h? ch?m th?ng xu?ng ??t, gi?p tr?ng t?m c? th? ??m ch?c nh? c?y c? th? b?m s?u r? v?o l?ng ??t.</p>
+
+      <h3 id="chuong-2-3">3. Th? L?ng Hai Vai & Ch? (Tr?m Ki?n Tr?y Ch?u)</h3>
+      <p><em>Tr?m Ki?n Tr?y Ch?u (????)</em>: Hai vai bu?ng l?ng ho?n to?n, kh?ng nh?c l?n; hai khu?u tay lu?n h??ng xu?ng ??t. Khu?u tay kh?ng bao gi? ???c ?p s?t n?ch (lu?n ?? m?t kho?ng tr?ng b?ng n?m tay d??i n?ch, g?i l? <em>H? D?ch - ??</em>), gi?p duy tr? v?ng cung tr?n b?o v? ng?c v? ph?i.</p>
+    </section>
+
+    <!-- CH??NG 3 -->
+    <section id="chuong-3">
+      <h2>Ch??ng 3: Luy?n Tr?m Trang & Tri?n Ty K?nh (Silk-Reeling Power)</h2>
+
+      <p>Ph??ng ph?p luy?n c?ng t?i th??ng ?? r?n ??c B?ng K?nh ch?nh l? <strong>Tr?m Trang (?? - Zhan Zhuang)</strong> k?t h?p c?ng <strong>Tri?n Ty K?nh (??? - Silk-Reeling Energy)</strong> c?a Tr?n Gia Th?i C?c Quy?n.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/peng-jin/peng_jin_p05_01.jpeg" alt="Luy?n th? Tr?m Trang Tr?n Gia">
+        <figcaption>H?nh 3.1: T? th? Tr?m Trang c? b?n &mdash; C?m nh?n c?u tr?c h?nh c?u b?o b?c to?n th?n.</figcaption>
+      </div>
+
+      <p>Khi ??ng Tr?m Trang 20&ndash;30 ph?t m?i ng?y:</p>
+      <ul>
+        <li>H?i th? t? nhi?n ch?m s?u xu?ng b?ng d??i (?an ?i?n).</li>
+        <li>H? c? b?p b? m?t (Phasic Muscles) d?n m?i v? ??u h?ng, nh??ng ch? cho h? th?ng m? li?n k?t g?n m?c (Fascia) v? c? s?u gi? th?ng b?ng (Postural Tonic Muscles) l?m vi?c.</li>
+        <li>C?m gi?c to?n b? c? th? tr? n?n ??c qu?nh, li?n k?t th?nh m?t kh?i th?ng nh?t (<em>Nh?t Ti?t ??ng, B?ch Ti?t Giai ??ng</em>).</li>
+      </ul>
+
+      <div class="callout">
+        <h4><i class="fa-solid fa-water"></i> Nguy?n L? Tri?n Ty (V?n K?nh Nh? K?o S?i T?)</h4>
+        <p>M?i chuy?n ??ng trong Th?i C?c Quy?n ??u l? ???ng xo?n ?c (Spiral), bao g?m <strong>Thu?n Tri?n</strong> (xo?n v?o trong) v? <strong>Ngh?ch Tri?n</strong> (xo?n m? ra ngo?i). L?c xo?n n?y li?n t?c k?ch ho?t B?ng K?nh, bi?n c?nh tay v? th?n m?nh th?nh chi?c m?i khoan ??n h?i, khi?n ??i th? kh?ng th? n?m b?t ho?c t? ?? tr?ng l?c l?n b?n.</p>
+      </div>
+    </section>
+
+    <!-- CH??NG 4 -->
+    <section id="chuong-4">
+      <h2>Ch??ng 4: B?t Qu?i & T? ??i K?nh Ph?p (Peng, Lu, Ji, An)</h2>
+
+      <p>Trong Th?p Tam Th? c?a Th?i C?c Quy?n, T? Ch?nh Ph??ng t??ng ?ng v?i 4 k?nh l?c n?n t?ng nh?t: <strong>B?ng (?), L? (?), T? (?), ?n (?)</strong>. C? 4 k?nh n?y th?c ch?t ??u sinh ra t? m?t g?c: <em>B?ng K?nh</em> bi?n h?a ? c?c g?c ?? v? ph??ng h??ng kh?c nhau.</p>
+
+      <div class="styled-table">
+        <thead>
+          <tr>
+            <th>K?nh Ph?p</th>
+            <th>Ch? H?n & Qu?</th>
+            <th>Ph??ng H??ng K?nh</th>
+            <th>? Ngh?a C? H?c & Chi?n Thu?t</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>B?ng (Ward Off)</strong></td>
+            <td>? &middot; Qu? C?n (?)</td>
+            <td>N?ng l?n & M? r?ng ra ngo?i</td>
+            <td>T?o khung b?o v? h?nh c?u ??n h?i, h?a gi?i v? n?ng b?ng tr?ng t?m ??i ph??ng.</td>
+          </tr>
+          <tr>
+            <td><strong>L? (Roll Back)</strong></td>
+            <td>? &middot; Qu? Kh?n (?)</td>
+            <td>Thu v?o & D?n sang b?n h?ng</td>
+            <td>M??n l?c d?n l?c, k?o ??i ph??ng v?o kho?ng kh?ng tr?ng r?ng (<em>D?n Ti?n L?c Kh?ng</em>).</td>
+          </tr>
+          <tr>
+            <td><strong>T? (Squeeze Press)</strong></td>
+            <td>? &middot; Qu? Kh?m (?)</td>
+            <td>?p t?i ph?a tr??c t?p trung</td>
+            <td>Hai tay h?p l?c h?i t? th?nh m?t ?i?m xuy?n ph? ??n h?i v?o trung t?m ??i th?.</td>
+          </tr>
+          <tr>
+            <td><strong>?n (Push Down)</strong></td>
+            <td>? &middot; Qu? Ly (?)</td>
+            <td>Ch?m xu?ng r?i ??y ra xa</td>
+            <td>?n ch?m l?c ??i ph??ng xu?ng ch?n h? r?i ph?ng k?nh gi?i ph?ng ra ngo?i.</td>
+          </tr>
+        </tbody>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/peng-jin/peng_jin_p23_01.jpeg" alt="K? thu?t B?ng Ward Off">
+        <figcaption>H?nh 4.1: T? th? B?ng (Peng) &mdash; Khung tay t?o c?nh cung tr?n ti?p nh?n ngo?i l?c m? kh?ng ch?u bi?n d?ng c?t l?i.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/peng-jin/peng_jin_p24_01.jpeg" alt="K? thu?t T? Squeeze Press">
+        <figcaption>H?nh 4.2: T? th? T? (Ji) &mdash; S? h?p nh?t c?a c?nh tay ngo?i v? tay tr? l?c t?o th? ??t ph?.</figcaption>
+      </div>
+    </section>
+
+    <!-- CH??NG 5 -->
+    <section id="chuong-5">
+      <h2>Ch??ng 5: Ph?ng T?ng (Fang Song) & H? Th?ng C?n M?c (Fascia)</h2>
+
+      <p>M?t trong nh?ng hi?u l?m tai h?i nh?t c?a ng??i m?i h?c l? ??ng nh?t <strong>Ph?ng T?ng (?? - Bu?ng L?ng)</strong> v?i s? r? li?t ?u x?u (Collapsing). N?u c? th? b?n x?p l?p nh? qu? b?ng x? h?i, ??i ph??ng ch? c?n ??y nh? l? b?n ng? nh?o.</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/peng-jin/peng_jin_p30_01.jpeg" alt="Ngh? thu?t Ph?ng T?ng Fang Song">
+        <figcaption>H?nh 5.1: Ph?ng T?ng ??ng ngh?a l? gi?i ph?ng c? b?p nh?ng gi? nguy?n v?n ?? c?ng ??n h?i c?a c?n m?c.</figcaption>
+      </div>
+
+      <p><strong>Ph?ng T?ng ch?n ch?nh (True Song)</strong> bao g?m 4 giai ?o?n ti?n h?a:</p>
+      <ol>
+        <li><strong>Gi?i ph?ng c?ng th?ng v?t l?:</strong> Nh?n di?n v? bu?ng b? nh?ng ch? si?t c? v? th?c ? c?, vai, ng?c v? th?t l?ng.</li>
+        <li><strong>K?o gi?n v? m? r?ng c?c kh?p (N?i kh?p):</strong> Gi?a c?c ??t s?ng v? c?c kh?p x??ng c? c?m gi?c t?ch r?i, c? kh?ng gian th?.</li>
+        <li><strong>K?ch ho?t m?ng l??i C?n M?c (Engaging Fascial Webbing):</strong> Khi c? b?p th? l?ng, to?n b? h? th?ng m? li?n k?t (Fascia) nh? m?t t?m l??i nh?n sinh h?c bao b?c c? th? ???c c?ng ??u. ??y ch?nh l? b?n ch?t sinh h?c hi?n ??i c?a B?ng K?nh!</li>
+        <li><strong>? kh? th?ng su?t:</strong> T?m tr? b?nh th?n, nh?p tim ?n ??nh, c?m nh?n ???c t?ng rung ??ng nh? nh?t c?a ??i ph??ng.</li>
+      </ol>
+    </section>
+
+    <!-- CH??NG 6 -->
+    <section id="chuong-6">
+      <h2>Ch??ng 6: Th?n B? ??n Ho?ng N?i K?nh &ndash; V?n ??p Chuy?n S?u</h2>
+
+      <p>C? nh?n th??ng v? B?ng K?nh l? <em>"Th?n B? ??n Ho?ng K?nh" (???)</em> &mdash; l?c l? xo k? di?u. D??i ??y l? ph?n gi?i ??p th?u ??o c?c th?c m?c l?n nh?t c?a ng??i luy?n quy?n:</p>
+
+      <div class="qa-item">
+        <div class="qa-question">
+          <i class="fa-solid fa-circle-question" style="color:var(--gold);"></i>
+          <span>H?i: L?m sao ph?n bi?t gi?a s?c m?nh c? b?p th?ng th??ng (C??ng l?c) v? B?ng K?nh N?i Gia?</span>
+        </div>
+        <div class="qa-answer">
+          <p><strong>??p:</strong> C??ng l?c th?ng th??ng ??n t? s? co si?t c?a c?c th? c? ri?ng l? (nh? ??u, ng?c, vai). N? c? t?nh c?ng nh?c, c?c b?, d? m?t m?i v? ch?m ch?p khi chuy?n h??ng. Ng??c l?i, <strong>B?ng K?nh</strong> l? l?c to?n th?n (Whole-body unified force) ph?t sinh t? s? ph?i h?p c?a x??ng, g?n, m?ng c? v? s? ch?m ??m c?a tr?ng l??ng c? th? k?t h?p v?i ?. C??ng l?c ??i ??u v?i c??ng l?c th? k? m?nh th?ng k? y?u; c?n B?ng K?nh th? "T? l?ng b?t thi?n c?n" (B?n l?ng b?t ngh?n c?n).</p>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-question">
+          <i class="fa-solid fa-circle-question" style="color:var(--gold);"></i>
+          <span>H?i: C? c?c c?p ?? B?ng K?nh n?o trong qu? tr?nh luy?n t?p?</span>
+        </div>
+        <div class="qa-answer">
+          <p><strong>??p:</strong> C? 3 t?ng b?c c? b?n:</p>
+          <ul>
+            <li><strong>T?ng 1 (H?nh th?c & Khung x??ng):</strong> Duy tr? ???c h?nh d?ng tr?n cung c?a ??ng t?c, c? th? b?t ??u bi?t th? l?ng.</li>
+            <li><strong>T?ng 2 (Kh? huy?t & ??n h?i):</strong> B?t ??u c?m nh?n ???c s? c?ng ph?ng b?n trong c? th? (kh? tr??ng), khi c? l?c t? v?o tay li?n t? ??ng d?n xu?ng ch?n m? kh?ng c?n g?ng g??ng.</li>
+            <li><strong>T?ng 3 (? Kh? H?p Nh?t & Th?n minh):</strong> C? th? nh? m?t kh?i th?y ng?n l?ng ho?c qu? c?u kh? tr?i n?i. Ch?m v?o m?m nh? t? l?a, nh?ng ph?t l?c th? m?nh li?t nh? s?ng th?n ??p v?o b? ??.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-question">
+          <i class="fa-solid fa-circle-question" style="color:var(--gold);"></i>
+          <span>H?i: B?ng K?nh c? gi?i h?n n?o kh?ng? C? ph?i l? b?t kh? chi?n b?i?</span>
+        </div>
+        <div class="qa-answer">
+          <p><strong>??p:</strong> Kh?ng c? k? thu?t n?o l? b?t kh? chi?n b?i. Gi?i h?n l?n nh?t c?a B?ng K?nh xu?t hi?n khi ng??i t?p ??nh m?t s? trung ch?nh (b? k?o l?ch tr?c) ho?c t?m tr? sinh kh?i s? h?i, t?c gi?n. Khi c?m x?c ti?u c?c tr?i d?y, c? b?p l?p t?c co c?ng l?i, v? B?ng K?nh tan bi?n ngay l?p t?c. Do ??, luy?n B?ng K?nh ch?nh l? luy?n <em>??nh L?c c?a T?m</em>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CH??NG 7 -->
+    <section id="chuong-7">
+      <h2>Ch??ng 7: L?i K?t & L? Tr?nh Luy?n C?ng H?ng Ng?y</h2>
+
+      <p>?? x?y d?ng m?t c? th? ng?p tr?n B?ng K?nh, ng??i h?c vi?n kh?ng c?n ph?i c? th? h?nh v?m v?, m? c?n s? <strong>ki?n tr? v? d?ng c?ng ??ng ph??ng ph?p</strong> m?i ng?y.</p>
+
+      <div class="key-takeaway">
+        <h4><i class="fa-solid fa-calendar-check"></i> L?ch Tr?nh Luy?n C?ng ?? Xu?t (30 Ph?t M?i Ng?y):</h4>
+        <ul>
+          <li><strong>05 ph?t ??u:</strong> Kh?i ??ng bu?ng l?ng c?c kh?p (Xoay c? ch?n, ??u g?i, xoay h?ng/kua, th? l?ng vai g?y).</li>
+          <li><strong>15 ph?t gi?a:</strong> ??ng Tr?m Trang (Zhan Zhuang) &mdash; Gi? tr?c trung ch?nh, bu?ng l?ng h?i th? xu?ng ?an ?i?n, h?nh dung qu? c?u B?ng K?nh bao b?c to?n th?n.</li>
+          <li><strong>10 ph?t cu?i:</strong> Luy?n b?i t?p Tri?n Ty K?nh m?t tay v? hai tay (Chen Silk Reeling) &mdash; C?m nh?n lu?ng k?nh xo?n ?c lu?n chuy?n t? g?t ch?n l?n th?t l?ng v? ph?ng ra ??u ng?n tay.</li>
+        </ul>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> V? Th? Vi?n S?ch</a>
+        <a href="/vi/books/cheng_man_ching_tai_chi_vi.html">??c Ti?p: S?ch Tr?nh M?n Thanh <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

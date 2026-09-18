@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C?m Nang Y H?c Harvard V? Th?i C?c Quy?n (The Harvard Medical Guide to Tai Chi) ? B?n D?ch ??y ??</title>
+<meta name="description" content="T?c ph?m khoa h?c y h?c ch?ng c? kinh ?i?n c?a TS. Peter M. Wayne (??i h?c Y khoa Harvard) - 8 Tr? C?t Ch?a L?nh, B?i t?p c?t l?i v? Th? nghi?m l?m s?ng.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --crimson: #991b1b;
+  --crimson-light: #fee2e2;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-gold: #b45309;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --crimson: #ef4444;
+  --crimson-light: #450a0a;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #991b1b, #f59e0b);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--crimson);
+}
+.toc-nav .sub-item {
+  padding-left: 24px;
+  font-size: 0.85rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--crimson-light);
+  color: var(--crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 48px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--crimson);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--crimson);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.harvard-highlight {
+  background: rgba(153, 27, 27, 0.04);
+  border-left-color: #991b1b;
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.ingredient-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--bg-card);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ingredient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.ingredient-card .ing-num {
+  font-weight: 700;
+  color: var(--crimson);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ingredient-card .ing-title {
+  font-size: 1.35rem;
+  font-family: var(--serif);
+  font-weight: 600;
+  margin: 6px 0 10px;
+}
+.ingredient-card .ing-science {
+  background: var(--bg-sidebar);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.chapter-nav a:hover {
+  background: var(--border);
+}
+
+@media (max-width: 900px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Th? Vi?n Tinh Hoa</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Th? Vi?n S?ch</a>
+    <button class="btn-control" id="font-down" title="Gi?m c? ch?">A-</button>
+    <button class="btn-control" id="font-up" title="T?ng c? ch?">A+</button>
+    <button class="btn-control" id="theme-toggle" title="??i giao di?n T?i/S?ng"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <aside class="book-sidebar">
+    <div class="toc-title">C?u Tr?c T?c Ph?m</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#tong-quan" class="active">T?ng Quan: B?c S? K? ??n Th?i C?c Quy?n</a></li>
+        <li><a href="#phan-1">Ph?n I: 8 Th?nh T? D??c T?nh N?i Sinh</a></li>
+        <li><a href="#tru-cot-1" class="sub-item">&bull; Tr? C?t 1: Nh?n Th?c & Ch?nh Ni?m</a></li>
+        <li><a href="#tru-cot-2" class="sub-item">&bull; Tr? C?t 2: C?n Ch?nh Tr?c Khung X??ng</a></li>
+        <li><a href="#tru-cot-3" class="sub-item">&bull; Tr? C?t 3: Bu?ng L?ng Ch? ??ng</a></li>
+        <li><a href="#tru-cot-4" class="sub-item">&bull; Tr? C?t 4: Ch?m R?i & Chuy?n ??ng Li?n T?c</a></li>
+        <li><a href="#tru-cot-5" class="sub-item">&bull; Tr? C?t 5: H?i Th? C? Ho?nh</a></li>
+        <li><a href="#tru-cot-6" class="sub-item">&bull; Tr? C?t 6: ? Ni?m & H?nh T??ng H?a</a></li>
+        <li><a href="#tru-cot-7" class="sub-item">&bull; Tr? C?t 7: N?ng ?? T??ng T?c X? H?i</a></li>
+        <li><a href="#tru-cot-8" class="sub-item">&bull; Tr? C?t 8: Tri?t L? ??o Gia H?a H?p</a></li>
+        <li><a href="#phan-2">Ph?n II: L? Tr?nh 5 ??ng T?c C?t L?i Harvard</a></li>
+        <li><a href="#phan-3">Ph?n III: Y H?c Th?c Ch?ng & Th? Nghi?m L?m S?ng</a></li>
+        <li><a href="#ls-thang-bang" class="sub-item">&bull; Th?ng B?ng & Ph?ng T? Ng?</a></li>
+        <li><a href="#ls-xuong-khop" class="sub-item">&bull; Tho?i H?a Kh?p & Gi?m ?au</a></li>
+        <li><a href="#ls-tim-mach" class="sub-item">&bull; Tim M?ch & Huy?t ?p</a></li>
+        <li><a href="#ls-tam-ly" class="sub-item">&bull; Tr?m C?m, Gi?c Ng? & N?o B?</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Harvard Medical School &middot; Y H?c Ch?ng C? To?n C?u</span>
+      <h1>C?m Nang Y H?c Harvard V? Th?i C?c Quy?n</h1>
+      <div class="subtitle">The Harvard Medical School Guide to Tai Chi &mdash; 12 Tu?n H?i Ph?c Th? L?c, Th?n Tr? T??i Tr? & Tr?i Tim Kh?e M?nh</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-doctor"></i> TS. Peter M. Wayne (??i h?c Y Harvard)</span>
+        <span><i class="fa-solid fa-language"></i> Vi?t d?ch: TaichiNOW</span>
+        <span><i class="fa-solid fa-notes-medical"></i> 349 trang PDF &middot; 3 Ph?n To?n Th?</span>
+      </div>
+    </div>
+
+    <!-- T?NG QUAN -->
+    <section id="tong-quan">
+      <h2>T?ng Quan: Khi B?c S? K? ??n Th?i C?c Quy?n</h2>
+
+      <p>Trong su?t nhi?u th?p k?, y h?c ph??ng T?y coi t?p th? d?c ch? y?u l? ch?y b? n?ng cao nh?p tim ho?c n?ng t? t?ng c? b?p. Tuy nhi?n, m?t cu?c c?ch m?ng y h?c th?m l?ng nh?ng ch?n ??ng ?? di?n ra t?i <strong>Tr??ng Y Harvard (Harvard Medical School)</strong> v? Vi?n Y t? Qu?c gia Hoa K? (NIH): Th?i C?c Quy?n ?? ???c khoa h?c ch?ng minh l? <em>"lo?i d??c ph?m n?i sinh ho?n h?o nh?t"</em> m? con ng??i t?ng s? h?u.</p>
+
+      <div class="callout harvard-highlight">
+        <p><strong>Ti?n s? Peter M. Wayne</strong> &mdash; Gi?m ??c Trung t?m Y h?c T?ch h?p Osher thu?c ??i h?c Y Harvard, ??ng th?i l? m?t v? s? Th?i C?c Quy?n th?m ni?n h?n 35 n?m &mdash; ?? k?t h?p hai th? gi?i: s? nghi?m ng?t c?a c?c th? nghi?m l?m s?ng ??i ch?ng ng?u nhi?n (RCT) v? s? uy?n th?m c?a tri?t l? d??ng sinh ??ng ph??ng.</p>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/harvard-medical-guide/harvard_pdf_p018_01.png" alt="M? h?nh t??ng t?c Th?n-Tr? trong Th?i C?c Quy?n Harvard" style="max-width:560px;">
+        <figcaption>H?nh 1: M? h?nh Y h?c Th? - Tr? (Mind-Body Cross-Talk) k?t n?i m?ng l??i th?n kinh, n?i ti?t v? mi?n d?ch.</figcaption>
+      </div>
+    </section>
+
+    <!-- PH?N I -->
+    <section id="phan-1">
+      <h2>Ph?n I: T?m Th?nh T? D??c T?nh N?i Sinh (The 8 Active Ingredients)</h2>
+
+      <p>Thay v? xem Th?i C?c Quy?n nh? m?t b?i t?p ??n thu?n, Harvard ph?n t?ch m?n quy?n nh? m?t <strong>??n thu?c ?a th?nh ph?n ph?c h?p</strong> bao g?m 8 ho?t ch?t d??c l? n?i t?i b? tr? l?n nhau:</p>
+
+      <div class="ingredient-card" id="tru-cot-1">
+        <div class="ing-num">Tr? C?t 01</div>
+        <div class="ing-title">Nh?n Th?c, Ch?nh Ni?m & S? Ch? T?m (Mindfulness & Focused Attention)</div>
+        <p>Th?i C?c Quy?n l? "Thi?n trong Chuy?n ??ng" (Meditation in Motion). B?n duy tr? s? ch? t?m tr?n v?n v?o t?ng c? ??ng vi t?, c?m nh?n s? ti?p x?c c?a l?ng b?n ch?n v?i m?t ??t, s? l?u chuy?n c?a lu?ng kh? v? nh?p ??p c?a tim.</p>
+        <div class="ing-science">
+          <strong>C? ch? th?n kinh h?c:</strong> Ch?nh ni?m l?m d?u ho?t ??ng qu? m?c c?a H?ch H?nh Nh?n (Amygdala) - trung t?m b?o ??ng s? h?i, gi?p gi?m c?ng th?ng m?n t?nh v? h? ch? s? vi?m c? th?.
+        </div>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-2">
+        <div class="ing-num">Tr? C?t 02</div>
+        <div class="ing-title">C?n Ch?nh Tr?c & T?ch H?p Khung X??ng (Structural Integration & Alignment)</div>
+        <p>C? th? ng??i ???c thi?t k? t?i ?u theo c?u tr?c Tensegrity (C?ng n?n t??ng h?). Khi ??u, vai, c?t s?ng v? h?ng th?ng tr?c, tr?ng l?c tr?i ??t s? n?ng ?? c? th? thay v? ?? n?t c?c ??a ??m.</p>
+        <div class="ing-science">
+          <strong>C? h?c v?n ??ng:</strong> Gi?m t?i 40&ndash;60% ?p l?c n?n l?n ??t s?ng th?t l?ng L4-L5 v? kh?p g?i, ch?m d?t ?au l?ng kinh ni?n.
+        </div>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-3">
+        <div class="ing-num">Tr? C?t 03</div>
+        <div class="ing-title">Bu?ng L?ng Ch? ??ng (Active Relaxation / Sung)</div>
+        <p>Kh?ng ph?i bu?ng xu?i ? r?, m? l? lo?i b? c? ? th?c nh?ng s? co r?t v? ?ch ? c? b?p ??i kh?ng (Antagonist muscles). Khi c? nh? ??u bu?ng l?ng, c? tam ??u v?n h?nh m??t m? g?p ??i.</p>
+        <div class="ing-science">
+          <strong>Sinh l? h?c:</strong> Gi?n n? m?ch m?u ngo?i vi, gi?m s?c c?n tu?n ho?n, gi?p tim b?m m?u d? d?ng h?n m? kh?ng c?n t?ng huy?t ?p.
+        </div>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-4">
+        <div class="ing-num">Tr? C?t 04</div>
+        <div class="ing-title">V?n ??ng Ch?m R?i & Chuy?n ??ng M?m Li?n T?c (Slow, Flowing Motion)</div>
+        <p>Chuy?n ??ng ch?m r?i k?ch ho?t m?ng l??i th? c?m b?n th? (Proprioceptive receptors) trong g?n c? v? d?y ch?ng, cung c?p l??ng th?ng tin kh?ng l? cho ti?u n?o ??nh h?nh l?i th?ng b?ng.</p>
+        <div class="ing-science">
+          <strong>Th?n kinh v?n ??ng:</strong> K?ch th?ch s?n sinh t? b?o th?n kinh m?i (Neuroplasticity) t?i h?i h?i m?, gi?p n?o b? tr? h?a v? t?ng kh? n?ng ph?n x?.
+        </div>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-5">
+        <div class="ing-num">Tr? C?t 05</div>
+        <div class="ing-title">H?i Th? C? Ho?nh T? Nhi?n (Deep, Diaphragmatic Breathing)</div>
+        <p>H?t th? s?u b?ng b?ng d??i, th? ra ch?m r?i v? ?m d?u. C? ho?nh di chuy?n l?n xu?ng nh? m?t p?t-t?ng sinh h?c xoa b?p nh? nh?ng gan, l? l?ch, d? d?y v? ru?t non.</p>
+        <div class="ing-science">
+          <strong>H? th?n kinh t? ch?:</strong> K?ch ho?t d?y th?n kinh ph? v? (Vagus Nerve), ??a to?n b? c? th? v?o tr?ng th?i "Ngh? ng?i v? Ti?u h?a" (Rest and Digest).
+        </div>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-6">
+        <div class="ing-num">Tr? C?t 06</div>
+        <div class="ing-title">? Ni?m & H?nh T??ng H?a T?m Th?c (Visualization & Intention)</div>
+        <p>D?ng ? b?t d?ng l?c. Khi b?n h?nh dung m?nh ?ang "n?ng qu? c?u kh? nh? nh? t?" hay "??ng v?ng ch?i nh? c?y b?ch c? th? ng?n n?m", c?c nh?m c? s? k?ch ho?t c?c xung th?n kinh vi m? t??ng ?ng.</p>
+        <div class="ing-science">
+          <strong>Khoa h?c n?o b?:</strong> N?o b? kh?ng ph?n bi?t ???c ho?n to?n gi?a h?nh ??ng th?c t? v? h?nh dung s?ng ??ng, gi?p ph?c h?i ch?c n?ng sau ??t qu? nhanh g?p 3 l?n.
+        </div>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-7">
+        <div class="ing-num">Tr? C?t 07</div>
+        <div class="ing-title">N?ng ?? T??ng T?c X? H?i (Social Support & Community Connection)</div>
+        <p>T?p luy?n c?ng nhau trong c?ng vi?n hay c?u l?c b? t?o ra tr??ng ??ng ?i?u sinh h?c (Interpersonal synchrony), ph? v? c?m gi?c c? ??n v? tr?m c?m &mdash; k? gi?t ng??i th?m l?ng c?a th? k? 21.</p>
+      </div>
+
+      <div class="ingredient-card" id="tru-cot-8">
+        <div class="ing-num">Tr? C?t 08</div>
+        <div class="ing-title">Tri?t L? ??o Gia H?a H?p (Embodied Daoist Philosophy)</div>
+        <p>Kh?ng ch? l? t?p th? thao, Th?i C?c Quy?n l? tri?t l? s?ng: h?c c?ch nh??ng nh?n ?? d?n d?t, ch?p nh?n s? ??i thay li?n t?c c?a v?n v?t v? c?n b?ng h?i h?a gi?a c?ng vi?c v? ngh? ng?i.</p>
+      </div>
+    </section>
+
+    <!-- PH?N II -->
+    <section id="phan-2">
+      <h2>Ph?n II: L? Tr?nh 5 ??ng T?c C?t L?i C?a ??i H?c Y Harvard</h2>
+
+      <p>TS. Peter Wayne ?? tinh l?c t? kho t?ng h?ng tr?m th? quy?n th?nh <strong>B?i Luy?n 5 ??ng T?c C?t L?i (Harvard Core Routine)</strong>, c? th? th?c hi?n m?i l?c m?i n?i trong 15&ndash;20 ph?t:</p>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/harvard-medical-guide/harvard_pdf_p049_01.png" alt="Kh?i ??ng kh?p vai g?y v? c?t s?ng Harvard">
+        <figcaption>H?nh 2.1: B?i t?p l?m ?m v? m? r?ng c?c kh?p ??t s?ng c? v? th?t l?ng.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/harvard-medical-guide/harvard_pdf_p085_01.png" alt="Th? 1: N?ng Kh? ??t Raising the Power">
+        <figcaption>H?nh 2.2: Th? 1: N?ng Kh? ??t (Raising the Power) &mdash; Hai tay nh? nh?ng n?ng l?n ngang ng?c r?i ch?m xu?ng h? v? ?an ?i?n.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/harvard-medical-guide/harvard_pdf_p099_01.png" alt="Th? 2: ?m C?u Tr?ng Embracing the Moon">
+        <figcaption>H?nh 2.3: Th? 2: ?m C?u Tr?ng (Embracing the Moon) &mdash; Xoay tr?c eo, t?o b?ng ??n h?i c?n b?ng hai b?n c?u n?o.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/harvard-medical-guide/harvard_pdf_p102_01.png" alt="Th? 3: ??y S?ng V? B? Pushing the Waves">
+        <figcaption>H?nh 2.4: Th? 3: ??y S?ng V? B? (Pushing the Waves) &mdash; Chuy?n tr?ng t?m ch?n tr??c - ch?n sau nh? nh?p s?ng bi?n.</figcaption>
+      </div>
+
+      <div class="book-figure">
+        <img src="/assets/images/books/harvard-medical-guide/harvard_pdf_p106_01.png" alt="Th? 4 v? 5: M? R?ng L?ng Ng?c v? Kh? Tr?m ?an ?i?n">
+        <figcaption>H?nh 2.5: Th? 4 & 5: M? R?ng L?ng Ng?c (Opening the Chest) v? Thu Kh? Tr?m ?an ?i?n (Harvesting the Qi).</figcaption>
+      </div>
+    </section>
+
+    <!-- PH?N III -->
+    <section id="phan-3">
+      <h2>Ph?n III: B?ng Ch?ng Y H?c Th?c Ch?ng (The Evidence)</h2>
+
+      <p>T?ng h?p t? h?n 500 c?ng tr?nh nghi?n c?u v? th? nghi?m l?m s?ng ???c b?nh duy?t (peer-reviewed) t?i Harvard, Johns Hopkins, Mayo Clinic v? Oxford:</p>
+
+      <div class="key-takeaway" id="ls-thang-bang">
+        <h4><i class="fa-solid fa-person-walking"></i> 1. Th?ng B?ng & Ph?ng Ch?ng T? Ng? (Gi?m 50% Nguy C?)</h4>
+        <p>Nghi?n c?u c?a T?p ch? Y h?c New England (NEJM): Ng??i cao tu?i t?p Th?i C?c Quy?n gi?m t?i <strong>50% s? ca t? ng? v? 55% ch?n th??ng g?y x??ng</strong>. Kh? n?ng ??nh v? c? th? trong kh?ng gian v? t?c ?? ph?n x? s?a ch?a d?ng ?i t?ng 35% so v?i nh?m t?p d??ng sinh th?ng th??ng.</p>
+      </div>
+
+      <div class="key-takeaway" id="ls-xuong-khop">
+        <h4><i class="fa-solid fa-bone"></i> 2. Tho?i H?a Kh?p & Vi?m Kh?p M?n T?nh</h4>
+        <p>??i h?c Tufts & B?nh vi?n Brigham: B?nh nh?n tho?i h?a kh?p g?i n?ng t?p Th?i C?c Quy?n 2 bu?i/tu?n sau 12 tu?n ghi nh?n m?c ?? gi?m ?au v? c?i thi?n kh? n?ng v?n ??ng t??ng ???ng v?i ph?c ?? v?t l? tr? li?u ti?u chu?n, ??ng th?i gi?m ??ng k? nhu c?u d?ng thu?c gi?m ?au h?i th?n.</p>
+      </div>
+
+      <div class="key-takeaway" id="ls-tim-mach">
+        <h4><i class="fa-solid fa-heart"></i> 3. S?c Kh?e Tim M?ch & H? Huy?t ?p T? Nhi?n</h4>
+        <p>Th? nghi?m t?i Harvard: B?nh nh?n suy tim m?n t?nh (ph?n su?t t?ng m?u gi?m) t?p Th?i C?c Quy?n c?i thi?n qu?ng ???ng ?i b? 6 ph?t th?m 45 m?t, c?i thi?n ??ng k? ch? s? ch?t l??ng cu?c s?ng (MLHFQ) v? ?n ??nh huy?t ?p t?m thu trung b?nh gi?m 7&ndash;10 mmHg.</p>
+      </div>
+
+      <div class="key-takeaway" id="ls-tam-ly">
+        <h4><i class="fa-solid fa-brain"></i> 4. Tr? Nh?, Gi?c Ng? & Tr?m C?m Tu?i Gi?</h4>
+        <p>Ch?p c?ng h??ng t? ch?c n?ng (fMRI) cho th?y sau 6 th?ng t?p Th?i C?c Quy?n, th? t?ch v? n?o tr??c tr?n v? h?i h?i m? (trung t?m l?u gi? tr? nh? d?i h?n) gia t?ng r? r?t, c?i thi?n ch?c n?ng nh?n th?c ?i?u h?nh v? ng?n ng?a s? ti?n tri?n t? Suy gi?m Nh?n th?c Nh? (MCI) sang Sa s?t tr? tu? (Alzheimer).</p>
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/cheng_man_ching_tai_chi_vi.html"><i class="fa-solid fa-arrow-left"></i> ??c L?i: S?ch Tr?nh M?n Thanh</a>
+        <a href="/vi/books/"><i class="fa-solid fa-book"></i> Th? Vi?n S?ch Ti?ng Vi?t</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
