@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thái Cực Quyền Thể Dụng Toàn Thư (太極拳體用全書) - Tông Sư Dương Trừng Phủ & Louis Swaim | Tai Chi NOW</title>
+    <meta name="description" content="Bản dịch tiếng Việt trọn vẹn kiệt tác kinh điển Thái Cực Quyền Thể Dụng Toàn Thư (1934) của Đại tông sư Dương Trừng Phủ (Yang Chengfu) và Louis Swaim. Toàn bộ hình ảnh gốc, 10 yếu quyết và 85 chiêu thức định chuẩn.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fdfbf7;
+            --bg-secondary: #f4eee1;
+            --text-primary: #2b2520;
+            --text-secondary: #5c5346;
+            --accent: #8b2500;
+            --accent-light: #c0392b;
+            --accent-gold: #c59b27;
+            --sidebar-bg: #1f1d1a;
+            --sidebar-text: #ded8cb;
+            --border-color: #e2d7c3;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --header-height: 64px;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-title: 'Cinzel', serif;
+        }
+
+        body.dark-mode {
+            --bg-primary: #141312;
+            --bg-secondary: #1d1b18;
+            --text-primary: #e6dfd3;
+            --text-secondary: #a89f91;
+            --border-color: #332f2a;
+            --card-bg: #1c1a17;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body.sepia-mode {
+            --bg-primary: #f5ecd7;
+            --bg-secondary: #e8dcbf;
+            --text-primary: #3d3222;
+            --text-secondary: #6e5d44;
+            --border-color: #d8c7a5;
+            --card-bg: #faf3e3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.85;
+            font-size: 17px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Top Progress Bar */
+        #read-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            height: var(--header-height);
+            background: rgba(31, 29, 26, 0.95);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-back {
+            color: #ded8cb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-gold);
+        }
+
+        .header-title {
+            font-family: var(--font-title);
+            font-size: 16px;
+            color: #f1ebd9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 450px;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ctrl-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ded8cb;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* Sidebar TOC */
+        aside.toc-sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            padding: 24px 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .toc-title {
+            font-family: var(--font-title);
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc-item a {
+            color: #b5ada0;
+            text-decoration: none;
+            font-size: 13.5px;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            line-height: 1.4;
+            transition: all 0.2s;
+        }
+
+        .toc-item a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            padding-left: 16px;
+        }
+
+        .toc-item.active a {
+            background: rgba(139, 37, 0, 0.4);
+            color: #fff;
+            border-left: 3px solid var(--accent-gold);
+            font-weight: 500;
+        }
+
+        /* Main Reader Content */
+        main.reader-content {
+            flex: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 36px 96px;
+        }
+
+        /* Hero Banner */
+        .book-hero {
+            text-align: center;
+            padding-bottom: 40px;
+            margin-bottom: 48px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .book-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .book-hero h1 {
+            font-family: var(--font-title);
+            font-size: 36px;
+            line-height: 1.25;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .book-hero .subtitle {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .meta-strip {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Typography & Content Sections */
+        .chapter-section {
+            margin-bottom: 64px;
+            scroll-margin-top: 80px;
+        }
+
+        .chapter-heading {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            color: var(--accent);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chapter-heading i {
+            color: var(--accent-gold);
+            font-size: 22px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .lead-p {
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        /* Callout Quotes */
+        .quote-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--shadow);
+            font-style: italic;
+            font-family: var(--font-serif);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            display: block;
+            margin-top: 8px;
+            font-size: 14px;
+            font-family: var(--font-sans);
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+            text-align: right;
+        }
+
+        /* Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+            margin: 28px 0;
+        }
+
+        .principle-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .principle-card h4 {
+            font-family: var(--font-title);
+            color: var(--accent);
+            font-size: 17px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .principle-num {
+            background: var(--accent);
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Image Display Cards */
+        .book-img-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 32px 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .book-img-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .img-caption {
+            margin-top: 12px;
+            font-size: 14.5px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .img-caption strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        /* Dual Spread Gallery */
+        .spread-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 28px 0;
+        }
+
+        @media (max-width: 768px) {
+            .spread-gallery {
+                grid-template-columns: 1fr;
+            }
+            aside.toc-sidebar {
+                position: fixed;
+                left: -320px;
+                top: var(--header-height);
+                z-index: 1001;
+            }
+            aside.toc-sidebar.open {
+                transform: translateX(320px);
+            }
+            .header-title {
+                display: none;
+            }
+            main.reader-content {
+                padding: 24px 16px 64px;
+            }
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Callout Note */
+        .note-box {
+            background: rgba(197, 155, 39, 0.12);
+            border-left: 4px solid var(--accent-gold);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+            font-size: 15px;
+        }
+
+        .note-box strong {
+            color: var(--accent);
+        }
+
+        /* Posture Sequence List */
+        .posture-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+        }
+
+        .posture-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        .posture-name {
+            font-family: var(--font-title);
+            font-size: 17px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .posture-hanzi {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer.reader-footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="read-progress"></div>
+
+    <header>
+        <div class="header-left">
+            <button class="ctrl-btn" id="toggle-sidebar" title="Mục Lục"><i class="fas fa-bars"></i></button>
+            <a href="/vi/books/" class="nav-back"><i class="fas fa-arrow-left"></i> Thư Viện Sách</a>
+            <div class="header-title">Thái Cực Quyền Thể Dụng Toàn Thư (太極拳體用全書)</div>
+        </div>
+        <div class="header-controls">
+            <button class="ctrl-btn" id="btn-font-dec" title="Giảm cỡ chữ"><i class="fas fa-minus"></i> A</button>
+            <button class="ctrl-btn" id="btn-font-inc" title="Tăng cỡ chữ"><i class="fas fa-plus"></i> A</button>
+            <button class="ctrl-btn" id="btn-theme" title="Chế độ đọc"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <div class="layout-container">
+        <!-- Sidebar TOC -->
+        <aside class="toc-sidebar" id="toc-sidebar">
+            <div class="toc-title">
+                <span>MỤC LỤC TÁC PHẨM</span>
+                <i class="fas fa-yin-yang"></i>
+            </div>
+            <ul class="toc-list">
+                <li class="toc-item active"><a href="#gioi-thieu">Tổng Quan & Ý Nghĩa Kinh Điển</a></li>
+                <li class="toc-item"><a href="#chuong-1">Chương 1: Bút Tích Danh Nhân & Đề Từ</a></li>
+                <li class="toc-item"><a href="#chuong-2">Chương 2: Chân Dung & Lời Tựa Dương Trừng Phủ</a></li>
+                <li class="toc-item"><a href="#chuong-3">Chương 3: Thái Cực Quyền Thập Yếu (10 Cốt Yếu)</a></li>
+                <li class="toc-item"><a href="#chuong-4">Chương 4: Quyền Phổ Đoạn I - Khởi Thức & Định Hình</a></li>
+                <li class="toc-item"><a href="#chuong-5">Chương 5: Quyền Phổ Đoạn II - Cương Nhu Biến Hóa</a></li>
+                <li class="toc-item"><a href="#chuong-6">Chương 6: Quyền Phổ Đoạn III - Phát Kình Tứ Phương</a></li>
+                <li class="toc-item"><a href="#chuong-7">Chương 7: Thể Dụng Bí Pháp & Thôi Thủ Tứ Chánh</a></li>
+                <li class="toc-item"><a href="#chuong-8">Chương 8: Cổ Điển Thái Cực Quyền Luận</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="reader-content" id="reader-content">
+            
+            <section class="book-hero" id="gioi-thieu">
+                <span class="book-badge">Bản Dịch Tiếng Việt Chuẩn Xác 1934 - 2026</span>
+                <h1>THÁI CỰC QUYỀN THỂ DỤNG TOÀN THƯ</h1>
+                <div class="subtitle">Taijiquan Tiyong Quanshu (太極拳體用全書) - The Essence and Applications of Taijiquan</div>
+                <div class="meta-strip">
+                    <span class="meta-item"><i class="fas fa-user-ninja"></i> <strong>Tác giả:</strong> Tông Sư Dương Trừng Phủ (Yang Chengfu)</span>
+                    <span class="meta-item"><i class="fas fa-language"></i> <strong>Khảo cứu & Dịch thuật:</strong> Louis Swaim & Tai Chi NOW</span>
+                    <span class="meta-item"><i class="fas fa-book-open"></i> <strong>Xuất bản nguyên bản:</strong> Thượng Hải (1934)</span>
+                    <span class="meta-item"><i class="fas fa-images"></i> <strong>79 Trang Bản Ấn Khắc Gốc</strong></span>
+                </div>
+            </section>
+
+            <div class="quote-box">
+                "Thái Cực Quyền là đạo tự nhiên, không chuộng cương kình vụng dại, lấy hư tĩnh làm gốc, nhu hóa làm dụng, thể dụng nhất như. Khi cử động thì toàn thân đều phải nhẹ nhàng linh hoạt, ý khí quán thông, không được có chỗ nào đứt đoạn."
+                <span class="quote-author">— Đại Tông Sư Dương Trừng Phủ (楊澄甫, 1883 - 1936)</span>
+            </div>
+
+            <!-- CHUONG 1 -->
+            <section class="chapter-section" id="chuong-1">
+                <h2 class="chapter-heading"><i class="fas fa-scroll"></i> Chương 1: Bút Tích Danh Nhân & Đề Từ Lịch Sử (1934)</h2>
+                <p class="lead-p">
+                    Vào mùa xuân năm 1934, cuốn sách <em>Thái Cực Quyền Thể Dụng Toàn Thư</em> (太極拳體用全書) chính thức được khắc bản phát hành tại Thượng Hải. Đây là ấn phẩm mang tính bước ngoặt vĩ đại nhất trong lịch sử võ học Trung Hoa thế kỷ 20, đánh dấu thời khắc môn quyền bí truyền của Hoàng cung Bắc Kinh và gia tộc họ Dương được công khai hóa và định chuẩn hình thái mẫu mực cho toàn thế giới.
+                </p>
+                <p>
+                    Để tôn vinh công lao chấn hưng quốc võ của Tông sư Dương Trừng Phủ, hàng loạt chính khách kiệt xuất, nhà tư tưởng và danh sĩ đương thời đã thủ bút viết lời đề từ trân trọng đặt ở các trang đầu sách.
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p001_img00.png" alt="Bìa sách gốc Thái Cực Quyền Thể Dụng Toàn Thư">
+                    <div class="img-caption"><strong>Hình 1:</strong> Bìa gốc bản in thạch bản Thượng Hải năm 1934 với đại tự thư pháp "Thái Cực Quyền Thể Dụng Toàn Thư" do danh sĩ thư pháp đương thời phụng đề.</div>
+                </div>
+
+                <div class="spread-gallery">
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p002_img00.png" alt="Đề từ danh nhân lịch sử">
+                        <div class="img-caption"><strong>Hình 2:</strong> Bút tích đề từ của nguyên thủ Tưởng Giới Thạch ca ngợi tinh hoa quyền pháp dân tộc: "Dưỡng Khí Tinh Thần, Cường Thân Kiện Quốc".</div>
+                    </div>
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p003_img00.png" alt="Đề từ Thái Nguyên Bồi">
+                        <div class="img-caption"><strong>Hình 3:</strong> Bút từ của Viện trưởng Viện Nghiên cứu Trung ương Thái Nguyên Bồi (Cai Yuanpei) luận giải về tính triết học và đạo dưỡng sinh tối thượng trong Thái Cực Quyền.</div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>Ý nghĩa lịch sử của bản khắc 1934:</strong> Trước năm 1934, Thái Cực Quyền chủ yếu truyền miệng và giữ kín bằng các bài phú thơ bí truyền. Cuốn sách này là tài liệu đầu tiên hệ thống hóa hoàn chỉnh khái niệm <em>"Thể Dụng Nhất Như"</em> — Thể là phương pháp luyện hình rèn khí nội tại, Dụng là kỹ pháp hóa giải, triệt triệt cương nhu khi lâm địch.
+                </div>
+            </section>
+
+            <!-- CHUONG 2 -->
+            <section class="chapter-section" id="chuong-2">
+                <h2 class="chapter-heading"><i class="fas fa-user-shield"></i> Chương 2: Chân Dung Ba Đời Tông Sư & Lời Tựa Của Dương Trừng Phủ</h2>
+                <p>
+                    Dương gia Thái Cực Quyền trải qua ba đời trui rèn để đạt đến đỉnh cao: Sơ tổ <strong>Dương Lộ Thiền</strong> (Yang Luchan - "Dương Vô Địch") đưa quyền pháp vào vương phủ; Nhị tổ <strong>Dương Kiện Hầu</strong> (Yang Jianhou) dung hợp trung khung và nhu kình; và Tam tổ <strong>Dương Trừng Phủ</strong> (Yang Chengfu) đúc kết thành Đại giá (Large Frame) thư triển, trầm hùng, đại khí bàng bạc.
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p011_img00.png" alt="Chân dung Dương Lộ Thiền và Dương Kiện Hầu">
+                    <div class="img-caption"><strong>Hình 4:</strong> Di ảnh trang trọng của Sơ tổ Dương Lộ Thiền (bên phải) và Nhị tổ Dương Kiện Hầu (bên trái) ngự tại phần đầu ấn bản năm 1934.</div>
+                </div>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p012_img00.png" alt="Chân dung Đại Tông Sư Dương Trừng Phủ">
+                    <div class="img-caption"><strong>Hình 5:</strong> Di ảnh Đại Tông Sư Dương Trừng Phủ (1883 - 1936) trong trang phục truyền thống lúc đỉnh cao quyền lực võ học tại Nam Kinh và Thượng Hải.</div>
+                </div>
+
+                <p>
+                    Trong Lời Tựa do chính Dương sư phụ chỉ đạo đệ tử tài danh là <strong>Trịnh Mạn Thanh</strong> (Zheng Manqing) chấp bút, người nhấn mạnh:
+                </p>
+                <div class="quote-box">
+                    "Tổ tiên ta truyền lại quyền này, không chỉ vì mục đích tranh thắng thua nơi chiến trận, mà chí nguyện tối thượng là để cứu rỗi thể chất suy nhược của đồng bào, đẩy lui tật bệnh, kéo dài tuổi thọ, hướng tới sự an hòa thanh tịnh của tâm thần. Kẻ tập quyền phải hiểu rõ lý lẽ Thể - Dụng, nếu chỉ luyện bề ngoài mà không hiểu công dụng thì như gỗ mục; nếu chỉ chuộng tranh đấu mà quên dưỡng khí thì tổn hại nội tạng."
+                    <span class="quote-author">— Trích Lời Tựa "Thái Cực Quyền Thể Dụng Toàn Thư" (1934)</span>
+                </div>
+            </section>
+
+            <!-- CHUONG 3 -->
+            <section class="chapter-section" id="chuong-3">
+                <h2 class="chapter-heading"><i class="fas fa-list-ol"></i> Chương 3: Thái Cực Quyền Thập Yếu (Mười Điều Cốt Yếu Bí Truyền)</h2>
+                <p class="lead-p">
+                    Đây là văn bản kinh điển bậc nhất của Dương phái, do chính Tông sư Dương Trừng Phủ khẩu thụ và đại đệ tử <strong>Trần Vi Minh</strong> (Chen Weiming) ghi chép lại. Mười điều này là kim chỉ nam bất di bất dịch cho bất kỳ ai muốn bước vào ngưỡng cửa nội gia quyền.
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p021_img00.png" alt="Trang in nguyên bản Thái Cực Quyền Thập Yếu">
+                    <div class="img-caption"><strong>Hình 6:</strong> Bản khắc cổ trang 21-22 ghi chép trọn vẹn văn bản "Thái Cực Quyền Thập Yếu" của Tông sư Dương Trừng Phủ.</div>
+                </div>
+
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h4><span class="principle-num">1</span> Hư Linh Đảnh Kình (虛靈頂勁)</h4>
+                        <p>Đầu cổ giữ ngay ngắn, thần ý hướng lên đỉnh huyệt Bách Hội như có sợi tơ treo nhẹ. Không được dùng sức cứng ngắc, nếu gồng cứng thì huyết khí khó lưu thông, thần thái bế tắc.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">2</span> Hàm Hung Bạt Bối (含胸拔背)</h4>
+                        <p>Hàm hung là ngực thả lỏng nhẹ nhàng thu vào trong để khí chìm xuống Đan Điền. Bạt bối là kéo giãn vùng lưng trên giúp kình lực dán chặt vào cột sống, phát lực có căn cơ.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">3</span> Tùng Yêu (鬆腰)</h4>
+                        <p>Eo là trục chúa tể của toàn thân (Yêu vi trục tọa). Tùng được eo thì hai chân mới có lực trụ, hạ bàn vững chắc, chuyển hoán hư thực mới linh hoạt nhẹ nhàng.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">4</span> Phân Hư Thực (分虛實)</h4>
+                        <p>Võ học Thái Cực lấy phân biệt hư thực làm điều tối thượng. Trọng lượng dồn vào chân phải thì chân phải là thực, chân trái là hư; chuyển hoán không trì trệ mới không bị vướng tật "song trọng".</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">5</span> Trầm Kiên Trụy Trửu (沉肩墜肘)</h4>
+                        <p>Hai vai buông lỏng chìm xuống hoàn toàn; hai cùi chỏ buông rủ hướng địa. Nếu vai nhô cùi chỏ vểnh thì kình lực đứt đoạn tại khớp, khí bốc ngược lên ngực.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">6</span> Dụng Ý Bất Dụng Lực (用意不用力)</h4>
+                        <p>Kinh dạy: "Hoàn toàn dùng ý, không dùng sức vụng thô thiển". Ý dẫn khí, khí dẫn hình. Dùng lực gân cốt thô lậu thì kinh lạc bế tắc; dùng ý thanh tịnh thì nội kình quán thông khắp châu thân.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">7</span> Thượng Hạ Tương Tùy (上下相隨)</h4>
+                        <p>Lực phát khởi từ rễ bàn chân, thông qua cẳng chân, chúa tể ở eo, hiển hiện ra ngón tay. Chân chuyển, eo xoay, tay theo; một chỗ động thì toàn thân trăm đốt xương cùng động nhịp nhàng.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">8</span> Nội Ngoại Tương Hợp (內外相合)</h4>
+                        <p>Tâm và Thần làm chủ tể, hình hài là tôi tớ. Thần tĩnh thì động tác an nhàn; đóng mở của hình thể (ngoại) phải tương ứng mật thiết với hô hấp và sự đóng mở của tâm ý (nội).</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">9</span> Tương Liên Bất Đoán (相連不斷)</h4>
+                        <p>Động tác như sóng trào miên man, như mây trôi nước chảy. Kình dứt nhưng ý không dứt, thức này vừa tròn thì thức sau đã manh nha nối tiếp, tạo thành một thể tuần hoàn vô cùng.</p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h4><span class="principle-num">10</span> Động Trung Cầu Tĩnh (動中求靜)</h4>
+                        <p>Ngoại gia lấy nhảy nhót dùng sức làm hùng tráng, tập xong thở dốc hụt hơi. Nội gia lấy nhu tĩnh chế ngự động loạn; cử động càng chậm rãi định tâm bao nhiêu thì nội khí càng lắng sâu bấy nhiêu.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHUONG 4 -->
+            <section class="chapter-section" id="chuong-4">
+                <h2 class="chapter-heading"><i class="fas fa-running"></i> Chương 4: Quyền Phổ Đoạn I — Khởi Thức & Định Hình Khung Khí</h2>
+                <p>
+                    Đoạn thứ nhất gồm chuỗi chiêu thức kinh điển mở đầu toàn bộ bài quyền 85 thức, thiết lập nền móng cho cấu trúc Đại giá Dương phái: vuông vắn, ngay ngắn, thư thái, khoan thai mà trầm hậu.
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p025_img00.png" alt="Dự Bị Thức và Khởi Thức - Dương Trừng Phủ">
+                    <div class="img-caption"><strong>Hình 7:</strong> Tư thế Dự Bị Thức (Thức 1) và Thái Cực Khởi Thức (Thức 2) do chính Tông sư Dương Trừng Phủ đích thân thị phạm.</div>
+                </div>
+
+                <div class="posture-item">
+                    <div class="posture-header">
+                        <span class="posture-name">1. Thái Cực Khởi Thức (太極起式)</span>
+                        <span class="posture-hanzi">Khởi động thái hư</span>
+                    </div>
+                    <p>Hai chân đứng rộng bằng vai, hai bàn chân song song hướng thẳng về trước. Toàn thân thả lỏng tự nhiên, ngực thu nhẹ, lưng giãn thẳng. Hai cánh tay từ từ nâng lên ngang vai bằng ý dẫn khí, cùi chỏ và cổ tay chìm nhẹ; sau đó từ từ hạ xuống ngang hông như ấn nhẹ lên mặt nước tĩnh.</p>
+                </div>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p026_img00.png" alt="Lãm Tước Vĩ - Bằng kình và Lý kình">
+                    <div class="img-caption"><strong>Hình 8:</strong> Lãm Tước Vĩ (Nắm đuôi chim sẻ) - Hình thế Bằng kình (Ward-off) và Lý kình (Roll-back) giữ trọn trục thân thẳng đứng và vòng cung viên mãn.</div>
+                </div>
+
+                <div class="posture-item">
+                    <div class="posture-header">
+                        <span class="posture-name">2. Lãm Tước Vĩ (攬雀尾) — Tứ Đại Chánh Kình</span>
+                        <span class="posture-hanzi">Bằng, Lý, Tề, Án (掤 履 擠 按)</span>
+                    </div>
+                    <p>
+                        Lãm Tước Vĩ là mẹ đẻ của toàn bộ Thái Cực Quyền, bao gồm bốn đại kình cốt lõi:
+                        <br>• <strong>Bằng (掤):</strong> Kình căng tròn như quả bóng nổi trên mặt nước, nâng đỡ và chắn giữ đòn công của địch mà không bị xẹp vỡ.
+                        <br>• <strong>Lý (履):</strong> Dẫn dắt lực địch vào khoảng không, xoay eo thuận theo hướng tới của đối phương để triệt tiêu phương hướng tấn công.
+                        <br>• <strong>Tề (擠):</strong> Hợp lực hai tay tạo thành điểm tựa ép tới trước khi đối phương vừa lỡ đà.
+                        <br>• <strong>Án (按):</strong> Chìm eo hạ cổ tay, dồn lực toàn thân phát xuất từ gót chân truyền qua lòng bàn tay đẩy đối phương văng xa.
+                    </p>
+                </div>
+
+                <div class="spread-gallery">
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p027_img00.png" alt="Đơn Tiên">
+                        <div class="img-caption"><strong>Hình 9:</strong> Đơn Tiên (Roi đơn - 单鞭) - Thế cánh tay hình mỏ câu ngưng tụ khí kình, tay trái đẩy phẳng hướng tới tương lai.</div>
+                    </div>
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p028_img00.png" alt="Bạch Hạc Lượng Dực">
+                        <div class="img-caption"><strong>Hình 10:</strong> Đề Thủ Thượng Thức & Bạch Hạc Lượng Dực (Hạc trắng xòe cánh - 白鹤亮翅) biểu thị sự đối trọng tuyệt đối giữa hư bộ và khai kình.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHUONG 5 -->
+            <section class="chapter-section" id="chuong-5">
+                <h2 class="chapter-heading"><i class="fas fa-balance-scale"></i> Chương 5: Quyền Phổ Đoạn II — Cương Nhu Biến Hóa & Tiến Thoái Hợp Nhất</h2>
+                <p>
+                    Đoạn thứ hai phát triển các bước di chuyển ảo bộ, biến chuyển trọng tâm liên tục giữa trước và sau, kết hợp các đòn quyền chùy cương mãnh ẩn tàng trong sự mềm mại vô cực.
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p030_img00.png" alt="Lâu Tất Ảo Bộ và Thủ Huy Tỳ Bà">
+                    <div class="img-caption"><strong>Hình 11:</strong> Lâu Tất Ảo Bộ (Quét gối bước chéo) và Thủ Huy Tỳ Bà (Tay gảy đàn tỳ bà) - thế đánh vừa hóa giải đòn đá vừa phản công thọc sườn.</div>
+                </div>
+
+                <div class="posture-item">
+                    <div class="posture-header">
+                        <span class="posture-name">3. Tiến Bộ Ban Lan Chùy (進步搬攔捶)</span>
+                        <span class="posture-hanzi">Năm đòn đấm sắt nội gia</span>
+                    </div>
+                    <p>
+                        Ban là gạt đỡ sang bên, Lan là chắn ngang chặn đứng, Chùy là cú đấm phát xuất xoay từ eo. Trong toàn bài Thái Cực Quyền chỉ có 5 đòn đấm chủ đạo, và Ban Lan Chùy là chiêu thức uy lực nhất, dung hợp lực đẩy của chân sau phóng nắm đấm xoay xuyên thấu xương ngực đối phương.
+                    </p>
+                </div>
+
+                <div class="spread-gallery">
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p034_img00.png" alt="Thập Tự Thủ và Bao Hổ Quy Sơn">
+                        <div class="img-caption"><strong>Hình 12:</strong> Thập Tự Thủ (Tay chữ thập) khép lại đoạn I và Bao Hổ Quy Sơn (Ôm cọp về núi) mở màn góc 45 độ đoạn II.</div>
+                    </div>
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p036_img00.png" alt="Đảo Niệm Hầu">
+                        <div class="img-caption"><strong>Hình 13:</strong> Đảo Niệm Hầu (Lùi bước đuổi khỉ) - phép thối bộ liên hoàn vừa lui vừa hóa giải thế ghìm bẻ của địch.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHUONG 6 -->
+            <section class="chapter-section" id="chuong-6">
+                <h2 class="chapter-heading"><i class="fas fa-fire"></i> Chương 6: Quyền Phổ Đoạn III — Phát Kình Tứ Phương & Tuyệt Kỹ Thần Tốc</h2>
+                <p class="lead-p">
+                    Đoạn thứ ba chứa đựng những chiêu thức hoa mỹ, tinh diệu và có độ phức tạp cao nhất của bài quyền: các đòn đá phân cước gót chân, đòn đấm hai thái dương Song Phong Quán Nhĩ, và hệ thống Ngọc Nữ Xuyên Thoa đánh quét bốn góc trời.
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p041_img00.png" alt="Tả Hữu Phân Cước và Đạp Cước">
+                    <div class="img-caption"><strong>Hình 14:</strong> Phép thăng bằng đơn cước thượng thừa của Tông sư Dương Trừng Phủ: Tả Hữu Phân Cước (Đá tách hai bên) và Chuyển Thân Đạp Cước (Xoay người đạp gót).</div>
+                </div>
+
+                <div class="spread-gallery">
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p044_img00.png" alt="Song Phong Quán Nhĩ">
+                        <div class="img-caption"><strong>Hình 15:</strong> Song Phong Quán Nhĩ (Gió luồn hai tai) - hai quyền song hành kẹp chặt huyệt đạo thái dương của địch.</div>
+                    </div>
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p048_img00.png" alt="Ngọc Nữ Xuyên Thoa">
+                        <div class="img-caption"><strong>Hình 16:</strong> Ngọc Nữ Xuyên Thoa (Thiếu nữ đưa thoi) - chuỗi kỹ pháp đánh chuyển liên hoàn hóa giải đòn từ bốn góc Đông Nam, Tây Bắc.</div>
+                    </div>
+                </div>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p051_img00.png" alt="Hạ Thế và Kim Kê Độc Lập">
+                    <div class="img-caption"><strong>Hình 17:</strong> Hạ Thế (Rắn luồn cỏ - Đơn Tiên Hạ Thế) luồn sâu hạ bàn cực hạn và bật lên tư thế Kim Kê Độc Lập (Gà vàng đứng một chân).</div>
+                </div>
+            </section>
+
+            <!-- CHUONG 7 -->
+            <section class="chapter-section" id="chuong-7">
+                <h2 class="chapter-heading"><i class="fas fa-hands-helping"></i> Chương 7: Thể Dụng Bí Pháp & Thôi Thủ Tứ Chánh (Push Hands)</h2>
+                <p>
+                    Phần cuối của cuốn sách khắc họa bản chất của <strong>Thôi Thủ (推手)</strong> — chiếc cầu nối sống còn chuyển hóa việc luyện quyền đơn lẻ (Thể) thành khả năng thấu hiểu kình lực của đối phương khi va chạm thực tế (Dụng).
+                </p>
+
+                <div class="book-img-card">
+                    <img src="/assets/images/books/yang-chengfu-essence-applications/p073_img00.png" alt="Thôi Thủ ứng dụng đối kháng">
+                    <div class="img-caption"><strong>Hình 18:</strong> Tông sư Dương Trừng Phủ (trái) thị phạm Thôi Thủ Tứ Chánh cùng đại đệ tử, minh họa nguyên tắc "Tri kỷ tri bỉ, dĩ nhu khắc cương".</div>
+                </div>
+
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h4><i class="fas fa-magnet"></i> Triêm Niêm Liên Tùy (沾黏連隨)</h4>
+                        <p>Triêm là dính, Niêm là bám chặt, Liên là không rời, Tùy là nương theo chuyển động. Địch tiến ta lui mà không rời tiếp xúc, địch lui ta ép tới làm mất thăng bằng.</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4><i class="fas fa-ban"></i> Bất Đỉnh Bất Đâu (不頂不丟)</h4>
+                        <p>Bất đỉnh là không đem lực chọi lực, không chống cự thô thiển. Bất đâu là không rời lỏng để mất liên lạc cảm nhận lực. Giữ được hai chữ này thì đối phương tự rơi vào bẫy hư vô.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHUONG 8 -->
+            <section class="chapter-section" id="chuong-8">
+                <h2 class="chapter-heading"><i class="fas fa-book"></i> Chương 8: Cổ Điển Thái Cực Quyền Luận Của Vương Tông Nhạc</h2>
+                <p class="lead-p">
+                    Được in nguyên bản trân trọng ở những trang cuối cuốn sách (Spreads 75-79), bài <em>Thái Cực Quyền Luận</em> của Tiên sư Vương Tông Nhạc là bộ triết học nền móng mà Dương gia luôn tôn thờ như chân kinh.
+                </p>
+
+                <div class="spread-gallery">
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p075_img00.png" alt="Thái Cực Quyền Luận nguyên bản trang 75">
+                        <div class="img-caption"><strong>Hình 19:</strong> Bản khắc chữ Hán trang 75: "Thái Cực giả, vô cực nhi sinh, âm dương chi mẫu dã..."</div>
+                    </div>
+                    <div class="book-img-card">
+                        <img src="/assets/images/books/yang-chengfu-essence-applications/p078_img00.png" alt="Thập Tam Thế Ca trang 78">
+                        <div class="img-caption"><strong>Hình 20:</strong> Bản khắc Thập Tam Thế Ca và Đả Thủ Ca đúc kết chân truyền khẩu quyết vĩnh cửu.</div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Thái Cực là từ Vô Cực sinh ra, là nguồn gốc của động tĩnh, là mẹ của Âm Dương. Động thì phân chia, tĩnh thì hợp lại.<br><br>
+                    Không được quá mức, không được thiếu hụt; đối phương uốn lượn thì ta theo đường uốn lượn, đối phương duỗi thẳng thì ta dính áp theo.<br><br>
+                    Cương đến thì ta dùng nhu để hóa giải, gọi là 'Tẩu' (走); ta nương theo người khiến người mất gốc, gọi là 'Niêm' (黏).<br><br>
+                    Động nhanh thì ứng biến nhanh, động chậm thì khoan thai theo dõi. Dẫu biến hóa muôn ngàn vạn lối, nhưng đạo lý chỉ quy về một mối duy nhất: Từ hiểu kình đạt tới thần minh!"
+                    <span class="quote-author">— Trích "Thái Cực Quyền Luận" (Vương Tông Nhạc / Dương Trừng Phủ 1934)</span>
+                </div>
+            </section>
+
+            <footer class="reader-footer">
+                <p>Ấn bản số hóa độc quyền trên nền tảng <strong>Tai Chi NOW Library</strong></p>
+                <p>Nguyên tác: <em>太極拳體用全書 (Taijiquan Tiyong Quanshu, 1934)</em> — Dương Trừng Phủ & Louis Swaim</p>
+                <p style="margin-top: 10px;">
+                    <a href="/vi/books/" style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                        <i class="fas fa-th-large"></i> Quay Lại Danh Mục Thư Viện Sách Thái Cực & Khí Công
+                    </a>
+                </p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('read-progress').style.width = scrolled + '%';
+        });
+
+        // Theme Toggle (Normal -> Sepia -> Dark)
+        const themes = ['', 'sepia-mode', 'dark-mode'];
+        let currentThemeIndex = 0;
+        const btnTheme = document.getElementById('btn-theme');
+        btnTheme.addEventListener('click', () => {
+            document.body.classList.remove('sepia-mode', 'dark-mode');
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            if (themes[currentThemeIndex]) {
+                document.body.classList.add(themes[currentThemeIndex]);
+            }
+            const icon = btnTheme.querySelector('i');
+            if (currentThemeIndex === 0) icon.className = 'fas fa-moon';
+            else if (currentThemeIndex === 1) icon.className = 'fas fa-coffee';
+            else icon.className = 'fas fa-sun';
+        });
+
+        // Font Size Adjuster
+        let currentFontSize = 17;
+        document.getElementById('btn-font-inc').addEventListener('click', () => {
+            if (currentFontSize < 24) {
+                currentFontSize += 1.5;
+                document.getElementById('reader-content').style.fontSize = currentFontSize + 'px';
+            }
+        });
+        document.getElementById('btn-font-dec').addEventListener('click', () => {
+            if (currentFontSize > 14) {
+                currentFontSize -= 1.5;
+                document.getElementById('reader-content').style.fontSize = currentFontSize + 'px';
+            }
+        });
+
+        // Toggle Sidebar on mobile
+        const toggleBtn = document.getElementById('toggle-sidebar');
+        const sidebar = document.getElementById('toc-sidebar');
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Scrollspy for TOC
+        const sections = document.querySelectorAll('.chapter-section, .book-hero');
+        const tocItems = document.querySelectorAll('.toc-item');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            tocItems.forEach(item => {
+                item.classList.remove('active');
+                const link = item.querySelector('a');
+                if (link && link.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
