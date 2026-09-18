@@ -1,100 +1,2696 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Video Gallery — TaichiNOW</title>
+<title>Kho Video Tuyển Chọn — Thái Cực Quyền & Khí Công (82 Videos) — TaichiNOW</title>
+<meta name="description" content="Kho tàng 82 video tuyển chọn về Thái Cực Quyền, Khí Công, Nội Công Đạo Gia, Triền Ty Kình, Cơ thể học (Kua, Gân cơ) và Thôi Thủ thực chiến từ Playlist chính thức TaichiNOW.">
 <link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --primary-accent: #b45309;
+  --primary-accent-light: #fef3c7;
+  --card-bg: #ffffff;
+  --card-border: #e4e4e7;
+  --text-muted: #71717a;
+  --radius-md: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: #fcfcfc;
+  color: #18181b;
+  font-family: var(--sans);
+}
+
+/* Header adjustments */
+.site-header {
+  border-bottom: 1px solid var(--border, #e4e4e7);
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-nav {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #27272a;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+  transition: all 0.2s;
+}
+.site-nav a:hover,
+.site-nav a.active {
+  color: #000000;
+  border-bottom-color: var(--yin, #18181b);
+  font-weight: 600;
+}
+
+/* Hero Section */
+.video-hero {
+  background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+  color: #ffffff;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #3f3f46;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.video-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.video-hero p {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  font-size: 1.05rem;
+  color: #d4d4d8;
+  line-height: 1.7;
+}
+.hero-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #e4e4e7;
+}
+.btn-yt-playlist {
+  background: #dc2626;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.btn-yt-playlist:hover {
+  background: #b91c1c;
+}
+
+/* Main Container */
+.vault-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+
+/* Search & Filter Toolbar */
+.toolbar {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+.search-box-row {
+  margin-bottom: 1.25rem;
+  display: flex;
+  gap: 1rem;
+}
+.search-input-wrap {
+  position: relative;
+  flex: 1;
+}
+.search-input-wrap i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a1a1aa;
+  font-size: 1rem;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 46px;
+  border: 1px solid #d4d4d8;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.search-input:focus {
+  border-color: #18181b;
+  box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.1);
+}
+
+/* Category Pills */
+.filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-pill {
+  background: #f4f4f5;
+  color: #3f3f46;
+  border: 1px solid #e4e4e7;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.filter-pill:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+.filter-pill.active {
+  background: #18181b;
+  color: #ffffff;
+  border-color: #18181b;
+}
+.count-badge {
+  background: rgba(0,0,0,0.08);
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.filter-pill.active .count-badge {
+  background: rgba(255,255,255,0.25);
+  color: #ffffff;
+}
+
+/* Grid of Cards */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Video Card */
+.video-card {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #d4d4d8;
+}
+.thumb-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #18181b;
+  overflow: hidden;
+  cursor: pointer;
+}
+.thumb-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.video-card:hover .thumb-wrapper img {
+  transform: scale(1.04);
+}
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.video-card:hover .play-overlay {
+  opacity: 1;
+}
+.play-icon {
+  color: #ffffff;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+}
+.duration-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+.index-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fbbf24;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Video info */
+.video-info {
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cat-meta {
+  margin-bottom: 0.5rem;
+}
+.cat-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.cat-fundamentals { background: #eff6ff; color: #1d4ed8; }
+.cat-yang_forms { background: #fef3c7; color: #b45309; }
+.cat-chen_silk_reeling { background: #ecfdf5; color: #047857; }
+.cat-qigong_neigong { background: #fae8ff; color: #86198f; }
+.cat-biomechanics_anatomy { background: #f0fdf4; color: #15803d; }
+.cat-tuishou_applications { background: #fee2e2; color: #b91c1c; }
+.cat-bagua_xingyi_philosophy { background: #f5f3ff; color: #6d28d9; }
+
+.video-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #18181b;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.9em;
+}
+.video-title:hover {
+  color: #b45309;
+}
+.video-footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f4f4f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+.channel-name {
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.yt-icon { color: #dc2626; }
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-play {
+  background: #18181b;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s;
+}
+.btn-play:hover {
+  background: #3f3f46;
+}
+.btn-yt-ext {
+  color: #71717a;
+  padding: 6px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+.btn-yt-ext:hover {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+/* Modal Player */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-backdrop.active {
+  display: flex;
+}
+.modal-content {
+  background: #18181b;
+  width: 100%;
+  max-width: 960px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  border: 1px solid #27272a;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #27272a;
+  color: #ffffff;
+}
+.modal-title-wrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 15px;
+}
+.modal-title-wrap h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f4f4f5;
+}
+.modal-title-wrap span {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+}
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.btn-close-modal:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.1);
+}
+.video-frame-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+}
+.video-frame-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #71717a;
+  display: none;
+}
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #d4d4d8;
+}
+.empty-state h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #27272a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-hero h1 { font-size: 2rem; }
+  .video-grid { grid-template-columns: 1fr; }
+  .toolbar { padding: 1rem; }
+  .site-header { padding: 1rem; flex-direction: column; gap: 0.8rem; }
+  .site-nav { gap: 0.8rem; justify-content: center; }
+}
+</style>
 </head>
 <body>
 
 <header class="site-header">
-    <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg><span>TaichiNOW</span></a>
-    <nav class="site-nav">
-<a href="/" class="">Home</a>
-<a href="/techniques/" class="">Techniques</a>
-<a href="/philosophy/" class="">Philosophy</a>
-<a href="/history/" class="">History</a>
-<a href="/contact/" class="">Contact</a>
+  <a href="/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/">Home</a>
+    <a href="/techniques/">Techniques</a>
+    <a href="/books/">Books</a>
+    <a href="/videos/" class="active">Videos</a>
+    <a href="/philosophy/">Philosophy</a>
+    <a href="/history/">History</a>
+    <a href="/contact/">Contact</a>
     <a href="/vi/" class="lang-switch">🇻🇳 Tiếng Việt</a>
-    </nav>
+  </nav>
 </header>
 
-<main>
-<article class="intranet-content" style="max-width: 880px; margin: 0 auto; padding: 2rem 1rem;">
+<section class="video-hero">
+  <span class="hero-badge"><i class="fa-solid fa-clapperboard"></i> Kho Tư Liệu Đa Phương Tiện</span>
+  <h1>Thái Cực Quyền & Khí Công Video Vault</h1>
+  <p>Tuyển tập 82 video bài giảng, thị phạm chuẩn mực và giải mã chuyên sâu từ danh sách phát chính thức của TaichiNOW: Căn bản dưỡng sinh, Quyền thức Dương gia & Trần gia, Nội công Đạo gia, Phân tích cơ thể học (Kua, Gân cơ) và Thôi thủ thực chiến.</p>
+  <div>
+    <a href="https://www.youtube.com/watch?v=EEWT5ngJbhM&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-playlist">
+      <i class="fa-brands fa-youtube"></i> Mở Danh Sách Phát YouTube Gốc &rarr;
+    </a>
+  </div>
+  <div class="hero-stats-row">
+    <span class="stat-pill"><i class="fa-solid fa-video"></i> 82 Video Trọn Bộ</span>
+    <span class="stat-pill"><i class="fa-solid fa-list-check"></i> 7 Chủ Đề Phân Loại</span>
+    <span class="stat-pill"><i class="fa-solid fa-circle-play"></i> Phát Trực Tiếp Không Quảng Cáo Ngoài</span>
+    <span class="stat-pill"><i class="fa-solid fa-bolt"></i> Tra Cứu Tức Thì</span>
+  </div>
+</section>
 
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Coach%20Li%20Yang-Style%2024-Form%20Taijiquan%20[720p].mp4"></video>
-          <div class="info">
-            <h4>Coach Li Yang-Style 24-Form Taijiquan [720p]</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="DẠY%20THÁI%20CỰC%20QUYỀN%20DƯỠNG%20SINH%20TỪ%20CƠ%20BẢN%20[720p].mp4"></video>
-          <div class="info">
-            <h4>DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN [720p]</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Iron_Wrapped_In_Cotton__The_Biomechanics_of_Tai_Chi.mp4"></video>
-          <div class="info">
-            <h4>Iron Wrapped In Cotton  The Biomechanics of Tai Chi</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Kịch_bản_video_Hành_trình_tìm_lại_Hệ_trục_.mp4"></video>
-          <div class="info">
-            <h4>Kịch bản video Hành trình tìm lại Hệ trục</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Tai%20Chi%20for%20Beginners%20%28Lesson%201_%20Basic%20Training%29%20[720p].mp4"></video>
-          <div class="info">
-            <h4>Tai Chi for Beginners (Lesson 1  Basic Training) [720p]</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Tai%20Chi%20for%20Beginners%2001%20“Tai%20Chi%20Fundamentals”%20[720p].mp4"></video>
-          <div class="info">
-            <h4>Tai Chi for Beginners 01 “Tai Chi Fundamentals” [720p]</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Tai%20Chi%20for%20Beginners%20Video%20_%20Dr%20Paul%20Lam%20_%20Free%20Lesson%20and%20Introduction%20[720p].mp4"></video>
-          <div class="info">
-            <h4>Tai Chi for Beginners Video   Dr Paul Lam   Free Lesson and Introduction [720p]</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Taichi_Master_Practice_Video_Generated.mp4"></video>
-          <div class="info">
-            <h4>Taichi Master Practice Video Generated</h4>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" src="Taijiquan%20Lecture.mp4"></video>
-          <div class="info">
-            <h4>Taijiquan Lecture</h4>
-          </div>
-        </div>
+<main class="vault-container">
+  <!-- Toolbar: Search & Categories -->
+  <div class="toolbar">
+    <div class="search-box-row">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="videoSearch" class="search-input" placeholder="Tìm kiếm theo tên video, võ sư, môn phái (Dương gia, Trần gia, Kua, Fajin, Nội công, Khí công)...">
+      </div>
     </div>
-    
-                </div>
-</article>
+    <div class="filter-pills" id="categoryFilters">
 
-<nav class="page-nav">
-    <a href="/videos/">← Back</a>
-    <a href="/" class="home">⌂ Home</a>
-</nav>
+      <button class="filter-pill active" data-category="all">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Tất Cả Video</span>
+        <span class="count-badge">82</span>
+      </button>
+
+      <button class="filter-pill " data-category="fundamentals">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Căn Bản &amp; Nhập Môn</span>
+        <span class="count-badge">15</span>
+      </button>
+
+      <button class="filter-pill " data-category="yang_forms">
+        <i class="fa-solid fa-yin-yang"></i>
+        <span>Dương Gia &amp; Quyền Thức</span>
+        <span class="count-badge">12</span>
+      </button>
+
+      <button class="filter-pill " data-category="chen_silk_reeling">
+        <i class="fa-solid fa-rotate"></i>
+        <span>Trần Gia &amp; Triền Ty Kình</span>
+        <span class="count-badge">9</span>
+      </button>
+
+      <button class="filter-pill " data-category="qigong_neigong">
+        <i class="fa-solid fa-fire-flame-curved"></i>
+        <span>Khí Công &amp; Nội Công</span>
+        <span class="count-badge">20</span>
+      </button>
+
+      <button class="filter-pill " data-category="biomechanics_anatomy">
+        <i class="fa-solid fa-bone"></i>
+        <span>Cơ Thể Học &amp; Trục Khớp</span>
+        <span class="count-badge">14</span>
+      </button>
+
+      <button class="filter-pill " data-category="tuishou_applications">
+        <i class="fa-solid fa-hand-fist"></i>
+        <span>Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        <span class="count-badge">7</span>
+      </button>
+
+      <button class="filter-pill " data-category="bagua_xingyi_philosophy">
+        <i class="fa-solid fa-book-journal-whills"></i>
+        <span>Bát Quái, Hình Ý &amp; Triết Lý</span>
+        <span class="count-badge">5</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Video Grid -->
+  <div class="video-grid" id="videoGrid">
+
+    <div class="video-card" data-category="fundamentals" data-title="dạy thái cực quyền dưỡng sinh từ cơ bản" data-channel="trung tâm hoa tử" data-id="EEWT5ngJbhM" data-duration="1:36:21">
+      <div class="thumb-wrapper" onclick="openVideoModal('EEWT5ngJbhM', 'DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN', 'TRUNG TÂM HOA TỬ')">
+        <img src="https://i.ytimg.com/vi/EEWT5ngJbhM/hqdefault.jpg" alt="DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:36:21</span>
+        <span class="index-badge">#1</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN" onclick="openVideoModal('EEWT5ngJbhM', 'DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN', 'TRUNG TÂM HOA TỬ')">DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> TRUNG TÂM HOA TỬ</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('EEWT5ngJbhM', 'DẠY THÁI CỰC QUYỀN DƯỠNG SINH TỪ CƠ BẢN', 'TRUNG TÂM HOA TỬ')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=EEWT5ngJbhM&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="tai chi for beginners (lesson 1: basic training)" data-channel="peter chen" data-id="opGwGWJg98o" data-duration="8:43">
+      <div class="thumb-wrapper" onclick="openVideoModal('opGwGWJg98o', 'Tai Chi for Beginners (Lesson 1: Basic Training)', 'Peter Chen')">
+        <img src="https://i.ytimg.com/vi/opGwGWJg98o/hqdefault.jpg" alt="Tai Chi for Beginners (Lesson 1: Basic Training)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">8:43</span>
+        <span class="index-badge">#2</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi for Beginners (Lesson 1: Basic Training)" onclick="openVideoModal('opGwGWJg98o', 'Tai Chi for Beginners (Lesson 1: Basic Training)', 'Peter Chen')">Tai Chi for Beginners (Lesson 1: Basic Training)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Peter Chen</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('opGwGWJg98o', 'Tai Chi for Beginners (Lesson 1: Basic Training)', 'Peter Chen')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=opGwGWJg98o&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="badminton biomechanics analysis - markerless motion capture" data-channel="simisystems" data-id="y5oet3O-5JU" data-duration="0:51">
+      <div class="thumb-wrapper" onclick="openVideoModal('y5oet3O-5JU', 'Badminton Biomechanics Analysis - markerless motion capture', 'SimiSystems')">
+        <img src="https://i.ytimg.com/vi/y5oet3O-5JU/hqdefault.jpg" alt="Badminton Biomechanics Analysis - markerless motion capture" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">0:51</span>
+        <span class="index-badge">#3</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Badminton Biomechanics Analysis - markerless motion capture" onclick="openVideoModal('y5oet3O-5JU', 'Badminton Biomechanics Analysis - markerless motion capture', 'SimiSystems')">Badminton Biomechanics Analysis - markerless motion capture</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> SimiSystems</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('y5oet3O-5JU', 'Badminton Biomechanics Analysis - markerless motion capture', 'SimiSystems')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=y5oet3O-5JU&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="martial arts analysis - biomechanics of kicking with simi motion" data-channel="simisystems" data-id="ZX3Il9mvEak" data-duration="1:09">
+      <div class="thumb-wrapper" onclick="openVideoModal('ZX3Il9mvEak', 'Martial arts analysis - biomechanics of kicking with Simi Motion', 'SimiSystems')">
+        <img src="https://i.ytimg.com/vi/ZX3Il9mvEak/hqdefault.jpg" alt="Martial arts analysis - biomechanics of kicking with Simi Motion" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:09</span>
+        <span class="index-badge">#4</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Martial arts analysis - biomechanics of kicking with Simi Motion" onclick="openVideoModal('ZX3Il9mvEak', 'Martial arts analysis - biomechanics of kicking with Simi Motion', 'SimiSystems')">Martial arts analysis - biomechanics of kicking with Simi Motion</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> SimiSystems</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('ZX3Il9mvEak', 'Martial arts analysis - biomechanics of kicking with Simi Motion', 'SimiSystems')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=ZX3Il9mvEak&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="tai chi step by step for beginners training session 1" data-channel="master song kung fu" data-id="NsZaY-EMpiA" data-duration="24:49">
+      <div class="thumb-wrapper" onclick="openVideoModal('NsZaY-EMpiA', 'Tai Chi Step by Step For Beginners Training Session 1', 'Master Song Kung Fu')">
+        <img src="https://i.ytimg.com/vi/NsZaY-EMpiA/hqdefault.jpg" alt="Tai Chi Step by Step For Beginners Training Session 1" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">24:49</span>
+        <span class="index-badge">#5</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Step by Step For Beginners Training Session 1" onclick="openVideoModal('NsZaY-EMpiA', 'Tai Chi Step by Step For Beginners Training Session 1', 'Master Song Kung Fu')">Tai Chi Step by Step For Beginners Training Session 1</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Master Song Kung Fu</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('NsZaY-EMpiA', 'Tai Chi Step by Step For Beginners Training Session 1', 'Master Song Kung Fu')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=NsZaY-EMpiA&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="pelvic floor training" data-channel="mayo clinic" data-id="37a_CXKEj5M" data-duration="2:00">
+      <div class="thumb-wrapper" onclick="openVideoModal('37a_CXKEj5M', 'Pelvic Floor Training', 'Mayo Clinic')">
+        <img src="https://i.ytimg.com/vi/37a_CXKEj5M/hqdefault.jpg" alt="Pelvic Floor Training" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:00</span>
+        <span class="index-badge">#6</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Pelvic Floor Training" onclick="openVideoModal('37a_CXKEj5M', 'Pelvic Floor Training', 'Mayo Clinic')">Pelvic Floor Training</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Mayo Clinic</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('37a_CXKEj5M', 'Pelvic Floor Training', 'Mayo Clinic')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=37a_CXKEj5M&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="6-min shaolin five animal qi gong (wu qin xi) | nourish organs, boost qi, transform emotions" data-channel="kungfu.life" data-id="MPHzKS8SMoQ" data-duration="6:49">
+      <div class="thumb-wrapper" onclick="openVideoModal('MPHzKS8SMoQ', '6-Min Shaolin Five Animal Qi Gong (Wu Qin Xi) | Nourish Organs, Boost Qi, Transform Emotions', 'KUNGFU.LIFE')">
+        <img src="https://i.ytimg.com/vi/MPHzKS8SMoQ/hqdefault.jpg" alt="6-Min Shaolin Five Animal Qi Gong (Wu Qin Xi) | Nourish Organs, Boost Qi, Transform Emotions" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:49</span>
+        <span class="index-badge">#7</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="6-Min Shaolin Five Animal Qi Gong (Wu Qin Xi) | Nourish Organs, Boost Qi, Transform Emotions" onclick="openVideoModal('MPHzKS8SMoQ', '6-Min Shaolin Five Animal Qi Gong (Wu Qin Xi) | Nourish Organs, Boost Qi, Transform Emotions', 'KUNGFU.LIFE')">6-Min Shaolin Five Animal Qi Gong (Wu Qin Xi) | Nourish Organs, Boost Qi, Transform Emotions</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> KUNGFU.LIFE</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('MPHzKS8SMoQ', '6-Min Shaolin Five Animal Qi Gong (Wu Qin Xi) | Nourish Organs, Boost Qi, Transform Emotions', 'KUNGFU.LIFE')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=MPHzKS8SMoQ&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="tai chi for self defence 001" data-channel="tai chi - improving life - robert agar-hutton" data-id="Q6UcTZVFTUs" data-duration="6:17">
+      <div class="thumb-wrapper" onclick="openVideoModal('Q6UcTZVFTUs', 'Tai Chi for self defence 001', 'Tai Chi - Improving Life - Robert Agar-Hutton')">
+        <img src="https://i.ytimg.com/vi/Q6UcTZVFTUs/hqdefault.jpg" alt="Tai Chi for self defence 001" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:17</span>
+        <span class="index-badge">#8</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi for self defence 001" onclick="openVideoModal('Q6UcTZVFTUs', 'Tai Chi for self defence 001', 'Tai Chi - Improving Life - Robert Agar-Hutton')">Tai Chi for self defence 001</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Tai Chi - Improving Life - Robert Agar-Hutton</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('Q6UcTZVFTUs', 'Tai Chi for self defence 001', 'Tai Chi - Improving Life - Robert Agar-Hutton')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=Q6UcTZVFTUs&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="chen xiaowang fajin" data-channel="wing chun aplicado curitiba" data-id="gj6UaEay5Lg" data-duration="1:02">
+      <div class="thumb-wrapper" onclick="openVideoModal('gj6UaEay5Lg', 'Chen Xiaowang fajin', 'Wing Chun Aplicado Curitiba')">
+        <img src="https://i.ytimg.com/vi/gj6UaEay5Lg/hqdefault.jpg" alt="Chen Xiaowang fajin" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:02</span>
+        <span class="index-badge">#9</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Chen Xiaowang fajin" onclick="openVideoModal('gj6UaEay5Lg', 'Chen Xiaowang fajin', 'Wing Chun Aplicado Curitiba')">Chen Xiaowang fajin</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Wing Chun Aplicado Curitiba</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('gj6UaEay5Lg', 'Chen Xiaowang fajin', 'Wing Chun Aplicado Curitiba')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=gj6UaEay5Lg&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="#1 - the 10 essentials of tai chi" data-channel="open the door to tai chi" data-id="muiJD1yzBaI" data-duration="11:49">
+      <div class="thumb-wrapper" onclick="openVideoModal('muiJD1yzBaI', '#1 - The 10 Essentials of Tai Chi', 'Open the Door to Tai Chi')">
+        <img src="https://i.ytimg.com/vi/muiJD1yzBaI/hqdefault.jpg" alt="#1 - The 10 Essentials of Tai Chi" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">11:49</span>
+        <span class="index-badge">#10</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="#1 - The 10 Essentials of Tai Chi" onclick="openVideoModal('muiJD1yzBaI', '#1 - The 10 Essentials of Tai Chi', 'Open the Door to Tai Chi')">#1 - The 10 Essentials of Tai Chi</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Open the Door to Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('muiJD1yzBaI', '#1 - The 10 Essentials of Tai Chi', 'Open the Door to Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=muiJD1yzBaI&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="yang cheng fu 10 tai chi principles - sink the chest, raise the back" data-channel="selfnature tai chi" data-id="QLFU1KPCZ80" data-duration="6:55">
+      <div class="thumb-wrapper" onclick="openVideoModal('QLFU1KPCZ80', 'Yang Cheng Fu 10 Tai Chi Principles - Sink the Chest, Raise the back', 'Selfnature Tai Chi')">
+        <img src="https://i.ytimg.com/vi/QLFU1KPCZ80/hqdefault.jpg" alt="Yang Cheng Fu 10 Tai Chi Principles - Sink the Chest, Raise the back" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:55</span>
+        <span class="index-badge">#11</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Yang Cheng Fu 10 Tai Chi Principles - Sink the Chest, Raise the back" onclick="openVideoModal('QLFU1KPCZ80', 'Yang Cheng Fu 10 Tai Chi Principles - Sink the Chest, Raise the back', 'Selfnature Tai Chi')">Yang Cheng Fu 10 Tai Chi Principles - Sink the Chest, Raise the back</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Selfnature Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('QLFU1KPCZ80', 'Yang Cheng Fu 10 Tai Chi Principles - Sink the Chest, Raise the back', 'Selfnature Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=QLFU1KPCZ80&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="yang cheng fu 10 tai chi principles - relax the waist" data-channel="selfnature tai chi" data-id="42yqKWoTIWk" data-duration="5:09">
+      <div class="thumb-wrapper" onclick="openVideoModal('42yqKWoTIWk', 'Yang Cheng Fu 10 Tai Chi Principles - Relax the waist', 'Selfnature Tai Chi')">
+        <img src="https://i.ytimg.com/vi/42yqKWoTIWk/hqdefault.jpg" alt="Yang Cheng Fu 10 Tai Chi Principles - Relax the waist" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">5:09</span>
+        <span class="index-badge">#12</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Yang Cheng Fu 10 Tai Chi Principles - Relax the waist" onclick="openVideoModal('42yqKWoTIWk', 'Yang Cheng Fu 10 Tai Chi Principles - Relax the waist', 'Selfnature Tai Chi')">Yang Cheng Fu 10 Tai Chi Principles - Relax the waist</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Selfnature Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('42yqKWoTIWk', 'Yang Cheng Fu 10 Tai Chi Principles - Relax the waist', 'Selfnature Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=42yqKWoTIWk&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="can&#x27;t do &#x27;snake creeps down &#x27;? here are some useful tips." data-channel="rising crane" data-id="O5EROJGMNec" data-duration="12:16">
+      <div class="thumb-wrapper" onclick="openVideoModal('O5EROJGMNec', 'Can&amp;#x27;t do &amp;#x27;Snake Creeps Down &amp;#x27;? Here are some useful tips.', 'Rising Crane')">
+        <img src="https://i.ytimg.com/vi/O5EROJGMNec/hqdefault.jpg" alt="Can&#x27;t do &#x27;Snake Creeps Down &#x27;? Here are some useful tips." loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">12:16</span>
+        <span class="index-badge">#13</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Can&#x27;t do &#x27;Snake Creeps Down &#x27;? Here are some useful tips." onclick="openVideoModal('O5EROJGMNec', 'Can&amp;#x27;t do &amp;#x27;Snake Creeps Down &amp;#x27;? Here are some useful tips.', 'Rising Crane')">Can&#x27;t do &#x27;Snake Creeps Down &#x27;? Here are some useful tips.</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Rising Crane</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('O5EROJGMNec', 'Can&amp;#x27;t do &amp;#x27;Snake Creeps Down &amp;#x27;? Here are some useful tips.', 'Rising Crane')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=O5EROJGMNec&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="tai chi - silk reeling fundamentals for beginners" data-channel="center life balance" data-id="b-gMvzyeGRU" data-duration="6:07">
+      <div class="thumb-wrapper" onclick="openVideoModal('b-gMvzyeGRU', 'Tai Chi - Silk Reeling Fundamentals for Beginners', 'Center Life Balance')">
+        <img src="https://i.ytimg.com/vi/b-gMvzyeGRU/hqdefault.jpg" alt="Tai Chi - Silk Reeling Fundamentals for Beginners" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:07</span>
+        <span class="index-badge">#14</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi - Silk Reeling Fundamentals for Beginners" onclick="openVideoModal('b-gMvzyeGRU', 'Tai Chi - Silk Reeling Fundamentals for Beginners', 'Center Life Balance')">Tai Chi - Silk Reeling Fundamentals for Beginners</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Center Life Balance</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('b-gMvzyeGRU', 'Tai Chi - Silk Reeling Fundamentals for Beginners', 'Center Life Balance')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=b-gMvzyeGRU&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="tai chi basics for beginners | weight transfer" data-channel="13k views" data-id="-S06SWHZO7E" data-duration="16:49">
+      <div class="thumb-wrapper" onclick="openVideoModal('-S06SWHZO7E', 'Tai Chi Basics for Beginners | Weight Transfer', '13K views')">
+        <img src="https://i.ytimg.com/vi/-S06SWHZO7E/hqdefault.jpg" alt="Tai Chi Basics for Beginners | Weight Transfer" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">16:49</span>
+        <span class="index-badge">#15</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Basics for Beginners | Weight Transfer" onclick="openVideoModal('-S06SWHZO7E', 'Tai Chi Basics for Beginners | Weight Transfer', '13K views')">Tai Chi Basics for Beginners | Weight Transfer</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> 13K views</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('-S06SWHZO7E', 'Tai Chi Basics for Beginners | Weight Transfer', '13K views')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=-S06SWHZO7E&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="tai chi silk-reeling class for beginners recorded live" data-channel="ken gullette" data-id="mVIvsq0gj_U" data-duration="32:03">
+      <div class="thumb-wrapper" onclick="openVideoModal('mVIvsq0gj_U', 'Tai Chi Silk-Reeling Class for Beginners Recorded Live', 'Ken Gullette')">
+        <img src="https://i.ytimg.com/vi/mVIvsq0gj_U/hqdefault.jpg" alt="Tai Chi Silk-Reeling Class for Beginners Recorded Live" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">32:03</span>
+        <span class="index-badge">#16</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Silk-Reeling Class for Beginners Recorded Live" onclick="openVideoModal('mVIvsq0gj_U', 'Tai Chi Silk-Reeling Class for Beginners Recorded Live', 'Ken Gullette')">Tai Chi Silk-Reeling Class for Beginners Recorded Live</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ken Gullette</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('mVIvsq0gj_U', 'Tai Chi Silk-Reeling Class for Beginners Recorded Live', 'Ken Gullette')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=mVIvsq0gj_U&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="instructions for self-studying 24 tai chi form (part 12) - cloud hand (p2)" data-channel="5 phút thái cực quyền" data-id="uXLabykpHr0" data-duration="2:56">
+      <div class="thumb-wrapper" onclick="openVideoModal('uXLabykpHr0', 'Instructions for SELF-STUDYING 24 TAI CHI FORM (part 12) - Cloud Hand (p2)', '5 phút Thái Cực Quyền')">
+        <img src="https://i.ytimg.com/vi/uXLabykpHr0/hqdefault.jpg" alt="Instructions for SELF-STUDYING 24 TAI CHI FORM (part 12) - Cloud Hand (p2)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:56</span>
+        <span class="index-badge">#17</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Instructions for SELF-STUDYING 24 TAI CHI FORM (part 12) - Cloud Hand (p2)" onclick="openVideoModal('uXLabykpHr0', 'Instructions for SELF-STUDYING 24 TAI CHI FORM (part 12) - Cloud Hand (p2)', '5 phút Thái Cực Quyền')">Instructions for SELF-STUDYING 24 TAI CHI FORM (part 12) - Cloud Hand (p2)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> 5 phút Thái Cực Quyền</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('uXLabykpHr0', 'Instructions for SELF-STUDYING 24 TAI CHI FORM (part 12) - Cloud Hand (p2)', '5 phút Thái Cực Quyền')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=uXLabykpHr0&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="the roadmap - part 2 | an authentic guide to practicing nei gong" data-channel="the martial man" data-id="wTHrjjqmSIY" data-duration="14:24">
+      <div class="thumb-wrapper" onclick="openVideoModal('wTHrjjqmSIY', 'The Roadmap - Part 2 | An Authentic Guide to Practicing Nei Gong', 'THE MARTIAL MAN')">
+        <img src="https://i.ytimg.com/vi/wTHrjjqmSIY/hqdefault.jpg" alt="The Roadmap - Part 2 | An Authentic Guide to Practicing Nei Gong" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">14:24</span>
+        <span class="index-badge">#18</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="The Roadmap - Part 2 | An Authentic Guide to Practicing Nei Gong" onclick="openVideoModal('wTHrjjqmSIY', 'The Roadmap - Part 2 | An Authentic Guide to Practicing Nei Gong', 'THE MARTIAL MAN')">The Roadmap - Part 2 | An Authentic Guide to Practicing Nei Gong</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> THE MARTIAL MAN</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('wTHrjjqmSIY', 'The Roadmap - Part 2 | An Authentic Guide to Practicing Nei Gong', 'THE MARTIAL MAN')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=wTHrjjqmSIY&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="the roadmap - part 1 | an authentic guide to practicing nei gong" data-channel="the martial man" data-id="31vOgVqys-A" data-duration="46:53">
+      <div class="thumb-wrapper" onclick="openVideoModal('31vOgVqys-A', 'The Roadmap - Part 1 | An Authentic Guide to Practicing Nei Gong', 'THE MARTIAL MAN')">
+        <img src="https://i.ytimg.com/vi/31vOgVqys-A/hqdefault.jpg" alt="The Roadmap - Part 1 | An Authentic Guide to Practicing Nei Gong" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">46:53</span>
+        <span class="index-badge">#19</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="The Roadmap - Part 1 | An Authentic Guide to Practicing Nei Gong" onclick="openVideoModal('31vOgVqys-A', 'The Roadmap - Part 1 | An Authentic Guide to Practicing Nei Gong', 'THE MARTIAL MAN')">The Roadmap - Part 1 | An Authentic Guide to Practicing Nei Gong</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> THE MARTIAL MAN</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('31vOgVqys-A', 'The Roadmap - Part 1 | An Authentic Guide to Practicing Nei Gong', 'THE MARTIAL MAN')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=31vOgVqys-A&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="master yap boh heong - conversation about yi (intention)" data-channel="yan shou gong italia" data-id="iJYmFKUatdo" data-duration="22:18">
+      <div class="thumb-wrapper" onclick="openVideoModal('iJYmFKUatdo', 'Master Yap Boh Heong - Conversation About Yi (Intention)', 'Yan Shou Gong Italia')">
+        <img src="https://i.ytimg.com/vi/iJYmFKUatdo/hqdefault.jpg" alt="Master Yap Boh Heong - Conversation About Yi (Intention)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">22:18</span>
+        <span class="index-badge">#20</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Master Yap Boh Heong - Conversation About Yi (Intention)" onclick="openVideoModal('iJYmFKUatdo', 'Master Yap Boh Heong - Conversation About Yi (Intention)', 'Yan Shou Gong Italia')">Master Yap Boh Heong - Conversation About Yi (Intention)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Yan Shou Gong Italia</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('iJYmFKUatdo', 'Master Yap Boh Heong - Conversation About Yi (Intention)', 'Yan Shou Gong Italia')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=iJYmFKUatdo&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="taking ground drill for xingyiquan" data-channel="ken gullette" data-id="0kauqpKRUME" data-duration="5:57">
+      <div class="thumb-wrapper" onclick="openVideoModal('0kauqpKRUME', 'Taking Ground Drill for Xingyiquan', 'Ken Gullette')">
+        <img src="https://i.ytimg.com/vi/0kauqpKRUME/hqdefault.jpg" alt="Taking Ground Drill for Xingyiquan" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">5:57</span>
+        <span class="index-badge">#21</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Taking Ground Drill for Xingyiquan" onclick="openVideoModal('0kauqpKRUME', 'Taking Ground Drill for Xingyiquan', 'Ken Gullette')">Taking Ground Drill for Xingyiquan</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ken Gullette</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('0kauqpKRUME', 'Taking Ground Drill for Xingyiquan', 'Ken Gullette')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=0kauqpKRUME&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="peng jin - internal strength for tai chi, hsing-i and bagua" data-channel="ken gullette" data-id="rUq5KJaLH5g" data-duration="1:58">
+      <div class="thumb-wrapper" onclick="openVideoModal('rUq5KJaLH5g', 'Peng Jin - Internal Strength for Tai Chi, Hsing-I and Bagua', 'Ken Gullette')">
+        <img src="https://i.ytimg.com/vi/rUq5KJaLH5g/hqdefault.jpg" alt="Peng Jin - Internal Strength for Tai Chi, Hsing-I and Bagua" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:58</span>
+        <span class="index-badge">#22</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="Peng Jin - Internal Strength for Tai Chi, Hsing-I and Bagua" onclick="openVideoModal('rUq5KJaLH5g', 'Peng Jin - Internal Strength for Tai Chi, Hsing-I and Bagua', 'Ken Gullette')">Peng Jin - Internal Strength for Tai Chi, Hsing-I and Bagua</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ken Gullette</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('rUq5KJaLH5g', 'Peng Jin - Internal Strength for Tai Chi, Hsing-I and Bagua', 'Ken Gullette')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=rUq5KJaLH5g&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="internal strength dvd for tai chi, xingyi and bagua - listening energy" data-channel="ken gullette" data-id="dVU-eIeiM8c" data-duration="3:15">
+      <div class="thumb-wrapper" onclick="openVideoModal('dVU-eIeiM8c', 'Internal Strength DVD for Tai Chi, Xingyi and Bagua - Listening Energy', 'Ken Gullette')">
+        <img src="https://i.ytimg.com/vi/dVU-eIeiM8c/hqdefault.jpg" alt="Internal Strength DVD for Tai Chi, Xingyi and Bagua - Listening Energy" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">3:15</span>
+        <span class="index-badge">#23</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Internal Strength DVD for Tai Chi, Xingyi and Bagua - Listening Energy" onclick="openVideoModal('dVU-eIeiM8c', 'Internal Strength DVD for Tai Chi, Xingyi and Bagua - Listening Energy', 'Ken Gullette')">Internal Strength DVD for Tai Chi, Xingyi and Bagua - Listening Energy</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ken Gullette</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('dVU-eIeiM8c', 'Internal Strength DVD for Tai Chi, Xingyi and Bagua - Listening Energy', 'Ken Gullette')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=dVU-eIeiM8c&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="no kinky hips in tai chi" data-channel="ken gullette" data-id="2nuZydPPe0U" data-duration="2:24">
+      <div class="thumb-wrapper" onclick="openVideoModal('2nuZydPPe0U', 'No Kinky Hips in Tai Chi', 'Ken Gullette')">
+        <img src="https://i.ytimg.com/vi/2nuZydPPe0U/hqdefault.jpg" alt="No Kinky Hips in Tai Chi" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:24</span>
+        <span class="index-badge">#24</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="No Kinky Hips in Tai Chi" onclick="openVideoModal('2nuZydPPe0U', 'No Kinky Hips in Tai Chi', 'Ken Gullette')">No Kinky Hips in Tai Chi</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ken Gullette</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('2nuZydPPe0U', 'No Kinky Hips in Tai Chi', 'Ken Gullette')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=2nuZydPPe0U&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="grandmaster chen xiaowang (to see translation, turn on captions)" data-channel="anton moiseev" data-id="N0fLwAkdG2s" data-duration="8:25">
+      <div class="thumb-wrapper" onclick="openVideoModal('N0fLwAkdG2s', 'Grandmaster Chen Xiaowang (to see translation, turn on Captions)', 'Anton Moiseev')">
+        <img src="https://i.ytimg.com/vi/N0fLwAkdG2s/hqdefault.jpg" alt="Grandmaster Chen Xiaowang (to see translation, turn on Captions)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">8:25</span>
+        <span class="index-badge">#25</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="Grandmaster Chen Xiaowang (to see translation, turn on Captions)" onclick="openVideoModal('N0fLwAkdG2s', 'Grandmaster Chen Xiaowang (to see translation, turn on Captions)', 'Anton Moiseev')">Grandmaster Chen Xiaowang (to see translation, turn on Captions)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Anton Moiseev</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('N0fLwAkdG2s', 'Grandmaster Chen Xiaowang (to see translation, turn on Captions)', 'Anton Moiseev')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=N0fLwAkdG2s&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="tai chi chuan ( taijiquan) fajin, springy / elastic internal power explanation / demonstration" data-channel="liverpooltaichi" data-id="VNheplLJXjo" data-duration="2:43">
+      <div class="thumb-wrapper" onclick="openVideoModal('VNheplLJXjo', 'Tai Chi Chuan ( Taijiquan) Fajin, Springy / Elastic Internal Power Explanation / Demonstration', 'liverpooltaichi')">
+        <img src="https://i.ytimg.com/vi/VNheplLJXjo/hqdefault.jpg" alt="Tai Chi Chuan ( Taijiquan) Fajin, Springy / Elastic Internal Power Explanation / Demonstration" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:43</span>
+        <span class="index-badge">#26</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Chuan ( Taijiquan) Fajin, Springy / Elastic Internal Power Explanation / Demonstration" onclick="openVideoModal('VNheplLJXjo', 'Tai Chi Chuan ( Taijiquan) Fajin, Springy / Elastic Internal Power Explanation / Demonstration', 'liverpooltaichi')">Tai Chi Chuan ( Taijiquan) Fajin, Springy / Elastic Internal Power Explanation / Demonstration</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> liverpooltaichi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('VNheplLJXjo', 'Tai Chi Chuan ( Taijiquan) Fajin, Springy / Elastic Internal Power Explanation / Demonstration', 'liverpooltaichi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=VNheplLJXjo&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="tai chi for wellness: 13 postures | tai chi for beginners | 15-min flow" data-channel="begin with breath tai chi | dr. adam potts, pt" data-id="d2ePW3FVXE0" data-duration="34:31">
+      <div class="thumb-wrapper" onclick="openVideoModal('d2ePW3FVXE0', 'Tai Chi for Wellness: 13 Postures | Tai Chi for Beginners | 15-min Flow', 'Begin with Breath Tai Chi | Dr. Adam Potts, PT')">
+        <img src="https://i.ytimg.com/vi/d2ePW3FVXE0/hqdefault.jpg" alt="Tai Chi for Wellness: 13 Postures | Tai Chi for Beginners | 15-min Flow" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">34:31</span>
+        <span class="index-badge">#27</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi for Wellness: 13 Postures | Tai Chi for Beginners | 15-min Flow" onclick="openVideoModal('d2ePW3FVXE0', 'Tai Chi for Wellness: 13 Postures | Tai Chi for Beginners | 15-min Flow', 'Begin with Breath Tai Chi | Dr. Adam Potts, PT')">Tai Chi for Wellness: 13 Postures | Tai Chi for Beginners | 15-min Flow</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Begin with Breath Tai Chi | Dr. Adam Potts, PT</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('d2ePW3FVXE0', 'Tai Chi for Wellness: 13 Postures | Tai Chi for Beginners | 15-min Flow', 'Begin with Breath Tai Chi | Dr. Adam Potts, PT')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=d2ePW3FVXE0&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="陳式太極拳老架一路 taiji chen style, traditional one 陳小星" data-channel="videocarter" data-id="04nh22xzGfk" data-duration="9:53">
+      <div class="thumb-wrapper" onclick="openVideoModal('04nh22xzGfk', '陳式太極拳老架一路 Taiji Chen Style, Traditional One 陳小星', 'videocarter')">
+        <img src="https://i.ytimg.com/vi/04nh22xzGfk/hqdefault.jpg" alt="陳式太極拳老架一路 Taiji Chen Style, Traditional One 陳小星" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">9:53</span>
+        <span class="index-badge">#28</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="陳式太極拳老架一路 Taiji Chen Style, Traditional One 陳小星" onclick="openVideoModal('04nh22xzGfk', '陳式太極拳老架一路 Taiji Chen Style, Traditional One 陳小星', 'videocarter')">陳式太極拳老架一路 Taiji Chen Style, Traditional One 陳小星</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> videocarter</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('04nh22xzGfk', '陳式太極拳老架一路 Taiji Chen Style, Traditional One 陳小星', 'videocarter')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=04nh22xzGfk&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="crane walk moving meditation | 20-min morning qigong for longevity with vivien chao" data-channel="vivien chao" data-id="cqzlWHZQolY" data-duration="17:29">
+      <div class="thumb-wrapper" onclick="openVideoModal('cqzlWHZQolY', 'Crane Walk Moving Meditation | 20-min Morning Qigong for Longevity with Vivien Chao', 'Vivien Chao')">
+        <img src="https://i.ytimg.com/vi/cqzlWHZQolY/hqdefault.jpg" alt="Crane Walk Moving Meditation | 20-min Morning Qigong for Longevity with Vivien Chao" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">17:29</span>
+        <span class="index-badge">#29</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Crane Walk Moving Meditation | 20-min Morning Qigong for Longevity with Vivien Chao" onclick="openVideoModal('cqzlWHZQolY', 'Crane Walk Moving Meditation | 20-min Morning Qigong for Longevity with Vivien Chao', 'Vivien Chao')">Crane Walk Moving Meditation | 20-min Morning Qigong for Longevity with Vivien Chao</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Vivien Chao</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('cqzlWHZQolY', 'Crane Walk Moving Meditation | 20-min Morning Qigong for Longevity with Vivien Chao', 'Vivien Chao')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=cqzlWHZQolY&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="10 min qigong: yin yang flow moving meditation with vivien chao" data-channel="vivien chao" data-id="HSAqBVIW3CE" data-duration="10:01">
+      <div class="thumb-wrapper" onclick="openVideoModal('HSAqBVIW3CE', '10 Min Qigong: Yin Yang Flow Moving Meditation with Vivien Chao', 'Vivien Chao')">
+        <img src="https://i.ytimg.com/vi/HSAqBVIW3CE/hqdefault.jpg" alt="10 Min Qigong: Yin Yang Flow Moving Meditation with Vivien Chao" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">10:01</span>
+        <span class="index-badge">#30</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="10 Min Qigong: Yin Yang Flow Moving Meditation with Vivien Chao" onclick="openVideoModal('HSAqBVIW3CE', '10 Min Qigong: Yin Yang Flow Moving Meditation with Vivien Chao', 'Vivien Chao')">10 Min Qigong: Yin Yang Flow Moving Meditation with Vivien Chao</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Vivien Chao</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('HSAqBVIW3CE', '10 Min Qigong: Yin Yang Flow Moving Meditation with Vivien Chao', 'Vivien Chao')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=HSAqBVIW3CE&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="chen style taiji compared to yang style (master george xu)" data-channel="golden gate lion tiger" data-id="MygL7YvLIt8" data-duration="6:14">
+      <div class="thumb-wrapper" onclick="openVideoModal('MygL7YvLIt8', 'Chen Style Taiji compared to Yang Style (Master George Xu)', 'Golden Gate Lion Tiger')">
+        <img src="https://i.ytimg.com/vi/MygL7YvLIt8/hqdefault.jpg" alt="Chen Style Taiji compared to Yang Style (Master George Xu)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:14</span>
+        <span class="index-badge">#31</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="Chen Style Taiji compared to Yang Style (Master George Xu)" onclick="openVideoModal('MygL7YvLIt8', 'Chen Style Taiji compared to Yang Style (Master George Xu)', 'Golden Gate Lion Tiger')">Chen Style Taiji compared to Yang Style (Master George Xu)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Golden Gate Lion Tiger</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('MygL7YvLIt8', 'Chen Style Taiji compared to Yang Style (Master George Xu)', 'Golden Gate Lion Tiger')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=MygL7YvLIt8&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="improve your balance with tai chi training!" data-channel="tai chi with sifu kuttel" data-id="05DqxEEqhnM" data-duration="14:02">
+      <div class="thumb-wrapper" onclick="openVideoModal('05DqxEEqhnM', 'Improve Your Balance with Tai Chi Training!', 'Tai Chi with Sifu Kuttel')">
+        <img src="https://i.ytimg.com/vi/05DqxEEqhnM/hqdefault.jpg" alt="Improve Your Balance with Tai Chi Training!" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">14:02</span>
+        <span class="index-badge">#32</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Improve Your Balance with Tai Chi Training!" onclick="openVideoModal('05DqxEEqhnM', 'Improve Your Balance with Tai Chi Training!', 'Tai Chi with Sifu Kuttel')">Improve Your Balance with Tai Chi Training!</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Tai Chi with Sifu Kuttel</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('05DqxEEqhnM', 'Improve Your Balance with Tai Chi Training!', 'Tai Chi with Sifu Kuttel')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=05DqxEEqhnM&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="dao concepts tai chi - snake creeps down" data-channel="dao concepts" data-id="m9D60PBfOCU" data-duration="11:19">
+      <div class="thumb-wrapper" onclick="openVideoModal('m9D60PBfOCU', 'Dao Concepts Tai Chi - Snake Creeps Down', 'Dao Concepts')">
+        <img src="https://i.ytimg.com/vi/m9D60PBfOCU/hqdefault.jpg" alt="Dao Concepts Tai Chi - Snake Creeps Down" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">11:19</span>
+        <span class="index-badge">#33</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Dao Concepts Tai Chi - Snake Creeps Down" onclick="openVideoModal('m9D60PBfOCU', 'Dao Concepts Tai Chi - Snake Creeps Down', 'Dao Concepts')">Dao Concepts Tai Chi - Snake Creeps Down</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Dao Concepts</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('m9D60PBfOCU', 'Dao Concepts Tai Chi - Snake Creeps Down', 'Dao Concepts')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=m9D60PBfOCU&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="bagua_xingyi_philosophy" data-title="[sách nói] lão tử đạo đức kinh - thu giang - nguyễn duy cần | 《老子·道德经》｜有声书" data-channel="lin yuechen 林月尘" data-id="dZLsA0M1yhM" data-duration="5:25:48">
+      <div class="thumb-wrapper" onclick="openVideoModal('dZLsA0M1yhM', '[Sách nói] Lão Tử Đạo Đức Kinh - Thu Giang - Nguyễn Duy Cần | 《老子·道德经》｜有声书', 'Lin Yuechen 林月尘')">
+        <img src="https://i.ytimg.com/vi/dZLsA0M1yhM/hqdefault.jpg" alt="[Sách nói] Lão Tử Đạo Đức Kinh - Thu Giang - Nguyễn Duy Cần | 《老子·道德经》｜有声书" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">5:25:48</span>
+        <span class="index-badge">#34</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-bagua_xingyi_philosophy">Bát Quái, Hình Ý &amp; Triết Lý</span>
+        </div>
+        <h3 class="video-title" title="[Sách nói] Lão Tử Đạo Đức Kinh - Thu Giang - Nguyễn Duy Cần | 《老子·道德经》｜有声书" onclick="openVideoModal('dZLsA0M1yhM', '[Sách nói] Lão Tử Đạo Đức Kinh - Thu Giang - Nguyễn Duy Cần | 《老子·道德经》｜有声书', 'Lin Yuechen 林月尘')">[Sách nói] Lão Tử Đạo Đức Kinh - Thu Giang - Nguyễn Duy Cần | 《老子·道德经》｜有声书</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Lin Yuechen 林月尘</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('dZLsA0M1yhM', '[Sách nói] Lão Tử Đạo Đức Kinh - Thu Giang - Nguyễn Duy Cần | 《老子·道德经》｜有声书', 'Lin Yuechen 林月尘')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=dZLsA0M1yhM&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="88-form yang style tai chi for beginners section 02 - movements 01-12 | zong weijie" data-channel="chinese wushu association" data-id="zc3slov42PM" data-duration="50:40">
+      <div class="thumb-wrapper" onclick="openVideoModal('zc3slov42PM', '88-Form Yang Style Tai Chi for Beginners Section 02 - Movements 01-12 | Zong Weijie', 'Chinese Wushu Association')">
+        <img src="https://i.ytimg.com/vi/zc3slov42PM/hqdefault.jpg" alt="88-Form Yang Style Tai Chi for Beginners Section 02 - Movements 01-12 | Zong Weijie" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">50:40</span>
+        <span class="index-badge">#35</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="88-Form Yang Style Tai Chi for Beginners Section 02 - Movements 01-12 | Zong Weijie" onclick="openVideoModal('zc3slov42PM', '88-Form Yang Style Tai Chi for Beginners Section 02 - Movements 01-12 | Zong Weijie', 'Chinese Wushu Association')">88-Form Yang Style Tai Chi for Beginners Section 02 - Movements 01-12 | Zong Weijie</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Chinese Wushu Association</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('zc3slov42PM', '88-Form Yang Style Tai Chi for Beginners Section 02 - Movements 01-12 | Zong Weijie', 'Chinese Wushu Association')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=zc3slov42PM&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="wudang tai chi chuan (cheng tin hung/dan docherty) short form - טאי צ&#x27;י" data-channel="mannster" data-id="WOtaQ2RcTpU" data-duration="5:13">
+      <div class="thumb-wrapper" onclick="openVideoModal('WOtaQ2RcTpU', 'Wudang Tai Chi Chuan (Cheng Tin Hung/Dan Docherty) short form - טאי צ&amp;#x27;י', 'mannster')">
+        <img src="https://i.ytimg.com/vi/WOtaQ2RcTpU/hqdefault.jpg" alt="Wudang Tai Chi Chuan (Cheng Tin Hung/Dan Docherty) short form - טאי צ&#x27;י" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">5:13</span>
+        <span class="index-badge">#36</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Wudang Tai Chi Chuan (Cheng Tin Hung/Dan Docherty) short form - טאי צ&#x27;י" onclick="openVideoModal('WOtaQ2RcTpU', 'Wudang Tai Chi Chuan (Cheng Tin Hung/Dan Docherty) short form - טאי צ&amp;#x27;י', 'mannster')">Wudang Tai Chi Chuan (Cheng Tin Hung/Dan Docherty) short form - טאי צ&#x27;י</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> mannster</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('WOtaQ2RcTpU', 'Wudang Tai Chi Chuan (Cheng Tin Hung/Dan Docherty) short form - טאי צ&amp;#x27;י', 'mannster')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=WOtaQ2RcTpU&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="master tai chi chuan one: the tai chi classic explained visually" data-channel="neil rosiak" data-id="GwSdNvmwQd4" data-duration="25:13">
+      <div class="thumb-wrapper" onclick="openVideoModal('GwSdNvmwQd4', 'Master Tai Chi Chuan One: The Tai Chi classic explained visually', 'Neil Rosiak')">
+        <img src="https://i.ytimg.com/vi/GwSdNvmwQd4/hqdefault.jpg" alt="Master Tai Chi Chuan One: The Tai Chi classic explained visually" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">25:13</span>
+        <span class="index-badge">#37</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Master Tai Chi Chuan One: The Tai Chi classic explained visually" onclick="openVideoModal('GwSdNvmwQd4', 'Master Tai Chi Chuan One: The Tai Chi classic explained visually', 'Neil Rosiak')">Master Tai Chi Chuan One: The Tai Chi classic explained visually</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Neil Rosiak</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('GwSdNvmwQd4', 'Master Tai Chi Chuan One: The Tai Chi classic explained visually', 'Neil Rosiak')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=GwSdNvmwQd4&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="tai chi - martial art or health art?" data-channel="giải mã tv" data-id="Z24J-vbb77E" data-duration="10:44">
+      <div class="thumb-wrapper" onclick="openVideoModal('Z24J-vbb77E', 'Tai Chi - Martial Art or Health Art?', 'Giải mã TV')">
+        <img src="https://i.ytimg.com/vi/Z24J-vbb77E/hqdefault.jpg" alt="Tai Chi - Martial Art or Health Art?" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">10:44</span>
+        <span class="index-badge">#38</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi - Martial Art or Health Art?" onclick="openVideoModal('Z24J-vbb77E', 'Tai Chi - Martial Art or Health Art?', 'Giải mã TV')">Tai Chi - Martial Art or Health Art?</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Giải mã TV</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('Z24J-vbb77E', 'Tai Chi - Martial Art or Health Art?', 'Giải mã TV')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=Z24J-vbb77E&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="the physiology of tai chi and qigong" data-channel="the tai chi and qigong way" data-id="ZJRtZAwVwgo" data-duration="12:05">
+      <div class="thumb-wrapper" onclick="openVideoModal('ZJRtZAwVwgo', 'The Physiology of Tai Chi and QiGong', 'The Tai Chi And Qigong Way')">
+        <img src="https://i.ytimg.com/vi/ZJRtZAwVwgo/hqdefault.jpg" alt="The Physiology of Tai Chi and QiGong" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">12:05</span>
+        <span class="index-badge">#39</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="The Physiology of Tai Chi and QiGong" onclick="openVideoModal('ZJRtZAwVwgo', 'The Physiology of Tai Chi and QiGong', 'The Tai Chi And Qigong Way')">The Physiology of Tai Chi and QiGong</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> The Tai Chi And Qigong Way</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('ZJRtZAwVwgo', 'The Physiology of Tai Chi and QiGong', 'The Tai Chi And Qigong Way')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=ZJRtZAwVwgo&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="tai chi easy - level i slow guided movement - first steps for aging mastery" data-channel="the tai chi and qigong way" data-id="BQY_23mC4ig" data-duration="12:30">
+      <div class="thumb-wrapper" onclick="openVideoModal('BQY_23mC4ig', 'Tai Chi Easy - Level I Slow Guided Movement - First Steps for Aging Mastery', 'The Tai Chi And Qigong Way')">
+        <img src="https://i.ytimg.com/vi/BQY_23mC4ig/hqdefault.jpg" alt="Tai Chi Easy - Level I Slow Guided Movement - First Steps for Aging Mastery" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">12:30</span>
+        <span class="index-badge">#40</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Easy - Level I Slow Guided Movement - First Steps for Aging Mastery" onclick="openVideoModal('BQY_23mC4ig', 'Tai Chi Easy - Level I Slow Guided Movement - First Steps for Aging Mastery', 'The Tai Chi And Qigong Way')">Tai Chi Easy - Level I Slow Guided Movement - First Steps for Aging Mastery</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> The Tai Chi And Qigong Way</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('BQY_23mC4ig', 'Tai Chi Easy - Level I Slow Guided Movement - First Steps for Aging Mastery', 'The Tai Chi And Qigong Way')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=BQY_23mC4ig&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="(1) purpose of relaxation ~ part 1 | tai chi basics" data-channel="tai chi with dr. andrew von plitt, nd" data-id="xFA3jEKaVAY" data-duration="11:17">
+      <div class="thumb-wrapper" onclick="openVideoModal('xFA3jEKaVAY', '(1) Purpose of Relaxation ~ Part 1 | Tai Chi Basics', 'Tai Chi with Dr. Andrew von Plitt, ND')">
+        <img src="https://i.ytimg.com/vi/xFA3jEKaVAY/hqdefault.jpg" alt="(1) Purpose of Relaxation ~ Part 1 | Tai Chi Basics" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">11:17</span>
+        <span class="index-badge">#41</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="(1) Purpose of Relaxation ~ Part 1 | Tai Chi Basics" onclick="openVideoModal('xFA3jEKaVAY', '(1) Purpose of Relaxation ~ Part 1 | Tai Chi Basics', 'Tai Chi with Dr. Andrew von Plitt, ND')">(1) Purpose of Relaxation ~ Part 1 | Tai Chi Basics</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Tai Chi with Dr. Andrew von Plitt, ND</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('xFA3jEKaVAY', '(1) Purpose of Relaxation ~ Part 1 | Tai Chi Basics', 'Tai Chi with Dr. Andrew von Plitt, ND')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=xFA3jEKaVAY&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="(3) silk reeling: basic concepts part 2.1 | tai chi basics" data-channel="4.4k views" data-id="JmY8hkSArQo" data-duration="8:22">
+      <div class="thumb-wrapper" onclick="openVideoModal('JmY8hkSArQo', '(3) Silk Reeling: Basic Concepts Part 2.1 | Tai Chi Basics', '4.4K views')">
+        <img src="https://i.ytimg.com/vi/JmY8hkSArQo/hqdefault.jpg" alt="(3) Silk Reeling: Basic Concepts Part 2.1 | Tai Chi Basics" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">8:22</span>
+        <span class="index-badge">#42</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="(3) Silk Reeling: Basic Concepts Part 2.1 | Tai Chi Basics" onclick="openVideoModal('JmY8hkSArQo', '(3) Silk Reeling: Basic Concepts Part 2.1 | Tai Chi Basics', '4.4K views')">(3) Silk Reeling: Basic Concepts Part 2.1 | Tai Chi Basics</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> 4.4K views</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('JmY8hkSArQo', '(3) Silk Reeling: Basic Concepts Part 2.1 | Tai Chi Basics', '4.4K views')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=JmY8hkSArQo&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="bí mật hơi thở tụ khí đan điền tại giường – chỉ nằm cũng trẻ mãi tuổi 20" data-channel="thiền tâm tĩnh lặng" data-id="RkufWdsdWLc" data-duration="33:11">
+      <div class="thumb-wrapper" onclick="openVideoModal('RkufWdsdWLc', 'Bí Mật Hơi Thở Tụ Khí Đan Điền Tại Giường – Chỉ Nằm Cũng Trẻ Mãi Tuổi 20', 'Thiền Tâm Tĩnh Lặng')">
+        <img src="https://i.ytimg.com/vi/RkufWdsdWLc/hqdefault.jpg" alt="Bí Mật Hơi Thở Tụ Khí Đan Điền Tại Giường – Chỉ Nằm Cũng Trẻ Mãi Tuổi 20" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">33:11</span>
+        <span class="index-badge">#43</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Bí Mật Hơi Thở Tụ Khí Đan Điền Tại Giường – Chỉ Nằm Cũng Trẻ Mãi Tuổi 20" onclick="openVideoModal('RkufWdsdWLc', 'Bí Mật Hơi Thở Tụ Khí Đan Điền Tại Giường – Chỉ Nằm Cũng Trẻ Mãi Tuổi 20', 'Thiền Tâm Tĩnh Lặng')">Bí Mật Hơi Thở Tụ Khí Đan Điền Tại Giường – Chỉ Nằm Cũng Trẻ Mãi Tuổi 20</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Thiền Tâm Tĩnh Lặng</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('RkufWdsdWLc', 'Bí Mật Hơi Thở Tụ Khí Đan Điền Tại Giường – Chỉ Nằm Cũng Trẻ Mãi Tuổi 20', 'Thiền Tâm Tĩnh Lặng')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=RkufWdsdWLc&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="the kung fu tai chi day simplified 24 routine." data-channel="kungfumagazine.com" data-id="qV6PjN55Lb4" data-duration="6:56">
+      <div class="thumb-wrapper" onclick="openVideoModal('qV6PjN55Lb4', 'The Kung Fu Tai Chi Day Simplified 24 Routine.', 'KungFuMagazine.com')">
+        <img src="https://i.ytimg.com/vi/qV6PjN55Lb4/hqdefault.jpg" alt="The Kung Fu Tai Chi Day Simplified 24 Routine." loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:56</span>
+        <span class="index-badge">#44</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="The Kung Fu Tai Chi Day Simplified 24 Routine." onclick="openVideoModal('qV6PjN55Lb4', 'The Kung Fu Tai Chi Day Simplified 24 Routine.', 'KungFuMagazine.com')">The Kung Fu Tai Chi Day Simplified 24 Routine.</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> KungFuMagazine.com</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('qV6PjN55Lb4', 'The Kung Fu Tai Chi Day Simplified 24 Routine.', 'KungFuMagazine.com')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=qV6PjN55Lb4&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="introduction to tai chi, episode 16: the 13 postures" data-channel="ian sinclair" data-id="BDLo3ZK5Zj8" data-duration="57:35">
+      <div class="thumb-wrapper" onclick="openVideoModal('BDLo3ZK5Zj8', 'Introduction to Tai chi, Episode 16: The 13 Postures', 'Ian Sinclair')">
+        <img src="https://i.ytimg.com/vi/BDLo3ZK5Zj8/hqdefault.jpg" alt="Introduction to Tai chi, Episode 16: The 13 Postures" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">57:35</span>
+        <span class="index-badge">#45</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Introduction to Tai chi, Episode 16: The 13 Postures" onclick="openVideoModal('BDLo3ZK5Zj8', 'Introduction to Tai chi, Episode 16: The 13 Postures', 'Ian Sinclair')">Introduction to Tai chi, Episode 16: The 13 Postures</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ian Sinclair</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('BDLo3ZK5Zj8', 'Introduction to Tai chi, Episode 16: The 13 Postures', 'Ian Sinclair')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=BDLo3ZK5Zj8&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="introduction to tai chi - episode 1: &quot;what is tai chi?&quot;" data-channel="ian sinclair" data-id="HqAL0Y3fw_g" data-duration="2:52">
+      <div class="thumb-wrapper" onclick="openVideoModal('HqAL0Y3fw_g', 'Introduction to Tai chi - Episode 1: &amp;quot;What is Tai chi?&amp;quot;', 'Ian Sinclair')">
+        <img src="https://i.ytimg.com/vi/HqAL0Y3fw_g/hqdefault.jpg" alt="Introduction to Tai chi - Episode 1: &quot;What is Tai chi?&quot;" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:52</span>
+        <span class="index-badge">#46</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Introduction to Tai chi - Episode 1: &quot;What is Tai chi?&quot;" onclick="openVideoModal('HqAL0Y3fw_g', 'Introduction to Tai chi - Episode 1: &amp;quot;What is Tai chi?&amp;quot;', 'Ian Sinclair')">Introduction to Tai chi - Episode 1: &quot;What is Tai chi?&quot;</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ian Sinclair</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('HqAL0Y3fw_g', 'Introduction to Tai chi - Episode 1: &amp;quot;What is Tai chi?&amp;quot;', 'Ian Sinclair')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=HqAL0Y3fw_g&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="10 minute shaolin flexibility routine | warm up, stretching &amp; kung fu basics" data-channel="shaolin worldwide" data-id="vUVJuKmbHss" data-duration="13:42">
+      <div class="thumb-wrapper" onclick="openVideoModal('vUVJuKmbHss', '10 Minute Shaolin Flexibility Routine | Warm Up, Stretching &amp;amp; Kung Fu Basics', 'Shaolin Worldwide')">
+        <img src="https://i.ytimg.com/vi/vUVJuKmbHss/hqdefault.jpg" alt="10 Minute Shaolin Flexibility Routine | Warm Up, Stretching &amp; Kung Fu Basics" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">13:42</span>
+        <span class="index-badge">#47</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="10 Minute Shaolin Flexibility Routine | Warm Up, Stretching &amp; Kung Fu Basics" onclick="openVideoModal('vUVJuKmbHss', '10 Minute Shaolin Flexibility Routine | Warm Up, Stretching &amp;amp; Kung Fu Basics', 'Shaolin Worldwide')">10 Minute Shaolin Flexibility Routine | Warm Up, Stretching &amp; Kung Fu Basics</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Shaolin Worldwide</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('vUVJuKmbHss', '10 Minute Shaolin Flexibility Routine | Warm Up, Stretching &amp;amp; Kung Fu Basics', 'Shaolin Worldwide')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=vUVJuKmbHss&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="tai chi for beginners~ step by step 02- parting wild horse&#x27;s mane" data-channel="academy of modern martial arts" data-id="38yqhqwSXsQ" data-duration="7:13">
+      <div class="thumb-wrapper" onclick="openVideoModal('38yqhqwSXsQ', 'Tai Chi for Beginners~ Step by Step 02- Parting Wild Horse&amp;#x27;s Mane', 'Academy of Modern Martial Arts')">
+        <img src="https://i.ytimg.com/vi/38yqhqwSXsQ/hqdefault.jpg" alt="Tai Chi for Beginners~ Step by Step 02- Parting Wild Horse&#x27;s Mane" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">7:13</span>
+        <span class="index-badge">#48</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi for Beginners~ Step by Step 02- Parting Wild Horse&#x27;s Mane" onclick="openVideoModal('38yqhqwSXsQ', 'Tai Chi for Beginners~ Step by Step 02- Parting Wild Horse&amp;#x27;s Mane', 'Academy of Modern Martial Arts')">Tai Chi for Beginners~ Step by Step 02- Parting Wild Horse&#x27;s Mane</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Academy of Modern Martial Arts</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('38yqhqwSXsQ', 'Tai Chi for Beginners~ Step by Step 02- Parting Wild Horse&amp;#x27;s Mane', 'Academy of Modern Martial Arts')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=38yqhqwSXsQ&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="yang_forms" data-title="tai chi yang style 24 short form" data-channel="open the door to tai chi" data-id="ZFVEzeXEgSs" data-duration="4:06">
+      <div class="thumb-wrapper" onclick="openVideoModal('ZFVEzeXEgSs', 'Tai Chi Yang Style 24 Short Form', 'Open the Door to Tai Chi')">
+        <img src="https://i.ytimg.com/vi/ZFVEzeXEgSs/hqdefault.jpg" alt="Tai Chi Yang Style 24 Short Form" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">4:06</span>
+        <span class="index-badge">#49</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-yang_forms">Dương Gia &amp; Quyền Thức</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Yang Style 24 Short Form" onclick="openVideoModal('ZFVEzeXEgSs', 'Tai Chi Yang Style 24 Short Form', 'Open the Door to Tai Chi')">Tai Chi Yang Style 24 Short Form</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Open the Door to Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('ZFVEzeXEgSs', 'Tai Chi Yang Style 24 Short Form', 'Open the Door to Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=ZFVEzeXEgSs&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="where are your energy centers? dan tian explained by qi gong master, ken cohen" data-channel="george thompson" data-id="AHIvcbSsjYk" data-duration="6:31">
+      <div class="thumb-wrapper" onclick="openVideoModal('AHIvcbSsjYk', 'Where are your energy centers? Dan Tian Explained by Qi Gong Master, Ken Cohen', 'George Thompson')">
+        <img src="https://i.ytimg.com/vi/AHIvcbSsjYk/hqdefault.jpg" alt="Where are your energy centers? Dan Tian Explained by Qi Gong Master, Ken Cohen" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:31</span>
+        <span class="index-badge">#50</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Where are your energy centers? Dan Tian Explained by Qi Gong Master, Ken Cohen" onclick="openVideoModal('AHIvcbSsjYk', 'Where are your energy centers? Dan Tian Explained by Qi Gong Master, Ken Cohen', 'George Thompson')">Where are your energy centers? Dan Tian Explained by Qi Gong Master, Ken Cohen</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> George Thompson</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('AHIvcbSsjYk', 'Where are your energy centers? Dan Tian Explained by Qi Gong Master, Ken Cohen', 'George Thompson')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=AHIvcbSsjYk&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="incredible benefits of qi gong revealed: an interview with ken cohen" data-channel="george thompson" data-id="jZvLK_cqws8" data-duration="1:03:40">
+      <div class="thumb-wrapper" onclick="openVideoModal('jZvLK_cqws8', 'Incredible Benefits of Qi Gong Revealed: An Interview with Ken Cohen', 'George Thompson')">
+        <img src="https://i.ytimg.com/vi/jZvLK_cqws8/hqdefault.jpg" alt="Incredible Benefits of Qi Gong Revealed: An Interview with Ken Cohen" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:03:40</span>
+        <span class="index-badge">#51</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Incredible Benefits of Qi Gong Revealed: An Interview with Ken Cohen" onclick="openVideoModal('jZvLK_cqws8', 'Incredible Benefits of Qi Gong Revealed: An Interview with Ken Cohen', 'George Thompson')">Incredible Benefits of Qi Gong Revealed: An Interview with Ken Cohen</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> George Thompson</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('jZvLK_cqws8', 'Incredible Benefits of Qi Gong Revealed: An Interview with Ken Cohen', 'George Thompson')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=jZvLK_cqws8&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="primordial qigong : ken cohen" data-channel="chi time : the positivi-chi show" data-id="jLv4Vi3rHOo" data-duration="1:01:10">
+      <div class="thumb-wrapper" onclick="openVideoModal('jLv4Vi3rHOo', 'Primordial Qigong : Ken Cohen', 'Chi Time : The Positivi-Chi Show')">
+        <img src="https://i.ytimg.com/vi/jLv4Vi3rHOo/hqdefault.jpg" alt="Primordial Qigong : Ken Cohen" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:01:10</span>
+        <span class="index-badge">#52</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Primordial Qigong : Ken Cohen" onclick="openVideoModal('jLv4Vi3rHOo', 'Primordial Qigong : Ken Cohen', 'Chi Time : The Positivi-Chi Show')">Primordial Qigong : Ken Cohen</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Chi Time : The Positivi-Chi Show</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('jLv4Vi3rHOo', 'Primordial Qigong : Ken Cohen', 'Chi Time : The Positivi-Chi Show')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=jLv4Vi3rHOo&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="different tai chi flow: rooted and grounded" data-channel="open the door to tai chi" data-id="VjwNVA5Rcr4" data-duration="14:27">
+      <div class="thumb-wrapper" onclick="openVideoModal('VjwNVA5Rcr4', 'Different TAI CHI Flow: Rooted and Grounded', 'Open the Door to Tai Chi')">
+        <img src="https://i.ytimg.com/vi/VjwNVA5Rcr4/hqdefault.jpg" alt="Different TAI CHI Flow: Rooted and Grounded" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">14:27</span>
+        <span class="index-badge">#53</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="Different TAI CHI Flow: Rooted and Grounded" onclick="openVideoModal('VjwNVA5Rcr4', 'Different TAI CHI Flow: Rooted and Grounded', 'Open the Door to Tai Chi')">Different TAI CHI Flow: Rooted and Grounded</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Open the Door to Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('VjwNVA5Rcr4', 'Different TAI CHI Flow: Rooted and Grounded', 'Open the Door to Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=VjwNVA5Rcr4&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="[routine  39] 🔥 energize your life in 30 minutes with qigong and tai chi fusion!" data-channel="taichi workout" data-id="S__-HNawwDI" data-duration="33:41">
+      <div class="thumb-wrapper" onclick="openVideoModal('S__-HNawwDI', '[Routine  39] 🔥 Energize Your Life in 30 Minutes with Qigong and Tai Chi Fusion!', 'Taichi Workout')">
+        <img src="https://i.ytimg.com/vi/S__-HNawwDI/hqdefault.jpg" alt="[Routine  39] 🔥 Energize Your Life in 30 Minutes with Qigong and Tai Chi Fusion!" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">33:41</span>
+        <span class="index-badge">#54</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="[Routine  39] 🔥 Energize Your Life in 30 Minutes with Qigong and Tai Chi Fusion!" onclick="openVideoModal('S__-HNawwDI', '[Routine  39] 🔥 Energize Your Life in 30 Minutes with Qigong and Tai Chi Fusion!', 'Taichi Workout')">[Routine  39] 🔥 Energize Your Life in 30 Minutes with Qigong and Tai Chi Fusion!</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Taichi Workout</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('S__-HNawwDI', '[Routine  39] 🔥 Energize Your Life in 30 Minutes with Qigong and Tai Chi Fusion!', 'Taichi Workout')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=S__-HNawwDI&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="folding hip joints in tai chi chuan" data-channel="taichiexaminer" data-id="Oz-HdX3DnQ0" data-duration="32:42">
+      <div class="thumb-wrapper" onclick="openVideoModal('Oz-HdX3DnQ0', 'Folding Hip Joints in Tai Chi Chuan', 'TaichiExaminer')">
+        <img src="https://i.ytimg.com/vi/Oz-HdX3DnQ0/hqdefault.jpg" alt="Folding Hip Joints in Tai Chi Chuan" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">32:42</span>
+        <span class="index-badge">#55</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Folding Hip Joints in Tai Chi Chuan" onclick="openVideoModal('Oz-HdX3DnQ0', 'Folding Hip Joints in Tai Chi Chuan', 'TaichiExaminer')">Folding Hip Joints in Tai Chi Chuan</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> TaichiExaminer</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('Oz-HdX3DnQ0', 'Folding Hip Joints in Tai Chi Chuan', 'TaichiExaminer')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=Oz-HdX3DnQ0&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="tai chi stepping, standing, and balance: martin mellish" data-channel="wayland smith" data-id="5yBcCmKa6tQ" data-duration="3:52">
+      <div class="thumb-wrapper" onclick="openVideoModal('5yBcCmKa6tQ', 'Tai Chi Stepping, Standing, and Balance: Martin Mellish', 'Wayland Smith')">
+        <img src="https://i.ytimg.com/vi/5yBcCmKa6tQ/hqdefault.jpg" alt="Tai Chi Stepping, Standing, and Balance: Martin Mellish" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">3:52</span>
+        <span class="index-badge">#56</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Stepping, Standing, and Balance: Martin Mellish" onclick="openVideoModal('5yBcCmKa6tQ', 'Tai Chi Stepping, Standing, and Balance: Martin Mellish', 'Wayland Smith')">Tai Chi Stepping, Standing, and Balance: Martin Mellish</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Wayland Smith</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('5yBcCmKa6tQ', 'Tai Chi Stepping, Standing, and Balance: Martin Mellish', 'Wayland Smith')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=5yBcCmKa6tQ&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="kai kua exercise" data-channel="taichiexaminer" data-id="H4dg9qDBc5Q" data-duration="0:28">
+      <div class="thumb-wrapper" onclick="openVideoModal('H4dg9qDBc5Q', 'Kai Kua Exercise', 'TaichiExaminer')">
+        <img src="https://i.ytimg.com/vi/H4dg9qDBc5Q/hqdefault.jpg" alt="Kai Kua Exercise" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">0:28</span>
+        <span class="index-badge">#57</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Kai Kua Exercise" onclick="openVideoModal('H4dg9qDBc5Q', 'Kai Kua Exercise', 'TaichiExaminer')">Kai Kua Exercise</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> TaichiExaminer</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('H4dg9qDBc5Q', 'Kai Kua Exercise', 'TaichiExaminer')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=H4dg9qDBc5Q&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="how to sit into the kua &amp; sink your qi - qigong &amp; taijiquan basics" data-channel="water dragon arts" data-id="HYJaB5Kw1NM" data-duration="24:57">
+      <div class="thumb-wrapper" onclick="openVideoModal('HYJaB5Kw1NM', 'How to sit into the Kua &amp;amp; sink your Qi - Qigong &amp;amp; Taijiquan basics', 'Water Dragon Arts')">
+        <img src="https://i.ytimg.com/vi/HYJaB5Kw1NM/hqdefault.jpg" alt="How to sit into the Kua &amp; sink your Qi - Qigong &amp; Taijiquan basics" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">24:57</span>
+        <span class="index-badge">#58</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="How to sit into the Kua &amp; sink your Qi - Qigong &amp; Taijiquan basics" onclick="openVideoModal('HYJaB5Kw1NM', 'How to sit into the Kua &amp;amp; sink your Qi - Qigong &amp;amp; Taijiquan basics', 'Water Dragon Arts')">How to sit into the Kua &amp; sink your Qi - Qigong &amp; Taijiquan basics</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Water Dragon Arts</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('HYJaB5Kw1NM', 'How to sit into the Kua &amp;amp; sink your Qi - Qigong &amp;amp; Taijiquan basics', 'Water Dragon Arts')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=HYJaB5Kw1NM&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="tai chi tuishou   the secret of pushing hands" data-channel="ian sinclair" data-id="Q-N41SuAJRg" data-duration="24:51">
+      <div class="thumb-wrapper" onclick="openVideoModal('Q-N41SuAJRg', 'Tai chi Tuishou   The secret of Pushing hands', 'Ian Sinclair')">
+        <img src="https://i.ytimg.com/vi/Q-N41SuAJRg/hqdefault.jpg" alt="Tai chi Tuishou   The secret of Pushing hands" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">24:51</span>
+        <span class="index-badge">#59</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Tai chi Tuishou   The secret of Pushing hands" onclick="openVideoModal('Q-N41SuAJRg', 'Tai chi Tuishou   The secret of Pushing hands', 'Ian Sinclair')">Tai chi Tuishou   The secret of Pushing hands</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ian Sinclair</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('Q-N41SuAJRg', 'Tai chi Tuishou   The secret of Pushing hands', 'Ian Sinclair')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=Q-N41SuAJRg&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="tuishou_applications" data-title="connecting fascia to the joints: tai chi push hands secret" data-channel="internal tai chi" data-id="v7GPpKag4qs" data-duration="4:12">
+      <div class="thumb-wrapper" onclick="openVideoModal('v7GPpKag4qs', 'Connecting Fascia to the Joints: Tai Chi Push Hands Secret', 'Internal Tai Chi')">
+        <img src="https://i.ytimg.com/vi/v7GPpKag4qs/hqdefault.jpg" alt="Connecting Fascia to the Joints: Tai Chi Push Hands Secret" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">4:12</span>
+        <span class="index-badge">#60</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-tuishou_applications">Thôi Thủ &amp; Kình Lực Thực Chiến</span>
+        </div>
+        <h3 class="video-title" title="Connecting Fascia to the Joints: Tai Chi Push Hands Secret" onclick="openVideoModal('v7GPpKag4qs', 'Connecting Fascia to the Joints: Tai Chi Push Hands Secret', 'Internal Tai Chi')">Connecting Fascia to the Joints: Tai Chi Push Hands Secret</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Internal Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('v7GPpKag4qs', 'Connecting Fascia to the Joints: Tai Chi Push Hands Secret', 'Internal Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=v7GPpKag4qs&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="dưỡng sinh để nâng cao thể lực ntn? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 đ𝗮̀ ☯" data-channel="thủ đạo thang việt nam" data-id="46J7pxPRH9o" data-duration="6:02">
+      <div class="thumb-wrapper" onclick="openVideoModal('46J7pxPRH9o', 'DƯỠNG SINH ĐỂ NÂNG CAO THỂ LỰC NTN? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 Đ𝗮̀ ☯', 'Thủ Đạo Thang Việt Nam')">
+        <img src="https://i.ytimg.com/vi/46J7pxPRH9o/hqdefault.jpg" alt="DƯỠNG SINH ĐỂ NÂNG CAO THỂ LỰC NTN? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 Đ𝗮̀ ☯" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:02</span>
+        <span class="index-badge">#61</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="DƯỠNG SINH ĐỂ NÂNG CAO THỂ LỰC NTN? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 Đ𝗮̀ ☯" onclick="openVideoModal('46J7pxPRH9o', 'DƯỠNG SINH ĐỂ NÂNG CAO THỂ LỰC NTN? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 Đ𝗮̀ ☯', 'Thủ Đạo Thang Việt Nam')">DƯỠNG SINH ĐỂ NÂNG CAO THỂ LỰC NTN? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 Đ𝗮̀ ☯</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Thủ Đạo Thang Việt Nam</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('46J7pxPRH9o', 'DƯỠNG SINH ĐỂ NÂNG CAO THỂ LỰC NTN? ☯ 𝗡𝗴𝘂̃ 𝗖𝗮̂̀𝗺 𝗛𝗶́ - 𝗗𝗶 𝘀𝗮̉𝗻 𝘁𝗵𝗮̂̀𝗻 𝘆 𝗛𝗼𝗮 Đ𝗮̀ ☯', 'Thủ Đạo Thang Việt Nam')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=46J7pxPRH9o&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="hướng dẫn tập bài khí công ngũ cầm hí của thần y hoa đà - hổ hí" data-channel="mr.s9" data-id="RQbkSsY8dgo" data-duration="5:53">
+      <div class="thumb-wrapper" onclick="openVideoModal('RQbkSsY8dgo', 'Hướng dẫn tập bài khí công Ngũ Cầm Hí của thần y Hoa Đà - Hổ Hí', 'MR.S9')">
+        <img src="https://i.ytimg.com/vi/RQbkSsY8dgo/hqdefault.jpg" alt="Hướng dẫn tập bài khí công Ngũ Cầm Hí của thần y Hoa Đà - Hổ Hí" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">5:53</span>
+        <span class="index-badge">#62</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Hướng dẫn tập bài khí công Ngũ Cầm Hí của thần y Hoa Đà - Hổ Hí" onclick="openVideoModal('RQbkSsY8dgo', 'Hướng dẫn tập bài khí công Ngũ Cầm Hí của thần y Hoa Đà - Hổ Hí', 'MR.S9')">Hướng dẫn tập bài khí công Ngũ Cầm Hí của thần y Hoa Đà - Hổ Hí</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> MR.S9</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('RQbkSsY8dgo', 'Hướng dẫn tập bài khí công Ngũ Cầm Hí của thần y Hoa Đà - Hổ Hí', 'MR.S9')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=RQbkSsY8dgo&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="the secret immortal cultivation method of the nei jing tu" data-channel="tử dương quan" data-id="wYnsvgtGUdY" data-duration="20:14">
+      <div class="thumb-wrapper" onclick="openVideoModal('wYnsvgtGUdY', 'The Secret Immortal Cultivation Method of the Nei Jing Tu', 'Tử Dương Quan')">
+        <img src="https://i.ytimg.com/vi/wYnsvgtGUdY/hqdefault.jpg" alt="The Secret Immortal Cultivation Method of the Nei Jing Tu" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">20:14</span>
+        <span class="index-badge">#63</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="The Secret Immortal Cultivation Method of the Nei Jing Tu" onclick="openVideoModal('wYnsvgtGUdY', 'The Secret Immortal Cultivation Method of the Nei Jing Tu', 'Tử Dương Quan')">The Secret Immortal Cultivation Method of the Nei Jing Tu</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Tử Dương Quan</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('wYnsvgtGUdY', 'The Secret Immortal Cultivation Method of the Nei Jing Tu', 'Tử Dương Quan')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=wYnsvgtGUdY&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="bagua_xingyi_philosophy" data-title="the hidden meanings of yin and yang - john bellaimey" data-channel="ted-ed" data-id="ezmR9Attpyc" data-duration="4:10">
+      <div class="thumb-wrapper" onclick="openVideoModal('ezmR9Attpyc', 'The hidden meanings of yin and yang - John Bellaimey', 'TED-Ed')">
+        <img src="https://i.ytimg.com/vi/ezmR9Attpyc/hqdefault.jpg" alt="The hidden meanings of yin and yang - John Bellaimey" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">4:10</span>
+        <span class="index-badge">#64</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-bagua_xingyi_philosophy">Bát Quái, Hình Ý &amp; Triết Lý</span>
+        </div>
+        <h3 class="video-title" title="The hidden meanings of yin and yang - John Bellaimey" onclick="openVideoModal('ezmR9Attpyc', 'The hidden meanings of yin and yang - John Bellaimey', 'TED-Ed')">The hidden meanings of yin and yang - John Bellaimey</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> TED-Ed</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('ezmR9Attpyc', 'The hidden meanings of yin and yang - John Bellaimey', 'TED-Ed')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=ezmR9Attpyc&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="nei jing tu (內經圖) explanation - damo mitchell" data-channel="damo mitchell - lotus nei gong" data-id="acX1nCrZ2AA" data-duration="39:59">
+      <div class="thumb-wrapper" onclick="openVideoModal('acX1nCrZ2AA', 'Nei Jing Tu (內經圖) Explanation - Damo Mitchell', 'Damo Mitchell - Lotus Nei Gong')">
+        <img src="https://i.ytimg.com/vi/acX1nCrZ2AA/hqdefault.jpg" alt="Nei Jing Tu (內經圖) Explanation - Damo Mitchell" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">39:59</span>
+        <span class="index-badge">#65</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Nei Jing Tu (內經圖) Explanation - Damo Mitchell" onclick="openVideoModal('acX1nCrZ2AA', 'Nei Jing Tu (內經圖) Explanation - Damo Mitchell', 'Damo Mitchell - Lotus Nei Gong')">Nei Jing Tu (內經圖) Explanation - Damo Mitchell</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Damo Mitchell - Lotus Nei Gong</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('acX1nCrZ2AA', 'Nei Jing Tu (內經圖) Explanation - Damo Mitchell', 'Damo Mitchell - Lotus Nei Gong')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=acX1nCrZ2AA&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="nei jing tu - full translation (part 1of 8)- above the head (spiritual aspirations and truths)" data-channel="qi gong - nei gong - nei jia - tcm" data-id="Gn0J5kc7YtE" data-duration="41:29">
+      <div class="thumb-wrapper" onclick="openVideoModal('Gn0J5kc7YtE', 'Nei Jing Tu - Full Translation (Part 1of 8)- Above the Head (Spiritual Aspirations and Truths)', 'Qi Gong - Nei Gong - Nei Jia - TCM')">
+        <img src="https://i.ytimg.com/vi/Gn0J5kc7YtE/hqdefault.jpg" alt="Nei Jing Tu - Full Translation (Part 1of 8)- Above the Head (Spiritual Aspirations and Truths)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">41:29</span>
+        <span class="index-badge">#66</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Nei Jing Tu - Full Translation (Part 1of 8)- Above the Head (Spiritual Aspirations and Truths)" onclick="openVideoModal('Gn0J5kc7YtE', 'Nei Jing Tu - Full Translation (Part 1of 8)- Above the Head (Spiritual Aspirations and Truths)', 'Qi Gong - Nei Gong - Nei Jia - TCM')">Nei Jing Tu - Full Translation (Part 1of 8)- Above the Head (Spiritual Aspirations and Truths)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Qi Gong - Nei Gong - Nei Jia - TCM</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('Gn0J5kc7YtE', 'Nei Jing Tu - Full Translation (Part 1of 8)- Above the Head (Spiritual Aspirations and Truths)', 'Qi Gong - Nei Gong - Nei Jia - TCM')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=Gn0J5kc7YtE&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="neijing tu - tour the chart, discover the 5 elements - neurodivergent nervous system regulation" data-channel="zitterbartescherbach " data-id="0KB9kYfJ1wA" data-duration="22:29">
+      <div class="thumb-wrapper" onclick="openVideoModal('0KB9kYfJ1wA', 'Neijing Tu - Tour the chart, Discover the 5 Elements - Neurodivergent Nervous System Regulation', 'ZitterbartEscherBach ')">
+        <img src="https://i.ytimg.com/vi/0KB9kYfJ1wA/hqdefault.jpg" alt="Neijing Tu - Tour the chart, Discover the 5 Elements - Neurodivergent Nervous System Regulation" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">22:29</span>
+        <span class="index-badge">#67</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Neijing Tu - Tour the chart, Discover the 5 Elements - Neurodivergent Nervous System Regulation" onclick="openVideoModal('0KB9kYfJ1wA', 'Neijing Tu - Tour the chart, Discover the 5 Elements - Neurodivergent Nervous System Regulation', 'ZitterbartEscherBach ')">Neijing Tu - Tour the chart, Discover the 5 Elements - Neurodivergent Nervous System Regulation</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> ZitterbartEscherBach </span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('0KB9kYfJ1wA', 'Neijing Tu - Tour the chart, Discover the 5 Elements - Neurodivergent Nervous System Regulation', 'ZitterbartEscherBach ')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=0KB9kYfJ1wA&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="microcosmic orbit - part 1/14 - intro" data-channel="damo mitchell - lotus nei gong" data-id="-L-Ww1VEvCA" data-duration="42:20">
+      <div class="thumb-wrapper" onclick="openVideoModal('-L-Ww1VEvCA', 'Microcosmic Orbit - Part 1/14 - Intro', 'Damo Mitchell - Lotus Nei Gong')">
+        <img src="https://i.ytimg.com/vi/-L-Ww1VEvCA/hqdefault.jpg" alt="Microcosmic Orbit - Part 1/14 - Intro" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">42:20</span>
+        <span class="index-badge">#68</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Microcosmic Orbit - Part 1/14 - Intro" onclick="openVideoModal('-L-Ww1VEvCA', 'Microcosmic Orbit - Part 1/14 - Intro', 'Damo Mitchell - Lotus Nei Gong')">Microcosmic Orbit - Part 1/14 - Intro</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Damo Mitchell - Lotus Nei Gong</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('-L-Ww1VEvCA', 'Microcosmic Orbit - Part 1/14 - Intro', 'Damo Mitchell - Lotus Nei Gong')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=-L-Ww1VEvCA&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="how to increase kua (groin) flexibility: effective tai chi stretch for all levels" data-channel="tai chi united" data-id="4lmGpDWZDDY" data-duration="4:56">
+      <div class="thumb-wrapper" onclick="openVideoModal('4lmGpDWZDDY', 'How to Increase Kua (Groin) Flexibility: Effective Tai Chi Stretch for All Levels', 'Tai Chi United')">
+        <img src="https://i.ytimg.com/vi/4lmGpDWZDDY/hqdefault.jpg" alt="How to Increase Kua (Groin) Flexibility: Effective Tai Chi Stretch for All Levels" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">4:56</span>
+        <span class="index-badge">#69</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="How to Increase Kua (Groin) Flexibility: Effective Tai Chi Stretch for All Levels" onclick="openVideoModal('4lmGpDWZDDY', 'How to Increase Kua (Groin) Flexibility: Effective Tai Chi Stretch for All Levels', 'Tai Chi United')">How to Increase Kua (Groin) Flexibility: Effective Tai Chi Stretch for All Levels</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Tai Chi United</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('4lmGpDWZDDY', 'How to Increase Kua (Groin) Flexibility: Effective Tai Chi Stretch for All Levels', 'Tai Chi United')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=4lmGpDWZDDY&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="fundamentals" data-title="my tai chi workout. day 1" data-channel="ian sinclair" data-id="Lm2IZ-ofoUs" data-duration="2:37:05">
+      <div class="thumb-wrapper" onclick="openVideoModal('Lm2IZ-ofoUs', 'My tai chi workout. Day 1', 'Ian Sinclair')">
+        <img src="https://i.ytimg.com/vi/Lm2IZ-ofoUs/hqdefault.jpg" alt="My tai chi workout. Day 1" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:37:05</span>
+        <span class="index-badge">#70</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-fundamentals">Căn Bản &amp; Nhập Môn Dưỡng Sinh</span>
+        </div>
+        <h3 class="video-title" title="My tai chi workout. Day 1" onclick="openVideoModal('Lm2IZ-ofoUs', 'My tai chi workout. Day 1', 'Ian Sinclair')">My tai chi workout. Day 1</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ian Sinclair</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('Lm2IZ-ofoUs', 'My tai chi workout. Day 1', 'Ian Sinclair')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=Lm2IZ-ofoUs&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="what happens during an acupuncture session?" data-channel="nccih" data-id="JnKPNw9K2Ng" data-duration="2:57">
+      <div class="thumb-wrapper" onclick="openVideoModal('JnKPNw9K2Ng', 'What Happens During an Acupuncture Session?', 'NCCIH')">
+        <img src="https://i.ytimg.com/vi/JnKPNw9K2Ng/hqdefault.jpg" alt="What Happens During an Acupuncture Session?" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:57</span>
+        <span class="index-badge">#71</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="What Happens During an Acupuncture Session?" onclick="openVideoModal('JnKPNw9K2Ng', 'What Happens During an Acupuncture Session?', 'NCCIH')">What Happens During an Acupuncture Session?</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> NCCIH</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('JnKPNw9K2Ng', 'What Happens During an Acupuncture Session?', 'NCCIH')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=JnKPNw9K2Ng&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="energy gates three swings and taoist spine stretch" data-channel="energy arts" data-id="I4J7wkU2IfU" data-duration="7:28">
+      <div class="thumb-wrapper" onclick="openVideoModal('I4J7wkU2IfU', 'Energy Gates Three Swings and Taoist Spine Stretch', 'Energy Arts')">
+        <img src="https://i.ytimg.com/vi/I4J7wkU2IfU/hqdefault.jpg" alt="Energy Gates Three Swings and Taoist Spine Stretch" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">7:28</span>
+        <span class="index-badge">#72</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Energy Gates Three Swings and Taoist Spine Stretch" onclick="openVideoModal('I4J7wkU2IfU', 'Energy Gates Three Swings and Taoist Spine Stretch', 'Energy Arts')">Energy Gates Three Swings and Taoist Spine Stretch</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Energy Arts</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('I4J7wkU2IfU', 'Energy Gates Three Swings and Taoist Spine Stretch', 'Energy Arts')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=I4J7wkU2IfU&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="you’ve been misled about &quot;belly breathing&quot;" data-channel="conor harris" data-id="FsAu8Hxtk8U" data-duration="10:30">
+      <div class="thumb-wrapper" onclick="openVideoModal('FsAu8Hxtk8U', 'You’ve Been Misled About &amp;quot;Belly Breathing&amp;quot;', 'Conor Harris')">
+        <img src="https://i.ytimg.com/vi/FsAu8Hxtk8U/hqdefault.jpg" alt="You’ve Been Misled About &quot;Belly Breathing&quot;" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">10:30</span>
+        <span class="index-badge">#73</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="You’ve Been Misled About &quot;Belly Breathing&quot;" onclick="openVideoModal('FsAu8Hxtk8U', 'You’ve Been Misled About &amp;quot;Belly Breathing&amp;quot;', 'Conor Harris')">You’ve Been Misled About &quot;Belly Breathing&quot;</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Conor Harris</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('FsAu8Hxtk8U', 'You’ve Been Misled About &amp;quot;Belly Breathing&amp;quot;', 'Conor Harris')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=FsAu8Hxtk8U&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="yi jin jing qigong tutorial with english instruction" data-channel="qigong taichi centre | yogalily studio" data-id="5d-aBIOKg_8" data-duration="13:33">
+      <div class="thumb-wrapper" onclick="openVideoModal('5d-aBIOKg_8', 'Yi Jin Jing Qigong Tutorial with English Instruction', 'QIGONG TAICHI CENTRE | Yogalily Studio')">
+        <img src="https://i.ytimg.com/vi/5d-aBIOKg_8/hqdefault.jpg" alt="Yi Jin Jing Qigong Tutorial with English Instruction" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">13:33</span>
+        <span class="index-badge">#74</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Yi Jin Jing Qigong Tutorial with English Instruction" onclick="openVideoModal('5d-aBIOKg_8', 'Yi Jin Jing Qigong Tutorial with English Instruction', 'QIGONG TAICHI CENTRE | Yogalily Studio')">Yi Jin Jing Qigong Tutorial with English Instruction</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> QIGONG TAICHI CENTRE | Yogalily Studio</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('5d-aBIOKg_8', 'Yi Jin Jing Qigong Tutorial with English Instruction', 'QIGONG TAICHI CENTRE | Yogalily Studio')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=5d-aBIOKg_8&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="bagua_xingyi_philosophy" data-title="ding shi ba gua zhang with gao ji wu - part 1 (free video)" data-channel="new york internal arts" data-id="ZKSusyMvR74" data-duration="2:57">
+      <div class="thumb-wrapper" onclick="openVideoModal('ZKSusyMvR74', 'Ding Shi Ba Gua Zhang with Gao Ji Wu - Part 1 (free video)', 'New York Internal Arts')">
+        <img src="https://i.ytimg.com/vi/ZKSusyMvR74/hqdefault.jpg" alt="Ding Shi Ba Gua Zhang with Gao Ji Wu - Part 1 (free video)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:57</span>
+        <span class="index-badge">#75</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-bagua_xingyi_philosophy">Bát Quái, Hình Ý &amp; Triết Lý</span>
+        </div>
+        <h3 class="video-title" title="Ding Shi Ba Gua Zhang with Gao Ji Wu - Part 1 (free video)" onclick="openVideoModal('ZKSusyMvR74', 'Ding Shi Ba Gua Zhang with Gao Ji Wu - Part 1 (free video)', 'New York Internal Arts')">Ding Shi Ba Gua Zhang with Gao Ji Wu - Part 1 (free video)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> New York Internal Arts</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('ZKSusyMvR74', 'Ding Shi Ba Gua Zhang with Gao Ji Wu - Part 1 (free video)', 'New York Internal Arts')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=ZKSusyMvR74&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="bagua_xingyi_philosophy" data-title="training: ding shi ba gua zhang" data-channel="tai chi forest" data-id="dwSb2ba_JYc" data-duration="1:13">
+      <div class="thumb-wrapper" onclick="openVideoModal('dwSb2ba_JYc', 'Training: Ding Shi Ba Gua Zhang', 'Tai Chi Forest')">
+        <img src="https://i.ytimg.com/vi/dwSb2ba_JYc/hqdefault.jpg" alt="Training: Ding Shi Ba Gua Zhang" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:13</span>
+        <span class="index-badge">#76</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-bagua_xingyi_philosophy">Bát Quái, Hình Ý &amp; Triết Lý</span>
+        </div>
+        <h3 class="video-title" title="Training: Ding Shi Ba Gua Zhang" onclick="openVideoModal('dwSb2ba_JYc', 'Training: Ding Shi Ba Gua Zhang', 'Tai Chi Forest')">Training: Ding Shi Ba Gua Zhang</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Tai Chi Forest</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('dwSb2ba_JYc', 'Training: Ding Shi Ba Gua Zhang', 'Tai Chi Forest')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=dwSb2ba_JYc&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="unlock infinite energy with &quot;silk reeling&quot; qigong (part 1)" data-channel="dr. symeon rodger" data-id="kisZb-RraaQ" data-duration="22:28">
+      <div class="thumb-wrapper" onclick="openVideoModal('kisZb-RraaQ', 'Unlock Infinite Energy with &amp;quot;Silk Reeling&amp;quot; Qigong (Part 1)', 'Dr. Symeon Rodger')">
+        <img src="https://i.ytimg.com/vi/kisZb-RraaQ/hqdefault.jpg" alt="Unlock Infinite Energy with &quot;Silk Reeling&quot; Qigong (Part 1)" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">22:28</span>
+        <span class="index-badge">#77</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="Unlock Infinite Energy with &quot;Silk Reeling&quot; Qigong (Part 1)" onclick="openVideoModal('kisZb-RraaQ', 'Unlock Infinite Energy with &amp;quot;Silk Reeling&amp;quot; Qigong (Part 1)', 'Dr. Symeon Rodger')">Unlock Infinite Energy with &quot;Silk Reeling&quot; Qigong (Part 1)</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Dr. Symeon Rodger</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('kisZb-RraaQ', 'Unlock Infinite Energy with &amp;quot;Silk Reeling&amp;quot; Qigong (Part 1)', 'Dr. Symeon Rodger')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=kisZb-RraaQ&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="chen_silk_reeling" data-title="april 27, 2024" data-channel="dr. symeon rodger" data-id="a2z5ZRhm_xA" data-duration="1:06">
+      <div class="thumb-wrapper" onclick="openVideoModal('a2z5ZRhm_xA', 'April 27, 2024', 'Dr. Symeon Rodger')">
+        <img src="https://i.ytimg.com/vi/a2z5ZRhm_xA/hqdefault.jpg" alt="April 27, 2024" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:06</span>
+        <span class="index-badge">#78</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-chen_silk_reeling">Trần Gia &amp; Triền Ty Kình</span>
+        </div>
+        <h3 class="video-title" title="April 27, 2024" onclick="openVideoModal('a2z5ZRhm_xA', 'April 27, 2024', 'Dr. Symeon Rodger')">April 27, 2024</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Dr. Symeon Rodger</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('a2z5ZRhm_xA', 'April 27, 2024', 'Dr. Symeon Rodger')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=a2z5ZRhm_xA&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="tai chi gong bu stepping" data-channel="iflo tai chi &amp; xing yi" data-id="SXRrXfif930" data-duration="1:01">
+      <div class="thumb-wrapper" onclick="openVideoModal('SXRrXfif930', 'Tai Chi Gong Bu stepping', 'iFlo Tai Chi &amp;amp; Xing Yi')">
+        <img src="https://i.ytimg.com/vi/SXRrXfif930/hqdefault.jpg" alt="Tai Chi Gong Bu stepping" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">1:01</span>
+        <span class="index-badge">#79</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Gong Bu stepping" onclick="openVideoModal('SXRrXfif930', 'Tai Chi Gong Bu stepping', 'iFlo Tai Chi &amp;amp; Xing Yi')">Tai Chi Gong Bu stepping</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> iFlo Tai Chi &amp; Xing Yi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('SXRrXfif930', 'Tai Chi Gong Bu stepping', 'iFlo Tai Chi &amp;amp; Xing Yi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=SXRrXfif930&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="qigong_neigong" data-title="tai chi tip #1: how to relax in tai chi" data-channel="energy arts" data-id="eFTH5F40k5M" data-duration="2:44">
+      <div class="thumb-wrapper" onclick="openVideoModal('eFTH5F40k5M', 'Tai Chi Tip #1: How to Relax in Tai Chi', 'Energy Arts')">
+        <img src="https://i.ytimg.com/vi/eFTH5F40k5M/hqdefault.jpg" alt="Tai Chi Tip #1: How to Relax in Tai Chi" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">2:44</span>
+        <span class="index-badge">#80</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-qigong_neigong">Khí Công &amp; Nội Công Đạo Gia</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi Tip #1: How to Relax in Tai Chi" onclick="openVideoModal('eFTH5F40k5M', 'Tai Chi Tip #1: How to Relax in Tai Chi', 'Energy Arts')">Tai Chi Tip #1: How to Relax in Tai Chi</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Energy Arts</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('eFTH5F40k5M', 'Tai Chi Tip #1: How to Relax in Tai Chi', 'Energy Arts')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=eFTH5F40k5M&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="biomechanics_anatomy" data-title="tai chi: master gu explains how to be balanced ☯️" data-channel="master gu - tai chi" data-id="iuO0u_4KYD0" data-duration="6:07">
+      <div class="thumb-wrapper" onclick="openVideoModal('iuO0u_4KYD0', 'Tai Chi: Master Gu explains how to be balanced ☯️', 'Master Gu - Tai Chi')">
+        <img src="https://i.ytimg.com/vi/iuO0u_4KYD0/hqdefault.jpg" alt="Tai Chi: Master Gu explains how to be balanced ☯️" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:07</span>
+        <span class="index-badge">#81</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-biomechanics_anatomy">Cơ Thể Học &amp; Trục Khớp (Kua, Gân Cơ)</span>
+        </div>
+        <h3 class="video-title" title="Tai Chi: Master Gu explains how to be balanced ☯️" onclick="openVideoModal('iuO0u_4KYD0', 'Tai Chi: Master Gu explains how to be balanced ☯️', 'Master Gu - Tai Chi')">Tai Chi: Master Gu explains how to be balanced ☯️</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Master Gu - Tai Chi</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('iuO0u_4KYD0', 'Tai Chi: Master Gu explains how to be balanced ☯️', 'Master Gu - Tai Chi')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=iuO0u_4KYD0&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-category="bagua_xingyi_philosophy" data-title="what is the difference between tai chi and qigong?" data-channel="ancient fists" data-id="ttP4q66qchE" data-duration="6:14">
+      <div class="thumb-wrapper" onclick="openVideoModal('ttP4q66qchE', 'What is the DIFFERENCE between Tai Chi and Qigong?', 'Ancient Fists')">
+        <img src="https://i.ytimg.com/vi/ttP4q66qchE/hqdefault.jpg" alt="What is the DIFFERENCE between Tai Chi and Qigong?" loading="lazy">
+        <div class="play-overlay">
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="duration-badge">6:14</span>
+        <span class="index-badge">#82</span>
+      </div>
+      <div class="video-info">
+        <div class="cat-meta">
+          <span class="cat-tag cat-bagua_xingyi_philosophy">Bát Quái, Hình Ý &amp; Triết Lý</span>
+        </div>
+        <h3 class="video-title" title="What is the DIFFERENCE between Tai Chi and Qigong?" onclick="openVideoModal('ttP4q66qchE', 'What is the DIFFERENCE between Tai Chi and Qigong?', 'Ancient Fists')">What is the DIFFERENCE between Tai Chi and Qigong?</h3>
+        <div class="video-footer">
+          <span class="channel-name"><i class="fa-brands fa-youtube yt-icon"></i> Ancient Fists</span>
+          <div class="card-actions">
+            <button class="btn-play" onclick="openVideoModal('ttP4q66qchE', 'What is the DIFFERENCE between Tai Chi and Qigong?', 'Ancient Fists')"><i class="fa-solid fa-circle-play"></i> Xem</button>
+            <a href="https://www.youtube.com/watch?v=ttP4q66qchE&list=PLcR4VlogIiswSEmiblp4hnlLOx7hdLvKf" target="_blank" rel="noopener noreferrer" class="btn-yt-ext" title="Xem trên YouTube"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState">
+      <i class="fa-solid fa-film"></i>
+      <h3>Không tìm thấy video phù hợp</h3>
+      <p>Thử tìm với từ khóa khác hoặc chuyển sang danh mục "Tất Cả Video".</p>
+    </div>
+  </div>
 </main>
 
-<footer class="site-footer">
-    <p>Built with ❤️ for the Vietnamese Tai Chi community <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
-    <p>Trang web này được xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
+<!-- Video Modal Player -->
+<div class="modal-backdrop" id="videoModal" onclick="handleBackdropClick(event)">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <h4 id="modalVideoTitle">Tiêu đề Video</h4>
+        <span id="modalVideoChannel">Kênh phát</span>
+      </div>
+      <button class="btn-close-modal" onclick="closeVideoModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="video-frame-wrap">
+      <iframe id="modalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" style="background:#18181b; color:#a1a1aa; padding:3rem 1.5rem; text-align:center; border-top:1px solid #27272a; margin-top:4rem;">
+  <div style="max-width:800px; margin:0 auto; font-size:0.9rem; line-height:1.7;">
+    <p style="color:#f4f4f5; font-weight:600; margin-bottom:0.5rem;">TaichiNOW &middot; Tinh Hoa Thái Cực Quyền, Khí Công &amp; Nghệ Thuật Sống Khỏe Toàn Diện</p>
+    <p style="margin-bottom:1.5rem;">Khám phá thêm các tài nguyên học tập: <a href="/books/" style="color:#fbbf24; text-decoration:none;">Thư Viện Sách Quốc Tế</a> &middot; <a href="/vi/books/" style="color:#fbbf24; text-decoration:none;">Sách Tiếng Việt Tương Tác</a> &middot; <a href="/techniques/" style="color:#fbbf24; text-decoration:none;">Kỹ Thuật</a> &middot; <a href="/philosophy/" style="color:#fbbf24; text-decoration:none;">Triết Lý</a></p>
+    <p style="font-size:0.8rem; color:#71717a;">&copy; 2026 TaichiNOW. Cập nhật và sắp xếp theo Playlist YouTube tuyển chọn.</p>
+  </div>
 </footer>
+
+<script>
+let activeCategory = 'all';
+const searchInput = document.getElementById('videoSearch');
+const filterButtons = document.querySelectorAll('.filter-pill');
+const videoCards = document.querySelectorAll('.video-card');
+const emptyState = document.getElementById('emptyState');
+const modal = document.getElementById('videoModal');
+const iframe = document.getElementById('modalIframe');
+const modalTitle = document.getElementById('modalVideoTitle');
+const modalChannel = document.getElementById('modalVideoChannel');
+
+// Filter & Search handler
+function applyFilters() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  videoCards.forEach(card => {
+    const cardCat = card.getAttribute('data-category');
+    const cardTitle = card.getAttribute('data-title');
+    const cardChannel = card.getAttribute('data-channel');
+    
+    const matchesCat = (activeCategory === 'all') || (cardCat === activeCategory);
+    const matchesQuery = !query || cardTitle.includes(query) || cardChannel.includes(query);
+
+    if (matchesCat && matchesQuery) {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (visibleCount === 0) {
+    emptyState.style.display = 'block';
+  } else {
+    emptyState.style.display = 'none';
+  }
+}
+
+// Category Pill click
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.getAttribute('data-category');
+    applyFilters();
+  });
+});
+
+// Search input
+searchInput.addEventListener('input', applyFilters);
+
+// Video Modal Player
+function openVideoModal(videoId, title, channel) {
+  modalTitle.textContent = title;
+  modalChannel.textContent = channel;
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+  modal.classList.remove('active');
+  iframe.src = '';
+  document.body.style.overflow = 'auto';
+}
+
+function handleBackdropClick(e) {
+  if (e.target === modal) {
+    closeVideoModal();
+  }
+}
+
+// Close modal on Escape
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    closeVideoModal();
+  }
+});
+</script>
 
 </body>
 </html>
