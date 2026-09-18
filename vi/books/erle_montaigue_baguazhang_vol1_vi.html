@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bát Quái Chưởng Toàn Thư — Hệ Thống Thực Chiến & Trị Liệu Hoàn Chỉnh — Đại sư Erle Montaigue</title>
+<meta name="description" content="Bản dịch Việt ngữ tác phẩm Bát Quái Chưởng Toàn Thư của Đại sư Erle Montaigue - Sự kết hợp hoàn hảo giữa võ thuật đối kháng, điểm huyệt Dim Mak và khí công chữa lành ẩn tàng.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-blue: #0369a1;
+  --blue-light: #e0f2fe;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-blue), var(--gold));
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1420px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--accent-blue);
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--accent-blue);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.7rem;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--accent-blue);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; text-align: justify; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--accent-blue);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.martial-principle {
+  border-left-color: var(--gold);
+  background: rgba(180, 83, 9, 0.05);
+}
+
+.figure-box {
+  margin: 30px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.figure-box img {
+  width: 100%;
+  max-height: 620px;
+  object-fit: contain;
+  background: #f8fafc;
+  display: block;
+}
+.figure-box figcaption {
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  line-height: 1.5;
+}
+.figure-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0;
+}
+@media (max-width: 768px) {
+  .figure-grid-2 { grid-template-columns: 1fr; }
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px 80px; }
+  .book-hero h1 { font-size: 2.1rem; }
+}
+
+.step-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+}
+.step-card h5 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--accent-blue);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+  z-index: 90;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/vi/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-arrow-left"></i> <span>Tủ Sách</span></a>
+    <button class="btn-control" id="theme-toggle" aria-label="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- Sidebar TOC -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-mo-dau">Lời Mở Đầu: Quyền Pháp & Trị Liệu</a></li>
+        <li><a href="#chuong-1">Chương 1: Long Hình & Khí Công Chữa Lành</a></li>
+        <li><a href="#chuong-2">Chương 2: Lịch Sử & Truyền Thừa Bát Quái</a></li>
+        <li><a href="#chuong-3">Chương 3: Lợi Ích Trị Liệu Sâu Sắc Cho Thân Tâm</a></li>
+        <li><a href="#chuong-4">Chương 4: Giải Mã Kết Cấu Quyền Thức</a></li>
+        <li><a href="#chuong-5">Chương 5: Lời Chỉ Dẫn Của Bậc Tiền Bối</a></li>
+        <li><a href="#chuong-6">Chương 6: Bát Đại Chưởng & Ý Nghĩa Chiến Đấu</a></li>
+        <li><a href="#chuong-7">Chương 7: Bí Pháp Đi Vòng Tròn (Walking the Circle)</a></li>
+        <li><a href="#chuong-8">Chương 8: Trọn Bộ Bài Quyền Vòng Tròn Nguyên Bản</a></li>
+        <li><a href="#loi-ket">Lời Kết: Đạo Của Sự Chuyển Động</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="book-content">
+    <article>
+      <header class="book-hero">
+        <span class="badge">Nội Gia Toàn Thư · Thực Chiến & Trị Liệu</span>
+        <h1>Bát Quái Chưởng: Hệ Thống Hoàn Chỉnh</h1>
+        <div class="subtitle">Baguazhang: The Complete System (Vol. 1) — Master Erle Montaigue</div>
+        <div class="meta-row">
+          <span><i class="fa-solid fa-user-ninja"></i> Đại sư Erle Montaigue (Moontagu Books)</span>
+          <span><i class="fa-solid fa-heart-pulse"></i> Trị liệu & Đối kháng Điểm huyệt (Dim Mak)</span>
+          <span><i class="fa-solid fa-book-open"></i> 88 trang &middot; 94 hình ảnh</span>
+          <span><i class="fa-solid fa-language"></i> Bản dịch Việt ngữ TaichiNOW</span>
+        </div>
+      </header>
+
+      <!-- Lời Mở Đầu -->
+      <section id="loi-mo-dau">
+        <h2>Lời Mở Đầu: Quyền Pháp Đối Kháng & Nghệ Thuật Trị Liệu Ẩn Tàng</h2>
+        <p>
+          Đại sư <strong>Erle Montaigue (1949–2011)</strong> là một trong những huyền thoại võ thuật nội gia nổi tiếng nhất thế giới phương Tây. Ông là người tiên phong giảng dạy công khai các bí pháp cận chiến tàn độc của Bát Quái Chưởng và Thái Cực Quyền kết hợp với <strong>Nghệ thuật Điểm Huyệt Sinh Tử (Dim Mak)</strong>, đồng thời cũng là bậc thầy sâu sắc về <strong>Khí Công Chữa Lành (Healing Qigong)</strong>.
+        </p>
+        <p>
+          Trong cuốn sách này, Erle Montaigue khẳng định rằng Bát Quái Chưởng không thể tách rời giữa hai mặt: <em>Càng biết cách phá hủy cơ thể đối phương ở mức độ tinh vi nhất (tác động vào kinh lạc, huyệt đạo), bạn lại càng hiểu rõ cách chữa lành và nuôi dưỡng sinh lực cho chính bản thân mình</em>.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/erle-montaigue-baguazhang/p001_img00.png" alt="Đại sư Erle Montaigue">
+          <figcaption><strong>Hình 1:</strong> Đại sư Erle Montaigue — Người truyền bá hệ thống Bát Quái Chưởng thực chiến và Khí công nội gia nguyên bản sang phương Tây.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 1 -->
+      <section id="chuong-1">
+        <h2>Chương 1: Long Hình Bát Quái Chưởng & Khí Công Chữa Lành Ẩn Tàng</h2>
+        <p>
+          Hệ thống Bát Quái Chưởng được Erle Montaigue truyền dạy thuộc nhánh <strong>Long Hình (Dragon Form Baguazhang)</strong> — lấy chuyển động uốn lượn, luồn lách của loài rồng trong thần thoại làm mẫu hình vận động thân pháp.
+        </p>
+        <div class="callout martial-principle">
+          <p>
+            <em>"Khi đi vòng tròn và chuyển chưởng, cột sống của bạn liên tục bị vặn xoắn như một chiếc khăn ướt được vắt ráo nước. Quá trình vặn xoắn này nén ép toàn bộ các cơ quan nội tạng (tim, gan, tỳ, phế, thận), tống khứ máu tù đọng và độc tố tích tụ lâu ngày. Khi xoay người mở ra (Đơn Hoán Chưởng), một dòng máu tươi giàu dưỡng chất và oxy lập tức tràn vào tưới tắm từng tế bào. Đây chính là Khí Công Chữa Lành Ẩn Tàng (Hidden Healing Qigong) vĩ đại nhất của Đạo gia."</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- Chương 2 -->
+      <section id="chuong-2">
+        <h2>Chương 2: Lịch Sử & Truyền Thừa Bát Quái Chưởng</h2>
+        <p>
+          Tác phẩm điểm lại nguồn gốc kỳ bí của cụ tổ <strong>Đổng Hải Xuyên (Dong Hai-chuan)</strong> tại núi Cửu Hoa (An Huy) hoặc núi Nga Mi, nơi ông thọ giáo từ các đạo sĩ ẩn dật trước khi xuất hiện tại phủ Túc Vương Gia ở Bắc Kinh.
+        </p>
+        <p>
+          Erle Montaigue nhấn mạnh sự khác biệt giữa hai đại đệ tử của Đổng Hải Xuyên:
+        </p>
+        <ul>
+          <li><strong>Doãn Phúc (Yin Fu):</strong> Xuất thân từ La Hán Quyền, sử dụng bàn tay "Ngưu Thiệt Chưởng" (Lưỡi Bò) cứng cáp, đòn đánh sắc lạnh, bộc phát theo đường thẳng kết hợp đi vòng.</li>
+          <li><strong>Trình Đình Hoa (Cheng Ting-hua):</strong> Xuất thân từ Đô Vật (Shuai Jiao), sử dụng "Long Trảo Chưởng" (Móng Rồng) linh hoạt, chuyên bẻ khóa Cầm Nã và quật ngã bạt căn đối thủ bằng đà ly tâm.</li>
+        </ul>
+      </section>
+
+      <!-- Chương 3 -->
+      <section id="chuong-3">
+        <h2>Chương 3: Lợi Ích Trị Liệu Sâu Sắc Cho Thân Tâm</h2>
+        <p>
+          Tác giả phân tích các tác động y học thực chứng của bài tập đi vòng tròn Bát Quái:
+        </p>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-heart-pulse"></i> 1. Kích Hoạt Dịch Não Tủy (Cerebrospinal Fluid Pump)</h5>
+          <p>Sự vặn xoắn nhịp nhàng của xương cụt và đốt sống cổ khi đi vòng tròn tạo nên một máy bơm cơ học thúc đẩy lưu thông dịch não tủy, nuôi dưỡng não bộ và làm dịu hệ thần kinh trung ương.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-heart-pulse"></i> 2. Giải Phóng Áp Lực Khớp Gối & Cột Sống</h5>
+          <p>Nhờ bước đi theo đường cong và mở khớp háng, tải trọng cơ thể không dồn thẳng đứng xuống đĩa đệm mà được phân tán đều qua chuỗi cân mạc (fascia) xoắn ốc.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-heart-pulse"></i> 3. Kích Hoạt Huyệt Dũng Tuyền & Kinh Thận</h5>
+          <p>Kỹ thuật bước chân bám đất (Mud Stepping) liên tục kích thích huyệt Dũng Tuyền ở lòng bàn chân, bồi bổ nguyên khí Thận Thủy theo Đông y.</p>
+        </div>
+      </section>
+
+      <!-- Chương 4 & 5 -->
+      <section id="chuong-4">
+        <h2>Chương 4 & 5: Giải Mã Kết Cấu Quyền Thức & Lời Dạy Của Bậc Tiền Bối</h2>
+        <p>
+          Erle Montaigue trích dẫn những câu khẩu quyết chân truyền từ các bậc thầy Bát Quái cổ xưa:
+        </p>
+        <div class="callout">
+          <p><strong>"Hành bộ như giảo thừng, thân hình như nọa xà":</strong> Bước chân đi như dây thừng bện chặt vào nhau, thân hình uốn lượn như con rắn trườn.</p>
+          <p><strong>"Khởi lạc tiến thoái, thuận ứng vô cùng":</strong> Nâng lên, hạ xuống, tiến tới, lùi lại đều thuận theo chiều lực của đối phương, không gượng ép chống đối.</p>
+          <p><strong>"Thủ đáo bộ bất đáo, đả nhân bất đắc diệu":</strong> Tay đến nơi mà chân không bước tới thì đánh trúng người cũng không tạo nên hiệu quả.</p>
+        </div>
+      </section>
+
+      <!-- Chương 6 -->
+      <section id="chuong-6">
+        <h2>Chương 6: Bát Đại Chưởng Pháp & Ý Nghĩa Chiến Đấu (The Eight Palms)</h2>
+        <p>
+          Trong chương này, Erle Montaigue phân tích chi tiết từng tư thế chưởng pháp kèm hình ảnh thị phạm trực tiếp:
+        </p>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p028_img00.png" alt="Đại sư Erle Montaigue thị phạm Bát Đại Chưởng">
+            <figcaption><strong>Hình 2A:</strong> Thế chưởng Định Bộ — Bàn tay trước đẩy ngang ngực đối thủ, bàn tay sau hạ bảo vệ Đan Điền.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p029_img00.png" alt="Chi tiết đòn chưởng khóa bẻ">
+            <figcaption><strong>Hình 2B:</strong> Ứng dụng khóa bẻ cổ tay đối phương bằng đòn kẹp xoắn của hai bàn tay.</figcaption>
+          </figure>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/erle-montaigue-baguazhang/p030_img00.png" alt="Chưởng pháp mượn đà xoay hông">
+          <figcaption><strong>Hình 3:</strong> Chưởng pháp xoay hông — Hạ thấp trọng tâm né tránh đòn đánh tầm cao và quét chưởng vào sườn đối thủ.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 7 -->
+      <section id="chuong-7">
+        <h2>Chương 7: Bí Pháp Đi Vòng Tròn (Walking the Circle)</h2>
+        <p>
+          Đi vòng tròn là cốt lõi của Bát Quái Chưởng. Khi đi vòng, lực ly tâm liên tục kéo cơ thể văng ra ngoài, buộc võ sĩ phải kích hoạt hệ thống cơ lõi sâu (deep core muscles) và gân cơ bàn chân để giữ thăng bằng.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/erle-montaigue-baguazhang/p036_img00.png" alt="Kỹ thuật bước chân đi vòng tròn">
+          <figcaption><strong>Hình 4:</strong> Tư thế bước chân trên đường tròn — Chân trong bước thẳng, chân ngoài Khấu Bộ móc vào trong, giữ khoảng cách ổn định.</figcaption>
+        </figure>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/erle-montaigue-baguazhang/p038_img00.png" alt="Thân trên vặn xoắn về tâm đường tròn">
+          <figcaption><strong>Hình 5:</strong> Thân trên vặn xoắn 90 độ về phía tâm vòng tròn — Mắt nhìn xuyên qua giữa hai bàn tay.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 8 -->
+      <section id="chuong-8">
+        <h2>Chương 8: Trọn Bộ Bài Quyền Vòng Tròn Nguyên Bản (The Original Circular Form)</h2>
+        <p>
+          Đây là toàn bộ chuỗi động tác của Bài Quyền Vòng Tròn Bát Quái nguyên bản được Đại sư Erle Montaigue thị phạm chi tiết từng bước:
+        </p>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p042_img00.png" alt="Thức 1: Khởi thức chuyển chưởng">
+            <figcaption><strong>Hình 6A:</strong> Khởi Thức Đi Vòng — Đẩy bàn tay trái hướng về tâm vòng tròn, tay phải áp sát hông.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p046_img00.png" alt="Thức 2: Đơn Hoán Chưởng bạt căn">
+            <figcaption><strong>Hình 6B:</strong> Đơn Hoán Chưởng — Xoay người 180 độ phóng thích đòn chém chưởng bạt căn đối thủ.</figcaption>
+          </figure>
+        </div>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p054_img00.png" alt="Thức 3: Song Hoán Chưởng liên hoàn">
+            <figcaption><strong>Hình 7A:</strong> Song Hoán Chưởng — Hai tay cuộn xoắn liên hoàn như hai bánh xe răng cược nghiền nát phòng tuyến địch.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p064_img00.png" alt="Thức 4: Long Hình Xuyên Chưởng">
+            <figcaption><strong>Hình 7B:</strong> Long Hình Xuyên Chưởng — Đâm chưởng xuyên qua nách áp sát sau lưng đối thủ.</figcaption>
+          </figure>
+        </div>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p074_img00.png" alt="Thức 5: Hổ Tọa Chưởng phát kình">
+            <figcaption><strong>Hình 8A:</strong> Hổ Tọa Chưởng — Hạ chìm hai chân vào thế Hổ Tọa bộc phát nội kình từ xương chậu.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/erle-montaigue-baguazhang/p084_img00.png" alt="Thức 6: Thu Thức Hoàn Nguyên">
+            <figcaption><strong>Hình 8B:</strong> Thu Thức Hoàn Nguyên — Dẫn khí trở về Đan Điền, tĩnh lặng toàn thân.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Lời Kết -->
+      <section id="loi-ket">
+        <h2>Lời Kết: Đạo Của Sự Chuyển Động Không Ngừng Dứt</h2>
+        <p>
+          Bát Quái Chưởng của Erle Montaigue khép lại bằng thông điệp sâu sắc: <em>Chuyển động chính là sự sống. Khi bạn ngừng chuyển động, sự trì trệ và bệnh tật sẽ bắt đầu nảy sinh. Hãy để thân thể bạn quay tròn như những vì tinh tú trên bầu trời đêm, tự do, khoáng đạt và hòa mình trọn vẹn vào dòng chảy của Đạo tự nhiên.</em>
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/erle-montaigue-baguazhang/p087_img00.png" alt="Tư thế chào kết thúc bài quyền của Erle Montaigue">
+          <figcaption><strong>Hình 9:</strong> Tư thế chào kết thúc của Đại sư Erle Montaigue — Tôn kính truyền thống, trọn vẹn võ đạo nội gia.</figcaption>
+        </figure>
+      </section>
+
+    </article>
+  </main>
+</div>
+
+<a href="#" class="back-to-top" id="back-to-top" title="Lên đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+
+<script>
+// Theme toggle
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  }
+});
+
+// Reading Progress
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+
+  // Back to top
+  const btt = document.getElementById('back-to-top');
+  if (winScroll > 300) {
+    btt.classList.add('visible');
+  } else {
+    btt.classList.remove('visible');
+  }
+});
+
+// TOC Active link tracking
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      document.querySelectorAll('.toc-nav a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+document.querySelectorAll('section[id]').forEach(sec => {
+  observer.observe(sec);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bát Quái Chưởng Toàn Thư — Tập 2: Chiến Lược Chiến Đấu & Bát Đại Chưởng Pháp — Park Bok Nam & Dan Miller</title>
+<meta name="description" content="Bản dịch Việt ngữ tác phẩm Bát Quái Chưởng Toàn Thư (Tập 2) của Đại sư Park Bok Nam và Dan Miller - Chiến lược đối kháng, luyện cọc gỗ, Bát Đại Chưởng Pháp 48 tháng, Bát Đại Trửu Pháp và Khí công thượng thừa.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-purple: #6b21a8;
+  --purple-light: #f3e8ff;
+  --accent-red: #991b1b;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-purple), var(--gold));
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1420px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--accent-purple);
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--purple-light);
+  color: var(--accent-purple);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.7rem;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--accent-purple);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; text-align: justify; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--accent-purple);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.martial-principle {
+  border-left-color: var(--gold);
+  background: rgba(180, 83, 9, 0.05);
+}
+
+.figure-box {
+  margin: 30px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.figure-box img {
+  width: 100%;
+  max-height: 620px;
+  object-fit: contain;
+  background: #f8fafc;
+  display: block;
+}
+.figure-box figcaption {
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  line-height: 1.5;
+}
+.figure-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0;
+}
+@media (max-width: 768px) {
+  .figure-grid-2 { grid-template-columns: 1fr; }
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px 80px; }
+  .book-hero h1 { font-size: 2.1rem; }
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.tech-table th, .tech-table td {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  text-align: left;
+}
+.tech-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.tech-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.step-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+}
+.step-card h5 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-purple);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--accent-purple);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+  z-index: 90;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/vi/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-arrow-left"></i> <span>Tủ Sách</span></a>
+    <button class="btn-control" id="theme-toggle" aria-label="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- Sidebar TOC -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-tua">Lời Tựa & Tổng Quan Tập 2</a></li>
+        <li><a href="#chuong-1">Chương 1: Giới Thiệu & Lộ Trình Luyện Tập</a></li>
+        <li><a href="#chuong-2">Chương 2: Chiến Lược Chiến Đấu Bát Quái Chưởng</a></li>
+        <li><a href="#chuong-3">Chương 3: Rèn Luyện Bộ Pháp Chuyên Sâu & Cọc Gỗ</a></li>
+        <li><a href="#chuong-4">Chương 4: Rèn Luyện Thân Pháp Diệp Lý Tàng Hoa</a></li>
+        <li><a href="#chuong-5">Chương 5: Bát Đại Chưởng Pháp 48 Tháng</a></li>
+        <li><a href="#chuong-6">Chương 6: Bát Đại Trửu Pháp (Đòn Chỏ Cận Chiến)</a></li>
+        <li><a href="#chuong-7">Chương 7: Khí Công Bát Quái Đỉnh Cao</a></li>
+        <li><a href="#chuong-8">Chương 8: Kết Luận & Đỉnh Cao Võ Học</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="book-content">
+    <article>
+      <header class="book-hero">
+        <span class="badge">Nội Gia Thực Chiến · Bát Quái Chưởng Toàn Thư</span>
+        <h1>Bát Quái Chưởng Toàn Thư — Tập 2</h1>
+        <div class="subtitle">The Fundamentals of Pa-Kua Chang, Vol. 2: The Method of Lu Shui-Tien — Park Bok Nam & Dan Miller</div>
+        <div class="meta-row">
+          <span><i class="fa-solid fa-user-ninja"></i> Đại sư Park Bok Nam & Dan Miller</span>
+          <span><i class="fa-solid fa-feather"></i> Truyền thừa Lục Thủy Điền (Lu Shui-Tien)</span>
+          <span><i class="fa-solid fa-book-open"></i> 222 trang &middot; 224 hình ảnh</span>
+          <span><i class="fa-solid fa-language"></i> Bản dịch Việt ngữ TaichiNOW</span>
+        </div>
+      </header>
+
+      <!-- Lời Tựa -->
+      <section id="loi-tua">
+        <h2>Lời Tựa: Bước Tiến Lên Đỉnh Cao Thực Chiến Bát Quái Chưởng</h2>
+        <p>
+          Nếu như <strong>Tập 1</strong> của bộ sách tập trung vào việc xây dựng nền móng cơ thể — rèn luyện gân cốt, bàn tay, mở khớp háng (Kua), cấu trúc cột sống Long Tích (Dragon Back) và bộ pháp bám rễ Bát Phương Căn Bộ — thì <strong>Tập 2</strong> chính là chìa khóa mở ra toàn bộ <strong>hệ thống chiến lược chiến đấu, ứng dụng đối kháng tự do và các bài quyền pháp thực chiến tinh vi nhất</strong> của phái Lục Thủy Điền (Sơn Đông).
+        </p>
+        <p>
+          Đại sư Park Bok Nam khẳng định: <em>"Bát Quái Chưởng không sinh ra để thi đấu thể thao hay biểu diễn quyền thuật đẹp mắt. Bản chất của nó là một cỗ máy chiến đấu linh hoạt tột bậc, dùng góc độ và chuyển động tròn để vô hiệu hóa sức mạnh cơ bắp của đối phương trong chớp mắt."</em>
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p001_img00.jpeg" alt="Bìa sách Bát Quái Chưởng Toàn Thư Tập 2">
+          <figcaption><strong>Hình 1:</strong> Bìa nguyên tác "The Fundamentals of Pa-Kua Chang, Vol. 2" — Công trình chuyên sâu về chiến lược chiến đấu, luyện cọc gỗ và Bát Đại Chưởng Pháp.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 1 -->
+      <section id="chuong-1">
+        <h2>Chương 1: Giới Thiệu & Lộ Trình Học Tập Hiệu Quả Nhất</h2>
+        <p>
+          Để hấp thụ trọn vẹn tinh hoa của Tập 2, người học không thể nhảy cóc chiêu thức mà phải tuân theo lộ trình 4 trụ cột đào tạo:
+        </p>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-shield-halved"></i> Trụ Cột 1: Căn Bản Khung Thân (Body Mechanics)</h5>
+          <p>Duy trì kết nối vững chắc giữa bàn chân bám đất, khớp háng mở và cột sống uốn lượn linh hoạt như rồng trong mọi tư thế di chuyển.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-shield-halved"></i> Trụ Cột 2: Bộ Pháp Tuyến Tính & Đi Vòng (Footwork Mastery)</h5>
+          <p>Khả năng chuyển hướng tức thì 90 độ và 180 độ thông qua kỹ thuật Khấu Bộ (Kou Bu) và Bãi Bộ (Bai Bu) mà không làm đứt đoạn quán tính.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-shield-halved"></i> Trụ Cột 3: Bát Đại Chưởng Pháp (The Eight Palms)</h5>
+          <p>8 dạng thức phát lực và biến hóa của bàn tay: Ném, Vỗ, Nâng, Chặt, Xuyên, Xoắn, Nén và Phóng thích.</p>
+        </div>
+        <div class="step-card">
+          <h5><i class="fa-solid fa-shield-halved"></i> Trụ Cột 4: Ứng Dụng Đối Kháng & Ứng Biến (Combat Adaptability)</h5>
+          <p>Không có bài quyền cứng nhắc trong thực tế đối đầu. Võ sĩ phải như nước, tùy theo hình thể của chiếc cốc (đòn đánh của đối thủ) mà biến đổi hình tướng.</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p008_img00.jpeg" alt="Đại sư Park Bok Nam thị phạm Đơn Hoán Chưởng">
+          <figcaption><strong>Hình 2:</strong> Đại sư Park Bok Nam thị phạm tư thế chuyển chưởng căn bản — Thân hình nghiêng góc né tránh đường tấn công trực diện.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 2 -->
+      <section id="chuong-2">
+        <h2>Chương 2: Chiến Lược Chiến Đấu Bát Quái Chưởng</h2>
+        <p>
+          Đây là một trong những chương học thuật giá trị nhất của toàn bộ tác phẩm. Đại sư Park Bok Nam đúc kết triết lý chiến đấu của Bát Quái Chưởng thành các nguyên tắc vàng:
+        </p>
+
+        <h3>1. Cự Ly & Góc Độ (Distance and Degree)</h3>
+        <p>
+          Trong khi các môn phái ngoại gia thường tập trung vào tốc độ và sức mạnh của nắm đấm, Bát Quái Chưởng lại đặt <strong>Góc Độ (Angle)</strong> lên hàng đầu.
+        </p>
+        <div class="callout martial-principle">
+          <p>
+            <em>"Nếu bạn đứng đối diện trực tiếp trước mặt đối thủ ở góc 0 độ, bạn phải đối đầu với 100% sức mạnh của họ. Nhưng nếu bạn di chuyển bước chân để đứng ở góc 45 độ hoặc 90 độ bên mạn sườn đối thủ, sức mạnh tấn công của họ bị giảm về 0 trong khi toàn bộ thân thể họ hoàn toàn phơi bày trước đòn đánh của bạn."</em>
+          </p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p014_img00.jpeg" alt="Sơ đồ chiến lược góc độ và cự ly">
+          <figcaption><strong>Hình 3:</strong> Sơ đồ phân tích góc độ tiếp cận đối thủ — Tránh né đường trục trung tâm (Centerline) và chiếm lĩnh góc mù của đối phương.</figcaption>
+        </figure>
+
+        <h3>2. Công Thức: "Nhập Chưởng - Tiếp Cầu - Kết Liễu" (Jab, Bridge, Finish)</h3>
+        <p>
+          Khi giao tranh thực tế, quá trình diễn ra theo 3 giai đoạn thần tốc:
+        </p>
+        <ul>
+          <li><strong>Jab (Nhập Chưởng):</strong> Tung đòn chưởng thăm dò hoặc nhử mồi để kích thích đối phương phản ứng và để lộ sơ hở.</li>
+          <li><strong>Bridge (Tiếp Cầu / Bắt Cầu):</strong> Ngay khoảnh khắc tay chạm tay đối phương, lập tức "bắc cầu" — dính bám (Niêm), kiểm soát cổ tay hoặc cùi chỏ của đối thủ để ngăn họ rút tay về.</li>
+          <li><strong>Finish (Kết Liễu):</strong> Xoay hông mượn đà ly tâm bồi tiếp một đòn chưởng xuyên phá hoặc đòn chỏ vào yết hầu, mạn sườn hoặc quật ngã bạt căn.</li>
+        </ul>
+
+        <h3>3. Nguyên Tắc Liên Hoàn (Lien Huan — Continuously Linked)</h3>
+        <p>
+          Tuyệt đối không có đòn đánh đơn độc. Mỗi một đòn chưởng bị chặn lại đều tự động kích hoạt đòn đánh tiếp theo. Cánh tay này gạt đỡ thì cánh tay kia đã phóng thích; tay bị khóa thì cùi chỏ lập tức bổ xuống; cùi chỏ bị khống chế thì đầu gối hoặc gót chân lập tức quét trụ.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p020_img00.jpeg" alt="Ứng dụng công thức Jab Bridge Finish">
+          <figcaption><strong>Hình 4:</strong> Thị phạm quy trình "Tiếp Cầu & Kết Liễu" — Bắt dính cổ tay đối phương và áp sát tung đòn chưởng bạt căn vào ngực.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 3 -->
+      <section id="chuong-3">
+        <h2>Chương 3: Rèn Luyện Bộ Pháp Chuyên Sâu & Cọc Gỗ (Pole Training)</h2>
+        <p>
+          Để thân pháp đạt tới trình độ luồn lách như chạch và vững như bàn thạch, phái Lục Thủy Điền sử dụng hệ thống <strong>Luyện Trụ Cọc Gỗ (Pole Training)</strong>:
+        </p>
+
+        <h3>1. Luyện Trụ Cọc Gỗ Thái Cực Đồ (T'ai Chi Diagram Pole Training)</h3>
+        <p>
+          Cắm 2 đến 3 cọc gỗ trên mặt đất tạo thành trục âm dương. Người tập đi vòng tròn quanh một cọc, rồi bất ngờ đổi hướng uốn lượn hình chữ S (hình Thái Cực đồ) sang cọc kế tiếp.
+        </p>
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p045_img00.jpeg" alt="Luyện tập cọc gỗ Thái Cực đồ">
+            <figcaption><strong>Hình 5A:</strong> Đi vòng quanh cọc gỗ — Rèn luyện khả năng duy trì khoảng cách cánh tay không đổi khi thân thể liên tục xoay tròn.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p046_img00.jpeg" alt="Đổi hướng quanh cọc gỗ chữ S">
+            <figcaption><strong>Hình 5B:</strong> Đổi hướng quanh cọc — Vặn xoắn thắt lưng tối đa để lướt sát thân cọc mô phỏng việc luồn ra sau lưng kẻ địch.</figcaption>
+          </figure>
+        </div>
+
+        <h3>2. Mạng Lưới Cọc Xoắn Ốc (Spiral Pattern & Tee-Pee Pole Arrangement)</h3>
+        <p>
+          Nâng cấp lên 5 cọc (Ngũ Hành) hoặc 8 cọc (Bát Quái). Người tập học cách di chuyển trong không gian chật hẹp, tránh né các cọc cản trở như khi bị bao vây bởi đám đông kẻ thù.
+        </p>
+
+        <h3>3. Ba Bước Chân Đặc Dị: Xà Bộ, Sư Bộ & Hạc Bộ</h3>
+        <ul>
+          <li><strong>Xà Bộ (Snake Step):</strong> Bước lướt sát mặt đất, uyển chuyển, chuyên dùng để áp sát luồn lách vào điểm mù đối thủ.</li>
+          <li><strong>Sư Bộ (Lion Step):</strong> Bước chân vững chãi, nặng nề, dậm mạnh bám rễ khi cần phát lực công phá cực đại.</li>
+          <li><strong>Hạc Bộ (Crane Step):</strong> Bước chân nhẹ nhàng, linh hoạt, trọng tâm treo cao để tung đòn đá nhanh như chớp.</li>
+        </ul>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p056_img00.jpeg" alt="Kỹ thuật Xà Bộ lướt sát mặt đất">
+          <figcaption><strong>Hình 6:</strong> Xà Bộ (Snake Step) — Thân hình hạ thấp tối đa, luồn sâu dưới tầm đấm của đối thủ để đánh vào hạ bàn.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 4 -->
+      <section id="chuong-4">
+        <h2>Chương 4: Rèn Luyện Thân Pháp Diệp Lý Tàng Hoa & Đơn Hoán Chưởng Nâng Cao</h2>
+        <p>
+          Chiêu thức danh bất hư truyền của Bát Quái: <strong>"Diệp Lý Tàng Hoa" (葉裏藏花 - Giấu hoa dưới lá)</strong>:
+        </p>
+        <p>
+          "Lá" tượng trưng cho cánh tay trước mở rộng che khuất tầm nhìn của đối phương; "Hoa" tượng trưng cho bàn tay sau giấu kín dưới nách hoặc cùi chỏ. Khi đối phương mải chú ý đến cánh tay trước, bàn tay sau bất ngờ phóng thẳng ra như mũi tên xuyên qua khe hở đánh trúng đích.
+        </p>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p060_img00.jpeg" alt="Diệp Lý Tàng Hoa tư thế giấu tay">
+            <figcaption><strong>Hình 7A:</strong> Tay trước che chắn mặt đối thủ, tay sau giấu kín dưới nách tích lũy kình lực.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p064_img00.jpeg" alt="Diệp Lý Tàng Hoa phát kình bất ngờ">
+            <figcaption><strong>Hình 7B:</strong> Khoảnh khắc phát kình — Bàn tay sau xuyên thẳng qua cùi chỏ đánh trúng yết hầu đối phương trong chớp mắt.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Ứng Dụng Thực Chiến Của Khấu Bộ & Bãi Bộ</h3>
+        <p>
+          Không chỉ dùng để đổi hướng đi vòng, Khấu Bộ (móc mũi chân) được dùng để <em>khóa cứng bàn chân đối phương</em>, khiến họ không thể xoay người; trong khi Bãi Bộ (mở gót chân) được dùng để <em>gạt quét cổ chân</em> làm đối phương ngã chổng vó.
+        </p>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p081_img00.jpeg" alt="Kỹ thuật dùng chân bẫy khóa đối thủ">
+          <figcaption><strong>Hình 8:</strong> Dùng Khấu Bộ bẫy chân đối thủ kết hợp chưởng pháp quật ngã bạt căn.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 5 -->
+      <section id="chuong-5">
+        <h2>Chương 5: Bát Đại Chưởng Pháp 48 Tháng (The Eight 48-Month Palms)</h2>
+        <p>
+          Trong chương trình giảng dạy của Đại sư Lục Thủy Điền, học viên phải mất 4 năm (48 tháng) luyện tập chuyên cần mới nắm vững trọn vẹn 8 chưởng pháp cốt lõi:
+        </p>
+
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Tên Chưởng Pháp</th>
+              <th>Đặc Tính Cơ Học</th>
+              <th>Ứng Dụng Chiến Đấu Thực Tế</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Ném Chưởng (Throwing Palm)</strong></td>
+              <td>Phóng chưởng vung tròn như ném đá</td>
+              <td>Đánh vòng qua tay đỡ của đối phương vào mang tai hoặc thái dương.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Vỗ Chưởng (Slapping Palm)</strong></td>
+              <td>Lực dập dội, đổi hướng tức thì</td>
+              <td>Vỗ lệch cú đấm thẳng của đối thủ và bồi tiếp cú tát trời giáng vào quai hàm.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Nâng Chưởng (Lifting Palm)</strong></td>
+              <td>Hất ngược từ dưới lên trên</td>
+              <td>Xuyên qua phòng tuyến đánh móc vào cằm hoặc chọc vào nách đối phương.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Chặt Chưởng (Chopping Palm)</strong></td>
+              <td>Chém xéo bằng sống bàn tay</td>
+              <td>Chém gãy xương quai xanh (đòn) hoặc chặt đứt gân cổ đối thủ.</td>
+            </tr>
+            <tr>
+              <td><strong>5. Xuyên Chưởng (Piercing Palm)</strong></td>
+              <td>Mũi tên đâm thẳng xoắn ốc</td>
+              <td>Đâm 5 đầu ngón tay vào huyệt chấn thủy hoặc hốc mắt.</td>
+            </tr>
+            <tr>
+              <td><strong>6. Bạch Vân Truy Tinh (White Clouds Chasing Stars)</strong></td>
+              <td>Chưởng pháp liên hoàn song thủ</td>
+              <td>Hai tay thay nhau công thủ như mây bay gối sóng, đối thủ đỡ không xuể.</td>
+            </tr>
+            <tr>
+              <td><strong>7. Đẩy Cửa Sổ Ngắm Trăng (Sliding Window to Look at Moon)</strong></td>
+              <td>Gạt ngang và đẩy vát góc 45 độ</td>
+              <td>Gạt đòn đánh của địch sang một bên và đẩy văng họ vào tường hoặc vực sâu.</td>
+            </tr>
+            <tr>
+              <td><strong>8. Ôm Trăng Trước Ngực (Embracing Moon at Chest)</strong></td>
+              <td>Khối cầu kình lực ép tròn</td>
+              <td>Hóa giải đòn ôm siết và phát kình nổ tung lồng ngực đối phương.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="figure-grid-2">
+          <figure class="figure-box">
+            <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p096_img00.jpeg" alt="Kỹ thuật Ném Chưởng Throwing Palm">
+            <figcaption><strong>Hình 9A:</strong> Kỹ thuật Ném Chưởng — Toàn bộ sức mạnh vặn xoắn từ hông được phóng thích qua cánh tay quất như roi thép.</figcaption>
+          </figure>
+          <figure class="figure-box">
+            <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p108_img00.jpeg" alt="Kỹ thuật Chặt Chưởng Chopping Palm">
+            <figcaption><strong>Hình 9B:</strong> Kỹ thuật Chặt Chưởng — Sống bàn tay cứng như lưỡi dao chém xéo cắt đứt thế công của địch.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Chương 6 -->
+      <section id="chuong-6">
+        <h2>Chương 6: Bát Đại Trửu Pháp (Pa Kua Chang Elbow Training)</h2>
+        <p>
+          Trong cận chiến cự ly siêu gần, khi bàn tay bị đối phương túm chặt hoặc không gian quá hẹp không thể vung chưởng, <strong>Đòn Chỏ (Trửu Pháp)</strong> trở thành vũ khí tàn khốc nhất:
+        </p>
+        <p>
+          Cùi chỏ là phần xương cứng nhất của chi trên. Bát Quái Chưởng kết hợp sức vặn xoắn của thắt lưng với đòn chỏ tạo nên sức công phá có thể làm nứt xương sườn hoặc gãy quai hàm đối phương trong tích tắc.
+        </p>
+
+        <div class="step-card">
+          <h5><i class="fa-solid fa-bolt"></i> 8 Thế Trửu Pháp Cốt Lõi:</h5>
+          <p>1. Bổ Trửu (Bổ từ trên xuống đỉnh đầu hoặc vai) &middot; 2. Thượng Trửu (Hất chỏ từ dưới lên cằm) &middot; 3. Hoành Trửu (Quẹt chỏ ngang mặt) &middot; 4. Hậu Trửu (Đâm chỏ ra sau lưng khi bị ôm siết) &middot; 5. Áp Trửu (Đè chỏ bẻ gãy cánh tay đối thủ) &middot; 6. Toản Trửu (Chọc chỏ xoắn ốc xuyên tâm) &middot; 7. Phách Trửu (Bổ chỏ chéo mạn sườn) &middot; 8. Hồi Trửu (Xoay người 360 độ quất chỏ bất ngờ).</p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p154_img00.jpeg" alt="Kỹ thuật đòn chỏ Bát Quái cận chiến">
+          <figcaption><strong>Hình 10:</strong> Đòn Trửu Kình cận chiến — Áp sát đối thủ sau khi hóa giải đòn đánh, tung cú chém cùi chỏ tàn khốc vào mạn sườn.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 7 -->
+      <section id="chuong-7">
+        <h2>Chương 7: Khí Công Bát Quái Đỉnh Cao (Pa Kua Ch'i Kung Set)</h2>
+        <p>
+          Để cân bằng lại năng lượng hỏa nhiệt từ các bài tập quyền cước mãnh liệt, học viên phải tu tập bộ <strong>8 Thế Khí Công Bát Quái Chuẩn Mực</strong>:
+        </p>
+        <ul>
+          <li><strong>Dâng Chén Trà (Serving Tea Cups):</strong> Giữ hai bàn tay ngửa như đang bưng hai chén trà đầy nước, xoay tròn cánh tay quanh eo và qua đỉnh đầu mà nước không sánh ra ngoài — Khai mở toàn bộ gân khớp vai, cổ tay và cột sống.</li>
+          <li><strong>Kỳ Lân Chuyển Thân (Unicorn Turns its Body):</strong> Vặn xoắn thân mình 180 độ xoa bóp nội tạng gan, lách và thận.</li>
+          <li><strong>Hải Để Lao Nguyệt (Mò trăng đáy biển):</strong> Cúi gập thân sâu dẫn khí thanh lương tưới mát tủy xương và kích hoạt huyệt Dũng Tuyền.</li>
+        </ul>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p182_img00.jpeg" alt="Khí công Dâng Chén Trà Serving Tea Cups">
+          <figcaption><strong>Hình 11:</strong> Bài tập Khí Công Bát Quái — Bí quyết kéo giãn kinh lạc và nuôi dưỡng sự linh hoạt gân cơ tuyệt đối của Bát Quái.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Chương 8 -->
+      <section id="chuong-8">
+        <h2>Chương 8: Kết Luận & Đỉnh Cao Võ Học</h2>
+        <p>
+          Khép lại hai tập đại tác phẩm <em>The Fundamentals of Pa-Kua Chang</em>, Đại sư Park Bok Nam nhắn nhủ võ sinh về tinh thần võ đạo chân chính:
+        </p>
+        <div class="callout martial-principle">
+          <p>
+            <em>"Kỹ thuật chỉ là con thuyền đưa bạn qua sông. Khi đã sang đến bờ bên kia, bạn phải bỏ lại con thuyền để bước đi thanh thản. Đỉnh cao thực sự của Bát Quái Chưởng là khi không còn kỹ thuật, không còn chiêu thức, thân tâm hòa làm một với Đạo, ứng biến vô cùng như vòng tròn vô tận của vũ trụ bao la."</em>
+          </p>
+        </div>
+
+        <figure class="figure-box">
+          <img src="/assets/images/books/park-bok-nam-pa-kua-chang-vol2/p208_img00.jpeg" alt="Tư thế hoàn nguyên viên mãn của Đại sư Park Bok Nam">
+          <figcaption><strong>Hình 12:</strong> Tư thế hoàn nguyên — Tâm tĩnh như gương, khí trầm Đan Điền, viên mãn trọn vẹn tinh hoa Bát Quái Chưởng Lục Thủy Điền.</figcaption>
+        </figure>
+      </section>
+
+    </article>
+  </main>
+</div>
+
+<a href="#" class="back-to-top" id="back-to-top" title="Lên đầu trang"><i class="fa-solid fa-arrow-up"></i></a>
+
+<script>
+// Theme toggle
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  }
+});
+
+// Reading Progress
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+
+  // Back to top
+  const btt = document.getElementById('back-to-top');
+  if (winScroll > 300) {
+    btt.classList.add('visible');
+  } else {
+    btt.classList.remove('visible');
+  }
+});
+
+// TOC Active link tracking
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      document.querySelectorAll('.toc-nav a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+document.querySelectorAll('section[id]').forEach(sec => {
+  observer.observe(sec);
+});
+</script>
+</body>
+</html>
