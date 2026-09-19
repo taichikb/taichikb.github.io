@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trần Thị Thái Cực Quyền Đồ Thuyết (陈氏太极拳图说) — Trần Hâm | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt kinh điển Trần Thị Thái Cực Quyền Đồ Thuyết (1933) của tôn sư Trần Hâm (Chen Xin). Luận giải toàn diện bản nguyên Triền Ty Kình, 5 tầng vòng xoáy Thái Cực, cơ chế Nhân Thể Triền Ty Đồ và Tứ Thủ Thi bí truyền.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+body.dark-mode .poem-card {
+  background: #1e1b2e;
+  border-color: #6366f1;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-crimson);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.5rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.6rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.3rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 1rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.book-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.book-tag {
+  background: #f5f5f4;
+  color: #44403c;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: 1px solid #e7e5e4;
+}
+body.dark-mode .book-tag {
+  background: #262626;
+  color: #d4d4d4;
+  border-color: #404040;
+}
+.chapter-block {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.95rem;
+  color: var(--text-primary);
+  margin: 0.2rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fefce8;
+  border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+.figure-wrap {
+  margin: 2rem 0;
+  text-align: center;
+  background: rgba(0,0,0,0.02);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+body.dark-mode .figure-wrap {
+  background: #1e1e1e;
+  border-color: #333;
+}
+.figure-wrap img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: #78716c;
+  margin-top: 10px;
+  font-style: italic;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.tech-table th, .tech-table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  text-align: left;
+}
+.tech-table th {
+  background: #f8fafc;
+  color: var(--accent-crimson);
+  font-weight: 600;
+}
+.poem-card {
+  background: #faf5ff;
+  border: 1px solid #d8b4fe;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.poem-card h4 {
+  margin: 0 0 10px;
+  color: #6b21a8;
+  font-size: 1.15rem;
+}
+.poem-content {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #3b0764;
+  margin-bottom: 12px;
+}
+body.dark-mode .poem-content {
+  color: #e9d5ff;
+}
+.poem-trans {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+body.dark-mode .poem-trans {
+  color: #cbd5e1;
+}
+.reader-tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+.tool-btn {
+  background: #fff;
+  border: 1px solid #d6d3d1;
+  color: #44403c;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+body.dark-mode .tool-btn {
+  background: #262626;
+  border-color: #404040;
+  color: #e5e5e5;
+}
+.tool-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+@media (max-width: 992px) {
+  .reader-layout {
+    flex-direction: column;
+  }
+  .reader-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/">Trang Chủ</a>
+    <a href="/vi/techniques/">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/">Video</a>
+    <a href="/vi/podcast/">Podcast</a>
+    <a href="/vi/philosophy/">Triết Lý</a>
+    <a href="/vi/history/">Lịch Sử</a>
+    <a href="/vi/contact/">Liên Hệ</a>
+    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<div class="reader-layout">
+  
+  <!-- SIDEBAR TOC & CONTROLS -->
+  <aside class="reader-sidebar">
+    <div class="reader-tools">
+      <button class="tool-btn" onclick="toggleDarkMode()" title="Chuyển chế độ sáng/tối"><i class="fa-solid fa-moon"></i> Giao diện</button>
+      <button class="tool-btn" onclick="adjustFontSize(1)" title="Tăng cỡ chữ"><i class="fa-solid fa-plus"></i> A+</button>
+      <button class="tool-btn" onclick="adjustFontSize(-1)" title="Giảm cỡ chữ"><i class="fa-solid fa-minus"></i> A-</button>
+    </div>
+    
+    <div style="margin-bottom: 1.2rem;">
+      <a href="/vi/books/" style="color: var(--accent-gold); font-size: 0.88rem; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+        <i class="fa-solid fa-arrow-left"></i> Về Thư Viện Sách
+      </a>
+    </div>
+
+    <div class="toc-title"><i class="fa-solid fa-book-open"></i> Mục Lục Tác Phẩm</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#lich-su-tac-gia" class="toc-link">1. Thân Thế Trần Hâm & Bộ Đại Thư</a></li>
+      <li class="toc-item"><a href="#xuat-ban-di-cao" class="toc-link">2. Di Cảo & Sự Kiện Xuất Bản 1933</a></li>
+      <li class="toc-item"><a href="#phan-1-trien-ty-tinh-nghia" class="toc-link">3. Phần I: Triền Ty Tinh Nghĩa Đồ Thuyết</a></li>
+      <li class="toc-item"><a href="#nam-tang-xoan-oc" class="toc-link">4. Ý Nghĩa 5 Tầng Vòng Xoáy Âm Dương</a></li>
+      <li class="toc-item"><a href="#ve-sinh-va-hoan-khi" class="toc-link">5. Bí Quyết Vệ Sinh Dưỡng Sinh & Hoàn Khí</a></li>
+      <li class="toc-item"><a href="#phan-2-chinh-dien-trien-ty" class="toc-link">6. Phần II: Nhân Thể Triền Ty Đồ (Chính Diện)</a></li>
+      <li class="toc-item"><a href="#phan-2-boi-dien-trien-ty" class="toc-link">7. Nhân Thể Triền Ty Đồ (Bối Diện)</a></li>
+      <li class="toc-item"><a href="#trien-ty-kinh-luan" class="toc-link">8. Thái Cực Quyền Triền Ty Kình Luận</a></li>
+      <li class="toc-item"><a href="#can-vo-hinh" class="toc-link">9. Bí Pháp Bàn Cân Vô Hình Của Diệu Thủ</a></li>
+      <li class="toc-item"><a href="#tu-thu-thi" class="toc-link">10. Tứ Thủ Thi Luận Triền Ty Pháp</a></li>
+      <li class="toc-item"><a href="#bang-thuat-ngu" class="toc-link">11. Bảng Đối Chiếu Thuật Ngữ & Đồ Hình</a></li>
+    </ul>
+
+    <div style="margin-top: 2rem; padding: 12px; background: rgba(197, 155, 39, 0.1); border-radius: 8px; border: 1px dashed var(--accent-gold);">
+      <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson); margin-bottom: 6px;">
+        <i class="fa-solid fa-compass"></i> Khám Phá Trực Quan
+      </div>
+      <p style="font-size: 0.8rem; margin: 0; line-height: 1.4; color: var(--text-secondary);">
+        Xem bộ đồ hình phục chế tương tác độc bản:
+      </p>
+      <a href="/vi/books/chen_xin_diagrams_bilingual.html" style="display: block; margin-top: 8px; font-size: 0.82rem; font-weight: 700; color: #b45309; text-decoration: none;">
+        👉 Mở Đồ Hình Mộc Bản Song Ngữ &rarr;
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="reader-content">
+    
+    <div class="book-hero">
+      <span class="book-badge">Tuyệt Tác Khai Sáng Võ Học Nội Gia &middot; Bản Dịch Tiếng Việt Chuẩn Xác</span>
+      <h1>Trần Thị Thái Cực Quyền Đồ Thuyết</h1>
+      <div class="book-orig-title">《陈氏太极拳图说》 — 陈鑫 著 (1849–1929)</div>
+      <div class="book-author-meta">
+        <strong>Tác giả:</strong> Tôn sư Trần Hâm (Trần Phẩm Tam, Đời thứ 16 Trần Gia Câu)<br>
+        <strong>Bản dịch Anh ngữ & Chú giải gốc:</strong> Jarek Szymanski (1999) &middot; Hiệp hội WCTA Bulgaria<br>
+        <strong>Việt ngữ, Khảo dị & Hiệu đính Quyền phổ:</strong> Ban Biên khảo TaichiNOW
+      </div>
+      <div class="book-tags">
+        <span class="book-tag"><i class="fa-solid fa-yin-yang"></i> Triền Ty Kình (缠丝劲)</span>
+        <span class="book-tag"><i class="fa-solid fa-scroll"></i> Đồ Thuyết Kinh Điển</span>
+        <span class="book-tag"><i class="fa-solid fa-heart-pulse"></i> Trung Khí & Hạo Nhiên Chi Khí</span>
+        <span class="book-tag"><i class="fa-solid fa-diagram-project"></i> Cơ Sinh Học Cổ Truyền</span>
+        <span class="book-tag"><i class="fa-solid fa-fire"></i> Tiểu Giá (Xiaojia)</span>
+      </div>
+    </div>
+
+    <!-- FIGURE BANNER -->
+    <div class="figure-wrap" style="margin-top:0;">
+      <img src="/assets/images/books/chen-xin-tushuo/chen-family-taijiquan.jpg" alt="Trần Thị Thái Cực Quyền Đồ Thuyết - Tuyển đoạn kinh điển">
+      <div class="figure-caption">Trần Thị Thái Cực Quyền Đồ Thuyết — Đại thư nền tảng đúc kết tinh hoa quyền pháp Trần gia suốt hàng trăm năm.</div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <section id="lich-su-tac-gia" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 1 &middot; Khởi Nguồn Lịch Sử</span>
+        <h2 class="chapter-title">Thân Thế Tôn Sư Trần Hâm & Hoàn Cảnh Viết Đại Thư</h2>
+      </div>
+
+      <p>
+        <strong>Trần Hâm (陈鑫, 1849–1929)</strong>, tự là <strong>Phẩm Tam (品三)</strong>, hiệu <strong>An Ngu (安愚)</strong>, là truyền nhân đời thứ 16 của dòng họ Trần tại làng <em>Trần Gia Câu (Chenjiagou)</em>, huyện Ôn, tỉnh Hà Nam. Ông là cháu nội của danh sư Thái Cực Quyền lừng lẫy <strong>Trần Hữu Hằng (Chen Youheng)</strong>. Chú họ của ông chính là quyền sư <strong>Trần Hữu Bản (Chen Youben)</strong> — người trên cơ sở sáo lộ quyền truyền thống đã sáng lập nên chi phái <strong>Tiểu Giá (Xiaojia / 小架)</strong> danh tiếng.
+      </p>
+
+      <p>
+        Thân phụ của Trần Hâm là <strong>Trần Trọng Thân (Chen Zhongshen)</strong> cùng người anh em sinh đôi là thúc phụ <strong>Trần Quý Thân (Chen Jishen)</strong> đều là những bậc cao thủ quyền pháp siêu phàm. Thuở nhỏ, hai huynh đệ theo học trực tiếp từ phụ thân Trần Hữu Hằng; sau khi cha không may qua đời do đuối nước tại hồ Động Đình, hai người tiếp tục thụ giáo trọn vẹn từ người chú ruột Trần Hữu Bản.
+      </p>
+
+      <p>
+        Trần Trọng Thân có thân hình khôi vĩ, vạm vỡ khác thường và đã miệt mài luyện võ từ năm 3 tuổi. Về sau, ông cùng người anh em song sinh thi đỗ kỳ thi tuyển quân sự cấp tỉnh, đạt danh vị <strong>Võ Tướng (Võ Tú Tài / Wuxiang)</strong>. Vào thời trị vì của hai hoàng đế Hàm Phong (1851–1861) và Đồng Trị (1862–1874), tại Trần Gia Câu nổi danh nhất là <strong>"Tam Đại Danh Thủ"</strong>: Trần Trọng Thân, Trần Quý Thân và Trần Canh Vân (con trai trưởng của quyền sư Trần Trường Hưng). Trong đó, Trần Trọng Thân đặc biệt danh chấn sa trường nhờ lòng dũng cảm phi thường và khả năng sử dụng thuần thục ngọn <strong>thiết thương nặng 30 cân (gần 15 kg)</strong> xông pha trận mạc không ai địch nổi.
+      </p>
+
+      <div class="figure-wrap">
+        <img src="/assets/images/books/chen-xin-tushuo/CZMdtp.jpg" alt="Trần Tử Minh - Đương Đầu Pháo Tiểu Giá">
+        <div class="figure-caption">Hình 1: Danh sư Trần Tử Minh (học trò chân truyền của Trần Hâm) biểu diễn chiêu thức "Đương Đầu Pháo" (Cannon to the Head) của phái Tiểu Giá (Xiaojia). Ông là người đầu tiên có công truyền bá Tiểu Giá ra khỏi phạm vi Trần Gia Câu.</div>
+      </div>
+
+      <p>
+        Trần Hâm và huynh trưởng là <strong>Trần Diêu (Chen Yao)</strong> đều được phụ thân truyền dạy võ công gia truyền từ tấm bé. Trần Diêu năm 19 tuổi đã đỗ Võ Tú Tài cấp huyện; ông chuyên cần khổ luyện tới mức mỗi năm đi quyền không dưới <em>mười vạn lượt</em>, sau 20 năm công phu đạt tới cảnh giới tuyệt đỉnh. Người ngoài nhìn vào thấy Trần Diêu gầy gò, thấp bé nên thường không tin ông có tài nghệ; song khi tỷ thí với đội lính canh gác của nha môn tri huyện, Trần Diêu chỉ cần vung tay chuyển bộ là quật ngã 6, 7 tráng đinh to lớn cùng lúc xuống đất.
+      </p>
+
+      <p>
+        Trần Hâm cũng học quyền từ nhỏ, thấu suốt tường tận lý pháp và khẩu quyết. Tuy nhiên, do phụ thân nhận thấy tư chất thông minh đĩnh ngộ nên nghiêm lệnh ông phải chuyên tâm vào con đường văn học, khoa cử. Vì thế, công phu quyền thế của ông lúc bấy giờ chưa thể sánh ngang với huynh trưởng. Khi về già, nhận thấy sự nghiệp khoa cử nho học không đem lại kết quả lớn, lại nhìn tấm gương võ học trác tuyệt của anh mình cùng nguy cơ bí truyền của gia tộc bị thất truyền theo thời gian, Trần Hâm vô cùng ân hận vì đã không dốc toàn lực vào võ thuật từ sớm. Ông lập lời thệ nguyện sắt đá: <strong>Phải đem hết tài hoa bút mực và hiểu biết võ học cả đời để trước thư lập ngôn, diễn giải minh xác nguyên lý và phương pháp của Thái Cực Quyền dòng họ Trần lưu truyền lại cho hậu thế.</strong>
+      </p>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="xuat-ban-di-cao" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 2 &middot; Lịch Sử Di Cảo</span>
+        <h2 class="chapter-title">Bộ Đại Thư 12 Năm Chấp Bút & Lời Trăn Trối</h2>
+      </div>
+
+      <p>
+        Công trình vĩ đại nhất đời Trần Hâm chính là bộ sách <strong>《Trần Thị Thái Cực Quyền Đồ Thuyết》 (Chen Shi Taijiquan Tushuo)</strong>. Ông đã tự tay cầm bút miệt mài viết liên tục trong suốt <strong>12 năm ròng rã</strong>, bắt đầu từ năm Quang Tự thứ 34 (1908) cho đến năm Dân Quốc thứ 8 (1919) mới hoàn tất. 
+      </p>
+
+      <p>
+        Tác phẩm được chia làm 4 quyển đồ sộ với dung lượng từ 20 đến 30 vạn chữ Hán. Dựa trên triết lý uyên áo của <em>Dịch Kinh (Kinh Dịch)</em>, bộ sách giải mã thấu đáo quy luật biến dịch của Âm và Dương; dùng hệ thống kinh lạc, huyệt vị và cơ thể học để chứng minh đường vận hành của khí huyết; giải thích chi tiết ứng dụng thực chiến của từng chiêu thức và chỉ rõ yếu lĩnh nhập môn cho người mới học. Tất cả tinh hoa tích lũy qua nhiều thế hệ quyền sư Trần gia đều được công khai minh bạch, tuyệt đối không giữ lại bí mật riêng tư. Trong đó, <strong>Triền Ty Kình (缠丝劲 - Kình xoắn ốc tơ tằm)</strong> và <strong>Nội Kình (内劲)</strong> được tôn vinh là linh hồn cốt lõi của toàn bộ học thuyết.
+      </p>
+
+      <div class="figure-wrap" style="max-width: 420px; margin: 2rem auto;">
+        <img src="/assets/images/books/chen-xin-tushuo/bookCX.jpg" alt="Bìa sách gốc Trần Thị Thái Cực Quyền Đồ Thuyết">
+        <div class="figure-caption">Hình 2: Bìa mộc bản tác phẩm gốc "Trần Thị Thái Cực Quyền Đồ Thuyết" do Khai Minh Thư Cục xuất bản năm 1933.</div>
+      </div>
+
+      <div class="quote-box">
+        "Đây là tinh huyết cả cuộc đời ta tích tụ lại. Hãy đem xuất bản và truyền dạy cho những người thực sự xứng đáng; nếu không gặp được người hiền tài có đức, thà đem đốt đi, dứt khoát tuyệt đối không được truyền cho những kẻ ngông cuồng, ngu muội và bất nghĩa!"
+        <div style="text-align: right; margin-top: 8px; font-weight: 600;">— Lời trăn trối của Trần Hâm dặn dò cháu trai Trần Xuân Nguyên (Chen Chunyuan) bên giường bệnh</div>
+      </div>
+
+      <p>
+        Do cả đời đạm bạc thanh bần, khi Trần Hâm qua đời, gia đình túng quẫn đến mức quan tài của ông phải quàn trong nhà nhiều năm liền không có tiền làm lễ an táng. Người cháu ruột Trần Xuân Nguyên vì muốn quyên tiền lo tang lễ cho chú, đồng thời tâm nguyện hoàn thành di chiếu xuất bản cuốn sách, đã tìm đến hai người bạn thân là Đỗ Hữu Mai (Du Youmei) và Lưu Doanh Tiên (Liu Yingxian) cầu viện.
+      </p>
+
+      <p>
+        Cảm phục trước tấm lòng và giá trị vô giá của bộ bản thảo, các nhân sĩ tri thức và võ học hàng đầu như <strong>Trần Phán Lĩnh (Chen Panling)</strong> — Viện trưởng Viện Võ thuật tỉnh Hà Nam, <strong>Hàn Tử Bộ (Han Zibu)</strong> — Cục trưởng Cục Lưu trữ Hà Nam, Vương Trạch Dân và Bạch Ngọc Sanh thuộc Khai Minh Thư Cục, Quản Bách Ích (Giám đốc Bảo tàng tỉnh Hà Nam) cùng Trương Gia Mưu đã chung tay quyên góp trước 200 đồng để an táng Trần Hâm chu tất. Sau đó, họ tiếp tục vận động quyên góp thêm 800 đồng và chính thức in ấn, phát hành <strong>1.000 bản đầu tiên</strong> của bộ <em>Trần Thị Thái Cực Quyền Đồ Thuyết</em> vào năm 1933.
+      </p>
+
+      <p>
+        Vào mùa đông năm 1930, học giả lịch sử võ thuật lừng danh <strong>Đường Hào (Tang Hao)</strong> đã cùng quyền sư Trần Tử Minh về tận làng Trần Gia Câu để khảo cứu tư liệu lịch sử Thái Cực Quyền. Khi được tận mắt đọc bản thảo viết tay của Trần Hâm, Đường Hào đã vô cùng kinh ngạc và đánh giá đây là tác phẩm lý luận võ học vĩ đại nhất từng được biên soạn.
+      </p>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="phan-1-trien-ty-tinh-nghia" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 3 &middot; Lý Thuyết Cốt Lõi</span>
+        <h2 class="chapter-title">Phần I: Thái Cực Quyền Triền Ty Tinh Nghĩa Đồ Thuyết</h2>
+      </div>
+
+      <div class="key-point">
+        <strong>Yếu Quyết Khởi Tâm của Trần Hâm:</strong> "Chỉ sau khi đọc đồ hình vòng tròn Thái Cực trong các tác phẩm cổ điển, ta mới ngộ ra rằng: Muốn luyện Thái Cực Quyền, ắt phải thấu triệt tinh nghĩa của Triền Ty (xoắn cuộn tơ tằm). Triền ty thực chất là phương pháp vận hành <strong>Trung Khí (Central Qi)</strong>. Nếu không hiểu triền ty, ắt vĩnh viễn không thể hiểu được quyền thuật Thái Cực."
+      </div>
+
+      <div class="figure-wrap">
+        <img src="/assets/images/books/chen-xin-tushuo/Chansijing.jpg" alt="Thái Cực Quyền Triền Ty Tinh Nghĩa Đồ">
+        <div class="figure-caption">Hình 3: Đồ hình nguyên bản trong sách của Trần Hâm thể hiện mối quan hệ biện chứng giữa Thái Cực và Triền Ty Kình (Silk Reeling Essence).</div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="nam-tang-xoan-oc" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 4 &middot; Giải Mã Đồ Hình</span>
+        <h2 class="chapter-title">Ý Nghĩa 5 Tầng Vòng Xoáy Âm Dương Trong Đồ Hình</h2>
+      </div>
+
+      <p>
+        Quan sát đồ hình xoắn ốc vòng tròn đồng tâm của Trần Hâm, ta thấy sự phân định tuyệt diệu của các luồng khí qua 5 cặp đường dẫn trắng - đen đan xen:
+      </p>
+
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">Tầng</th>
+            <th style="width: 35%;">Đường Trắng (Dương / Thanh)</th>
+            <th style="width: 35%;">Đường Đen (Âm / Trọc)</th>
+            <th style="width: 15%;">Ý Nghĩa Võ Học</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tầng 1</strong></td>
+            <td>Thái Cực Dương trong cõi Vô Cực</td>
+            <td>Thái Cực Âm trong cõi Vô Cực</td>
+            <td>Trạng thái Tiên thiên hỗn độn, khởi nguồn của mọi động tịnh.</td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 2</strong></td>
+            <td>Thái Cực sinh Thiên (Trời / Dương)</td>
+            <td>Thái Cực sinh Địa (Đất / Âm)</td>
+            <td>Lưỡng Nghi hiển lộ, phân định trên dưới, càn khôn.</td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 3</strong></td>
+            <td>Khí Âm Dương tương giao</td>
+            <td>Khí Ngũ Hành (Kim, Mộc, Thủy, Hỏa, Thổ)</td>
+            <td>Nguồn sống bẩm sinh mà mỗi con người đều cần để tồn tại.</td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 4</strong></td>
+            <td><strong>Hạo Nhiên Chi Khí</strong> (Noble Spirit - Lời Mạnh Tử)</td>
+            <td><strong>Huyết Khí</strong> (Animal Spirit / Bản năng thú tính)</td>
+            <td>Huyết khí kết hợp với Đạo Nghĩa sẽ biến thành Chính Khí (Hạo nhiên).</td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 5</strong></td>
+            <td><strong>Đạo Tâm</strong> (Mind of Dao - Thống suất Khí)</td>
+            <td><strong>Nhân Tâm</strong> (Human Mind / Tư Tâm ích kỷ)</td>
+            <td>Khí không thể vận động nếu thiếu Lý; Lý nằm trong Tính.</td>
+          </tr>
+          <tr>
+            <td><strong>Tâm Điểm</strong></td>
+            <td><strong>Khắc Niệm</strong> (Ý niệm kiềm chế, tự giác)</td>
+            <td><strong>Vọng Niệm</strong> (Ý niệm hoang tưởng, nhục dục)</td>
+            <td>Trừ diệt vọng niệm thì Thân - Tâm đạt tới Thuần Thiên Lý.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Trần Hâm nhấn mạnh: Chỉ có bậc thánh nhân mới có thể bảo lưu trọn vẹn <em>Khắc Niệm</em> mà gột sạch <em>Vọng Niệm</em>. Vọng niệm chính là điều mà Cáo Tử từng nói: "Thực sắc tính dã" (ăn uống và sắc dục là dục vọng phàm trần). Ai sinh ra làm người cũng đều có dục vọng ấy. Song nếu một hành giả có thể loại bỏ mọi toan tính ích kỷ để chúng không còn phát sinh trong tâm, thì người ấy sẽ đạt tới <strong>Thuần Thiên Lý (Bản thể tự nhiên thuần khiết tiên thiên)</strong>. 
+      </p>
+
+      <p>
+        Khi đã ở trong cảnh giới Thuần Thiên Lý, thì lúc bước vào luyện quyền, mọi động thái cử chỉ đều tự nhiên ứng hợp với <strong>Thiên Cơ (Sự huyền diệu của tạo hóa)</strong>, vô cùng linh hoạt, sống động; và khi đó, hình hài nguyên sơ đích thực của Thái Cực sẽ tự khắc hiển lộ trong thân xác mà không cần gượng gạo tác ý.
+      </p>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="ve-sinh-va-hoan-khi" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 5 &middot; Dưỡng Sinh Nội Gia</span>
+        <h2 class="chapter-title">Mật Quyết Vệ Sinh Dưỡng Sinh & Hoàn Khí Phục Tính</h2>
+      </div>
+
+      <p>
+        Ba vòng tròn lớn bên ngoài giải thích sự tiến hóa của Âm Dương từ thuở ban sơ; ba vòng tròn nhỏ bên trong nói lên Âm Dương được thống lĩnh và chi phối bởi cái gì. Vốn dĩ những gì con người thụ hưởng từ trời đất đều đã nằm gọn trong vòng thứ ba, nên ban đầu không cần thiết phải vẽ thêm các vòng bên trong. Tuy nhiên, Trần Hâm tâm sự rằng ông e ngại hậu thế luyện quyền mà không thấu hiểu nguyên lý vận khí điều tâm, nên mới gia công vẽ thêm đồ hình chi tiết để người học dễ bề lĩnh hội.
+      </p>
+
+      <div class="quote-box">
+        "Bức họa này đặc biệt giải thích cốt lõi của phép Vệ Sinh (Bảo vệ sinh mệnh) và công thức kỳ diệu của Hoàn Khí (Khí quay về nguồn cội). Người tinh thông Vận Khí mới có thể bảo vệ được sinh mệnh của mình; khi sinh mệnh được bảo vệ vững vàng thì mới có chỗ nương tựa cho Phục Tính (Khôi phục bản tính lương tri). Luyện Thái Cực Quyền như vậy mới thực sự là môn học đại ích cho cả Thân và Tâm, Tính và Mệnh."
+      </div>
+
+      <p>
+        Lời dạy này đập tan hoàn toàn quan niệm sai lầm xem Thái Cực chỉ là kỹ năng chiến đấu cơ bắp thô thiển. Đối với Trần Hâm, luyện quyền chính là con đường <strong>Tính Mệnh Song Tu</strong>: lấy dưỡng khí hộ thân làm gốc, lấy phục hồi bản tính chân thật làm cứu cánh tối hậu.
+      </p>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="phan-2-chinh-dien-trien-ty" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 6 &middot; Giải Phẫu Vận Khí</span>
+        <h2 class="chapter-title">Phần II: Nhân Thể Triền Ty Đồ — Thuyết Minh Chính Diện</h2>
+      </div>
+
+      <div class="figure-wrap">
+        <img src="/assets/images/books/chen-xin-tushuo/chansijingZM.jpg" alt="Nhân thể triền ty đồ mặt trước">
+        <div class="figure-caption">Hình 4: Nhân Thể Triền Ty Đồ (Chính Diện) — Sơ đồ đường xoắn tơ mặt trước thân thể, điểm huyệt Tâm, Khí Hải, Hội Âm và kinh mạch Nhâm.</div>
+      </div>
+
+      <p>
+        <strong>Triền Kình (Chan Jin - Kình xoắn ốc)</strong> vận hành bao phủ khắp toàn thân không sót một kẽ hở. Quy nạp một cách giản dị nhất, triền kình bao gồm hai trạng thái cơ bản:
+      </p>
+
+      <ul>
+        <li><strong>Lý Triền (里缠):</strong> Đường kình xoắn cuộn hướng vào bên trong thân thể.</li>
+        <li><strong>Ngoại Triền (外缠):</strong> Đường kình xoắn cuộn mở rộng bung ra bên ngoài.</li>
+      </ul>
+
+      <p>
+        Cả hai luồng kình này đều đồng thời xuất hiện ngay khi cơ thể vừa phát sinh chuyển động. Khi tay trái ở phía trước thì tay phải ở phía sau; hoặc tay phải ở phía trước thì tay trái ở phía sau — thế quyền này dùng một chuyển động <strong>Thuận (Shun)</strong> để khép <strong>Hợp (He)</strong> hai tay lại với nhau. Lại có phép hợp mặt trong của bên trái với mặt sau của bên phải; hoặc dùng <strong>Phản Bối Kình (Fanbei Jin - Kình xuyên lưng)</strong> để khép hợp về phía sau lưng. Tất cả đều phải vận hành một cách tự nhiên tùy theo từng tư thế quyền cụ thể.
+      </p>
+
+      <div class="key-point">
+        <strong>Khẩu Quyết Cắm Rễ Của Bàn Chân:</strong><br>
+        <em>"Khi Khí của bàn tay thông suốt xuống mu bàn chân, thì ngón chân cái đồng thời khép hợp với bàn tay; chỉ ngay tại khoảnh khắc ấy, bước chân mới có thể cắm rễ kiên cố nghìn cân."</em>
+      </div>
+
+      <p>
+        Luồng Kình lực này bắt nguồn từ đâu? <strong>Kình xuất phát từ TÂM.</strong> Bên trong thấu tận tủy xương, bên ngoài lan tỏa đến tận biểu bì lông tóc; nó là một luồng kình thống nhất chứ không phải do nhiều kình lực rời rạc chắp vá. Kình chính là Khí phát khởi từ Tâm:
+      </p>
+      <ul>
+        <li>Khi vận hành một cách trung chính, quang minh thì nó là <strong>Trung Khí (Central Qi)</strong>.</li>
+        <li>Khi được bồi dưỡng thuần hậu, tích lũy lâu ngày thì nó thăng hoa thành <strong>Hạo Nhiên Chi Khí (Noble Spirit)</strong>.</li>
+      </ul>
+
+      <p><strong>Các vị trí kinh huyệt trọng yếu mặt trước:</strong></p>
+      <ul>
+        <li><strong>Trước ngực:</strong> Huyệt Tâm — Cội nguồn phát xuất mệnh lệnh.</li>
+        <li><strong>Vùng bụng dưới:</strong> Dưới huyệt Khí Hải có huyệt Hội Âm — nơi mạch Nhâm bắt đầu khởi phát và lưu chuyển lên trên.</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section id="phan-2-boi-dien-trien-ty" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 7 &middot; Cột Sống & Hư Thực</span>
+        <h2 class="chapter-title">Nhân Thể Triền Ty Đồ — Thuyết Minh Bối Diện (Mặt Sau)</h2>
+      </div>
+
+      <div class="figure-wrap">
+        <img src="/assets/images/books/chen-xin-tushuo/chansijingBM.jpg" alt="Nhân thể triền ty đồ mặt sau">
+        <div class="figure-caption">Hình 5: Nhân Thể Triền Ty Đồ (Bối Diện) — Minh giải Đính Kình, Đại Chùy, Lưng (Lữ), Cột sống (Tích), Eo (Yêu) và đường Đốc mạch.</div>
+      </div>
+
+      <p>
+        Quan sát mặt sau của thân thể, Trần Hâm chỉ rõ cấu trúc giải phẫu học cơ sinh nội gia:
+      </p>
+
+      <ol>
+        <li>
+          <strong>Đính Kình (Ding Jin / 顶劲 - Hư linh đỉnh kình):</strong> Lực chống đỡ vươn thẳng nơi đỉnh đầu. Đầu phải ngay ngắn, cảm giác như đỉnh đầu nhẹ nhàng đội một vật nặng hướng lên trời để kéo giãn toàn bộ các đốt sống cổ và lưng.
+        </li>
+        <li>
+          <strong>Đại Chùy (Large Vertebra):</strong> Đốt sống cổ thứ 7 là lằn ranh phân giới tối quan trọng. Phía dưới đốt đại chùy được gọi là <strong>Lữ (Lưng)</strong>; trục xương trung tâm chạy dọc gọi là <strong>Tích (Cột sống)</strong>; hai bên mạng sườn nơi đặt hai quả thận được gọi là <strong>Yêu (Thắt lưng)</strong>.
+        </li>
+        <li>
+          <strong>Quy Luật Hư Thực Thủ Túc Tương Ứng:</strong><br>
+          <em>"Bàn chân Hư hay Thực hoàn toàn phụ thuộc vào Bàn tay: Nếu Tay Hư thì Chân cũng Hư; nếu Tay Thực thì Chân cũng Thực."</em> Đây là bí mật phân định trọng tâm tương hỗ không thể tách rời giữa chi trên và chi dưới.
+        </li>
+        <li>
+          <strong>Đường vận hành của Đốc Mạch:</strong> Mạch Đốc bắt đầu từ phía trước, chạy vòng qua đỉnh đầu rồi men theo đường nét đứt dọc sống lưng giáng thẳng xuống đáy biển (vùng Hội Âm / dưới Khí Hải).
+        </li>
+      </ol>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section id="trien-ty-kinh-luan" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 8 &middot; Quyền Lý Kinh Điển</span>
+        <h2 class="chapter-title">Thái Cực Quyền Triền Ty Kình Luận</h2>
+      </div>
+
+      <div class="quote-box">
+        "Thái Cực Quyền, thị triền ty pháp dã." (太极拳，是缠丝法也) — Trần Hâm
+      </div>
+
+      <p>
+        Trong quyền pháp, tồn tại muôn ngàn hướng xoắn cuộn: <em>Triền tiến, triền thoái, triền sang trái, triền sang phải, triền hướng lên, triền giáng xuống, triền vào trong, triền ra ngoài, đại triền (vòng lớn), tiểu triền (vòng nhỏ), thuận triền và nghịch triền</em>.
+      </p>
+
+      <p>
+        Điểm cốt tủy của công phu triền ty nằm ở khả năng: <strong>Xoắn cuộn ngay khi vừa Dụ Dẫn (Dẫn dụ đối phương thất thế) hoặc ngay khi vừa Tiến Thân (Nhập vào yếu huyệt của đối thủ)</strong>, chứ tuyệt đối không phải là việc áp dụng máy móc từng thế đánh cố định. Nếu người luyện chỉ chăm chăm vào việc sử dụng các đòn thế cụ thể, thì Âm và Dương đã bị chặt đứt mất tận gốc rễ.
+      </p>
+
+      <p>
+        Người đời chưa hiểu Thái Cực khi nhìn vào thường lầm tưởng võ giả là kẻ mềm yếu, chậm chạp. Đó chỉ là cái vỏ bọc bề ngoài đánh lừa thị giác. Nếu luận về mặt <strong>Thần Vận (Trạng thái tâm thức và thần thái nội tại)</strong>: khi hai tay bắt chéo giao đấu, Cương và Nhu đều được tùy ý sử dụng cân bằng theo mọi ước nguyện của tâm. Những ai chưa dấn thân lâu năm trên con đường Thái Cực sẽ không thể nào thấu triệt nổi những uẩn khúc vi tế này:
+      </p>
+
+      <div class="key-point" style="text-align: center; font-size: 1.15rem; font-weight: 600;">
+        "Trầm kiên trụy khuỷu.<br>
+        Tĩnh như xử tử khán nhân — Cuồng như mãnh hổ hạ sơn!"<br>
+        <span style="font-size: 0.95rem; font-weight: 400; font-style: italic;">(Thanh thoát, kín đáo như thiếu nữ e ấp nhìn người — Bộc phát dũng mãnh cuồng bạo như chúa sơn lâm giáng thế!)</span>
+      </div>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section id="can-vo-hinh" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 9 &middot; Cảnh Giới Tối Thượng</span>
+        <h2 class="chapter-title">Bí Pháp Bàn Cân Vô Hình Của Bậc Diệu Thủ</h2>
+      </div>
+
+      <p>
+        Trần Hâm đã để lại một ẩn dụ trác tuyệt về khả năng lắng nghe và tri giác kình lực (Thính Kình):
+      </p>
+
+      <div class="quote-box">
+        "Đôi bàn tay trong Thái Cực giống như một chiếc Bàn Cân (Cán cân định lượng). Đặt vật lên cân là biết ngay nặng nhẹ. Con đường tu tập võ nghệ là phải rèn luyện để có được một Bàn Cân Vô Hình ấy ngự trị ngay trong Tâm mình."
+      </div>
+
+      <p>
+        Bàn cân vô hình ấy dùng để làm gì? Dùng để tiếp cận, xem xét đối phương: đo lường từng cử động tiến hay thoái, từng biến đổi nhanh hay chậm của địch thủ bằng thứ thần thức tĩnh lặng đã được tôi luyện qua tháng ngày công phu đơn luyện. 
+      </p>
+
+      <p>
+        <strong>Dùng bàn cân vô hình trong tâm để cân đo các dấu hiệu hữu hình của đối phương</strong>; rồi dựa vào cảm nhận tinh tế nơi đôi bàn tay để tức thời gia giảm kình lực: cần thêm nửa lạng thì thêm nửa lạng, cần bớt một phân thì bớt một phân. Kẻ nào đạt tới công phu vi diệu như thế, trong võ lâm thiên hạ xưng tụng là bậc <strong>Diệu Thủ (Miao Shou - Bàn Tay Thần Diệu)</strong>!
+      </p>
+    </section>
+
+    <!-- SECTION 10 -->
+    <section id="tu-thu-thi" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 10 &middot; Mật Điển Thi Ca</span>
+        <h2 class="chapter-title">Tứ Thủ Thi Luận Triền Ty Pháp (Bốn Bài Cổ Thi Triền Ty)</h2>
+      </div>
+
+      <p>Trần Hâm đã đúc kết toàn bộ yếu quyết Triền Ty vào bốn bài cổ thi bất hủ gồm 3 bài Thất ngôn (7 chữ) và 1 bài Ngũ ngôn (5 chữ):</p>
+
+      <!-- POEM 1 -->
+      <div class="poem-card">
+        <h4><i class="fa-solid fa-feather-pointed"></i> Bài 1: Thất Ngôn Cổ Thi — Động Tịnh Bổn Căn</h4>
+        <div class="poem-content">
+          Động xứ sinh Dương, tịnh xứ Âm,<br>
+          Động tịnh tương hàm thị bổn căn.<br>
+          Vô nghi viên nội tầm chân lạc,<br>
+          Tùy ý chu toàn kiến Thiên Chân.
+        </div>
+        <div class="poem-trans">
+          <strong>Dịch nghĩa:</strong> Khi động sinh ra Dương, khi tĩnh nuôi dưỡng Âm; động và tĩnh hòa quyện hàm chứa lẫn nhau mới là cội rễ gốc gác. Không còn hoài nghi gì nữa, niềm hoan lạc tột cùng nằm ngay bên trong vòng tròn viên mãn; xoay chuyển tròn trịa theo ý muốn mà diện kiến được Chân Lý của Trời Đất (Thiên Chân).
+        </div>
+      </div>
+
+      <!-- POEM 2 -->
+      <div class="poem-card">
+        <h4><i class="fa-solid fa-feather-pointed"></i> Bài 2: Thất Ngôn Cổ Thi — Tạo Hóa Khúc Thân</h4>
+        <div class="poem-content">
+          Âm Dương vô thủy diệc vô chung,<br>
+          Tạo hóa sanh hồ nhất khúc thân.<br>
+          Thâm tư thử ý đa tham cứu,<br>
+          Viên chuyển sinh cơ bất thụ mông.
+        </div>
+        <div class="poem-trans">
+          <strong>Dịch nghĩa:</strong> Âm và Dương vốn không có điểm bắt đầu cũng chẳng có lúc kết thúc; sự sinh sôi biến hóa của tạo hóa nằm trọn trong một nhịp co vào (Khúc) và duỗi ra (Thân). Hãy suy nghĩ sâu xa và dốc lòng tham cứu ý niệm này; vận chuyển nguyên lý sinh mệnh vào những vòng xoay tròn tự tại không chịu bất kỳ sự trói buộc, che mờ nào.
+        </div>
+      </div>
+
+      <!-- POEM 3 -->
+      <div class="poem-card">
+        <h4><i class="fa-solid fa-feather-pointed"></i> Bài 3: Thất Ngôn Cổ Thi — Minh Ám Đốn Ngộ</h4>
+        <div class="poem-content">
+          Thời minh thời ám lý nan thông,<br>
+          Khai hợp tê ly đốn biến thông.<br>
+          Bách luyện thiên ma triệt để liễu,<br>
+          Hốt nhiên đốn ngộ triệt lưu ly.
+        </div>
+        <div class="poem-trans">
+          <strong>Dịch nghĩa:</strong> Có lúc sáng tỏ có lúc mờ mịt, nguyên lý thật khó thông suốt; các thế Khép (Hợp), Mở (Tỳ), Giữ (Lai), Xé (Tê), Nâng (Đề) phải móc xích liên hoàn không đứt đoạn. Phải trải qua trăm ngàn lần trăn trở, tôi luyện trong vô minh trước khi đạo lý bừng sáng; để rồi trong một khoảnh khắc cảm hứng chợt đến, tâm trí trong suốt tỏ tường như pha lê lưu ly.
+        </div>
+      </div>
+
+      <!-- POEM 4 -->
+      <div class="poem-card">
+        <h4><i class="fa-solid fa-feather-pointed"></i> Bài 4: Ngũ Ngôn Cổ Thi — Quán Triệt Thái Hư</h4>
+        <div class="poem-content">
+          Lý vô biên tế xứ,<br>
+          Lý tại nhĩ nghệ trung.<br>
+          Tam niên bất khuy viên,<br>
+          Nhất chí chuyên tinh thông.<br>
+          Khắc ý cầu lương sư,<br>
+          Thân cận kết trí hữu.<br>
+          Củ quy giai hợp thức,<br>
+          Nhất tuyến kiến quang minh.<br>
+          Tằng tằng thâm nhập khứ,<br>
+          Ý vị diểu vô cùng.<br>
+          Khai hợp tương kế thừa,<br>
+          Tuần hoàn nhược triều dũng.<br>
+          Hốt nhiên thừa cơ hội,<br>
+          Dục bãi cánh bất năng.<br>
+          Công phu vô gián đoạn,<br>
+          Nhật nhật kỹ nghệ tăng.<br>
+          Trực đãi vô chướng ngại,<br>
+          Khoát nhiên triệt Thái Hư!
+        </div>
+        <div class="poem-trans">
+          <strong>Dịch nghĩa:</strong> Đạo lý vốn bao la không biên giới, nhưng nguồn cội vi tế của nó hiển hiện ngay trong sinh hoạt của loài kiến nhỏ nhoi. Ba năm liền chẳng màng liếc nhìn vườn hoa rực rỡ, giữ vững một ý chí chuyên tâm rèn luyện. Tha thiết tìm thầy giỏi chỉ điểm, gần gũi kết bạn cùng những bậc trí tuệ. Giữ đúng khuôn phép trong từng li từng tí, một vệt sáng giác ngộ sẽ dần hé lộ. Từng tầng công phu mỗi lúc một sâu hơn, hương vị bên trong thăm thẳm khôn cùng. Đóng và Mở nối tiếp nhau như sóng triều cuộn dâng. Bỗng nhiên nắm bắt được thiên cơ thắng lợi, muốn dừng tập cũng không thể nào dứt ra được. Thời gian, học hỏi và nỗ lực đến cùng cực, tài nghệ mỗi ngày một tinh tiến. Cho đến khi không còn mảy may chướng ngại, tâm hồn bỗng thênh thang quán triệt cõi Thái Hư vô tận!
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11 -->
+    <section id="bang-thuat-ngu" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần 11 &middot; Đối Chiếu Thuật Ngữ</span>
+        <h2 class="chapter-title">Bảng Đối Chiếu Thuật Ngữ Chuyên Sâu Hán - Việt - Anh</h2>
+      </div>
+
+      <p>Nhằm giúp môn sinh nghiên cứu sâu các trước tác của tôn sư Trần Hâm, dưới đây là bảng đối chiếu thuật ngữ gốc chuẩn xác:</p>
+
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Hán tự (Hanzi)</th>
+            <th>Pinyin</th>
+            <th>Hán-Việt</th>
+            <th>Anh ngữ (English)</th>
+            <th>Ý nghĩa thực hành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>缠丝劲</strong></td>
+            <td>Chánsījìn</td>
+            <td>Triền Ty Kình</td>
+            <td>Silk Reeling Energy</td>
+            <td>Kình lực xoắn vặn ốc tơ tằm, hồn cốt vận động toàn thân.</td>
+          </tr>
+          <tr>
+            <td><strong>中气</strong></td>
+            <td>Zhōngqì</td>
+            <td>Trung Khí</td>
+            <td>Central Qi</td>
+            <td>Khí trung chính vận hành dọc trục cơ thể từ Đan điền.</td>
+          </tr>
+          <tr>
+            <td><strong>浩然之气</strong></td>
+            <td>Hàorán zhī qì</td>
+            <td>Hạo Nhiên Chi Khí</td>
+            <td>Noble / Upright Spirit</td>
+            <td>Khí phách quang minh chính đại (Mạnh Tử), hóa sinh từ Huyết khí + Đạo nghĩa.</td>
+          </tr>
+          <tr>
+            <td><strong>道心 / 人心</strong></td>
+            <td>Dàoxīn / Rénxīn</td>
+            <td>Đạo Tâm / Nhân Tâm</td>
+            <td>Mind of Dao / Human Mind</td>
+            <td>Tâm hướng đạo thuần khiết đối lập với tâm phàm trần tư lợi.</td>
+          </tr>
+          <tr>
+            <td><strong>克念 / 妄念</strong></td>
+            <td>Kèniàn / Wàngniàn</td>
+            <td>Khắc Niệm / Vọng Niệm</td>
+            <td>Restraining / Deceitful Thought</td>
+            <td>Ý niệm kỷ luật tự kiềm chế diệt trừ các tạp niệm si mê dục vọng.</td>
+          </tr>
+          <tr>
+            <td><strong>卫生 / 复性</strong></td>
+            <td>Wèishēng / Fùxìng</td>
+            <td>Vệ Sinh / Phục Tính</td>
+            <td>Guarding Life / Character Restoration</td>
+            <td>Bảo vệ sinh mệnh thể chất làm bệ phóng khôi phục thiên tính tinh thần.</td>
+          </tr>
+          <tr>
+            <td><strong>顶劲</strong></td>
+            <td>Dǐngjìn</td>
+            <td>Đính Kình</td>
+            <td>Propping-up Power</td>
+            <td>Lực hư linh đỉnh kình, dựng thẳng đỉnh đầu như đội vật nặng.</td>
+          </tr>
+          <tr>
+            <td><strong>妙手</strong></td>
+            <td>Miàoshǒu</td>
+            <td>Diệu Thủ</td>
+            <td>Master / Excellent Hand</td>
+            <td>Bậc thần thủ sở hữu bàn cân vô hình trong tâm, thấu suốt hư thực địch nhân.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); border: 1px solid #f59e0b; border-radius: 12px; padding: 20px 24px; margin: 2.5rem 0; color: #fff;">
+        <h4 style="color: #fef08a; margin: 0 0 10px; font-size: 1.2rem;">
+          <i class="fa-solid fa-atom"></i> Nghiên Cứu Đồ Hình Mộc Bản Trực Quan
+        </h4>
+        <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 16px;">
+          Để có trải nghiệm thị giác sống động nhất, mời bạn truy cập công cụ tương tác song ngữ phân tích 3 mộc bản quý giá của Trần Hâm: <em>Tâm Ý Truyền Lệnh Đồ, Chu Thân Thái Cực Đồ</em> và <em>12 Tiêu Chuẩn Cơ Sinh Học Độc Lập Tấn</em>.
+        </p>
+        <a href="/vi/books/chen_xin_diagrams_bilingual.html" style="display: inline-flex; align-items: center; gap: 8px; background: #f59e0b; color: #0f172a; font-weight: 700; font-size: 0.92rem; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
+          <span>Mở Trình Tương Tác Đồ Hình</span> &rarr;
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
+  <p>Thư Viện Sách Thái Cực Quyền Tiếng Việt &middot; TaichiNOW Intranet & Knowledge Base</p>
+  <p>Bản quyền dịch thuật và phục chế học thuật © 2026 &middot; Dành riêng cho cộng đồng nghiên cứu Thái Cực Quyền Việt Nam</p>
+</footer>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+</body>
+</html>

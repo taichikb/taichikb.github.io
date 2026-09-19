@@ -6,6 +6,7 @@
   if (!path.includes('/vi/books/')) return;
 
   var books = [
+    { title: 'Trần Thị Thái Cực Quyền Đồ Thuyết', url: '/vi/books/chen_xin_taijiquan_tushuo_vi.html' },
     { title: 'Baguazhang Vol.1', url: '/vi/books/Baguazhang%20-%20the%20Complete%20System%20(Vol.1)%20by%20Erle%20Montaigue/Baguazhang%20-%20the%20Complete%20System%20(Vol.1)%20by%20Erle%20Montaigue_vi.html' },
     { title: 'Baguazhang Vol.2', url: '/vi/books/Baguazhang%20-%20the%20Complete%20System%20(Vol.2)/Baguazhang%20-%20the%20Complete%20System%20(Vol.2)_vi.html' },
     { title: 'Bản chất kình lực', url: '/vi/books/B%E1%BA%A3n%20ch%E1%BA%A5t%20k%C3%ACnh%20l%E1%BB%B1c%20trong%20v%C3%B5%20thu%E1%BA%ADt%20n%E1%BB%99i%20gia/B%E1%BA%A3n%20ch%E1%BA%A5t%20k%C3%ACnh%20l%E1%BB%B1c%20trong%20v%C3%B5%20thu%E1%BA%ADt%20n%E1%BB%99i%20gia_vi.html' },
