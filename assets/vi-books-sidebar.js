@@ -6,6 +6,11 @@
   if (!path.includes('/vi/books/')) return;
 
   var books = [
+    { title: 'Khí Công Y Học (Tập 1) - Jerry Johnson', url: '/vi/books/jerry_alan_johnson_chinese_medical_qigong_vol1_vi.html' },
+    { title: 'Cội Nguồn Khí Công - Dương Tuấn Mẫn', url: '/vi/books/yang_jwing_ming_root_of_chinese_chi_kung_vi.html' },
+    { title: 'Bồi Dưỡng Chân Khí - Stuart Olson', url: '/vi/books/stuart_olson_cultivating_the_chi_chen_kung_vi.html' },
+    { title: 'Khí Công Kinh Lạc (2017) - Dương Tuấn Mẫn', url: '/vi/books/yang_jwing_ming_meridian_qigong_exercises_vi.html' },
+    { title: 'Thái Cực Thực Chiến - Dan Docherty', url: '/vi/books/dan_docherty_tai_chi_martial_side_vi.html' },
     { title: 'Chỉ dẫn từ Trần Gia Câu (Tập 1)', url: '/vi/books/chen_taichi_instructions_chen_village_vol1_vi.html' },
     { title: 'Trần Thị Thái Cực Quyền Đồ Thuyết', url: '/vi/books/chen_xin_taijiquan_tushuo_vi.html' },
     { title: 'Baguazhang Vol.1', url: '/vi/books/Baguazhang%20-%20the%20Complete%20System%20(Vol.1)%20by%20Erle%20Montaigue/Baguazhang%20-%20the%20Complete%20System%20(Vol.1)%20by%20Erle%20Montaigue_vi.html' },

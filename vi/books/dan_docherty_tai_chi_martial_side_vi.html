@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thái Cực Quyền: Bản Chất Thực Chiến — Dan Docherty | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt trọn vẹn tác phẩm Tai Chi Chuan: The Martial Side của Dan Docherty (Võ Đang Thái Cực Quyền Thực Chiến). Khôi phục toàn diện khía cạnh chiến đấu sinh tử của Thái Cực Quyền: 24 bài Nội công Vũ Đang, Thôi thủ thực chiến, đòn đấm đá, vật ngã, cầm nã và chiến lược đối kháng.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 310px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .combat-box {
+  background: #2a1515;
+  border-left: 4px solid #ef4444;
+  color: #fecaca;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #dc2626, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #dc2626;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.45rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: #991b1b;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 0.98rem;
+  color: #475569;
+  margin-bottom: 1.2rem;
+}
+.book-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.book-tag {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: 1px solid #cbd5e1;
+}
+body.dark-mode .book-tag {
+  background: #1e293b;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+.chapter-block {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-left: 4px solid #dc2626;
+  padding-left: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.95rem;
+  color: var(--text-primary);
+  margin: 0.2rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fefce8;
+  border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+.combat-box {
+  background: #fef2f2;
+  border-left: 4px solid #dc2626;
+  border-radius: 0 8px 8px 0;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  color: #7f1d1d;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.tech-table th, .tech-table td {
+  border: 1px solid #e2e8f0;
+  padding: 10px 14px;
+  text-align: left;
+}
+.tech-table th {
+  background: #f8fafc;
+  color: #991b1b;
+  font-weight: 600;
+}
+.reader-tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+.tool-btn {
+  background: #fff;
+  border: 1px solid #d6d3d1;
+  color: #44403c;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+body.dark-mode .tool-btn {
+  background: #262626;
+  border-color: #404040;
+  color: #e5e5e5;
+}
+.tool-btn:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+@media (max-width: 992px) {
+  .reader-layout {
+    flex-direction: column;
+  }
+  .reader-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/">Trang Chủ</a>
+    <a href="/vi/techniques/">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/">Video</a>
+    <a href="/vi/podcast/">Podcast</a>
+    <a href="/vi/philosophy/">Triết Lý</a>
+    <a href="/vi/history/">Lịch Sử</a>
+    <a href="/vi/contact/">Liên Hệ</a>
+    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<div class="reader-layout">
+  
+  <aside class="reader-sidebar">
+    <div class="reader-tools">
+      <button class="tool-btn" onclick="toggleDarkMode()" title="Chuyển chế độ sáng/tối"><i class="fa-solid fa-moon"></i> Giao diện</button>
+      <button class="tool-btn" onclick="adjustFontSize(1)" title="Tăng cỡ chữ"><i class="fa-solid fa-plus"></i> A+</button>
+      <button class="tool-btn" onclick="adjustFontSize(-1)" title="Giảm cỡ chữ"><i class="fa-solid fa-minus"></i> A-</button>
+    </div>
+    
+    <div style="margin-bottom: 1.2rem;">
+      <a href="/vi/books/" style="color: #dc2626; font-size: 0.88rem; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+        <i class="fa-solid fa-arrow-left"></i> Về Thư Viện Sách
+      </a>
+    </div>
+
+    <div class="toc-title"><i class="fa-solid fa-shield-halved"></i> Mục Lục Thực Chiến</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#loi-tua" class="toc-link">Dẫn Nhập: Khôi Phục Quyền Pháp Đích Thực</a></li>
+      <li class="toc-item"><a href="#chuong-1" class="toc-link">Chương 1: Bối Cảnh Võ Thuật Nội Gia & Huyền Thoại</a></li>
+      <li class="toc-item"><a href="#chuong-2" class="toc-link">Chương 2: Nội Kình — 24 Bài Nội Công Vũ Đang</a></li>
+      <li class="toc-item"><a href="#chuong-3" class="toc-link">Chương 3: Hình & Ý — Sáo Lộ & Ứng Dụng Đường Phố</a></li>
+      <li class="toc-item"><a href="#chuong-4" class="toc-link">Chương 4: Thôi Thủ Thực Chiến & Kỹ Năng Nhổ Rễ</a></li>
+      <li class="toc-item"><a href="#chuong-5" class="toc-link">Chương 5: Quyền Cước Cận Chiến — Đấm, Đá & Điểm Huyệt</a></li>
+      <li class="toc-item"><a href="#chuong-6" class="toc-link">Chương 6: Cầm Nã, Vật Ngã & Khóa Siết (Grappling)</a></li>
+      <li class="toc-item"><a href="#chuong-7" class="toc-link">Chương 7: Binh Khí Thực Chiến: Kiếm, Thương & Đoản Côn</a></li>
+      <li class="toc-item"><a href="#chuong-8" class="toc-link">Chương 8: Chiến Lược Đối Kháng Sinh Tử</a></li>
+    </ul>
+  </aside>
+
+  <main class="reader-content">
+    
+    <div class="book-hero">
+      <span class="book-badge">Vũ Đang Thực Chiến &middot; Nhà Vô Địch Dan Docherty</span>
+      <h1>Thái Cực Quyền: Bản Chất Thực Chiến</h1>
+      <div class="book-orig-title">Tai Chi Chuan: The Martial Side</div>
+      <div class="book-author-meta">
+        <strong>Tác giả:</strong> Dan Docherty (Chủ tịch Liên đoàn Thái Cực Quyền Châu Âu - TCUGB)<br>
+        <strong>Truyền nhân:</strong> Đại sư Trịnh Thiên Hùng (Cheng Tin Hung - Wudang Practical Tai Chi Chuan)<br>
+        <strong>Bản dịch tiếng Việt chuyên sâu:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW
+      </div>
+      <div class="book-tags">
+        <span class="book-tag"><i class="fa-solid fa-skull-crossbones"></i> Quyền Pháp Thực Chiến</span>
+        <span class="book-tag"><i class="fa-solid fa-bolt"></i> 24 Bài Nội Công Vũ Đang</span>
+        <span class="book-tag"><i class="fa-solid fa-handcuffs"></i> Cầm Nã & Bạt Căn</span>
+        <span class="book-tag"><i class="fa-solid fa-person-falling"></i> Vật Ngã Đoạt Mệnh</span>
+        <span class="book-tag"><i class="fa-solid fa-shield"></i> Tự Vệ Đường Phố</span>
+      </div>
+    </div>
+
+    <!-- INTRODUCTION -->
+    <section id="loi-tua" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Tuyên Ngôn</span>
+        <h2 class="chapter-title">Dẫn Nhập: Khôi Phục Bản Chất Chiến Đấu Đích Thực</h2>
+      </div>
+
+      <p>
+        <strong>Dan Docherty (1954–2021)</strong> — cựu sĩ quan thanh tra cảnh sát Hoàng gia Hong Kong, đệ tử chân truyền của đại quyền sư Trịnh Thiên Hùng (Cheng Tin Hung) và là nhà vô địch đối kháng toàn Đông Nam Á năm 1980 (hạng mở rộng không giới hạn cân nặng) — đã viết nên tác phẩm này như một đòn giáng mạnh mẽ vào trào lưu "làm mềm hóa" Thái Cực Quyền:
+      </p>
+
+      <div class="combat-box">
+        "Người ta thường nhìn Thái Cực Quyền như một thứ bài tập dưỡng sinh chậm chạp dành cho người già ốm yếu trong công viên. Nhưng trong lịch sử đẫm máu của Trung Hoa, Thái Cực Quyền từng là môn võ thuật chiến đấu khốc liệt bậc nhất, được những người hộ vệ tiêu cục và dũng sĩ quân đội sử dụng để sinh tồn. Chữ 'Quyền' (Chuan / Quan) trong Thái Cực Quyền mang nghĩa là NẮM ĐẤM CHIẾN ĐẤU. Nếu tước bỏ đi khả năng chiến đấu thực tế, Thái Cực Quyền đã tự đánh mất linh hồn của chính nó!"
+        <div style="text-align: right; margin-top: 6px; font-weight: 600;">— Dan Docherty</div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 1 -->
+    <section id="chuong-1" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 1</span>
+        <h2 class="chapter-title">Bối Cảnh Võ Thuật Nội Gia & Giải Mã Huyền Thoại</h2>
+      </div>
+
+      <p>
+        Docherty bóc tách ranh giới giữa lịch sử xác thực và huyền thoại dân gian:
+      </p>
+      <ul>
+        <li>Huyền thoại về Trương Tam Phong trên núi Vũ Đang quan sát trận chiến giữa Chim Hạc và Rắn là một ẩn dụ triết học tuyệt mỹ về sự nhu thắng cương.</li>
+        <li>Tuy nhiên, về mặt kỹ thuật quân sự, Thái Cực Quyền đã được hun đúc qua hàng thế hệ võ quan: từ Trần Vương Đình đến Dương Lộ Thiền (Dương Vô Địch), Ngô Toàn Hựu và Trịnh Thiên Hùng — những người từng tham gia hàng trăm trận tỷ thí sinh tử không mang găng tay bảo hộ.</li>
+      </ul>
+    </section>
+
+    <!-- CHAPTER 2 -->
+    <section id="chuong-2" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 2</span>
+        <h2 class="chapter-title">Nội Kình: Hai Mươi Bốn Bài Nội Công Vũ Đang</h2>
+      </div>
+
+      <p>
+        Trong hệ thống <strong>Vũ Đang Thực Chiến (Practical Tai Chi Chuan)</strong>, Nội công (Nei Kung) được giữ kín như bí mật sinh tử. Nó gồm 12 bài Âm Công (Yin / Nhu) và 12 bài Dương Công (Yang / Cương):
+      </p>
+
+      <div class="key-point">
+        <strong>Bản Chất Của Nội Kình:</strong><br>
+        Không phải là 'năng lượng bí ẩn' vô căn cứ, mà là sự rèn luyện gân, màng cân (fascia) và mật độ xương kết hợp cùng hơi thở nén cơ hoành. Khi phát lực (Fajin), kình lực không phát ra từ cánh tay đơn lẻ mà được phóng thích từ mặt đất, truyền qua chân, vặn xoắn ở hông và bùng nổ tại điểm tiếp xúc như một cú quất của roi thép.
+      </div>
+    </section>
+
+    <!-- CHAPTER 3 -->
+    <section id="chuong-3" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 3</span>
+        <h2 class="chapter-title">Hình & Ý: Sáo Lộ & Ứng Dụng Tự Vệ Cận Chiến</h2>
+      </div>
+
+      <p>
+        Mỗi một động tác trong bài quyền Lão giá hay Dương thức đều chứa đựng ít nhất 3 đến 5 ứng dụng chiến đấu tàn khốc:
+      </p>
+
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Chiêu thức</th>
+            <th>Hình thức biểu diễn</th>
+            <th>Ứng dụng thực chiến đường phố của Dan Docherty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Đơn Tiên (Single Whip)</strong></td>
+            <td>Hai tay mở rộng hai bên</td>
+            <td>Tay phải dùng móc câu móc giật cổ họng đối thủ, tay trái quạt chém bẻ gãy khớp hàm hoặc xương sườn.</td>
+          </tr>
+          <tr>
+            <td><strong>Lâu Tất Ảo Bộ (Brush Knee Twist Step)</strong></td>
+            <td>Một tay gạt gối, một tay đẩy chưởng</td>
+            <td>Tay dưới gạt bắt cú đá của đối phương nâng cao lên, tay trên phóng thẳng vào cằm bạt ngửa đối thủ ra sau.</td>
+          </tr>
+          <tr>
+            <td><strong>Bạch Hạc Lượng Sí (White Crane)</strong></td>
+            <td>Hai cánh tay dang rộng trên dưới</td>
+            <td>Phá thế kẹp cổ (Headlock), đánh gãy cánh tay đối phương bằng đòn bẻ chỏ nghịch chiều.</td>
+          </tr>
+          <tr>
+            <td><strong>Yểm Thủ Quăng Chùy (Hidden Fist)</strong></td>
+            <td>Rút tay về eo rồi đấm</td>
+            <td>Nắm đấm xoay khoan thẳng vào chấn thủy hoặc mạng sườn, xuyên thủng lớp phòng thủ của đối thủ.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CHAPTER 4 -->
+    <section id="chuong-4" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 4</span>
+        <h2 class="chapter-title">Thôi Thủ Thực Chiến & Tuyệt Kỹ Nhổ Rễ (Bạt Căn)</h2>
+      </div>
+
+      <p>
+        Thôi thủ không phải là trò chơi đẩy đẩy xô xô êm ái. Trong hệ thống của Dan Docherty:
+      </p>
+      <ul>
+        <li><strong>Triêm Niêm Liên Tùy:</strong> Dính chặt lấy tay đối phương khiến họ cảm thấy như bị dán vào mạng nhện, không thể rút tay về cũng không thể tấn công.</li>
+        <li><strong>Thính Kình & Đổng Kình:</strong> Cảm nhận vector lực của đối thủ ngay khi vừa khởi phát. Khi đối thủ dùng sức 10 cân tiến tới, ta dẫn lực đó đi chệch hướng 1 thốn và gia thêm 1 lạng kình khiến họ mất thăng bằng hoàn toàn.</li>
+      </ul>
+    </section>
+
+    <!-- CHAPTER 5 & 6 -->
+    <section id="chuong-5" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 5 & 6</span>
+        <h2 class="chapter-title">Quyền Cước, Cầm Nã & Thuật Vật Ngã Đoạt Mạng</h2>
+      </div>
+
+      <p>
+        Thái Cực Quyền thực chiến sở hữu kho tàng đồ sộ các đòn đánh hiểm hóc:
+      </p>
+      <ul>
+        <li><strong>Đòn Chỏ & Gối (Elbows & Knees):</strong> Đòn Bát Quái Trửu (8 hướng chỏ) trong cận chiến có sức công phá vỡ xương sọ ở cự ly 0 centimet.</li>
+        <li><strong>Cầm Nã Khóa Bẻ Khớp (Qin Na):</strong> Khóa khớp cổ tay (Vặn kim chỉ), bẻ khớp khuỷu tay và bóp nghẹt động mạch cảnh.</li>
+        <li><strong>Điệt Pháp (Vật ngã & Quét chân):</strong> Vận dụng nguyên lý cánh tay đòn (Leverage) và trọng tâm xoay lệch trục để nhấc bổng đối phương quăng thẳng xuống mặt đường bê tông.</li>
+      </ul>
+    </section>
+
+    <!-- CHAPTER 7 & 8 -->
+    <section id="chuong-7" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 7 & 8</span>
+        <h2 class="chapter-title">Binh Khí & Chiến Lược Sinh Tử</h2>
+      </div>
+
+      <div class="quote-box">
+        "Thái Cực Kiếm không phải để múa lụa; nó là vũ khí thép sắc bén dùng để đâm thấu yếu huyệt và cắt đứt gân cổ tay đối thủ trong chớp mắt. Thái Cực Thương là vua của muôn binh khí, rèn luyện kình lực xoắn vặn từ gót chân truyền thẳng ra ngọn giáo dài 3 mét."
+      </div>
+
+      <p>
+        Chiến lược tối thượng của Thái Cực Quyền trong giao đấu sinh tử: <strong>"Hậu phát chế nhân" (Đến sau nhưng tới trước)</strong>. Không manh động ra đòn trước, để đối phương lộ ra sơ hở và điểm yếu của trọng tâm; khi đối phương vừa chuyển động, ta nhập nội thần tốc, một chiêu đoạt mạng!
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
+  <p>Thư Viện Sách Thái Cực Quyền & Võ Thuật Nội Gia Tiếng Việt &middot; TaichiNOW</p>
+  <p>Bản dịch tiếng Việt chuyên sâu từ nguyên tác Dan Docherty (TCUGB) © 2026</p>
+</footer>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+</body>
+</html>
