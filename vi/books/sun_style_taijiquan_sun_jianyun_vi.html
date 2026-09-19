@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tôn Thức Thái Cực Quyền (孙式太极拳) — Tôn Kiếm Vân | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt kinh điển Tôn Thức Thái Cực Quyền (1957/1997) của nữ Tông sư Tôn Kiếm Vân. Dung hợp Bát Quái - Hình Ý - Thái Cực, đặc trưng Hoạt Bộ Khai Hợp, toàn bộ 97 quyền thức và thôi thủ pháp.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 280px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-crimson);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.6rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 1rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.reader-controls-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.ctrl-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  background: rgba(197, 155, 39, 0.15);
+  border-color: var(--accent-gold);
+}
+.chapter-block {
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent-crimson);
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fef9c3;
+  border-left: 4px solid #ca8a04;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #ecfdf5;
+  border-left: 4px solid #059669;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  color: #064e3b;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8rem 0;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tech-table th, .tech-table td {
+  padding: 10px 14px;
+  border: 1px solid #e7e5e4;
+  text-align: left;
+}
+.tech-table th {
+  background: #f5f5f4;
+  font-weight: 700;
+  color: #292524;
+}
+@media (max-width: 1024px) {
+  .reader-sidebar { display: none; }
+  .reader-content { padding: 1rem 0 3rem; }
+  .book-hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/vi/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/" class="">Trang Chủ</a>
+    <a href="/vi/techniques/" class="">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/" class="">Video</a>
+    <a href="/vi/podcast/" class="">Podcast</a>
+    <a href="/vi/philosophy/" class="">Triết Lý</a>
+    <a href="/vi/history/" class="">Lịch Sử</a>
+    <a href="/vi/contact/" class="">Liên Hệ</a>
+    <a href="/books/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<div class="reader-layout">
+  <!-- Mục lục bên -->
+  <aside class="reader-sidebar">
+    <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Mục Lục Tôn Thức</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#chuong-1" class="toc-link">1. Nữ Danh Sư Tôn Kiếm Vân & Di Sản Tôn Lộc Đường</a></li>
+      <li class="toc-item"><a href="#chuong-2" class="toc-link">2. Tam Phái Hợp Nhất: Tinh Hoa Bát Quái, Hình Ý & Thái Cực</a></li>
+      <li class="toc-item"><a href="#chuong-3" class="toc-link">3. Đặc Trưng Hoạt Bộ Khai Hợp & Tiến Thoái Tương Tùy</a></li>
+      <li class="toc-item"><a href="#chuong-4" class="toc-link">4. Toàn Bộ 97 Quyền Thức Tôn Thức (Đồ Giải Thượng Biên)</a></li>
+      <li class="toc-item"><a href="#chuong-5" class="toc-link">5. Điều Hòa Phế Khí & Dưỡng Khí Đan Điền</a></li>
+      <li class="toc-item"><a href="#chuong-6" class="toc-link">6. Tôn Thức Thôi Thủ Pháp (Hạ Biên)</a></li>
+      <li class="toc-item"><a href="#chuong-7" class="toc-link">7. Triết Lý Đạo Võ Hợp Nhất Của Họ Tôn</a></li>
+    </ul>
+  </aside>
+
+  <!-- Nội dung -->
+  <main class="reader-content">
+    <div class="book-hero">
+      <span class="book-badge"><i class="fa-solid fa-wind"></i> Hoạt Bộ Khai Hợp · Tam Gia Hợp Nhất 1957</span>
+      <h1>TÔN THỨC THÁI CỰC QUYỀN</h1>
+      <div class="book-orig-title">《孙式太极拳》 — 孙剑云 编著 · 人民体育出版社 (1957 / 1997)</div>
+      <div class="book-author-meta">
+        <strong>Biên soạn:</strong> Nữ Tông sư Tôn Kiếm Vân (Sun Jianyun) · <strong>Truyền thừa:</strong> Ái nữ & Chưởng môn đời thứ 2 của Tôn Lộc Đường
+      </div>
+      <div>📖 68 trang nguyên bản · Cương lĩnh Khai Hợp Hoạt Bộ · Đồ giải chi tiết 97 quyền thức và Thôi thủ pháp</div>
+
+      <div class="reader-controls-bar">
+        <button class="ctrl-btn" onclick="adjustFontSize(-1)"><i class="fa-solid fa-font"></i> A-</button>
+        <button class="ctrl-btn" onclick="adjustFontSize(1)"><i class="fa-solid fa-font"></i> A+</button>
+        <button class="ctrl-btn" onclick="toggleDarkMode()"><i class="fa-solid fa-moon"></i> Chế Độ Đêm</button>
+        <a href="/vi/books/" class="ctrl-btn"><i class="fa-solid fa-arrow-left"></i> Thư Viện Sách</a>
+      </div>
+    </div>
+
+
+    <section id="chuong-1" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 1</span>
+        <h2 class="chapter-title">Nữ Danh Sư Tôn Kiếm Vân & Di Sản Tôn Lộc Đường</h2>
+      </div>
+      
+<p><strong>Tôn Thức Thái Cực Quyền (《孙式太极拳》)</strong> do nữ Tông sư <strong>Tôn Kiếm Vân (Sun Jianyun, 1913–2003)</strong> biên soạn, được Nhân Dân Thể Dục Xuất Bản Xã phát hành năm 1957 và tái bản năm 1997. Tôn Kiếm Vân là con gái cưng của Đại Tông sư Tôn Lộc Đường — bậc kỳ tài võ học được tôn vinh là "Hổ Đầu Thiếu Bảo, Thiên Hạ Đệ Nhất Thủ" thời kỳ Dân Quốc.</p>
+<p>Được cha truyền dạy tận tình từ năm lên 9 tuổi, Tôn Kiếm Vân kế thừa xuất sắc cả ba môn võ nội gia lớn, sau đó trở thành Phó Chủ tịch Hiệp hội Võ thuật Bắc Kinh và Chưởng môn đời thứ hai của phái Tôn Thức. Cuốn sách là văn bản chính thức định hình trường phái Tôn Thức trên toàn lãnh thổ Trung Hoa.</p>
+
+    </section>
+
+    <section id="chuong-2" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 2</span>
+        <h2 class="chapter-title">Tam Phái Hợp Nhất: Tinh Hoa Bát Quái, Hình Ý & Thái Cực</h2>
+      </div>
+      
+<p>Điểm làm nên sự khác biệt vĩ đại của Tôn Thức chính là sự dung nạp tài tình ba môn phái nội gia:</p>
+<div class="key-point">
+  <ul style="margin-left:1.5rem; line-height:1.85;">
+    <li><strong>Lấy Hình Ý Quyền làm Cốt:</strong> Thế tấn thẳng thắn, phát kình xuyên thấu, nghiêm cẩn và bộc phát nhanh gọn.</li>
+    <li><strong>Lấy Bát Quái Chưởng làm Thần:</strong> Thân pháp biến hóa đa hướng, bộ pháp xoay vòng lướt nhẹ, thoắt ẩn thoắt hiện.</li>
+    <li><strong>Lấy Thái Cực Quyền làm Thể:</strong> Nhu nhuyễn viên chuyển, biến đổi hư thực, mượn lực hóa lực, dĩ nhu khắc cương.</li>
+  </ul>
+</div>
+
+    </section>
+
+    <section id="chuong-3" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 3</span>
+        <h2 class="chapter-title">Đặc Trưng Hoạt Bộ Khai Hợp & Tiến Thoái Tương Tùy</h2>
+      </div>
+      
+<p>Khác biệt căn bản nhất của Tôn Thức so với bốn lưu phái còn lại là nguyên tắc <strong>"Tiến tất cân bộ, thoái tất triệt bộ"</strong> (Tiến lên thì chân sau lập tức bước theo nửa bước; lùi lại thì chân trước rút theo nửa bước):</p>
+<div class="quote-box">
+  "Mỗi khi chân chuyển động, bộ pháp luôn linh hoạt như đang đi dạo (Hoạt bộ), khoảng cách hai chân không mở quá rộng. Giữa mỗi thức quyền đều xen kẽ động tác 'Khai Thủ' và 'Hợp Thủ' để gom tụ nội khí về đan điền, tạo nhịp thở nhấp nhô tuần hoàn như con sóng dâng tràn rồi rút lui êm ả."
+</div>
+
+    </section>
+
+    <section id="chuong-4" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 4</span>
+        <h2 class="chapter-title">Toàn Bộ 97 Quyền Thức Tôn Thức (Đồ Giải Thượng Biên)</h2>
+      </div>
+      
+<p>Sách mô tả chi tiết 97 thức quyền thanh thoát của Tôn Thức: từ <em>Thái Cực Khởi Thế, Lãn Trát Y, Khai Thủ, Hợp Thủ, Đơn Tiên, Đề Thủ Thượng Thế, Bạch Hạc Lượng Sí, Khai Thủ, Hợp Thủ, Lâu Tất Áo Bộ, Thủ Huy Tỳ Bà, Tiến Bộ Ban Lan Chùy...</em> đến <em>Hóa Điệp, Chỉ Địa Chùy, Bạt Thân Phục Hổ</em>.</p>
+
+    </section>
+
+    <section id="chuong-5" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 5</span>
+        <h2 class="chapter-title">Điều Hòa Phế Khí & Dưỡng Khí Đan Điền</h2>
+      </div>
+      
+<p>Động tác Khai (Mở) và Hợp (Đóng) của hai bàn tay kết hợp mở rộng lồng ngực giúp phế nang phổi giãn nở tối đa, sau đó ép nhẹ để khí thanh giáng xuống Đan Điền. Đây là phương pháp dưỡng sinh hô hấp cực kỳ công hiệu cho người mắc các bệnh về đường hô hấp và tim mạch.</p>
+
+    </section>
+
+    <section id="chuong-6" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 6</span>
+        <h2 class="chapter-title">Tôn Thức Thôi Thủ Pháp (Hạ Biên)</h2>
+      </div>
+      
+<p>Phần Hạ Biên trình bày phương pháp Thôi thủ Tôn gia: Định bộ thôi thủ rèn luyện cảm giác tiếp xúc; Hoạt bộ thôi thủ ứng dụng bộ pháp tiến thoái tương tùy để luồn ra phía sau lưng đối thủ đánh úp; và Đại Lữ thôi thủ kết hợp bộ pháp hình tam giác độc đáo của Bát Quái Chưởng.</p>
+
+    </section>
+
+    <section id="chuong-7" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 7</span>
+        <h2 class="chapter-title">Triết Lý Đạo Võ Hợp Nhất Của Họ Tôn</h2>
+      </div>
+      
+<p>Tôn Kiếm Vân dẫn lại lời răn của thân phụ Tôn Lộc Đường: <em>"Quyền dữ Đạo hợp"</em> (Quyền thuật và Đạo lý làm người là một). Mục đích tối hậu của người luyện quyền không phải là tranh thắng thua trên sàn đấu, mà là thanh lọc tâm trí, bồi đắp chân khí, trở về với bản nguyên thuần phác của tự nhiên.</p>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+<footer class="site-footer">
+  <p>Built with ❤️ for the Vietnamese Tai Chi community by Phạm Đức Hải</p>
+</footer>
+</body>
+</html>

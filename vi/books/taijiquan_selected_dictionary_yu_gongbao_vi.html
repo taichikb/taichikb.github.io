@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典) — Dư Công Báo | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt từ điển chuyên khảo Tinh Tuyển Thái Cực Quyền Từ Điển của Dư Công Báo (1997/1999). Hơn 1.300 mục từ quy chuẩn đầu tiên trên thế giới giải mã toàn diện Quyền lý, Kình pháp, Thân pháp, Danh gia và Cổ tịch.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 280px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-crimson);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.6rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 1rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.reader-controls-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.ctrl-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  background: rgba(197, 155, 39, 0.15);
+  border-color: var(--accent-gold);
+}
+.chapter-block {
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent-crimson);
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fef9c3;
+  border-left: 4px solid #ca8a04;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #ecfdf5;
+  border-left: 4px solid #059669;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  color: #064e3b;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8rem 0;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tech-table th, .tech-table td {
+  padding: 10px 14px;
+  border: 1px solid #e7e5e4;
+  text-align: left;
+}
+.tech-table th {
+  background: #f5f5f4;
+  font-weight: 700;
+  color: #292524;
+}
+@media (max-width: 1024px) {
+  .reader-sidebar { display: none; }
+  .reader-content { padding: 1rem 0 3rem; }
+  .book-hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/vi/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/" class="">Trang Chủ</a>
+    <a href="/vi/techniques/" class="">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/" class="">Video</a>
+    <a href="/vi/podcast/" class="">Podcast</a>
+    <a href="/vi/philosophy/" class="">Triết Lý</a>
+    <a href="/vi/history/" class="">Lịch Sử</a>
+    <a href="/vi/contact/" class="">Liên Hệ</a>
+    <a href="/books/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<div class="reader-layout">
+  <!-- Mục lục bên -->
+  <aside class="reader-sidebar">
+    <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Mục Lục Từ Điển</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#chuong-1" class="toc-link">1. Dư Công Báo & Bộ Từ Điển Thái Cực Đầu Tiên Thế Giới</a></li>
+      <li class="toc-item"><a href="#chuong-2" class="toc-link">2. Nhóm Mục Từ Quyền Lý Căn Bản (Âm Dương, Đan Điền, Tùng)</a></li>
+      <li class="toc-item"><a href="#chuong-3" class="toc-link">3. Nhóm Mục Từ Thân Pháp & Thân Thể Quy Phạm</a></li>
+      <li class="toc-item"><a href="#chuong-4" class="toc-link">4. Nhóm Mục Từ Kình Pháp & Khái Niệm Lực Học</a></li>
+      <li class="toc-item"><a href="#chuong-5" class="toc-link">5. Nhóm Mục Từ Kỹ Kích, Thôi Thủ & Tán Thủ</a></li>
+      <li class="toc-item"><a href="#chuong-6" class="toc-link">6. Danh Nhân Lịch Sử & Truyền Thừa Đại Tông Sư</a></li>
+      <li class="toc-item"><a href="#chuong-7" class="toc-link">7. Thư Mục Cổ Tịch & Quyền Phổ Kinh Điển</a></li>
+    </ul>
+  </aside>
+
+  <!-- Nội dung -->
+  <main class="reader-content">
+    <div class="book-hero">
+      <span class="book-badge"><i class="fa-solid fa-spell-check"></i> Từ Điển Bách Khoa Thuật Ngữ Quy Chuẩn 1997</span>
+      <h1>TINH TUYỂN THÁI CỰC QUYỀN TỪ ĐIỂN</h1>
+      <div class="book-orig-title">《精选太极拳辞典》 — 余功保 编著 · 人民体育出版社 (1997 / 1999)</div>
+      <div class="book-author-meta">
+        <strong>Biên soạn:</strong> Chuyên gia văn hóa võ học Dư Công Báo (Yu Gongbao) · <strong>Nhà xuất bản:</strong> Nhân Dân Thể Dục Xuất Bản Xã
+      </div>
+      <div>📖 Hơn 1.300 mục từ quy chuẩn · Từ điển Thái Cực đầu tiên của nhân loại · Tra cứu toàn diện từ Cổ điển tới Y học hiện đại</div>
+
+      <div class="reader-controls-bar">
+        <button class="ctrl-btn" onclick="adjustFontSize(-1)"><i class="fa-solid fa-font"></i> A-</button>
+        <button class="ctrl-btn" onclick="adjustFontSize(1)"><i class="fa-solid fa-font"></i> A+</button>
+        <button class="ctrl-btn" onclick="toggleDarkMode()"><i class="fa-solid fa-moon"></i> Chế Độ Đêm</button>
+        <a href="/vi/books/" class="ctrl-btn"><i class="fa-solid fa-arrow-left"></i> Thư Viện Sách</a>
+      </div>
+    </div>
+
+
+    <section id="chuong-1" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 1</span>
+        <h2 class="chapter-title">Dư Công Báo & Bộ Từ Điển Thái Cực Đầu Tiên Thế Giới</h2>
+      </div>
+      
+<p><strong>Dư Công Báo (Yu Gongbao, sinh 1964)</strong> là nhà nghiên cứu văn hóa võ học Thái Cực uy tín hàng đầu Trung Quốc đương đại, cựu sinh viên Đại học Bắc Kinh và từng đảm nhiệm nhiều vị trí nghiên cứu quan trọng tại cơ quan quản lý võ thuật quốc gia. Nhận thấy các thuật ngữ Thái Cực Quyền qua hàng trăm năm bị dị bản, hiểu sai lệch hoặc thần bí hóa quá mức, ông đã dành nhiều năm phỏng vấn hàng trăm danh sư lão bối để biên soạn nên <strong>《精选太极拳辞典》 (Tinh Tuyển Thái Cực Quyền Từ Điển)</strong>.</p>
+<p>Được Nhân Dân Thể Dục Xuất Bản Xã ấn hành lần đầu năm 1997 (tái bản 1999), cuốn từ điển được học giới quốc tế công nhận là bộ từ điển chuyên ngành Thái Cực Quyền quy chuẩn đầu tiên trên thế giới, bao quát hơn 1.300 mục từ từ lý luận, kỹ thuật đến lịch sử và y học.</p>
+
+    </section>
+
+    <section id="chuong-2" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 2</span>
+        <h2 class="chapter-title">Nhóm Mục Từ Quyền Lý Căn Bản (Âm Dương, Đan Điền, Tùng)</h2>
+      </div>
+      
+<p>Các khái niệm triết học nền tảng được định nghĩa chính xác theo chuẩn văn bản học:</p>
+<div class="key-point">
+  <ul style="margin-left:1.5rem; line-height:1.85;">
+    <li><strong>Thái Cực (太极):</strong> Trạng thái vận động tương tác giữa hai cực Âm và Dương, biểu thị tính thống nhất của các mặt đối lập trong chuyển động cơ thể.</li>
+    <li><strong>Phóng Tùng (放松 - Tùng):</strong> Trạng thái thư giãn tích cực của hệ cơ - gân - khớp mà không bị xẹp lép bất lực (tùng nhi bất tháp).</li>
+    <li><strong>Đan Điền (丹田):</strong> Vùng trọng tâm khối lượng của cơ thể nằm dưới rốn khoảng 3 thốn và sâu vào trong ổ bụng, là gốc rễ tích tụ khí cơ và phát xuất kình lực.</li>
+    <li><strong>Hư Thực (虚实):</strong> Sự phân chia trọng lượng và công năng chịu lực giữa hai chân và hai tay nhằm duy trì cân bằng động liên tục.</li>
+  </ul>
+</div>
+
+    </section>
+
+    <section id="chuong-3" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 3</span>
+        <h2 class="chapter-title">Nhóm Mục Từ Thân Pháp & Thân Thể Quy Phạm</h2>
+      </div>
+      
+<p>Định nghĩa chi tiết từng yêu cầu hình thể cổ truyền:</p>
+<table class="tech-table">
+  <thead>
+    <tr><th>Thuật Ngữ Hán - Việt</th><th>Ý Nghĩa Giải Phẫu Học</th><th>Tác Dụng Kỹ Thuật</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Hư Linh Đỉnh Kình (虚灵顶劲)</strong></td><td>Đốt sống cổ vươn thẳng nhẹ, cằm hơi thu</td><td>Tủy sống thông suốt lên não bộ, giữ trục cơ thể thẳng đứng</td></tr>
+    <tr><td><strong>Hàm Hung Bạt Bối (含胸拔背)</strong></td><td>Xương ức thả lỏng thu nhẹ, cơ lưng mở rộng</td><td>Khí dễ dàng chìm sâu xuống đáy phổi, tích tụ kình sau lưng</td></tr>
+    <tr><td><strong>Trầm Quyên Trụy Trửu (沉肩坠肘)</strong></td><td>Hạ thấp khớp bả vai, cùi chỏ luôn chùng rủ tự nhiên</td><td>Không làm nổi khí lên ngực, bảo vệ xương sườn và phát lực mạnh</td></tr>
+    <tr><td><strong>Liễm Đồn Khố Tùng (敛臀松胯)</strong></td><td>Cuộn xương cụt vào trong, mở khớp háng</td><td>Hạ thấp trọng tâm, nối liền bàn chân với cột sống vững chắc</td></tr>
+  </tbody>
+</table>
+
+    </section>
+
+    <section id="chuong-4" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 4</span>
+        <h2 class="chapter-title">Nhóm Mục Từ Kình Pháp & Khái Niệm Lực Học</h2>
+      </div>
+      
+<p>Dư Công Báo phân biệt rạch ròi sự khác biệt giữa "Lực" (sức mạnh cơ học đơn thuần) và "Kình" (năng lượng sinh học có định hướng, đàn hồi và phối hợp toàn thân). Mục từ giải nghĩa cặn kẽ: <em>Bằng kình, Lý kình, Tê kình, Án kình, Thải kình, Liệt kình, Trửu kình, Kháo kình, Đổng kình, Hóa kình, Phát kình, Triền ty kình, Thấu kình, Thốn kình...</em></p>
+
+    </section>
+
+    <section id="chuong-5" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 5</span>
+        <h2 class="chapter-title">Nhóm Mục Từ Kỹ Kích, Thôi Thủ & Tán Thủ</h2>
+      </div>
+      
+<p>Các thuật ngữ đối kháng được chuẩn hóa định nghĩa: <em>Triêm, Niêm, Liên, Tùy, Bất đâu bất đính, Dẫn tiến lạc không, Mượn lực đả lực, Khai hợp hư thực, Bát môn ngũ bộ, Thôi thủ định bộ, Thôi thủ hoạt bộ, Đại lữ, Đoản đả...</em></p>
+
+    </section>
+
+    <section id="chuong-6" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 6</span>
+        <h2 class="chapter-title">Danh Nhân Lịch Sử & Truyền Thừa Đại Tông Sư</h2>
+      </div>
+      
+<p>Từ điển lập tiểu sử khách quan, chính xác theo niên đại khoa học của các bậc tiền bối: <em>Trần Vương Đình, Trần Trường Hưng, Trần Thanh Bình, Dương Lộ Thiền, Dương Ban Hầu, Dương Trừng Phủ, Võ Vũ Huy, Lý Diệc Dư, Ngô Toàn Hựu, Ngô Giám Tuyền, Tôn Lộc Đường, Hách Vệ Chân, Trần Phát Khoa, Đường Hào, Cố Lưu Hinh...</em></p>
+
+    </section>
+
+    <section id="chuong-7" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 7</span>
+        <h2 class="chapter-title">Thư Mục Cổ Tịch & Quyền Phổ Kinh Điển</h2>
+      </div>
+      
+<p>Hệ thống hóa toàn bộ thư tịch cổ lưu truyền: 《Thái Cực Quyền Kinh》 (Vương Tông Nhạc), 《Thái Cực Quyền Luận》, 《Thập Tam Thế Hành Công Tâm Giải》, 《Dương Thức Thái Cực Quyền Sử Dụng Pháp》, 《Thái Cực Quyền Thể Dụng Toàn Thư》... giúp học giả dễ dàng tra cứu và tra khảo nguồn gốc học thuật.</p>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+<footer class="site-footer">
+  <p>Built with ❤️ for the Vietnamese Tai Chi community by Phạm Đức Hải</p>
+</footer>
+</body>
+</html>

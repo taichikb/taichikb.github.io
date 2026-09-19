@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vương Tông Nhạc Thái Cực Quyền Kinh Nghiên Cứu (王宗岳太极拳经研究) — Đường Hào | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên khảo khảo chứng lịch sử võ học Vương Tông Nhạc Thái Cực Quyền Kinh Nghiên Cứu của học giả Đường Hào (Hương Cảng 1975). Phục nguyên toàn văn cổ thư, phân tích chữ Hán, khảo chứng chân ngụy.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 280px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-crimson);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.6rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 1rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.reader-controls-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.ctrl-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  background: rgba(197, 155, 39, 0.15);
+  border-color: var(--accent-gold);
+}
+.chapter-block {
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent-crimson);
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fef9c3;
+  border-left: 4px solid #ca8a04;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #ecfdf5;
+  border-left: 4px solid #059669;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  color: #064e3b;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8rem 0;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tech-table th, .tech-table td {
+  padding: 10px 14px;
+  border: 1px solid #e7e5e4;
+  text-align: left;
+}
+.tech-table th {
+  background: #f5f5f4;
+  font-weight: 700;
+  color: #292524;
+}
+@media (max-width: 1024px) {
+  .reader-sidebar { display: none; }
+  .reader-content { padding: 1rem 0 3rem; }
+  .book-hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/vi/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/" class="">Trang Chủ</a>
+    <a href="/vi/techniques/" class="">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/" class="">Video</a>
+    <a href="/vi/podcast/" class="">Podcast</a>
+    <a href="/vi/philosophy/" class="">Triết Lý</a>
+    <a href="/vi/history/" class="">Lịch Sử</a>
+    <a href="/vi/contact/" class="">Liên Hệ</a>
+    <a href="/books/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<div class="reader-layout">
+  <!-- Mục lục bên -->
+  <aside class="reader-sidebar">
+    <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Mục Lục Khảo Cứu</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#chuong-1" class="toc-link">1. Học Giả Đường Hào & Ngọn Cờ Võ Sử Học</a></li>
+      <li class="toc-item"><a href="#chuong-2" class="toc-link">2. Lai Lịch & Bối Cảnh Lịch Sử Vương Tông Nhạc</a></li>
+      <li class="toc-item"><a href="#chuong-3" class="toc-link">3. Toàn Văn Nguyên Bản Hán Tự 《Thái Cực Quyền Kinh》</a></li>
+      <li class="toc-item"><a href="#chuong-4" class="toc-link">4. Dịch Nghĩa & Bình Chú Chi Tiết Từng Khẩu Quyết</a></li>
+      <li class="toc-item"><a href="#chuong-5" class="toc-link">5. Phản Bác Các Thần Thoại & Ngụy Thư Dân Gian</a></li>
+      <li class="toc-item"><a href="#chuong-6" class="toc-link">6. Khảo Luận Về 《Âm Phù Thương Phổ》 Vương Tông Nhạc</a></li>
+      <li class="toc-item"><a href="#chuong-7" class="toc-link">7. Giá Trị Khai Sáng Của Quyền Kinh Đương Đại</a></li>
+    </ul>
+  </aside>
+
+  <!-- Nội dung -->
+  <main class="reader-content">
+    <div class="book-hero">
+      <span class="book-badge"><i class="fa-solid fa-scroll"></i> Khảo Chứng Võ Sử Khoa Học · Hương Cảng 1975</span>
+      <h1>VƯƠNG TÔNG NHẠC THÁI CỰC QUYỀN KINH NGHIÊN CỨU</h1>
+      <div class="book-orig-title">《王宗岳太极拳经研究》 — 唐豪 编考 · 香港 (1975)</div>
+      <div class="book-author-meta">
+        <strong>Biên khảo:</strong> Tiên phong khảo cứu võ sử Đường Hào (Tang Hao) · <strong>Bản ấn hành:</strong> Hương Cảng
+      </div>
+      <div>📖 Khảo chứng văn bản học nghiêm cẩn · Toàn văn nguyên tác Hán tự · Chú giải từng điển tích võ kinh</div>
+
+      <div class="reader-controls-bar">
+        <button class="ctrl-btn" onclick="adjustFontSize(-1)"><i class="fa-solid fa-font"></i> A-</button>
+        <button class="ctrl-btn" onclick="adjustFontSize(1)"><i class="fa-solid fa-font"></i> A+</button>
+        <button class="ctrl-btn" onclick="toggleDarkMode()"><i class="fa-solid fa-moon"></i> Chế Độ Đêm</button>
+        <a href="/vi/books/" class="ctrl-btn"><i class="fa-solid fa-arrow-left"></i> Thư Viện Sách</a>
+      </div>
+    </div>
+
+
+    <section id="chuong-1" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 1</span>
+        <h2 class="chapter-title">Học Giả Đường Hào & Ngọn Cờ Võ Sử Học</h2>
+      </div>
+      
+<p><strong>Đường Hào (Tang Hao, 1896–1959)</strong> là nhân vật vĩ đại được tôn xưng là "Người khai sinh ra môn Võ Sử Học hiện đại của Trung Quốc". Khác với những người chỉ nghe theo truyền thuyết thần bí, Đường Hào có nền tảng học thuật phương Tây và Nhật Bản, áp dụng phương pháp sử học khảo chứng thực địa: trực tiếp đến từng làng võ, kiểm tra từng bia đá gia phả, đối chiếu từng văn bản cổ thư để tìm ra sự thật lịch sử.</p>
+<p>Tác phẩm <strong>《王宗岳太极拳经研究》 (Vương Tông Nhạc Thái Cực Quyền Kinh Nghiên Cứu)</strong> (Hương Cảng ấn hành 1975) là công trình nghiên cứu quy mô nhất giải mã văn bản học về pho kinh thư được coi là "Kinh thánh của giới Thái Cực Quyền".</p>
+
+    </section>
+
+    <section id="chuong-2" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 2</span>
+        <h2 class="chapter-title">Lai Lịch & Bối Cảnh Lịch Sử Vương Tông Nhạc</h2>
+      </div>
+      
+<p>Đường Hào đã dành nhiều năm tìm kiếm tài liệu để xác định nhân thân thật của <strong>Vương Tông Nhạc (Wang Zongyue)</strong>. Ông chứng minh Vương Tông Nhạc là một văn nhân nho sĩ sống vào thời Càn Long - Gia Khánh nhà Thanh, người tỉnh Sơn Tây, tinh thông kiếm thuật và thương pháp, từng cư ngụ tại Khai Phong (Hà Nam) và Lạc Dương.</p>
+<p>Chính Vương Tông Nhạc là người đầu tiên mượn khái niệm triết học "Thái Cực" trong Chu Tử và Hệ Từ Truyện của Kinh Dịch để khái quát hóa toàn bộ các quy luật vận động cơ học của môn quyền thuật này, tạo ra cái tên bất hủ "Thái Cực Quyền".</p>
+
+    </section>
+
+    <section id="chuong-3" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 3</span>
+        <h2 class="chapter-title">Toàn Văn Nguyên Bản Hán Tự 《Thái Cực Quyền Kinh》</h2>
+      </div>
+      
+<div class="quote-box" style="font-family:'Noto Serif SC', serif; font-size:1.15rem; line-height:2;">
+  太极者，无极而生，动静之机，阴阳之母也。动之则分，静之则合。无过不及，随曲就伸。人刚我柔谓之走，我顺人背谓之粘。动急则急应，动缓则缓随。虽变化万端，而理唯一贯。由着熟而渐悟懂劲，由懂劲而阶及神明。然非用力日久，不能豁然贯通焉。虚灵顶劲，气沉丹田。不偏不倚，忽隐忽现。左重则左虚，右重则右杳。仰之则弥高，俯之则弥深。进之则愈长，退之则愈促。一羽不能加，蝇虫不能落。人不知我，我独知人。英雄所向无敌，盖皆由此而及也！
+</div>
+
+    </section>
+
+    <section id="chuong-4" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 4</span>
+        <h2 class="chapter-title">Dịch Nghĩa & Bình Chú Chi Tiết Từng Khẩu Quyết</h2>
+      </div>
+      
+<p>Đường Hào phân tích sâu sắc các mệnh đề triết học và kỹ thuật cốt tủy:</p>
+<div class="key-point">
+  <ul style="margin-left:1.5rem; line-height:1.85;">
+    <li><strong>Thái Cực giả, vô cực nhi sinh:</strong> Thái cực sinh ra từ vô cực; trong vô hình tĩnh lặng hàm chứa khả năng biến hóa vô cùng.</li>
+    <li><strong>Vô quá bất cập, tùy khúc tựu thân:</strong> Không làm thừa thãi cũng không để thiếu hụt; đối phương uốn cong thì ta nương theo uốn cong, đối phương duỗi thẳng thì ta tùy thời vươn tới.</li>
+    <li><strong>Tả trọng tắc tả hư, hữu trọng tắc hữu yểu:</strong> Đối phương đè nặng bên trái thì bên trái ta hóa lỏng trống không; đối phương đè nặng bên phải thì bên phải ta biến mất không dấu vết.</li>
+    <li><strong>Nhất vũ bất năng gia, dăng trùng bất năng lạc:</strong> Độ nhạy cảm xúc giác bén nhạy tới mức một cọng lông chim rơi nhẹ lên thân cũng cảm biết được, một con ruồi nhỏ đậu vào cũng không tìm thấy điểm tỳ chân.</li>
+  </ul>
+</div>
+
+    </section>
+
+    <section id="chuong-5" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 5</span>
+        <h2 class="chapter-title">Phản Bác Các Thần Thoại & Ngụy Thư Dân Gian</h2>
+      </div>
+      
+<p>Bằng lập luận đanh thép và bằng chứng văn bản học, Đường Hào dũng cảm bác bỏ truyền thuyết cho rằng Trương Tam Phong trên núi Võ Đang nhìn thấy rắn và chim ác là đánh nhau mà tạo ra quyền. Ông chứng minh đó chỉ là sản phẩm phóng tác của tiểu thuyết thời Thanh do những người hâm mộ đạo giáo gán ghép, khẳng định nguồn gốc thực tế bắt nguồn từ dân gian Hà Nam.</p>
+
+    </section>
+
+    <section id="chuong-6" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 6</span>
+        <h2 class="chapter-title">Khảo Luận Về 《Âm Phù Thương Phổ》 Vương Tông Nhạc</h2>
+      </div>
+      
+<p>Nghiên cứu của Đường Hào chỉ ra mối liên kết hữu cơ mật thiết giữa quyền pháp Thái Cực và <strong>Âm Phù Thương Phổ</strong> của Vương Tông Nhạc. Kỹ thuật "Niêm dính" và "Triền quấn" của mũi thương chiến trường chính là tiền thân của kỹ pháp Thôi thủ hai tay ngày nay.</p>
+
+    </section>
+
+    <section id="chuong-7" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 7</span>
+        <h2 class="chapter-title">Giá Trị Khai Sáng Của Quyền Kinh Đương Đại</h2>
+      </div>
+      
+<p>Tác phẩm kết luận: 《Thái Cực Quyền Kinh》 không phải là bùa chú thần bí, mà là một bản đúc kết thiên tài về động lực học thân thể, điều khiển phản xạ có điều kiện và tâm lý học chiến đấu, xứng đáng là di sản văn hóa phi vật thể đỉnh cao của nhân loại.</p>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+<footer class="site-footer">
+  <p>Built with ❤️ for the Vietnamese Tai Chi community by Phạm Đức Hải</p>
+</footer>
+</body>
+</html>

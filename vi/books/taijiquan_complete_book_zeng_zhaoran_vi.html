@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thái Cực Quyền Toàn Thư (太极拳全书) — TS. Tăng Chiêu Nhiên & Ban Biên Soạn | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt kiệt tác bách khoa toàn thư Thái Cực Quyền Toàn Thư của TS. Tăng Chiêu Nhiên (1975) và tổng tập 726 trang Nhân Dân Thể Dục Xuất Bản Xã (1995). Hội tụ Ngũ Đại Phái: Trần - Dương - Ngô - Võ - Tôn.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 280px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-crimson);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.6rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 1rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.reader-controls-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.ctrl-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  background: rgba(197, 155, 39, 0.15);
+  border-color: var(--accent-gold);
+}
+.chapter-block {
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--accent-crimson);
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fef9c3;
+  border-left: 4px solid #ca8a04;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #ecfdf5;
+  border-left: 4px solid #059669;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  color: #064e3b;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8rem 0;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tech-table th, .tech-table td {
+  padding: 10px 14px;
+  border: 1px solid #e7e5e4;
+  text-align: left;
+}
+.tech-table th {
+  background: #f5f5f4;
+  font-weight: 700;
+  color: #292524;
+}
+@media (max-width: 1024px) {
+  .reader-sidebar { display: none; }
+  .reader-content { padding: 1rem 0 3rem; }
+  .book-hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/vi/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/" class="">Trang Chủ</a>
+    <a href="/vi/techniques/" class="">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/" class="">Video</a>
+    <a href="/vi/podcast/" class="">Podcast</a>
+    <a href="/vi/philosophy/" class="">Triết Lý</a>
+    <a href="/vi/history/" class="">Lịch Sử</a>
+    <a href="/vi/contact/" class="">Liên Hệ</a>
+    <a href="/books/" class="lang-switch">🇬🇧 English</a>
+  </nav>
+</header>
+
+<div class="reader-layout">
+  <!-- Mục lục bên -->
+  <aside class="reader-sidebar">
+    <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Mục Lục Toàn Thư</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#chuong-1" class="toc-link">1. TS. Tăng Chiêu Nhiên — Từ Luật Học Đến Quyền Môn</a></li>
+      <li class="toc-item"><a href="#chuong-2" class="toc-link">2. 'Thức Tùy Ý Chuyển' — Bản Chất Cốt Tử Của Quyền</a></li>
+      <li class="toc-item"><a href="#chuong-3" class="toc-link">3. Lực Học Hiện Đại Giải Mã Khinh Linh Thái Cực</a></li>
+      <li class="toc-item"><a href="#chuong-4" class="toc-link">4. Toàn Cảnh Ngũ Đại Môn Phái: Trần, Dương, Ngô, Võ, Tôn</a></li>
+      <li class="toc-item"><a href="#chuong-5" class="toc-link">5. Sáo Lộ Tiêu Chuẩn Quốc Gia Của Từng Lưu Phái</a></li>
+      <li class="toc-item"><a href="#chuong-6" class="toc-link">6. Tổng Hợp Thôi Thủ Thực Nghiệm & Đo Đạc Lực Đẩy</a></li>
+      <li class="toc-item"><a href="#chuong-7" class="toc-link">7. Lộ Trình Tu Tập Suốt Đời: Thể — Trí — Đạo</a></li>
+    </ul>
+  </aside>
+
+  <!-- Nội dung -->
+  <main class="reader-content">
+    <div class="book-hero">
+      <span class="book-badge"><i class="fa-solid fa-book-open"></i> Bách Khoa Toàn Thư · Ngũ Đại Phái Hội Tụ</span>
+      <h1>THÁI CỰC QUYỀN TOÀN THƯ</h1>
+      <div class="book-orig-title">《太极拳全书》 — 曾昭然 (曾如柏) 著 · 香港 (1975) / 人民体育出版社 (1995, 726页)</div>
+      <div class="book-author-meta">
+        <strong>Biên soạn:</strong> TS. Tăng Chiêu Nhiên (đệ tử Dương Trừng Phủ) &amp; Hội đồng Chuyên gia Thể dục Thể thao Trung Quốc
+      </div>
+      <div>📖 726 trang đại toàn thư · Hội tụ trọn vẹn Trần - Dương - Ngô - Võ - Tôn · Cơ học phương Tây &amp; Dưỡng sinh học</div>
+
+      <div class="reader-controls-bar">
+        <button class="ctrl-btn" onclick="adjustFontSize(-1)"><i class="fa-solid fa-font"></i> A-</button>
+        <button class="ctrl-btn" onclick="adjustFontSize(1)"><i class="fa-solid fa-font"></i> A+</button>
+        <button class="ctrl-btn" onclick="toggleDarkMode()"><i class="fa-solid fa-moon"></i> Chế Độ Đêm</button>
+        <a href="/vi/books/" class="ctrl-btn"><i class="fa-solid fa-arrow-left"></i> Thư Viện Sách</a>
+      </div>
+    </div>
+
+
+    <section id="chuong-1" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 1</span>
+        <h2 class="chapter-title">TS. Tăng Chiêu Nhiên — Từ Luật Học Đến Quyền Môn</h2>
+      </div>
+      
+<p><strong>TS. Tăng Chiêu Nhiên (Zeng Zhaoran / Tăng Như Bách, 1900–1995)</strong> là một nhân vật trí thức đặc biệt trong lịch sử võ thuật. Tốt nghiệp Tiến sĩ Luật học tại Đức, ông sở hữu tư duy logic phương Tây cực kỳ chặt chẽ. Khi trở về nước, ông có cơ duyên bái Đại Tông sư Dương Trừng Phủ làm thầy, trở thành học trò cuối cùng (quan môn đệ tử) và là truyền nhân duy nhất của Dương Trừng Phủ tại miền Nam Trung Hoa (Quảng Đông - Hồng Kông).</p>
+<p>Chứng kiến nhiều người tập võ sai lệch bản chất, ông đã xuất bản bộ <strong>《太极拳全书》 (Thái Cực Quyền Toàn Thư)</strong> năm 1959, tái bản mở rộng năm 1975 tại Hồng Kông. Song song đó, năm 1995, Nhân Dân Thể Dục Xuất Bản Xã cũng cho ra đời đại từ điển toàn thư 726 trang cùng tên quy tụ toàn bộ quyền phổ Ngũ Đại Phái.</p>
+
+    </section>
+
+    <section id="chuong-2" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 2</span>
+        <h2 class="chapter-title">'Thức Tùy Ý Chuyển' — Bản Chất Cốt Tử Của Quyền</h2>
+      </div>
+      
+<p>Quan điểm cách mạng của Tăng Chiêu Nhiên là: <em>"Thức tùy ý chuyển"</em> (Động tác phải tuyệt đối tuân theo sự dẫn dắt của Tâm Ý):</p>
+<div class="quote-box">
+  "Nếu chỉ bắt chước tay chân khua khoắng bên ngoài cho giống hình mà trong đầu rỗng tuếch không có ý niệm kình lực tương ứng, thì dù tập năm mươi năm cũng chỉ là 'quyền hoa chân cọp' vô tích sự. Người tập phải biết trong từng milimét bàn tay di chuyển, ý niệm đang đẩy cái gì, xoắn cái gì và che chắn huyệt vị nào."
+</div>
+
+    </section>
+
+    <section id="chuong-3" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 3</span>
+        <h2 class="chapter-title">Lực Học Hiện Đại Giải Mã Khinh Linh Thái Cực</h2>
+      </div>
+      
+<p>Với nền tảng khoa học phương Tây, TS. Tăng Chiêu Nhiên dùng giải phẫu học cơ - xương và lực học Newton để chứng minh khái niệm "Khinh linh": Khinh linh không phải là yếu ớt, mà là việc cơ thể loại bỏ hoàn toàn các nhóm cơ đối kháng (antagonist muscles) không cần thiết, giúp năng lượng tập trung 100% vào nhóm cơ chủ vận (agonist muscles).</p>
+
+    </section>
+
+    <section id="chuong-4" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 4</span>
+        <h2 class="chapter-title">Toàn Cảnh Ngũ Đại Môn Phái: Trần, Dương, Ngô, Võ, Tôn</h2>
+      </div>
+      
+<p>Bản Toàn Thư cung cấp bảng so sánh chi tiết giữa 5 đại lưu phái:</p>
+<table class="tech-table">
+  <thead>
+    <tr><th>Môn Phái</th><th>Người Sáng Lập</th><th>Đặc Trưng Quyền Pháp</th><th>Đặc Điểm Thân Pháp</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Trần Thức</strong></td><td>Trần Vương Đình</td><td>Cương nhu tương tế, nhanh chậm đan xen, phát kình chấn cước</td><td>Triền ty xoắn ốc hạ bàn thấp</td></tr>
+    <tr><td><strong>Dương Thức</strong></td><td>Dương Lộ Thiền / Dương Trừng Phủ</td><td>Êm ả khoan thai, đại phương thư triển, nhu nhuyễn liên tục</td><td>Trung chính đoan trang, tấn trung bình</td></tr>
+    <tr><td><strong>Ngô Thức</strong></td><td>Ngô Toàn Hựu / Ngô Giám Tuyền</td><td>Nhẹ nhàng tinh tế, vòng tròn nhỏ gọn, khinh linh kín kẽ</td><td>Thân pháp nghiêng mà ngay</td></tr>
+    <tr><td><strong>Võ Thức</strong></td><td>Võ Vũ Huy / Hách Thiếu Như</td><td>Nghiêm cẩn hàm súc, khởi thừa chuyển hợp chặt chẽ</td><td>Thẳng đứng, hư thực tuyệt đối</td></tr>
+    <tr><td><strong>Tôn Thức</strong></td><td>Tôn Lộc Đường / Tôn Kiếm Vân</td><td>Tiến thoái tương tùy, hoạt bộ linh hoạt, khai hợp điều khí</td><td>Dung nạp Bát Quái - Hình Ý</td></tr>
+  </tbody>
+</table>
+
+    </section>
+
+    <section id="chuong-5" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 5</span>
+        <h2 class="chapter-title">Sáo Lộ Tiêu Chuẩn Quốc Gia Của Từng Lưu Phái</h2>
+      </div>
+      
+<p>Toàn Thư ghi chép đầy đủ thứ tự động tác, đồ hình chân bước và bản vẽ tay chỉ của bài quyền tiêu chuẩn quốc gia cho cả năm môn phái, tạo điều kiện thuận lợi cho việc nghiên cứu đối chiếu và học tập đa diện.</p>
+
+    </section>
+
+    <section id="chuong-6" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 6</span>
+        <h2 class="chapter-title">Tổng Hợp Thôi Thủ Thực Nghiệm & Đo Đạc Lực Đẩy</h2>
+      </div>
+      
+<p>Chương này công bố các kết quả đo đạc bằng lực kế trên các võ sư khi thực hiện đòn phát kình trong thôi thủ: lực phát ra trong khoảnh khắc 0,1 giây có thể đạt tới gia tốc cực lớn, chứng minh công năng giải phóng năng lượng đàn hồi của gân cơ.</p>
+
+    </section>
+
+    <section id="chuong-7" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 7</span>
+        <h2 class="chapter-title">Lộ Trình Tu Tập Suốt Đời: Thể — Trí — Đạo</h2>
+      </div>
+      
+<p>Tác phẩm tổng kết: Thái Cực Quyền là con đường tu dưỡng toàn diện trọn đời. Bước đầu tiên là rèn luyện Thân thể (Thể); bước thứ hai nâng cao Trí tuệ nhận thức quy luật tự nhiên (Trí); bước cuối cùng hòa nhập với Đạo Trời Đất (Đạo) để đạt tới cảnh giới trường thọ an vui.</p>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+<footer class="site-footer">
+  <p>Built with ❤️ for the Vietnamese Tai Chi community by Phạm Đức Hải</p>
+</footer>
+</body>
+</html>
