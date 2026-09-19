@@ -167,21 +167,11 @@ ARTICLES_EN = {
             ("Psychology", "10 Notes: Behavioral Psychology & Life Philosophy", "Triết học đời sống từ tâm lý học hành vi.", "/articles/07_psychology_philosophy_10_notes/"),
             ("Spiritual", "10 Notes: Awakening & Integral Spirituality", "Hành trình thức tỉnh & khoa học tâm linh toàn diện.", "/articles/08_hanh_trinh_thuc_tinh_tam_linh_10_notes/"),
             ("Audio · Video", "Tổng Hợp Audio & Video Overviews", "NotebookLM-generated overviews across all collections.", "/articles/09_artifacts_audio_video_overview/"),
-            ("Japanese Philosophy", "10 Triết Lý Căn Bản Của Người Nhật", "10 foundational philosophies of the Japanese people — Bushido, wabi-sabi, ikigai.", "/articles/10-triet-ly-can-ban-cua-nguoi-nhat/"),
         ]),
         ("Foundational Catalogs", [
             ("Catalog", "Toàn Thư 32 Kho Tri Thức Gemini NotebookLM", "32 knowledge vaults — the complete Gemini-NotebookLM catalog and ecosystem.", "/articles/gemini_notebooks_catalog_and_grounded_notes/"),
             ("Practice Guide", "The Complete Taichi Practice Guide for the 3.0 Beginner", "Full bilingual guide to starting practice from zero — the foundational curriculum.", "/articles/complete-taichi-practice-guide-for-the-30-beginner/"),
             ("Mindset", "Essentialism, Deliberate Practice & Personal Finance", "The mindset trilogy for Tai Chi practitioners and life builders.", "/articles/essentialism_mindset_personal_finance/"),
-            ("Wiki Bundle", "Taichi Wiki — Portable Bundle & Push Instructions", "The portable bundle structure for syncing across devices.", "/articles/push_instructions_taichi_wiki/"),
-        ]),
-        ("Standalone Articles", [
-            ("Philosophy", "Bản Chất Của Quá Trình Thu Gom Thông Tin Cơ Học Và Trí Tuệ Đích Thực", "Mechanical information collection vs. true wisdom — the essential difference.", "/articles/ban-chat-cua-qua-trinh-thu-gom-thong-tin-co-hoc-va-tri-tue-dich-thuc/"),
-            ("Living", "Cách Hiểu Và Sống Thuận Theo Tự Nhiên", "How to understand and live in accordance with nature — Daoist naturalness.", "/articles/cach-hieu-va-song-thuan-theo-tu-nhien/"),
-            ("Breath", "Cách Thở", "On breathing — the foundation of all internal practice.", "/articles/cach-tho/"),
-            ("Aging", "Học Cách Sống Nhẹ Nhàng Sau Tuổi Năm Mươi", "Learning to live gently after fifty — a Tai Chi approach to aging.", "/articles/hoc-cach-song-nhe-nhang-sau-tuoi-nam-muoi/"),
-            ("Learning", "Lòng Tham Và Nhu Cầu Học Hỏi Chân Chính", "Greed vs. genuine learning need — distinguishing the two.", "/articles/long-tham-va-nhu-cau-hoc-hoi-chan-chinh/"),
-            ("Analysis", "Phân Tích Tâm Lý", "Psychological analysis through the lens of internal practice.", "/articles/phan-tich-tam-ly/"),
         ]),
     ],
 }
@@ -200,21 +190,11 @@ ARTICLES_VI = {
             ("Tâm Lý Học", "10 Ghi Chú: Tâm Lý Học Hành Vi & Triết Học Đời Sống", "Triết học sống qua lăng kính tâm lý học hành vi.", "/articles/07_psychology_philosophy_10_notes/"),
             ("Tâm Linh", "10 Ghi Chú: Hành Trình Thức Tỉnh & Khoa Học Tâm Linh Toàn Diện", "Khoa học tâm linh toàn diện và con đường thức tỉnh.", "/articles/08_hanh_trinh_thuc_tinh_tam_linh_10_notes/"),
             ("Audio · Video", "Tổng Hợp Tài Nguyên NotebookLM — Audio & Video", "Tổng quan do NotebookLM tạo ra xuyên suốt các bộ sưu tập.", "/articles/09_artifacts_audio_video_overview/"),
-            ("Triết Lý Nhật Bản", "10 Triết Lý Căn Bản Của Người Nhật", "Mười triết lý nền tảng: Bushido, wabi-sabi, ikigai, và hơn thế nữa.", "/articles/10-triet-ly-can-ban-cua-nguoi-nhat/"),
         ]),
         ("Danh Mục Nền Tảng", [
             ("Danh Mục", "Toàn Thư 32 Kho Tri Thức Gemini NotebookLM", "32 kho tri thức — danh mục đầy đủ và hệ sinh thái.", "/articles/gemini_notebooks_catalog_and_grounded_notes/"),
             ("Cẩm Nang", "Cẩm Nang Tập Thái Cực Quyền Toàn Tập Cho Người Mới Bắt Đầu", "Cẩm nang song ngữ đầy đủ để bắt đầu từ số không — chương trình nền tảng.", "/articles/complete-taichi-practice-guide-for-the-30-beginner/"),
             ("Tư Duy", "Triết Lý Tối Giản, Luyện Tập Có Chủ Đích & Quản Trị Tài Chính Cá Nhân", "Bộ ba tư duy cho người luyện Thái Cực và người xây dựng cuộc sống.", "/articles/essentialism_mindset_personal_finance/"),
-            ("Wiki Bundle", "Taichi Wiki — Portable Bundle & Push Instructions", "Cấu trúc gói di động để đồng bộ giữa các thiết bị.", "/articles/push_instructions_taichi_wiki/"),
-        ]),
-        ("Bài Viết Độc Lập", [
-            ("Triết Lý", "Bản Chất Của Quá Trình Thu Gom Thông Tin Cơ Học Và Trí Tuệ Đích Thực", "Thu gom thông tin cơ học vs. trí tuệ đích thực — sự khác biệt cốt tủy.", "/articles/ban-chat-cua-qua-trinh-thu-gom-thong-tin-co-hoc-va-tri-tue-dich-thuc/"),
-            ("Sống", "Cách Hiểu Và Sống Thuận Theo Tự Nhiên", "Hiểu và sống thuận theo tự nhiên — chất tự nhiên của Đạo.", "/articles/cach-hieu-va-song-thuan-theo-tu-nhien/"),
-            ("Hơi Thở", "Cách Thở", "Về hơi thở — nền tảng của mọi thực hành nội tại.", "/articles/cach-tho/"),
-            ("Lão Hóa", "Học Cách Sống Nhẹ Nhàng Sau Tuổi Năm Mươi", "Học cách sống nhẹ nhàng sau tuổi năm mươi — cách tiếp cận Thái Cực với lão hóa.", "/articles/hoc-cach-song-nhe-nhang-sau-tuoi-nam-muoi/"),
-            ("Học Hỏi", "Lòng Tham Và Nhu Cầu Học Hỏi Chân Chính", "Lòng tham vs. nhu cầu học hỏi chân chính — phân biệt hai.", "/articles/long-tham-va-nhu-cau-hoc-hoi-chan-chinh/"),
-            ("Phân Tích", "Phân Tích Tâm Lý", "Phân tích tâm lý qua lăng kính thực hành nội tại.", "/articles/phan-tich-tam-ly/"),
         ]),
     ],
 }
