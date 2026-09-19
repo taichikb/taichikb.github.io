@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chen Xin Taijiquan Classic Diagrams & Biomechanics - Bilingual Interactive Viewer</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Serif+TC:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .chinese-font {
+      font-family: 'Noto Serif TC', serif;
+    }
+    .classical-title {
+      font-family: 'Cinzel', serif;
+    }
+    
+    /* Custom diagram styling */
+    .diagram-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .diagram-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.12);
+    }
+    
+    .interactive-node {
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .interactive-node:hover {
+      filter: drop-shadow(0 0 6px rgba(180, 83, 9, 0.6));
+      transform-origin: center;
+      transform: scale(1.04);
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8">
+
+  <!-- Header Section -->
+  <header class="max-w-7xl mx-auto mb-8 border-b border-amber-900/40 pb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wider uppercase mb-2">
+          <span>☯️ Classical Woodblock &amp; Biomechanical Treatise</span>
+          <span>&middot;</span>
+          <span>陳氏太極拳圖說</span>
+        </div>
+        <h1 class="classical-title text-2xl md:text-3xl lg:text-4xl font-extrabold text-amber-200 tracking-wide">
+          Chen Xin: Illustrated Taijiquan Diagrams
+        </h1>
+        <p class="text-slate-400 text-sm md:text-base mt-1">
+          Bilingual Translation &amp; Vectorized Interactive Reconstruction &middot; 
+          <span class="text-amber-300/90 font-medium">English &ndash; Tiếng Việt &ndash; 漢字 (Hán Tự)</span>
+        </p>
+      </div>
+
+      <!-- Language Switcher & Controls -->
+      <div class="flex items-center gap-2 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 shadow-inner">
+        <span class="text-xs font-semibold text-slate-400 px-2">Language:</span>
+        <button onclick="setLanguage('en')" id="btn-lang-en" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-600 text-white shadow-md">
+          🇬🇧 English
+        </button>
+        <button onclick="setLanguage('vi')" id="btn-lang-vi" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+          🇻🇳 Tiếng Việt
+        </button>
+        <button onclick="setLanguage('bilingual')" id="btn-lang-bilingual" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+          🌐 Bilingual + 漢字
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap items-center gap-2 mt-6">
+      <button onclick="switchTab('triptych')" id="tab-triptych" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-amber-500/20 text-amber-300 border border-amber-500/40">
+        📜 Full Triptych (3-Panel Master View)
+      </button>
+      <button onclick="switchTab('xinyi')" id="tab-xinyi" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-transparent">
+        1️⃣ 心意傳令圖 (Mind-Intent Command)
+      </button>
+      <button onclick="switchTab('taiji')" id="tab-taiji" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-transparent">
+        2️⃣ 周身太極圖 (Whole-Body Taiji Sphere)
+      </button>
+      <button onclick="switchTab('posture')" id="tab-posture" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-transparent">
+        3️⃣ 太極拳勢圖 (Posture Anatomy Rules)
+      </button>
+      <button onclick="switchTab('fig13')" id="tab-fig13" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-transparent">
+        🔄 Hình 13: Động Phân &ndash; Tịnh Hợp
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="max-w-7xl mx-auto">
+
+    <!-- ==================== VIEW 1: TRIPTYCH (MASTER VIEW) ==================== -->
+    <section id="view-triptych" class="tab-content block">
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl backdrop-blur-sm">
+        
+        <!-- Source Citation Alert -->
+        <div class="flex items-start gap-3 bg-amber-950/40 border border-amber-600/30 rounded-xl p-4 mb-6 text-sm text-amber-200">
+          <div class="text-xl">📖</div>
+          <div>
+            <span class="font-bold text-amber-300">Original Source:</span>
+            <span class="chinese-font">《陳氏太極拳圖說》</span> (*Chen Shi Taijiquan Tushuo* / *Trần Thị Thái Cực Quyền Đồ Thuyết*), written by 8th-generation Chen master **Trần Hâm (Chen Xin, 1849–1929)**, first woodblock print 1933.
+            This three-panel composition forms the core theoretical foundation for internal command transmission, circular whole-body harmony, and single-leg anatomical rooting.
+          </div>
+        </div>
+
+        <!-- 3-Panel Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- PANEL 1: Xin Yi Chuan Ling Tu -->
+          <div class="diagram-card bg-slate-950 border border-slate-800/90 rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="border-b border-slate-800 pb-3 mb-4">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Diagram 1 &middot; 図一</span>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-en">Mind &amp; Intent Transmitting Orders</h3>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-vi hidden">Tâm Ý Truyền Lệnh Đồ</h3>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-bi hidden">心意傳令圖 &middot; Mind-Intent Command</h3>
+              </div>
+
+              <!-- SVG 1: Mind Intent -->
+              <div class="bg-slate-900/60 rounded-lg p-3 border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 320 400" class="w-full h-auto max-h-[380px]" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Central Vertical Command Axis -->
+                  <line x1="160" y1="90" x2="160" y2="200" stroke="#f59e0b" stroke-width="4" stroke-dasharray="6,4" />
+                  
+                  <!-- Upper Ascending Channels (Pure Qi to Hands) -->
+                  <path d="M 140 70 C 100 50, 70 60, 50 30" fill="none" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow-blue)" />
+                  <path d="M 180 70 C 220 50, 250 60, 270 30" fill="none" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrow-blue)" />
+                  
+                  <!-- Lower Descending Channels (Turbid Qi to Feet) -->
+                  <path d="M 140 270 C 110 300, 90 320, 60 360" fill="none" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow-red)" />
+                  <path d="M 180 270 C 210 300, 230 320, 260 360" fill="none" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow-red)" />
+
+                  <!-- Markers -->
+                  <defs>
+                    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+                    </marker>
+                    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444" />
+                    </marker>
+                  </defs>
+
+                  <!-- 1. Heart as General -->
+                  <circle cx="160" cy="70" r="28" fill="#1e293b" stroke="#f59e0b" stroke-width="3" />
+                  <circle cx="160" cy="70" r="20" fill="#b45309" fill-opacity="0.3" class="pulse-glow" />
+                  <text x="160" y="65" font-size="11" font-weight="bold" fill="#fef08a" text-anchor="middle" class="chinese-font">將軍心</text>
+                  <text x="160" y="78" font-size="9" fill="#fde047" text-anchor="middle">Heart General</text>
+
+                  <!-- Intent Order Label -->
+                  <rect x="135" y="125" width="50" height="22" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1" />
+                  <text x="160" y="140" font-size="10" font-weight="bold" fill="#fbbf24" text-anchor="middle">意傳令</text>
+
+                  <!-- 2. Dantian Reservoir -->
+                  <circle cx="160" cy="205" r="24" fill="#1e293b" stroke="#10b981" stroke-width="3" />
+                  <text x="160" y="202" font-size="11" font-weight="bold" fill="#6ee7b7" text-anchor="middle" class="chinese-font">丹田</text>
+                  <text x="160" y="214" font-size="9" fill="#a7f3d0" text-anchor="middle">Dantian</text>
+
+                  <!-- Side annotations at Dantian -->
+                  <text x="55" y="195" font-size="9" fill="#94a3b8" text-anchor="start">如兵馬屯處</text>
+                  <text x="55" y="208" font-size="8" fill="#64748b" text-anchor="start">(Army Encampment)</text>
+
+                  <text x="265" y="195" font-size="9" fill="#94a3b8" text-anchor="end">全體之氣歸宿處</text>
+                  <text x="265" y="208" font-size="8" fill="#64748b" text-anchor="end">(Qi Reservoir)</text>
+
+                  <!-- 3. Huiyin (Perineum) -->
+                  <rect x="135" y="250" width="50" height="20" rx="4" fill="#1e293b" stroke="#818cf8" stroke-width="1.5" />
+                  <text x="160" y="264" font-size="10" font-weight="bold" fill="#c7d2fe" text-anchor="middle">陰會 (Huiyin)</text>
+
+                  <!-- Upper Hand Targets -->
+                  <text x="45" y="20" font-size="11" font-weight="bold" fill="#38bdf8" text-anchor="middle">拿 (Na / Seize)</text>
+                  <text x="95" y="52" font-size="9" fill="#7dd3fc">清氣上升</text>
+                  <text x="95" y="63" font-size="7.5" fill="#38bdf8">(Pure Qi Up)</text>
+
+                  <text x="275" y="20" font-size="11" font-weight="bold" fill="#38bdf8" text-anchor="middle">李/挒 (Roll/Split)</text>
+                  <text x="225" y="52" font-size="9" fill="#7dd3fc" text-anchor="end">清氣上升</text>
+                  <text x="225" y="63" font-size="7.5" fill="#38bdf8" text-anchor="end">(Pure Qi Up)</text>
+
+                  <!-- Lower Foot Targets -->
+                  <text x="50" y="385" font-size="11" font-weight="bold" fill="#f87171" text-anchor="middle">右足 (Right Foot)</text>
+                  <text x="85" y="330" font-size="9" fill="#fca5a5">濁氣下降</text>
+                  <text x="85" y="340" font-size="7.5" fill="#ef4444">(Turbid Qi Down)</text>
+
+                  <text x="270" y="385" font-size="11" font-weight="bold" fill="#f87171" text-anchor="middle">左足 (Left Foot)</text>
+                  <text x="235" y="330" font-size="9" fill="#fca5a5" text-anchor="end">濁氣下降</text>
+                  <text x="235" y="340" font-size="7.5" fill="#ef4444" text-anchor="end">(Turbid Qi Down)</text>
+                </svg>
+              </div>
+
+              <!-- Brief Explanation -->
+              <div class="mt-4 text-xs text-slate-300 space-y-1.5">
+                <p>
+                  <strong class="text-amber-300">Core Principle:</strong> The Mind is Commander-in-Chief. Intent (<span class="chinese-font">意</span>) issues orders directly down the central axis to Dantian.
+                </p>
+                <p>
+                  <strong class="text-sky-300">Pure Qi Ascends:</strong> Light energetic Qi flows upward to arms and fingertips for combat application (*Lu*, *Na*).
+                </p>
+                <p>
+                  <strong class="text-rose-300">Turbid Qi Descends:</strong> Heavy ground Qi sinks to the soles to anchor the root (*Rooting*).
+                </p>
+              </div>
+            </div>
+
+            <button onclick="switchTab('xinyi')" class="mt-4 w-full py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-lg text-xs font-semibold border border-slate-700 transition-colors">
+              🔍 Deep Dive: Mind-Intent Command &rarr;
+            </button>
+          </div>
+
+          <!-- PANEL 2: Whole-Body Taiji Sphere -->
+          <div class="diagram-card bg-slate-950 border border-slate-800/90 rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="border-b border-slate-800 pb-3 mb-4">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Diagram 2 &middot; 図二</span>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-en">The Body as a Taiji Sphere</h3>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-vi hidden">Chu Thân Thái Cực Đồ</h3>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-bi hidden">周身太極圖 &middot; Whole-Body Taiji</h3>
+              </div>
+
+              <!-- SVG 2: Standing in Taiji Circle -->
+              <div class="bg-slate-900/60 rounded-lg p-3 border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 320 400" class="w-full h-auto max-h-[380px]" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Outer Taiji Great Circle -->
+                  <circle cx="160" cy="200" r="135" fill="none" stroke="#e2e8f0" stroke-width="2.5" stroke-dasharray="8,4" opacity="0.6" />
+                  <circle cx="160" cy="200" r="140" fill="none" stroke="#f59e0b" stroke-width="1" opacity="0.3" />
+
+                  <!-- Taiji S-Curve faint backdrop -->
+                  <path d="M 160 65 A 67.5 67.5 0 0 0 160 200 A 67.5 67.5 0 0 1 160 335" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.25" />
+
+                  <!-- Stylized Standing Figure Silhouette -->
+                  <!-- Head -->
+                  <circle cx="160" cy="115" r="22" fill="#334155" stroke="#94a3b8" stroke-width="2" />
+                  <circle cx="160" cy="95" r="4" fill="#f59e0b" /> <!-- Baihui Crown -->
+                  <text x="172" y="98" font-size="8" fill="#fbbf24">Baihui (百會)</text>
+
+                  <!-- Central Meridian Axis (Chong Mai / Ren-Du) -->
+                  <line x1="160" y1="95" x2="160" y2="245" stroke="#f59e0b" stroke-width="3" />
+
+                  <!-- Nodes along spine/meridian -->
+                  <circle cx="160" cy="140" r="4.5" fill="#38bdf8" /> <!-- Throat / Xuanji -->
+                  <circle cx="160" cy="165" r="5" fill="#f59e0b" /> <!-- Tanzhong (Heart) -->
+                  <circle cx="160" cy="190" r="5" fill="#eab308" /> <!-- Zhongwan -->
+                  <circle cx="160" cy="225" r="16" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="2.5" class="pulse-glow" /> <!-- Lower Dantian -->
+                  <text x="160" y="229" font-size="9" font-weight="bold" fill="#a7f3d0" text-anchor="middle">丹田</text>
+
+                  <!-- Torso & Arms contour -->
+                  <path d="M 140 140 Q 115 160 115 220 Q 115 250 125 270" fill="none" stroke="#cbd5e1" stroke-width="2" />
+                  <path d="M 180 140 Q 205 160 205 220 Q 205 250 195 270" fill="none" stroke="#cbd5e1" stroke-width="2" />
+
+                  <!-- Legs contour -->
+                  <path d="M 135 250 L 130 330 Q 130 338 120 340" fill="none" stroke="#cbd5e1" stroke-width="2" />
+                  <path d="M 185 250 L 190 330 Q 190 338 200 340" fill="none" stroke="#cbd5e1" stroke-width="2" />
+
+                  <!-- Annotations around the circle -->
+                  <text x="160" y="45" font-size="11" font-weight="bold" fill="#fde68a" text-anchor="middle">周身為一太極</text>
+                  <text x="160" y="58" font-size="8" fill="#94a3b8" text-anchor="middle">"The Whole Body is One Taiji"</text>
+
+                  <text x="35" y="160" font-size="9" fill="#94a3b8">靜則無極</text>
+                  <text x="35" y="172" font-size="7.5" fill="#64748b">Stillness = Wuji</text>
+
+                  <text x="285" y="160" font-size="9" fill="#94a3b8" text-anchor="end">動則太極</text>
+                  <text x="285" y="172" font-size="7.5" fill="#64748b" text-anchor="end">Motion = Taiji</text>
+
+                  <text x="160" y="375" font-size="9" fill="#a7f3d0" text-anchor="middle">氣沉丹田 &middot; 渾然一體</text>
+                  <text x="160" y="387" font-size="8" fill="#6ee7b7" text-anchor="middle">Qi Sinks to Dantian &middot; Integrated Whole</text>
+                </svg>
+              </div>
+
+              <!-- Brief Explanation -->
+              <div class="mt-4 text-xs text-slate-300 space-y-1.5">
+                <p>
+                  <strong class="text-amber-300">Spherical Harmony:</strong> The human frame in upright stance operates as an enclosed, self-balancing Taiji sphere without leaks or gaps.
+                </p>
+                <p>
+                  <strong class="text-sky-300">Vertical Suspension:</strong> The crown (*Baihui*) feels suspended from above like a thread, naturally aligning the Ren and Du vessels.
+                </p>
+                <p>
+                  <strong class="text-emerald-300">Center of Mass:</strong> All bodily forces radiate outward from and collapse back into the Lower Dantian center.
+                </p>
+              </div>
+            </div>
+
+            <button onclick="switchTab('taiji')" class="mt-4 w-full py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-lg text-xs font-semibold border border-slate-700 transition-colors">
+              🔍 Deep Dive: Whole-Body Taiji Sphere &rarr;
+            </button>
+          </div>
+
+          <!-- PANEL 3: Chen Posture Anatomy Rules -->
+          <div class="diagram-card bg-slate-950 border border-slate-800/90 rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="border-b border-slate-800 pb-3 mb-4">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Diagram 3 &middot; 図三</span>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-en">Posture &amp; Anatomical Rules</h3>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-vi hidden">Thái Cực Quyền Thế Quy Củ</h3>
+                <h3 class="text-lg font-bold text-slate-100 mt-1 lang-bi hidden">太極拳勢圖 &middot; Posture Rule Rules</h3>
+              </div>
+
+              <!-- SVG 3: Annotated Stance -->
+              <div class="bg-slate-900/60 rounded-lg p-3 border border-slate-800 flex items-center justify-center">
+                <svg viewBox="0 0 320 400" class="w-full h-auto max-h-[380px]" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Standing Figure (Single Leg Stance / Golden Rooster / White Crane) -->
+                  <!-- Head -->
+                  <circle cx="160" cy="115" r="18" fill="#334155" stroke="#cbd5e1" stroke-width="1.5" />
+                  
+                  <!-- Torso & Arms -->
+                  <path d="M 160 133 L 160 210" stroke="#cbd5e1" stroke-width="3" /> <!-- Spine -->
+                  <path d="M 160 145 Q 115 150 90 170" fill="none" stroke="#cbd5e1" stroke-width="3" /> <!-- Right arm extending -->
+                  <path d="M 160 145 Q 190 150 205 175" fill="none" stroke="#cbd5e1" stroke-width="3" /> <!-- Left elbow bent -->
+
+                  <!-- Supporting Left Leg (firm root) -->
+                  <path d="M 160 210 Q 165 260 165 330" fill="none" stroke="#38bdf8" stroke-width="4" />
+                  <ellipse cx="165" cy="335" rx="14" ry="5" fill="#0284c7" />
+
+                  <!-- Lifted Right Leg (crossed over) -->
+                  <path d="M 160 210 Q 130 235 125 265 Q 150 265 190 265" fill="none" stroke="#cbd5e1" stroke-width="3" />
+
+                  <!-- Leader Lines & 12 Rules -->
+                  <!-- 1. Head Suspension -->
+                  <line x1="160" y1="95" x2="160" y2="40" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2" />
+                  <text x="160" y="32" font-size="8.5" font-weight="bold" fill="#fbbf24" text-anchor="middle">頂精領住 (Head Suspended)</text>
+
+                  <!-- 2. Ears listen behind -->
+                  <line x1="145" y1="110" x2="110" y2="55" stroke="#94a3b8" stroke-width="1" />
+                  <text x="110" y="50" font-size="8" fill="#cbd5e1" text-anchor="middle">耳聽身後 (Ears Hear Behind)</text>
+
+                  <!-- 3. Eyes watch right foot -->
+                  <line x1="175" y1="115" x2="225" y2="55" stroke="#94a3b8" stroke-width="1" />
+                  <text x="225" y="50" font-size="8" fill="#cbd5e1" text-anchor="middle">眼看右脚 (Eyes on Right Foot)</text>
+
+                  <!-- 4. Left Elbow bent -->
+                  <line x1="205" y1="175" x2="265" y2="120" stroke="#94a3b8" stroke-width="1" />
+                  <text x="265" y="115" font-size="8" fill="#cbd5e1" text-anchor="start">左肘屈住 (Left Elbow Bent)</text>
+
+                  <!-- 5. Shoulders sink -->
+                  <line x1="145" y1="140" x2="55" y2="90" stroke="#94a3b8" stroke-width="1" />
+                  <text x="55" y="85" font-size="8" fill="#cbd5e1" text-anchor="end">肩鬆下 (Shoulders Sunk)</text>
+
+                  <!-- 6. Right Arm Extended -->
+                  <line x1="90" y1="170" x2="45" y2="150" stroke="#94a3b8" stroke-width="1" />
+                  <text x="45" y="145" font-size="8" fill="#cbd5e1" text-anchor="end">右肱伸開 (Right Arm Open)</text>
+
+                  <!-- 7. Palms Down -->
+                  <text x="45" y="180" font-size="8" fill="#94a3b8" text-anchor="end">左右掌朝下 (Palms Down)</text>
+
+                  <!-- 8. Waist Sinking Down -->
+                  <line x1="160" y1="200" x2="70" y2="220" stroke="#f59e0b" stroke-width="1" />
+                  <text x="65" y="225" font-size="8.5" font-weight="bold" fill="#fbbf24" text-anchor="end">腰剉下去 (Waist Sinks)</text>
+
+                  <!-- 9. Left Leg Firm -->
+                  <line x1="165" y1="270" x2="70" y2="280" stroke="#38bdf8" stroke-width="1" />
+                  <text x="65" y="285" font-size="8" fill="#38bdf8" text-anchor="end">左腿彎不可軟 (Left Leg Firm)</text>
+
+                  <!-- 10. Right Foot Level -->
+                  <line x1="190" y1="265" x2="250" y2="265" stroke="#94a3b8" stroke-width="1" />
+                  <text x="255" y="268" font-size="8" fill="#cbd5e1" text-anchor="start">右脚與腿平 (Right Foot Level)</text>
+
+                  <!-- 11. Knee Bent 20-30% -->
+                  <text x="255" y="295" font-size="8" fill="#cbd5e1" text-anchor="start">左膝屈二三分 (Knee Bent 20%)</text>
+
+                  <!-- 12. Full Weight on Left Foot -->
+                  <line x1="165" y1="340" x2="230" y2="350" stroke="#38bdf8" stroke-width="1" />
+                  <text x="235" y="353" font-size="8.5" font-weight="bold" fill="#38bdf8" text-anchor="start">左足週身力量當 (100% Rooted)</text>
+                </svg>
+              </div>
+
+              <!-- Brief Explanation -->
+              <div class="mt-4 text-xs text-slate-300 space-y-1.5">
+                <p>
+                  <strong class="text-amber-300">Single-Leg Stability:</strong> Chen Xin details 12 strict anatomical imperatives for standing on one leg (*Golden Rooster* / *White Crane*).
+                </p>
+                <p>
+                  <strong class="text-sky-300">Rooting (Tả túc đương lực):</strong> The supporting leg bears 100% of body weight with knee bent slightly (20&ndash;30%), preventing joint collapse.
+                </p>
+                <p>
+                  <strong class="text-emerald-300">Omnidirectional Awareness:</strong> Eyes focus forward-down while ears actively listen backwards (*Nhĩ thính thân hậu*).
+                </p>
+              </div>
+            </div>
+
+            <button onclick="switchTab('posture')" class="mt-4 w-full py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-lg text-xs font-semibold border border-slate-700 transition-colors">
+              🔍 Deep Dive: Posture Anatomy Rules &rarr;
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: XIN YI CHUAN LING TU (DEEP DIVE) ==================== -->
+    <section id="view-xinyi" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+          
+          <!-- Detailed SVG Interactive Graphic -->
+          <div class="w-full lg:w-1/2 bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-bold text-amber-300 mb-2 flex items-center gap-2">
+              <span>心意傳令圖</span>
+              <span class="text-xs text-slate-400 font-normal">Mind and Intent Transmitting Orders</span>
+            </h3>
+            <p class="text-xs text-slate-400 mb-4">Click any highlighted component to inspect its traditional philosophy and martial application.</p>
+            
+            <svg viewBox="0 0 360 480" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- Central Nerve/Fascia Trunk -->
+              <rect x="156" y="85" width="8" height="150" fill="#f59e0b" fill-opacity="0.3" rx="4" />
+              <line x1="160" y1="85" x2="160" y2="235" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4" />
+
+              <!-- Upper Channels (Pure Qi to Arms) -->
+              <path d="M 140 65 C 100 35, 60 55, 35 25" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" />
+              <path d="M 180 65 C 220 35, 260 55, 285 25" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" />
+              
+              <!-- Lower Channels (Turbid Qi to Legs) -->
+              <path d="M 135 320 C 100 360, 80 400, 45 440" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
+              <path d="M 185 320 C 220 360, 240 400, 275 440" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
+
+              <!-- Interactive Node 1: Xin General -->
+              <g class="interactive-node" onclick="showXinyiInfo('xin')">
+                <circle cx="160" cy="70" r="32" fill="#0f172a" stroke="#f59e0b" stroke-width="4" />
+                <circle cx="160" cy="70" r="24" fill="#d97706" fill-opacity="0.3" class="pulse-glow" />
+                <text x="160" y="65" font-size="12" font-weight="bold" fill="#fef08a" text-anchor="middle" class="chinese-font">將軍心</text>
+                <text x="160" y="80" font-size="9" font-weight="semibold" fill="#fbbf24" text-anchor="middle">Tướng Quân Tâm</text>
+              </g>
+
+              <!-- Interactive Node 2: Intent Order -->
+              <g class="interactive-node" onclick="showXinyiInfo('yi')">
+                <rect x="130" y="135" width="60" height="26" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+                <text x="160" y="152" font-size="11" font-weight="bold" fill="#fde68a" text-anchor="middle">意傳令</text>
+              </g>
+
+              <!-- Interactive Node 3: Dantian -->
+              <g class="interactive-node" onclick="showXinyiInfo('dantian')">
+                <circle cx="160" cy="235" r="32" fill="#064e3b" stroke="#10b981" stroke-width="4" />
+                <circle cx="160" cy="235" r="22" fill="#059669" fill-opacity="0.4" class="pulse-glow" />
+                <text x="160" y="230" font-size="13" font-weight="bold" fill="#a7f3d0" text-anchor="middle" class="chinese-font">丹田</text>
+                <text x="160" y="246" font-size="10" font-weight="semibold" fill="#6ee7b7" text-anchor="middle">Đan Điền</text>
+              </g>
+
+              <!-- Interactive Node 4: Huiyin -->
+              <g class="interactive-node" onclick="showXinyiInfo('huiyin')">
+                <rect x="130" y="295" width="60" height="24" rx="6" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" />
+                <text x="160" y="311" font-size="10.5" font-weight="bold" fill="#c7d2fe" text-anchor="middle">陰會 (Hội Âm)</text>
+              </g>
+
+              <!-- Callout Left: Troops -->
+              <rect x="10" y="215" width="105" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1" />
+              <text x="62" y="232" font-size="10" font-weight="bold" fill="#e2e8f0" text-anchor="middle">如兵馬屯處</text>
+              <text x="62" y="246" font-size="8" fill="#94a3b8" text-anchor="middle">Like Encamped Army</text>
+
+              <!-- Callout Right: Qi Return -->
+              <rect x="205" y="215" width="115" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1" />
+              <text x="262" y="232" font-size="10" font-weight="bold" fill="#e2e8f0" text-anchor="middle">全體之氣歸宿處</text>
+              <text x="262" y="246" font-size="8" fill="#94a3b8" text-anchor="middle">Home of Whole-Body Qi</text>
+
+              <!-- Terminal Hands -->
+              <g class="interactive-node" onclick="showXinyiInfo('na')">
+                <circle cx="35" cy="25" r="16" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+                <text x="35" y="29" font-size="11" font-weight="bold" fill="#e0f2fe" text-anchor="middle">拿</text>
+                <text x="35" y="55" font-size="9" fill="#38bdf8" text-anchor="middle">Na (Seize)</text>
+              </g>
+
+              <g class="interactive-node" onclick="showXinyiInfo('lu')">
+                <circle cx="285" cy="25" r="16" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+                <text x="285" y="29" font-size="11" font-weight="bold" fill="#e0f2fe" text-anchor="middle">李/挒</text>
+                <text x="285" y="55" font-size="9" fill="#38bdf8" text-anchor="middle">Lý / Lu (Rollback)</text>
+              </g>
+
+              <!-- Terminal Feet -->
+              <g class="interactive-node" onclick="showXinyiInfo('foot')">
+                <rect x="20" y="445" width="55" height="22" rx="4" fill="#991b1b" stroke="#f87171" stroke-width="1.5" />
+                <text x="47" y="460" font-size="10" font-weight="bold" fill="#fee2e2" text-anchor="middle">右足 (Right)</text>
+              </g>
+              <g class="interactive-node" onclick="showXinyiInfo('foot')">
+                <rect x="250" y="445" width="55" height="22" rx="4" fill="#991b1b" stroke="#f87171" stroke-width="1.5" />
+                <text x="277" y="460" font-size="10" font-weight="bold" fill="#fee2e2" text-anchor="middle">左足 (Left)</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Explanatory Panel -->
+          <div class="w-full lg:w-1/2 flex flex-col justify-between">
+            <div id="xinyi-detail-box" class="bg-slate-950 border border-amber-500/30 rounded-xl p-6 shadow-inner">
+              <h4 id="xinyi-title" class="text-xl font-bold text-amber-300 border-b border-slate-800 pb-3 mb-4">
+                The Master Command Architecture (Tâm Ý Truyền Lệnh)
+              </h4>
+              
+              <div id="xinyi-content" class="text-sm text-slate-300 space-y-4">
+                <p>
+                  In Chen Xin's internal martial system, the human nervous-energetic axis is organized hierarchically like an imperial army command staff:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <span class="text-xs font-bold text-amber-400">1. Tướng Quân Tâm (Heart General)</span>
+                    <p class="text-xs text-slate-400 mt-1">
+                      The Heart houses the conscious spirit (*Shen*). It does not move physically, but serves as Sovereign Commander.
+                    </p>
+                  </div>
+                  <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <span class="text-xs font-bold text-amber-400">2. Ý Truyền Lệnh (Intent Messenger)</span>
+                    <p class="text-xs text-slate-400 mt-1">
+                      Intent (*Yi*) is the transmission mechanism (neuro-fascial signal) relaying commands down the spine to Dantian.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-4 bg-amber-950/20 border-l-4 border-amber-500 rounded-r-lg">
+                  <h5 class="font-bold text-amber-200 text-xs uppercase tracking-wider mb-1">Dantian as the Central Garrison (Trại Binh Mã)</h5>
+                  <p class="text-xs text-slate-300">
+                    Chen Xin specifically compares the Lower Dantian to an army encampment (*Như binh mã đồn xứ*). Qi gathers here in stillness and dispatches outward in movement. When Qi returns to Dantian (*Toàn thể chi khí quy túc xứ*), the whole body remains rooted and recharged.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="bg-sky-950/20 border border-sky-800/40 p-3 rounded-lg">
+                    <span class="text-xs font-bold text-sky-400">Thanh Khí Thượng Thăng (Pure Qi Ascends)</span>
+                    <p class="text-xs text-slate-400 mt-1">
+                      Light, refined energetic intent ascends through shoulders, elbows, and wrists to the fingertips for martial sensitivity and release (*Lu*, *Na*, *Fa-jin*).
+                    </p>
+                  </div>
+                  <div class="bg-rose-950/20 border border-rose-800/40 p-3 rounded-lg">
+                    <span class="text-xs font-bold text-rose-400">Trọc Khí Hạ Giáng (Turbid Qi Descends)</span>
+                    <p class="text-xs text-slate-400 mt-1">
+                      Heavy, grounding gravitational force drops through hips, knees, and ankles down into the heels and bubbling wells (*Yongquan*) for indestructible root.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Translation Table -->
+            <div class="mt-6 border border-slate-800 rounded-xl overflow-hidden text-xs">
+              <table class="w-full text-left">
+                <thead class="bg-slate-800/70 text-slate-300 border-b border-slate-700">
+                  <tr>
+                    <th class="p-2.5 font-semibold">Classical Chinese (Hán Tự)</th>
+                    <th class="p-2.5 font-semibold">Sino-Vietnamese (Hán-Việt)</th>
+                    <th class="p-2.5 font-semibold">English Meaning</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800 text-slate-400">
+                  <tr>
+                    <td class="p-2.5 font-bold text-amber-300 chinese-font">將軍心</td>
+                    <td class="p-2.5">Tướng quân Tâm</td>
+                    <td class="p-2.5 text-slate-300">The Heart / Mind as General</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-amber-300 chinese-font">意傳令</td>
+                    <td class="p-2.5">Ý truyền lệnh</td>
+                    <td class="p-2.5 text-slate-300">Intent transmits commands</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-amber-300 chinese-font">清氣上升</td>
+                    <td class="p-2.5">Thanh khí thượng thăng</td>
+                    <td class="p-2.5 text-slate-300">Pure / light Qi ascends upward</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-amber-300 chinese-font">濁氣下降</td>
+                    <td class="p-2.5">Trọc khí hạ giáng</td>
+                    <td class="p-2.5 text-slate-300">Turbid / dense Qi sinks downward</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-amber-300 chinese-font">如兵馬屯處</td>
+                    <td class="p-2.5">Như binh mã đồn xứ</td>
+                    <td class="p-2.5 text-slate-300">Like a military encampment</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-bold text-amber-300 chinese-font">全體之氣歸宿處</td>
+                    <td class="p-2.5">Toàn thể chi khí quy túc xứ</td>
+                    <td class="p-2.5 text-slate-300">The lodging / return sanctuary of whole-body Qi</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: TAIJI CIRCLE (DEEP DIVE) ==================== -->
+    <section id="view-taiji" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+          
+          <div class="w-full lg:w-1/2 bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-bold text-amber-300 mb-2 flex items-center gap-2">
+              <span>周身太極圖</span>
+              <span class="text-xs text-slate-400 font-normal">Whole-Body Taiji Sphere</span>
+            </h3>
+            <p class="text-xs text-slate-400 mb-4">Inspection of the Ren-Du axial alignment and circular energy boundary.</p>
+
+            <svg viewBox="0 0 360 480" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+              <!-- Giant Outer Sphere with Gradient -->
+              <defs>
+                <radialGradient id="sphereGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15" />
+                  <stop offset="80%" stop-color="#0f172a" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#020617" stop-opacity="1" />
+                </radialGradient>
+              </defs>
+              <circle cx="180" cy="240" r="160" fill="url(#sphereGlow)" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,4" />
+              
+              <!-- Subtle S-curve of Taiji dividing Yin and Yang -->
+              <path d="M 180 80 A 80 80 0 0 0 180 240 A 80 80 0 0 1 180 400" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.3" />
+
+              <!-- Meridian Centerline -->
+              <line x1="180" y1="120" x2="180" y2="300" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4,3" />
+
+              <!-- Practitioner Standing Silhouette -->
+              <circle cx="180" cy="140" r="26" fill="#1e293b" stroke="#e2e8f0" stroke-width="2" />
+              <!-- Face contours -->
+              <path d="M 180 114 L 180 110" stroke="#f59e0b" stroke-width="3" />
+              <text x="180" y="105" font-size="10" font-weight="bold" fill="#fbbf24" text-anchor="middle">Bách Hội (Baihui)</text>
+
+              <!-- Central Throat, Chest, Dantian Meridian Points -->
+              <circle cx="180" cy="172" r="5" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+              <text x="195" y="176" font-size="9" fill="#93c5fd">Tiết hầu (Throat)</text>
+
+              <circle cx="180" cy="205" r="5" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+              <text x="195" y="209" font-size="9" fill="#93c5fd">Đản trung (Chest/Heart)</text>
+
+              <circle cx="180" cy="235" r="5" fill="#eab308" stroke="#ca8a04" stroke-width="2" />
+              <text x="195" y="239" font-size="9" fill="#fde047">Cưu vĩ (Solar Plexus)</text>
+
+              <!-- Lower Dantian Glowing Core -->
+              <circle cx="180" cy="275" r="22" fill="#047857" stroke="#10b981" stroke-width="3" class="pulse-glow" />
+              <text x="180" y="280" font-size="11" font-weight="bold" fill="#ecfdf5" text-anchor="middle">丹田 (Dantian)</text>
+
+              <!-- Body Outlines -->
+              <path d="M 155 165 Q 125 195 125 260 Q 125 300 135 340" fill="none" stroke="#cbd5e1" stroke-width="2" />
+              <path d="M 205 165 Q 235 195 235 260 Q 235 300 225 340" fill="none" stroke="#cbd5e1" stroke-width="2" />
+              <path d="M 145 300 L 140 380 Q 140 395 130 398" fill="none" stroke="#cbd5e1" stroke-width="2.5" />
+              <path d="M 215 300 L 220 380 Q 220 395 230 398" fill="none" stroke="#cbd5e1" stroke-width="2.5" />
+
+              <!-- Surrounding Text -->
+              <text x="180" y="55" font-size="14" font-weight="bold" fill="#fef08a" text-anchor="middle" class="chinese-font">周身為一太極</text>
+              <text x="180" y="70" font-size="10" fill="#cbd5e1" text-anchor="middle">"The Whole Body is One Seamless Taiji"</text>
+
+              <text x="45" y="235" font-size="11" font-weight="bold" fill="#38bdf8">靜則無極</text>
+              <text x="45" y="250" font-size="9" fill="#94a3b8">Stillness = Wuji</text>
+
+              <text x="315" y="235" font-size="11" font-weight="bold" fill="#f59e0b" text-anchor="end">動則太極</text>
+              <text x="315" y="250" font-size="9" fill="#94a3b8" text-anchor="end">Motion = Taiji</text>
+            </svg>
+          </div>
+
+          <div class="w-full lg:w-1/2 flex flex-col justify-between">
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+              <h4 class="text-xl font-bold text-amber-300 border-b border-slate-800 pb-3 mb-4">
+                The Principle of Spherical Completeness (Toàn Thân Thái Cực)
+              </h4>
+              <div class="text-sm text-slate-300 space-y-4">
+                <p>
+                  Chen Xin describes how a practitioner must visualize and embody the Taiji circle internally and externally:
+                </p>
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                  <h5 class="text-amber-400 font-bold text-xs uppercase tracking-wider">1. No Bulges, No Hollows (Bất khuyết bất hàm)</h5>
+                  <p class="text-xs text-slate-400">
+                    The circle represents the ideal energetic bubble. If any part of the body pushes out rigidly (bulge) or collapses flaccidly (hollow), the circle breaks and opponent force can penetrate.
+                  </p>
+                </div>
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                  <h5 class="text-amber-400 font-bold text-xs uppercase tracking-wider">2. Stillness is Wuji &middot; Movement is Taiji</h5>
+                  <p class="text-xs text-slate-400">
+                    Before moving, the practitioner stands in *Wuji* (emptiness, undifferentiated potential). The moment intention begins to move, Yin and Yang differentiate: full and empty, opening and closing (*Khai - Hợp*), ascending and descending.
+                  </p>
+                </div>
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
+                  <h5 class="text-amber-400 font-bold text-xs uppercase tracking-wider">3. Alignment of the Central Channel</h5>
+                  <p class="text-xs text-slate-400">
+                    The plumb-line from *Baihui* (crown) down through *Huiyin* (pelvic floor) must remain straight and suspended throughout every twist and turn. The waist rotates around this axis like a wheel on an axle (*Lập như bình chuẩn, hoạt tự xa luân*).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 4: POSTURE ANATOMY RULES (DEEP DIVE) ==================== -->
+    <section id="view-posture" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+        <h3 class="text-xl font-bold text-amber-300 mb-2 flex items-center gap-2">
+          <span>太極拳勢圖</span>
+          <span class="text-sm text-slate-400 font-normal">&mdash; 12 Anatomical &amp; Energetic Posture Rules of Chen Xin</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">Chen Xin's detailed instructions for the single-leg rooted posture (Kim Kê Độc Lập / Độc lập bộ).</p>
+
+        <!-- 12 Rules Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 1</span>
+              <span class="chinese-font text-base font-bold text-amber-200">頂精領住</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Đỉnh Tinh Lĩnh Trụ (Head Suspended)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              Crown of the head suspended lightly from above as if tied with a thread. Never stiffen the neck; keep cervical vertebrae open and decompressed.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 2</span>
+              <span class="chinese-font text-base font-bold text-amber-200">耳聽身後</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Nhĩ Thính Thân Hậu (Listen Behind)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              Ears actively listening behind the body. Cultivates 360-degree spatial and situational awareness (*Thần bao quát chu thân*).
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 3</span>
+              <span class="chinese-font text-base font-bold text-amber-200">眼看右脚</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Nhãn Khán Hữu Cước (Eyes on Right Foot)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              Gaze directed down toward the raised right foot, integrating head orientation with the lower diagonal strike/deflection vector.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 4</span>
+              <span class="chinese-font text-base font-bold text-amber-200">左肘屈住</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Tả Trửu Khuất Trụ (Left Elbow Bent)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              Left elbow must remain flexed and rounded, maintaining spring-like internal ward-off (*Peng Jin*) without locking or hyperextending.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 5</span>
+              <span class="chinese-font text-base font-bold text-amber-200">肩鬆下</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Kiên Tùng Hạ (Shoulders Sunk)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              Shoulders sink completely downward (*Trầm kiên trụy trửu*), preventing Qi from rising up to the chest and ensuring seamless torque transfer.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 6</span>
+              <span class="chinese-font text-base font-bold text-amber-200">右肱伸開</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Hữu Quăng Thân Khai (Right Arm Open)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              The right upper arm extends and opens broadly, maintaining structural expansion without collapsing inward against the ribs.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 7</span>
+              <span class="chinese-font text-base font-bold text-amber-200">左右掌朝下</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Tả Hữu Chưởng Triều Hạ (Palms Face Down)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              Both palms face downward toward the earth, establishing a downward grounding and pressing energy (*Án kình / Chìm đè*).
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 8</span>
+              <span class="chinese-font text-base font-bold text-amber-200">腰剉下去</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Yêu Tỏa Hạ Khứ (Waist Sinks Down)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              The lumbar curve and inguinal crease (*Kua*) sink deeply, grounding the pelvis and stabilizing the body's center of mass.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 9</span>
+              <span class="chinese-font text-base font-bold text-amber-200">左腿彎不可軟</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Tả Thoái Loan Bất Khả Nhuyễn (Left Leg Firm)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              The supporting left leg is bent but resiliently elastic. It must never collapse into weakness or limp passivity.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 10</span>
+              <span class="chinese-font text-base font-bold text-amber-200">右脚與腿平膝屈</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Hữu Cước Dữ Thoái Bình (Right Foot Level)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              The lifted right foot is held level with the thigh with knee bent, ready to instantly convert into a front stomp, side sweep, or low root.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 11</span>
+              <span class="chinese-font text-base font-bold text-amber-200">左膝屈二三分</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Tả Tất Khuất Nhị Tam Phân (Knee 20-30%)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              The supporting left knee is bent only 20&ndash;30% (2 to 3 tenths). Bending too deeply destroys mobility; locking it breaks root.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 border border-amber-500/20 rounded-xl p-4 hover:border-amber-500/50 transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">Rule 12</span>
+              <span class="chinese-font text-base font-bold text-amber-200">左足週身力量當</span>
+            </div>
+            <h5 class="font-bold text-slate-200 text-sm">Tả Túc Chu Thân Đương (100% Rooted)</h5>
+            <p class="text-xs text-slate-400 mt-1">
+              The entire weight and dynamic tension of the body is cleanly borne by the supporting left foot, achieving absolute distinction between Full and Empty (*Hư Thực phân minh*).
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 5: FIGURE 13 (DONG PHAN - TINH HOP) ==================== -->
+    <section id="view-fig13" class="tab-content hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+          
+          <!-- Vectorized Reconstruction of Figure 13 -->
+          <div class="w-full lg:w-1/2 bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <div class="border-b border-slate-800 pb-3 mb-4">
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Figure 13 &middot; Hình 13</span>
+              <h3 class="text-xl font-bold text-amber-200 mt-1">
+                "When moving it separates, when resting it unites"
+              </h3>
+              <p class="text-xs text-slate-400 font-mono mt-0.5">動之則分，靜之則合 &middot; Động thì phân ra, tịnh thì hợp lại</p>
+            </div>
+
+            <svg viewBox="0 0 420 320" class="w-full h-auto bg-slate-900/40 rounded-lg border border-slate-800 p-2" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sub-Diagram (A): Standing View (Hình đứng) -->
+              <g transform="translate(10, 20)">
+                <!-- Ground Base -->
+                <line x1="10" y1="240" x2="150" y2="240" stroke="#94a3b8" stroke-width="3" />
+                <!-- Hatch marks on ground -->
+                <path d="M 15 240 L 10 250 M 30 240 L 25 250 M 45 240 L 40 250 M 60 240 L 55 250 M 75 240 L 70 250 M 90 240 L 85 250 M 105 240 L 100 250 M 120 240 L 115 250 M 135 240 L 130 250 M 145 240 L 140 250" stroke="#64748b" stroke-width="1.5" />
+
+                <!-- Central Spine Axis Column -->
+                <line x1="80" y1="50" x2="80" y2="180" stroke="#cbd5e1" stroke-width="5" />
+                <circle cx="80" cy="35" r="14" fill="#1e293b" stroke="#cbd5e1" stroke-width="3" /> <!-- Head -->
+
+                <!-- Legs (A-frame stance) -->
+                <line x1="80" y1="180" x2="40" y2="240" stroke="#cbd5e1" stroke-width="4.5" />
+                <line x1="80" y1="180" x2="120" y2="240" stroke="#cbd5e1" stroke-width="4.5" />
+
+                <!-- Rotating Waist Block with Torsion Arrow -->
+                <rect x="62" y="110" width="36" height="14" rx="3" fill="#d97706" />
+                <!-- Curved arrow at waist -->
+                <path d="M 66 95 C 75 88, 85 88, 94 95" fill="none" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow-amber)" />
+
+                <!-- Shoulder Bar -->
+                <line x1="55" y1="65" x2="105" y2="65" stroke="#cbd5e1" stroke-width="4" />
+                <circle cx="55" cy="65" r="5" fill="#f59e0b" />
+                <circle cx="105" cy="65" r="5" fill="#f59e0b" />
+
+                <!-- Arms in Dynamic Separation (Động phân - Outward) -->
+                <line x1="55" y1="65" x2="20" y2="145" stroke="#38bdf8" stroke-width="4" />
+                <circle cx="20" cy="145" r="6" fill="#0284c7" />
+                <!-- Outward Arrow -->
+                <path d="M 20 145 L 8 115" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)" />
+                <text x="14" y="98" font-size="9" font-weight="bold" fill="#38bdf8" transform="rotate(-30 14, 98)">động phân</text>
+
+                <line x1="105" y1="65" x2="140" y2="145" stroke="#38bdf8" stroke-width="4" />
+                <circle cx="140" cy="145" r="6" fill="#0284c7" />
+                <!-- Outward Arrow -->
+                <path d="M 140 145 L 152 115" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)" />
+                <text x="145" y="98" font-size="9" font-weight="bold" fill="#38bdf8" transform="rotate(30 145, 98)">động phân</text>
+
+                <!-- Arms in Static Gathering (Tịnh hợp - Inward dashed) -->
+                <path d="M 55 65 L 58 170" stroke="#f87171" stroke-width="2.5" stroke-dasharray="4,3" />
+                <circle cx="58" cy="170" r="4.5" fill="#dc2626" />
+                <text x="40" y="195" font-size="8" font-weight="bold" fill="#f87171">tịnh hợp</text>
+
+                <path d="M 105 65 L 102 170" stroke="#f87171" stroke-width="2.5" stroke-dasharray="4,3" />
+                <circle cx="102" cy="170" r="4.5" fill="#dc2626" />
+                <text x="105" y="195" font-size="8" font-weight="bold" fill="#f87171">tịnh hợp</text>
+
+                <text x="80" y="275" font-size="11" font-weight="bold" fill="#cbd5e1" text-anchor="middle">(A) hình đứng</text>
+                <text x="80" y="288" font-size="8" fill="#94a3b8" text-anchor="middle">Standing Front View</text>
+              </g>
+
+              <!-- Sub-Diagram (B): Top-Down Bird's-Eye View (Hình trên nhìn xuống) -->
+              <g transform="translate(200, 20)">
+                <!-- Head / Torso Cylinder Cross-section -->
+                <circle cx="110" cy="130" r="30" fill="#1e293b" stroke="#cbd5e1" stroke-width="3" />
+                <!-- Torso hatching -->
+                <line x1="95" y1="115" x2="125" y2="145" stroke="#475569" stroke-width="2" />
+                <line x1="90" y1="130" x2="130" y2="130" stroke="#475569" stroke-width="2" />
+                <line x1="95" y1="145" x2="125" y2="115" stroke="#475569" stroke-width="2" />
+
+                <!-- Left Arm Pivot -->
+                <rect x="70" y="125" width="12" height="10" fill="#cbd5e1" />
+                <circle cx="70" cy="130" r="5" fill="#f59e0b" />
+                <path d="M 70 130 L 40 100" stroke="#38bdf8" stroke-width="3" />
+                <text x="45" y="85" font-size="9" fill="#38bdf8">tay (hand)</text>
+                <text x="65" y="150" font-size="9" fill="#f87171">hợp</text>
+
+                <!-- Right Arm Pivot -->
+                <rect x="138" y="125" width="12" height="10" fill="#cbd5e1" />
+                <circle cx="150" cy="130" r="5" fill="#f59e0b" />
+                <path d="M 150 130 L 155 105 L 165 105" stroke="#38bdf8" stroke-width="2" fill="none" />
+                <text x="155" y="85" font-size="9" fill="#38bdf8">tay (hand)</text>
+                <text x="155" y="150" font-size="9" fill="#f87171">hợp</text>
+
+                <!-- Great Taiji Expanding Spiral Arcs (Động Phân) -->
+                <!-- Clockwise expanding arc from right hand -->
+                <path d="M 80 115 C 80 30, 200 30, 200 150" fill="none" stroke="#e2e8f0" stroke-width="2.5" marker-end="url(#arrow-slate)" />
+                <text x="200" y="170" font-size="10" font-weight="bold" fill="#e2e8f0">phân</text>
+
+                <!-- Counter-clockwise expanding arc from left hand -->
+                <path d="M 140 145 C 140 220, 20 220, 20 110" fill="none" stroke="#e2e8f0" stroke-width="2.5" marker-end="url(#arrow-slate)" />
+                <text x="15" y="95" font-size="10" font-weight="bold" fill="#e2e8f0">phân</text>
+
+                <text x="110" y="275" font-size="11" font-weight="bold" fill="#cbd5e1" text-anchor="middle">(B) hình trên nhìn xuống</text>
+                <text x="110" y="288" font-size="8" fill="#94a3b8" text-anchor="middle">Top-Down Bird's-Eye View</text>
+              </g>
+
+              <defs>
+                <marker id="arrow-amber" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b" />
+                </marker>
+                <marker id="arrow-slate" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#cbd5e1" />
+                </marker>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- Theoretical & Biomechanical Breakdown -->
+          <div class="w-full lg:w-1/2 space-y-4">
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+              <h4 class="text-base font-bold text-amber-300 border-b border-slate-800 pb-2 mb-3">
+                Biomechanical Translation of Wang Zongyue's Classic Formula
+              </h4>
+              <blockquote class="border-l-4 border-amber-500 pl-3 py-1 italic text-xs text-amber-100/90 mb-3">
+                "太極者，無極而生，動靜之機，陰陽之母也。動之則分，靜之則合。" <br>
+                <em>"Thái cực giả, vô cực nhi sinh, động tĩnh chi cơ, âm dương chi mẫu dã. Động thì phân ra, tịnh thì hợp lại."</em>
+              </blockquote>
+              <div class="space-y-3 text-xs text-slate-300">
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                  <strong class="text-sky-300">1. Centrifugal Expansion &middot; Động Phân:</strong>
+                  <p class="mt-1 text-slate-400">
+                    When the torso initiates rotation around the vertical spine axis, rotational kinetic energy generates <strong>centrifugal force</strong>. Both arms swing outward in expanding arcs. This is the expansive, release phase (*Khai* / *Fa-jin*).
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                  <strong class="text-rose-300">2. Centripetal Convergence &middot; Tịnh Hợp:</strong>
+                  <p class="mt-1 text-slate-400">
+                    As rotation slows or arrives at conclusion, the limbs fold inward toward the central trunk via <strong>centripetal attraction</strong>. Energy gathers back into Dantian for dynamic stability (*Hợp* / *Tụ khí*).
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                  <strong class="text-emerald-300">3. S-Curve Spiral Geometry (Bird's-Eye View B):</strong>
+                  <p class="mt-1 text-slate-400">
+                    Looking down from above, the opposing arm trajectories form an interlocking S-curve. This proves that Taiji motion is never linear or square, but continuous helical silk-reeling (*Triển ty kình*).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modern Sports Biomechanics Connection -->
+            <div class="bg-amber-950/20 border border-amber-800/40 rounded-xl p-4 text-xs text-slate-300">
+              <span class="font-bold text-amber-300 flex items-center gap-1 mb-1">
+                🎾 Direct Connection to Your Tennis Biomechanics Manual:
+              </span>
+              <p class="text-slate-400">
+                In your research paper <em>"Nghệ Thuật Chuyển Hướng - Các Nguyên Lý Thái Cực Quyền Trong Cú Volley Tennis"</em>, Figure 13 is the foundational kinetic model explaining why the arm must not generate arm-only brute force. Power originates from the central axis (hip/waist coil), and centrifugal release (*Động phân*) propels the racket effortlessly into the contact zone.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500/20', 'text-amber-300', 'border-amber-500/40');
+        btn.classList.add('text-slate-400', 'border-transparent');
+      });
+
+      const activeView = document.getElementById('view-' + tabId);
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeView) activeView.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-amber-500/20', 'text-amber-300', 'border-amber-500/40');
+        activeBtn.classList.remove('text-slate-400', 'border-transparent');
+      }
+    }
+
+    function setLanguage(lang) {
+      const btnEn = document.getElementById('btn-lang-en');
+      const btnVi = document.getElementById('btn-lang-vi');
+      const btnBi = document.getElementById('btn-lang-bilingual');
+      
+      [btnEn, btnVi, btnBi].forEach(b => {
+        b.classList.remove('bg-amber-600', 'text-white', 'shadow-md');
+        b.classList.add('text-slate-300');
+      });
+
+      document.querySelectorAll('.lang-en').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.lang-vi').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.lang-bi').forEach(el => el.classList.add('hidden'));
+
+      if (lang === 'en') {
+        btnEn.classList.add('bg-amber-600', 'text-white', 'shadow-md');
+        document.querySelectorAll('.lang-en').forEach(el => el.classList.remove('hidden'));
+      } else if (lang === 'vi') {
+        btnVi.classList.add('bg-amber-600', 'text-white', 'shadow-md');
+        document.querySelectorAll('.lang-vi').forEach(el => el.classList.remove('hidden'));
+      } else {
+        btnBi.classList.add('bg-amber-600', 'text-white', 'shadow-md');
+        document.querySelectorAll('.lang-bi').forEach(el => el.classList.remove('hidden'));
+      }
+    }
+
+    // Dynamic info display for Diagram 1
+    const xinyiData = {
+      xin: {
+        title: "Tướng Quân Tâm &middot; The Heart General (將軍心)",
+        desc: "The Heart is Sovereign Master. It houses Shen (Spirit). In martial practice, the heart must be tranquil like calm water. When the commander is still, the entire army (muscles, breath, fascia) remains coordinated and free from panic."
+      },
+      yi: {
+        title: "Ý Truyền Lệnh &middot; Intent Transmitting Orders (意傳令)",
+        desc: "The Intent (Yi) is the commanding officer executing the sovereign's will. Taiji aphorism states: 'Dùng Ý bất dụng lực' (Use Intent, not brute muscular strain). Intent directs Qi, and Qi directs the physical body."
+      },
+      dantian: {
+        title: "Đan Điền &middot; The Elixir Field Reservoir (丹田)",
+        desc: "Located approximately 3 finger-widths below the navel inside the lower abdominal cavity. Chen Xin calls this 'Như binh mã đồn xứ' (The garrison of the military). All Qi gathers here in stillness and radiates outward in dynamic action."
+      },
+      huiyin: {
+        title: "Âm Hội &middot; Huiyin / Perineum Gate (陰會)",
+        desc: "The lowest gate of the torso where Ren and Du meridians meet. Slightly drawing upward on Huiyin seals pelvic floor pressure, stabilizing intra-abdominal core tension (Tensegrity)."
+      },
+      na: {
+        title: "Nã Thủ &middot; Seizing Hand (拿)",
+        desc: "Upper arm application where pure ascending Qi allows the fingers to lock, redirect, or control an opponent's joint with minimum effort."
+      },
+      lu: {
+        title: "Lý Thủ / Liệt &middot; Rollback & Split (李/挒)",
+        desc: "Deflective rollback energy flowing along the outer edge of forearm and wrist to divert incoming linear attacks along curved spiral paths."
+      },
+      foot: {
+        title: "Hạ Bàn Đương Lực &middot; Rooting into the Soles (足當力)",
+        desc: "Turbid, heavy gravitational Qi descends down through the legs into the Yongquan (Bubbling Spring) points. This creates the unshakeable rooting foundational to all Chen-style explosive power."
+      }
+    };
+
+    function showXinyiInfo(key) {
+      const data = xinyiData[key];
+      if (!data) return;
+      document.getElementById('xinyi-title').innerHTML = data.title;
+      document.getElementById('xinyi-content').innerHTML = `<p class="text-amber-100 text-sm leading-relaxed p-4 bg-amber-950/40 rounded-xl border border-amber-600/40 shadow-inner">${data.desc}</p>`;
+    }
+  </script>
+</body>
+</html>
