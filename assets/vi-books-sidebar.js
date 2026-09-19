@@ -6,6 +6,7 @@
   if (!path.includes('/vi/books/')) return;
 
   var books = [
+    { title: 'Chỉ dẫn từ Trần Gia Câu (Tập 1)', url: '/vi/books/chen_taichi_instructions_chen_village_vol1_vi.html' },
     { title: 'Trần Thị Thái Cực Quyền Đồ Thuyết', url: '/vi/books/chen_xin_taijiquan_tushuo_vi.html' },
     { title: 'Baguazhang Vol.1', url: '/vi/books/Baguazhang%20-%20the%20Complete%20System%20(Vol.1)%20by%20Erle%20Montaigue/Baguazhang%20-%20the%20Complete%20System%20(Vol.1)%20by%20Erle%20Montaigue_vi.html' },
     { title: 'Baguazhang Vol.2', url: '/vi/books/Baguazhang%20-%20the%20Complete%20System%20(Vol.2)/Baguazhang%20-%20the%20Complete%20System%20(Vol.2)_vi.html' },
