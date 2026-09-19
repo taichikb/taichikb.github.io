@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thái Cực Quyền Toàn Tập (Nguyễn Anh Vũ biên dịch) — Ngũ Đại Danh Gia Toàn Thư | TaichiNOW</title>
+<meta name="description" content="Kiệt tác bách khoa toàn thư Thái Cực Quyền Toàn Tập 789 trang do dịch giả Nguyễn Anh Vũ biên dịch, Võ sư Đỗ Đặng Phong hiệu đính. Hội tụ đầy đủ 5 đại danh gia quyền phái: Trần, Dương, Ngô, Võ, Tôn cùng đối luyện và thôi thủ.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 300px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .reader-sidebar {
+  background: #1a1a1a;
+  border-color: #2e2e2e;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .style-card {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+}
+.reader-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-crimson);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.5rem;
+}
+.toc-link {
+  display: block;
+  padding: 0.45rem 0.6rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+.toc-link:hover, .toc-link.active {
+  background: rgba(153, 27, 27, 0.08);
+  color: var(--accent-crimson);
+  font-weight: 600;
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+}
+.book-header {
+  border-bottom: 2px solid #e7e5e4;
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+.book-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #fecaca;
+  margin-bottom: 1rem;
+}
+.book-title {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+}
+.book-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  background: rgba(0,0,0,0.02);
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  border: 1px solid #eee;
+}
+.meta-item strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #78716c;
+  margin-bottom: 2px;
+}
+.meta-item span {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.quote-box {
+  background: #fffbeb;
+  border-left: 4px solid var(--accent-gold);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: #78350f;
+}
+.key-point {
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.8rem 0;
+}
+.key-point h4 {
+  margin: 0 0 0.5rem 0;
+  color: #15803d;
+}
+
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.style-card {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.style-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.style-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.style-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+}
+
+.pdf-container {
+  background: #525659;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.pdf-viewer {
+  width: 100%;
+  height: 85vh;
+  border: none;
+}
+.jump-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #27272a;
+  padding: 12px 16px;
+  border-radius: 8px 8px 0 0;
+}
+.jump-btn {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.jump-btn:hover {
+  background: var(--accent-crimson);
+  border-color: var(--accent-crimson);
+}
+
+@media (max-width: 992px) {
+  .reader-layout {
+    flex-direction: column;
+  }
+  .reader-sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+    <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg><span>TaichiNOW</span></a>
+    <nav class="site-nav">
+<a href="/" class="">Home</a>
+<a href="/techniques/" class="">Techniques</a>
+<a href="/books/" class="">Books</a>
+<a href="/videos/" class="">Videos</a>
+<a href="/podcast/" class="">Podcast</a>
+<a href="/philosophy/" class="">Philosophy</a>
+<a href="/history/" class="">History</a>
+<a href="/contact/" class="">Contact</a>
+    <a href="/vi/books/" class="lang-switch active">🇻🇳 Thư Viện Sách</a>
+    </nav>
+</header>
+
+<div class="reader-layout">
+  <aside class="reader-sidebar">
+    <div class="toc-title"><i class="fa-solid fa-compass"></i> Mục Lục Toàn Tập</div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#gioi-thieu" class="toc-link">Lời Giới Thiệu &amp; Lời Nói Đầu</a></li>
+      <li class="toc-item"><a href="#tap-1-tran-thuc" class="toc-link">Tập 1: Trần Thức Thái Cực Quyền</a></li>
+      <li class="toc-item"><a href="#tap-2-duong-thuc" class="toc-link">Tập 2: Dương Thức Thái Cực Quyền</a></li>
+      <li class="toc-item"><a href="#tap-3-ngo-thuc" class="toc-link">Tập 3: Ngô Thức Thái Cực Quyền</a></li>
+      <li class="toc-item"><a href="#tap-4-vo-thuc" class="toc-link">Tập 4: Võ Thức Thái Cực Quyền</a></li>
+      <li class="toc-item"><a href="#tap-5-ton-thuc" class="toc-link">Tập 5: Tôn Thức Thái Cực Quyền</a></li>
+      <li class="toc-item"><a href="#tap-6-doi-luyen" class="toc-link">Tập 6: Đối Luyện &amp; Thôi Thủ Thực Chiến</a></li>
+      <li class="toc-item"><a href="#doc-truc-tuyen" class="toc-link" style="color:var(--accent-crimson);font-weight:700;"><i class="fa-solid fa-book-open"></i> Đọc Toàn Bộ 789 Trang PDF</a></li>
+    </ul>
+
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e7e5e4;">
+      <div style="font-size:0.75rem;font-weight:700;color:#78716c;text-transform:uppercase;margin-bottom:8px;">Bản Gốc Tiếng Hoa</div>
+      <a href="/books/read/taijiquan-quanshu-complete-book-of-tai-chi-chuan-1995/" target="_blank" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#991b1b;font-size:0.85rem;font-weight:600;padding:8px 10px;background:#fef2f2;border-radius:6px;border:1px solid #fecaca;">
+        <i class="fa-solid fa-file-pdf"></i> 《太极拳全书》 (726 trang) &rarr;
+      </a>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <button id="theme-toggle" style="width:100%;padding:8px;border-radius:6px;border:1px solid #ccc;background:transparent;cursor:pointer;font-size:0.85rem;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <i class="fa-solid fa-moon"></i> Chế độ Tối / Sáng
+      </button>
+    </div>
+  </aside>
+
+  <main class="reader-content">
+    <header class="book-header">
+      <div class="book-badge"><i class="fa-solid fa-award"></i> Tác Phẩm Kinh Điển Võ Học Toàn Thư · 789 Trang</div>
+      <h1 class="book-title">Thái Cực Quyền Toàn Tập</h1>
+      <p style="font-size:1.15rem;color:var(--text-secondary);font-family:var(--serif);font-style:italic;margin:0;">
+        Tổng tập chiêu thức, yếu lĩnh, đồ giải và phép thôi thủ đối luyện của Ngũ Đại Phái: Trần, Dương, Ngô, Võ, Tôn
+      </p>
+
+      <div class="book-meta-grid">
+        <div class="meta-item">
+          <strong>Biên dịch</strong>
+          <span>Nguyễn Anh Vũ</span>
+        </div>
+        <div class="meta-item">
+          <strong>Hiệu đính</strong>
+          <span>Võ sư Đỗ Đặng Phong</span>
+        </div>
+        <div class="meta-item">
+          <strong>Lời giới thiệu</strong>
+          <span>Lương y Võ sư Đinh Công Bảy</span>
+        </div>
+        <div class="meta-item">
+          <strong>Xuất bản</strong>
+          <span>Nhà xuất bản Đồng Nai · 789 Trang</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Original Book Banner -->
+    <div style="background:linear-gradient(135deg, #1c1917 0%, #292524 100%); color:#ffffff; padding:20px 24px; border-radius:12px; margin-bottom:2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+        <div>
+            <span style="background:#b45309; color:#fef3c7; font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:20px; text-transform:uppercase;">🇨🇳 Nguyên Tác Tiếng Hoa &middot; 726 Trang</span>
+            <h3 style="color:#ffffff; margin:6px 0 4px; font-family:var(--serif); font-size:1.4rem;">太极拳全书 (Thái Cực Quyền Toàn Thư - 1995)</h3>
+            <p style="color:#d4d4d8; font-size:0.9rem; margin:0;">Tổng tập nguyên bản của Nhân Dân Thể Dục Xuất Bản Xã (Thẩm Gia Trinh, Cố Lưu Hinh, Phó Chung Văn, Hách Thiếu Như, Tôn Kiếm Vân).</p>
+        </div>
+        <a href="/books/read/taijiquan-quanshu-complete-book-of-tai-chi-chuan-1995/" target="_blank" style="background:#f59e0b; color:#18181b; font-weight:700; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:0.92rem; white-space:nowrap;">Xem Bản Gốc Tiếng Hoa &rarr;</a>
+    </div>
+
+    <!-- Section 1: Giới thiệu -->
+    <section id="gioi-thieu" style="margin-bottom:3rem;">
+      <h2 style="font-family:var(--serif);font-size:1.8rem;border-bottom:2px solid #991b1b;padding-bottom:0.5rem;color:var(--text-primary);">
+        🌿 Lời Giới Thiệu &amp; Tầm Vóc Cuốn Sách
+      </h2>
+      <p style="line-height:1.8;color:var(--text-secondary);font-size:1.05rem;">
+        Bộ sách <strong>《Thái Cực Quyền Toàn Tập》</strong> do dịch giả <strong>Nguyễn Anh Vũ</strong> cẩn trọng biên dịch và võ sư <strong>Đỗ Đặng Phong</strong> hiệu đính là một trong những công trình đồ sộ, hoàn chỉnh và có giá trị chuyên môn cao nhất trong tủ sách võ học Việt Nam về Thái Cực Quyền.
+      </p>
+      
+      <div class="quote-box">
+        "Xin trân trọng giới thiệu đến bạn đọc bộ sách quý này và chân thành cám ơn ông Nguyễn Anh Vũ đã đóng góp cho tủ sách võ học của Việt Nam một tập sách giá trị về Thái cực quyền."
+        <div style="text-align:right;font-weight:700;margin-top:6px;font-style:normal;">— Lương y Võ sư Đinh Công Bảy (Phú Nhuận, Canh Thìn)</div>
+      </div>
+
+      <p style="line-height:1.8;color:var(--text-secondary);font-size:1.05rem;">
+        Điểm xuất sắc nổi bật của công trình này là việc quy tụ trọn vẹn giáo trình chính tông của <strong>5 dòng phái lớn</strong> (Trần, Dương, Ngô, Võ, Tôn), được diễn thuật và hiệu đính bởi chính các danh sư kế thừa lỗi lạc của từng chi phái (Trần Phát Khoa, Trần Chiếu Khuê, Dương Trừng Phủ, Ngô Giám Tuyền, Hách Thiếu Như, Tôn Kiếm Vân). Cuốn sách không chỉ trình bày chi tiết từng chiêu thức kèm hình ảnh phân thế mà còn giải thích sâu sắc về công năng trị bệnh, dưỡng sinh điều hòa thần kinh theo cả Đông y lẫn góc nhìn của y học hiện đại.
+      </p>
+    </section>
+
+    <!-- Section 2: Ngũ Đại Phái Overview -->
+    <section style="margin-bottom:3rem;">
+      <h2 style="font-family:var(--serif);font-size:1.8rem;border-bottom:2px solid #c59b27;padding-bottom:0.5rem;color:var(--text-primary);">
+        🏛️ Toàn Cảnh Ngũ Đại Danh Gia Trong Sách
+      </h2>
+      <div class="style-grid">
+        <div class="style-card" id="tap-1-tran-thuc">
+          <span class="style-badge" style="background:#fee2e2;color:#991b1b;">Tập 1 · Trang 11 - 278</span>
+          <h3>Trần Thức Thái Cực Quyền</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Gốc nguồn của Thái Cực Quyền từ Trần Gia Câu. Gồm 8 đặc điểm yếu lĩnh (triền ty kình, buông lỏng đàn hồi), trọn bộ Lão Giá Nhất Lộ (83 thức) và Lão Giá Nhị Lộ Pháo Chùy (71 thức) cùng phép thôi thủ Trần gia.
+          </p>
+        </div>
+
+        <div class="style-card" id="tap-2-duong-thuc">
+          <span class="style-badge" style="background:#fef3c7;color:#92400e;">Tập 2 · Trang 279 - 426</span>
+          <h3>Dương Thức Thái Cực Quyền</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Dòng họ Dương do Dương Lộ Thiền sáng lập, Dương Trừng Phủ định hình. Trình bày Thái Cực Quyền Thập Yếu, trọn bộ quyền phổ 85 thức thư thái, nhu hòa, khoáng đạt và các thế thôi thủ định bộ, hoạt bộ.
+          </p>
+        </div>
+
+        <div class="style-card" id="tap-3-ngo-thuc">
+          <span class="style-badge" style="background:#e0e7ff;color:#3730a3;">Tập 3 · Trang 427 - 526</span>
+          <h3>Ngô Thức Thái Cực Quyền</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Do Ngô Giám Tuyền phát triển. Nổi bật với thân pháp nghiêng mà ngay ngắn (xuyên tiền xuyên hậu), động tác tinh tế, khép nép, 3 giai đoạn tập luyện yếu lĩnh và 83 thức quyền đồ giải.
+          </p>
+        </div>
+
+        <div class="style-card" id="tap-4-vo-thuc">
+          <span class="style-badge" style="background:#f3e8ff;color:#6b21a8;">Tập 4 · Trang 527 - 616</span>
+          <h3>Võ Thức Thái Cực Quyền</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Do Võ Vũ Tố sáng lập, Hách Thiếu Như kế truyền. Chú trọng khai hợp hư thực, động tác nhỏ gọn nghiêm cẩn, nội khí tiềm chuyển cùng bản khảo cứu kinh điển Thái Cực Quyền Kinh của Vương Tông Nhạc.
+          </p>
+        </div>
+
+        <div class="style-card" id="tap-5-ton-thuc">
+          <span class="style-badge" style="background:#ecfdf5;color:#065f46;">Tập 5 · Trang 617 - 692</span>
+          <h3>Tôn Thức Thái Cực Quyền</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Do Tôn Lộc Đường sáng lập, Tôn Kiếm Vân biên soạn. Kết hợp tinh hoa Bát Quái Chưởng, Hình Ý Quyền và Thái Cực Quyền. Thân pháp linh hoạt, bộ pháp tiến tất theo, thoái tất tùy (Hoạt bộ Thái cực).
+          </p>
+        </div>
+
+        <div class="style-card" id="tap-6-doi-luyen">
+          <span class="style-badge" style="background:#ffedd5;color:#9a3412;">Tập 6 · Trang 693 - 788</span>
+          <h3>Thái Cực Quyền Đối Luyện</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Phần tinh túy đối luyện ứng dụng thực chiến: giải mã từng chiêu thức trong tấn công - phòng thủ tự vệ, phương pháp phá thế, bắt nã và phối hợp công thủ toàn diện giữa hai người tập.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Insights Box -->
+    <div class="key-point">
+      <h4><i class="fa-solid fa-lightbulb"></i> 8 Đặc Điểm Yếu Lĩnh Cốt Lõi Của Trần Thức (Tập 1)</h4>
+      <ol style="margin:8px 0 0 1.2rem;padding:0;line-height:1.8;font-size:0.95rem;">
+        <li><strong>Ý khí vận động:</strong> Lấy tâm ý dẫn dắt khí cơ, nội khí luân chuyển toàn thân.</li>
+        <li><strong>Tính đàn hồi buông lỏng:</strong> Buông lỏng thân chi nhưng không lỏng lẻo trễ nải (Trầm trầm hàm súc).</li>
+        <li><strong>Vận động xoắn vặn (Triền ty kình):</strong> Thuận nghịch triền ty, lực xoắn ốc xuyên thấu từ gót chân lên ngón tay.</li>
+        <li><strong>Trung chính hư thực:</strong> Trục cơ thể ngay ngắn, phân biệt hư thực rõ ràng ở từng thế tấn.</li>
+        <li><strong>Eo lưng dẫn đầu:</strong> Eo là then chốt của biến hóa chuyển vận ("Mệnh ý nguyên lai tại yêu tế").</li>
+        <li><strong>Tính liên tục không ngừng:</strong> Kình dứt ý không dứt, cuồn cuộn như sóng nước trường giang.</li>
+        <li><strong>Cương nhu tương tế:</strong> Lấy nhu làm gốc, lấy cương làm ngọn; trong nhu tàng cương, cực nhu hóa cương.</li>
+        <li><strong>Nhanh chậm xen kẽ:</strong> Lúc chậm khoan thai như mây trôi, lúc phát lực nhanh như chớp giật sấm sét.</li>
+      </ol>
+    </div>
+
+    <!-- Section 3: Trình Đọc PDF Trực Tuyến -->
+    <section id="doc-truc-tuyen" style="margin-top:3rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:1rem;">
+        <h2 style="font-family:var(--serif);font-size:1.8rem;margin:0;color:var(--text-primary);">
+          📖 Trình Đọc Trực Tuyến 789 Trang PDF Đầy Đủ
+        </h2>
+        <a href="/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-crimson);color:#ffffff;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9rem;">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở File PDF Toàn Màn Hình
+        </a>
+      </div>
+
+      <div class="pdf-container">
+        <!-- Quick Jump Buttons to Specific Pages in the PDF -->
+        <div class="jump-bar">
+          <span style="color:#d4d4d8;font-size:0.8rem;font-weight:700;display:flex;align-items:center;margin-right:8px;">Nhảy nhanh trang:</span>
+          <button class="jump-btn" onclick="jumpToPage(1)">Bìa Sách (Tr. 1)</button>
+          <button class="jump-btn" onclick="jumpToPage(5)">Lời Giới Thiệu (Tr. 5)</button>
+          <button class="jump-btn" onclick="jumpToPage(11)">Tập 1: Trần Thức (Tr. 11)</button>
+          <button class="jump-btn" onclick="jumpToPage(88)">Lão Giá Nhất Lộ (Tr. 88)</button>
+          <button class="jump-btn" onclick="jumpToPage(209)">Pháo Chùy (Tr. 209)</button>
+          <button class="jump-btn" onclick="jumpToPage(279)">Tập 2: Dương Thức (Tr. 279)</button>
+          <button class="jump-btn" onclick="jumpToPage(427)">Tập 3: Ngô Thức (Tr. 427)</button>
+          <button class="jump-btn" onclick="jumpToPage(527)">Tập 4: Võ Thức (Tr. 527)</button>
+          <button class="jump-btn" onclick="jumpToPage(617)">Tập 5: Tôn Thức (Tr. 617)</button>
+          <button class="jump-btn" onclick="jumpToPage(693)">Tập 6: Đối Luyện (Tr. 693)</button>
+          <button class="jump-btn" onclick="jumpToPage(785)">Mục Lục (Tr. 785)</button>
+        </div>
+        <iframe id="pdf-frame" class="pdf-viewer" src="/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf#page=1&toolbar=1&navpanes=1&view=FitH" title="Thái Cực Quyền Toàn Tập - Nguyễn Anh Vũ biên dịch"></iframe>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <nav class="page-nav" style="margin-top:3rem;display:flex;justify-content:space-between;">
+      <a href="/vi/books/">← Quay lại Thư Viện Sách Tiếng Việt</a>
+      <a href="/" class="home">⌂ Trang Chủ</a>
+    </nav>
+  </main>
+</div>
+
+<footer class="site-footer">
+    <p>Built with ❤️ for the Vietnamese Tai Chi community <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
+    <p>Trang web này được xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam by Phạm Đức Hải</p>
+</footer>
+
+<script>
+// Reading progress
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const s = window.scrollY;
+  const pct = h > 0 ? (s / h) * 100 : 0;
+  document.getElementById('reading-progress').style.width = pct + '%';
+});
+
+// Jump to page in PDF
+function jumpToPage(pageNo) {
+  const iframe = document.getElementById('pdf-frame');
+  iframe.src = '/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf#page=' + pageNo + '&toolbar=1&navpanes=1&view=FitH';
+}
+
+// Dark mode toggle
+const toggleBtn = document.getElementById('theme-toggle');
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('taichi_reader_dark', isDark ? '1' : '0');
+  });
+  if (localStorage.getItem('taichi_reader_dark') === '1') {
+    document.body.classList.add('dark-mode');
+  }
+}
+</script>
+
+</body>
+</html>

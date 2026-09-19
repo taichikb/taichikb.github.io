@@ -6,6 +6,7 @@
   if (!path.includes('/vi/books/')) return;
 
   var books = [
+    { title: 'Thái Cực Quyền Toàn Tập - Nguyễn Anh Vũ', url: '/vi/books/thai_cuc_quyen_toan_tap_nguyen_anh_vu_vi.html' },
     { title: 'Khí Công Y Học (Tập 1) - Jerry Johnson', url: '/vi/books/jerry_alan_johnson_chinese_medical_qigong_vol1_vi.html' },
     { title: 'Cội Nguồn Khí Công - Dương Tuấn Mẫn', url: '/vi/books/yang_jwing_ming_root_of_chinese_chi_kung_vi.html' },
     { title: 'Bồi Dưỡng Chân Khí - Stuart Olson', url: '/vi/books/stuart_olson_cultivating_the_chi_chen_kung_vi.html' },
