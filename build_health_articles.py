@@ -691,6 +691,106 @@ ARTICLES = [
         "title": "Vượt Qua Nỗi Sợ Vận Động Sau Chấn Thương Khớp", "subtitle": "TaichiKB Health Article VI-60 · Thần Kinh, Tâm-Thân",
         "crosslink": "/en/articles/en/articles/kinesiophobia-joint-injury/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
     },
+    {
+        "md": "en/articles/EN-061-Respiratory_Health-diaphragm-primary-engine.md", "out": "en/articles/diaphragm-primary-engine", "lang": "en",
+        "title": "The Diaphragm as the Primary Breathing Engine", "subtitle": "TaichiKB Health Article EN-61 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/co-hoanh-dong-co-ho-hap/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-061-Respiratory_Health-diaphragm-primary-engine.md", "out": "vi/articles/co-hoanh-dong-co-ho-hap", "lang": "vi",
+        "title": "Vai Trò Cốt Tủy Của Cơ Hoành Trong Hô Hấp", "subtitle": "TaichiKB Health Article VI-61 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/diaphragm-primary-engine/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-062-Respiratory_Health-reverse-abdominal-breathing.md", "out": "en/articles/reverse-abdominal-breathing", "lang": "en",
+        "title": "Reverse Abdominal Breathing (Ni Fu Shi Hu Xi) for Power", "subtitle": "TaichiKB Health Article EN-62 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/phuc khi-tang-ap/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-062-Respiratory_Health-reverse-abdominal-breathing.md", "out": "vi/articles/phuc khi-tang-ap", "lang": "vi",
+        "title": "Hít Thở Bụng Ngược Để Phát Lực Nội Công", "subtitle": "TaichiKB Health Article VI-62 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/reverse-abdominal-breathing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-063-Respiratory_Health-post-expiratory-pauses.md", "out": "en/articles/post-expiratory-pauses", "lang": "en",
+        "title": "Post-Expiratory Pauses and Oxygen Exchange Efficiency", "subtitle": "TaichiKB Health Article EN-63 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/tam-ngung-sau-tho-ra/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-063-Respiratory_Health-post-expiratory-pauses.md", "out": "vi/articles/tam-ngung-sau-tho-ra", "lang": "vi",
+        "title": "Khoảng Tạm Ngừng Sau Khi Thở Ra và Trao Đổi Oxy", "subtitle": "TaichiKB Health Article VI-63 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/post-expiratory-pauses/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-064-Respiratory_Health-ribcage-intercostal-mobility.md", "out": "en/articles/ribcage-intercostal-mobility", "lang": "en",
+        "title": "Ribcage Mobility: Intercostal Muscle Expansion Techniques", "subtitle": "TaichiKB Health Article EN-64 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/long-nguc-co-lien-suon/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-064-Respiratory_Health-ribcage-intercostal-mobility.md", "out": "vi/articles/long-nguc-co-lien-suon", "lang": "vi",
+        "title": "Độ Mở Lồng Ngực: Bài Tập Cơ Liên Sườn", "subtitle": "TaichiKB Health Article VI-64 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/ribcage-intercostal-mobility/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-065-Respiratory_Health-nitric-oxide-nasal-breathing.md", "out": "en/articles/nitric-oxide-nasal-breathing", "lang": "en",
+        "title": "Nitric Oxide Production Through Nasal Breathing", "subtitle": "TaichiKB Health Article EN-65 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/nitric-oxide-tho-mui/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-065-Respiratory_Health-nitric-oxide-nasal-breathing.md", "out": "vi/articles/nitric-oxide-tho-mui", "lang": "vi",
+        "title": "Nitric Oxide và Phép Thở Bằng Mũi", "subtitle": "TaichiKB Health Article VI-65 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/nitric-oxide-nasal-breathing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-066-Respiratory_Health-breath-movement-sync.md", "out": "en/articles/breath-movement-sync", "lang": "en",
+        "title": "Breath-Movement Synchronization in Form Practice", "subtitle": "TaichiKB Health Article EN-66 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/dong-bo-hoi-tho/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-066-Respiratory_Health-breath-movement-sync.md", "out": "vi/articles/dong-bo-hoi-tho", "lang": "vi",
+        "title": "Đồng Bộ Hơi Thở Với Chuyển Động", "subtitle": "TaichiKB Health Article VI-66 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/breath-movement-sync/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-067-Respiratory_Health-pelvic-floor-mulabandha-qi.md", "out": "en/articles/pelvic-floor-mulabandha-qi", "lang": "en",
+        "title": "Pelvic Floor Diaphragm Co-Activation (Mulabandha and Qi)", "subtitle": "TaichiKB Health Article EN-67 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/co-day-choi/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-067-Respiratory_Health-pelvic-floor-mulabandha-qi.md", "out": "vi/articles/co-day-choi", "lang": "vi",
+        "title": "Cơ Đáy Chậu và Cơ Hoành Trong Khí Công", "subtitle": "TaichiKB Health Article VI-67 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/pelvic-floor-mulabandha-qi/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-068-Respiratory_Health-copd-asthma-qigong-rehab.md", "out": "en/articles/copd-asthma-qigong-rehab", "lang": "en",
+        "title": "COPD and Asthma Rehabilitation Exercises Through Qigong", "subtitle": "TaichiKB Health Article EN-68 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/phuc-hoi-ho-hap-hen-suyen/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-068-Respiratory_Health-copd-asthma-qigong-rehab.md", "out": "vi/articles/phuc-hoi-ho-hap-hen-suyen", "lang": "vi",
+        "title": "Phục Hồi Hô Hấp Hen Suyễn Nhờ Khí Công", "subtitle": "TaichiKB Health Article VI-68 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/copd-asthma-qigong-rehab/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-069-Respiratory_Health-qi-chen-dan-tian-science.md", "out": "en/articles/qi-chen-dan-tian-science", "lang": "en",
+        "title": "The Science of Sinking Breath to Dantian (Qi Chen Dan Tian)", "subtitle": "TaichiKB Health Article EN-69 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/khi-tram-dan-dien/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-069-Respiratory_Health-qi-chen-dan-tian-science.md", "out": "vi/articles/khi-tram-dan-dien", "lang": "vi",
+        "title": "Khoa Học Sau Cụm Từ Khí Trầm Đan Điền", "subtitle": "TaichiKB Health Article VI-69 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/qi-chen-dan-tian-science/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-070-Respiratory_Health-hyperventilation-slow-pacing.md", "out": "en/articles/hyperventilation-slow-pacing", "lang": "en",
+        "title": "Hyperventilation Recovery Through Slow Pacing Protocols", "subtitle": "TaichiKB Health Article EN-70 · Breathing, Diaphragm",
+        "crosslink": "/vi/articles/vi/articles/dieu-hoa-nhip-tho/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-070-Respiratory_Health-hyperventilation-slow-pacing.md", "out": "vi/articles/dieu-hoa-nhip-tho", "lang": "vi",
+        "title": "Điều Hòa Nhịp Thở Cho Người Hay Thở Gấp", "subtitle": "TaichiKB Health Article VI-70 · Hô Hấp, Cơ Hoành",
+        "crosslink": "/en/articles/en/articles/hyperventilation-slow-pacing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
 ]
 
 def read_base_template(lang):
