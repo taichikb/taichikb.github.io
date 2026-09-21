@@ -187,15 +187,15 @@ Combines rotation with a squat wave — the closest drill to actual dragon form 
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
-          title="Dragon Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/UFaN7CWlsEc"
+          title="Qigong The Dragon/5 Minute Qigong"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: Dragon Qigong — spinal twisting &amp; core vitality demonstration.</em></p>
+<p><em>Video: Qigong The Dragon/5 Minute Qigong (Qigong Meditation).</em></p>
 ```
 
 **Slow-motion study guide**: watch at 0.5× speed for the three signatures of correct dragon work — (1) in the wave drills, the motion visibly *starts at the feet* and the hands arrive last; (2) in the coiling drill, the pelvis stays planted while the ribcage turns; (3) in the full spin, the unwind is ground-driven and the chest opens *before* the arms extend. If the hands lead anywhere, the drill is being performed as an arm exercise and the spine is a passenger.
