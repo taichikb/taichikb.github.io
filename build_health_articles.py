@@ -291,6 +291,106 @@ ARTICLES = [
         "title": "Bảo Vệ Trường Năng Lượng Cá Nhân Trước Tác Động Ngoại Cảnh", "subtitle": "TaichiKB Health Article VI-020 · Nội Công, Y Học Năng Lượng",
         "crosslink": "/en/articles/en/articles/shielding-emotional-energy/", "crosslabel": "🇬🇧 English",
     },
+    {
+        "md": "en/articles/EN-021-Qigong_Longevity-ba-duan-jin-biomechanics.md", "out": "en/articles/ba-duan-jin-biomechanics", "lang": "en",
+        "title": "Ba Duan Jin (Eight Brocades): Step-by-Step Biomechanical Breakdown", "subtitle": "TaichiKB Health Article EN-21 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/bat-doan-cam-co-hoc/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-021-Qigong_Longevity-ba-duan-jin-biomechanics.md", "out": "vi/articles/bat-doan-cam-co-hoc", "lang": "vi",
+        "title": "Bát Đoạn Cẩm: Phân Tích Cơ Học 8 Động Tác Cốt Tủy", "subtitle": "TaichiKB Health Article VI-21 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/ba-duan-jin-biomechanics/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-022-Qigong_Longevity-wu-qin-xi-five-animals.md", "out": "en/articles/wu-qin-xi-five-animals", "lang": "en",
+        "title": "Wu Qin Xi (Five Animal Frolics): Releasing Tension in Organs", "subtitle": "TaichiKB Health Article EN-22 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/ngu-cam-hi-ngu-tang/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-022-Qigong_Longevity-wu-qin-xi-five-animals.md", "out": "vi/articles/ngu-cam-hi-ngu-tang", "lang": "vi",
+        "title": "Ngũ Cầm Hí: Phục Hồi Chức Năng Ngũ Tạng Theo Linh Vật", "subtitle": "TaichiKB Health Article VI-22 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/wu-qin-xi-five-animals/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-023-Qigong_Longevity-yi-jin-jing-tendon-changing.md", "out": "en/articles/yi-jin-jing-tendon-changing", "lang": "en",
+        "title": "Yi Jin Jing (Tendon Changing Classic): Structural Reconditioning", "subtitle": "TaichiKB Health Article EN-23 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/dich-canh-kinh/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-023-Qigong_Longevity-yi-jin-jing-tendon-changing.md", "out": "vi/articles/dich-canh-kinh", "lang": "vi",
+        "title": "Dịch Cân Kinh: Rèn Luyện Gân Cốt và Cấu Trúc Khung Xương", "subtitle": "TaichiKB Health Article VI-23 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/yi-jin-jing-tendon-changing/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-024-Qigong_Longevity-shibashi-18-cardiovascular.md", "out": "en/articles/shibashi-18-cardiovascular", "lang": "en",
+        "title": "Shibashi 18 Movements: Flow States for Cardiovascular Health", "subtitle": "TaichiKB Health Article EN-24 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/thai-cuc-khi-cong-18-thuc/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-024-Qigong_Longevity-shibashi-18-cardiovascular.md", "out": "vi/articles/thai-cuc-khi-cong-18-thuc", "lang": "vi",
+        "title": "Thái Cực Khí Công 18 Thức: Dòng Chảy Năng Lượng Cho Tim Mạch", "subtitle": "TaichiKB Health Article VI-24 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/shibashi-18-cardiovascular/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-025-Qigong_Longevity-crane-qigong-spine-lymph.md", "out": "en/articles/crane-qigong-spine-lymph", "lang": "en",
+        "title": "Crane Qigong for Spine Mobility and Lymphatic Drainage", "subtitle": "TaichiKB Health Article EN-25 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/hac-khi-cong-cot-song/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-025-Qigong_Longevity-crane-qigong-spine-lymph.md", "out": "vi/articles/hac-khi-cong-cot-song", "lang": "vi",
+        "title": "Hạc Khí Công: Nâng Cao Sự Linh Hoạt Cột Sống và Hệ Bạch Huyết", "subtitle": "TaichiKB Health Article VI-25 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/crane-qigong-spine-lymph/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-026-Qigong_Longevity-dragon-qigong-spinal-twist.md", "out": "en/articles/dragon-qigong-spinal-twist", "lang": "en",
+        "title": "Dragon Qigong for Spinal Twisting and Core Vitality", "subtitle": "TaichiKB Health Article EN-26 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/long-khi-cong-xoan-cot-song/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-026-Qigong_Longevity-dragon-qigong-spinal-twist.md", "out": "vi/articles/long-khi-cong-xoan-cot-song", "lang": "vi",
+        "title": "Long Khí Công: Xoắn Cột Sống và Khơi Thông Năng Lượng Lõi", "subtitle": "TaichiKB Health Article VI-26 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/dragon-qigong-spinal-twist/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-027-Qigong_Longevity-zhan-zhuang-immune.md", "out": "en/articles/zhan-zhuang-immune", "lang": "en",
+        "title": "Standing Pole (Zhan Zhuang) for Immune System Enhancement", "subtitle": "TaichiKB Health Article EN-27 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/tru-the-khi-cong-mien-dich/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-027-Qigong_Longevity-zhan-zhuang-immune.md", "out": "vi/articles/tru-the-khi-cong-mien-dich", "lang": "vi",
+        "title": "Trụ Thế Khí Công (Zhan Zhuang): Tăng Cường Hệ Miễn Dịch", "subtitle": "TaichiKB Health Article VI-27 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/zhan-zhuang-immune/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-028-Qigong_Longevity-kidney-qigong-lower-back.md", "out": "en/articles/kidney-qigong-lower-back", "lang": "en",
+        "title": "Kidney Support Qigong: Strengthening Lower Back and Vital Will", "subtitle": "TaichiKB Health Article EN-28 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/khi-cong-bo-than/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-028-Qigong_Longevity-kidney-qigong-lower-back.md", "out": "vi/articles/khi-cong-bo-than", "lang": "vi",
+        "title": "Khí Công Bổ Thận: Củng Cố Cột Sống Thắt Lưng và Nguyên Khí", "subtitle": "TaichiKB Health Article VI-28 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/kidney-qigong-lower-back/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-029-Qigong_Longevity-liver-detox-qigong-stress.md", "out": "en/articles/liver-detox-qigong-stress", "lang": "en",
+        "title": "Liver Qi Detoxification Protocols for Stress Reduction", "subtitle": "TaichiKB Health Article EN-29 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/khi-cong-giai-doc-gan/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-029-Qigong_Longevity-liver-detox-qigong-stress.md", "out": "vi/articles/khi-cong-giai-doc-gan", "lang": "vi",
+        "title": "Khí Công Giải Độc Gan: Tẩy Trừ Căng Thắng và Nóng Trong", "subtitle": "TaichiKB Health Article VI-29 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/liver-detox-qigong-stress/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-030-Qigong_Longevity-heart-qigong-sleep.md", "out": "en/articles/heart-qigong-sleep", "lang": "en",
+        "title": "Heart-Centering Qigong: Emotional Balance and Sleep Quality", "subtitle": "TaichiKB Health Article EN-30 · Qigong, Organ Health",
+        "crosslink": "/vi/articles/vi/articles/khi-cong-an-than/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-030-Qigong_Longevity-heart-qigong-sleep.md", "out": "vi/articles/khi-cong-an-than", "lang": "vi",
+        "title": "Khí Công An Thần: Cân Bằng Cảm Xúc và Cải Thiện Giấc Ngủ", "subtitle": "TaichiKB Health Article VI-30 · Khí Công, Dưỡng Tạng",
+        "crosslink": "/en/articles/en/articles/heart-qigong-sleep/", "crosslabel": "🇬🇧 English",
+    },
 ]
 
 def read_base_template(lang):
