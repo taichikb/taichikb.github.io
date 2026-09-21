@@ -491,6 +491,106 @@ ARTICLES = [
         "title": "Chuỗi Động Học Liên Tục: Phát Lực Không Dùng Cơ Bắp Thô", "subtitle": "TaichiKB Health Article VI-40 · Thái Cực Quyền, Cơ Sinh Học",
         "crosslink": "/en/articles/en/articles/kinetic-chain-no-tension/", "crosslabel": "🇬🇧 English",
     },
+    {
+        "md": "en/articles/EN-041-Yoga_Taichi_Synergy-asana-holds-taichi-flow.md", "out": "en/articles/asana-holds-taichi-flow", "lang": "en",
+        "title": "Asana Holds Meets Taichi Flow: Combining Static and Dynamic Stretch", "subtitle": "TaichiKB Health Article EN-41 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/tinh-toa-luan-chuyen-thai-cuc/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-041-Yoga_Taichi_Synergy-asana-holds-taichi-flow.md", "out": "vi/articles/tinh-toa-luan-chuyen-thai-cuc", "lang": "vi",
+        "title": "Tĩnh Tọa Yoga Kết Hợp Luân Chuyển Thái Cực: Giãn Cơ Toàn Diện", "subtitle": "TaichiKB Health Article VI-41 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/asana-holds-taichi-flow/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-042-Yoga_Taichi_Synergy-pranayama-tu-na-breathing.md", "out": "en/articles/pranayama-tu-na-breathing", "lang": "en",
+        "title": "Pranayama and Tu Na Breathing: Comparative Respiratory Science", "subtitle": "TaichiKB Health Article EN-42 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/pranayama-tho-nap/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-042-Yoga_Taichi_Synergy-pranayama-tu-na-breathing.md", "out": "vi/articles/pranayama-tho-nap", "lang": "vi",
+        "title": "Pranayama và Thổ Nạp (Tu Na): Phân Tích Sinh Lý Hô Hấp", "subtitle": "TaichiKB Health Article VI-42 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/pranayama-tu-na-breathing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-043-Yoga_Taichi_Synergy-backbends-taichi-back-safety.md", "out": "en/articles/backbends-taichi-back-safety", "lang": "en",
+        "title": "Hatha Yoga Backbends and Taichi Back Extension Safety", "subtitle": "TaichiKB Health Article EN-43 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/uon-lung-an-toan/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-043-Yoga_Taichi_Synergy-backbends-taichi-back-safety.md", "out": "vi/articles/uon-lung-an-toan", "lang": "vi",
+        "title": "Uốn Lưng Yoga và Mở Ngực Thái Cực: An Toàn Cột Sống", "subtitle": "TaichiKB Health Article VI-43 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/backbends-taichi-back-safety/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-044-Yoga_Taichi_Synergy-hip-openers-pigeon-stepping.md", "out": "en/articles/hip-openers-pigeon-stepping", "lang": "en",
+        "title": "Hip Openers: Pigeon Pose vs. Taichi Stepping Drills", "subtitle": "TaichiKB Health Article EN-44 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/mo-hang-bo-phap/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-044-Yoga_Taichi_Synergy-hip-openers-pigeon-stepping.md", "out": "vi/articles/mo-hang-bo-phap", "lang": "vi",
+        "title": "Mở Háng: So Sánh Tư Thế Chim Bồ Câu và Bộ Pháp Thái Cực", "subtitle": "TaichiKB Health Article VI-44 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/hip-openers-pigeon-stepping/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-045-Yoga_Taichi_Synergy-shoulder-mobility-gomukhasana-peng.md", "out": "en/articles/shoulder-mobility-gomukhasana-peng", "lang": "en",
+        "title": "Shoulder Mobility: Gomukhasana Meets Ward Off (Peng)", "subtitle": "TaichiKB Health Article EN-45 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/linh-hoat-khop-vai/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-045-Yoga_Taichi_Synergy-shoulder-mobility-gomukhasana-peng.md", "out": "vi/articles/linh-hoat-khop-vai", "lang": "vi",
+        "title": "Linh Hoạt Khớp Vai: Gomukhasana và Thức Phòng (Peng)", "subtitle": "TaichiKB Health Article VI-45 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/shoulder-mobility-gomukhasana-peng/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-046-Yoga_Taichi_Synergy-core-uddiyana-dantian.md", "out": "en/articles/core-uddiyana-dantian", "lang": "en",
+        "title": "Core Stability: Uddiyana Bandha and Dantian Compression", "subtitle": "TaichiKB Health Article EN-46 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/uddiyana-dan-dien/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-046-Yoga_Taichi_Synergy-core-uddiyana-dantian.md", "out": "vi/articles/uddiyana-dan-dien", "lang": "vi",
+        "title": "Core Stability: Uddiyana Bandha và Nén Đan Điền", "subtitle": "TaichiKB Health Article VI-46 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/core-uddiyana-dantian/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-047-Yoga_Taichi_Synergy-balance-tree-golden-rooster.md", "out": "en/articles/balance-tree-golden-rooster", "lang": "en",
+        "title": "Balance Integration: Tree Pose vs. Golden Rooster", "subtitle": "TaichiKB Health Article EN-47 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/can-bang-kim-ke/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-047-Yoga_Taichi_Synergy-balance-tree-golden-rooster.md", "out": "vi/articles/can-bang-kim-ke", "lang": "vi",
+        "title": "Giữ Cân Bằng: Cái Cây Yoga và Kim Kê Độc Lập", "subtitle": "TaichiKB Health Article VI-47 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/balance-tree-golden-rooster/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-048-Yoga_Taichi_Synergy-hamstring-low-stance-health.md", "out": "en/articles/hamstring-low-stance-health", "lang": "en",
+        "title": "Hamstring Lengthening for Low Stance Health", "subtitle": "TaichiKB Health Article EN-48 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/duoi-co-dui-sau/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-048-Yoga_Taichi_Synergy-hamstring-low-stance-health.md", "out": "vi/articles/duoi-co-dui-sau", "lang": "vi",
+        "title": "Duỗi Cơ Đùi Sau: Hỗ Trợ Đứng Đinh Tấn An Toàn", "subtitle": "TaichiKB Health Article VI-48 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/hamstring-low-stance-health/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-049-Yoga_Taichi_Synergy-vagus-inversions-sinking.md", "out": "en/articles/vagus-inversions-sinking", "lang": "en",
+        "title": "Vagus Nerve Stimulation Through Inversions and Sinking", "subtitle": "TaichiKB Health Article EN-49 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/than-kinh-me-tau/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-049-Yoga_Taichi_Synergy-vagus-inversions-sinking.md", "out": "vi/articles/than-kinh-me-tau", "lang": "vi",
+        "title": "Kích Thích Dây Thần Kinh Mê Tẩu: Đảo Ngược và Trầm Khí", "subtitle": "TaichiKB Health Article VI-49 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/vagus-inversions-sinking/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-050-Yoga_Taichi_Synergy-restorative-yoga-zhan-zhuang.md", "out": "en/articles/restorative-yoga-zhan-zhuang", "lang": "en",
+        "title": "Restorative Yoga and Zhan Zhuang for Burnout Recovery", "subtitle": "TaichiKB Health Article EN-50 · Yoga, Taichi, Flexibility",
+        "crosslink": "/vi/articles/vi/articles/phuc-hoi-kiet-suc/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-050-Yoga_Taichi_Synergy-restorative-yoga-zhan-zhuang.md", "out": "vi/articles/phuc-hoi-kiet-suc", "lang": "vi",
+        "title": "Phục Hồi Kiệt Sức: Yoga Phục Hồi và Đứng Trụ", "subtitle": "TaichiKB Health Article VI-50 · Yoga, Thái Cực, Giãn Cơ",
+        "crosslink": "/en/articles/en/articles/restorative-yoga-zhan-zhuang/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
 ]
 
 def read_base_template(lang):

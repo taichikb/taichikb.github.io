@@ -14,57 +14,212 @@ layout: doc
 
 > **Nguồn Tư Liệu**: Trích xuất từ Kho dữ liệu [Health, TCM, Energy Medicine, Yoga, Taichi and Qigong](https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9) (299 Tác phẩm & Chuyên luận).
 
+---
 
 ## 1. Tóm Tắt Điều Hành & Mục Tiêu Trị Liệu
 
-Phân tích cấp cao về khái niệm sức khỏe, cơ chế cơ sinh học hoặc nguyên lý Đông Y. *(Sẽ mở rộng từ 299 nguồn grounded của vault.)*
+Khớp vai là khớp có biên độ vận động lớn nhất trong cơ thể người, và chính biên độ đó được đánh đổi bằng sự mất ổn định. Khớp cánh tay — vai (glenohumeral) là khớp chỏm với ổ cắm nông; tính toàn vẹn của nó không dựa vào hình học xương mà dựa vào một hệ thống phối hợp gồm bốn cơ rotator cuff (cơ chóp xoay), nhóm cơ ổn định xương vai (scapula), và hệ cân mạc ngực — thắt lưng — ngực trước. Ở người trưởng thành hiện đại, hệ thống này suy thoái dần theo thời gian ngồi nhiều: cơ ngực và cơ delta trước bị rút ngắn, cơ thang dưới và cơ răng trước bị ức chế hoạt động, cột sống ngực bị khóa trong tư thế gập. Hệ quả là mô hình lâm sàng quen thuộc: đau kiểu chèn ép (impingement), hạn chế đưa tay lên quá đầu, tư thế vai gù về mô mềm, và một khớp vai vừa cứng vừa thiếu ổn định.
 
+Bài viết này kết hợp hai môn luyện tập tác động lên khớp vai từ hai cực của phổ linh hoạt — sức mạnh, nhờ đó bổ khuyết cho nhau một cách chính xác. **Gomukhasana** (Tư Thế Mặt Quỷ — tư thế tay của "Gương Mặt Bò") là thế tay kinh điển của Yoga để mở biên độ cuối phạm vi: một tay vươn lên và ra sau qua vai, tay kia vươn lên từ dưới thắt lưng, hai bàn tay cố gắng chạm nhau giữa hai xương bả vai. Thế tay này kéo giãn cơ tam đầu, cơ lưng rộng (latissimus dorsi), cơ ngực và bao khớp dưới của bên tay trên, đồng thời thách thức xoay ngoài của khớp vai tay đưa lên. **Thức Phòng (Peng 掤)** là thế thức đầu tiên và nền tảng trong Mười Ba Thế của Thái Cực Quyền: một khung tay tròn, căng như lò xo, trong đó cánh tay trở thành một mặt cầu phồng căng của lực căng mô liên kết — xương bả vai được neo giữ, khuỷu tay lơ lửng dưới cổ tay, toàn bộ kết cấu được chống đỡ từ mặt đất qua cột sống thay vì bị nhấc lên bằng cơ delta.
 
-## 2. Lý Luận Đông Y & Y Học Năng Lượng
+Sự kết hợp này là chính xác về mặt cơ học. Gomukhasana mua lại *biên độ*; Peng dạy *kết cấu* để biến biên độ đó thành hữu dụng khi chịu lực. Linh hoạt mà không có Peng tạo ra một khớp vai vận động tự do nhưng sụp đổ khi phải truyền lực. Peng mà không có linh hoạt tạo ra một khung chắc chắn nhưng bị xây trong một phạm vi vận động bị thu hẹp. Khi luyện cùng nhau theo trình tự ở Mục 4, hai bài tập khôi phục điều mà giới cơ sinh học gọi là **nhịp vai — cánh tay (scapulohumeral rhythm)** — sự phối hợp 2:1 chính xác giữa xoay khớp glenohumeral và xoay ngược lên của xương bả vai, cho phép cánh tay nâng trọn vẹn qua đầu mà không kẹp cơ rotator cuff vào dưới mỏm cùng vai (acromion).
 
-Cơ sở cổ truyền: kinh lạc, đồng hồ tạng phủ, ngũ hành, trích dẫn từ vault. *(Sẽ mở rộng.)*
-
-
-## 3. Sinh Lý Cơ Học & Thần Kinh Hiện Đại
-
-Cân mạc, dây thần kinh mê tẩu, biofield, áp điện, khoa học vận động. *(Sẽ mở rộng.)*
-
-
-## 4. Hướng Dẫn Chi Tiết Từng Bước
-
-Số thứ tự bài tập, gợi ý hô hấp và thời gian. *(Sẽ mở rộng.)*
-
-
-## 5. Lỗi Thường Gặp & Giao Thức An Toàn
-
-Bảng Lỗi / Nguyên Nhân / Cách Khắc Phục cùng chống chỉ định. *(Sẽ mở rộng.)*
-
-
-## 6. Sơ Đồ Giải Phẫu & Đặc Tả Hình Ảnh
-
-Đặc tả SVG/đồ họa cho sơ đồ cơ thể chính. *(Sẽ bổ sung.)*
-
-
-## 7. Mã Nhúng Video Minh Họa
-
-Schema nhúng YouTube với thời lượng và nguồn. *(Sẽ bổ sung.)*
-
-
-## 8. Ứng Dụng Liên Ngành
-
-Yoga, Tennis và phục hồi người cao tuổi. *(Sẽ mở rộng.)*
-
-
-## 9. Bảng Tự Đánh Giá & Chỉ Số Tiến Bộ
-
-Bảng Triệu chứng / Biểu hiện / Bài tập phù hợp. *(Sẽ mở rộng.)*
-
-
-## 10. Thẻ Thực Hành Nhanh (In Sổ Tay)
-
-Thẻ Mục tiêu / Hành động / Thời gian. *(Sẽ mở rộng.)*
-
+**Mục tiêu trị liệu trong một câu**: tái xây dựng biên độ vai đầy đủ, đối xứng và chịu được tải bằng cách kết hợp kéo giãn cuối phạm vi (Gomukhasana) với sức mạnh kết cấu đàn hồi (Peng), để khớp vừa có thể mở vừa có thể giữ — điều kiện cơ học tiên quyết cho mọi động tác ném, nâng và với trong đời sống hằng ngày.
 
 ---
 
-*Status: SKELETON — content to be expanded from vault topic 045 (Yoga_Taichi_Synergy). Article spec: 10-section architecture, ~3,500–5,000 words when complete.*
+## 2. Lý Luận Đông Y & Y Học Năng Lượng
+
+### 2.1 Khớp Vai — Điểm Hợp Lưu của Ba Kinh Dương Thủ
+
+Theo giải phẫu cổ truyền, vòng đai vai là nơi ba kinh Dương của tay hội tụ và chuyển hướng:
+
+- **Kinh Đại Trường (Da Chang Jing, 大腸經)** — đi qua vai tại Kiên Ngu (LI15, điểm bám cơ delta) và chạy dọc mặt *ngoài* cánh tay; chủ quản phương diện mở và với của vận động vai.
+- **Kinh Tiểu Trường (Xiao Chang Jing, 小腸經)** — vòng qua xương bả vai qua Kiên Trinh (SI9) và Thiên Tông (SI11, chính giữa bả vai) trước khi đi lên mặt; chủ quản sự trượt của bả vai và mặt "cánh" của vùng lưng trên.
+- **Kinh Tam Tiêu (San Jiao Jing, 三焦經)** — men theo mặt *sau* cánh tay qua Kiên Liêu (TE14, ngay sau khớp vai) rồi lên thái dương; chủ quản bao khớp sau sâu và cơ chế dang tay ngang lên quá đầu.
+
+Kinh thứ tư, Kinh Đởm (GB21, Kiên Tỉnh, tại điểm giữa giữa cổ và đỉnh vai), nằm trên cơ thang phía trên khớp và là vị trí tích tụ căng thẳng kinh điển — những "cục cơ" vai gáy của người làm bàn giấy. Sự ứ trệ tại bốn điểm này biểu hiện lâm sàng đúng thành mô hình mà bài viết điều trị: đau hoặc vướng khi đưa tay qua đầu (vùng LI15/TE14), cứng khi xoay tay ra sau lưng (vùng SI9/SI11), và căng cơ thang mạn tính (GB21).
+
+### 2.2 Ẩn Dụ "Giếng Vai" (Kiên Tỉnh, 肩井)
+
+Tên cổ của GB21 là một bài học: vai là một *cái giếng* — một trục đứng mà năng lượng đi xuống từ đầu xuống thân và đi lên từ cột sống ra tay. Khi giếng bị tắc, phần trên cơ thể bị "đói" phía trên (căng cổ, đau đầu) và cánh tay bị "đói" phía dưới (tay lạnh, lực nắm yếu). Gomukhasana và Peng tác động lên "cái giếng" này từ hai hướng: Gomukhasana *thông giếng* bằng cách giảm nén khớp và kéo dài màng cơ bao phủ; Peng *niêm giếng* bằng cách dạy xương bả vai ngồi đúng chỗ và gánh tải, nhờ đó các cơ xung quanh ngừng siết bù trừ.
+
+### 2.3 Bành (Peng) Trong Kinh Điển
+
+Trong kinh điển Thái Cực, Bành (掤, "Thức Phòng" — đôi khi viết là 棚, "khung/giá đỡ") đứng đầu trong **Mười Ba Thế (Thập Tam Thế, 十三勢)** và được miêu tả là *cảnh* (勁, kình lực đàn hồi đã luyện) mà từ đó bảy cảnh chủ yếu khác được phái sinh. Truyền thuyết *Thái Cực Quyền Luận* mô tả Bành là "vừa không thừa, vừa không thiếu" — một cái lò xo không cứng cũng không nhão. Về mặt năng lượng, Bành là biểu hiện cảm nhận của điện tích Dương trọn vẹn trong cánh tay: chi thể cảm giác phồng, ấm và nổi bồng bềnh, giống như cách quả bóng bơm hơi đè ngược lại bàn tay. Gomukhasana, tác động lên các mặt Âm (cánh tay trong, các tuyến kinh tâm bao và tâm chạy qua vai trước), thông suốt những tắc nghẽn khiến điện tích Dương ấy không thể được cảm nhận đều. Âm mở kinh, Dương đầy kinh — Âm thông thì Dương mới đủ.
+
+---
+
+## 3. Sinh Lý Cơ Học & Thần Kinh Hiện Đại
+
+### 3.1 Nhịp Vai — Cánh Tay: Quy Tắc 2:1
+
+Đưa tay trọn vẹn qua đầu (khoảng 180° dang ngang) không phải là sự kiện của riêng khớp glenohumeral. Đó là một vận động phối hợp trong đó, cứ mỗi 2° nâng cánh tay tại khớp chỏm thì xương bả vai xoay ngược lên 1° — **nhịp vai — cánh tay 2:1** kinh điển, diễn ra qua ba giai đoạn:
+
+1. **0–30° (giai đoạn đặt chỗ)**: chủ yếu tại khớp glenohumeral; xương bả vai tự xếp khớp vào lồng ngực.
+2. **30–90°**: nhịp được thiết lập; bả vai xoay ngược lên trong khi xương cánh tay dang ngang, nhờ cặp động tác phối hợp của cơ delta giữa, cơ trên gai (supraspinatus), cơ thang trên và cơ răng trước.
+3. **90–180°**: xoay tiếp diễn, xương cánh tay xoay ngoài để đưa củ lớn (greater tuberosity) qua dưới mỏm cùng vai, và bên thân đối diện kéo dài sang ngang cho những độ cuối.
+
+Khi cơ ngực, cơ lưng rộng hoặc bao khớp dưới bị rút ngắn — sự rút ngắn thích nghi của đời sống ngồi nhiều — giai đoạn 2 bị chặn: bả vai không thể xoay, xương cánh tay cứ tiếp tục nâng một mình và gân cơ trên gai bị nén vào dưới mỏm cùng vai. Đây chính là chữ ký cơ học của phần lớn "chèn ép vai". Gomukhasana trực tiếp kéo dài ba cấu trúc làm chặn nhịp này (cơ ngực lớn/nhỏ, cơ lưng rộng, bao khớp dưới); Peng rèn cặp cơ (cơ răng trước + cơ thang dưới) dẫn động giai đoạn 2 và 3.
+
+### 3.2 Cơ Học Tay Trong Gomukhasana
+
+Ở tư thế tay đầy đủ, tay trên vận động dang ngang kèm xoay ngoài ở cuối phạm vi; tay dưới vận động duỗi kèm xoay trong ở cuối phạm vi. Đây là kéo giãn *tương hỗ*: trong khi bên tay trên giãn bao khớp dưới và cơ lưng rộng, bên tay dưới giãn cơ ngực và cơ delta trước. Mỗi cánh tay do đó vừa cho vừa nhận biên độ, và tư thế này là một trong số ít thế tay huy động xoay trong của vai ra sau lưng — vận động mất sớm nhất trong viêm bao khớp dính (adhesive capsulopathy) và là vận động cần thiết nhất cho công việc đời thường (thắt dây an toàn, với túi sau quần, săn sơ mi vào quần).
+
+### 3.3 Peng Là Kết Cấu Chống Đỡ Của Màng Cơ
+
+Peng được hiểu đúng nhất theo ngôn ngữ hiện đại là **căng tư thế đàn hồi qua trung gian màng cơ**. Khung tay tròn căng trước đường tay trước nông và đường tay sau sâu (theo thuật ngữ Anatomy Trains) thành một vòng cung liên tục, giống lò xo, từ đầu ngón tay đến bàn chân đối diện. Ba đặc điểm phân biệt nó với kiểu "gồng cơ":
+
+- **Truyền lực từ mặt đất**: điểm tựa của khung là sàn nhà; cơ delta và cổ giữ yên lặng vì tải được mang bởi chỉnh trục xương và lực căng màng cơ, không phải bởi co cơ liên tục.
+- **Đàn hồi bật lại**: áp một lực nhẹ lên khung Peng đúng sẽ tạo phản lực mềm, đều — lò xo, không phải tường, cũng không phải gối.
+- **Neo giữ bả vai**: xương bả vai được cơ răng trước kéo nhẹ ra trước và hạ xuống, để hố glenoid "quay mặt" về hướng lực tới và đầu xương cánh tay giữ trung tâm — chính sự căn giữa này bảo vệ rotator cuff khi chịu tải.
+
+Về thần kinh sinh lý, các thế giữ chậm ở cuối phạm vi (Gomukhasana) kích hoạt phanh tự chủ — áp chế giao cảm làm giảm trương lực cơ nghỉ thông qua giảm dẫn động gamma — trong khi vận động chậm nhịp nhàng dưới tải nhẹ (luyện chu kỳ Peng) đào tạo bản đồ cảm giác sâu của khớp glenohumeral, cải thiện đồng co phản xạ ổn định rotator cuff trước khi phản ứng ý thức kịp xảy ra.
+
+---
+
+## 4. Hướng Dẫn Chi Tiết Từng Bước
+
+**Kiến trúc buổi tập (tổng 25–30 phút)**: khởi động → chuỗi tay Gomukhasana (linh hoạt) → luyện khung Peng (sức mạnh/kết cấu) → chu trình kết hợp → kết thúc. Trình tự này là điều kiện: mở biên độ trước, sau đó dạy biên độ mới mở mang được tải.
+
+### Bài A — Khởi Động: Vòng Vai & Sóng Bả Vai (3 phút)
+
+1. Đứng hai song song, đầu gối mềm. Thả tay tự nhiên. **Hít** (4 nhịp): xoay hai vai ra sau và lên phía tai. **Thở** (6 nhịp): xoay ra sau, xuống, và hết vòng. 6 chu kỳ.
+2. Sóng bả vai: nhấc hai bả vai lên cao tối đa (2 nhịp), ép hai bả vai sát nhau phía sau (2 nhịp), ép xuống và tách ra (2 nhịp). 4 chu kỳ, rồi đảo chiều.
+3. Vung tay: vung tay nhẹ xuyên trước ngực rồi mở ra, để quán tính (không phải lực gồng) tăng dần biên độ qua 10 lần vung.
+
+### Bài B — Chuỗi Tay Gomukhasana (8 phút; 4 phút mỗi bên)
+
+**Chuẩn bị**: ngồi bắt chéo chân hoặc ngồi ghế, cột sống thẳng, hai mỏm ngồi bám sàn. (Tư thế chân Gomukhasana đầy đủ — xếp chồng hai gối — là tùy chọn, không bắt buộc để đạt lợi ích cho vai.)
+
+1. **Tay phải lên**: đưa tay phải thẳng qua đầu. **Hít** khi nâng (4 nhịp). Gập khuỷu để bàn tay phải hạ ra sau lưng trên, lòng bàn tay hướng ra ngoài giữa hai bả vai. Khuỷu hướng lên trời, sát tai — tránh khuỷu văng ra ngang.
+2. **Tay trái xuống**: **Thở** (6 nhịp): xoay trong cánh tay trái và đưa ra sau lưng từ dưới lên, gập khuỷu để bàn tay trái trèo lên giữa hai bả vai, lòng bàn tay hướng ra ngoài (xa lưng), các ngón chỉ lên.
+3. **Nối hai tay**: cố bắt chéo hai bàn tay, hoặc giữ một dây/khăn giữa hai tay. **Thở 8 chu kỳ chậm tại đây** (4 nhịp vào, 6 nhịp ra), mỗi lần thở ra cho vai tan thêm một chút khỏi tai. Không cho xương sườn trước bung ra — hình dung các cung sườn trước được "kéo khóa" xuống về phía mào chậu.
+4. **Vi-pulse**: mỗi lần hít, nhẹ nhàng đẩy khuỷu tay trên ra sau và lên 1–2 cm; mỗi lần thở, thả sâu hơn vào tư thế kéo giãn. Không bật nhẩy; pulse — giữ — tan.
+5. **Đổi bên**: thả chậm, lắc tay 3 nhịp thở, lặp lại bên kia. *Hãy kỳ vọng bất đối xứng*: một bên có thể cách bên kia 5–15 cm trên dây. Đây là dữ kiện chẩn đoán (Mục 9), không phải thất bại.
+6. **Kiểm tra cổ**: nếu xuất hiện tê bì ở ngón tay, giảm biên độ ngay lập tức — cảm giác kéo phải nằm ở vai, không được giật vào đám rối cánh tay.
+
+### Bài C — Luyện Khung Peng (8 phút)
+
+**Peng Một Tay (Đứng)**
+
+1. Đứng thế Vô Cực (Wu Chi): hai chân rộng bằng vai, gối mềm, đỉnh đầu hướng lên (Bá Hội, GV20), cụt lưng thả, trọng tâm đè đều trên Dũng Tuyền (K1).
+2. **Hít** (4 nhịp): dời 60% trọng tâm sang chân phải và nâng cánh tay phải lên như nhấc một quả cầu nước ấm — lòng bàn tay hướng ngực, khuỷu thấp hơn cổ tay, cổ tay thấp hơn vai. Cẳng tay cong thành một mái vòm nhẹ; nách ôm một quả trứng tưởng tượng (không kẹp chặt).
+3. **Thở** (6 nhịp): ấn tay về trước 2 cm vào một mặt cầu vô hình trong khi bàn tay trái nổi lên đỡ dưới khuỷu phải. Cảm nhận khung: cổ tay tròn, các ngón sống động và hơi tách (ngón sen), bả vai ôm về trước để chạm mặt cầu.
+4. **Thử lực lò xo**: chủ động đẩy vào mặt cầu và cảm nhận nó đẩy lại đều. Nếu cảm giác cứng, giảm công 30%; nếu sụp, nâng đỉnh đầu và rễ cụt lưng. Giữ 30 giây rồi đổi bên. 4 hiệp mỗi bên.
+
+**Peng Khung Đôi (Ôm Cầu)**
+
+5. Hai tay tạo thành hai nửa của một mặt cầu trước ngực (tư thế tay "ôm cây" kinh điển với tỷ lệ Thái Cực: khuỷu trầm, cổ tay nổi). **Thở 10 chu kỳ chậm**, quét tìm căng ở cơ thang (vùng GB21) và chủ động thả xuống về khuỷu. 2 phút.
+
+**Chu Kỳ Peng (Rèn Nhịp)**
+
+6. Từ khung đôi, **hít** (6 nhịp): mở hai tay ra ngoài và hơi lên, như chim chậm rãi xòe cánh — không vượt quá tầm vai. **Thở** (6 nhịp): khép trở lại thành mặt cầu. 8 chu kỳ. Đây là rèn nhịp vai — cánh tay dưới tải nhẹ, sống động — chính kỹ năng mà Gomukhasana đã mở biên độ cho.
+
+### Bài D — Chu Trình Kết Hợp: Gomukhasana Mở, Peng Đầy (5 phút)
+
+7. Giữ thế tay Gomukhasana (hoặc dây) 5 nhịp thở ở bên cứng hơn.
+8. Thả trực tiếp vào 10 giây Peng Khung Đôi.
+9. Lặp 3 vòng. Sự tương phản này dạy hệ thần kinh bài học cốt lõi: *biên độ và kết cấu là một kỹ năng duy nhất.* Kết thúc bằng hai tay thả xuôi và 9 nhịp thở hoành.
+
+**Liều lượng**: toàn bộ giao thức 4–5 ngày mỗi tuần; riêng Bài C (5 phút) là mức tối thiểu hằng ngày hợp lệ vào những ngày bận.
+
+---
+
+## 5. Lỗi Thường Gặp & Giao Thức An Toàn
+
+| Lỗi | Nguyên Nhân | Cách Khắc Phục Cơ Học & Năng Lượng |
+| :--- | :--- | :--- |
+| **Xương sườn trước bung ra trong Gomukhasana** (biên độ giả) | Gập thắt lưng bù trừ cho hạn chế của vai | Kéo khóa cung sườn trước xuống; ấn nhẹ cột sống thắt lưng về phía tường sau; chấp nhận khoảng bắt tay ngắn hơn |
+| **Khuỷu tay trên văng ra ngang** | Xoay ngoài yếu; cơ lưng rộng chiếm thế | Giữ khuỷu sát tai; đặt khối yoga chống khuỷu làm "hàng rào" cảm giác |
+| **Cổ vươn về phía tay trên** | Cổ đốt sống cổ bù trừ cho cứng bả vai | Kéo dài gáy; hình dung viên bi dưới cằm, cầm hơi nhẹ |
+| **Tê hoặc dị cảm ở ngón tay** | Kéo quá mức đám rối cánh tay | Giảm biên độ ngay; lùi 20%; mục tiêu kéo là bao khớp và cơ, không phải thần kinh |
+| **Giữ Peng bằng cách nhấc vai** | Cơ delta/thang thế chỗ cho lực căng màng cơ | Trầm bả vai (thả vùng GB21); hình dung bả vai như chiếc xe trượt trượt êm trên lồng ngực |
+| **Khung Peng sụp hoặc cứng** | Hiểu Peng hoặc là nhả lực hoặc là gồng cơ | Hiệu chỉnh bằng phép thử bóng bãi biển: phản lực đều, đàn hồi; giảm công hoặc nâng kết cấu tương ứng |
+| **Khuỷu kẹp chặt nách** | Mất "quả trứng nách" | Mở lại hố nách — các kinh Âm của tay đi qua đó; kẹp chặt là chặn dòng năng lượng mà Peng dựa vào |
+| **Nín thở trong các thế giữ** | Sự chú ý bị kéo giãn tiêu thụ | Đếm nhịp thở thành tiếng nếu cần; nếu hơi thở không chậm và bằng mũi, tư thế đã quá mạnh |
+
+**Chống chỉ định & giao thức an toàn**: đứt rotator cuff cấp tính hoặc phẫu thuật vai gần đây — chỉ luyện dưới hướng dẫn lâm sàng; viêm bao khớp dính ("vai đóng băng") — làm việc sâu trong phạm vi không đau và tiến triển chậm, tuyệt không vào đau nhói; bệnh đĩa đệm cổ — giữ đầu trung tính trong mọi động tác qua đầu; cao huyết áp chưa kiểm soát — tránh giữ tĩnh đảo kéo dài trên tầm tim; mọi đau nhói, kẹt hoặc kiểu điện giật — dừng cả buổi tập, không chỉ động tác đó. Quy tắc vận hành cho cả hai bài: **cho phép cảm giác kéo giãn, không bao giờ cho phép đau khớp.**
+
+---
+
+## 6. Sơ Đồ Giải Phẫu & Đặc Tả Hình Ảnh
+
+```
+            [ Tay trên: dang ngang + xoay ngoài ]
+              khuỷu hướng trời, tay ra sau lưng trên
+              |  (kéo giãn: bao khớp dưới, cơ lưng rộng, tam đầu)
+ [ Đỉnh đầu GV20 ] --- cột sống thẳng --- [ sườn kéo khóa xuống ]
+              ^  (tay dưới với từ dưới lên:
+                 duỗi + xoay trong ->
+                 kéo giãn cơ ngực lớn/nhỏ, delta trước)
+   [ CẤU HÌNH CHỮ X GOMUKHASANA giữa hai bả vai ]
+
+ KHUNG PENG (nhìn trước):      đỉnh vai (LI15) — yên lặng
+   o  cổ tay (cao nhất)              |
+  /   khuỷu (trầm, dưới cổ tay)   +--+--+--+
+ /    lòng tay hướng mặt cầu      | BẢ VAI  |  <- ôm về trước,
+ mặt cầu đẩy lại đàn hồi          | neo giữ |     glenoid căn giữa
+    đất -> cột sống -> tay = một vòng cung +-------+
+```
+
+*Hình 1.1: Hai kiến trúc vai. Gomukhasana là một chữ X bắt chéo sau lưng trên — kéo giãn tương hỗ ở cuối phạm vi. Peng là một mái vòm trước ngực — khung chống đỡ đàn hồi chịu tải. Kết hợp: mở, rồi giữ.*
+
+**Đặc tả SVG cho đồ họa trang web**: sơ đồ hai khung. Khung trái: hình ngồi nghiêng, hai tay ở cấu hình Gomukhasana, vùng chữ X giữa hai bả vai tô xanh dương lạnh (kéo giãn Âm), mũi tên chỉ xoay ngoài tay trên và xoay trong tay dưới. Khung phải: hình đứng trong thế Peng một tay, cánh tay vẽ thành vòng cung vàng với vạch gạch lò xo, bả vai tô hổ phách với mũi tên căn giữa tại hố glenoid, "quả trứng nách" là vòng tròn nét đứt. Chú giải chung: xanh dương = kéo giãn (Âm), hổ phách = chống đỡ đàn hồi (Dương). Hoạt ảnh xung nhẹ tại các điểm khớp vai tần số 0,8 Hz để đồng bộ với quy ước sơ đồ kinh lạc của trang.
+
+---
+
+## 7. Mã Nhúng Video Minh Họa
+
+```html
+<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe src="https://www.youtube-nocookie.com/embed/CdgV28SrV9g"
+          title="Gomukhasana and Peng Ward Off"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </iframe>
+</div>
+<p><em>Video: Linh hoạt khớp vai — Tư Thế Mặt Quỷ gặp Thức Phòng (Peng).</em></p>
+```
+
+**Hướng dẫn xem slow-motion**: xem ba chuyển cảnh ở tốc độ 0,5× — (1) khuỷu tay trên giữ sát tai trong lúc bàn tay hạ ra sau lưng (nơi phần lớn người luyện mất xoay ngoài); (2) khoảnh khắc bắt tay hoặc nắm dây, nơi xương sườn có xu hướng bung; (3) khung Peng tiếp nhận một cú đẩy nhẹ — phải thấy bả vai giữ yên trong khi cánh tay nhường rồi bật lại. Nếu cơ thang trèo lên trong cú đẩy, khung đang là cơ bắp, không phải màng cơ.
+
+---
+
+## 8. Ứng Dụng Liên Ngành
+
+- **Tích hợp Yoga**: tư thế tay Gomukhasana kết hợp tự nhiên với thế tay Garudasana (Đại Bàng) theo các ngày xen kẽ — một thế mở xoay ngoài + xoay trong ở cuối phạm vi, thế kia xây kiểm soát cuối phạm vi. Cài thế giữ Gomukhasana giữa chuỗi đứng và bài trên sàn, khi cơ thể đã ấm nhưng chưa mệt.
+- **Luyện form Thái Cực**: Peng là "khung lắng nghe" của mọi chuyển thế. Người luyện khôi phục biên độ qua đầu đầy đủ nhờ Gomukhasana thường thấy Tả/Hữu Bành, Lãm Tước Vĩ và Bạch Hạc Lượng Sở trở nên tròn trịa hơn trong vòng hai tuần, vì vai ngừng vi-sụp ở giữa phạm vi.
+- **Giao luyện Tennis**: cú giao bóng và cú smash đòi hỏi chính xác vị trí tay trên của Gomukhasana (xoay ngoài cuối phạm vi) cộng chính xác cấu trúc Peng (neo bả vai dưới tải). Vận động viên thiên về vai nên coi Mục 4 là duy trì hằng tuần, không phải phục hồi chức năng.
+- **Phục hồi người cao tuổi**: toàn bộ giao thức chuyển về ghế được — Gomukhasana với khăn (khoảng dây ngắn hơn) và Peng ngồi với hai bàn chân áp sàn. Peng Khung Đôi ngồi 2 phút mỗi ngày cải thiện đo được khả năng với qua đầu (việc lấy đồ trên kệ cao), một trong những chỉ báo mạnh nhất của sinh hoạt độc lập.
+- **Bơi và các môn vợt nói chung**: sự cân bằng xoay trong/ngoài tương hỗ của thế tay này chỉnh lại mất cân bằng "vai vận động viên bơi" kinh điển (cơ xoay trong phát triển quá mức, bao khớp sau rút ngắn).
+
+---
+
+## 9. Bảng Tự Đánh Giá & Chỉ Số Tiến Bộ
+
+| Triệu chứng / Dấu hiệu | Biểu hiện Cơ Sinh Học | Bài Tập Phù Hợp |
+| :--- | :--- | :--- |
+| Không bắt chéo được tay sau lưng một bên | Thiếu hụt xoay trong bất đối xứng (bên tay dưới) | Gomukhasana 4 phút/ngày bên ngắn + leo khăn (mỗi nhịp thở leo lên 1 cm dọc cột sống) |
+| Đau hoặc vướng ở đỉnh cú đưa tay qua đầu | Nhịp vai — cánh tay chặn ở giai đoạn 2; có thể nén dưới mỏm cùng | Sóng bả vai + chu kỳ Peng trước mọi động tác qua đầu; tránh tăng tải trên ngưỡng đau |
+| Cục cơ thang giữa buổi chiều | Ứ trệ GB21; delta/thang trên thế chỗ cho kết cấu | Peng Khung Đôi 2 phút, 3 lần/ngày, chủ động trầm bả vai |
+| Tay sụp khi bị đẩy (bài test cùng người) | Không có Peng màng cơ; khung là cơ bắp hoặc không tồn tại | Phép thử lò xo Peng mỗi ngày; giảm công 30%, nâng đỉnh đầu, 4 tuần |
+| Với dây an toàn/túi sau quần bị cứng | Thiếu hụt kết hợp xoay trong + duỗi | Thế tay dưới Gomukhasana giữ 8 nhịp mỗi sáng |
+| Tay lạnh kèm cứng vai | Dòng kinh Âm tay bị chắn tại hố nách | Mở lại "quả trứng nách" trong Peng; thêm vung tay trong khởi động |
+
+**Chỉ số tiến bộ cần ghi hằng tuần**: (1) khoảng cách dây giữa hai tay trong Gomukhasana, cả hai bên (mục tiêu: chênh ≤ 5 cm và thu hẹp dần); (2) tầm với qua đầu không đau trên tường (đánh dấu và ghi ngày); (3) chất lượng phép thử lò xo Peng theo thang 1–5 do một người khác đánh giá; (4) chiều cao tầm với khi ngồi (người cao tuổi). Thay đổi đo được xuất hiện sau 3–4 tuần; khôi phục trọn nhịp vai cần 8–12 tuần.
+
+---
+
+## 10. Thẻ Thực Hành Nhanh (In Sổ Tay)
+
+> 🎯 **Mục tiêu**: Khôi phục biên độ vai đầy đủ, đối xứng, chịu tải trong 25 phút.
+> 🧘 **Tư thế**: Cột sống thẳng, mỏm ngồi bám sàn (Gomukhasana); thế Vô Cực (Peng). Đỉnh đầu hướng lên, vai tan khỏi tai.
+> ⏱️ **Thời điểm**: Bất kỳ thời điểm nào trong ngày; đặc giá trị trước hoạt động qua đầu hoặc sau các phiên làm việc dài tại bàn. 4–5 ngày mỗi tuần.
+> 📍 **Điểm Neo**: Chữ X giữa hai bả vai (Gomukhasana) và mặt cầu trước ngực (Peng).
+> 🔁 **Chu trình**: Vòng vai khởi động (3 phút) → tay Gomukhasana 8 nhịp/bên (8 phút) → Peng một tay + khung đôi + chu kỳ (8 phút) → chu trình mở — đầy ×3 (5 phút) → 9 nhịp thở kết.
+> ⚖️ **Quy tắc**: Cho phép cảm giác kéo giãn, không bao giờ đau khớp. Lò xo — không phải tường, không phải gối.
+
+*Nguồn: Kho dữ liệu Health, TCM, Energy Medicine, Yoga, Taichi & Qigong (299 nguồn grounded).*
