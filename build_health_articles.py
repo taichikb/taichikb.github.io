@@ -591,6 +591,106 @@ ARTICLES = [
         "title": "Phục Hồi Kiệt Sức: Yoga Phục Hồi và Đứng Trụ", "subtitle": "TaichiKB Health Article VI-50 · Yoga, Thái Cực, Giãn Cơ",
         "crosslink": "/en/articles/en/articles/restorative-yoga-zhan-zhuang/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
     },
+    {
+        "md": "en/articles/EN-051-Nervous_System-parasympathetic-shift.md", "out": "en/articles/parasympathetic-shift", "lang": "en",
+        "title": "Parasympathetic Shift: From Fight-or-Flight to Rest-and-Digest", "subtitle": "TaichiKB Health Article EN-51 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/doi-giao-cam/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-051-Nervous_System-parasympathetic-shift.md", "out": "vi/articles/doi-giao-cam", "lang": "vi",
+        "title": "Kích Hoạt Hệ Thần Kinh Đối Giao Cảm: Thoát Khỏi Căng Thẳng", "subtitle": "TaichiKB Health Article VI-51 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/parasympathetic-shift/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-052-Nervous_System-interoception-slow-movement.md", "out": "en/articles/interoception-slow-movement", "lang": "en",
+        "title": "Interoception: Internal Body Awareness Through Slow Movement", "subtitle": "TaichiKB Health Article EN-52 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/cam-nhan-noi-tai/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-052-Nervous_System-interoception-slow-movement.md", "out": "vi/articles/cam-nhan-noi-tai", "lang": "vi",
+        "title": "Cảm Nhận Nội Tại (Interoception) Qua Chuyển Động Chậm", "subtitle": "TaichiKB Health Article VI-52 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/interoception-slow-movement/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-053-Nervous_System-proprioception-fall-prevention.md", "out": "en/articles/proprioception-fall-prevention", "lang": "en",
+        "title": "Proprioception Re-calibration for Fall Prevention in Seniors", "subtitle": "TaichiKB Health Article EN-53 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/phong-te-nga/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-053-Nervous_System-proprioception-fall-prevention.md", "out": "vi/articles/phong-te-nga", "lang": "vi",
+        "title": "Proprioception: Phòng Ngừa Té Ngã Ở Người Cao Tuổi", "subtitle": "TaichiKB Health Article VI-53 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/proprioception-fall-prevention/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-054-Nervous_System-yi-dao-qi-dao-focus.md", "out": "en/articles/yi-dao-qi-dao-focus", "lang": "en",
+        "title": "The Mind Directs the Qi (Yi Dao Qi Dao): Cognitive Focus Science", "subtitle": "TaichiKB Health Article EN-54 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/y-dao-khi-dao/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-054-Nervous_System-yi-dao-qi-dao-focus.md", "out": "vi/articles/y-dao-khi-dao", "lang": "vi",
+        "title": "Ý Đáo Khí Đáo: Khoa Học Của Việc Dùng Ý Dẫn Khí", "subtitle": "TaichiKB Health Article VI-54 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/yi-dao-qi-dao-focus/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-055-Nervous_System-cortisol-reduction-15min.md", "out": "en/articles/cortisol-reduction-15min", "lang": "en",
+        "title": "Cortisol Reduction Protocols Through Daily 15-Minute Practices", "subtitle": "TaichiKB Health Article EN-55 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/giam-cortisol/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-055-Nervous_System-cortisol-reduction-15min.md", "out": "vi/articles/giam-cortisol", "lang": "vi",
+        "title": "Giảm Cortisol Nhờ 15 Phút Tập Luyện Hằng Ngày", "subtitle": "TaichiKB Health Article VI-55 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/cortisol-reduction-15min/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-056-Nervous_System-hrv-coherent-breathing.md", "out": "en/articles/hrv-coherent-breathing", "lang": "en",
+        "title": "Heart Rate Variability (HRV) Optimization via Coherent Breathing", "subtitle": "TaichiKB Health Article EN-56 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/hrv-hit-tho-dong-dieu/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-056-Nervous_System-hrv-coherent-breathing.md", "out": "vi/articles/hrv-hit-tho-dong-dieu", "lang": "vi",
+        "title": "Tối Ưu HRV Nhờ Hít Thở Đồng Điệu", "subtitle": "TaichiKB Health Article VI-56 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/hrv-coherent-breathing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-057-Nervous_System-somatic-experiencing-trauma.md", "out": "en/articles/somatic-experiencing-trauma", "lang": "en",
+        "title": "Somatic Experiencing: Releasing Trauma Stored in Muscle Tissue", "subtitle": "TaichiKB Health Article EN-57 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/giai-phong-chan-thuong/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-057-Nervous_System-somatic-experiencing-trauma.md", "out": "vi/articles/giai-phong-chan-thuong", "lang": "vi",
+        "title": "Giải Phóng Căng Thắng Lưu Trữ Trong Mô Cơ", "subtitle": "TaichiKB Health Article VI-57 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/somatic-experiencing-trauma/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-058-Nervous_System-brain-waves-alpha-theta.md", "out": "en/articles/brain-waves-alpha-theta", "lang": "en",
+        "title": "Brain Wave Entrainment: Alpha and Theta States in Taichi Motion", "subtitle": "TaichiKB Health Article EN-58 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/song-nao-alpha-theta/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-058-Nervous_System-brain-waves-alpha-theta.md", "out": "vi/articles/song-nao-alpha-theta", "lang": "vi",
+        "title": "Sóng Não Alpha & Theta Trong Chuyển Động Thái Cực", "subtitle": "TaichiKB Health Article VI-58 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/brain-waves-alpha-theta/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-059-Nervous_System-neuroplasticity-adult-motor.md", "out": "en/articles/neuroplasticity-adult-motor", "lang": "en",
+        "title": "Neuroplasticity and Motor Skill Acquisition in Adults", "subtitle": "TaichiKB Health Article EN-59 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/neuroplasticity-nguoi-lon/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-059-Nervous_System-neuroplasticity-adult-motor.md", "out": "vi/articles/neuroplasticity-nguoi-lon", "lang": "vi",
+        "title": "Neuroplasticity Ở Người Trưởng Thành Tập Võ", "subtitle": "TaichiKB Health Article VI-59 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/neuroplasticity-adult-motor/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-060-Nervous_System-kinesiophobia-joint-injury.md", "out": "en/articles/kinesiophobia-joint-injury", "lang": "en",
+        "title": "Overcoming Movement Fear (Kinesiophobia) After Joint Injuries", "subtitle": "TaichiKB Health Article EN-60 · Mind-Body, Neuroscience",
+        "crosslink": "/vi/articles/vi/articles/vuot-qua-so-van-dong/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-060-Nervous_System-kinesiophobia-joint-injury.md", "out": "vi/articles/vuot-qua-so-van-dong", "lang": "vi",
+        "title": "Vượt Qua Nỗi Sợ Vận Động Sau Chấn Thương Khớp", "subtitle": "TaichiKB Health Article VI-60 · Thần Kinh, Tâm-Thân",
+        "crosslink": "/en/articles/en/articles/kinesiophobia-joint-injury/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
 ]
 
 def read_base_template(lang):
@@ -735,6 +835,11 @@ def article_css():
 .video-embed { margin: 1.5em 0; }
 .vault-note { text-align: center; font-size: .9em; color: var(--muted,#777); }
 article p { margin: .8em 0; }
+nav.pn { display: flex; gap: 10px; margin: 2em 0 0; flex-wrap: wrap; }
+nav.pn a { padding: 8px 14px; border: 1px solid var(--border,#ddd); border-radius: 8px; text-decoration: none; color: var(--fg,#222); font-size: .9em; }
+nav.pn a.pn-home { background: var(--accent,#8b2635); color: #fff; border-color: var(--accent,#8b2635); font-weight: 600; }
+nav.pn a.pn-prev { margin-right: auto; }
+nav.pn a.pn-next { margin-left: auto; }
 article ol, article ul { margin: .8em 0 .8em 1.4em; }
 article li { margin: .35em 0; }
 </style>
@@ -746,6 +851,29 @@ def build_article(a):
     # strip front matter
     md = re.sub(r'^---\n.*?\n---\n', '', md, count=1, flags=re.S)
     body_html = md_to_html(md)
+    # sequential prev/home/next nav within the Health section (same language, built pages)
+    import os as _os
+    same_lang = [x for x in ARTICLES if x["lang"] == a["lang"]]
+    pos = same_lang.index(a)
+    nav_home = "/health/" if a["lang"] == "en" else "/vi/health/"
+    nav_home_label = "⌂ Health Home" if a["lang"] == "en" else "⌂ Mục Lục — Sức Khỏe"
+    prev_html = next_html = ""
+    if a["lang"] == "en":
+        lbl_prev, lbl_next = "\u2190 Previous", "Next \u2192"
+    else:
+        lbl_prev, lbl_next = "\u2190 B\u00e0i tr\u01b0\u1edbc", "B\u00e0i sau \u2192"
+    if pos > 0:
+        prev_a = same_lang[pos - 1]
+        prev_dir = REPO_ROOT / prev_a["out"]
+        if (prev_dir / "index.html").exists():
+            prev_html = f'<a class="pn-prev" href="/{prev_a["out"]}/">{lbl_prev}</a>'
+    if pos + 1 < len(same_lang):
+        next_a = same_lang[pos + 1]
+        next_dir = REPO_ROOT / next_a["out"]
+        if (next_dir / "index.html").exists():
+            next_html = f'<a class="pn-next" href="/{next_a["out"]}/">{lbl_next}</a>'
+    nav_html = f'<nav class="page-nav pn"><a href="{nav_home}" class="pn-home">{nav_home_label}</a>{prev_html}{next_html}</nav>'
+
     lang_sw = f'<a class="lang-switch" href="{a["crosslink"]}">{a["crosslabel"]}</a>'
     vault = f'<a href="{VAULT_URL}" target="_blank" rel="noopener">299 grounded sources</a>'
     main = f"""<main class="health-article" role="main">
@@ -758,6 +886,7 @@ def build_article(a):
         <p>{lang_sw}</p>
     </header>
     {body_html}
+    {nav_html}
     <footer class="page-footer">
         <p><a href="/{a["lang"]}/">← Back to {a["lang"].upper()} Home</a></p>
     </footer>
