@@ -191,6 +191,106 @@ ARTICLES = [
         "crosslink": "/en/articles/tongue-pulse-self-assessment/",
         "crosslabel": "🇬🇧 English",
     },
+    {
+        "md": "en/articles/EN-011-Neigong_Energy-lower-dantian-cultivation.md", "out": "en/articles/lower-dantian-cultivation", "lang": "en",
+        "title": "Lower Dantian Cultivation: Anchoring Energy in Movement", "subtitle": "TaichiKB Health Article EN-011 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/ha-dan-dien-tu-khi/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-011-Neigong_Energy-lower-dantian-cultivation.md", "out": "vi/articles/ha-dan-dien-tu-khi", "lang": "vi",
+        "title": "Phương Pháp Tụ Khí Hạ Đan Điền Trong Vận Động", "subtitle": "TaichiKB Health Article VI-011 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/lower-dantian-cultivation/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-012-Neigong_Energy-microcosmic-orbit-meditation.md", "out": "en/articles/microcosmic-orbit-meditation", "lang": "en",
+        "title": "Microcosmic Orbit Meditation: Unlocking the Spinal Channel", "subtitle": "TaichiKB Health Article EN-012 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/tieu-chu-thien/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-012-Neigong_Energy-microcosmic-orbit-meditation.md", "out": "vi/articles/tieu-chu-thien", "lang": "vi",
+        "title": "Vòng Tiểu Chu Thiên: Khai Thông Mạch Nhâm Đốc", "subtitle": "TaichiKB Health Article VI-012 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/microcosmic-orbit-meditation/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-013-Neigong_Energy-biofield-physiology.md", "out": "en/articles/biofield-physiology", "lang": "en",
+        "title": "Biofield Physiology: Modern Biophysics Meets Energy Medicine", "subtitle": "TaichiKB Health Article EN-013 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/sinh-hoc-truong-biofield/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-013-Neigong_Energy-biofield-physiology.md", "out": "vi/articles/sinh-hoc-truong-biofield", "lang": "vi",
+        "title": "Sinh Học Trường Biofield: Cầu Nối Giữa Y Học Hiện Đại và Năng Lượng", "subtitle": "TaichiKB Health Article VI-013 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/biofield-physiology/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-014-Neigong_Energy-three-cavities-alignment.md", "out": "en/articles/three-cavities-alignment", "lang": "en",
+        "title": "The Three Cavities: Skull, Thorax, and Pelvic Alignments", "subtitle": "TaichiKB Health Article EN-014 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/dinh-truc-3-khang/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-014-Neigong_Energy-three-cavities-alignment.md", "out": "vi/articles/dinh-truc-3-khang", "lang": "vi",
+        "title": "Định Trục 3 Khang: Định Tâm Đầu, Lồng Ngực và Khung Chậu", "subtitle": "TaichiKB Health Article VI-014 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/three-cavities-alignment/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-015-Neigong_Energy-internal-heat-tummo-neigong.md", "out": "en/articles/internal-heat-tummo-neigong", "lang": "en",
+        "title": "Internal Heat Generation (Tummo & Neigong Principles)", "subtitle": "TaichiKB Health Article EN-015 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/sinh-nhiet-noi-boi/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-015-Neigong_Energy-internal-heat-tummo-neigong.md", "out": "vi/articles/sinh-nhiet-noi-boi", "lang": "vi",
+        "title": "Nguyên Lý Sinh Nhiệt Nội Bội Của Nội Công và Khí Công", "subtitle": "TaichiKB Health Article VI-015 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/internal-heat-tummo-neigong/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-016-Neigong_Energy-inner-smile-stress-vitality.md", "out": "en/articles/inner-smile-stress-vitality", "lang": "en",
+        "title": "Transforming Stress into Vitality: The Inner Smile Technique", "subtitle": "TaichiKB Health Article EN-016 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/nu-cuoi-noi-tam/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-016-Neigong_Energy-inner-smile-stress-vitality.md", "out": "vi/articles/nu-cuoi-noi-tam", "lang": "vi",
+        "title": "Chuyển Hóa Căng Thắng Thành Năng Lượng Qua Nụ Cười Nội Tâm", "subtitle": "TaichiKB Health Article VI-016 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/inner-smile-stress-vitality/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-017-Neigong_Energy-six-healing-sounds-liu-zi-jue.md", "out": "en/articles/six-healing-sounds-liu-zi-jue", "lang": "en",
+        "title": "The Six Healing Sounds (Liu Zi Jue) for Detoxification", "subtitle": "TaichiKB Health Article EN-017 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/luc-tu-khi-cong/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-017-Neigong_Energy-six-healing-sounds-liu-zi-jue.md", "out": "vi/articles/luc-tu-khi-cong", "lang": "vi",
+        "title": "Lục Tự Khí Công: 6 Âm Thanh Chữa Lành Ngũ Tạng", "subtitle": "TaichiKB Health Article VI-017 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/six-healing-sounds-liu-zi-jue/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-018-Neigong_Energy-fascial-energy-transmission.md", "out": "en/articles/fascial-energy-transmission", "lang": "en",
+        "title": "Fascial Energy Transmission: Collagen Networks as Bio-Conductors", "subtitle": "TaichiKB Health Article EN-018 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/can-mac-dan-truyen-nang-luong/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-018-Neigong_Energy-fascial-energy-transmission.md", "out": "vi/articles/can-mac-dan-truyen-nang-luong", "lang": "vi",
+        "title": "Mạng Lưới Cân Mạc: Kênh Dẫn Truyền Năng Lượng Tự Nhiên", "subtitle": "TaichiKB Health Article VI-018 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/fascial-energy-transmission/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-019-Neigong_Energy-bone-marrow-washing-xi-sui-jing.md", "out": "en/articles/bone-marrow-washing-xi-sui-jing", "lang": "en",
+        "title": "Bone Marrow Washing (Xi Sui Jing) Fundamentals", "subtitle": "TaichiKB Health Article EN-019 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/tay-tuy-kinh/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-019-Neigong_Energy-bone-marrow-washing-xi-sui-jing.md", "out": "vi/articles/tay-tuy-kinh", "lang": "vi",
+        "title": "Tẩy Tủy Kinh: Phương Pháp Dưỡng Tủy và Tái Tạo Tế Bào", "subtitle": "TaichiKB Health Article VI-019 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/bone-marrow-washing-xi-sui-jing/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-020-Neigong_Energy-shielding-emotional-energy.md", "out": "en/articles/shielding-emotional-energy", "lang": "en",
+        "title": "Shielding Emotional Energy: Maintaining Boundary and Center", "subtitle": "TaichiKB Health Article EN-020 · Internal Alchemy, Energy Medicine, Neigong",
+        "crosslink": "/vi/articles/vi/articles/bao-ve-truong-nang-luong/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-020-Neigong_Energy-shielding-emotional-energy.md", "out": "vi/articles/bao-ve-truong-nang-luong", "lang": "vi",
+        "title": "Bảo Vệ Trường Năng Lượng Cá Nhân Trước Tác Động Ngoại Cảnh", "subtitle": "TaichiKB Health Article VI-020 · Nội Công, Y Học Năng Lượng",
+        "crosslink": "/en/articles/en/articles/shielding-emotional-energy/", "crosslabel": "🇬🇧 English",
+    },
 ]
 
 def read_base_template(lang):
