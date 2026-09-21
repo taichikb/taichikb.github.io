@@ -391,6 +391,106 @@ ARTICLES = [
         "title": "Khí Công An Thần: Cân Bằng Cảm Xúc và Cải Thiện Giấc Ngủ", "subtitle": "TaichiKB Health Article VI-30 · Khí Công, Dưỡng Tạng",
         "crosslink": "/en/articles/en/articles/heart-qigong-sleep/", "crosslabel": "🇬🇧 English",
     },
+    {
+        "md": "en/articles/EN-031-Taichi_Biomechanics-ground-reaction-yongquan.md", "out": "en/articles/ground-reaction-yongquan", "lang": "en",
+        "title": "Ground Reaction Force: Rooting Energy Through the Yongquan Point", "subtitle": "TaichiKB Health Article EN-31 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/luc-phan-hoi-dung-tuyen/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-031-Taichi_Biomechanics-ground-reaction-yongquan.md", "out": "vi/articles/luc-phan-hoi-dung-tuyen", "lang": "vi",
+        "title": "Lực Phản Hồi Từ Mặt Đất: Cắm Rễ Qua Huyệt Dũng Tuyền", "subtitle": "TaichiKB Health Article VI-31 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/ground-reaction-yongquan/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-032-Taichi_Biomechanics-kua-integration-hip.md", "out": "en/articles/kua-integration-hip", "lang": "en",
+        "title": "Kua Integration: Opening and Closing the Hip Joint", "subtitle": "TaichiKB Health Article EN-32 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/kha-hop-vung-hang/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-032-Taichi_Biomechanics-kua-integration-hip.md", "out": "vi/articles/kha-hop-vung-hang", "lang": "vi",
+        "title": "Mở và Đóng Khai Hợp Vùng Háng (Kua) Trong Di Chuyển", "subtitle": "TaichiKB Health Article VI-32 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/kua-integration-hip/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-033-Taichi_Biomechanics-chan-si-gong-spiral.md", "out": "en/articles/chan-si-gong-spiral", "lang": "en",
+        "title": "Silk-Reeling (Chan Si Gong): Spiral Dynamics of the Extremities", "subtitle": "TaichiKB Health Article EN-33 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/tran-thi-trien-ty-cong/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-033-Taichi_Biomechanics-chan-si-gong-spiral.md", "out": "vi/articles/tran-thi-trien-ty-cong", "lang": "vi",
+        "title": "Trần Thị Triền Ty Công: Động Học Xoắn Ốc Của Tay Chân", "subtitle": "TaichiKB Health Article VI-33 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/chan-si-gong-spiral/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-034-Taichi_Biomechanics-baihui-crown-suspension.md", "out": "en/articles/baihui-crown-suspension", "lang": "en",
+        "title": "Suspension from the Crown (Baihui): Gravity Neutralization", "subtitle": "TaichiKB Health Article EN-34 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/treo-dinh-dau-bach-hoi/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-034-Taichi_Biomechanics-baihui-crown-suspension.md", "out": "vi/articles/treo-dinh-dau-bach-hoi", "lang": "vi",
+        "title": "Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thắng Trọng Lực", "subtitle": "TaichiKB Health Article VI-34 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/baihui-crown-suspension/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-035-Taichi_Biomechanics-song-relaxation-vs-sagging.md", "out": "en/articles/song-relaxation-vs-sagging", "lang": "en",
+        "title": "Song (Relaxation) vs. Sagging: Functional Structural Integrity", "subtitle": "TaichiKB Health Article EN-35 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/tung-song-tha-long/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-035-Taichi_Biomechanics-song-relaxation-vs-sagging.md", "out": "vi/articles/tung-song-tha-long", "lang": "vi",
+        "title": "Thả Lỏng (Tùng - Sōng) Khác Với Bẹp Cấu Trúc Khung Xương", "subtitle": "TaichiKB Health Article VI-35 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/song-relaxation-vs-sagging/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-036-Taichi_Biomechanics-pelvic-bowl-low-stances.md", "out": "en/articles/pelvic-bowl-low-stances", "lang": "en",
+        "title": "Pelvic Bowl Stabilization in Low Stances", "subtitle": "TaichiKB Health Article EN-36 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/khung-chau-ha-the/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-036-Taichi_Biomechanics-pelvic-bowl-low-stances.md", "out": "vi/articles/khung-chau-ha-the", "lang": "vi",
+        "title": "Ổn Định Vùng Khung Chậu Trong Các Tư Thế Hạ Thấp", "subtitle": "TaichiKB Health Article VI-36 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/pelvic-bowl-low-stances/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-037-Taichi_Biomechanics-knee-alignment-acl-safety.md", "out": "en/articles/knee-alignment-acl-safety", "lang": "en",
+        "title": "Knee Alignment Rules: Preventing Shear Stress and ACL Damage", "subtitle": "TaichiKB Health Article EN-37 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/bao-ve-khop-goi/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-037-Taichi_Biomechanics-knee-alignment-acl-safety.md", "out": "vi/articles/bao-ve-khop-goi", "lang": "vi",
+        "title": "Bảo Vệ Khớp Gối: Quy Tắc Tránh Lệch Trục và Đau Khớp", "subtitle": "TaichiKB Health Article VI-37 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/knee-alignment-acl-safety/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-038-Taichi_Biomechanics-spine-coiling-yang-chen.md", "out": "en/articles/spine-coiling-yang-chen", "lang": "en",
+        "title": "Spine Coiling and Uncoiling in Yang and Chen Styles", "subtitle": "TaichiKB Health Article EN-38 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/xoan-cot-song-duong-tran/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-038-Taichi_Biomechanics-spine-coiling-yang-chen.md", "out": "vi/articles/xoan-cot-song-duong-tran", "lang": "vi",
+        "title": "Kỹ Thuật Xoắn Cột Sống Trong Thái Cực Quyền Dương Thị & Trần Thị", "subtitle": "TaichiKB Health Article VI-38 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/spine-coiling-yang-chen/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-039-Taichi_Biomechanics-chen-jian-zhui-zhou.md", "out": "en/articles/chen-jian-zhui-zhou", "lang": "en",
+        "title": "Shoulders Sinking and Elbows Dropping (Chen Jian Zhui Zhou)", "subtitle": "TaichiKB Health Article EN-39 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/tram-vai-truy-cho/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-039-Taichi_Biomechanics-chen-jian-zhui-zhou.md", "out": "vi/articles/tram-vai-truy-cho", "lang": "vi",
+        "title": "Trầm Vai Trụy Chỏ (Trầm Kiên Trụy Trữu): Giảm Tải Cổ Vai Gáy", "subtitle": "TaichiKB Health Article VI-39 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/chen-jian-zhui-zhou/", "crosslabel": "🇬🇧 English",
+    },
+    {
+        "md": "en/articles/EN-040-Taichi_Biomechanics-kinetic-chain-no-tension.md", "out": "en/articles/kinetic-chain-no-tension", "lang": "en",
+        "title": "Kinetic Chain Continuity: Force Generation Without Muscular Tension", "subtitle": "TaichiKB Health Article EN-40 · Taichi, Biomechanics",
+        "crosslink": "/vi/articles/vi/articles/chuoi-dong-hoc-lien-tuc/", "crosslabel": "🇻🇳 Tiếng Việt",
+    },
+    {
+        "md": "vi/articles/VI-040-Taichi_Biomechanics-kinetic-chain-no-tension.md", "out": "vi/articles/chuoi-dong-hoc-lien-tuc", "lang": "vi",
+        "title": "Chuỗi Động Học Liên Tục: Phát Lực Không Dùng Cơ Bắp Thô", "subtitle": "TaichiKB Health Article VI-40 · Thái Cực Quyền, Cơ Sinh Học",
+        "crosslink": "/en/articles/en/articles/kinetic-chain-no-tension/", "crosslabel": "🇬🇧 English",
+    },
 ]
 
 def read_base_template(lang):
