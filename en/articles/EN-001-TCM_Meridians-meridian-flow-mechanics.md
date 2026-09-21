@@ -161,15 +161,15 @@ Six of the twelve channels either originate in, pass through, or connect to the 
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/demo_meridian_tracing"
-          title="12 Meridian Tracing Technique - Step-by-Step"
+  <iframe src="https://www.youtube-nocookie.com/embed/mDpoaxkyRT4"
+          title="Tracing Meridians: Energy Exercise (full sequence)"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video 1.1: Master Demonstration of the 12 Meridian Full-Body Tracing Drill (Duration: 12m 45s).</em></p>
+<p><em>Video 1.1: Tracing Meridians — Energy Exercise, full sequence (Free Flow with Kaity).</em></p>
 ```
 
 **Slow-motion study guide**: watch the hand-offs at 0.5× speed — thumb-to-index (LU→LI), pinky-to-pinky-edge (HT→SI), middle-to-ring (PC→TB), fourth-to-big toe (GB→LV). These four micro-transitions are where practitioners lose the thread of the circuit.

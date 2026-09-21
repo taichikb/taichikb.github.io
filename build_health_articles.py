@@ -168,8 +168,9 @@ def article_css():
 .data-table th { background: var(--accent,#8b2635); color: #fff; text-align: left; padding: 8px 12px; }
 .data-table td { border: 1px solid var(--border,#ddd); padding: 8px 12px; vertical-align: top; }
 .dark-mode .data-table td { border-color: #3a3a3a; }
-.code-block { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; padding: 14px 16px; overflow-x: auto; font-size: .88em; line-height: 1.5; margin: 1.2em 0; }
-.video-container { margin: 1.5em 0; }
+.code-block { background: #181818; color: #f0f0f0; border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 14px 16px; overflow-x: auto; font-size: .88em; line-height: 1.5; margin: 1.2em 0; }
+.code-block pre, .code-block code { color: #f0f0f0 !important; background: transparent !important; margin: 0; }
+.video-embed { margin: 1.5em 0; }
 .vault-note { text-align: center; font-size: .9em; color: var(--muted,#777); }
 article p { margin: .8em 0; }
 article ol, article ul { margin: .8em 0 .8em 1.4em; }

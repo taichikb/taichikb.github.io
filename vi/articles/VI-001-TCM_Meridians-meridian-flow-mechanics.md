@@ -161,15 +161,15 @@ Sáu trong mười hai kinh khởi nguồn tại, đi qua hoặc nối vào khoa
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/demo_meridian_tracing_vi"
-          title="Hướng dẫn chi tiết vuốt 12 Kinh Lạc - Thầy Khí Công Trị Liệu"
+  <iframe src="https://www.youtube-nocookie.com/embed/uwSuPiF5NEY"
+          title="Cách nhớ 12 đường kinh chính - Y học cổ truyền"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video 1.1: Hướng dẫn thực hành khơi thông 12 Kinh Lạc (Thời lượng: 12 phút 45 giây).</em></p>
+<p><em>Video 1.1: Cách nhớ 12 đường kinh chính — Y học cổ truyền (ThS. Trần Thanh Trung).</em></p>
 ```
 
 **Hướng dẫn xem slow-motion**: xem các điểm bàn giao ở tốc độ 0,5× — ngón cái sang ngón trỏ (Phế→Đại Trường), út tay sang mép út (Tâm→Tiểu Trường), ngón giữa sang đeo tay (Tâm Bao→Tam Tiêu), ngón thứ tư sang ngón cái chân (Đởm→Can). Bốn vi chuyển tiếp này là chỗ người tập mất mạch bài.
