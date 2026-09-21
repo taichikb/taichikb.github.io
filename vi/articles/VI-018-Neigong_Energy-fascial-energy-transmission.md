@@ -174,15 +174,15 @@ Thuật ngữ cổ **Truy Tư Kính** (纏絲勁, kính quấn tơ tằm) — v�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/oSa6KbosJS0"
+          title="Introduction to Anatomy Trains"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Introduction to Anatomy Trains (Anatomy Trains).</em></p>
 ```
 
 **Hướng dẫn xem slow-motion**: xem các chuyển tiếp ở tốc độ 0,5× và bỏ qua đôi tay hoàn toàn — theo dõi ba thứ thay thế: (1) khi nào trọng tâm chuyển xong xuống chân trụ (neo nền của vòng cuộn), (2) khi nào eo xoay so với hai vai (điểm giữa của xoắn), và (3) khi nào các ngón tay cuối cùng duỗi ra (sóng về đích). Trong mọi lần thực hiện tốt, trật tự đó cố định: chân → eo → tay. Tay đi trước ở bất kỳ đâu, chuyển động đó là của cơ, không phải của cân mạc.

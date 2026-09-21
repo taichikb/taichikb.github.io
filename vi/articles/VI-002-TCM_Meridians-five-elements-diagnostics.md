@@ -191,15 +191,15 @@ Chọn một bài luyện hiệu chỉnh từ bảng dưới cho Hành bị cờ
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/aQN_H1LmI34"
+          title="The Chinese Five Elements Explained | Learn Chinese Now"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: The Chinese Five Elements Explained | Learn Chinese Now (Learn Chinese Now).</em></p>
 ```
 
 **Hướng dẫn xem slow-motion**: xem ở tốc độ 0,5× để chú ý các *chuyển tiếp*, không phải các động tác. Trong chuỗi 12 kinh, giá trị chẩn đoán nằm ở các *khúc quanh* — chỗ trọng tâm dồn hẳn sang một chân, chỗ hai tay đảo hướng, chỗ hơi thở ra chạm đáy. Ba vi-sự kiện này là chỗ sự co cứng đặc trưng của mỗi Hành bộc lộ: người Mộc kẹt ở chuyển trọng tâm (khớp Kua cứng), người Hỏa vội khúc quanh (không bao giờ thở ra hết), người Thổ sụp thân (mất trục giữa), người Kim giữ vai, người Thủy rơi đỉnh đầu. Quay lại chính mình và xem 0,5× đối chiếu danh sách này đã là một phiên chẩn đoán.

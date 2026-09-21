@@ -156,15 +156,15 @@ Vỏ não đảo xây dựng mô hình trạng thái nội tạng theo thời gi
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/UmwKQBSwv1k"
+          title="The Zang Fu Organ theory in Chinese Medicine (Part 1)"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: The Zang Fu Organ theory in Chinese Medicine (Part 1) (AcuPro Academy).</em></p>
 ```
 
 **Hướng dẫn nghiên cứu**: xem ở tốc độ 0,5×, chú ý các điểm bàn giao tay trong các giai đoạn tay (Tâm → Tiểu Trường tại ngón út; Phế → Đại Trường tại ngón cái) — đây là những vị trí thể chất nơi Tạng trao kinh cho Phủ đối ứng của mình, và chuỗi bài mục 4 tái sử dụng đúng những điểm bàn giao này. Chú ý hơi thở: mỗi đường quét khớp trọn một chu kỳ hô hấp, chưa bao giờ nửa vời.

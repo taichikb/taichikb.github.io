@@ -182,15 +182,15 @@ A 20-minute daily sequence designed to (a) draw energy downward to the Kidney/Da
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/S8D4JnkJ7Xo"
+          title="What are Jing, Qi, and Shen? Understanding the Three Treasures in 5 Minutes"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: What are Jing, Qi, and Shen? Understanding the Three Treasures in 5 Minutes (Holden QiGong).</em></p>
 ```
 
 **Practice note**: the 12-meridian Qigong flow is an ideal *companion* to the Jing-conservation sequence in Section 4 — the meridian work (EN-001) moves Qi and Blood; the Jing work (this article) replenishes the substrate they circulate. A complete evening session is 12-Meridian Qigong (circulation) followed by Phases 4–5 of the conservation sequence (settling).

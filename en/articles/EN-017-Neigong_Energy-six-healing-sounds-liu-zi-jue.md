@@ -185,15 +185,15 @@ Each sound in the standardized syllabus pairs with a gentle arm movement that st
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/4wr7FBu0LGI"
+          title="Six Healing Sounds Complete Practise - Liu Zi Jue - 六 字 訣"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Six Healing Sounds Complete Practise - Liu Zi Jue - 六 字 訣 (simonblowqigong).</em></p>
 ```
 
 **Slow-motion study guide**: at 0.5× speed, watch three things — (1) whether the mouth shape stays constant from the first to the last second of each exhale (collapse of the shape = exhale target too long); (2) the shoulder blades during arm rises (they should not elevate); (3) the hip hinge in Chui (fold line at the hip crease, not the waist). Practice one sound per session in front of a mirror at slow speed before combining them.

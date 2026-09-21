@@ -168,15 +168,15 @@ This drill has a defensible physiology behind every step: it trains vasomotor se
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/fcJFpk1UoMQ"
+          title="What is The Biofield? Are Biofield Therapies Effective?"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: What is The Biofield? Are Biofield Therapies Effective? (Theosophical Society).</em></p>
 ```
 
 **Viewing guide**: watch the palms throughout — they are held soft and continuous, never rigid. The slow, seamless tempo shown here is the exact mechanical stimulus described in 3.3 (collagen-plane deformation at 1–3 seconds per phase) and the breath-linked rhythm that drives HRV coherence in 3.4. Study the practitioner's transitions at 0.5× speed: the movement never stops, it only changes direction — the electromyographic signature of continuous low-load motor units (Song, 鬆) rather than start-stop ballistic firing.

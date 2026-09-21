@@ -182,7 +182,7 @@ Một chuỗi 20 phút hằng ngày được thiết kế để (a) dẫn năng 
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
+  <iframe src="https://www.youtube-nocookie.com/embed/S8D4JnkJ7Xo"
           title="Khí Công 12 Kinh"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

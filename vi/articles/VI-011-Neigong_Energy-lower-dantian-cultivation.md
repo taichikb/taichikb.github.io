@@ -166,15 +166,15 @@ Khoang bụng được bọc trong các lớp cân liên tục: cân ngang bụn
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/48B5omMTpDc"
+          title="Qigong for the Lower Dan Tian | Part 1 of 3 | Lower Tan Tien Qigong"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Qigong for the Lower Dan Tian | Part 1 of 3 | Lower Tan Tien Qigong (Nick Loffree).</em></p>
 ```
 
 **Hướng dẫn nghiên cứu slow-motion**: xem hạ bụng của người thể hiện ở tốc độ 0.5× trong các lần chuyển trọng lượng và xoay trở. Ba điểm kiểm tra: (1) bụng giữ thấp và nén áp mềm mại — không bao giờ hóp vào hay đẩy ra; (2) lồng ngực giữ yên lặng trong khi khung chậu xoay; (3) giữa các động tác, có một vi-dừng nhìn thấy được trong đó thân thể trầm 1–2 mm — "con dấu" neo giữ. Nếu ngực dậy hay vai nhấc ở bất kỳ điểm chuyển nào, khí đã trôi nổi và neo đã mất; đó chính là khoảnh khắc cần nghiên cứu lại.

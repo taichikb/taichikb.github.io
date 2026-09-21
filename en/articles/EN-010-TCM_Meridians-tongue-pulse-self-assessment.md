@@ -184,15 +184,15 @@ Resting vagal dominance, pre-prandial physiology, and the overnight fasting stat
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/BnpTOivd9vE"
+          title="Tongue Diagnosis in Chinese Medicine"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Tongue Diagnosis in Chinese Medicine (AcuPro Academy).</em></p>
 ```
 
 **Study guide for the video**: use this routine as the intervention arm of the self-check — practice the full 12-meridian circuit daily for two weeks and observe what the morning tongue and pulse do. In classical terms, opening the channels should soften a greasy coating, warm a pale tongue's color, and settle a rapid pulse toward 60–75 bpm; in modern terms, expect vagal-tone (HRV) improvement and steadier resting heart rate. If two weeks of consistent practice moves nothing in your morning readings, the bottleneck is more likely sleep, diet, or stress than the practice itself.

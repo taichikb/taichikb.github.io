@@ -185,15 +185,15 @@ Mỗi âm trong giáo trình chuẩn hóa ghép một động tác tay nhẹ gi�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/4wr7FBu0LGI"
+          title="Six Healing Sounds Complete Practise - Liu Zi Jue - 六 字 訣"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Six Healing Sounds Complete Practise - Liu Zi Jue - 六 字 訣 (simonblowqigong).</em></p>
 ```
 
 **Hướng dẫn xem slow-motion**: ở tốc độ 0,5×, theo dõi ba điểm — (1) hình môi có giữ bất biến từ giây đầu đến giây cuối mỗi hơi thở ra (hình sụp = mục tiêu hơi thở ra dài quá); (2) bướm vai khi nâng tay (không được nhấc lên); (3) khớp gập háng trong âm Xuy (đường gập tại nếp háng, không tại eo). Luyện một âm mỗi buổi trước gương ở tốc độ chậm trước khi ghép trọn bộ.

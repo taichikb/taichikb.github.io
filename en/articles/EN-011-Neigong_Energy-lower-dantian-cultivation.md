@@ -166,15 +166,15 @@ The abdominal cavity is wrapped in continuous fascial sheets: the transversalis 
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/48B5omMTpDc"
+          title="Qigong for the Lower Dan Tian | Part 1 of 3 | Lower Tan Tien Qigong"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Qigong for the Lower Dan Tian | Part 1 of 3 | Lower Tan Tien Qigong (Nick Loffree).</em></p>
 ```
 
 **Slow-motion study guide**: watch the practitioner's lower abdomen at 0.5× speed during weight shifts and turns. Three checkpoints: (1) the belly stays low and softly pressurized — never sucked in or thrust out; (2) the chest stays quiet while the pelvis rotates; (3) between movements, there is a visible micro-pause in which the body sinks 1–2 mm — the anchored "seal." If the chest lifts or the shoulders rise at any transition, the energy has floated and the anchor has been lost; that is the exact moment to re-study.

@@ -166,15 +166,15 @@ Exposure leaves residue in the myofascial shell even when the boundary holds. Th
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/rrHZa6s7UJ4"
+          title="Clear & Protect: Qigong for Emotional Resilience"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Clear & Protect: Qigong for Emotional Resilience (Nick Loffree).</em></p>
 ```
 
 **Study guide**: use this full meridian Qigong routine as the *clearing* layer of the protocol (Section 4.4). Watch at 0.5× speed the segments where the hands travel close to the chest and Heart region — the "He" and "Xu" phases of the routine. Those are the segments that discharge absorbed Heart and Liver residue; performed slowly after a hard day of exposure, they double as the post-exposure clearing session.

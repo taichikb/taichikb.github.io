@@ -207,15 +207,15 @@ The last ~18 days of each season (strongest in Da Shu) belong to Earth/Spleen: h
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/qTrd010vMp8"
+          title="The Twenty-Four Solar Terms, through observation of the sun’s annual motion, in China"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: The Twenty-Four Solar Terms, through observation of the sun’s annual motion, in China (UNESCO).</em></p>
 ```
 
 **How to use the video seasonally**: run the full 12-meridian sequence as written in spring (expansive, moderate pace); in summer, perform it at 80% intensity with double-length exhales; in autumn, pair each exhale with the "Si" intention at the chest phases; in winter, reduce range of motion, keep the sequence, and finish with 3 additional minutes of Dantian standing. One form, four seasonal doses.

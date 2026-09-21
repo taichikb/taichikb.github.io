@@ -175,15 +175,15 @@ All three cavities are dense vagal territories: the dura, the lungs and heart, t
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/NBKq8-gpcoM"
+          title="Song Your Spine | Transform Your Posture Without Stretching"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Song Your Spine | Transform Your Posture Without Stretching (Internal Tai Chi).</em></p>
 ```
 
 **Slow-motion study guide**: watch at 0.5× for three cues that map directly to the cavity stack — (1) whether the performer's crown stays suspended while the arms move (upper cavity sealed), (2) whether the chest stays contained during weight shifts (middle cavity pressure held), and (3) whether the pelvis stays level as the kua opens and closes (lower cavity on-axis). Bama Kim's meridian Qigong keeps all three simultaneously, which is precisely why the routine looks effortless: the skeleton hangs, the cavities breathe, and the arms are only passengers.

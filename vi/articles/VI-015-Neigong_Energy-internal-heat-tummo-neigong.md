@@ -155,15 +155,15 @@ Nghiên cứu áp điện trên mô liên kết (bài VI-001, mục 3.1) mở r�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/F00PC9UBgkg"
+          title="Herbert Benson - Tummo Inner Fire Meditation"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Herbert Benson - Tummo Inner Fire Meditation (SHARE:Sharing Humanity-Arts,Reflection,Expression).</em></p>
 ```
 
 **Hướng dẫn xem video**: dùng trình tự 12 kinh Khí Công này làm *khởi động* trước giao thức nhiệt — năm phút mở các kinh để hơi ấm sinh ra tại rốn có đường lớn để đi. Xem phần xoắn bụng dẫn lưng ở tốc độ 0,5×: cùng cú massage tạng phủ mà trình tự tạo ra một cách động chính là điều bình tức tạo ra một cách tĩnh. Người tập xen kẽ hai phép (Khí Công ngày lẻ, tọa luyện nhiệt ngày chẵn) ghi nhận tốc độ phát triển cảm nhận nhanh nhất.

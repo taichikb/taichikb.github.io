@@ -184,8 +184,8 @@ Trạng thái nghỉ bình sáng với ưu thế mê tẩu, sinh lý trước ă
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/BnpTOivd9vE"
+          title="Tongue Diagnosis in Chinese Medicine"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen

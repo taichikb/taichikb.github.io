@@ -175,15 +175,15 @@ Cả ba khang đều là lãnh địa dày đặc thụ cảm mê tẩu: màng c
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/NBKq8-gpcoM"
+          title="Song Your Spine | Transform Your Posture Without Stretching"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Song Your Spine | Transform Your Posture Without Stretching (Internal Tai Chi).</em></p>
 ```
 
 **Hướng dẫn xem slow-motion**: xem ở tốc độ 0,5× để bắt ba chi tiết ánh xạ trực tiếp lên chồng tầng tam khang — (1) đỉnh đầu người diễn có giữ treo khi hai tay chuyển động (khang thượng bịt kín), (2) ngực có giữ ôm khi đổi trọng tâm (áp suất khang trung được giữ), và (3) khung chậu có nằm ngang khi khoa mở–khép (khang hạ đúng trục). Khí Công mạch kinh của Bama Kim giữ cả ba đồng thời — đây chính là lý do bài quyền trông không tốn công sức: bộ xương treo, các khang thở, và đôi tay chỉ là hành khách.

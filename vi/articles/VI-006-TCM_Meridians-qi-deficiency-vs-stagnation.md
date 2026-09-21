@@ -207,15 +207,15 @@ Xoắn ốc kéo-tơ là chuyển động khai trệ đỉnh cao: vắt kiệt t
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/OZ-Sttv6OXY"
+          title="How to Move Stagnant Qi - w/Jeffrey Chand"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: How to Move Stagnant Qi - w/Jeffrey Chand (Qigong For Vitality).</em></p>
 ```
 
 **Hướng dẫn xem slow-motion**: với chương trình hư, xem hai động "cầm nâng" (Hai Tay Cầm Trời; Điều Lý Tỳ Vị Đơn Cử) ở tốc độ 0,5× — yếu tố trị liệu nằm ở *khoảnh dừng ở điểm duỗi tối đa*, nơi Khí được nâng và giữ, không phải tốc độ nâng. Với chương trình trệ, xem thắt lưng trong các bài cuộn: xoắn ốc phải khởi phát từ Mệnh Môn (hông lưng dưới) và lan ra ngoài, vai → khuỷu → tay. Nếu tay dẫn trước và thắt lưng theo sau, bài tập biến thành thể dục tay và đánh mất trọn hiệu quả khai trệ.

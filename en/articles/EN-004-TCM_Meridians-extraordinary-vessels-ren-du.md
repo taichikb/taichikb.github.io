@@ -181,15 +181,15 @@ The Microcosmic Orbit drill (Section 4) is a closed-loop interoception task: att
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/YDEH3xWq9II"
+          title="Governing and Conception (Du Mai & Ren Mai) Vessels Exercises #chinesemedicine #energy #healing"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Governing and Conception (Du Mai & Ren Mai) Vessels Exercises #chinesemedicine #energy #healing (Suzanne Yates - Wellmother).</em></p>
 ```
 
 **Study guide**: use the video to observe the two things the orbit requires of moving practice: (1) the spine never locks — watch how the sacrum and lumbar region stay mobile in every transition, which is the moving-practice version of keeping Mingmen open; (2) the front line stays soft — watch the chest and abdomen at every arm raise; if the chest rises and locks, the Ren Mai descent is being blocked. Watch once at normal speed for the sequence, once at 0.5× speed for the sacrum and chest specifically.

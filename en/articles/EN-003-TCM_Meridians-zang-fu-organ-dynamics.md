@@ -156,15 +156,15 @@ The insular cortex builds a real-time model of visceral state from vagal and spi
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/UmwKQBSwv1k"
+          title="The Zang Fu Organ theory in Chinese Medicine (Part 1)"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: The Zang Fu Organ theory in Chinese Medicine (Part 1) (AcuPro Academy).</em></p>
 ```
 
 **Study guide**: at 0.5× speed, watch the hand transitions in the arm phases (Heart → Small Intestine at the pinky; Lung → Large Intestine at the thumb) — these are the physical sites where the Zang hands the channel to its paired Fu, and the sequence in Section 4 reuses exactly these hand-offs. Watch the breath: every sweep matches one full respiratory cycle, never half of one.

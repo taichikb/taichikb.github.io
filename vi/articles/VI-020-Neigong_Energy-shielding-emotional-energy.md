@@ -166,15 +166,15 @@ Tiếp xúc để lại cặn bã trong lớp vỏ cơ – cân ngay cả khi ra
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/rrHZa6s7UJ4"
+          title="Clear & Protect: Qigong for Emotional Resilience"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Clear & Protect: Qigong for Emotional Resilience (Nick Loffree).</em></p>
 ```
 
 **Hướng dẫn học**: dùng bài Qigong toàn kinh lạc này làm lớp *thanh tẩy* của giao thức (Mục 4.4). Xem ở tốc độ 0,5× các đoạn hai tay đi gần vùng ngực và Tâm — các pha "Hha" và "Hư" của bài. Đó là các đoạn xả cặn bã Tâm và Can hấp nhận; thực hiện chậm sau một ngày tiếp xúc nặng, chúng kiêm luôn phiên thanh tẩy sau tiếp xúc.

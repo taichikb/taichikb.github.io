@@ -168,15 +168,15 @@ Mỗi bước của bài tập đều có sinh lý học có thể bảo vệ đ
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/fcJFpk1UoMQ"
+          title="What is The Biofield? Are Biofield Therapies Effective?"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: What is The Biofield? Are Biofield Therapies Effective? (Theosophical Society).</em></p>
 ```
 
 **Hướng dẫn xem**: dõi theo hai lòng bàn tay xuyên suốt — chúng được giữ mềm mại và liên tục, tuyệt không cứng đờ. Nhịp độ chậm rãi, liền mạch được trình bày ở đây chính là kích thích cơ học mô tả ở mục 3.3 (biến dạng mặt phẳng collagen ở 1–3 giây mỗi pha) và nhịp gắn với hơi thở dẫn độ đồng bộ HRV ở mục 3.4. Xem các chuyển tiếp của người thực hành ở tốc độ 0,5×: chuyển động không bao giờ dừng, chỉ đổi hướng — chữ ký điện cơ của đơn vị vận động tải thấp liên tục (Tùng, 鬆) chứ không phải phóng–dừng kiểu đạn đạo.

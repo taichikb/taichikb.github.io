@@ -168,15 +168,15 @@ Stress mạn tính kích hoạt trục HPA: hạ đồi → CRH → ACTH tuyến
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/q2tAXVAP5rA"
+          title="Mantak Chia - Inner Smile Meditation FULL LENGTH"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Mantak Chia - Inner Smile Meditation FULL LENGTH (Michel Sunshine).</em></p>
 ```
 
 **Hướng dẫn nghiên cứu video**: xem phần ổn định tư thế mở đầu ở tốc độ 0,5× — để ý hơi thở đi xuống, hàm mềm, nụ cười khóe mắt hờ. Bài viết ghép bài kinh lạc toàn phần này với phác đồ cười vào tạng ngồi yên ở mục 4: chạy Nụ Cười Nội Tâm trước (dựng nền nghịch giao cảm), rồi Khí Công kinh lạc sau (tuần hoàn phần Khí mà nụ cười vừa thả).

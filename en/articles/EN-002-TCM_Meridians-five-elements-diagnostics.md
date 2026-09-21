@@ -191,15 +191,15 @@ Select one corrective drill from the table below for the top-flagged Element, ru
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/aQN_H1LmI34"
+          title="The Chinese Five Elements Explained | Learn Chinese Now"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: The Chinese Five Elements Explained | Learn Chinese Now (Learn Chinese Now).</em></p>
 ```
 
 **Slow-motion study guide**: watch at 0.5× speed for the segment transitions, not the movements. In the 12-meridian sequence, the diagnostic value lives at the *turns* — where the weight shifts fully to one leg, where the hands reverse direction, and where the exhale bottoms out. Those three micro-events are where an Element's characteristic bracing reveals itself: Wood types stall at the weight shift (hip/kua stiffness), Fire types rush the turn (never completing the exhale), Earth types collapse the torso (losing the central axis), Metal types hold the shoulders, and Water types drop the crown. Watching your own recording at 0.5× against this checklist is itself a diagnostic session.

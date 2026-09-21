@@ -207,15 +207,15 @@ The reeling-silk spiral is the definitive stagnation-clearing movement: it wring
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/OZ-Sttv6OXY"
+          title="How to Move Stagnant Qi - w/Jeffrey Chand"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: How to Move Stagnant Qi - w/Jeffrey Chand (Qigong For Vitality).</em></p>
 ```
 
 **Slow-motion study guide**: for the deficiency program, watch the two "holding up" movements (Two Hands Hold the Heavens; Separate Heaven and Earth) at 0.5× — the therapeutic element is the *pause at full extension*, where Qi is lifted and held, not the speed of the lift. For the stagnation program, watch the waist in the reeling drills: the spiral must originate from the Mingmen (lower back) and propagate outward, shoulder → elbow → hand. If the hands lead and the waist follows, the drill becomes arm-calisthenics and loses its stagnation-clearing effect entirely.

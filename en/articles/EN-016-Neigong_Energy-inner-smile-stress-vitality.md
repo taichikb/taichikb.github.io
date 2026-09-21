@@ -168,15 +168,15 @@ Stress chronically activates the HPA axis: hypothalamus → CRH → pituitary AC
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/IS3KH2qJeKQ"
-          title="12 meridian Qigong"
+  <iframe src="https://www.youtube-nocookie.com/embed/q2tAXVAP5rA"
+          title="Mantak Chia - Inner Smile Meditation FULL LENGTH"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 12 meridian Qigong (Bama Kim).</em></p>
+<p><em>Video: Mantak Chia - Inner Smile Meditation FULL LENGTH (Michel Sunshine).</em></p>
 ```
 
 **Study guide**: watch the opening settling posture at 0.5× speed — note the descending breath, the soft jaw, the faint eye smile. The Inner Smile article pairs this full meridian routine with the seated organ-smile protocol of Section 4: run the Inner Smile first (it sets the parasympathetic tone), then the meridian Qigong (it circulates what the smile has released).
