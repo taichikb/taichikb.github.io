@@ -248,7 +248,7 @@ ARTICLES = [
     },
     {
         "md": "vi/articles/VI-016-Neigong_Energy-inner-smile-stress-vitality.md", "out": "vi/articles/nu-cuoi-noi-tam", "lang": "vi",
-        "title": "Chuyển Hóa Căng Thắng Thành Năng Lượng Qua Nụ Cười Nội Tâm", "subtitle": "TaichiKB Health Article VI-016 · Nội Công, Y Học Năng Lượng",
+        "title": "Chuyển Hóa Căng Thẳng Thành Năng Lượng Qua Nụ Cười Nội Tâm", "subtitle": "TaichiKB Health Article VI-016 · Nội Công, Y Học Năng Lượng",
         "crosslink": "/en/articles/en/articles/inner-smile-stress-vitality/", "crosslabel": "🇬🇧 English",
     },
     {
@@ -378,7 +378,7 @@ ARTICLES = [
     },
     {
         "md": "vi/articles/VI-029-Qigong_Longevity-liver-detox-qigong-stress.md", "out": "vi/articles/khi-cong-giai-doc-gan", "lang": "vi",
-        "title": "Khí Công Giải Độc Gan: Tẩy Trừ Căng Thắng và Nóng Trong", "subtitle": "TaichiKB Health Article VI-29 · Khí Công, Dưỡng Tạng",
+        "title": "Khí Công Giải Độc Gan: Tẩy Trừ Căng Thẳng và Nóng Trong", "subtitle": "TaichiKB Health Article VI-29 · Khí Công, Dưỡng Tạng",
         "crosslink": "/en/articles/en/articles/liver-detox-qigong-stress/", "crosslabel": "🇬🇧 English",
     },
     {
@@ -428,7 +428,7 @@ ARTICLES = [
     },
     {
         "md": "vi/articles/VI-034-Taichi_Biomechanics-baihui-crown-suspension.md", "out": "vi/articles/treo-dinh-dau-bach-hoi", "lang": "vi",
-        "title": "Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thắng Trọng Lực", "subtitle": "TaichiKB Health Article VI-34 · Thái Cực Quyền, Cơ Sinh Học",
+        "title": "Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thẳng Trọng Lực", "subtitle": "TaichiKB Health Article VI-34 · Thái Cực Quyền, Cơ Sinh Học",
         "crosslink": "/en/articles/en/articles/baihui-crown-suspension/", "crosslabel": "🇬🇧 English",
     },
     {
@@ -658,7 +658,7 @@ ARTICLES = [
     },
     {
         "md": "vi/articles/VI-057-Nervous_System-somatic-experiencing-trauma.md", "out": "vi/articles/giai-phong-chan-thuong", "lang": "vi",
-        "title": "Giải Phóng Căng Thắng Lưu Trữ Trong Mô Cơ", "subtitle": "TaichiKB Health Article VI-57 · Thần Kinh, Tâm-Thân",
+        "title": "Giải Phóng Căng Thẳng Lưu Trữ Trong Mô Cơ", "subtitle": "TaichiKB Health Article VI-57 · Thần Kinh, Tâm-Thân",
         "crosslink": "/en/articles/en/articles/somatic-experiencing-trauma/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
     },
     {

@@ -1,5 +1,5 @@
 ---
-title: "Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thắng Trọng Lực"
+title: "Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thẳng Trọng Lực"
 date: 2026-09-21
 author: "TaichiKB Knowledge Base"
 categories: [Thái Cực Quyền, Cơ Sinh Học]
@@ -10,7 +10,7 @@ lang: vi
 layout: doc
 ---
 
-# VI-034: Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thắng Trọng Lực
+# VI-034: Treo Đỉnh Đầu (Bách Hội): Triệt Tiêu Căng Thẳng Trọng Lực
 
 > **Nguồn Tư Liệu**: Trích xuất từ Kho dữ liệu [Health, TCM, Energy Medicine, Yoga, Taichi and Qigong](https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9) (299 Tác phẩm & Chuyên luận).
 

@@ -171,7 +171,7 @@ Two principles distinguish SE from both talk therapy and cathartic "primal" appr
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/FeUioDuJjFI"
           title="Somatic Experiencing Movement"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -179,7 +179,7 @@ Two principles distinguish SE from both talk therapy and cathartic "primal" appr
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: Somatic experiencing — releasing stored tension.</em></p>
+<p><em>Video: TRE™ (Tension & Trauma Releasing Exercises): Full Instructions with Dr. David Berceli (OFFICIAL) (TRE FOR ALL).</em></p>
 ```
 
 **Slow-motion study guide**: watch Phase 4 at 0.5× speed. The critical detail is not the movement but the *pause at the end of each outward push* — one full breath held in softness before returning. Practitioners who miss this pause turn the discharge drill into ordinary exercise; the pause is where the nervous system registers "the threat is over and I am still here."

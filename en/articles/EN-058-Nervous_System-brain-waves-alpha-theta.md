@@ -152,9 +152,9 @@ Breath is the one autonomic function under voluntary control, and its rhythm is 
 
 ## 7. Video Demonstration Schema & Slow-Motion Drill Embeds
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PENDING_VIDEO_ID" title="Alpha Theta in Taichi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CO1TDz-ycCI" title="Alpha Theta in Taichi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-*Caption: Video: Alpha and theta states in Taichi motion.*
+*Caption: Video: Super Focus: Flow State Music - Binaural Alpha Brainwaves ☯ 3D Audio - Improve Concentration (SleepTube - Hypnotic Relaxation).*
 
 **Suggested future content schema**:
 1. *EEG-on-practitioner demonstration* (0:00–4:00) — live alpha increase shown on a portable EEG during slow form.

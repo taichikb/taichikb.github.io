@@ -1,5 +1,5 @@
 ---
-title: "Kích Hoạt Hệ Thần Kinh Đối Giao Cảm: Thoát Khỏi Căng Thắng Cụm"
+title: "Kích Hoạt Hệ Thần Kinh Đối Giao Cảm: Thoát Khỏi Căng Thẳng Cụm"
 date: 2026-09-21
 author: "TaichiKB Knowledge Base"
 categories: [Thần Kinh, Tâm-Thân]
@@ -10,7 +10,7 @@ lang: vi
 layout: doc
 ---
 
-# VI-051: Kích Hoạt Hệ Thần Kinh Đối Giao Cảm: Thoát Khỏi Căng Thắng
+# VI-051: Kích Hoạt Hệ Thần Kinh Đối Giao Cảm: Thoát Khỏi Căng Thẳng
 
 > **Nguồn Tư Liệu**: Trích xuất từ Kho dữ liệu [Health, TCM, Energy Medicine, Yoga, Taichi and Qigong](https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9) (299 Nguồn).
 
@@ -168,7 +168,7 @@ Một round thế chậm của Taichi chồng các đòn bẩy lên nhau: hô h�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/TL-AsBnRfd4"
           title="Luyện Tập Chuyển Đối Giao Cảm"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -167,7 +167,7 @@ Khoa học đau đã hội tụ về mô hình sinh – tâm – xã hội: cư�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/Ozh8-ef4DAk"
           title="Kinesiophobia Recovery"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -175,7 +175,7 @@ Khoa học đau đã hội tụ về mô hình sinh – tâm – xã hội: cư�
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: Overcoming movement fear after joint injuries.</em></p>
+<p><em>Video: How Therapists Can Help Patients Overcome Fear of Movement (Kinesiophobia) (PT Pro Talk Podcast).</em></p>
 ```
 
 **Hướng dẫn nghiên cứu slow-motion**: xem pha chuyển hư–thật (Bậc 3) ở tốc độ 0,5×. Các khoảnh khắc có giá trị dạy: (1) khoảnh khắc gót chân nhận tải — thì thở ra đã phải bắt đầu từ trước; (2) tỷ lệ 70/30 khi khớp gối bị thương đi thẳng theo ngón thứ hai không rung ngang; (3) sự ngừng ở pha chịu tải toàn phần, nơi gương mặt và hơi thở của người tập cho thấy không một chút gồng cứng. Nỗi sợ sống trong khâu chuẩn bị; video minh họa một hệ thần kinh trông ra sao khi khâu chuẩn bị không còn bị đe dọa.

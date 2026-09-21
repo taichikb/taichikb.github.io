@@ -195,7 +195,7 @@ Quan điểm tổng hợp, nhất quán với các nguồn của vault: **mô h�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/tZkWF7H8NsE"
           title="Ý Đáo Khí Đáo"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

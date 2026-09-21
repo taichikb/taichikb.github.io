@@ -175,7 +175,7 @@ Kết luận hội tụ: vận động chậm cộng hô hấp chậm cho kết 
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/VEmoY1b1C-o"
           title="Cortisol Reduction 15 Minutes"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -183,7 +183,7 @@ Kết luận hội tụ: vận động chậm cộng hô hấp chậm cho kết 
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 15-minute cortisol reduction practice.</em></p>
+<p><em>Video: Lower Cortisol Levels Naturally | 4-8 Breathing Exercise (Pocket Breath Coach - Luke Horton).</em></p>
 ```
 
 **Hướng dẫn nghiên cứu slow-motion**: theo dõi ba khoảnh khắc vi mô ở tốc độ 0,5× — (1) bước chuyển tại đỉnh kỳ hít trong Khai Khí Trường: sự chuyển từ dâng sang ấn phải liền mạch, không chớp lấy hơi; (2) bước chuyển trọng tâm trong Vân Thủ: khung chậu dẫn, bàn tay theo, hơi thở không bao giờ gián đoạn; (3) sự đậu vào tĩnh tại Phút 12: đây là nơi căng thẳng nhìn thấy được rời khỏi vai — so sánh từng khung hình qua các tuần thực hành của chính mình.

@@ -197,7 +197,7 @@ Chỉ lên một bậc khi mọi tiêu chuẩn của bậc hiện tại đều �
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/Nh9wy19ixWI"
           title="Proprioception Fall Prevention"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

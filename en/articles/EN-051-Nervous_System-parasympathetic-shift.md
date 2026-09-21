@@ -168,7 +168,7 @@ A single round of slow Taichi form stacks the levers: exhale-first breathing syn
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/TL-AsBnRfd4"
           title="Parasympathetic Shift Practice"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -176,7 +176,7 @@ A single round of slow Taichi form stacks the levers: exhale-first breathing syn
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: Parasympathetic shift — rest and digest practice.</em></p>
+<p><em>Video: How to Turn on The Parasympathetic Response to Calm Anxiety - 22/30 (Therapy in a Nutshell).</em></p>
 ```
 
 **Slow-motion study guide**: watch the exhale phases at 0.5× — the belly should fall smoothly, never collapse; watch the weight shifts in Phase 2 — the head must stay level while the pelvis travels; and in Phase 3, verify the arms *float* rather than lift — elevation driven by the inhale, descent released by the exhale. These three checkpoints separate an autonomic down-shift from ordinary slow exercise.

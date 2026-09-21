@@ -1,5 +1,5 @@
 ---
-title: "Chuyển Hóa Căng Thắng Thành Năng Lượng Qua \"Nụ Cười Nội Tâm\""
+title: "Chuyển Hóa Căng Thẳng Thành Năng Lượng Qua \"Nụ Cười Nội Tâm\""
 date: 2026-09-21
 author: "TaichiKB Knowledge Base"
 categories: [Nội Công, Y Học Năng Lượng]
@@ -10,7 +10,7 @@ lang: vi
 layout: doc
 ---
 
-# VI-016: Chuyển Hóa Căng Thắng Thành Năng Lượng Qua "Nụ Cười Nội Tâm"
+# VI-016: Chuyển Hóa Căng Thẳng Thành Năng Lượng Qua "Nụ Cười Nội Tâm"
 
 > **Nguồn Tư Liệu**: Trích xuất từ Kho dữ liệu [Health, TCM, Energy Medicine, Yoga, Taichi and Qigong](https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9) (299 Tác phẩm & Chuyên luận).
 

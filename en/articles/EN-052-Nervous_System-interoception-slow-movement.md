@@ -128,7 +128,7 @@ The five drills below progress from pure stillness to full slow movement. Each d
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/QaR7Sha8euI"
           title="Interoception Slow Movement"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -136,7 +136,7 @@ The five drills below progress from pure stillness to full slow movement. Each d
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: Interoception training through slow movement.</em></p>
+<p><em>Video: Interoceptive Awareness Body Scan Meditation with Jennie Ross | 40 Minutes (The Hub - Mind Body Solutions).</em></p>
 ```
 
 **Slow-motion study guide**: watch Drill 4 (slow walking) at 0.5× speed and track the loading foot's roll: heel → lateral border → ball → big toe. The interoceptive training point is the *pace* of the roll — the video shows that the visible foot movement is slower than the felt wave of weight; beginners almost always move the foot faster than they feel it. Also watch Drill 3 at 0.5×: the hands should lead from the elbows and the breath should never visibly strain at the top of the arc.

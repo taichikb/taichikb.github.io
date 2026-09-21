@@ -171,11 +171,11 @@ Phác đồ dưới đây là một buổi huấn luyện tính mềm dẻo hoà
 ## 7. Mã Nhúng Video Minh Họa
 
 ```html
-<div class="video-embed" data-video-id="PENDING_VIDEO_ID">
+<div class="video-embed" data-video-id="yJSzy-pSriE">
   <h4>Neuroplasticity Motor Learning</h4>
-  <p><em>Video: Neuroplasticity and motor skill acquisition in adults.</em></p>
+  <p><em>Video: Enhancing Motor Skill Acquisition & Learning | CSCS Ch. 8 (Dr. Jacob Goodin).</em></p>
   <iframe
-    src="https://www.youtube.com/embed/PENDING_VIDEO_ID"
+    src="https://www.youtube.com/embed/yJSzy-pSriE"
     title="Neuroplasticity Motor Learning"
     loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

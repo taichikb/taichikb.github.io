@@ -197,7 +197,7 @@ Advance one stage only when every criterion of the current stage is met on at le
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/Nh9wy19ixWI"
           title="Proprioception Fall Prevention"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -205,7 +205,7 @@ Advance one stage only when every criterion of the current stage is met on at le
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: Proprioception re-calibration for fall prevention.</em></p>
+<p><em>Video: Tai Chi for Fall Prevention | SilverSneakers (SilverSneakers).</em></p>
 ```
 
 **Slow-motion study guide**: watch the weight-transfer drills at 0.5× speed and track three checkpoints: (1) the instant the pressure center crosses the arch — is it smooth or does it "jump" between feet?; (2) the stance knee — does it stay soft through the whole transfer?; (3) the head — level, or does it lean into the moving side? These three deviations account for most of the difference between a graceful transfer and a lurch.

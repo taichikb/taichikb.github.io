@@ -195,7 +195,7 @@ The synthesis position, consistent with the vault's sources: **the classical mod
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/tZkWF7H8NsE"
           title="Yi Dao Qi Dao"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -203,7 +203,7 @@ The synthesis position, consistent with the vault's sources: **the classical mod
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video 5.1: Video: Yi Dao Qi Dao — the mind directs the Qi.</em></p>
+<p><em>Video 5.1: Video: Beyond Root and Structure: Discover Tai Chi's Power of Yi Intention (Phoenix Mountain Tai Chi).</em></p>
 ```
 
 **Slow-motion study guide**: watch the leading hand at 0.5× speed and perform Stage 4 in real time alongside the video — the goal is *simultaneous intentful practice*, not viewing. The moments to study frame-by-frame are the transition points, where attention must pass through the Dantian without the hand hesitating; this is where "attention leads" either becomes visible or collapses into ordinary mechanical movement.

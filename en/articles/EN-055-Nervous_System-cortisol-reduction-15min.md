@@ -175,7 +175,7 @@ The convergent finding: slow movement plus slow breathing outperforms either alo
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/VEmoY1b1C-o"
           title="Cortisol Reduction 15 Minutes"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -183,7 +183,7 @@ The convergent finding: slow movement plus slow breathing outperforms either alo
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
   </iframe>
 </div>
-<p><em>Video: 15-minute cortisol reduction practice.</em></p>
+<p><em>Video: Lower Cortisol Levels Naturally | 4-8 Breathing Exercise (Pocket Breath Coach - Luke Horton).</em></p>
 ```
 
 **Slow-motion study guide**: watch three micro-moments at 0.5× speed — (1) the transition at the top of the inhale in Opening the Qi Field: the turn from rising to pressing should be seamless, without a gulp of air; (2) the weight transfer in Cloud Hands: the pelvis leads, the hands follow, the breath never interrupts; (3) the settling into stillness at Minute 12: this is where visible tension leaves the shoulders — compare frame-by-frame across your own practice weeks.

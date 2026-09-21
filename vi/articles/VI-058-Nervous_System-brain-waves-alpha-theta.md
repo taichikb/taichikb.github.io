@@ -152,7 +152,7 @@ Hơi thở là chức năng tự chủ duy nhất nằm dưới sự điều khi
 
 ## 7. Mã Nhúng Video Minh Họa
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PENDING_VIDEO_ID" title="Alpha Theta in Taichi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CO1TDz-ycCI" title="Alpha Theta in Taichi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 *Chú thích: Video: Trạng thái alpha và theta trong chuyển động Thái Cực.*
 

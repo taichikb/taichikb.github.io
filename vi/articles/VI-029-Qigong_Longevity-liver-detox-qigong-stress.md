@@ -1,5 +1,5 @@
 ---
-title: "Khí Công Giải Độc Gan: Tẩy Trừ Căng Thắng và Nóng Trong"
+title: "Khí Công Giải Độc Gan: Tẩy Trừ Căng Thẳng và Nóng Trong"
 date: 2026-09-21
 author: "TaichiKB Knowledge Base"
 categories: [Khí Công, Dưỡng Tạng]
@@ -10,7 +10,7 @@ lang: vi
 layout: doc
 ---
 
-# VI-029: Khí Công Giải Độc Gan: Tẩy Trừ Căng Thắng và Nóng Trong
+# VI-029: Khí Công Giải Độc Gan: Tẩy Trừ Căng Thẳng và Nóng Trong
 
 > **Nguồn Tư Liệu**: Trích xuất từ Kho dữ liệu [Health, TCM, Energy Medicine, Yoga, Taichi and Qigong](https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9) (299 Tác phẩm & Chuyên luận).
 

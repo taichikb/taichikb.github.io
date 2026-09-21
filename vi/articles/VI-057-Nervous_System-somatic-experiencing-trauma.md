@@ -1,5 +1,5 @@
 ---
-title: "Giải Phóng Căng Thắng Lưu Trữ Trong Mô Cơ Theo Y Học Thần Kinh"
+title: "Giải Phóng Căng Thẳng Lưu Trữ Trong Mô Cơ Theo Y Học Thần Kinh"
 date: 2026-09-21
 author: "TaichiKB Knowledge Base"
 categories: [Thần Kinh, Tâm-Thân]
@@ -10,7 +10,7 @@ lang: vi
 layout: doc
 ---
 
-# VI-057: Giải Phóng Căng Thắng Lưu Trữ Trong Mô Cơ
+# VI-057: Giải Phóng Căng Thẳng Lưu Trữ Trong Mô Cơ
 
 > **Nguồn Tư Liệu**: Trích xuất từ Kho dữ liệu [Health, TCM, Energy Medicine, Yoga, Taichi and Qigong](https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9) (299 Tác phẩm & Chuyên luận).
 
@@ -171,7 +171,7 @@ Hai nguyên tắc phân biệt SE với cả trị liệu nói chuyện lẫn c�
 
 ```html
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe src="https://www.youtube-nocookie.com/embed/PENDING_VIDEO_ID"
+  <iframe src="https://www.youtube-nocookie.com/embed/FeUioDuJjFI"
           title="Somatic Experiencing Movement"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
