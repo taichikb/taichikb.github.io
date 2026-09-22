@@ -791,6 +791,306 @@ ARTICLES = [
         "title": "Điều Hòa Nhịp Thở Cho Người Hay Thở Gấp", "subtitle": "TaichiKB Health Article VI-70 · Hô Hấp, Cơ Hoành",
         "crosslink": "/en/articles/en/articles/hyperventilation-slow-pacing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
     },
+    {
+        "md": "en/articles/EN-071-Joint_Longevity-synovial-fluid-circular-motion.md", "out": "en/articles/synovial-fluid-circular-motion", "lang": "en",
+        "title": "Synovial Fluid Stimulation Through Continuous Circular Motions", "subtitle": "TaichiKB Health Article EN-71 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/dich-khop-chuyen-dong-tron/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-071-Joint_Longevity-synovial-fluid-circular-motion.md", "out": "vi/articles/dich-khop-chuyen-dong-tron", "lang": "vi",
+        "title": "Tăng Cường Dịch Khớp Nhờ Chuyển Động Tròn", "subtitle": "TaichiKB Health Article VI-71 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/synovial-fluid-circular-motion/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-072-Joint_Longevity-cartilage-weight-bearing.md", "out": "en/articles/cartilage-weight-bearing", "lang": "en",
+        "title": "Cartilage Preservation in Weight-Bearing Joints", "subtitle": "TaichiKB Health Article EN-72 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/bao-ve-sun-khop/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-072-Joint_Longevity-cartilage-weight-bearing.md", "out": "vi/articles/bao-ve-sun-khop", "lang": "vi",
+        "title": "Bảo Vệ Sụn Ở Khớp Chịu Lực", "subtitle": "TaichiKB Health Article VI-72 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/cartilage-weight-bearing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-073-Joint_Longevity-ankles-feet-balance-foundation.md", "out": "en/articles/ankles-feet-balance-foundation", "lang": "en",
+        "title": "Ankles and Feet Strengthening: The Foundation of Balance", "subtitle": "TaichiKB Health Article EN-73 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/co-chan-ban-chan-nen-tang/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-073-Joint_Longevity-ankles-feet-balance-foundation.md", "out": "vi/articles/co-chan-ban-chan-nen-tang", "lang": "vi",
+        "title": "Cổ Chân & Bàn Chân: Nền Tảng Giữ Cân Bằng", "subtitle": "TaichiKB Health Article VI-73 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/ankles-feet-balance-foundation/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-074-Joint_Longevity-osteoporosis-dynamic-loading.md", "out": "en/articles/osteoporosis-dynamic-loading", "lang": "en",
+        "title": "Preventing Osteoporosis: Weight-Bearing Dynamic Loading", "subtitle": "TaichiKB Health Article EN-74 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/phong-loang-xuong/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-074-Joint_Longevity-osteoporosis-dynamic-loading.md", "out": "vi/articles/phong-loang-xuong", "lang": "vi",
+        "title": "Phòng Chống Loãng Xương Bằng Tập Chịu Lực", "subtitle": "TaichiKB Health Article VI-74 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/osteoporosis-dynamic-loading/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-075-Joint_Longevity-hip-arthritis-gentle-rotations.md", "out": "en/articles/hip-arthritis-gentle-rotations", "lang": "en",
+        "title": "Hip Arthritis Relief Strategies Using Gentle Taichi Rotations", "subtitle": "TaichiKB Health Article EN-75 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/thoai-hoa-khop-hang/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-075-Joint_Longevity-hip-arthritis-gentle-rotations.md", "out": "vi/articles/thoai-hoa-khop-hang", "lang": "vi",
+        "title": "Giảm Đau Thoái Hóa Khớp Háng Nhờ Xoay Hông Chậm", "subtitle": "TaichiKB Health Article VI-75 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/hip-arthritis-gentle-rotations/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-076-Joint_Longevity-lumbar-decompression-standing.md", "out": "en/articles/lumbar-decompression-standing", "lang": "en",
+        "title": "Lumbar Spine Decompression in Standing and Seated Positions", "subtitle": "TaichiKB Health Article EN-76 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/giai-nen-cot-song/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-076-Joint_Longevity-lumbar-decompression-standing.md", "out": "vi/articles/giai-nen-cot-song", "lang": "vi",
+        "title": "Giải Nén Cột Sống Thắt Lưng", "subtitle": "TaichiKB Health Article VI-76 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/lumbar-decompression-standing/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-077-Joint_Longevity-cervical-safety-neck-crown.md", "out": "en/articles/cervical-safety-neck-crown", "lang": "en",
+        "title": "Cervical Spine Safety: Aligning the Neck and Crown", "subtitle": "TaichiKB Health Article EN-77 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/an-toan-dot-song-co/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-077-Joint_Longevity-cervical-safety-neck-crown.md", "out": "vi/articles/an-toan-dot-song-co", "lang": "vi",
+        "title": "An Toàn Đốt Sống Cổ: Giữ Trục Thẳng Cổ và Đỉnh Đầu", "subtitle": "TaichiKB Health Article VI-77 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/cervical-safety-neck-crown/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-078-Joint_Longevity-fall-recovery-stepping.md", "out": "en/articles/fall-recovery-stepping", "lang": "en",
+        "title": "Fall Recovery Dynamics: Stepping and Catching Equilibrium", "subtitle": "TaichiKB Health Article EN-78 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/phan-ung-tranh-nga/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-078-Joint_Longevity-fall-recovery-stepping.md", "out": "vi/articles/phan-ung-tranh-nga", "lang": "vi",
+        "title": "Phản Ứng Giữ Cân Bằng Tránh Ngã", "subtitle": "TaichiKB Health Article VI-78 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/fall-recovery-stepping/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-079-Joint_Longevity-chair-qigong-seniors.md", "out": "en/articles/chair-qigong-seniors", "lang": "en",
+        "title": "Chair Qigong Protocols for Seniors and Mobility-Limited Individuals", "subtitle": "TaichiKB Health Article EN-79 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/khi-cong-tren-ghe/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-079-Joint_Longevity-chair-qigong-seniors.md", "out": "vi/articles/khi-cong-tren-ghe", "lang": "vi",
+        "title": "Khí Công Trên Ghế Cho Người Cao Tuổi", "subtitle": "TaichiKB Health Article VI-79 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/chair-qigong-seniors/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-080-Joint_Longevity-chronic-pain-fibromyalgia.md", "out": "en/articles/chronic-pain-fibromyalgia", "lang": "en",
+        "title": "Managing Chronic Pain Conditions (Fibromyalgia, Rheumatoid)", "subtitle": "TaichiKB Health Article EN-80 · Joints, Seniors, Balance",
+        "crosslink": "/vi/articles/vi/articles/kiem-soat-dau-man-tinh/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-080-Joint_Longevity-chronic-pain-fibromyalgia.md", "out": "vi/articles/kiem-soat-dau-man-tinh", "lang": "vi",
+        "title": "Kiểm Soát Đau Mạn Tính", "subtitle": "TaichiKB Health Article VI-80 · Khớp, Người Cao Tuổi, Thăng Bằng",
+        "crosslink": "/en/articles/en/articles/chronic-pain-fibromyalgia/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-081-Seasonal_Living-spring-liver-tendon.md", "out": "en/articles/spring-liver-tendon", "lang": "en",
+        "title": "Spring Health: Liver Cleansing and Tendon Stretching", "subtitle": "TaichiKB Health Article EN-81 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/duong-sinh-mua-xuan/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-081-Seasonal_Living-spring-liver-tendon.md", "out": "vi/articles/duong-sinh-mua-xuan", "lang": "vi",
+        "title": "Dưỡng Sinh Mùa Xuân: Nối Can Gan và Giãn Gân Cốt", "subtitle": "TaichiKB Health Article VI-81 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/spring-liver-tendon/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-082-Seasonal_Living-summer-heart-cooling.md", "out": "en/articles/summer-heart-cooling", "lang": "en",
+        "title": "Summer Heat Management: Heart-Nourishing Practices", "subtitle": "TaichiKB Health Article EN-82 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/duong-sinh-mua-he/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-082-Seasonal_Living-summer-heart-cooling.md", "out": "vi/articles/duong-sinh-mua-he", "lang": "vi",
+        "title": "Dưỡng Sinh Mùa Hè: Thanh Nhiệt và Dưỡng Tâm", "subtitle": "TaichiKB Health Article VI-82 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/summer-heart-cooling/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-083-Seasonal_Living-autumn-lung-wei-qi.md", "out": "en/articles/autumn-lung-wei-qi", "lang": "en",
+        "title": "Autumn Wellness: Lung Moisture and Defensive Qi (Wei Qi)", "subtitle": "TaichiKB Health Article EN-83 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/duong-sinh-mua-thu/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-083-Seasonal_Living-autumn-lung-wei-qi.md", "out": "vi/articles/duong-sinh-mua-thu", "lang": "vi",
+        "title": "Dưỡng Sinh Mùa Thu: Nhuận Phế và Tăng Vệ Khí", "subtitle": "TaichiKB Health Article VI-83 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/autumn-lung-wei-qi/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-084-Seasonal_Living-winter-kidney-storage.md", "out": "en/articles/winter-kidney-storage", "lang": "en",
+        "title": "Winter Preservation: Kidney Storage and Deep Zhan Zhuang", "subtitle": "TaichiKB Health Article EN-84 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/duong-sinh-mua-dong/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-084-Seasonal_Living-winter-kidney-storage.md", "out": "vi/articles/duong-sinh-mua-dong", "lang": "vi",
+        "title": "Dưỡng Sinh Mùa Đông: Tàng Ẩn Thận và Trụ Thế Sâu", "subtitle": "TaichiKB Health Article VI-84 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/winter-kidney-storage/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-085-Seasonal_Living-morning-10min-joint-routine.md", "out": "en/articles/morning-10min-joint-routine", "lang": "en",
+        "title": "Morning 10-Minute Wake-Up Routine for Joint Lubrication", "subtitle": "TaichiKB Health Article EN-85 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/khoi-dong-10-phut/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-085-Seasonal_Living-morning-10min-joint-routine.md", "out": "vi/articles/khoi-dong-10-phut", "lang": "vi",
+        "title": "Bài Tập 10 Phút Buổi Sáng Cho Khớp", "subtitle": "TaichiKB Health Article VI-85 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/morning-10min-joint-routine/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-086-Seasonal_Living-midday-desk-qigong-eyes.md", "out": "en/articles/midday-desk-qigong-eyes", "lang": "en",
+        "title": "Mid-day Energy Reset: Desk-Side Qigong and Eye Relief", "subtitle": "TaichiKB Health Article EN-86 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/khi-cong-van-phong/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-086-Seasonal_Living-midday-desk-qigong-eyes.md", "out": "vi/articles/khi-cong-van-phong", "lang": "vi",
+        "title": "Khí Công Văn Phòng & Thư Giãn Mắt", "subtitle": "TaichiKB Health Article VI-86 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/midday-desk-qigong-eyes/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-087-Seasonal_Living-evening-shen-sleep.md", "out": "en/articles/evening-shen-sleep", "lang": "en",
+        "title": "Evening Wind-Down: Calming the Shen Before Sleep", "subtitle": "TaichiKB Health Article EN-87 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/duong-tam-buoi-toi/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-087-Seasonal_Living-evening-shen-sleep.md", "out": "vi/articles/duong-tam-buoi-toi", "lang": "vi",
+        "title": "Dưỡng Tâm Buổi Tối: An Thần Giúp Ngủ Sâu", "subtitle": "TaichiKB Health Article VI-87 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/evening-shen-sleep/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-088-Seasonal_Living-self-tuina-meridian-massage.md", "out": "en/articles/self-tuina-meridian-massage", "lang": "en",
+        "title": "Self-Tui Na Massage for Meridians and Acupoints", "subtitle": "TaichiKB Health Article EN-88 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/tu-xoa-bop-kinh-lac/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-088-Seasonal_Living-self-tuina-meridian-massage.md", "out": "vi/articles/tu-xoa-bop-kinh-lac", "lang": "vi",
+        "title": "Tự Xoa Bóp Vuốt Kinh Lạc và Huyệt Vị", "subtitle": "TaichiKB Health Article VI-88 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/self-tuina-meridian-massage/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-089-Seasonal_Living-hydrotherapy-herbal-foot-baths.md", "out": "en/articles/hydrotherapy-herbal-foot-baths", "lang": "en",
+        "title": "Hydrotherapy and Herbal Foot Baths in TCM Practice", "subtitle": "TaichiKB Health Article EN-89 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/ngam-chan-thao-duoc/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-089-Seasonal_Living-hydrotherapy-herbal-foot-baths.md", "out": "vi/articles/ngam-chan-thao-duoc", "lang": "vi",
+        "title": "Ngâm Chân Thảo Dược Theo Đông Y", "subtitle": "TaichiKB Health Article VI-89 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/hydrotherapy-herbal-foot-baths/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-090-Seasonal_Living-mindful-eating-digestive-qi.md", "out": "en/articles/mindful-eating-digestive-qi", "lang": "en",
+        "title": "Mindful Eating and Digestive Qi Energy Conservation", "subtitle": "TaichiKB Health Article EN-90 · Seasonal Living, Self-Healing",
+        "crosslink": "/vi/articles/vi/articles/an-uong-tinh-thuc/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-090-Seasonal_Living-mindful-eating-digestive-qi.md", "out": "vi/articles/an-uong-tinh-thuc", "lang": "vi",
+        "title": "Ăn Uống Tỉnh Thức và Năng Lượng Tỳ Vị", "subtitle": "TaichiKB Health Article VI-90 · Dưỡng Sinh, Tự Chữa Lành",
+        "crosslink": "/en/articles/en/articles/mindful-eating-digestive-qi/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-091-Tennis_Taichi-weight-transfer-forehand.md", "out": "en/articles/weight-transfer-forehand", "lang": "en",
+        "title": "Biomechanical Transfer: Taichi Weight Transfers for Tennis Forehands", "subtitle": "TaichiKB Health Article EN-91 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/chuyen-trong-luc-forehand/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-091-Tennis_Taichi-weight-transfer-forehand.md", "out": "vi/articles/chuyen-trong-luc-forehand", "lang": "vi",
+        "title": "Chuyển Trọng Lực Thái Cực Cho Cú Forehand", "subtitle": "TaichiKB Health Article VI-91 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/weight-transfer-forehand/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-092-Tennis_Taichi-kinetic-chain-serve-shoulder.md", "out": "en/articles/kinetic-chain-serve-shoulder", "lang": "en",
+        "title": "Kinetic Chain Fluidity: Serving with Less Shoulder Strain", "subtitle": "TaichiKB Health Article EN-92 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/phat-bong-giam-tai-vai/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-092-Tennis_Taichi-kinetic-chain-serve-shoulder.md", "out": "vi/articles/phat-bong-giam-tai-vai", "lang": "vi",
+        "title": "Phát Bóng Giảm Tải Cho Vai", "subtitle": "TaichiKB Health Article VI-92 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/kinetic-chain-serve-shoulder/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-093-Tennis_Taichi-fa-jin-relaxed-core.md", "out": "en/articles/fa-jin-relaxed-core", "lang": "en",
+        "title": "Explosive Release (Fa Jin) Supported by Relaxed Core", "subtitle": "TaichiKB Health Article EN-93 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/phat-kinh-co-the-tha-long/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-093-Tennis_Taichi-fa-jin-relaxed-core.md", "out": "vi/articles/phat-kinh-co-the-tha-long", "lang": "vi",
+        "title": "Phát Kình Nhờ Cơ Thể Thả Lỏng", "subtitle": "TaichiKB Health Article VI-93 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/fa-jin-relaxed-core/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-094-Tennis_Taichi-court-footwork-empty-solid.md", "out": "en/articles/court-footwork-empty-solid", "lang": "en",
+        "title": "Court Movement Footwork: Empty and Solid Weight Distribution", "subtitle": "TaichiKB Health Article EN-94 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/bo-phap-hu-thuc/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-094-Tennis_Taichi-court-footwork-empty-solid.md", "out": "vi/articles/bo-phap-hu-thuc", "lang": "vi",
+        "title": "Bộ Pháp Sân Đấu: Phân Biệt Hư - Thực", "subtitle": "TaichiKB Health Article VI-94 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/court-footwork-empty-solid/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-095-Tennis_Taichi-tennis-elbow-tendon-care.md", "out": "en/articles/tennis-elbow-tendon-care", "lang": "en",
+        "title": "Preventing Tennis Elbow Through Tendon Conditioning", "subtitle": "TaichiKB Health Article EN-95 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/tranh-dau-khuyu-tay/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-095-Tennis_Taichi-tennis-elbow-tendon-care.md", "out": "vi/articles/tranh-dau-khuyu-tay", "lang": "vi",
+        "title": "Tránh Đau Khuỷu Tay Tennis Nhờ Luyện Gân", "subtitle": "TaichiKB Health Article VI-95 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/tennis-elbow-tendon-care/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-096-Tennis_Taichi-breathing-under-pressure.md", "out": "en/articles/breathing-under-pressure", "lang": "en",
+        "title": "Breathing Under Pressure: Maintaining Calm During Match Points", "subtitle": "TaichiKB Health Article EN-96 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/tho-trong-ap-luc/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-096-Tennis_Taichi-breathing-under-pressure.md", "out": "vi/articles/tho-trong-ap-luc", "lang": "vi",
+        "title": "Thở Trong Áp Lực: Giữ Bình Tĩnh", "subtitle": "TaichiKB Health Article VI-96 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/breathing-under-pressure/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-097-Tennis_Taichi-mental-toughness-equilibrium.md", "out": "en/articles/mental-toughness-equilibrium", "lang": "en",
+        "title": "Mental Toughness: Taichi Equilibrium in Competitive Sports", "subtitle": "TaichiKB Health Article EN-97 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/tinh-than-thep/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-097-Tennis_Taichi-mental-toughness-equilibrium.md", "out": "vi/articles/tinh-than-thep", "lang": "vi",
+        "title": "Tinh Thần Thép: Cân Bằng Thái Cực Trong Thi Đấu", "subtitle": "TaichiKB Health Article VI-97 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/mental-toughness-equilibrium/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-098-Tennis_Taichi-post-match-qigong-recovery.md", "out": "en/articles/post-match-qigong-recovery", "lang": "en",
+        "title": "Post-Match Recovery: Qigong Rehydration and Lactic Acid Flush", "subtitle": "TaichiKB Health Article EN-98 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/phuc-hoi-sau-tran-dau/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-098-Tennis_Taichi-post-match-qigong-recovery.md", "out": "vi/articles/phuc-hoi-sau-tran-dau", "lang": "vi",
+        "title": "Phục Hồi Sau Trận Đấu: Khí Công Xả Axit Lactic", "subtitle": "TaichiKB Health Article VI-98 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/post-match-qigong-recovery/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-099-Tennis_Taichi-agility-taichi-stepping.md", "out": "en/articles/agility-taichi-stepping", "lang": "en",
+        "title": "Agility Training via Tai Chi Stepping Patterns (Ba Gua / Tai Chi)", "subtitle": "TaichiKB Health Article EN-99 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/bo-pha-linh-hoat/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-099-Tennis_Taichi-agility-taichi-stepping.md", "out": "vi/articles/bo-pha-linh-hoat", "lang": "vi",
+        "title": "Bộ Pháp Linh Hoạt Thái Cực / Bát Quái", "subtitle": "TaichiKB Health Article VI-99 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/agility-taichi-stepping/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
+    {
+        "md": "en/articles/EN-100-Tennis_Taichi-athlete-longevity-50plus.md", "out": "en/articles/athlete-longevity-50plus", "lang": "en",
+        "title": "Longevity for Athletes: Extending Play Ability Beyond Age 50", "subtitle": "TaichiKB Health Article EN-100 · Tennis, Cross-Training",
+        "crosslink": "/vi/articles/vi/articles/truong-tho-the-thao/", "crosslabel": "\U0001F1FB\U0001F1F3 Ti\u1ebfng Vi\u1ec7t",
+    },
+    {
+        "md": "vi/articles/VI-100-Tennis_Taichi-athlete-longevity-50plus.md", "out": "vi/articles/truong-tho-the-thao", "lang": "vi",
+        "title": "Trường Thọ Thể Thao Sau Tuổi 50", "subtitle": "TaichiKB Health Article VI-100 · Tennis & Thái Cực",
+        "crosslink": "/en/articles/en/articles/athlete-longevity-50plus/", "crosslabel": "\U0001F1EC\U0001F1E7 English",
+    },
 ]
 
 def read_base_template(lang):
