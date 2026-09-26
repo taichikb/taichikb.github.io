@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thập Yếu — Dương Trừng Phủ · Bản Dịch Việt Ngữ Song Ngữ</title>
+<meta name="description" content="Thái Cực Quyền Thuyết Thập Yếu của Dương Trừng Phủ, Trần Vi Minh bút lục — mười yếu lĩnh cốt tủy, bản dịch tiếng Việt tam ngữ (Việt · Anh · Hán), kèm chú giải của Lee Fife.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', 'Songti SC', serif;
+}
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+.reader-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header { background: rgba(18,18,20,0.95); }
+.brand-area {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+.header-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn-control {
+  background: none; border: 1px solid var(--border); color: var(--ink);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover { background: var(--border); }
+.btn-control.on { background: var(--gold); border-color: var(--gold); color: #fff; }
+#progress-container { position: fixed; top: 53px; left: 0; width: 100%; height: 3px; z-index: 99; }
+#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #ea580c); transition: width 0.1s ease; }
+.book-wrapper { max-width: 1380px; margin: 0 auto; display: flex; min-height: calc(100vh - 60px); }
+.book-sidebar {
+  width: 330px; flex-shrink: 0; background: var(--bg-sidebar);
+  border-right: 1px solid var(--border); padding: 24px 16px;
+  position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+}
+.toc-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 12px; padding-left: 8px; }
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block; padding: 8px 12px; color: var(--ink-muted);
+  text-decoration: none; font-size: 0.92rem; border-radius: 6px;
+  transition: all 0.15s; line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active { color: var(--ink); background: var(--bg-card); font-weight: 600; border-left: 3px solid var(--gold); }
+.toc-sub { padding-left: 20px !important; font-size: 0.85rem !important; color: var(--ink-faint) !important; }
+.book-content { flex-grow: 1; max-width: 900px; margin: 0 auto; padding: 48px 32px 100px; }
+.book-hero { text-align: center; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
+.book-hero .badge {
+  display: inline-block; background: var(--gold-light); color: var(--gold);
+  font-weight: 600; font-size: 0.8rem; padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.book-hero h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.2; margin-bottom: 12px; font-weight: 600; }
+.book-hero .subtitle { font-size: 1.25rem; color: var(--ink-muted); font-style: italic; margin-bottom: 16px; }
+.book-hero .meta-row { display: flex; justify-content: center; gap: 24px; color: var(--ink-faint); font-size: 0.9rem; flex-wrap: wrap; }
+h2 {
+  font-family: var(--serif); font-size: 2.1rem; font-weight: 600;
+  margin: 48px 0 20px; padding-bottom: 8px; border-bottom: 2px solid var(--border);
+  color: var(--ink); scroll-margin-top: 80px;
+}
+h2 .zh { font-family: var(--cjk); font-size: 1.4rem; color: var(--ink-muted); margin-left: 10px; }
+p { margin-bottom: 1.4rem; }
+
+/* ---- bilingual ---- */
+.bilingual-block .lang-en { display: none; }
+body.show-en .lang-en { display: block; }
+body.show-en .lang-vi { display: none; }
+.zh-source {
+  font-family: var(--cjk); font-size: 1.25rem; line-height: 2.1;
+  color: var(--ink-muted); letter-spacing: 0.04em;
+}
+
+.point {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 30px 32px; margin: 32px 0;
+  scroll-margin-top: 90px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.point:hover { border-color: var(--gold); box-shadow: 0 4px 18px rgba(0,0,0,0.05); }
+.point-head { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--border); }
+.point-num {
+  font-family: var(--serif); font-size: 0.9rem; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.08em; margin-bottom: 10px;
+  display: inline-block; background: var(--gold-light); padding: 2px 12px;
+  border-radius: 20px;
+}
+.point-head h3 { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; line-height: 1.3; }
+.point-head h3 .zh { font-family: var(--cjk); font-size: 1.5rem; display: block; color: var(--ink-muted); margin-top: 4px; }
+.point-head .en-title { font-size: 1rem; color: var(--ink-faint); font-style: italic; margin-top: 4px; }
+
+.stanza { margin: 0 0 22px; }
+.stanza .zh-source { margin-bottom: 8px; }
+.verse {
+  font-family: var(--serif); font-size: 1.28rem; line-height: 1.95;
+  color: var(--ink); font-style: italic; margin-bottom: 0.6rem;
+}
+body.show-en .verse { font-style: normal; }
+.verse-en { font-size: 1rem; color: var(--ink-muted); line-height: 1.7; margin-bottom: 1rem; }
+
+.disc-heading {
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 700;
+  color: var(--gold); margin: 28px 0 14px; display: flex; align-items: center; gap: 10px;
+}
+.disc-heading::after { content: ''; flex-grow: 1; height: 1px; background: var(--border); }
+.disc p { font-size: 0.97rem; color: var(--ink-muted); }
+.disc p.bullet { padding-left: 0; }
+h4.sub {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--ink);
+  margin: 26px 0 12px; scroll-margin-top: 90px;
+}
+
+.note-box {
+  background: var(--bg-sidebar); border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0;
+  font-size: 0.95rem; color: var(--ink-muted);
+}
+.intro p { font-size: 1rem; }
+.refs p { font-size: 0.93rem; color: var(--ink-muted); }
+.chapter-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+.chapter-nav a {
+  display: inline-flex; align-items: center; gap: 8px; color: var(--ink);
+  text-decoration: none; font-weight: 600; padding: 10px 18px;
+  border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s;
+}
+.chapter-nav a:hover { background: var(--border); }
+@media (max-width: 900px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2.1rem; }
+  .point { padding: 22px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Thư Viện Tinh Hoa</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/assets/books/yang_chengfu_ten_essential_points/Thai_Cuc_Quyen_Thap_Yeu_VI.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
+    <button class="btn-control" id="lang-toggle" title="Chuyển đổi Việt / Anh"><i class="fa-solid fa-language"></i> EN</button>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#dan-nhap">Dẫn Nhập</a></li>
+        <li><a href="#diem-1">Điểm 1 · Hư Linh Đảnh Kình</a></li>
+        <li><a href="#diem-2">Điểm 2 · Hàm Hung Bạt Bối</a></li>
+        <li><a href="#diem-3">Điểm 3 · Tùng Yêu</a></li>
+        <li><a href="#diem-4">Điểm 4 · Phân Hư Thực</a></li>
+        <li><a href="#diem-5">Điểm 5 · Trầm Kiên Trụy Trửu</a></li>
+        <li><a href="#diem-6">Điểm 6 · Dụng Ý Bất Dụng Lực</a></li>
+        <li><a href="#diem-7">Điểm 7 · Thượng Hạ Tương Tùy</a></li>
+        <li><a href="#diem-8">Điểm 8 · Nội Ngoại Tương Hợp</a></li>
+        <li><a href="#diem-9">Điểm 9 · Tương Liên Bất Đoán</a></li>
+        <li><a href="#diem-10">Điểm 10 · Động Trung Cầu Tĩnh</a></li>
+        <li><a href="#tai-lieu">Tài Liệu Tham Khảo</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Thái Cực Quyền &middot; Võ Học Cổ Điển</span>
+      <h1>Thái Cực Quyền Thuyết Thập Yếu</h1>
+      <div class="subtitle">Dương Trừng Phủ khẩu thuật &middot; Trần Vi Minh bút lục &mdash; bản dịch &amp; chú giải của Lee Fife</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-graduate"></i> Dương Trừng Phủ (1883&ndash;1936)</span>
+        <span><i class="fa-solid fa-language"></i> Tam ngữ: Việt &middot; Anh &middot; Hán</span>
+        <span><i class="fa-solid fa-list-ol"></i> Mười yếu lĩnh</span>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Về bản dịch này.</strong> <em>Thập Yếu</em> là mười yếu lĩnh cốt tủy của Thái Cực Quyền do Dương Trừng Phủ
+      khẩu thuật và Trần Vi Minh ghi chép. Mỗi điểm gồm một câu quyết ghi nhớ ngắn gọn (Hán văn cổ điển) kèm phần
+      bình giảng của Lee Fife. Các thuật ngữ Hán&ndash;Việt như <em>khí</em>, <em>kình</em>, <em>ý</em>, <em>hư</em>,
+      <em>thực</em>, <em>tùng</em> được dùng xuyên suốt để bảo đảm tính nhất quán.
+      Nhấn nút <strong>EN</strong> trên thanh công cụ để đối chiếu nguyên bản tiếng Anh.
+      Tải bản in: <a href="/assets/books/yang_chengfu_ten_essential_points/Thai_Cuc_Quyen_Thap_Yeu_VI.pdf" download style="color: var(--gold); font-weight: 600;">Thập Yếu (PDF)</a>.
+      <br><span style="font-size:0.85rem;">Bản dịch và chú giải của Lee Fife, giấy phép CC BY-SA 4.0.</span>
+    </div>
+    <section id="dan-nhap" class="intro">
+      <h2>Dẫn Nhập<span class="zh">引論</span></h2>
+      <div class="bilingual-block">
+        <div class="lang-vi">
+          <p>Những danh mục các điểm quan trọng cho việc luyện tập Thái Cực Quyền là một trong những hình thức phổ biến nhất được dùng để truyền đạt lý luận Thái Cực Quyền. Ben Lỗ đã đặt ra năm nguyên tắc của mình; Trịnh Mạn Thanh (Cheng Man-ch'ing) ghi lại trong các trước tác của ông một số danh mục điểm quan trọng khác nhau, từ sáu điểm cho tới mười hai điểm và nhiều hơn nữa; trường đầu tiên tôi theo học, trường của Y.C. Chang ở vùng Bay Area, có một số danh mục khác nhau, trong đó có một danh mục gồm hơn hai mươi điểm.</p>
+          <p>Danh mục mười điểm này được gán cho Dương Trừng Phủ, do Trần Vi Minh ghi lại từ lời chỉ dạy của Trừng Phủ. Mười điểm này tóm lược những phương diện tinh yếu của Thái Cực Quyền. Mỗi điểm gồm một câu quyết ghi nhớ ngắn gọn, theo sau là một đoạn hoặc hơn phần giải thích. Mười điểm ấy là:</p>
+          <p>1) Hư Linh Đảnh Kình 2) Hàm Hung Bạt Bối 3) Tùng Yêu 4) Phân Hư Thực 5) Trầm Kiên Trụy Trửu 6) Dụng Ý Bất Dụng Lực 7) Thượng Hạ Tương Tùy 8) Nội Ngoại Tương Hợp 9) Tương Liên Bất Đoán 10) Động Trung Cầu Tĩnh</p>
+          <p>Bản thân các điểm ấy được đặt ra để ghi nhớ, và rất có thể đã được ngâm nga hoặc tụng đọc. Ben Lỗ từng kể cho chúng tôi nghe một câu chuyện về việc ông tới thăm trường Thập Trung (Shr Jung) của Trịnh Mạn Thanh ở Đài Loan và yêu cầu các học trò liệt kê mười điều cốt yếu. Khi họ không làm được, Ben bỏ đi và từ chối dạy họ. Một số điểm trong đó xuất hiện ở những nơi khác trong các trước tác của Dương gia; những điểm khác chỉ được liệt kê ở đây. Xét như một nhóm, chúng có thể là giáo huấn truyền thống được truyền lại qua Dương Trừng Phủ, hoặc có thể đại diện cho một sự tổng hợp do Trừng Phủ tạo nên.</p>
+          <p>Tập hợp các “điểm cốt yếu” này xuất hiện trong tác phẩm của Trần Vi Minh: ông gán chúng cho lời chỉ dạy truyền khẩu của Trừng Phủ và tự đặt mình vào vị trí chỉ là người ghi chép lời dạy của Trừng Phủ. Trần Vi Minh cũng làm điều này trong những lần khác, chẳng hạn trong Đáp Vấn (Questions and Answers) của ông, nơi ông ghi lại nhiều buổi hỏi đáp và đáp mang danh nghĩa là giữa Trừng Phủ và các học trò của ngài. Trong cả hai trường hợp, có vẻ như ít nhất Trần đã có sửa sang và biên tập lại các bài giảng của Trừng Phủ, và có khả năng một phần nội dung thực ra do chính Trần tạo ra. Chẳng hạn, ở điểm 6, Dụng Ý Bất Dụng Lực, phần đầu và phần cuối của phần thảo luận đọc lên rất giống các chú giải khác, trích dẫn kinh điển và nối kết kỹ năng dùng sự tỉnh giác thay cho sức mạnh với những phẩm tính ấy. Rồi phần chú giải đưa ra một ẩn dụ mới về những con mương tưới tiêu và lập luận rằng kinh lạc (các đường kinh châm cứu) cũng tương tự như những con mương tưới tiêu. Sự tương tự ấy được triển khai khá tỉ mỉ và tôi ngờ rằng nó phần nhiều là bàn tay của Trần Vi Minh.</p>
+          <p>Bản thân các điểm ấy có thể do Trừng Phủ tạo ra hoặc tập hợp lại, đại diện cho một sự tổng hợp giữa giáo huấn gia truyền và kinh nghiệm của ông. Một số điểm là trích dẫn từ giáo huấn xưa: chẳng hạn điểm thứ nhất, Hư Linh Đảnh Kình, là một trích dẫn từ Thái Cực Quyền Kinh trong bộ Kinh điển. Những điểm khác có lẽ là giáo huấn truyền khẩu được truyền lại trong gia tộc. Và bản thân Trừng Phủ có thể là người khởi xướng một số điểm.</p>
+          <p>Các điểm ấy có thể được chia thành hai nhóm, mỗi nhóm năm điểm. Năm điểm đầu chủ yếu bàn về một người tu tập đơn lẻ và thân thể của người ấy, bao gồm vị trí của đầu, hình dạng của ngực và lưng, cách dùng vai và cùi chỏ, v.v. Năm điểm sau vừa mang tính huyền bí hơn, vừa bàn về những mối tương quan giữa người tu tập với phần còn lại của thế giới, kể cả đối thủ. Các chủ đề trong nhóm thứ hai liên quan tới việc hợp nhất nội và ngoại, dùng sự yên tĩnh và điềm tĩnh để điều khiển sự vận động, v.v.</p>
+          <p>Những điểm này đã được dịch nhiều lần. Chúng là một trong những phần văn liệu Thái Cực Quyền đầu tiên mà tôi thử dịch. Khi xem lại những điểm này lúc này, tôi thấy mình kinh ngạc trước chiều sâu của những ám chỉ và liên hệ tới tư tưởng và triết học Trung Hoa trong phần thảo luận của Trừng Phủ. Và tôi thấy mình cũng xem lại một số phần trong việc luyện tập của mình dựa trên những điểm ấy cùng sự thấu hiểu ngày càng tăng của tôi về chúng.</p>
+          <p>Tôi đưa ra bản dịch mới này không phải vì tôi cho rằng các bản dịch hiện có có chỗ nào sai sót, mà là để cố gắng phơi bày những thuật ngữ và biệt ngữ cốt lõi được dùng trong lý luận Thái Cực Quyền, và để khám phá một số mối liên hệ với bộ Thái Cực Quyền Kinh và các trước tác khác của Dương gia. Tôi hy vọng những bạn đồng tu tập của tôi thấy điều này hữu ích.</p>
+        </div>
+        <div class="lang-en">
+          <p>Lists of important points for taijiquan practice are one of the most common formats used to convey taijiquan theory. Ben Lo created his five principles; Zheng Manqing (Cheng Manching) recorded several different lists of important points in his writings, ranging from six points to twelve and more; the first school I studied at, Y.C. Chang’s school in the Bay Area, had a number of different lists including one with over twenty points.</p>
+          <p>This list of ten points is attributed to Yang Chengfu as recorded by Chen Weiming from Chengfu’s spoken instruction. The ten points summarize the essential aspects of taijiquan. Each point consists of a short mnemonic phrase followed by a paragraph or more of explanation. The ten points are:</p>
+          <p>1) Xu Ling Ding Jin 2) Contain the Chest, Raise the Back 3) Song the Yao 4) Separate Empty and Full 5) Sink Shoulder, Drop Elbow 6) Use Yi, Don’t Use Li 7) Upper and Lower Mutually Follow 8) Inner and Outer Mutually Harmonize 9) Mutually Linked Without Gaps 10) Move Center, Seek Stillness</p>
+          <p>The points themselves were intended to be memorized and may well have been recited or chanted. Ben Lo once told us a story about visiting Zheng Manqing’s Shi Zhong (Shr Jung) school in Taiwan and asking the students to list the ten essentials. When they couldn’t, Ben walked out and refused to teach them. Some of these points appear in other places in the Yang family writings; others are listed only here. As a group, they may have been traditional teaching passed down through Yang Chengfu or they may represent a synthesis created by Chengfu.</p>
+          <p>This collection of “essential points” appears in Chen Weiming’s work: he attributes them to oral teaching by Chengfu and positions himself as simply recording Chengfu’s teaching. Chen Weiming did this other times, e.g. in his ​Da Wen (Questions and Answers) where he records extensive Q&amp;A sessions nominally between Chengfu and his students. In both cases, it seems likely that Chen at the very least did rework and editing of Chengfu’s lectures and probable that some of the content was actually created by Chen. For example, in point 6, ​Use Yi Not Li ​ , the first and last parts of the discussion read much like the other commentary, quoting the classics and connecting the skill of using awareness instead of force to those attributes. Then, the commentary introduces a new metaphor of irrigation ditches and argues that the ​jingluo (acupuncture meridians) are similar to irrigation ditches. This analogy is worked in considerable detail and I suspect owes a lot to Chen Weiming’s hand.</p>
+          <p>The points themselves may have been created or assembled by Chengfu, representing a synthesis of family teaching and his experience. Some of them are quotes from older teaching: e.g. the first point, ​Xu Ling Ding Jin, is a quote from the ​Taijiquan Jing in the Classics. Others are likely oral teaching passed down in the family. And Chengfu himself may be the originator of some of the points.</p>
+          <p>The points can be divided into two sets of five each. The first five primarily deal with a single practitioner and his or her body, covering the position of the head, the shape of chest and back, how to use the shoulders and elbows, etc. The second five are both more esoteric and discuss the relationships between the practitioner and the rest of the world, including opponents. Topics in the second set have to do with unifying the internal and external, using quiet and calm to control movement, etc.</p>
+          <p>These points have been translated many times. They were one of the first bits of taijiquan literature I attempted to translate. In revisiting these points now, I’ve found myself surprised by the depth of allusions and references to Chinese thought and philosophy in Chengfu’s discussion. And I’ve found myself revisiting parts of my practice based on the points and my gradually increasing understanding of them.</p>
+          <p>I offer this new translation not because I think the existing translations are in any way faulty, but in an attempt to expose the core jargon and terminology used in taijiquan theory and to explore some of the connections to the Taijiquan Classics and other Yang family writings. I hope my fellow practitioners find this helpful.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-1">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 1 / 10</span>
+          <h3>Hư Linh Đảnh Kình<span class="zh">一。虚灵顶劲</span></h3>
+          <div class="en-title">Xu Ling Ding Jin</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">顶劲者，头容正直，神贯于顶也。</div>
+          <div class="lang-vi"><p class="verse">Đảnh kình nghĩa là: tư thế của đầu ngay thẳng và đứng vững, và thần xuyên suốt lên tới đỉnh đầu.</p></div>
+          <div class="lang-en"><p class="verse">Ding jin (jin at the crown of the head) means The head’s bearing is upright and vertical And the ​shen is threaded up to the crown.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">不可用力，用力则项强，气血不能流通，须有虚灵自然之意。</div>
+          <div class="lang-vi"><p class="verse">Không được dùng sức. Dùng sức thì gáy sẽ cứng, khí và huyết không thể lưu thông. Phải có ý hư linh và tự nhiên.</p></div>
+          <div class="lang-en"><p class="verse">You must not use force (apply ​li). If you use force, then the back of the neck will be stiff And the​ qi and blood will not be able to circulate. You must have an ​yi of ​xuling and natural ease (​ziran).</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">非有虚灵顶劲，则精神不能提起也。</div>
+          <div class="lang-vi"><p class="verse">Nếu không có hư linh đảnh kình, thì tinh thần không thể nâng lên được.</p></div>
+          <div class="lang-en"><p class="verse">If you don’t have ​xu ling ding jin, then you can’t raise the spirit of vitality (​jingshen).</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Cụm từ hư linh đảnh kình là một ví dụ hoàn hảo cho những khó khăn khi dịch loại trước tác Thái Cực Quyền này sang tiếng Anh. Những câu nói bốn chữ như câu này là một hình thức phổ biến để diễn đạt tư tưởng Trung Hoa, đặc biệt dưới dạng thành ngữ hay điển cố cổ điển. Hiểu một thành ngữ đòi hỏi không chỉ hiểu các từ trong thành ngữ mà còn phải hiểu bối cảnh văn hóa cùng những liên hệ của thành ngữ ấy. Hư linh đảnh kình không phải là một thành ngữ cổ điển, nhưng nó được cấu trúc và đặt vị trí như thể là một thành ngữ.</p>
+          <p>Dịch sát nghĩa, hư linh đảnh kình thực ra không tạo thành ý nghĩa: “sức mạnh đỉnh đầu linh diệu bất thực” không phải là điều gì đó xuôi tai hay truyền đạt một ý nghĩa chính xác.</p>
+          <p>Hư linh đảnh kình là một trích dẫn từ Thái Cực Quyền Luận, luận thuyết được gán cho Vương Tông Nhạc, người được truyền thuyết coi là “người sáng tạo” ra Thái Cực Quyền, và rất có thể do một trong anh em họ Vũ viết vào đầu thập niên 1800. Anh em họ Vũ có một mối quan hệ phức tạp với Dương Lộ Thiền, người sáng lập Thái Cực Quyền phái Dương, khi thì là người bảo trợ, khi thì là học trò của ông, nhưng cuối cùng lại gạt ông ra ngoài trong các phiên bản Kinh điển của họ, chỉ một lần nhắc tới “một người họ Dương nọ”. Như thường thấy nơi giới văn nhân Trung Hoa, bất kỳ văn bản nào họ có thể đã tạo ra đều được gán cho các bậc cổ nhân.</p>
+          <p>Sự xuất hiện của những trích dẫn như hư linh đảnh kình trong các điểm cốt yếu và phần chú giải của Trừng Phủ chạm tới xuất xứ và lịch sử không rõ ràng của Thái Cực Quyền phái Dương. Dương Lộ Thiền được cho là đã học nghệ thuật của mình ở thôn Trần Gia Câu. Tuy nhiên, lối luyện tập Thái Cực Quyền phái Dương và quyền phái Trần ngày nay rất khác nhau. Dương Lộ Thiền có thể là một người khởi xướng và tổng hợp vĩ đại, có thể ông đã học ở thôn Trần Gia Câu một môn nghệ thuật hơi khác so với cái về sau phát triển thành phái Trần hiện đại, hoặc cũng có thể ông học ở nơi khác. Anh em họ Vũ dường như đã tạo ra hoặc ghi lại những văn bản ngày nay được biết đến với tên gọi Kinh điển Thái Cực Quyền, có lẽ dựa trên giáo huấn họ nhận được từ Dương Lộ Thiền. Xét việc về sau họ xa cách Dương Lộ Thiền, thật thú vị khi thấy trước tác của họ được Dương Trừng Phủ trích dẫn và lặp lại. Phải chăng Trừng Phủ đang lặp lại giáo huấn gia truyền được truyền từ ông nội mình và chỉ được họ Vũ ghi lại? Hay ông đang trích dẫn bộ kinh điển mà họ Vũ ghi lại hoặc tạo ra, bất chấp việc họ tỏ ra thiếu tôn trọng khi chỉ gọi ông nội của ông là “một người họ Dương nọ”?</p>
+          <p>Để hiểu hư linh đảnh kình, ta có thể tiếp cận câu nói ấy theo từng chữ: hư 虚 là trống rỗng, hư không, hay bất thực. Nó mang những liên hệ tới các khái niệm Đạo giáo về một thực tại nền tảng trước khi hiển hiện. (Xin xem phần thảo luận dưới đây ở điểm 4, Phân Hư Thực, để biết thêm về hư và thực.) Linh 灵 là linh diệu, khéo léo, huyền bí, thần, và tiên. Đảnh 顶 là đỉnh hay phần trên của đầu. Và kình 劲 là nội lực tinh luyện, thứ phân biệt Thái Cực Quyền với các môn võ thuật ngoại gia. Do đó có thể đọc thành “sức mạnh đỉnh đầu linh diệu bất thực”.</p>
+          <p>Để làm tình hình thêm phức tạp, có sự khác biệt văn bản trong cụm từ này giữa các nguồn Trung Hoa về Thái Cực Quyền Luận. Đôi khi, thay cho linh 灵, các nguồn dùng lĩnh 领, nghĩa là dẫn/dắt/cổ/cổ áo. Xin lưu ý rằng sự khác biệt này chỉ xuất hiện trong Luận; mọi phiên bản Thập Yếu của Trừng Phủ mà tôi biết đều dùng chữ linh thứ nhất (linh diệu). Tôi ngờ rằng, xét tầm nổi bật của cụm hư linh trong các nguồn khác, sự khác biệt này đại diện cho một sự sai lệch văn bản. Tuy vậy, phiên bản thứ hai của chữ linh gợi ra những cách dịch như “cổ trống không, năng lượng đỉnh đầu” hay “sự bất thực dẫn kình lên đỉnh đầu”.</p>
+          <p>Louis Swaim có một cuộc khảo cứu dài về cụm từ này trong bản dịch Kinh điển Thái Cực Quyền của ông, và tôi mang ơn ông vì đã khởi đầu cho những tìm tòi của tôi. Swaim liệt kê một loạt rộng các cách dịch cụm từ này. Tôi bổ sung thêm một vài cách dịch từ những nguồn khác. Các bản dịch bao gồm:</p>
+          <p class="bullet">● Không cần gắng sức, ch’in (kình) chạm tới đỉnh đầu (Ben Lỗ và cộng sự)
+● Một năng lượng vô hình và sinh động nâng đỉnh đầu lên (Louis Swaim)
+● Tinh thần sinh lực chạm tới đỉnh đầu (Robert Smith)
+● Năng lượng ở đỉnh đầu nên nhẹ nhàng và nhạy cảm (Doug Wile)
+● Mở năng lượng ở đỉnh đầu (cũng của Doug Wile)
+● Năng lượng đỉnh của sự khéo léo trống không (Guttmann)
+● Thần, hay shen, chạm tới đỉnh đầu (Jou Tsung Hwa)</p>
+          <p class="bullet">● Cột sống và đầu được giữ thẳng bằng sức mạnh, dưới sự dẫn dắt của tâm (T. Y. Pang)
+● Kình đỉnh đầu trống không, sinh động (Barbara Davis)
+● Tâm nên nhẹ nhàng và khoáng đạt, có phẩm tính tỉnh táo thường trực để thần nâng lên và nội khí tỏa ra qua đỉnh đầu (Wolfe Lowenthal)
+● Trống không, sinh động, đẩy lên, và tràn đầy năng lượng (Jerry Karin)
+● Cổ trống không; Nâng thần lên (Sam Masich)
+● Kình bất thực dẫn đỉnh đầu lên (Dương Tuấn Mẫn)</p>
+          <p>Xin lưu ý rằng một số bản dịch trong đó thay thần, spirit, cho linh. Một số cố đọc chữ linh theo cả hai nghĩa, nắm bắt khái niệm sự nhanh nhẹn và sinh động của tâm trí cùng với ý tưởng dẫn dắt hay nâng lên. Một số về cơ bản viết lại câu nói ấy để cố diễn giải và giải thích, thường đưa vào những khái niệm từ phần chú giải tiếp theo và nhúng chúng vào chính điểm ấy.</p>
+          <p>Tôi chọn để nguyên cụm từ ấy không dịch và thay vào đó khảo sát các thuật ngữ trong đó. Những thuật ngữ ấy phơi bày một bối cảnh phong phú gồm các tư tưởng triết học và lý luận với những hàm ý cụ thể cho việc luyện tập.</p>
+          <p>Trong Thái Cực Quyền Luận, cụm từ ấy xuất hiện như một phần của một chuỗi chỉ dẫn:
+虚領頂劤。氣沈丹田。
+Hư lĩnh đảnh kình. Khí trầm đan điền.</p>
+          <p>Hai cụm từ này thiết lập một cặp đối lập có tính phương hướng: một cái vươn lên tới đỉnh đầu, khí chìm xuống đan điền. Cặp chỉ dẫn này được theo sau bởi:
+不偏不倚。忽隱忽現
+Bất thiên bất ỷ; hốt ẩn hốt hiện.
+Không nghiêng, không xiên; bỗng ẩn, bỗng hiện.</p>
+          <p>Nhìn tổng thể, những chỉ dẫn này có thể được diễn giải để mô tả cả một trục thẳng đứng (hư linh hướng lên, khí chìm xuống) lẫn các trục nằm ngang (nghiêng có thể ám chỉ sự ngả sang hai bên trong khi xiên ám chỉ sự nghiêng về trước hoặc sau). Kết quả của việc tuân theo những chỉ dẫn này là kỹ năng “bỗng nhiên hiện ra và bỗng nhiên biến mất”.</p>
+          <p>Linh là một thuật ngữ có nhiều tầng ý nghĩa phong phú trong lý luận Thái Cực Quyền và trong triết học cùng tôn giáo Trung Hoa. Trong lý luận Thái Cực Quyền, nó thường được ghép với sự nhẹ nhàng, khinh 轻 trong khinh linh. Chẳng hạn, cặp này xuất hiện ở dòng mở đầu của Thái Cực Quyền Kinh được gán cho Trương Tam Phong:
+一舉動周身俱要輕靈, 尤須貫串
+Nhất cử động, chu thân câu yếu khinh linh, vưu tu quán xuyên.
+trong mọi động tác, toàn thân đều phải khinh linh (nhẹ và nhanh nhẹn), và quan trọng nhất là được xâu chuỗi liền mạch.</p>
+          <p>Tôi được dạy rằng trong khinh linh, khinh ám chỉ sự nhẹ nhàng và nhanh nhẹn của thân thể, còn linh ám chỉ sự nhẹ nhàng và nhanh nhẹn của tâm trí.</p>
+          <p>Trong ngôn ngữ thường ngày, linh có thể có nghĩa là khéo léo, kỳ diệu hay tài tình. Nó cũng liên hệ tới các linh hồn, ma quỷ, hay vong linh, và trong các văn bản Phật giáo Trung Hoa nó được dùng để biểu thị thuật ngữ Phạn ngữ preta (ngạ quỷ) (Muller, DDB). Trong tín ngưỡng dân gian, linh có thể là tiên nữ hay mộc tinh.</p>
+          <p>Trong Đạo giáo, linh đại diện cho cõi linh diệu. Một trong những nhánh Đạo giáo sơ khai là Linh Bảo, tức Báu Vật Linh Diệu. Bảo là những vật hữu hình như gươm và ngọc bội, những vật mà thần lực đã rót vào. Trong các thời đại cổ, việc sở hữu những báu vật như vậy là biểu tượng cho việc một người cai trị được hưởng Thiên Mệnh. Miller mô tả Linh Bảo như sau:</p>
+          <p>Ở cấp độ vũ trụ, linh và bảo lần lượt tiêu biểu cho Trời và Đất, mà sự hợp nhất của chúng là thiết yếu cho đời sống con người. Trong một số trường hợp, bản thân con người có thể trở thành vật chứa cho thần linh. Chẳng hạn trong Sở Từ, thuật ngữ linh bảo là tên của một nữ tế sư trong trạng thái bị thần nhập. Những pháp sư hợp tác với các pháp sư trừ tà của triều đình để xua đuổi ma quỷ và linh hồn cũng được gọi là linh bảo. Trong các nghi lễ tang ma, người đại diện cho người chết là bảo, tức vật chứa mà linh hồn (linh, hồn, hay thần) của người quá cố giáng xuống trong nghi lễ. (ET, tr. 661 trở đi)</p>
+          <p>Cụm hư linh cũng xuất hiện trong các nguồn Tống Nho. Các nhà Tống Nho đã làm sống dậy và diễn giải lại các giáo huấn Nho giáo vào thế kỷ 11 và 12, và công trình của họ tạo thành nền tảng cho tư tưởng và việc cai trị chính thức của Trung Hoa cho tới tận cuối thời Đế chế. Học giả hàng đầu Chu Hy (1130 - 1200) đã tạo ra những bản ấn hành được chấp nhận cho các tác phẩm của Khổng Tử và đưa Đại Học cùng Trung Dung từ chỗ chỉ là những văn bản được sưu tập trong Lễ Ký lên vị trí hai trong bốn văn bản Nho giáo trọng tâm. Những văn bản này, trong cách diễn giải của Tống Nho, trở thành nền tảng cho nền học vấn của giới nho sĩ, chẳng hạn như nền học vấn mà anh em họ Vũ — những người có lẽ là tác giả hoặc ít nhất là biên tập viên của Kinh điển Thái Cực Quyền — đã được thụ hưởng.</p>
+          <p>Tầm quan trọng được trao cho hư linh trong trước tác Tống Nho là lý do tôi tin rằng phiên bản thay thế dùng lĩnh 领 (dẫn, kéo, cổ, cổ áo) là một sự sai lệch văn bản. Họ Vũ gần như chắc chắn đang tham chiếu tư tưởng Tống Nho trong cụm hư linh đảnh kình và hẳn không nhầm chữ linh này với chữ linh kia.</p>
+          <p>Joseph Adler lần theo hư linh, như một phần của cụm hư linh tri giác 虚灵知覺, tới ý tưởng rằng những dạng khí cao nhất có một năng lực bẩm sinh để có nhận thức thuần khiết, không bị bóp méo, và rằng ý thức của chúng ta, đặc biệt khi vận hành theo trật tự tự nhiên hay những khuôn mẫu đạo đức của vũ trụ, bắt nguồn từ nhận thức vô điều kiện vốn là một thuộc tính tự nhiên của khí tinh luyện. Adler trích dẫn Hoàng Cán, học trò của Chu Hy, nói rằng:</p>
+          <p>Sinh học [nguyên văn: sinh mệnh] của con người đơn giản chỉ là tinh (tinh chất sống còn) và khí. Cái tạo thành tóc, xương, thịt và máu là tinh. Cái tạo thành hơi thở, lạnh, và ấm là khí. Nhưng con người là loài linh diệu nhất trong muôn vật; họ không phải là cây cỏ và đá sỏi. Do đó tinh và khí của họ tràn đầy thần.</p>
+          <p>Kinh Dịch [I Ching] nói: “Tinh và khí tạo thành vạn vật.” “Tinh” nghĩa là tinh chất sống còn và máu; “khí” nghĩa là hơi ấm và hơi nước… Tinh chất sống còn và máu, hơi ấm và hơi nước, mỗi thứ đều có nhận thức thuần khiết, linh diệu (hư linh tri giác) ở trong chúng.</p>
+          <p>Adler tiếp tục nói thêm: “Nhận thức thuần khiết, linh diệu” (hư linh tri giác) do đó là đặc tính của chính khí, ít nhất là ở những thể tinh tế của nó, và vốn dĩ mang tính đạo đức.” Và cuối cùng, Adler trích dẫn lời chú giải của Chu Hy về Trung Dung, phân biệt một tâm nhỏ, “nhân tâm”, với một tâm lớn nội tại là “đạo tâm”, đồng thời cho rằng ở cấp độ nền tảng, thuần khiết thì không có sự phân biệt nào:</p>
+          <p>Nhận thức thuần khiết, linh diệu (hư linh tri giác, hay ý thức nền tảng ở dưới mọi tâm) đơn giản chỉ là một. Tuy vậy có một khác biệt giữa nhân tâm và đạo tâm: cái này phát sinh từ sự vị kỷ của khí hữu hình, cái kia bắt nguồn từ sự chính trực nơi thiên tính của con người… Không ai thiếu hình hài hữu hình này, nên dù khôn ngoan đến đâu, không ai có thể không có nhân tâm. Và không ai thiếu thiên tính này, nên dù đần độn đến đâu, không ai có thể không có đạo tâm…</p>
+          <p>“Tinh luyện” nghĩa là suy ngẫm về sự khác biệt giữa hai cái và không nhầm lẫn chúng. “Nhất tâm” nghĩa là bảo vệ sự chính trực của tâm nguyên sơ và không rời xa nó. Nếu một người quản lý công việc của mình như vậy, không gián đoạn dù chỉ trong khoảnh khắc, điều này chắc chắn sẽ khiến đạo tâm luôn làm chủ thể nơi bản thân, và nhân tâm luôn nghe theo mệnh lệnh từ nó [nghĩa là làm điều đúng].</p>
+          <p>Cuối cùng, hư linh xuất hiện vài lần trong văn bản được gán cho Dương Ban Hầu, Thái Cực Pháp Thuyết (Giải thích các nguyên lý Thái Cực).</p>
+          <p>Thuật ngữ hư linh lần đầu xuất hiện ở Chương 17, Giải thích con đường ngược trong Thái Cực. Con đường ngược (nghịch đạo) là con đường thứ hai trong số hai con đường: theo đuổi sự trường sinh bất tử chứ không phải sự tiêu tán vào cái chết.</p>
+          <p>1 Ban Hầu là chú của Trừng Phủ và là con trai lớn nhất của Dương Lộ Thiền.</p>
+          <p>Chương này bắt đầu bằng một danh sách các cặp đối lập minh họa tính cực âm dương, rồi đưa ra nhận xét rằng nếu một người làm cho khí của mình trong sạch và dùng âm dương để tu dưỡng, thì tinh và khí sẽ tương giao.</p>
+          <p>Văn bản sau đó mô tả những lợi ích của việc dùng âm dương để hòa hợp với Trời và Đất. Kết quả từ việc tuân theo con đường này là khả năng biết được vận mệnh của mình và đạt được sự bất tử.</p>
+          <p>Trong Chương 22, Giải thích Khinh và Trọng, Phù và Trầm của Thái Cực, sau khi mô tả sự phân biệt giữa khinh và trọng, văn bản khuyên người tu tập phải hiểu rõ sự tương quan giữa khí và thân thể.</p>
+          <p>Trong Chương 22, Giải thích Khinh và Trọng, Phù và Trầm của Thái Cực, sau khi mô tả sự phân biệt giữa khinh và trọng, văn bản khuyên người tu tập phải hiểu rõ sự tương quan giữa khí và thân thể, và rằng chỉ khi ăn sâu vào cội rễ thì mới có thể đạt tới sự vận hành vi tế của khinh và linh.</p>
+          <p>Cuối cùng, trong một văn bản được đính kèm như một phụ lục hay bổ sung mang tựa đề Di sản của Trương Tam Phong, chúng ta thấy một bài thơ miêu tả con đường tu luyện và nhắc tới hư linh như một phẩm tính của thần.</p>
+          <p>2 Wile đếm đây là chương thứ 38 trong số 40 chương. Bản thảo gốc, được Brennan quét lại, lại cho thấy nó là phụ lục thứ 6.</p>
+          <p>Quy luật tự nhiên khiến khí và thân thể trở thành công cụ của bạn
+Tụng “vĩnh xuân” mười ngàn lần
+Thì tâm (xin) sẽ trở nên thành tín (thành) và chân thật!</p>
+          <p>Với tất cả những điều ấy, tôi thấy không thể đưa ra một bản dịch đơn giản cho hư linh đảnh kình, nhưng rõ ràng là điều quan trọng nằm ở việc sắp xếp năng lượng và sức mạnh để tạo ra một trạng thái ở đỉnh đầu: bất thực chứ không đặc cứng, biểu lộ năng lượng tinh thần và sự linh diệu, và cho phép một sự sáng rõ của ý thức.</p>
+          <p>Ghi Chú Bổ Sung</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-2">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 2 / 10</span>
+          <h3>Hàm Hung Bạt Bối<span class="zh">二。含胸拔背</span></h3>
+          <div class="en-title">Contain the Chest, Raise the Back</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">含胸者，胸略内涵，使气沉丹田也。</div>
+          <div class="lang-vi"><p class="verse">Hàm hung nghĩa là: ngực hơi thu vào trong, khiến khí chìm xuống đan điền.</p></div>
+          <div class="lang-en"><p class="verse">Contain the chest means to very slightly hold the chest in. This enables the ​qi to sink to the ​dantian.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">胸忌挺出，挺出则气拥胸际，上重下轻，脚跟易于浮起。</div>
+          <div class="lang-vi"><p class="verse">Kỵ việc ưỡn ngực ra. Ưỡn ngực ra thì khí sẽ bị dồn nén nơi ngực, trên nặng dưới nhẹ, gót chân dễ bị nổi lên.</p></div>
+          <div class="lang-en"><p class="verse">Avoid sticking the chest out stiffly. If you stick the chest out, then the ​qi will be held in the chest. You’ll be heavy above and light below, And your heels will be easy to float.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">拔背者，气贴于背也，能含胸则自能拔背，能拔背则能力由脊发，所向无敌也。</div>
+          <div class="lang-vi"><p class="verse">Bạt bối nghĩa là: khí dán vào lưng. Có được hàm hung thì tự nhiên có được bạt bối; có được bạt bối thì có thể phát lực từ cột sống, đi tới đâu cũng không có địch thủ.</p></div>
+          <div class="lang-en"><p class="verse">Raise the back means the ​qi sticks to the back. With the skill of “contain the chest”, you will naturally get the skill of “raise the back”. With the skill of “raise the back”, you will get the skill of ​fa (issuing) from the spine. Then you will always be victorious. ​(every place, no opponents).</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Vài điểm tiếp theo đề cập tới những chi tiết cụ thể về vị trí và cách dùng thân thể. Phần chú giải được ghi lại cho mỗi điểm tương đối trực tiếp và rõ ràng, trái ngược với những điểm mang tính huyền bí hơn trong nhóm năm điểm thứ hai.</p>
+          <p>Chỉ dẫn cụ thể này là đề tài tranh luận không ngừng giữa những người tu tập: một số diễn giải hàm hung và bạt bối là ngực bị hạ thấp đáng kể và lưng bị khom cong. Chẳng hạn, có một video nổi tiếng về con trai cả của Dương Trừng Phủ, Dương Thủ Trung (Yang Sau Chung theo tiếng Quảng Đông), cho thấy ông luyện bài quyền trong tư thế gần như khom lưng. Những người khác hiểu điểm này là một sự giữ hay thu ngực tinh tế hơn nhiều, và kết quả là lưng được nâng lên mà không bị cong. Chúng tôi chỉ được dạy để cho ngực buông xuống, và việc nâng lưng là kết quả của sự buông ấy chứ không phải điều mà người ta nên cố gắng làm. Để nâng lưng và cho phép khí cùng ý xuyên suốt từ nền cột sống tới đỉnh đầu,</p>
+          <p>cần phải mở ba cửa ở lưng (vĩ lư hay nền cột sống, giáp tích nằm giữa hai xương bả vai, và ngọc chẩm nơi cổ).</p>
+          <p>Hơi đáng ngạc nhiên là Thập Yếu của Trừng Phủ không bao gồm chỉ dẫn “chìm khí xuống đan điền”. Tuy vậy điểm này bàn về tầm quan trọng của việc thu ngực để khí chìm xuống, và về việc bất kỳ sự cứng nhắc, giữ lại, hay ưỡn ngực nào cũng sẽ khiến khí không thể chìm.</p>
+          <p>Ở cuối phần này, Trừng Phủ dùng hình thức tam đoạn luận cổ điển của Trung Hoa: Từ A, được B. Từ B, được C. Từ C, được D. Và cứ thế. Hình thức này xuất hiện nhiều trong các trước tác Tống Nho và có mặt trong một số khẩu quyết được truyền lại. Trong trường hợp này, tam đoạn luận giải thích hàm hung, bạt bối, và kỹ năng phát kình: Từ hàm hung, bạn có được bạt bối. Từ bạt bối, bạn có được kỹ năng phát kình. Có kỹ năng phát kình, bạn sẽ luôn thắng lợi.</p>
+          <p>Những tam đoạn luận này được đặt ra để hiểu theo cả hai chiều. Đi xuôi theo chuỗi, tam đoạn luận trình bày một trình tự tiến bộ và phát triển: trước hết hãy làm việc với hàm hung. Điều này sẽ cho phép làm việc với bạt bối. Và cuối cùng, bạn có thể làm việc với việc phát lực từ cột sống, điều sẽ khiến bạn luôn thắng lợi. Đi ngược chuỗi cũng quan trọng không kém: nếu bạn không thắng lợi, ắt là vì bạn thiếu kỹ năng phát (fa). Nếu bạn không phát được, ấy là vì bạn không nâng được lưng. Nếu bạn không nâng được lưng, ấy là vì bạn không thu được ngực. Vậy thì hãy bắt đầu bằng việc thu ngực.</p>
+          <p>Ghi Chú Cụ Thể:</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-3">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 3 / 10</span>
+          <h3>Tùng Yêu<span class="zh">三。松腰</span></h3>
+          <div class="en-title">Song the Yao</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">腰为一身之主宰，能松腰然后两足有力，下盘稳固；</div>
+          <div class="lang-vi"><p class="verse">Yêu là chủ tể của toàn thân. Có được kỹ năng tùng yêu, thì hai chân mới có lực và hạ bàn mới vững chắc;</p></div>
+          <div class="lang-en"><p class="verse">The ​yao acts as the ruler of the whole body. With the skill of ​song yao, then both legs are powerful, and the lower base is stable.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">虚实变化皆由腰转动，故曰：‘命意源头在腰际，’由不得力必于腰腿求之也。</div>
+          <div class="lang-vi"><p class="verse">Mọi sự biến hóa hư thực đều do yêu xoay chuyển, nên có câu: “nguồn gốc của ý và mệnh ở nơi yêu”, “không phát được lực ắt phải tìm ở yêu và chân”.</p></div>
+          <div class="lang-en"><p class="verse">The transformations of empty and full all result from the turning of the ​yao. Hence, we have the sayings: “the source of meaning is located in the ​yao” And “unable to generate force, look to the ​yao and legs.”</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Yêu là một trong những bộ phận then chốt của thân thể trong Thái Cực Quyền. Yêu thường được dịch là “thắt lưng”, có thể gây nhầm lẫn vì chúng ta có xu hướng nghĩ về thắt lưng như nằm ở phía trước và hai bên của thân mình, gần hông hoặc hơi cao hơn hông một chút. Yêu đặc biệt ám chỉ vùng lưng dưới (ví dụ vùng thận) và vùng nơi cột sống gặp khung chậu; nói chung nó có thể chỉ toàn bộ vùng lưng dưới, vùng “thắt lưng” của thân mình, và khung chậu; đôi khi nó bao gồm cả lưng dưới và các khớp hông (kua). Yêu bao gồm một số huyệt năng lượng then chốt, trong đó có đan điền nằm dưới rốn và gần trung tâm thân thể, cùng mệnh môn, tức cửa sinh mệnh/vận mệnh, nằm ở đỉnh của chỗ cong thấp nhất trong cột sống. Trong lớp học, tôi thường chỉ nói “thắt lưng” hay “yêu” rồi dùng tay chỉ vào lưng dưới.</p>
+          <p>Tùng thường được dịch là “thư giãn”. Nó có nghĩa là thư giãn, nới lỏng, hay buông bỏ. Trịnh Mạn Thanh kể rằng Dương Trừng Phủ nói với ông nhiều lần mỗi ngày rằng hãy thư giãn, và rằng nếu không có điều ấy thì Trịnh sẽ không đạt được kỹ năng: “Mỗi ngày ít nhất 10 lần, Sư phụ tôi nói với tôi, nhấn mạnh từng lời: ‘Phải tùng! Phải tùng! Phải tùng cho hoàn toàn! Con phải nới lỏng và mở ra (tùng khai) toàn thân!’ Như mọi khi, tôi không thể thư giãn. Mỗi khi ông thấy thế, ông lại nói: ‘Không tùng! Không tùng! Không tùng khiến con bày ra cấu trúc của mình để xin ăn đòn!’”</p>
+          <p>3 Trịnh mô tả điều này trong các ghi chú của ông về “khẩu quyết” của Tùng hay thư giãn, chứa trong 13 Luận thuyết của ông.</p>
+          <p>Phần chú giải cho điểm này đầy những ám chỉ tới Kinh điển Thái Cực Quyền. Thú vị là, xét vai trò chính yếu của nó trong lý luận Thái Cực Quyền hiện nay, tùng chỉ được nhắc tới vài lần trong Kinh điển. Nó xuất hiện hai lần trong Tâm Giải (“thư giãn bụng, thì khí có thể nhập vào xương” và “dường như tùng, mà không tùng; sắp mở ra, mà không mở; kình bị đứt nhưng ý không đứt”) và một lần trong bài ca Mười Ba Thế (“Mọi lúc, giữ ý ở yêu; bụng thư giãn, khí bay lên; vĩ lư (nền cột sống) thẳng đứng và thần nối tới đỉnh đầu; toàn thân khinh linh, đỉnh đầu như được treo lên.”). (Bản dịch của Davis, có sửa đổi đôi chỗ.)</p>
+          <p>Mặt khác, yêu là đề tài được bàn nhiều trong Kinh điển.</p>
+          <p>Dòng đầu trong phần chú giải của Trừng Phủ, “yêu là chủ tể của toàn thân”, tham chiếu dòng nổi tiếng trong Thái Cực Quyền Kinh được gán cho Trương Tam Phong:
+其根在脚，發于腿，主宰于腰，形于手指
+Kỳ căn tại cước, phát ư thối, chủ tể ư yêu, hình ư thủ chỉ.
+Gốc của nó ở bàn chân, phát ra ở đùi, do yêu làm chủ tể, biểu hiện ở các ngón tay.</p>
+          <p>Cùng một động từ chủ tể 主宰 zhuzai được dùng trong cả hai. Là danh từ, zhuzai chỉ một người cai trị hay quân vương. Là động từ, nó nghĩa là cai trị, quản lý, sai khiến, định đoạt vận mệnh của, và điều khiển.</p>
+          <p>Phần chú giải kết thúc bằng hai tham chiếu nữa tới Kinh điển. Trích dẫn thứ nhất, “nguồn gốc của ý và mệnh ở nơi yêu”, là dòng thứ hai của bài ca Mười Ba Thế, mở đầu rằng:
+十三總勢莫輕視。 命意源頭在腰隙。
+Thập tam tổng thế mạc khinh thị. Mệnh ý nguyên đầu tại yêu khích.
+Mười Ba Thế (tức Thái Cực Quyền) chớ nên xem nhẹ;
+Nguồn gốc của ý và mệnh nằm ở khoảng trống nơi yêu.</p>
+          <p>Trong trích dẫn này, tôi dịch mệnh ý là “ý nghĩa”. Là một từ ghép, mệnh ý nghĩa là ý nghĩa, mục đích, và lý do để làm một việc gì đó. Chúng ta cũng có thể tách riêng các chữ ra và dịch là “Nguồn gốc của sinh mệnh/vận mệnh (mệnh) và sự tỉnh giác (ý) nằm ở yêu”. Khi chọn “ý nghĩa”, tôi đang nghĩ tới lời dạy trực tiếp của Maggie Newman về tầm quan trọng của việc tránh những “cử chỉ rỗng”: những động tác được điều khiển từ bên ngoài và được thực hiện một cách máy móc, thay vì thấm đẫm ý nghĩa vào từng động tác. Khi cố gắng xem xét Mười Ba Thế một cách sâu sắc và tận tâm, chúng ta cần phân biệt các “thế” (shi) khác nhau. Thay vì tạo ra những “cử chỉ rỗng” mà trong đó không có sự khác biệt nội tại giữa một hình dạng giống như bằng và một hình dạng giống như đẩy, chúng ta cần dùng yêu để làm cho mỗi cử chỉ trở nên có ý nghĩa và để nhận ra những phân biệt nội tại trong tám tay và năm bước.</p>
+          <p>Trích dẫn thứ hai, “không phát được lực ắt phải tìm ở yêu và chân”, gần như là một trích dẫn từ Thái Cực Quyền Kinh. Trích dẫn thật sự là một ví dụ nữa của tam đoạn luận Trung Hoa, chỉ cho chúng ta cách giành được thế thượng phong (bằng việc hiện diện trong khoảnh khắc và nắm bắt cơ hội khi nó xuất hiện), rồi mô tả nguồn gốc của sai lầm nếu không giành được thế thượng phong. (Trong trích dẫn này, cả “giành được”, “đạt được”, và “thu được” đều là cùng một chữ Hán 得 de, hàm ý một</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-4">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 4 / 10</span>
+          <h3>Phân Hư Thực<span class="zh">四，分虚实</span></h3>
+          <div class="en-title">Separate Empty and Full</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">太极拳术难如虚实为第一要义，</div>
+          <div class="lang-vi"><p class="verse">Trong thuật Thái Cực Quyền, Phân biệt Hư và Thực là yếu nghĩa hàng đầu.</p></div>
+          <div class="lang-en"><p class="verse">Empty and Full is the primary essential in the art of ​taijiquan.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">如全身皆坐在右腿，则右腿为实，左腿为虚；</div>
+          <div class="lang-vi"><p class="verse">Nếu toàn thân đều ngồi hẳn trên chân phải, thì chân phải là Thực, chân trái là Hư;</p></div>
+          <div class="lang-en"><p class="verse">If the whole body completely rests on the right leg, then the right leg is full and the left leg is empty.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">全身皆坐在左腿，则左腿为实，右腿为虚。</div>
+          <div class="lang-vi"><p class="verse">Nếu toàn thân đều ngồi hẳn trên chân trái, thì chân trái là Thực, chân phải là Hư.</p></div>
+          <div class="lang-en"><p class="verse">If the whole body completely rests on the left leg, then the left leg is full and the right leg is empty.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">虚实能分，而后转动轻灵，毫不费力；</div>
+          <div class="lang-vi"><p class="verse">Nếu phân được Hư và Thực, thì sau đó việc xoay chuyển mới nhẹ nhàng linh hoạt (khinh linh), hoàn toàn không tốn sức;</p></div>
+          <div class="lang-en"><p class="verse">With the skill of separating empty and full, then your turning will be light and agile ​(qing ling) without the least bit of straining or force.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">如不能分，则迈步重滞，自立不稳,而易为人所牵动。</div>
+          <div class="lang-vi"><p class="verse">Nếu không phân được, thì bước chân sẽ nặng nề trì trệ, đứng tựa không vững, và dễ bị người khác dắt kéo (khiên).</p></div>
+          <div class="lang-en"><p class="verse">Without the skill of separating, then your stepping will be heavy and stagnant, your stance will be unstable and your actions will be easily influenced ​(qian).</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Phần bình giảng về điểm này mở đầu bằng câu “Hư Thực là yếu nghĩa hàng đầu trong thuật Thái Cực Quyền”. Tên của môn võ đôi khi bị dịch kém cỏi thành “Thái Cực Quyền” theo kiểu “Quyền của Thái Cực Tối Thượng” hay đại loại như vậy. Cách dịch ấy là kết quả của lối dịch từng chữ một:</p>
+          <p class="bullet">● Thái 太 là lớn lao, to nhất. Chữ này được dùng trong tên các vị thần như Thái Nhất 太一, Đấng Tối Cao hay Tối Thượng Đồng Nhất. Do đó người ta dùng chữ “Tối Thượng” khi dịch tên môn võ. ● Cực 極 nguyên thủy vẽ hình đòn rường (đòn dông) của một mái nhà, là thanh ngăn cách hai bên mái và chạy suốt chiều dài ngôi nhà từ đầu cực này đến đầu cực kia. Chữ này được dùng để chỉ các cực từ tính, hay địa cực của trái đất. Và nó mang nghĩa: cực độ, tột cùng, đỉnh cao, và tối hậu. Thế nên có người chọn chữ “Tối Hậu” để dịch tên môn võ. ● Quyền 拳 theo nghĩa đen là nắm đấm hay cú đấm. Và như một phạm trù, nó đại diện cho bất kỳ môn võ nào. Ghép những thứ ấy lại, ta được “Quyền của Thái Cực Tối Thượng”! Nghe thật là oách.</p>
+          <p>Thực ra, cái tên ấy có nghĩa là Võ thuật của Thái Cực (Thái Cực Quyền). Thái Cực ám chỉ sự đồng nhất của các mặt đối lập, thường được biểu thị qua Đồ hình Thái Cực (thái cực đồ hay âm-dương đồ) quen thuộc. Logo của trường chúng tôi, Rocky Mountain Tai Chi Chuan, vẽ núi non và chòm Bắc Đẩu trên một biến thể hiện đại của thái cực đồ:</p>
+          <p>Vì đồ hình ấy thể hiện một cặp đối cực đồng nhất, Thái Cực Quyền là môn võ được xây dựng quanh sự thanh nhất của các mặt đối lập, mà Hư và Thực là một cặp đối cực điển hình cho điều đó, nên phát biểu mở đầu của Trừng Phủ chỉ đơn thuần khẳng định tên của môn võ và hướng chúng ta đặc biệt chú ý đến cặp Hư-Thực.</p>
+          <p>Có vẻ như cái tên Thái Cực được gắn vào môn võ của chúng ta vào thế kỷ 19, sau khi người sáng lập phái Dương là Dương Lộ Thiền đến Bắc Kinh. Người ta kể rằng Lộ Thiền gọi môn võ của mình là “quyền mềm” hay “quyền bông” (nhuyễn quyền và miên quyền). Swaim dịch một đoạn từ sách của Dương Chấn Cơ — cháu nội của Trừng Phủ — mô tả cách cái tên Thái Cực Quyền được gắn vào môn võ của Dương Lộ Thiền:</p>
+          <p>Sau khi cụ cố của tôi [Dương Lộ Thiền] được bốn mươi tuổi, cụ được người ta tiến cử lên Bắc Kinh dạy quyền. Trong thời gian ở kinh đô, cụ bất khả chiến bại ở mọi nơi cụ đi qua, và tiếng tăm vang dội theo sau, đến nỗi cụ được đặt biệt danh “Dương Vô Địch” (Dương Vô Địch). Thầy của vua Quang Tự [trị vì 1875–1908], vị học giả uyên bác Ông Đồng Hòa [1830–1904], đã chứng kiến Dương thắng trong một cuộc tỉ thí võ thuật, và sau đó thốt lên những lời khen ngợi này: “Tiến thoái nhanh như thần biến, hư thực khó lường, thân như vượn khéo, tay như quả cầu chuyển động, hợp nhất làm một thân với Thái Cực nguyên sơ (thái cực chi hỗn nguyên nhất thể).”</p>
+          <p>Rồi ông đích thân viết câu đối này, tặng nó [tức một bức trục thư pháp] cho Dương:</p>
+          <p>Tay ôm Thái Cực chứa cả thiên hạ. / Lòng mang tuyệt kỹ dẹp đám anh hùng. (thủ bồng thái cực tái hoàn vũ / hung hoài tuyệt kỹ áp quần anh)</p>
+          <p>Sau đó, môn võ được biết đến với tên Thái Cực Quyền.</p>
+          <p>Bản thân thái cực đồ cũng là một sản phẩm khác của phái Tống Nho, mượn và chiếm dụng những hình ảnh Đạo giáo có trước. Thái Cực và lưỡng cực âm-dương có lịch sử lâu dài, bắt nguồn từ thời Lão Tử và Khổng Tử. Trong tư tưởng Đạo giáo, các khái niệm then chốt là vô cực (vô cực, không có cực), thái cực (cân bằng bất nhị), và lưỡng nghi (nhị nguyên hiển lộ). Vô Cực biểu thị trạng thái hỗn mang trước khi hai cực âm-dương xuất hiện: nó thường được vẽ như một vòng tròn trống hay xám. Thái Cực biểu thị trạng thái bất nhị cân bằng: hai cực hiện diện nhưng không thể tách rời. Lưỡng Nghi là trạng thái mà âm và dương được xem xét độc lập.</p>
+          <p>Chu Hy, vị học giả Tống Nho đã nhắc ở trên, đã thăng cấp phần bàn luận của Chu Đôn Di về thái cực đồ thành một phần của thế giới quan Nho giáo chính thống vào thế kỷ 12. Vào thời điểm đó, đồ hình quen thuộc với chúng ta vẫn chưa được dùng để biểu thị thái cực. Thay vào đó, Chu Đôn Di dùng một phiên bản cổ hơn, biểu thị vô cực, thái cực, và ngũ hành:</p>
+          <p>Thái Cực Đồ của Chu Đôn Di</p>
+          <p>Trong đồ hình này, vòng tròn trống phía trên biểu thị vô cực; vòng tròn kế tiếp bên dưới, với âm và dương cân bằng cùng những mảng trắng đen lồng vào nhau, biểu thị thái cực; năm hành (ngũ hành) sinh ra từ thái cực; và thế giới hiển lộ, với âm và dương — tức Càn (Sáng Tạo) và Khôn (Tiếp Nhận) — tách ra thành lưỡng nghi, được minh họa ở phía dưới.</p>
+          <p>Adler dẫn lời Chu Hy định nghĩa thái cực như sau: Thái Cực chỉ là cực tột (cực chí 極至) nhưng nó không có vị trí. Nó là cái cao nhất, huyền diệu nhất, cốt yếu nhất, linh diệu nhất, nhưng không có vị trí.</p>
+          <p>Adler tiếp đó cảnh báo chúng ta chớ tri giác cái Tối Hậu theo lối tuyến tính. Đúng hơn: [H]ình ảnh chủ đạo là sự vận hành tuần hoàn hay bổ sung lẫn nhau của âm-dương... bỏ qua phương diện phi tuyến tính của hình ảnh “đòn rường” sẽ che khuất sự thật rằng điểm xa nhất cũng chính là tâm điểm của một mô thức tuần hoàn. Điểm xa nhất không phải là trạm dừng cuối trên một đường thẳng một chiều; nó là một cực của mô thức lưỡng cực hay của tiến trình luân phiên.</p>
+          <p>Adler rồi dẫn lời Dương Thời, người bạn đồng môn với Chu Hy dưới thầy Trình Di: Trung (trung 中) là cực tột (chí cực 至極) của Đạo. Do đó trung được gọi là cực 極. Đòn rường của một ngôi nhà cũng được gọi là cực, vì nó vừa là tâm điểm vừa là phần cao nhất.</p>
+          <p>Phiên bản thái cực đồ của chúng ta thì tương đối mới, có lẽ có từ thế kỷ 19. Vào đời Minh, đồ hình của Chu Đôn Di tiến hóa thành một đồ hình với những đường xoắn ốc cuộn xoáy. Đây là một phiên bản được gán cho Triệu Huy Khiêm vào cuối thế kỷ 14, cho thấy sự tiến hóa thành đồ hình quen thuộc của chúng ta:</p>
+          <p>Khi suy nghĩ về mô thức lưỡng cực cân bằng của âm-dương, tôi thấy khái niệm “trường” do hai cực sinh ra của Roger Ames rất hữu ích. Ta thường nghĩ âm và dương như những mặt đối lập và cố phân loại mọi hiện tượng thành thực thể của cực này hay cực kia. Khi mới được giới thiệu về âm-dương, chúng ta thấy những danh sách dài các sự vật được chia thành âm-dương, ví dụ thức ăn thì kem là âm, ớt cay là dương.</p>
+          <p>Ames gợi ý rằng, thay vì những danh sách mô tả hạng mục này và hạng mục kia, ta hãy nghĩ âm-dương như hai cực xác định một trường giữa chúng. Hầu hết hiện tượng không nằm ở cực này hay cực kia, mà xảy ra đâu đó trong trường do hai cực sinh ra. Ông liên hệ điều này với khái niệm Trung Hoa rằng đế quốc là hình mẫu cho vũ trụ: Hoàng đế ở một cực, một vị vua ngoại bang ở cực kia. Mỗi người liên hệ trước tiên với một trong hai vị vua: người trong nước Trung Hoa liên hệ với Hoàng đế, người ngoài nước liên hệ với vua ngoại bang. Chỉ mình Hoàng đế thực sự ở cực chủ đạo: mọi người khác đều cách nó một khoảng nào đó. Một số người ở rất gần biên giới (đường cong uốn lượn xuyên qua thái cực đồ); số khác ở tận triều đình, rất gần cực. Người ở hai bên biên giới</p>
+          <p>có thể thật ra gần nhau hơn nhiều, và do đó chia sẻ nhiều đặc điểm, nhưng mỗi người vẫn liên hệ với vị vua cai trị mình. Hoặc bạn ở trong Vạn Lý Trường Thành và do đó là người Trung Hoa, hoặc bạn ở ngoài thành và do đó là người ngoại bang. Và dĩ nhiên, theo thời gian, biên giới dịch chuyển. Một nơi từng ở trong biên giới nay có thể ở ngoài biên giới mà vị trí không hề thay đổi.</p>
+          <p>Tôi thấy điều này thật sự hữu ích để hiểu vai trò của các mặt đối lập như Hư và Thực trong việc luyện tập của ta. Ben Lo xếp Phân Biệt Hư Thực (ông cũng thường nói “Phân Biệt Âm Dương” hay đơn giản là “Phân Biệt Trọng Lượng”) là nguyên tắc thứ hai trong năm nguyên tắc của ông. Khi dạy trực tiếp, Ben bảo chúng tôi Phân Biệt Hư Thực nghĩa là 1) Phân biệt trọng lượng 2) Phân biệt cơ bắp 3) Phân biệt tâm trí (ý)</p>
+          <p>Phân biệt trọng lượng thì đơn giản trong các thế 100%: trọng lượng hoàn toàn tách biệt. Nhưng còn các thế khác và các giai đoạn chuyển tiếp thì sao? Phân biệt trọng lượng có bị vi phạm bởi một thế cung 70/30 không? Có bị vi phạm ở thời điểm tất yếu trong một bước chuyển khi trọng lượng thể chất cân bằng giữa hai bàn chân không? Có bị vi phạm trong các thế khai và hợp của bài quyền, khi trọng lượng được chia sẻ giữa hai bàn chân không?</p>
+          <p>Mô hình “trường” của Ames cho ta câu trả lời: ngay cả khi trọng lượng thể chất được phân bố giữa hai chân, mỗi chân chỉ trung thành với một cực của Hư/Thực, và hai chân gắn với hai cực khác nhau. Để một chân ngồi vắt qua đường ranh giữa Hư và Thực, hay để cả hai chân cùng ở một bên, ví dụ cùng Thực, tức là vi phạm Phân Biệt Hư Thực.</p>
+          <p>Lưu ý, điều này không có nghĩa học trò có thể bỏ qua việc luyện tập nghiêm ngặt phân biệt trọng lượng. Tuy trọng lượng có thể chỉ là bước đầu tiên trong việc phát triển phân biệt hư thực, bỏ qua bước ấy nghĩa là học trò sẽ không bao giờ đạt đến những mức phân biệt cao hơn. Vậy nên điều quan trọng là phải làm công việc khổ nhọc ấy — nhấc bàn chân hư lên và thật sự phân biệt trọng lượng.</p>
+          <p>Trong phần bàn luận về Phân Biệt Hư Thực của Trịnh Mạn Thanh (xem Luận Thuyết thứ 13 của Trịnh), ông đưa ra khái niệm mà ta thường gọi là “cân bằng chéo” (một số người gọi là “thực thể chéo”), nói rằng: Dùng tay phải và chân trái xuyên suốt nhau bằng một đường kình. Chân phải và tay trái cũng vậy. Nếu tay phải chân trái là Thực, thì chân phải tay trái là Hư. Ngược lại cũng thế. Thế là phân biệt rõ ràng. Theo đó, tay phải và chân trái được kình xuyên nối lẫn nhau, tạo thành một dòng thống nhất. Chân phải và tay trái cũng y như vậy. Nếu tay phải và chân trái là Thực, thì chân phải và tay trái là Hư, và ngược lại.</p>
+          <p>Đây là ý nghĩa đích thực của “phân biệt rõ ràng”.</p>
+          <p>Thái Cực Quyền Kinh cũng hàm chứa cùng chỉ dạy về Phân Biệt Hư Thực, nói rằng: Hư Thực nên phân cho rõ ràng. Mỗi chỗ có hư thực của mỗi chỗ. Mọi chỗ đều luôn có cùng một hư thực ấy. Hãy phân biệt Hư và Thực cho rõ ràng. Mỗi điểm trên thân thể đều có hư và thực. Mọi điểm phải luôn luôn có cùng một hư thực như thế.</p>
+          <p>Davis dịch phần bình giảng của Trần Vi Minh về những dòng này: Khi luyện các thế đơn hành, người ta phải cẩn thận phân biệt hư và thực. Khi đẩy tay với đối thủ, cũng phải cẩn thận phân biệt hư và thực. Tuy phải phân biệt những thứ ấy cho rõ ràng, song cũng phải xét kỹ ý định của đối thủ rồi mới quyết định làm gì. Đối thủ thực, ta hư; hắn hư, ta thực. Cái thực bỗng chốc biến thành hư; cái hư bỗng chốc biến thành thực.</p>
+          <p>Trong bối cảnh này, đáng bỏ công tìm hiểu sâu hơn về hư (xu) và thực (shi).</p>
+          <p>Thực, Full, là 实 trong chữ giản thể hiện đại, hay 實 trong chữ phồn thể. Chữ phồn thể vẽ một xâu tiền treo dưới mái nhà. Do đó nó mang nghĩa: chắc đặc, giàu có, thật, có thực chất, v.v.</p>
+          <p>Hư, Empty, là 虚 trong cả chữ hiện đại lẫn phồn thể. Chữ này vẽ một con hổ trên một ngọn đồi. Tôi thích hình dung con hổ đang nhìn xuống một ngôi làng bỗng chốc trở nên “trống không” khi mọi người chạy vào trong vừa thấy hổ. Đó là một khoảnh khắc tiềm năng nhức buốt: sự sống và cái chết sắp sửa diễn ra bất chấp vẻ trống không bề ngoài. Trong cách dùng thông thường, hư 虚 nghĩa là trống không, giả dối, và rỗng tuếch.</p>
+          <p>Hư là một thuật ngữ Đạo giáo, biểu thị cả sự thanh tịnh nguyên sơ bị bào mòn dần trong dòng đời, lẫn mục tiêu của các pháp nội đan khi sinh lực động vật thô sơ (tinh) được tinh luyện thành nội khí (khí), rồi khí lại được tinh luyện thành thần (shén), và cuối cùng trở về trạng thái thanh tịnh nguyên sơ ấy (hư). Một số phái dùng chữ không (không, trống rỗng) cho trạng thái này; số khác dùng chữ hư.</p>
+          <p>Trong giảng dạy trực tiếp, chúng tôi được dạy rằng mục tiêu của Thái Cực Quyền phái Dương là “làm cho cái vô hình trở thành hữu hình” hay hiển lộ cái trống không, hư, thành hiện thực, thực.</p>
+          <p>Như một cặp bất nhị cân bằng, hư và thực đại diện cho mọi cặp âm-dương khác nhau: tiềm năng và hiện thực, nặng và nhẹ (trọng và khinh), nội và ngoại, động và tĩnh (động và tĩnh). Phân Biệt Hư Thực là tiến trình làm sáng tỏ và tinh luyện sự hỗn mang của vô cực để tạo ra bất nhị cân bằng của thái cực.</p>
+          <p>Với tất cả những điều ấy, tôi hơi ngạc nhiên khi trong phần bình giảng của Trừng Phủ, ông chỉ nhắc đến việc phân biệt trọng lượng, định nghĩa hư và thực thuần túy trên cơ sở trọng lượng ở hai chân. Phần bình giảng này được đặt vị thế như đang giảng cho đệ tử của ông, và thật thú vị khi ông chỉ chạm đến mức cơ bản nhất của việc phân biệt hư thực. Có lẽ trước đó ông đã giảng dạy rất nhiều và cảm thấy chỉ cần tóm lược. Có lẽ khi Trần Vi Minh công bố giáo huấn này ra công chúng, ông quyết định đơn giản hóa và chỉ phơi bày nền tảng cùng cơ sở thuần vật lý của nguyên tắc.</p>
+          <p>Tôi cũng cho rằng cách hành văn của điểm này và vị trí của nó trong danh sách gợi ý rằng danh sách Mười Yếu Lĩnh thật sự xuất phát từ Dương Trừng Phủ, chứ không phải do Trần Vi Minh biên tập hay tập hợp rồi đơn giản gán cho thầy mình. Bảy trong mười Yếu Lĩnh khớp với thể thức bốn chữ cổ điển của những công thức như vậy. Ba điểm không khớp là điểm này (3 chữ), Tùng Yêu (2 chữ) và Dụng Ý Bất Dụng Lực (5 chữ). Tôi cho rằng một học giả dựng nên danh sách như thế ắt sẽ đảm bảo mọi điểm đều khớp thể thức bốn chữ. Làm được điều đó cũng dễ thôi: Dụng Ý Bất Dụng Lực có thể thành Dụng Ý Bất Lực (dụng ý bất lực); ta có thể theo gương Thái Cực Quyền Kinh hay Trịnh Mạn Thanh mà diễn đạt điểm này, Phân Biệt Hư Thực, thành Phân Hư Thực Cho Rõ (hư thực phân thanh); và khi ấy, vị học giả sẽ nghĩ ra cách mở rộng Tùng Yêu thành bốn chữ.</p>
+          <p>Ngoài ra, dòng đầu trong phần bình giảng của Trừng Phủ về điểm này nói rằng điểm này là “yếu nghĩa hàng đầu” của Thái Cực Quyền. Như vậy, vị trí thứ tư trong danh sách mười điểm là một chỗ rất kỳ quặc cho nó. “Yếu nghĩa hàng đầu” đáng lẽ phải đứng đầu danh sách, hoặc nếu có lý do nào đó để không làm thế, thì nó phải đứng cuối — cuối toàn danh sách hoặc cuối phần đầu gồm năm điểm này. Thứ tư đơn giản không phải là chỗ mà một học giả sẽ đặt “yếu nghĩa hàng đầu”.</p>
+          <p>Trần Vi Minh, với học vấn của một người theo Nho học, ắt sẽ sửa danh sách để tránh những vấn đề ấy. Dương Trừng Phủ sắp xếp danh sách và gọi tên các yếu lĩnh theo những ưu tiên khác. Có thể có một thứ tự truyền thống nào đó mà Trừng Phủ chỉ đang truyền lại. Có thể ông đang đi từ đầu xuống chân theo các điểm này — thứ tự ấy khớp với bốn điểm đầu, dù điểm thứ năm, Trầm Kiên Trụy Trửu, sẽ hơi lạc chỗ. Có lẽ có lý lẽ nào đó liên quan đến sự phát triển nội tại quyết định thứ tự. Dù sao, có vẻ những chi tiết về thể thức này gợi ý rằng vai trò của Trần Vi Minh là người chép lại chứ không phải người sáng tạo, ít nhất là đối với bản thân các điểm.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-5">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 5 / 10</span>
+          <h3>Trầm Kiên Trụy Trửu<span class="zh">五。沉肩坠肘</span></h3>
+          <div class="en-title">Sink Shoulder, Drop Elbow</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">沉肩者，肩松开下垂也。</div>
+          <div class="lang-vi"><p class="verse">Trầm kiên (chìm vai) nghĩa là vai buông lỏng, mở ra, và rủ xuống.</p></div>
+          <div class="lang-en"><p class="verse">Sink ​(chen) the shoulder means the shoulder loosens, opens, and hangs down</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">若不能松垂，两肩端起，则气亦随之而上，全身皆不得力矣。</div>
+          <div class="lang-vi"><p class="verse">Nếu không có khả năng tùng (buông lỏng) và rủ xuống, thì hai vai sẽ nhô lên, và tiếp đó khí cũng theo lên trên. (Khi điều này xảy ra) toàn thân không thể đạt được lực.</p></div>
+          <div class="lang-en"><p class="verse">Without the skill of ​song and hanging, both shoulders will rise and subsequently the ​qi will also go up. (when this happens) the whole body cannot achieve power.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">坠肘者，肘往下松垂之意，</div>
+          <div class="lang-vi"><p class="verse">Trụy trửu (rơi khuỷu) nghĩa là khuỷu đi xuống với ý của tùng và trùy (rủ xuống).</p></div>
+          <div class="lang-en"><p class="verse">Drop ​(zhui) the elbow means the elbow goes down with the ​yi of ​song and hanging (​chui).</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">肘若悬起，则肩不能沉，放人不远，近于外家之断劲矣。</div>
+          <div class="lang-vi"><p class="verse">Nếu khuỷu bị treo lơ lửng và nhô lên, thì vai không thể trầm xuống, và việc phóng (phóng) của bạn sẽ không đẩy người ta đi xa được. (Việc phóng của bạn) khi ấy gần như giống với kình bị đứt (đoạn kình) của phái ngoại gia.</p></div>
+          <div class="lang-en"><p class="verse">If the elbow is suspended and rising, then the shoulder is not able to sink and your discharge (​fang) will not send someone far. (Your discharge) is then almost the same as the broken ​jin of the external arts.</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Điểm này khép lại năm điểm đầu vốn chủ yếu tập trung vào các thuộc tính và kỹ năng thể chất. Nó có vẻ khá đơn giản, bảo ta trầm vai và trụy trửu. Nếu không làm được, phần bình giảng của Trừng Phủ cho ta biết ta sẽ vừa không thể trầm khí, vừa không thể phóng người đối thủ ra.</p>
+          <p>Chỉ dạy cho vai, trầm 沉 (chen), cũng là hành động giống như trầm khí xuống đan điền. Trầm nghĩa là chìm, hạ xuống, làm cho cái gì đó sâu. Chỉ dạy cho khuỷu là trụy 坠 (zhui), nghĩa là</p>
+          <p>rơi, buông rơi, hay rủ. Hai chỉ dạy này có vẻ gần như giống hệt nhau. Vậy tại sao phân biệt chúng?</p>
+          <p>Trong việc luyện tập của tôi, tôi phân biệt về hướng: trầm hàm ý đi xuống “hướng tới” mặt đất, còn trụy hàm ý di chuyển “ra xa” khỏi một cái gì đó. Vai thì luôn trầm hướng về mặt đất; khuỷu thì luôn trụy, thường rủ ra xa vai, đôi khi rủ ra xa bàn tay, ví dụ trong thế Bạch Hạc Lượng Sí. Việc trầm vai giữ cho vai không nhô lên, từ đó giữ cho thân thể không bị nâng lên và khí không bốc lên. Việc trụy khuỷu làm dài cánh tay trên khi chúng rủ ra xa vai. Điều này làm cho khuỷu độc lập với vai và thân, và giữ cho đối thủ không nắm bắt và khống chế được thân bạn qua khuỷu của bạn.</p>
+          <p>Chữ trùy 垂 (chui) mà tôi dịch là “rủ” là một từ gần đồng nghĩa khác. Nó nghĩa là rủ xuống, buông rủ, hay để rơi. Trùy được áp dụng cho cả vai lẫn khuỷu trong phần bình giảng, thường đi kèm với chỉ dạy tùng — buông lỏng và nới lỏng.</p>
+          <p>Một trong những hậu quả của việc không trầm vai và trụy khuỷu là không thể phóng (phóng) đối thủ. Phóng là một kỹ năng liên hệ mật thiết với phát kình, tức phóng thích kình (lực). Phát kình mô tả một kỹ năng hiện diện trong nhiều môn võ, cả nội gia lẫn ngoại gia. Theo giảng dạy trực tiếp, phát kình của Thái Cực Quyền lý tưởng là chứa đựng kỹ năng đề-phóng (thăng phóng), nâng lên và phóng ra, thay vì đơn thuần là sự phát lực đột ngột. Đối thủ bị nâng lên, mất kết nối với mặt đất và với chính lực của hắn, rồi dễ dàng bị “phóng” đi khi bạn phát lực của mình. Kết quả là đối thủ hoặc bị quăng đi xa, hoặc nhận trực tiếp cú phóng vào thân thể mình.</p>
+          <p>Trong Thái Cực Quyền Kinh, Tâm Giải Thập Tam Thế mô tả mối quan hệ giữa phát kình và phóng, nói rằng: Phát kình như buông tên. Phát kình giống như phóng (phóng) một mũi tên. Và: Thu tức là phóng. Thu lại tức là phóng ra (phóng).</p>
+          <p>Nhiều lần trong phần bình giảng các điểm này, Trừng Phủ phân biệt giữa “nội gia” (nội gia) và ngoại gia (ngoại gia). Hai “gia” này đại diện cho cái mà nay ta gọi là “nội gia quyền” và “ngoại gia quyền”. Có nhiều tranh luận về việc chính xác thì cái gì, nếu có, định nghĩa nên sự khác biệt giữa nội gia và ngoại gia, với một số người cho rằng ở những mức cao nhất, các phép luyện hội tụ lại (“nhiều con đường dẫn đến cùng một đỉnh núi”). Theo kinh nghiệm của tôi, tôi thấy những người trình độ cao mà tôi từng chạm tay qua từ nội gia và ngoại gia cảm giác rất khác nhau. Tương tự, khi nhìn những ngọn núi ngoài cửa sổ, tôi thấy mỗi đỉnh có bộ đường mòn riêng dẫn lên nó. Dĩ nhiên, bạn có thể leo một đỉnh rồi xuống và leo một đỉnh khác, và như thế, trong hành trình của bạn, con đường lên đỉnh thứ nhất sẽ chỉ là một phần của con đường lên đỉnh thứ hai. Nhưng ở trình độ của tôi, quả thật tôi thấy có những khác biệt nền tảng giữa các môn võ.</p>
+          <p>Một số người mô tả sự khác biệt theo năng lực tiên thiên và hậu thiên: ngoại gia cải thiện các kỹ năng và năng lực mà ta phát triển trong dòng đời bình thường như tốc độ và sức mạnh; nội gia tập trung phát triển những phẩm chất bẩm sinh và nguyên sơ như tri giác và ý thức. Một số phân biệt dựa trên việc sự phát triển hướng nội vào năng lượng và ý thức, hay hướng ngoại vào thân thể và sức mạnh của nó. Một số cố định nghĩa nội gia là bản địa của Trung Hoa còn ngoại gia là du nhập: một phần then chốt của lập luận này là gắn ngoại gia với chùa Thiếu Lâm và Phật giáo — vốn từ Ấn Độ truyền vào Trung Hoa — và gắn nội gia với núi Võ Đang và Đạo giáo — vốn khởi nguồn từ trong lòng Trung Hoa.</p>
+          <p>Trừng Phủ nhất quán tỏ thái độ xem nhẹ “ngoại gia” trong phần bình giảng của mình, ngụ ý rằng chúng đơn giản với một cao thủ Thái Cực Quyền. Trong ví dụ này, ông nhắc đến “đoạn kình”, tức kình bị đứt (đoạn kình) của phái ngoại gia. Đoạn nghĩa là bẻ gãy, đứt phựt, cắt lìa, tách rời, hay nứt vỡ. Đó không phải là phẩm chất đáng mong muốn cho lực của một người.</p>
+          <p>Trong Thái Cực Quyền Kinh, được gán cho Trương Tam Phong, bạn bẻ gãy sự kết nối của đối thủ với mặt đất trước khi đẩy: Nếu nâng vật lên rồi gia thêm lực tỏa (đẩy xuống để đổi hướng), thì gốc của nó tự đứt, và kẻ kia nhanh chóng bị đổ nhào, không chút nghi ngờ. Để bứng gốc (đối thủ), dùng một lực “tỏa” (đẩy xuống để đổi hướng). Rồi cái gốc bị đứt (đoạn) và kẻ kia nhanh chóng bị đổ nhào, không chút nghi ngờ.</p>
+          <p>Davis, trong bản dịch Kinh điển của bà, ghi chú rằng Dương Trừng Phủ giải thích “lay hắn như lay một cái cây không gốc và làm mất thăng bằng của hắn, rồi hắn sẽ đổ nhào tự nhiên”. Trịnh Mạn Thanh mô tả nó là “lực nảy sinh bằng cách trước tiên kéo rồi đẩy, nghĩa là bạn nhượng bộ trước khi đạt được nó. Nó giống như ngồi xổm trước để lấy đà nhảy.” Trong thư pháp Trung Hoa, thuật ngữ “tỏa” mô tả một “lực hay hành động bẻ gãy” tương tự, được thực hiện bằng cách ấn nhẹ xuống trước khi đổi hướng nét bút hay nhấc bút lên.</p>
+          <p>Đôi khi, không thể tránh được, kình của một người sẽ bị đứt. Trong trường hợp ấy, Tâm Giải Thập Tam Thế bảo ta hãy đảm bảo giữ ý thức liên tục và không gián đoạn: Kình đứt mà ý không đứt. (Dù) kình có bị đứt (đoạn), ý vẫn không đứt.</p>
+          <p>Dù sao, kình bị đứt không phải là điều ta ao ước. Và nếu bạn bộc lộ đoạn kình của phái ngoại gia, Trừng Phủ khuyên ta hãy luyện thêm việc trầm vai và trụy khuỷu.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-6">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 6 / 10</span>
+          <h3>Dụng Ý Bất Dụng Lực<span class="zh">六。用意不用力</span></h3>
+          <div class="en-title">Use Yi, Don't Use Li</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">太极拳论云：此全是用意不用力。</div>
+          <div class="lang-vi"><p class="verse">Thái Cực Quyền Luận nói: “Toàn bộ cái đúng là dùng ý mà không dùng lực”.</p></div>
+          <div class="lang-en"><p class="verse">The taijiquan treatise says: “the entirety of what is correct is to use ​yi and not use ​li”.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">练太极拳全身松开，</div>
+          <div class="lang-vi"><p class="verse">Khi luyện Thái Cực Quyền, toàn thân phải tùng khai (buông lỏng và mở ra).</p></div>
+          <div class="lang-en"><p class="verse">When practicing taijiquan, the whole body must be ​songkai (relaxed and open).</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">不便有分毫之拙劲，以留滞于筋骨血脉之间以自缚束，然后能轻灵变化,圆转自如。</div>
+          <div class="lang-vi"><p class="verse">Sai là có dù chỉ một mảy may chút kình vụng về (trác kình), thứ sẽ trói chặt gân, xương, và huyết mạch lại với nhau như một bó lúa, khiến chúng trì trệ. (Nếu thân thể tùng khai), thì bạn sẽ có được các kỹ năng khinh linh, biến hóa (thay đổi và chuyển hóa), viên (tròn đầy) và xoay chuyển trơn tru.</p></div>
+          <div class="lang-en"><p class="verse">It is wrong to have even an iota of clumsy ​jin (​zhuo jin) Which will bind the sinews, bones, and blood vessels together like a sheaf, causing them to be stagnant. (If the body is ​songkai), then you will get the skills of ​qing ling, bian hua (changing and transforming) Yuan (roundness)​ and turning smoothly.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">或疑不用力何以能长力？盖人身之有经络，如地之有沟壑，</div>
+          <div class="lang-vi"><p class="verse">Có người nghi ngờ làm sao không dùng lực mà có thể tăng lực? Vì thân người có kinh lạc, cũng như đất có rãnh lạch và mương hào.</p></div>
+          <div class="lang-en"><p class="verse">Some question how not using ​li can help increase power (​li). The human body is covered by the meridians (​jingluo) Just like the earth has ditches and gullies.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">沟壑不塞而本行，经络不闭则气通。</div>
+          <div class="lang-vi"><p class="verse">Rãnh lạch và mương hào không bị lấp nghẽn thì nước mới chảy, kinh lạc không bế tắc thì khí mới thông.</p></div>
+          <div class="lang-en"><p class="verse">That ditches and gullies are not filled in is the basis for circulation (of water in the ditches). Similarly, if the ​jingluo are not obstructed, then the ​qi can pass through them.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">如浑身僵劲满经络，气血停滞，转动不灵，牵一发而全身动矣。</div>
+          <div class="lang-vi"><p class="verse">Nếu toàn thân đầy kình cứng, kinh lạc bị nhồi kín, thì khí và huyết sẽ trì trệ tắc nghẽn, việc xoay chuyển sẽ không linh, (bạn có thể) bị dắt (khiên) và chỉ một phát là toàn thân bị lay động.</p></div>
+          <div class="lang-en"><p class="verse">If the whole body has stiff ​jin and the ​jingluo are clogged (stuffed) then the qi and blood will be stagnant and blocked, the turning will not be ​ling, (you can be) lead ​(qian) and with one ​fa, the whole body is moved.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">若不用力而用意，意之所至，气即至焉，</div>
+          <div class="lang-vi"><p class="verse">Nếu không dùng lực mà dùng ý, thì nơi nào ý đến, khí cũng đến ngay nơi ấy.</p></div>
+          <div class="lang-en"><p class="verse">If you don’t use ​li and use ​yi, When the ​yi reaches a place, The ​qi also arrives at that place.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">如是气血流注，日日贯输，周流全身，无时停滞。</div>
+          <div class="lang-vi"><p class="verse">Cứ như thế, khí và huyết lưu chuyển và tuôn chảy liên tục. Ngày ngày xuyên suốt mọi nơi và vận chuyển. Tuần hoàn khắp toàn thân. Không lúc nào trì trệ.</p></div>
+          <div class="lang-en"><p class="verse">In this way (using ​yi not ​li), the ​qi and blood circulate and flow continuously Day by day, threading everywhere and transporting Circulating throughout the whole body At no time stagnating.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">久久练习，则得真正内劲，</div>
+          <div class="lang-vi"><p class="verse">Luyện tập (theo cách này) lâu ngày, thì bạn sẽ đạt được nội kình chân chính.</p></div>
+          <div class="lang-en"><p class="verse">After practicing (this way) for a long time, then you will achieve the true and correct ​nei jin.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">即太极拳论中所云：‘极柔软，然后极坚刚’也。</div>
+          <div class="lang-vi"><p class="verse">Thái Cực Quyền Luận mô tả đúng điều này, nói rằng “Cực mềm mại rồi đến cực cứng rắn”.</p></div>
+          <div class="lang-en"><p class="verse">The taijiquan treatise describes this exactly saying “Extreme of soft results in the extreme of hard and firm”.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">太极拳功夫纯熟之人，臂膊如绵裹铁，分量极沉；</div>
+          <div class="lang-vi"><p class="verse">Người tinh thông công phu Thái Cực Quyền thì cánh tay như bông bọc sắt, với trọng lượng cực nặng và chìm.</p></div>
+          <div class="lang-en"><p class="verse">A person who is skilled with taijiquan ​gongfu has arms like cotton wrapped around iron, with extreme heaviness (​zhong) and sinking ​(chen).</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">练外家拳者，用力则显有力，不用力时，則甚輕浮。可见其力乃外劲浮面之劲也。</div>
+          <div class="lang-vi"><p class="verse">Người luyện ngoại gia quyền, khi dùng lực thì rõ ràng là mạnh mẽ; khi không dùng lực thì rất nhẹ và bồng bềnh. Lực của họ là hiển hiện, đó chỉ là ngoại kình, thứ kình nổi trên bề mặt.</p></div>
+          <div class="lang-en"><p class="verse">Those who practice the external arts, When they use ​li, they are obviously powerful; When they don’t use ​li, they are very light (​qing) and floating (​fu). Their ​li is obvious, it is only external ​jin, ​jin floating on the surface.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">不用意而用力，最易引动，不足尚也。</div>
+          <div class="lang-vi"><p class="verse">Không dùng ý mà dùng lực thì rất dễ bị dắt động, và chẳng có gì đáng coi trọng.</p></div>
+          <div class="lang-en"><p class="verse">Not using ​yi and using ​li Makes it every easy to lead their movement, And is nothing to esteem.</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Điểm thứ sáu, Dụng Ý Bất Dụng Lực, mở đầu phần thứ hai của các yếu lĩnh Dương Trừng Phủ. Phần thứ nhất chủ yếu liên quan đến các thuộc tính và kỹ năng bên ngoài; phần thứ hai bao quát những thuộc tính và kỹ năng uyên áo hơn. Nó mở đầu bằng một trong những đặc trưng định hình nên Thái Cực Quyền: dùng ý thức và sự chú ý thay cho sức và lực.</p>
+          <p>Phần bình giảng có ba phần. Phần đầu tham chiếu Kinh điển bằng một câu chưa hẳn là trích dẫn, chỉ dạy ta làm cho toàn thân buông lỏng và mở ra, rồi đối lập buông lỏng-mở ra với vụng về-trì trệ trong hai cặp đối. Phần thứ hai triển khai một ẩn dụ dài giữa kinh lạc và mương tưới tiêu, nhấn mạnh nhu cầu khơi thông và giữ cả hai đều mở để nước và khí có thể lưu chuyển. Cuối cùng, phần bình giảng khép lại bằng việc so sánh kỹ năng cao siêu của một người luyện Thái Cực Quyền với kỹ năng của một người luyện ngoại gia quyền — thứ “chẳng có gì đáng coi trọng”.</p>
+          <p>Khi đọc qua phần bình giảng này, tôi mạnh mẽ nghi rằng phần thứ nhất (đối lập buông lỏng và mở ra với vụng về và trì trệ) và phần thứ ba (đối lập kỹ năng Thái Cực Quyền với kỹ năng ngoại gia quyền) là của Trừng Phủ, còn phần thứ hai do Trần Vi Minh thêm vào. Đây là lần duy nhất nhắc đến kinh lạc trong phần bình giảng, và ẩn dụ tưới tiêu vốn là thứ các học giả ưa chuộng. Bằng cách dùng những ẩn dụ ấy, các học giả nhắc về vị vua huyền thoại Đại Vũ, người được cho là đã lập nên nhà Hạ thời thượng cổ và nổi danh vì tạo ra hệ thống tưới tiêu đầu tiên. Việc duy trì hệ thống tưới tiêu là tối quan trọng cả để trồng trọt lẫn để giao thông vận tải trong suốt lịch sử Trung Hoa đế chế.</p>
+          <p>Đặc biệt ở miền tây nước Mỹ, ta thường nghĩ rãnh lạch và khe núi là đặc trưng tự nhiên, do mưa rào thất thường và đột ngột ở vùng núi tạo ra qua xói mòn. Đồng bằng phía bắc Trung Hoa, nơi văn minh Trung Hoa ra đời, lại phẳng lì đến kinh ngạc: suốt hàng trăm dặm, các con sông lớn hầu như không chảy xuôi dốc chút nào: có chỗ độ hạ chỉ 4 hay 5 inch trên một dặm. Ngoài ra, những con sông ấy chảy ra từ cao nguyên Tây Tạng và đã tạo nên một đồng bằng phù sa khổng lồ định hình nên miền bắc Trung Hoa. Các lớp đất mềm bồi tụ có chỗ sâu tới 250 feet.</p>
+          <p>Điều này tạo ra một tình huống độc nhất. Trước khi có công trình thủy lợi đáng kể, đồng bằng phía bắc Trung Hoa về cơ bản là một đầm lầy khổng lồ với các con sông tản rộng và uốn lượn khắp mặt</p>
+          <p>đồng bằng. Các công trình để tạo ra một mạng lưới mương tưới tiêu khổng lồ và để cố kiểm soát dòng chảy của các con sông là một nỗ lực kéo dài suốt toàn bộ lịch sử thành văn của Trung Hoa. Ngay cả khi hệ thống tưới tiêu đã có, vẫn cần bảo trì liên tục để giữ các hệ thống ấy khỏi bị phù sa lấp đầy và trở nên vô dụng. Rãnh lạch và mương hào là đặc trưng của hệ thống tưới tiêu, chứ không phải đặc trưng tự nhiên do xói mòn tạo ra.</p>
+          <p>Vua Đại Vũ huyền thoại nổi danh vì tạo ra những mương tưới tiêu đầu tiên; việc tạo lập và duy trì hệ thống tưới tiêu là trọng tâm của việc khai lập nhà Tần, triều đại đế chế đầu tiên; và phục hồi việc bảo trì tưới tiêu là một trong những hành động đầu tiên của các nhà cai trị khi một triều đại mới lên nắm quyền. Ngoài vai trò tối quan trọng với nông nghiệp, mạng lưới tưới tiêu còn là trọng tâm của giao thông vận tải và thương mại.</p>
+          <p>Tưới tiêu do đó là trọng tâm của nền kinh tế và cấu trúc chính trị Trung Hoa. Nó cũng là một hình ảnh nền tảng cho cơ thể. Khi y học Trung Hoa bắt đầu được hệ thống hóa dưới thời Hán (206 TCN – 220 CN), hình ảnh tưới tiêu đã tạo nên nền tảng cho mô hình các tạng phủ và kinh lạc kết nối. Paul Unschuld, trong công trình nghiên cứu lịch sử có thẩm quyền của ông, Medicine in China, A History of Ideas, viết về các tạng phủ và kinh lạc như sau:</p>
+          <p>Một bản dịch sát nghĩa [cho tạng và phủ] cho thấy cơ thể được cấu thành từ các “kho chứa” hay “kho” (tạng) và các “trung tâm thu gom ngũ cốc” hay “cung điện” (phủ). Những “kho” và “cung điện” ấy ... được viền bằng một hệ thống ống dẫn hay đường vận chuyển, được đặt tên bằng các thuật ngữ như kinh và lạc ... Thuật ngữ kinh chỉ các đường vận chuyển chính, tạo thành một liên kết liên tục giữa sáu kho và sáu cung điện.... Thuật ngữ lạc được dùng để chỉ các ống dẫn nối các đường vận chuyển trang viên với nhau, từ đó tạo thành một mạng lưới phức tạp...</p>
+          <p>Khái niệm về các đường hay ống dẫn vận chuyển phản ánh việc chuyển dịch sự hiểu biết về tầm quan trọng sống còn của đường thủy đối với quốc gia sang một quan niệm về tầm quan trọng sống còn của dòng chảy xuyên qua cơ thể đối với cá nhân con người ... Khơi thông đường thủy bế tắc, tiêu úng, tưới cho đất là một trong những trọng trách quan trọng nhất của chính quyền để đảm bảo đất đai trù phú và sản vật dồi dào.</p>
+          <p>Trong bối cảnh tưới tiêu và trị thủy, ta thấy nhiều thuật ngữ được dùng trong Hoàng Đế Nội Kinh [một nguồn gốc chính của y học Trung Hoa từ thế kỷ 2 TCN] để chỉ hệ thống đường dẫn vận chuyển bên trong cơ thể, bao gồm “rãnh lạch”, “mương hào” [và hơn thế]. Thuật ngữ kinh, chỉ mười hai đường vận chuyển chính, trực tiếp ám chỉ các con sông lớn (kinh thủy) chảy từ núi xuyên qua đất nước ra biển, còn thuật ngữ lạc, chỉ mạng lưới ống dẫn giữa các đường chính, phản ánh các máng xối được thiết kế để dẫn nước của một thành phố vào những con sông lớn chảy gần đó. (có chỉnh sửa nhỏ để cập nhật thuật ngữ Trung Hoa sang bính âm)</p>
+          <p>Unschuld tiếp đó dẫn một tác phẩm Nho giáo thế kỷ 3 TCN là Lữ Thị Xuân Thu, nói rằng: Nước chảy và bản lề cửa không mục vì chúng luôn chuyển động. Mối quan hệ giữa hình và khí cũng vậy: nếu hình không chuyển động, tinh chất (tinh) không lưu chuyển; nếu tinh không lưu chuyển, khí sẽ trì trệ. (Bản dịch của Unschuld, có chỉnh sửa nhỏ về thuật ngữ)</p>
+          <p>Phần giữa của bài bình giảng khớp chính xác vào bối cảnh này. Mạng lưới kinh lạc, gọi là kinh lạc, được mô tả như trên. Ngày nay, bản dịch sát nghĩa thông thường cho kinh lạc được đưa ra là “mạng lưới dệt” hay “mạng nhện”, kèm theo lời giải thích rằng nó ám chỉ các kinh mạch. Unschuld phơi bày những tham chiếu nguyên gốc về các kênh nước. Việc nhắc đến mương hào và rãnh lạch cùng khái niệm khơi thông các ống dẫn vận chuyển để khí có thể lưu chuyển không gián đoạn tạo thành một mạch liên tục mang tính ẩn dụ với các hình ảnh từ thời Hán. Việc phần bình giảng này do học giả Trần Vi Minh phát triển hay thật sự là truyền khẩu từ Dương Trừng Phủ không đặc biệt quan trọng. Điều gây ấn tượng ở đoạn này là cách nó khớp chỉ dạy võ thuật vào mạch tự sự chính trị, kinh tế, và y học lớn hơn của Trung Hoa.</p>
+          <p>Trở lại phần thứ nhất và thứ ba của bài bình giảng, ta lưu ý rằng chúng sẽ chảy liền mạch hoàn hảo nếu ta chỉ đơn giản bỏ đi phần giữa. Và phần bình giảng còn lại khi ấy giống với phần bình giảng về các điểm khác hơn nhiều khi không có ẩn dụ tưới tiêu:</p>
+          <p>Thái Cực Quyền Luận nói: “Toàn bộ cái đúng là dùng ý mà không dùng lực”.</p>
+          <p>Khi luyện Thái Cực Quyền, toàn thân phải tùng khai (buông lỏng và mở ra). Sai là có dù chỉ một mảy may chút kình vụng về (trác kình), thứ sẽ trói chặt gân, xương, và huyết mạch lại với nhau như một bó lúa, khiến chúng trì trệ. (Nếu thân thể tùng khai), thì bạn sẽ có được các kỹ năng khinh linh, biến hóa (thay đổi và chuyển hóa), viên (tròn đầy) và xoay chuyển trơn tru.</p>
+          <p>Luyện tập (theo cách này) lâu ngày, thì bạn sẽ đạt được nội kình chân chính.</p>
+          <p>Thái Cực Quyền Luận mô tả đúng điều này, nói rằng “Cực mềm mại rồi đến cực cứng rắn”.</p>
+          <p>Người tinh thông công phu Thái Cực Quyền thì cánh tay như bông bọc sắt, với trọng lượng cực nặng và chìm.</p>
+          <p>Người luyện ngoại gia quyền, khi dùng lực thì rõ ràng là mạnh mẽ;</p>
+          <p>Khi không dùng lực thì rất nhẹ và bồng bềnh. Lực của họ là hiển hiện, đó chỉ là ngoại kình, thứ kình nổi trên bề mặt.</p>
+          <p>Không dùng ý mà dùng lực thì rất dễ bị dắt động, và chẳng có gì đáng coi trọng.</p>
+          <p>Phần bình giảng này mở đầu bằng một câu được cho là trích từ Thái Cực Quyền Kinh điển: “toàn bộ cái đúng là dùng ý mà không dùng lực”. Tôi không thể tìm thấy câu này trong các kinh điển, dù nó hao hao vài đoạn. Nó không đủ gần với bất kỳ đoạn nào để tôi có thể khẳng định nó được cho là trích từ đoạn cụ thể nào.</p>
+          <p>Trừng Phủ rồi đối lập việc thân thể tùng khai (buông lỏng hay phóng thích và mở ra) với việc dùng trác kình (kình vụng về hay lóng ngóng). Kình vụng về khiến mọi thành phần chính của cơ thể bị trói buộc lại với nhau như lúa gặt được bó thành bó. (Để bàn thêm về ý nghĩa của kình, dịch là “gân” nhưng cũng bao gồm toàn bộ hệ mô liên kết và cơ bắp, xem ghi chú của tôi về Luận Thuyết thứ 11 của Trịnh Mạn Thanh.) Nếu thay vào đó thân thể được buông lỏng, phóng thích, và mở ra, thì bốn kỹ năng được phát triển: ● Khinh linh: nhẹ nhàng và linh hoạt. Như ta đã thấy, những thuật ngữ này xuất hiện khắp phần bình giảng. Chúng cũng là một trong các cặp thuộc Bát Tự của phái Dương. ● Biến hóa: thay đổi và chuyển hóa. Một trong những khái niệm then chốt của Thái Cực Quyền là luôn giữ khả năng biến đổi và ứng đáp, thay vì trở nên trì trệ trong thân hay tâm. Biến hóa ám chỉ kỹ năng này. Hóa cũng là tên gọi kỹ năng chuyển hóa hay hóa giải, dùng để ứng đáp lực của đối thủ mà không kháng cự hay chống đối, đồng thời giành được lợi thế trong tương tác. Biến hóa được mô tả trong Kinh Dịch (Yijing) ở thiên Hệ Từ như sau: “Biến và hóa là hình ảnh của tiến và thoái”. Chu Hy bình giảng dòng này rằng: Cái nhu biến đổi và trở thành cương; ở cực (cực) của sự thoái, nó tiến. Cái cương chuyển hóa và trở thành nhu; ở cực của sự tiến, nó thoái. Khi biến thành cương, thì có dương. Khi chuyển hóa thành nhu, thì có âm. (bản dịch của Adler) ● Viên: tròn đầy. Viên được ghép với hoạt (sinh động) trong Bát Tự của phái Dương. ● Toản: (đọc là “zuan”) xoay chuyển trơn tru. Theo nghĩa đen, tự xoay hay tự quay.</p>
+          <p>Sau khi luyện lâu và phát triển những kỹ năng này, bạn sẽ đạt được “nội kình chân chính”. Nội kình là lực (kình) của các môn nội gia. Chân chính là chân chánh. Chân là một thuật ngữ Đạo giáo, dùng để chỉ thực tại thuần khiết, chân thật, và đích thực. Mục tiêu của sự chuyển hóa bản thân là trở thành một chân nhân, tức người đích thực, bằng cách thanh lọc các thành phần của</p>
+          <p>5. Kình 筋, ở đây dịch là “gân”, không nên nhầm với kình 勁 ám chỉ nội lực.</p>
+          <p>bản thân để trả chúng về trạng thái nguyên sơ, chân thật, và đích thực. Chánh nghĩa là chính thống, đúng đắn, ngay thẳng. Nó được dùng để chỉ sự chuẩn xác của tư thế, phong thái ngay thẳng, v.v. Nguyên tắc thứ tư của Ben Lo, Thân Ngay Thẳng, ám chỉ chánh.</p>
+          <p>Trừng Phủ rồi dẫn Tâm Giải, nói rằng: Cực mềm mại, rồi cực cứng rắn. Cực mềm mại; rồi cực cứng rắn.</p>
+          <p>“Cực” ở đây và trong các dòng sau là cực, cùng chữ như trong Thái Cực Quyền, ám chỉ đòn rường hay cây cột và biểu thị một tầm xa nhất. Mềm là nhuyễn (nhu nhuyễn): mềm mại hay dẻo dai. Cứng rắn (cứng và rắn) là kiên cương. Kiên là cứng và đặc; cương là rắn và mạnh. Nhu nhuyễn và kiên cương tạo thành một cặp đối cực nữa.</p>
+          <p>Cuối cùng, Trừng Phủ có một cặp câu đối lập. Người luyện Thái Cực Quyền điêu luyện có cánh tay bằng bông bọc sắt và thể hiện các kỹ năng trọng và trầm. Người luyện ngoại gia quyền dùng năng lượng theo cách hiển hiện và thể hiện sự nhẹ và bồng bềnh. Lực của người luyện ngoại gia chỉ là hời hợt, nổi bồng và trôi trên bề mặt, trái ngược với nội lực sâu hơn của người luyện Thái Cực Quyền. Thứ lực hời hợt ấy chẳng có gì đáng coi trọng và đáng lẽ dễ xử lý với một người luyện Thái Cực Quyền.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-7">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 7 / 10</span>
+          <h3>Thượng Hạ Tương Tùy<span class="zh">七。上下相随</span></h3>
+          <div class="en-title">Upper and Lower Mutually Follow</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">上下相随者，即太极拳论中所云：其根在脚，发于腿，主宰于腰，形于手指，由脚而腿而腰，总须完整一气也。</div>
+          <div class="lang-vi"><p class="verse">Thượng hạ tương tùy (trên dưới theo nhau) nghĩa là điều mà tâm của Thái Cực Quyền Luận mô tả: “Gốc của nó ở bàn chân, phát ở chân, chủ tể ở yêu (eo), hình hiện ở ngón tay.” Và “từ chân đến chân đến yêu, mọi nơi đều phải luôn được hợp nhất qua một khí”.</p></div>
+          <div class="lang-en"><p class="verse">Upper and lower mutually follow means What the heart of the Taijiquan Treatise describes as: “Its root is in the feet, ​fa (issuing) in the legs, governed by the ​yao, expression in the fingers” And “from feet to legs to waist (​yao), Everywhere must always be integrated via a single ​qi”.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">手动、腰动、足动、眼神亦随之动，如是方可谓之上币相随。</div>
+          <div class="lang-vi"><p class="verse">Tay động, yêu động, chân động, thần trong mắt cũng theo đó mà động; như thế mới có thể gọi là tương tùy (theo nhau).</p></div>
+          <div class="lang-en"><p class="verse">The hand moves, the ​yao moves, the foot moves the ​shen in the eyes also follows the movement; thus aligning with this principle is called “mutually following”.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">有一不动，即散乱也。</div>
+          <div class="lang-vi"><p class="verse">Nếu có một bộ phận không động, thì tức là tán loạn.</p></div>
+          <div class="lang-en"><p class="verse">If even one part doesn’t move, then you become disordered​.</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Đây là điểm đầu trong ba điểm mô tả một quan hệ “tương hỗ”: trên và dưới theo nhau, trong và ngoài hợp nhau, (mọi phần) liên nối nhau không gián đoạn. “Tương hỗ” ở đây là tương 相, nghĩa là lẫn nhau, hướng về nhau, có đi có lại, cùng nhau. Và những điểm này chạm đến sự hợp nhất xuyên suốt toàn bộ chuyển động, thân thể, và tâm trí, chứ không tập trung vào một khu vực đơn lẻ như đỉnh đầu, vai, hay eo.</p>
+          <p>Theo là tùy 随, và nó là một trong bốn đặc trưng nổi tiếng của kỹ năng Thái Cực Quyền được mô tả trong bài Thôi Thủ Ca từ kinh điển:</p>
+          <p>6. Dòng này có nhiều dị bản văn bản đáng kể. Tôi đã dùng bản của Trần Vi Minh về các kinh điển, qua bản dịch của Barb Davis.</p>
+          <p>Dính, bám, liền, theo (tùy), không chạm đỉnh hay rời rạc.</p>
+          <p>Hai câu trích trong phần bình giảng đều từ Thái Cực Quyền Kinh, được gán cho Trương Tam Phong. Câu thứ nhất đã được nhắc ở trên trong phần bình giảng về điểm 3, Tùng Yêu. Trong trường hợp này, tôi cho rằng câu trích “gốc ở bàn chân, phát ở chân, chủ tể ở yêu, hình/hiện/dáng ở tay” đang mô tả cách tương tùy diễn ra. Tiến trình từ bàn chân đến bàn tay cho thấy chuyển động và năng lượng di chuyển khắp thân thể như thế nào. Người mới bắt đầu khởi sự bằng việc rút “ý chí” ra khỏi hai bàn tay để hai tay đơn thuần theo hành động của hai chân. Khi kỹ năng phát triển hơn, phần còn lại của thân thể — bàn chân, chân, và yêu — theo nhu cầu của khoảnh khắc, hành động đúng lúc để làm hiển lộ hình dáng và thể thức cụ thể cần thiết nơi hai bàn tay.</p>
+          <p>Tương tự, “thần trong mắt” cũng tham gia vào sự tương tùy này. Khi mới bắt đầu, ánh nhìn và đôi mắt chỉ đơn thuần theo chuyển động của thân thể. Khi kỹ năng phát triển hơn, thần hiển lộ trong ánh nhìn và chuyển động theo nhu cầu cùng hướng mà tinh thần của mình chỉ ra trong khoảnh khắc.</p>
+          <p>Câu trích thứ hai cũng đã được nhắc trong điểm 3: Từ bàn chân đến chân rồi đến yêu, mọi thứ đều phải luôn được hợp nhất qua một khí. Rồi bước tới hay bước lùi, bạn giành được cơ hội và đạt được lợi thế. Không giành được cơ hội và không đạt được lợi thế, thì thân thể trở nên tán loạn. Hãy tìm lỗi ở yêu và ở chân.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-8">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 8 / 10</span>
+          <h3>Nội Ngoại Tương Hợp<span class="zh">八。内外相合</span></h3>
+          <div class="en-title">Inner and Outer Mutually Harmonize</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">太极拳所练在神，故云：‘神为主帅，身为驱使’。</div>
+          <div class="lang-vi"><p class="verse">Việc luyện Thái Cực Quyền nằm ở thần. Do đó có câu: “Thần làm chủ soái, thân làm kẻ bị sai khiến”.</p></div>
+          <div class="lang-en"><p class="verse">Taijiquan practice depends on ​shen. Therefore (we have the) saying: “​shen acts as the commander, body acts as the ordered-about”</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">精神能提得起，自然举动轻灵。</div>
+          <div class="lang-vi"><p class="verse">Bước đầu tiên là đạt được kỹ năng nâng tinh thần lên. Rồi chuyển động của bạn sẽ tự nhiên (tự nhiên) là khinh linh (nhẹ nhàng linh hoạt).</p></div>
+          <div class="lang-en"><p class="verse">The first step is to achieve the skill of raising the ​jingshen Then your movement will naturally ​(ziran) be ​qing ling.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">架子不外虚实开合，</div>
+          <div class="lang-vi"><p class="verse">Toàn bộ bài thức không ngoài hư thực, khai và hợp.</p></div>
+          <div class="lang-en"><p class="verse">The whole form is nothing more than empty and full, open (​kai) and close ​(he).</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">年谓开者，不但手足开，心意亦与之俱开，</div>
+          <div class="lang-vi"><p class="verse">Mỗi khi ta nói đến khai (mở), thì không chỉ thân thể (tay chân) mở ra, mà tâm và ý cũng là một phần của sự mở ra trọn vẹn.</p></div>
+          <div class="lang-en"><p class="verse">Any time we speak of opening, not only does the body (hands and feet) open, the ​xin and ​yi are also part of the complete opening.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">所谓合者，不但手足合，心意与之俱合，</div>
+          <div class="lang-vi"><p class="verse">Nói đến hợp (đóng), thì không chỉ thân thể đóng lại, mà tâm và ý cũng là một phần của sự đóng lại trọn vẹn.</p></div>
+          <div class="lang-en"><p class="verse">Speaking of closing, not only does the body close, the ​xin and ​yi are also part of the complete closing.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">能内外合为一气，则浑然无间矣。</div>
+          <div class="lang-vi"><p class="verse">Kỹ năng “hợp nhất trong và ngoài” cho phép một khí, thì bạn có thể hoàn toàn không còn kẽ hở!</p></div>
+          <div class="lang-en"><p class="verse">The skill of “harmonizing inner and outer” enables one ​qi, then you can be absolutely without gaps!</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Hợp 合 là một trong những chữ phơi bày giới hạn của chúng ta trong việc dịch thuật. Nó bao quát rất nhiều nghĩa: hòa hợp, thống nhất, đóng, khép, kết hợp, nối liền, ở cùng nhau (kể cả quan hệ tính dục). Như thường lệ,</p>
+          <p>ta dễ bị cám dỗ quyết định rằng trong ngữ cảnh này, hợp nghĩa là hòa hợp hay thống nhất, còn trong ngữ cảnh khác nó nghĩa là đóng lại, rồi tự hỏi tại sao người Trung Hoa lại dùng một chữ cho những khái niệm khác biệt đến vậy. Thay vào đó, dù tôi dịch hợp lúc là hòa hợp hay thống nhất, lúc là đóng lại, tôi cố mở rộng hiểu biết của mình để nhìn nó như một chùm nghĩa duy nhất, thống nhất, chứ không phải một tập hợp những nghĩa rời rạc bị ghép lại một cách khó hiểu.</p>
+          <p>Hòa hợp và thống nhất là một giá trị thẩm mỹ chủ đạo trong tư tưởng Trung Hoa, gắn bó mật thiết với các khái niệm tương quan và tương ứng hệ thống. Khi vạn vật đến với nhau hài hòa, thì ta biết ta đang ở cùng Đạo trong khoảnh khắc ấy. Sự đến với nhau ấy có thể là của các phần trong thân và tâm như trong đoạn này, là các nguyên liệu của một bữa ăn hòa hợp trong nồi và trên đĩa, là các tạng phủ và năng lượng của cơ thể hòa hợp trong trạng thái khỏe mạnh, là các thành viên một gia đình sống trong quan hệ hài hòa, và là công dân cùng người cai trị một quốc gia chu toàn vai trò của mình một cách hài hòa.</p>
+          <p>Đoạn mở đầu của Trung Dung có những lời sau: Vui và giận, buồn và mừng: trước khi chúng xuất hiện, chúng được gọi là trung (trung 中); xuất hiện theo đúng nhịp điệu thích hợp, chúng được gọi là hòa. Trung: đây là cái gốc lớn của thế gian. Hòa: đây là Đạo tối hậu của thế gian. Đạt đến trung hòa, trời đất an vị đúng chỗ và vạn vật nhờ đó mà được nuôi dưỡng. (bản dịch của Eno)</p>
+          <p>Hợp cùng với khai tạo thành một cặp đối cực. Khi dùng với cửa hay cổng, khai và hợp chỉ việc mở hay đóng. Khi chỉ một tập hợp như thân thể hay một quan hệ võ thuật với bạn tập, khai và hợp nghĩa là tách ra hay hợp nhất, trở nên phân tán hay kết lại cùng nhau. Khai và Hợp cũng có thể nghĩa là mở rộng lan tỏa đối lại với đóng lại tập trung. Trong phần bình giảng, các hành động của thân và tâm được mô tả là thống nhất trong khai và hợp, mở rộng và tập trung.</p>
+          <p>Cuối cùng, hòa hợp và thống nhất được dùng trong công thức nổi tiếng Lục Hợp (lục hợp) — ta cũng có thể dịch là Sáu Sự Thống Nhất:</p>
+          <p>Lục Hợp: Ba Ngoại, Ba Nội</p>
+          <p>Ba ngoại: Vai và Hông Hợp. Khuỷu và Đầu Gối Hợp. Tay và Chân Hợp.</p>
+          <p>7. Hợp 合 thường xuất hiện như một phần của từ ghép hòa hợp (chữ ‘h’ được đọc nhẹ), vốn nhấn mạnh nghĩa hòa hợp. Cả hai thuật ngữ, hòa 和 hay hợp 合, tự chúng đều hàm ý hòa hợp và mỗi thuật ngữ đều ngầm tham chiếu đến thuật ngữ kia. Đoạn Trung Dung dùng chữ đầu để chỉ sự hòa hợp, hòa 和, nhưng cũng áp dụng tương đương cho hợp 合.</p>
+          <p>Ba nội: Tâm và Ý Hợp. Ý và Khí Hợp. Khí và Kình Hợp.</p>
+          <p>Một số chủ đề từ Lục Hợp hiện diện trong phần bình giảng của Trừng Phủ, đặc biệt là sự tập trung vào nội và ngoại.</p>
+          <p>Trừng Phủ chỉ cho ta thấy tầm quan trọng của tinh thần trong việc hòa hợp nội và ngoại. Ông trích một câu truyền khẩu: “Thần là chủ soái, thân là kẻ bị sai khiến”, và nhấn mạnh kỹ năng nâng tinh thần lên — tinh thần của sinh lực hay tinh và thần. Kỹ năng này cũng đã được nhắc trong điểm đầu, nơi Trừng Phủ lưu ý rằng nâng tinh thần lên đòi hỏi hư linh đảnh kình. Ở đây, việc nâng tinh thần lên cho phép chuyển động ăn khớp với khoảnh khắc trong sự nhẹ nhõm tự nhiên (tự nhiên) và nhẹ nhàng linh hoạt (khinh linh) — lại thêm một lần tham chiếu đến thuộc tính đáng mong muốn khinh linh.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-9">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 9 / 10</span>
+          <h3>Tương Liên Bất Đoán<span class="zh">九，相连不断</span></h3>
+          <div class="en-title">Mutually Linked Without Gaps</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">外家拳术，其劲乃后天之拙劲，故有起有止，有线有断，</div>
+          <div class="lang-vi"><p class="verse">Võ thuật của phái ngoại gia, kình của họ là trác kình hậu thiên (hậu thiên, thu nhận trong đời sống), cho nên có khởi có chỉ, có liền có đứt.</p></div>
+          <div class="lang-en"><p class="verse">The external family martial arts Their jin is the clumsy jin of post-heaven (​huotian, acquired in life) Because they have starts and stops Because they have continuity and gaps</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">旧力已尽，新力未生，此时最易为人所乘，</div>
+          <div class="lang-vi"><p class="verse">Lực cũ đã hết ở tận cùng, lực mới chưa sinh. Vào khoảnh khắc này, người ta dễ bị lợi dụng tình thế nhất.</p></div>
+          <div class="lang-en"><p class="verse">An old ​li ends at its greatest extent, And a new ​li has not yet been born. At this moment, it is most easy to take advantage of (the opponent’s) situation.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">太极拳用意不用力，自始至终，连绵不断，周而复始，循环无穷。</div>
+          <div class="lang-vi"><p class="verse">Trong Thái Cực Quyền, dùng ý không dùng lực: từ đầu đến cuối, liên miên không gián đoạn, tuần hoàn lặp lại, luân chuyển vô cùng.</p></div>
+          <div class="lang-en"><p class="verse">In taijiquan, use ​yi, don’t use ​li: From beginning to end, Continuous and without gaps, Cycling round and round, Circulating endlessly.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">原论所谓；‘如长江大河，滔滔不绝’，又曰：‘运劲如抽丝’，</div>
+          <div class="lang-vi"><p class="verse">Nguyên luận nói rằng: “như Trường Giang Đại Hà, cuồn cuộn không ngừng”, lại nói: “vận kình như kéo tơ”.</p></div>
+          <div class="lang-en"><p class="verse">The original treatise says: “like Changjiang River and Big River, torrentially surging without end”​, (The treatise) also says: “Transport ​jin like pulling silk”.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">皆言其贯串一气也。</div>
+          <div class="lang-vi"><p class="verse">Mọi lời đều nói về việc được xâu chuỗi lại bằng một khí!</p></div>
+          <div class="lang-en"><p class="verse">Each and every word is about being strung together with one ​qi!</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Điểm này khép lại loạt điểm về các quan hệ tương hỗ. Tôi dịch điểm này là “liên kết nhau không gián đoạn” để làm rõ tính song hành ấy. Điểm này cũng có thể được dịch là “nối liền không kẽ hở” hay “liên tục không rời”, cách nào cũng có thể trôi chảy hơn trong tiếng Anh, nhưng sẽ không phơi bày được sự song hành với các điểm trước.</p>
+          <p>“Không gián đoạn” là bất đoạn 不断: không đứt, không ngừng, không gián đoạn, liên tục. Đoạn là cùng chữ chỉ sự đứt gãy hay kẽ hở đã bàn ở trên trong điểm 5, Trầm Kiên Trụy Trửu. Ở đây, nó tham chiếu một chỗ đứt hay kẽ hở trong chuyển động và ý thức. Ta luyện tập để phát hiện những kẽ hở ấy ở đối thủ: chúng đóng vai trò cơ hội. Và như Thái Cực Quyền Kinh đã chỉ dạy, nếu ta có thể có một khí thống nhất, thì ta có thể nắm bắt những cơ hội ấy và do đó giành được lợi thế.</p>
+          <p>Trừng Phủ mô tả nguyên nhân của những kẽ hở ấy ở người luyện ngoại gia: có khởi có chỉ, lực của một động tác cạn kiệt trước khi một động tác khác bắt đầu. Và ông đối lập điều đó với Thái Cực Quyền, vốn dùng ý thức thay cho sức, do đó thể hiện sự liên tục không gián đoạn được xâu chuỗi bằng một khí.</p>
+          <p>Hai câu trích đều từ Thái Cực Quyền Kinh điển. Câu thứ nhất từ Thái Cực Quyền Kinh, nơi mô tả Thái Cực Quyền (được gọi là trường quyền hay “quyền dài” trong văn bản) là “như Trường Giang Đại Hà, cuồn cuộn không ngừng”. (Trường Giang là tên gọi con sông mà ta gọi là Dương Tử.)</p>
+          <p>Câu trích thứ hai từ Tâm Giải, và là một phần của câu đối: Bước như mèo đi. Vận kình như kéo tơ. Hãy bước đi như mèo di chuyển. Vận kình như kéo tơ.</p>
+        </div>
+      </div>
+    </section>
+    <section id="diem-10">
+      <div class="point">
+        <div class="point-head">
+          <span class="point-num">Điểm 10 / 10</span>
+          <h3>Động Trung Cầu Tĩnh<span class="zh">十。动中求静</span></h3>
+          <div class="en-title">Move Center, Seek Stillness</div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">外家拳术，以跳掷为能，用尽气力，故练习之后，无不喘气者，</div>
+          <div class="lang-vi"><p class="verse">(Người luyện) võ thuật phái ngoại gia lấy nhảy nhót và ném quăng làm khả năng, dùng cạn khí lực, cho nên sau khi luyện tập, không ai là không thở dốc.</p></div>
+          <div class="lang-en"><p class="verse">(Those who practice) external family martial arts aim for skill in jumping and throwing They use up their ​qi and ​li As a result, after practice, they always have to catch their breath.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">太极拳以静御动，虽动犹静，故练架子愈慢愈好。</div>
+          <div class="lang-vi"><p class="verse">Thái Cực Quyền lấy tĩnh để ngự động, tuy động mà như tĩnh, cho nên luyện bài thức càng chậm càng tốt.</p></div>
+          <div class="lang-en"><p class="verse">Taijiquan uses stillness ​(jing) to control movement, in movement, just like stillness. Thus, in practicing the form, the more slow ​(man), the better.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">使则呼吸深长，气沉丹田，自无血脉愤张之弊。</div>
+          <div class="lang-vi"><p class="verse">Khiến cho hô hấp sâu và dài, khí trầm xuống đan điền, tự nhiên không có cái tệ của huyết mạch căng phồng (do những phản ứng cảm xúc thái quá như giận và oán).</p></div>
+          <div class="lang-en"><p class="verse">Make your breathing profound, Sink the ​qi to the ​dantian, Naturally, there is no harm to the blood vessels or circulation from exaggerated emotional reactions (such as anger and resentment).</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">学者细心体会，庶可得其意焉。</div>
+          <div class="lang-vi"><p class="verse">Người học tế tâm thể hội, thì may ra mới có thể đạt được ý của nó.</p></div>
+          <div class="lang-en"><p class="verse">Serious students with attentive (​xi) awareness will realize the significance of achieving this.</p></div>
+        </div>
+        <div class="stanza bilingual-block">
+          <div class="zh-source" lang="zh-Hant">注：（杨澄浦口述，陈微明笔录）</div>
+          <div class="lang-vi"><p class="verse">Chú: (Dương Trừng Phủ khẩu thuật, Trần Vi Minh bút lục). Ghi chú: Khẩu truyền từ Dương Trừng Phủ; Trần Vi Minh ghi chép. 9. Đây là ghi chú cuối cùng trong văn bản được truyền lại, nơi Trần Vi Minh gán nội dung cho Dương Trừng Phủ và mô tả mình chỉ đơn thuần là người chép lại.</p></div>
+          <div class="lang-en"><p class="verse">Note: Oral Teaching from Yang Chengfu; Recorded by Chen Weiming. 9 This is the final note in the received text, where Chen Weiming attributes the content to Yang Chengfu and describes himself as simply the scribe.</p></div>
+        </div>
+        <div class="disc">
+          <div class="disc-heading">Thảo Luận</div>
+          <p>Điểm thứ mười này khép lại danh sách các nguyên lý thiết yếu của Dương Trừng Phủ cho việc luyện tập Thái Cực Quyền. Thật thích hợp với một bàn luận về nghệ thuật bất nhị cân bằng, điểm cuối cùng này được xây dựng quanh một cặp đối cực cổ điển khác: động 动, chuyển động hay hoạt động, và tĩnh 静, tịch tĩnh hay bất động. Mọi phép luyện thân-tâm của Trung Hoa đều nằm dọc theo một dải liên tục động-tĩnh: các phép luyện chủ động như hầu hết võ thuật, khí công động, và thể dục thông thường nằm ở đầu động; các phép luyện tĩnh tâm như ngồi thiền nằm ở đầu tĩnh. Trong điểm này, Trừng Phủ mô tả Thái Cực Quyền như một môn võ thống nhất và bao trùm cả dải động-tĩnh.</p>
+          <p>Đây là điểm duy nhất bàn về hơi thở (hô hấp, thở hay sự hô hấp). Thực tế, những bàn luận minh thị về hơi thở trong văn liệu Thái Cực Quyền rất hiếm: có rất nhiều bài viết về khí, nhưng rất ít về chính hơi thở. Và ngay cả ghi chú này cũng chủ yếu chỉ phê phán người luyện ngoại gia vì bị hụt hơi.</p>
+          <p>Trịnh Mạn Thanh ghi lại giáo huấn truyền khẩu về hơi thở, liệt kê bốn chữ bí truyền dẫn dắt hơi thở của ta: Tế Trường Tĩnh Mạn. Mịn, dài, tĩnh, chậm.</p>
+          <p>Ba trong bốn chữ ấy được bao gồm trong phần bình giảng của Trừng Phủ: ● Tế 细 là mỏng hoặc mịn, như sợi tơ. Nó được dùng ở đây trong tế tâm 细心, tâm mịn hay ý thức chăm chú, là phẩm chất mà người học nghiêm túc nên có. ● Trường 長 là dài hoặc rộng lớn, trong không gian hay thời gian. Đây là chữ hơi thở duy nhất không xuất hiện. ● Tĩnh 静 là yên lặng, tĩnh lặng, bất động, và là cặp đối cực với động, chuyển động hay hoạt động. ● Mạn 慢 là chậm hoặc thong thả. Trừng Phủ bảo ta luyện bài thức càng chậm càng tốt để dùng tĩnh (tĩnh) ngự động. Hơi thở mạn cũng chính là điều đối lập hoàn toàn với việc thở dốc và hụt hơi do luyện tập ngoại gia quyền gây ra.</p>
+        </div>
+      </div>
+    </section>
+    <section id="tai-lieu">
+      <h2>Tài Liệu Tham Khảo<span class="zh">參考書目</span></h2>
+      <div class="refs">
+      <p>● “Thần (shén) được xâu đến đỉnh đầu” và “nâng tinh thần sinh lực lên (tinh thần)”: Thần được phân biệt với linh, đôi khi cũng được dịch là thần. Một số bản dịch cho hư linh đảnh kình liệt kê ở phần đầu có vẻ diễn giải dựa trên văn bản và thay thế thần và tinh thần vào bản dịch. Tinh thần, thứ tôi có xu hướng dịch như một từ ghép “tinh thần sinh lực”, cũng có thể được dịch tách ra thành “tinh chất sống” và “thần”. Trong lý thuyết nội đan, tinh là một trong ba tinh hoa mà việc luyện tập tôi luyện: tinh thành khí thành thần. ● “Phải có ý của hư linh và tự nhiên”: ta đã bàn chi tiết về hư linh. Tự nhiên là một thuật ngữ Đạo giáo chỉ hành động với sự nhẹ nhõm tự nhiên, ăn khớp với Đạo, “thuận theo dòng chảy”. Theo nghĩa đen, tự nhiên là “tự-như-thế” hay “tự-đúng-đắn”.</p>
+      <p>● Hàm hung (chứa ngực): hàm 含 thường được dịch là “trầm” (trầm hung, bạt bối). Nhưng nó nghĩa là chứa đựng, ngậm trong miệng (như ngậm một viên thuốc hay kẹo), ấp ủ, hay nâng niu. Một câu chuyện tôi thích là về một vị thầy giải thích “hàm hung” bằng cách ngậm một ngụm nước lớn, đủ để phồng má, rồi cúi xuống và lắc nước qua lại trong miệng. ● Bạt bối (nâng lưng): bạt 拔 nghĩa là nâng lên hay nhấc lên. Nó được dùng trong các cụm như “nhổ cỏ”, “nhổ (rút) một cái răng”, “rút kiếm” và “hút khói lên ống khói”. Nó hàm ý một sự nâng lên có định hướng. (Lưu ý: bản sao Hán văn gốc của tôi về văn bản này có một lỗi đánh máy nhất quán, thay bạt 拔 bằng bát 拨 (bo, tức điều chỉnh/chọc/định hướng). Tôi đã sửa văn bản ở đây.) ● “Trên nặng, dưới nhẹ”: nặng và nhẹ là trọng và khinh, một cặp đối cực cổ điển. Song trọng (song trọng) cũng thường được gọi là “trọng lượng kép” và chỉ sự trì trệ cùng bất khả chuyển động do dùng trọng lượng hay lực ở hai chỗ một cách không thích hợp. Một ví dụ phổ biến là dùng lực có trọng lượng ở cả hai chân. Khinh là người bạn cũ của ta từ khinh linh.</p>
+      <p>(mức độ thành tựu hay hiện thân đáng kể cho một kỹ năng hay mục tiêu, vượt ra ngoài việc chỉ đơn thuần sở hữu.) Từ bàn chân đến chân rồi đến yêu, ắt phải luôn là một khí trọn vẹn. Rồi bước tới hay bước lùi, bạn giành được cơ hội và đạt được lợi thế. Không giành được cơ hội và không đạt được lợi thế, thì thân thể trở nên tán loạn. Hãy tìm lỗi ở yêu và ở chân.</p>
+      <p>Ghi chú cụ thể ● “việc xoay chuyển của bạn sẽ nhẹ nhàng linh hoạt”: “nhẹ nhàng linh hoạt” là khinh linh, những phẩm chất đáng mong muốn, đối lập với nặng nề trì trệ (trọng trệ) trong cụm tiếp theo. ● “Dễ bị ảnh hưởng”: bị ảnh hưởng là khiên, bị dắt hay bị ảnh hưởng. Trong phần bàn luận của Trịnh Mạn Thanh về nguyên lý “bốn lạng đẩy ngàn cân”, Trịnh mô tả khiên là kỹ thuật then chốt. (Luận Thuyết thứ 13 của Trịnh) ● “Tư thế sẽ không vững”: tư thế là tự lập. Theo nghĩa đen là “tự đứng”, nghĩa là đứng trên đôi chân của mình, độc lập, và tự cường, đồng thời dĩ nhiên cũng tham chiếu một tư thế hay thế đứng thể chất.</p>
+      <p>4. Davis có một lỗi in ở đây. Bà thật ra gán điều này cho Dương Lộ Thiền, nhưng lại trích một trong các sách của Dương Trừng Phủ. Tôi nghi lỗi này được tạo ra đâu đó trong quá trình biên tập sản xuất và không phải của Davis.</p>
+      <p>Liên quan đến điểm này, chúng tôi được dạy phải giữ cho lực ùa đến của đối thủ hời hợt, nổi trên bề mặt của mình và không kết nối với mình. Tương tự, khi tôi định phát lực, tôi cần đảm bảo nó thật sự kết nối với người kia: với toàn bộ khung thân của họ để đẩy họ ra, với một chi thể hay một bộ phận thân thể riêng để gây bế tắc hay phá hủy tính toàn vẹn hình dáng của họ, hay xuyên vào bên trong thân thể người kia.</p>
+      <p>Ở đây, trong điểm 7, Trừng Phủ gắn sự hợp nhất toàn thân qua một khí với tương tùy. Và nhấn mạnh rằng nếu chỉ một bộ phận của thân thể không động và không tham gia vào tương tùy, thì thân thể sẽ trở nên tán loạn.</p>
+      <p>8. Sự hòa hợp này đôi khi được diễn đạt là Thần và Ý. Thần (tinh thần) và tâm (tâm trí) là những khái niệm liên hệ mật thiết. Nhà của thần là tâm (Maciocia). Tùy theo truyền thừa, mục tiêu của Thái Cực Quyền phái Dương đôi khi được mô tả là thống nhất hay hòa hợp thần, ý, và khí.</p>
+      <p>Phần bình giảng kết thúc bằng hình ảnh thân thể được thống nhất bằng một khí xâu chuỗi lại (quán xuyến), dùng hình ảnh một xâu tiền và nhắc lại dòng đầu của Thái Cực Quyền Kinh: “Trong mọi chuyển động, toàn thân phải khinh linh và cực kỳ thiết yếu, xâu chuỗi lại (quán xuyến)”.</p>
+      <p>Mười Yếu Lĩnh mở đầu bằng sự tham chiếu đến các tư tưởng Tống Nho về ý thức linh diệu thuần khiết, thứ trực tiếp nhận thức thực tại mà không có định kiến trước, và kết thúc bằng sự thống nhất các phép luyện động và tĩnh, chuyển động và thiền định. Chúng thật sự là một danh sách đáng chú ý: chứa đựng hướng dẫn cụ thể và rõ ràng cho tư thế thể chất và việc luyện võ thuật, cùng với những tham chiếu siêu hình và vũ trụ luận. Tôi xin dâng bản dịch này cho các bạn đồng môn luyện tập, những người học nghiêm túc với ý thức chăm chú!</p>
+      <p>Khi thực hiện bản dịch này, tôi thấy nó dẫn tôi đến vô số nguồn tài liệu khác. Tôi đã chia sẻ một số nguồn ấy, như các tài liệu tham khảo, và quan trọng hơn, như những chỉ dẫn cho những ai muốn đào sâu hơn vào việc đọc có liên quan.</p>
+      <h4 class="sub">Hán Văn</h4>
+      <p>Tôi nhận Hán văn của Mười Yếu Lĩnh trực tiếp từ một vị thầy và đồng nghiệp. Văn bản ấy dùng chữ giản thể hiện đại, có dấu câu đáng kể mà bản gốc của Trần Vi Minh không có, và có một số lỗi đánh máy. Tôi đã cố sửa các lỗi đánh máy trong phiên bản tôi trình bày. Hán văn có sẵn trên một số website Trung Hoa, với sự pha trộn thường thấy giữa vi phạm bản quyền và sai sót.</p>
+      <p>Các Hán văn khác, ví dụ cho Kinh điển, đến từ các bản photocopy ở phần cuối bản dịch Kinh điển của Davis, từ công trình của Paul Brennan, và từ các bản dịch của Douglas Wile.</p>
+      <p>Bản dịch Kinh điển của Davis là bản tốt nhất hiện có: bà cung cấp chi tiết bối cảnh quý giá và phần bàn luận, đồng thời cũng dịch phần bình giảng của Trần Vi Minh về Kinh điển. Tôi rất trân trọng công trình của Brennan trong việc đưa các văn bản gốc ra công chúng: đôi khi tôi không đồng tình với các bản dịch của ông, lớn hay nhỏ, nhưng khối lượng công trình đồ sộ và lòng quảng đại của ông trong việc đưa các văn bản nguồn ra công chúng thật đáng ca ngợi. Douglas Wile đã cung cấp một số bản dịch đầu tiên của các văn bản Thái Cực Quyền. Còn quý giá hơn cả công trình dịch thuật của ông là những khảo cứu của ông về bối cảnh xã hội và chính trị nơi các môn võ và nền tảng lý thuyết của chúng được phát triển. Đặc biệt, công trình Wile làm trong Lost Classics là vô giá và nên là cẩm nang cho “những người học nghiêm túc với ý thức chăm chú”.</p>
+      <p>Xem: ● Davis, Barbara, chủ biên. The Taijiquan Classics. North Atlantic Books. 2004. ● Kinh điển qua Brennan: nằm trong https://brennantranslation.wordpress.com/2013/05/25/the-taiji-classics/. Lưu ý bản này cũng bao gồm ghi chú của Lý Diệc Dư, cháu của một trong các anh em họ Ngô, mô tả quan hệ giữa Dương Lộ Thiền, người sáng lập môn võ, và gia đình họ Ngô, đồng thời tách họ Ngô ra khỏi thầy của mình:</p>
+      <p>Một người họ Dương, từ làng Nam Quan của chúng tôi, hâm mộ nó và đến học nó với lòng tận tụy chuyên nhất hơn mười năm, trở nên cực kỳ điêu luyện. Sau khi về nhà, ông trình diễn nó cho tất cả những ai biết thưởng thức. Cậu tôi bên ngoại, Võ Vũ Tương, thấy nó và say mê nó, và không ngừng thử vận may chống lại nó, nhưng Dương không sẵn lòng dạy bất kỳ ai, nên cậu chỉ nắm được ý chung của nó. (bản dịch của Brennan) ● 40 Chương qua Brennan: nằm trong https://brennantranslation.wordpress.com/2013/09/14/explaining-taiji-principles-taiji-fa-shuo/. Ông cũng bao gồm bản photocopy hai phiên bản của bản thảo được truyền lại trong gia đình. ● Wile, Douglas. Lost T'ai-chi Classics from the Late Ch'ing Dynasty. SUNY Press. 1996.</p>
+      <h4 class="sub">Hư Linh Đảnh Kình và phái Tống Nho</h4>
+      <p>Louis Swaim đã cho ra đời một số bản dịch tuyệt vời. Và ông đã mở đường trong việc tìm ra các mối liên hệ giữa văn liệu Thái Cực Quyền và triết học Trung Hoa cổ điển khác. Ngoài các công trình được xuất bản chính thức, tôi đã sử dụng các trao đổi cá nhân và những bài đăng thỉnh thoảng của ông trên diễn đàn thảo luận về phái Dương do Hiệp hội Gia đình họ Dương với chi nhánh Bắc Mỹ ở Seattle tổ chức (http://www.yangfamilytaichi.com/phpBB3/index.php). Swaim chỉ cho tôi công trình của Adler, thứ tôi thấy thật sự quý giá khi truy tìm những ảnh hưởng Tống Nho lên lý thuyết Thái Cực Quyền. Swaim cũng chỉ cho tôi Roger Ames và công trình của ông, nhằm vừa định vị tư tưởng Trung Hoa trong bối cảnh toàn cầu, vừa nghiêm túc tiếp cận triết học Trung Hoa theo chính thuật ngữ của nó thay vì cố nhét nó vào các khuôn khổ phương Tây của chúng ta. Ames, trong tác phẩm Confucian Role Ethics, thật sự đã giúp mở ra cho tôi tư tưởng Nho giáo và Tống Nho. Các bản dịch Đạo Đức Kinh và Tôn Tử của ông cũng rất đáng dành thời gian đọc.</p>
+      <p>Xem: ● Fu Zhongwen. Louis Swaim, dịch. Mastering Yang Style Taijiquan. North Atlantic Books. 1999. Bản dịch Kinh điển của Swaim và phần bàn luận về hư linh đảnh kình có thể tìm thấy trong một phụ lục của bản dịch này. ● Adler, Joseph. “Varieties of Spiritual Experience: Shen in Neo-Confucian Discourse”. Confucian Spirituality. Tu Wei-ming và Mary Evelyn Tucker, chủ biên. Crossroad. New York. 2004. Có trực tuyến tại: http://www2.kenyon.edu/Depts/Religion/Fac/Adler/Writings/Spirituality.htm. Bài này bàn về hư linh và vai trò của nó trong tư tưởng Tống Nho. ● Adler, Joseph. “Zhou Dunyi: The Metaphysics and Practice of Sagehood”. Sources of Chinese Tradition. Wm. Theodore de Bary và Irene Bloom, chủ biên. Columbia Univ Press. 1999. Có trực tuyến tại: http://www2.kenyon.edu/Depts/Religion/Fac/Adler/Writings/Chou.htm. Bài này bao gồm bản dịch bài viết của Chu Đôn Di về thái cực đồ.</p>
+      <p>● Adler, Joseph. Reconstructing the Confucian Dao: Zhu Xi's Appropriate of Zhou Dunyi. SUNY Press. 2014. ● Ames, Roger. Confucian Role Ethics: A Vocabulary. University of Hawaii Press. 2011.</p>
+      <h4 class="sub">Y Học Trung Hoa và những Hình Ảnh về Cơ Thể. Y học Trung Hoa là một lĩnh vực hóc búa. Trong ý thức phổ thông phương Tây đầu thế kỷ 21, nó được đánh giá cao với số lượng người hành nghề và bệnh nhân/người tiêu dùng ngày càng tăng. Nó có lịch sử kéo dài nhiều thiên niên kỷ với vô số mâu thuẫn nội tại trong suốt những thiên niên kỷ ấy. Như hiện được hệ thống hóa, nó là một cấu trúc hình thức được tạo ra ở Trung Hoa vào thập niên 1950, khác biệt đáng kể so với y học thời đế chế và chịu ảnh hưởng nặng nề của y học phương Tây cùng các chiến lược địa chính trị Trung Hoa.</h4>
+      <p>Paul Unschuld đã cho ra đời công trình lịch sử toàn diện về y học Trung Hoa. Công trình của ông đặc biệt hữu ích để truy tìm nguồn gốc và mối liên hệ của nó với các dòng tư tưởng và thực hành khác của Trung Hoa. Bridie Andrews viết một tổng quan rất dễ đọc về việc hệ thống hóa y học Trung Hoa và quan hệ của nó với các cấu trúc chính trị Trung Hoa đang biến đổi từ thập niên 1800 đến giữa thập niên 1900. Shigehisa Kuriyama đưa ra một so sánh hấp dẫn giữa cách tiếp cận phương Tây và Trung Hoa đối với y học cùng sự hiểu biết về cơ thể và sức khỏe.</p>
+      <p>Xem: ● Unschuld, Paul U. Medicine in China: A History of Ideas. Bản kỷ niệm 25 năm. Univ of California Press. 1985, 2010. ● Andrews, Bridie. The Making of Modern Chinese Medicine, 1850-1960. University of Hawaii Press. 2014. ● Maciocia, Giovanni. The Foundations of Chinese Medicine: A Comprehensive Text. Elsevier Health Sciences. 2015. ● Kuriyama, Shigehisa. The Expressiveness of the Body and the divergence of Greek and Chinese Medicine. Zone Books. 2002.</p>
+      <h4 class="sub">Các Tài Liệu Tham Khảo Khác</h4>
+      <p>● Để có tổng quan chung và thông tin cụ thể về Đạo giáo, xem Encyclopedia of Taoism: Pregadio, Fabrizio, chủ biên. The Routledge Encyclopedia of Taoism. Routledge. 2008. ● Charles Muller đã phát triển một nguồn tài nguyên tuyệt vời là Digital Dictionary of Buddhism, cung cấp một chỉ mục Hán văn dẫn vào vô số nguồn Phật giáo Trung Hoa: http://www.buddhism-dict.net/ddb/ ● Robert Eno thuộc Đại học Indiana đã dịch các kinh điển Nho giáo cốt lõi và đưa chúng ra công chúng miễn phí. Bản dịch Trung Dung của ông có thể tìm tại: http://www.indiana.edu/~p374/Daxue-Zhongyong.pdf ● Bản dịch điểm thứ nhất của Dương Trừng Phủ do Wolfe Lowenthal thực hiện nằm trong cuốn sách thứ hai của ông: Lowenthal, Wolfe. Gateway to the Miraculous. Frog Ltd. 1994. Những hiểu biết sâu sắc của Lowenthal về việc luyện tập Thái Cực Quyền đúng đắn và những giai thoại của ông về việc học với Trịnh Mạn Thanh rất đáng dành thời gian. Công trình dịch thuật của ông nên được coi là diễn giải và giải thích hơn là bất kỳ bản dịch thực sự nào.</p>
+      </div>
+    </section>
+
+    <div class="chapter-nav">
+      <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> Về Thư Viện Sách</a>
+      <a href="/vi/books/yang_chengfu_essence_applications_vi.html">Thể Dụng Toàn Thư <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) { fontSize += 1; document.getElementById('book-content').style.fontSize = fontSize + 'px'; }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) { fontSize -= 1; document.getElementById('book-content').style.fontSize = fontSize + 'px'; }
+});
+
+const langToggle = document.getElementById('lang-toggle');
+langToggle.addEventListener('click', () => {
+  document.body.classList.toggle('show-en');
+  const on = document.body.classList.contains('show-en');
+  langToggle.classList.toggle('on', on);
+  langToggle.innerHTML = on ? '<i class="fa-solid fa-language"></i> VI' : '<i class="fa-solid fa-language"></i> EN';
+});
+
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) currentId = sec.getAttribute('id');
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) link.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
