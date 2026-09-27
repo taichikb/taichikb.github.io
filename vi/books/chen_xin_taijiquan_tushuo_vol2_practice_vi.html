@@ -199,28 +199,6 @@ body:not(.dark-mode) em {
   position: relative;
 }
 
-.reader-sidebar {
-  width: var(--sidebar-w);
-  flex-shrink: 0;
-  height: calc(100vh - 70px);
-  position: sticky;
-  top: 70px;
-  overflow-y: auto;
-  padding: 1.5rem 1rem;
-  background: #fafaf9 !important;
-  border-right: 1px solid #e7e5e4 !important;
-}
-
-.toc-title {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #991b1b !important;
-  margin-bottom: 1rem;
-  padding-left: 0.5rem;
-}
-
 .toc-list {
   list-style: none;
   padding: 0;
@@ -468,15 +446,6 @@ body.dark-mode em {
   color: #fef08a !important;
 }
 
-body.dark-mode .reader-sidebar {
-  background: #18181b !important;
-  border-right-color: #27272a !important;
-}
-
-body.dark-mode .toc-title {
-  color: #f87171 !important;
-}
-
 body.dark-mode .toc-link {
   color: #d4d4d8 !important;
 }
@@ -553,10 +522,7 @@ body.dark-mode .vol-card .vol-name {
 
 /* Responsive */
 @media (max-width: 992px) {
-  .reader-sidebar {
-    display: none;
-  }
-  .reader-content {
+.reader-content {
     padding: 1.5rem 1.2rem;
   }
   .volume-nav-bar {
@@ -566,6 +532,51 @@ body.dark-mode .vol-card .vol-name {
     font-size: 2rem;
   }
 }
+
+.book-layout, .main-container {
+  display: block !important; max-width: 900px !important;
+  margin: 0 auto !important; padding: 2rem 1.5rem !important;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+body.dark-mode .page-nav a.disabled { color: #555; }
 </style>
 </head>
 <body>
@@ -592,9 +603,8 @@ body.dark-mode .vol-card .vol-name {
 </header>
 
 <div class="book-layout">
-  <!-- Sticky Sidebar TOC -->
-  <aside class="reader-sidebar">
-    <div class="toc-title"><i class="fa-solid fa-list-ol"></i> Mục Lục Thập Tam Tiết</div>
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Thập Tam Tiết</summary>
     <ul class="toc-list">
       
 <li class="toc-item">
@@ -741,13 +751,16 @@ body.dark-mode .vol-card .vol-name {
 </li>
 
     </ul>
-    
-    <div style="margin-top: 2rem; padding: 14px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0; font-size: 0.82rem; text-align: center;">
-      <div style="font-weight: 700; color: #166534; margin-bottom: 4px;"><i class="fa-solid fa-book-bookmark"></i> Đang Đọc Tập 2</div>
-      <p style="margin: 0 0 8px; color: #15803d;">Cần ôn luyện lý luận, kinh lạc và Hà Đồ?</p>
-      <a href="/vi/books/chen_xin_taijiquan_tushuo_vol1_theory_vi.html" style="display:inline-block; padding:5px 12px; background:#166534; color:#fff; text-decoration:none; border-radius:6px; font-weight:700;">&larr; Xem Lại Tập 1</a>
-    </div>
-  </aside>
+  </details>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/vi/">Trang Chủ</a>
+    <span class="sep">/</span>
+    <a href="/vi/books/">Thư Viện Sách</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Trần Thị Thái Cực Quyền Đồ Thuyết — Tập 2: Thực Hành &amp; Quyền Giá</span>
+  </nav>
+
 
   <!-- Main Content -->
   <main class="reader-content">
@@ -6019,6 +6032,12 @@ body.dark-mode .vol-card .vol-name {
 </section>
 
 
+  
+    <nav class="page-nav">
+      <a href="/vi/books/chen_xin_taijiquan_tushuo_vol1_theory_vi.html" class="prev">&#8592; Trước · Trần Hinh Đồ Thuyết — Quyển 1: Lý Luận</a>
+      <a href="/vi/books/" class="home">&#8962; Trang Chủ</a>
+      <a href="/vi/books/sun_style_taijiquan_sun_jianyun_vi.html" class="next">Sau · Tôn Thức Thái Cực Quyền &#8594;</a>
+    </nav>
   </main>
 </div>
 

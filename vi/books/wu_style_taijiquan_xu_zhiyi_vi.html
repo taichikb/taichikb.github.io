@@ -25,10 +25,6 @@ body.dark-mode {
   background-color: #121212 !important;
   color: #f5f5f4 !important;
 }
-body.dark-mode .reader-sidebar {
-  background: #1a1a1a;
-  border-color: #2e2e2e;
-}
 body.dark-mode .quote-box {
   background: #2a2415;
   color: #fef08a;
@@ -62,36 +58,7 @@ body.dark-mode .tech-table td {
   width: 0%;
   transition: width 0.1s;
 }
-.reader-layout {
-  display: flex;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  gap: 2.5rem;
-}
-.reader-sidebar {
-  width: var(--sidebar-w);
-  flex-shrink: 0;
-  position: sticky;
-  top: 80px;
-  height: calc(100vh - 100px);
-  overflow-y: auto;
-  background: #fafaf9;
-  border: 1px solid #e7e5e4;
-  border-radius: 12px;
-  padding: 1.2rem;
-}
-.toc-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--accent-crimson);
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
 .toc-list {
   list-style: none;
   padding: 0;
@@ -268,10 +235,54 @@ body.dark-mode .figure-wrap {
   line-height: 1.5;
 }
 @media (max-width: 1024px) {
-  .reader-sidebar { display: none; }
-  .reader-content { padding: 1rem 0 3rem; }
+.reader-content { padding: 1rem 0 3rem; }
   .book-hero h1 { font-size: 2rem; }
 }
+
+.book-layout, .main-container {
+  display: block !important; max-width: 900px !important;
+  margin: 0 auto !important; padding: 2rem 1.5rem !important;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+body.dark-mode .page-nav a.disabled { color: #555; }
 </style>
 </head>
 <body>
@@ -297,9 +308,8 @@ body.dark-mode .figure-wrap {
 </header>
 
 <div class="reader-layout">
-  <!-- Mục lục bên -->
-  <aside class="reader-sidebar">
-    <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Mục Lục Ngô Thức</div>
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Ngô Thức</summary>
     <ul class="toc-list">
       <li class="toc-item"><a href="#chuong-1" class="toc-link">1. Lịch Sử & Đóng Góp Của Danh Gia Từ Trí Nhất</a></li>
       <li class="toc-item"><a href="#chuong-2" class="toc-link">2. Ưu Điểm Độc Đáo Của Thái Cực Quyền</a></li>
@@ -309,7 +319,16 @@ body.dark-mode .figure-wrap {
       <li class="toc-item"><a href="#chuong-6" class="toc-link">6. Quy Tắc Bàn Giá Tử & Yếu Lĩnh Thân Pháp</a></li>
       <li class="toc-item"><a href="#chuong-7" class="toc-link">7. Đồ Giải Chuẩn 83 Thức Quyền Ngô Thức</a></li>
     </ul>
-  </aside>
+  </details>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/vi/">Trang Chủ</a>
+    <span class="sep">/</span>
+    <a href="/vi/books/">Thư Viện Sách</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Ngô Thức Thái Cực Quyền (吴式太极拳) — Từ Trí Nhất</span>
+  </nav>
+
 
   <!-- Nội dung -->
   <main class="reader-content">
@@ -431,6 +450,12 @@ body.dark-mode .figure-wrap {
 
     </section>
 
+  
+    <nav class="page-nav">
+      <a href="/vi/books/wu_hao_style_taijiquan_hao_shaoru_vi.html" class="prev">&#8592; Trước · Võ Thức Thái Cực Quyền (Hách Thiếu Như)</a>
+      <a href="/vi/books/" class="home">&#8962; Trang Chủ</a>
+      <a href="/vi/books/yang_style_taijiquan_fu_zhongwen_vi.html" class="next">Sau · Dương Thức Thái Cực Quyền (Phó Chung Văn) &#8594;</a>
+    </nav>
   </main>
 </div>
 
