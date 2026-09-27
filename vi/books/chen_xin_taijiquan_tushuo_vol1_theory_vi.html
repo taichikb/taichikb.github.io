@@ -175,11 +175,6 @@ body:not(.dark-mode) .vol-card.active .vol-desc {
   color: #57534e !important;
 }
 
-body:not(.dark-mode) .reader-sidebar {
-  background: #fafaf9 !important;
-  border: 1px solid #e7e5e4 !important;
-}
-
 body:not(.dark-mode) .toc-link {
   color: #57534e !important;
 }
@@ -364,15 +359,6 @@ body.dark-mode .vol-card.upcoming .vol-desc {
   color: #71717a !important;
 }
 
-body.dark-mode .reader-sidebar {
-  background: #18181b !important;
-  border-color: #27272a !important;
-}
-
-body.dark-mode .toc-title {
-  color: #f87171 !important;
-}
-
 body.dark-mode .toc-link {
   color: #d4d4d8 !important;
 }
@@ -426,6 +412,51 @@ body.dark-mode #loi-ket p[style*="color: #57534e"] {
   }
 }
 
+
+.book-layout, .main-container {
+  display: block !important; max-width: 900px !important;
+  margin: 0 auto !important; padding: 2rem 1.5rem !important;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+body.dark-mode .page-nav a.disabled { color: #555; }
 </style>
 </head>
 <body>
@@ -451,16 +482,8 @@ body.dark-mode #loi-ket p[style*="color: #57534e"] {
 </header>
 
 <div class="reader-layout">
-
-  <!-- Sidebar Table of Contents -->
-  <aside class="reader-sidebar">
-    <div class="reader-tools">
-      <button class="tool-btn" id="dark-toggle" title="Đổi giao diện Sáng/Tối"><i class="fa-solid fa-moon"></i> Giao diện</button>
-      <button class="tool-btn" id="font-increase" title="Tăng cỡ chữ"><i class="fa-solid fa-font"></i> A+</button>
-      <button class="tool-btn" id="font-decrease" title="Giảm cỡ chữ"><i class="fa-solid fa-font"></i> A-</button>
-    </div>
-
-    <div class="toc-title"><i class="fa-solid fa-list-ol"></i> Mục Lục Tập 1</div>
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Tập 1</summary>
     <ul class="toc-list">
       <li class="toc-item"><a href="#loi-tua" class="toc-link">🍵 Lời Tựa Của Huấn Luyện Viên</a></li>
       <li class="toc-item">
@@ -534,13 +557,16 @@ body.dark-mode #loi-ket p[style*="color: #57534e"] {
       </li>
       <li class="toc-item"><a href="#loi-ket" class="toc-link">🌅 Lời Kết & Chuẩn Bị Cho Tập 2</a></li>
     </ul>
+  </details>
 
-    <div style="margin-top: 2rem; padding: 14px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0; font-size: 0.82rem; text-align: center;">
-      <div style="font-weight: 700; color: #166534; margin-bottom: 4px;"><i class="fa-solid fa-circle-check"></i> Tập 2 Đã Xuất Bản!</div>
-      <p style="margin: 0 0 8px; color: #15803d;">Toàn văn 217 trang thực hành Lão Giá Nhất Lộ & Hậu Tự đã hoàn tất.</p>
-      <a href="/vi/books/chen_xin_taijiquan_tushuo_vol2_practice_vi.html" style="display:inline-block; padding:5px 12px; background:#166534; color:#fff; text-decoration:none; border-radius:6px; font-weight:700;">Đọc Tiếp Tập 2 &rarr;</a>
-    </div>
-  </aside>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/vi/">Trang Chủ</a>
+    <span class="sep">/</span>
+    <a href="/vi/books/">Thư Viện Sách</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Trần Thị Thái Cực Quyền Đồ Thuyết — Tập 1: Tinh Hoa Lý Luận</span>
+  </nav>
+
 
   <!-- Main Reader Content -->
   <main class="reader-content">
@@ -1188,6 +1214,12 @@ body.dark-mode #loi-ket p[style*="color: #57534e"] {
       </p>
     </section>
 
+  
+    <nav class="page-nav">
+      <a href="/vi/books/chen_xin_taijiquan_tushuo_vi.html" class="prev">&#8592; Trước · Trần Hinh Thái Cực Quyền Đồ Thuyết</a>
+      <a href="/vi/books/" class="home">&#8962; Trang Chủ</a>
+      <a href="/vi/books/chen_xin_taijiquan_tushuo_vol2_practice_vi.html" class="next">Sau · Trần Hinh Đồ Thuyết — Quyển 2: Thực Hành &#8594;</a>
+    </nav>
   </main>
 </div>
 

@@ -35,6 +35,51 @@ body { margin:0; font-family:'Noto Serif', Georgia, serif; color:var(--fg); back
 .section-text { margin:.6em 0; }
 footer { text-align:center; padding:24px; color:var(--muted); font-size:.85em; }
 @media (max-width:900px) { .sidebar { display:none; } }
+
+.book-layout, .main-container {
+  display: block !important; max-width: 900px !important;
+  margin: 0 auto !important; padding: 2rem 1.5rem !important;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+body.dark-mode .page-nav a.disabled { color: #555; }
 </style>
 </head>
 <body class="dark-mode">
@@ -42,7 +87,9 @@ footer { text-align:center; padding:24px; color:var(--muted); font-size:.85em; }
 <nav class="tu-topnav"><span class="brand">陈氏太极拳图说</span><span class="spacer"></span><button class="theme-btn" onclick="document.body.classList.toggle('dark-mode')">☾ / ☀</button></nav>
 <header class="hero"><h1>Chen Shi Taijiquan Tushuo — English Translation</h1><div class="sub">By Chen Xin (陈鑫) · 1933 classic · complete 266-page translation</div></header>
 <div class="main-container">
-<aside class="sidebar"><strong>Mục lục</strong><ul class="toc-list">
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Table of Contents</summary>
+    <ul class="toc-list">
 <li class="toc-part">Phần Lý Luận / Theory</li>
 <li><a href="#p076">Tr. 43</a> <span class="toc-label">Trang/book-page 43 (scan p076)</span></li>
 <li><a href="#p077">Tr. 44</a> <span class="toc-label">Trang/book-page 44 (scan p077)</span></li>
@@ -313,7 +360,17 @@ footer { text-align:center; padding:24px; color:var(--muted); font-size:.85em; }
 <li><a href="#p339">Tr. 306</a> <span class="toc-label">Trang/book-page 339 (scan p339)</span></li>
 <li><a href="#p340">Tr. 307</a> <span class="toc-label">Trang/book-page 340 (scan p340)</span></li>
 <li><a href="#p341">Tr. 308</a> <span class="toc-label">Trang/book-page 341 (scan p341)</span></li>
-</ul></aside>
+</ul>
+  </details>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <a href="/books/">Book Library</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Chen Shi Taijiquan Tushuo — English Translation</span>
+  </nav>
+
 <main class="content-area">
 <section class="part-divider" id="theory"><h2>Phần Lý Luận / Theory</h2></section>
 <section class="chapter-box" id="p076">
@@ -7566,7 +7623,13 @@ footer { text-align:center; padding:24px; color:var(--muted); font-size:.85em; }
 <p class="section-text">*Note: No diagrams, figures, or verse text (歌诀) appear on this page. This concludes the back matter of the book.*</p>
 </section>
 <footer>Trang web này được xây dựng với ❤️ cho cộng đồng quần vợt Việt Nam 🎾 by Henry Phạm · Trần Thị Thái Cực Quyền Đồ Thuyết — Trần Hâm (1933)</footer>
-</main>
+
+    <nav class="page-nav">
+      <a href="#" class="prev" disabled>&#8592; Previous</a>
+      <a href="/books/" class="home">&#8962; Home</a>
+      <a href="/books/sun_style_taijiquan_sun_jianyun_en_full.html" class="next">Next · Sun Style Taijiquan &#8594;</a>
+    </nav>
+  </main>
 </div>
 <script>
 window.addEventListener('scroll', function() {
