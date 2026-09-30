@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thái Cực Quyền &amp; Bát Quái Chưởng — Ứng Dụng Chiến Đấu · Erle Montaigue (Taijiworld)</title>
+<meta name="description" content="Thái Cực Quyền &amp; Bát Quái Chưởng — Ứng Dụng Chiến Đấu — sách miễn phí của Erle Montaigue, nguyên bản PDF 79 trang, đọc trực tuyến trong thư viện TaichiNOW.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb; --bg-card: #ffffff; --bg-sidebar: #f4f4f5;
+  --ink: #18181b; --ink-muted: #52525b; --ink-faint: #a1a1aa;
+  --gold: #b45309; --gold-light: #fef3c7; --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', 'Songti SC', serif;
+}
+[data-theme="dark"] {
+  --bg-page: #09090b; --bg-card: #18181b; --bg-sidebar: #121214;
+  --ink: #f4f4f5; --ink-muted: #a1a1aa; --ink-faint: #71717a;
+  --gold: #f59e0b; --gold-light: #451a03; --border: #27272a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page); color: var(--ink);
+  font-family: var(--sans); line-height: 1.85; font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+.reader-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header { background: rgba(18,18,20,0.95); }
+.brand-area { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.1rem; }
+.brand-area svg { width: 32px; height: 32px; }
+.header-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn-control {
+  background: none; border: 1px solid var(--border); color: var(--ink);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: all 0.2s;
+}
+.btn-control:hover { background: var(--border); }
+.btn-control.on { background: var(--gold); border-color: var(--gold); color: #fff; }
+#progress-container { position: fixed; top: 53px; left: 0; width: 100%; height: 3px; z-index: 99; }
+#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #ea580c); transition: width 0.1s ease; }
+.book-wrapper { max-width: 1380px; margin: 0 auto; display: flex; min-height: calc(100vh - 60px); }
+.book-sidebar {
+  width: 320px; flex-shrink: 0; background: var(--bg-sidebar);
+  border-right: 1px solid var(--border); padding: 24px 16px;
+  position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+}
+.toc-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 12px; padding-left: 8px; }
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a { display: block; padding: 8px 12px; color: var(--ink-muted); text-decoration: none; font-size: 0.92rem; border-radius: 6px; transition: all 0.15s; line-height: 1.4; }
+.toc-nav a:hover, .toc-nav a.active { color: var(--ink); background: var(--bg-card); font-weight: 600; border-left: 3px solid var(--gold); }
+.book-content { flex-grow: 1; max-width: 880px; margin: 0 auto; padding: 48px 32px 100px; }
+.book-hero { text-align: center; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
+.book-hero .badge { display: inline-block; background: var(--gold-light); color: var(--gold); font-weight: 600; font-size: 0.8rem; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
+.book-hero h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.2; margin-bottom: 12px; font-weight: 600; }
+.book-hero .subtitle { font-size: 1.2rem; color: var(--ink-muted); font-style: italic; margin-bottom: 16px; }
+.book-hero .meta-row { display: flex; justify-content: center; gap: 24px; color: var(--ink-faint); font-size: 0.9rem; flex-wrap: wrap; }
+h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin: 56px 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); color: var(--ink); scroll-margin-top: 80px; }
+h2 .zh { font-family: var(--cjk); font-size: 1.35rem; color: var(--ink-muted); margin-left: 10px; }
+.en-heading { font-size: 0.95rem; color: var(--ink-faint); font-style: italic; margin-bottom: 24px; }
+h3.run-in { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin: 30px 0 14px; scroll-margin-top: 90px; }
+h3.run-in .en-inline { font-size: 0.9rem; color: var(--ink-faint); font-style: italic; font-weight: 400; display: block; margin-top: 2px; }
+p { margin-bottom: 1.35rem; }
+.bilingual-block .lang-en { display: none; }
+body.show-en .lang-en { display: block; }
+body.show-en .lang-vi { display: none; }
+body.show-en .en-heading { color: var(--gold); }
+.stanza { margin-bottom: 1.35rem; }
+.lang-en p { color: var(--ink-muted); font-size: 0.96rem; }
+.note-box { background: var(--bg-sidebar); border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; font-size: 0.94rem; color: var(--ink-muted); }
+.chapter-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+.chapter-nav a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 600; padding: 10px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
+.chapter-nav a:hover { background: var(--border); }
+@media (max-width: 900px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2rem; }
+}
+/* ==== Inline PDF viewer (shared component) ==== */
+#pdf-overlay{position:fixed;inset:0;z-index:300;display:none;flex-direction:column;background:#3f3f46;}
+#pdf-overlay.open{display:flex;}
+.pdf-toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(24,24,27,.97);color:#f4f4f5;border-bottom:1px solid #52525b;flex-wrap:wrap;}
+.pdf-toolbar .pdf-title{font-weight:600;font-size:.92rem;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw;display:flex;align-items:center;gap:8px;}
+.pdf-btn{background:none;border:1px solid #71717a;color:#f4f4f5;padding:5px 11px;border-radius:6px;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:6px;text-decoration:none;line-height:1.4;}
+.pdf-btn:hover{background:#52525b;}
+.pdf-btn:disabled{opacity:.35;cursor:default;}
+#pdf-pages{position:relative;flex:1;overflow:auto;padding:16px 0 48px;text-align:center;-webkit-overflow-scrolling:touch;}
+.pdf-page{display:block;margin:0 auto 14px;box-shadow:0 2px 14px rgba(0,0,0,.5);background:#fff;}
+#pdf-status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#f4f4f5;font-size:.95rem;background:rgba(24,24,27,.94);padding:14px 22px;border-radius:8px;display:none;max-width:80%;}
+body.pdf-lock{overflow:hidden;}
+@media (max-width:640px){.pdf-toolbar .pdf-title{display:none;}#pdf-pageinfo{min-width:62px;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Thư Viện Tinh Hoa</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="pdf-open" title="Doc truc tuyen trong trang"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
+    <a href="/assets/books/taijiworld/taiji-and-bagua-for-fighting/Taiji_And_Bagua_For_Fighting.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
+    <button class="btn-control" id="lang-toggle" title="Chuyển đổi Việt / Anh"><i class="fa-solid fa-language"></i> EN</button>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <aside class="book-sidebar">
+    <div class="toc-title">Tủ Sách Erle Montaigue</div>
+    <nav class="toc-nav">
+      <ul>
+<li><a href="/vi/books/taijiworld_baguazhang-vol1_vi.html">Bát Quái Chưởng: Hệ Thống Hoàn Chỉnh — Tập 1</a></li>
+<li><a href="/vi/books/taijiworld_baguazhang-vol2_vi.html">Bát Quái Chưởng: Hệ Thống Hoàn Chỉnh — Tập 2</a></li>
+<li><a href="/vi/books/taijiworld_power-taiji-vol1_vi.html">Thái Cực Quyền Nội Lực — Tập 1</a></li>
+<li><a href="/vi/books/taijiworld_power-taiji-vol2_vi.html">Thái Cực Quyền Nội Lực — Tập 2</a></li>
+<li><a href="/vi/books/taijiworld_power-taiji-vol3_vi.html">Thái Cực Quyền Nội Lực — Tập 3</a></li>
+<li><a href="/vi/books/taijiworld_internal-gungfu-vol1_vi.html">Nội Công Gung-Fu — Tập 1</a></li>
+<li><a href="/vi/books/taijiworld_internal-gungfu-vol2_vi.html">Nội Công Gung-Fu — Tập 2</a></li>
+<li><a href="/vi/books/taijiworld_yang-lu-chan-form-vol1_vi.html">Dương Lộ Thiền Quyền — Tập 1</a></li>
+<li><a href="/vi/books/taijiworld_yang-lu-chan-form-vol2_vi.html">Dương Lộ Thiền Quyền — Tập 2</a></li>
+<li><a href="/vi/books/taijiworld_yang-lu-chan-form-vol3_vi.html">Dương Lộ Thiền Quyền — Tập 3</a></li>
+<li><a href="/vi/books/taijiworld_yang-lu-chan-form-vol4_vi.html">Dương Lộ Thiền Quyền — Tập 4</a></li>
+<li><a href="/vi/books/taijiworld_yang-lu-chan-form-italian_vi.html">Dương Lộ Thiền Quyền — Bản Ý (tiếng Ý)</a></li>
+<li><a href="/vi/books/taijiworld_ylc-posture-names_vi.html">Tên các Thế Dương Lộ Thiền</a></li>
+<li><a href="/vi/books/taijiworld_qigong_vi.html">Khí Công</a></li>
+<li><a href="/vi/books/taijiworld_general-principles-of-tai-chi_vi.html">Nguyên Lý Chung của Thái Cực Quyền</a></li>
+<li><a href="/vi/books/taijiworld_advanced-taiji-and-bagua_vi.html">Thái Cực Quyền &amp; Bát Quái Chưởng Nâng Cao</a></li>
+<li class="active"><a href="/vi/books/taijiworld_taiji-and-bagua-for-fighting_vi.html">Thái Cực Quyền &amp; Bát Quái Chưởng — Ứng Dụng Chiến Đấu</a></li>
+<li><a href="/vi/books/taijiworld_chinese-self-healing-methods_vi.html">Phương Pháp Tự Chữa Lành Trung Hoa</a></li>
+<li><a href="/vi/books/taijiworld_old-published-articles_vi.html">Tuyển Tập Bài Báo Đã Xuất Bản</a></li>
+<li><a href="/vi/books/taijiworld_erles-compilation-book_vi.html">Sách Tuyển Tập của Erle</a></li>
+<li><a href="/vi/books/taijiworld_erles-point-locations_vi.html">Vị Trí Huyệt Đạo của Erle</a></li>
+<li><a href="/vi/books/taijiworld_food-for-spirit_vi.html">Thức Ăn cho Tinh Thần</a></li>
+<li><a href="/vi/books/taijiworld_anti-jet-lag_vi.html">Chống Lệch Giờ Bay (Jet Lag)</a></li>
+<li><a href="/vi/books/taijiworld_reflex-sudden-violence_vi.html">Phản Xạ — Bạo Lực Bất Ngờ</a></li>
+<li><a href="/vi/books/taijiworld_bagua-chart_vi.html">Đồ Hình Bát Quái</a></li>
+<li><a href="/vi/books/taijiworld_muscles-and-meridians-chart_vi.html">Biểu Đồ Cơ &amp; Kinh Lạc</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Erle Montaigue · Sách Miễn Phí · Taijiworld</span>
+      <h1>Thái Cực Quyền &amp; Bát Quái Chưởng — Ứng Dụng Chiến Đấu</h1>
+      <div class="subtitle">Taiji and Bagua for Fighting</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-ninja"></i> Erle Montaigue</span>
+        <span><i class="fa-solid fa-file-lines"></i> 79 trang</span>
+        <span><i class="fa-solid fa-earth-americas"></i> Nguồn: taijiworld.com (miễn phí)</span>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Về bản này.</strong> Cuốn sách dành riêng cho khía cạnh võ thuật của Thái Cực Quyền và Bát Quái Chưởng: đòn thế, đối luyện, phá chiêu và các nguyên tắc thực chiến, minh họa bằng hơn hai trăm ảnh động tác.
+      <br><br>
+      Đây là <strong>nguyên bản PDF tiếng Anh</strong> do chính tác giả phát hành miễn phí trên <a href="https://www.taijiworld.com/freebooks" target="_blank" rel="noopener" style="color: var(--gold); font-weight: 600;">taijiworld.com/freebooks</a>. Nhấn nút <strong>Đọc</strong> trên thanh công cụ (hoặc nút bên dưới) để đọc trực tuyến ngay trong trang, hoặc tải về để đọc ngoại tuyến.
+      <br><span style="font-size:0.85rem;">Bản quyền thuộc về tác giả và nhà phát hành (Moontagu Books). Tài liệu được lưu trữ tại đây cho mục đích học tập cá nhân, phi thương mại.</span>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin: 1.5rem 0 0;">
+      <button class="btn-control" onclick="document.getElementById('pdf-open').click();" style="padding:12px 24px; font-size:1rem; cursor:pointer;"><i class="fa-solid fa-book-open-reader"></i> Đọc trực tuyến</button>
+      <a class="btn-control" href="/assets/books/taijiworld/taiji-and-bagua-for-fighting/Taiji_And_Bagua_For_Fighting.pdf" download style="text-decoration:none; padding:12px 24px; font-size:1rem;"><i class="fa-solid fa-download"></i> Tải PDF (79 trang)</a>
+      <a class="btn-control" href="/vi/books/" style="text-decoration:none; padding:12px 24px; font-size:1rem;"><i class="fa-solid fa-arrow-left"></i> Về Thư Viện</a>
+    </div>
+
+    <div class="note-box" style="margin-top:2rem;">
+      <strong>Tủ Sách Erle Montaigue.</strong> Đây là một trong 26 tác phẩm của Erle Montaigue được phát hành miễn phí, tập hợp trong <a href="/vi/books/#taijiworld" style="color: var(--gold); font-weight: 600;">Tủ Sách Erle Montaigue</a> của thư viện — gồm Bát Quái Chưởng, Thái Cực Quyền, Nội Công và các chuyên đề dưỡng sinh.
+    </div>
+
+  </main>
+</div>
+
+<script>
+// language toggle
+var startEn = false;
+document.getElementById('lang-toggle').addEventListener('click', function(){
+  document.body.classList.toggle('show-en');
+  this.classList.toggle('on');
+  this.innerHTML = document.body.classList.contains('show-en')
+    ? '<i class="fa-solid fa-language"></i> VI'
+    : '<i class="fa-solid fa-language"></i> EN';
+});
+// theme
+var themeBtn = document.getElementById('theme-toggle');
+var savedTheme = localStorage.getItem('fiverings-theme');
+if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+themeBtn.addEventListener('click', function(){
+  var d = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (d) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('fiverings-theme','light'); this.innerHTML = '<i class="fa-solid fa-moon"></i>'; }
+  else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('fiverings-theme','dark'); this.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+});
+// font size
+var fs = parseInt(localStorage.getItem('fiverings-fs') || '17');
+function applyFs(){ document.querySelector('.book-content').style.fontSize = fs + 'px'; }
+applyFs();
+document.getElementById('font-up').addEventListener('click', function(){ fs = Math.min(24, fs+1); localStorage.setItem('fiverings-fs', fs); applyFs(); });
+document.getElementById('font-down').addEventListener('click', function(){ fs = Math.max(13, fs-1); localStorage.setItem('fiverings-fs', fs); applyFs(); });
+// progress
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+  document.getElementById('progress-bar').style.width = p + '%';
+});
+// TOC active
+var links = document.querySelectorAll('.toc-nav a');
+var sections = document.querySelectorAll('section.chapter');
+window.addEventListener('scroll', function(){
+  var pos = window.scrollY + 120;
+  sections.forEach(function(sec){
+    if (sec.offsetTop <= pos && sec.offsetTop + sec.offsetHeight > pos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var al = document.querySelector('.toc-nav a[href="#' + sec.id + '"]');
+      if (al) al.classList.add('active');
+    }
+  });
+});
+</script>
+
+<div id="pdf-overlay" data-pdf="/assets/books/taijiworld/taiji-and-bagua-for-fighting/Taiji_And_Bagua_For_Fighting.pdf" data-title="Thái Cực Quyền &amp; Bát Quái Chưởng — Ứng Dụng Chiến Đấu" role="dialog" aria-modal="true" aria-label="Trình đọc PDF">
+  <div class="pdf-toolbar">
+    <span class="pdf-title"><i class="fa-solid fa-file-pdf"></i> <span id="pdf-title-text">Đọc bản in</span></span>
+    <button class="pdf-btn" id="pdf-prev" title="Trang trước"><i class="fa-solid fa-chevron-up"></i></button>
+    <span id="pdf-pageinfo" style="font-size:.85rem;min-width:88px;text-align:center;">&ndash; / &ndash;</span>
+    <button class="pdf-btn" id="pdf-next" title="Trang sau"><i class="fa-solid fa-chevron-down"></i></button>
+    <button class="pdf-btn" id="pdf-zoom-out" title="Thu nhỏ">A-</button>
+    <button class="pdf-btn" id="pdf-zoom-in" title="Phóng to">A+</button>
+    <a class="pdf-btn" id="pdf-download" href="#" download><i class="fa-solid fa-download"></i> Tải về</a>
+    <button class="pdf-btn" id="pdf-close" title="Đóng (Esc)"><i class="fa-solid fa-xmark"></i> Đóng</button>
+  </div>
+  <div id="pdf-pages"></div>
+  <div id="pdf-status">Đang tải…</div>
+</div>
+
+<script>
+/* ==== Inline PDF viewer (shared component) ==== */
+(function () {
+  var overlay = document.getElementById('pdf-overlay');
+  if (!overlay) return;
+  var pagesEl  = document.getElementById('pdf-pages');
+  var statusEl = document.getElementById('pdf-status');
+  var infoEl   = document.getElementById('pdf-pageinfo');
+  var dlLink   = document.getElementById('pdf-download');
+  var dlAnchor = document.querySelector('.header-controls a[download]') ||
+                 document.querySelector('a[href$=".pdf"]');
+  var url = overlay.getAttribute('data-pdf') || (dlAnchor && dlAnchor.getAttribute('href'));
+  if (!url) return;
+  if (dlLink) dlLink.href = url;
+  var titleEl = document.getElementById('pdf-title-text');
+  if (titleEl) {
+    var t = (document.title || '').split('\u00b7')[0].trim();
+    titleEl.textContent = overlay.getAttribute('data-title') || t || '\u0110\u1ecdc b\u1ea3n in';
+  }
+
+  var PDFJS_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+  var libState = 0;                 /* 0 none, 1 loading, 2 ready, 3 failed */
+  var pdfDoc = null, zoom = 1, items = [], current = 1, observer = null;
+  var FAIL = 'Kh\u00f4ng t\u1ea3i \u0111\u01b0\u1ee3c tr\u00ecnh \u0111\u1ecdc PDF. H\u00e3y d\u00f9ng n\u00fat \u201cT\u1ea3i v\u1ec1\u201d.';
+
+  function setStatus(msg) {
+    if (!statusEl) return;
+    if (msg) { statusEl.textContent = msg; statusEl.style.display = 'block'; }
+    else { statusEl.style.display = 'none'; }
+  }
+
+  function loadLib(cb) {
+    if (libState === 2) return cb();
+    if (libState === 3) { setStatus(FAIL); return; }
+    if (libState === 1) {
+      var t = setInterval(function () {
+        if (libState === 1) return;
+        clearInterval(t);
+        if (libState === 2) cb(); else setStatus(FAIL);
+      }, 80);
+      return;
+    }
+    libState = 1;
+    var s = document.createElement('script');
+    s.src = PDFJS_BASE + 'pdf.min.js';
+    s.onload = function () {
+      try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_BASE + 'pdf.worker.min.js'; } catch (e) {}
+      libState = 2; cb();
+    };
+    s.onerror = function () { libState = 3; setStatus(FAIL); };
+    document.head.appendChild(s);
+  }
+
+  function fit() {
+    var avail = pagesEl.clientWidth - 28;
+    if (!avail || avail < 100) avail = 640;
+    return Math.max(0.35, Math.min(avail / 420, 1.7));   /* A5 width ~= 420pt */
+  }
+
+  function draw(it) {
+    if (!it || it.done || it.busy) return;
+    it.busy = true;
+    it.page.render({ canvasContext: it.canvas.getContext('2d'),
+                     viewport: it.page.getViewport({ scale: it.scale }) }).promise
+      .then(function () { it.done = true; it.busy = false; })
+      .catch(function () { it.busy = false; });
+  }
+
+  /* the counter follows the scroll position, not the pre-render margin */
+  function updateCurrent() {
+    if (!items.length) return;
+    var top = pagesEl.scrollTop + 20, best = 1, bd = Infinity;
+    for (var i = 0; i < items.length; i++) {
+      var d = Math.abs(items[i].canvas.offsetTop - top);
+      if (d < bd) { bd = d; best = items[i].n; }
+    }
+    if (best !== current) {
+      current = best;
+      infoEl.textContent = current + ' / ' + pdfDoc.numPages;
+    }
+  }
+
+  function observe() {
+    if (observer) observer.disconnect();
+    if (!('IntersectionObserver' in window)) { items.forEach(draw); return; }
+    observer = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var n = +e.target.dataset.page;
+        draw(items[n - 1]);
+        if (items[n]) draw(items[n]);          /* pre-render next */
+      });
+    }, { root: pagesEl, rootMargin: '700px 0px' });
+    items.forEach(function (it) { observer.observe(it.canvas); });
+  }
+
+  function build() {
+    pagesEl.innerHTML = '';
+    items = []; current = 1;
+    setStatus('\u0110ang d\u1ef1ng trang\u2026');
+    var chain = Promise.resolve();
+    for (var i = 1; i <= pdfDoc.numPages; i++) {
+      (function (n) {
+        chain = chain.then(function () {
+          return pdfDoc.getPage(n).then(function (page) {
+            var s = fit() * zoom;
+            var vp = page.getViewport({ scale: s });
+            var cv = document.createElement('canvas');
+            cv.className = 'pdf-page';
+            cv.dataset.page = n;
+            cv.width = Math.floor(vp.width);
+            cv.height = Math.floor(vp.height);
+            cv.style.width = Math.floor(vp.width) + 'px';
+            cv.style.height = Math.floor(vp.height) + 'px';
+            pagesEl.appendChild(cv);
+            items.push({ n: n, canvas: cv, page: page, scale: s, done: false, busy: false });
+          });
+        });
+      })(i);
+    }
+    chain.then(function () {
+      setStatus(null);
+      infoEl.textContent = '1 / ' + pdfDoc.numPages;
+      observe();
+      updateCurrent();
+    }).catch(function (e) { setStatus('L\u1ed7i: ' + (e && e.message ? e.message : e)); });
+  }
+
+  function goto(n) {
+    if (!pdfDoc) return;
+    n = Math.max(1, Math.min(pdfDoc.numPages, n));
+    var it = items[n - 1];
+    if (it) { pagesEl.scrollTop = it.canvas.offsetTop - 12; current = n; infoEl.textContent = n + ' / ' + pdfDoc.numPages; }
+  }
+
+  function refit() {
+    if (!pdfDoc || !items.length) return;
+    var s = fit() * zoom;
+    items.forEach(function (it) {
+      var vp = it.page.getViewport({ scale: s });
+      it.scale = s; it.done = false;
+      it.canvas.width = Math.floor(vp.width);
+      it.canvas.height = Math.floor(vp.height);
+      it.canvas.style.width = Math.floor(vp.width) + 'px';
+      it.canvas.style.height = Math.floor(vp.height) + 'px';
+    });
+    var pr = pagesEl.getBoundingClientRect();
+    items.forEach(function (it) {
+      var r = it.canvas.getBoundingClientRect();
+      if (r.bottom > pr.top - 700 && r.top < pr.bottom + 700) draw(it);
+    });
+  }
+
+  function open() {
+    overlay.classList.add('open');
+    document.body.classList.add('pdf-lock');
+    if (pdfDoc) return;
+    setStatus('\u0110ang t\u1ea3i t\u00e0i li\u1ec7u\u2026');
+    loadLib(function () {
+      window.pdfjsLib.getDocument(url).promise
+        .then(function (d) { pdfDoc = d; build(); })
+        .catch(function (e) { setStatus('Kh\u00f4ng m\u1edf \u0111\u01b0\u1ee3c PDF: ' + (e && e.message ? e.message : e)); });
+    });
+  }
+  function close() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('pdf-lock');
+  }
+
+  var openBtn = document.getElementById('pdf-open');
+  if (openBtn) openBtn.addEventListener('click', function (e) { e.preventDefault(); open(); });
+  var bind = function (id, fn) { var el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+  bind('pdf-close', close);
+  bind('pdf-prev', function () { goto(current - 1); });
+  bind('pdf-next', function () { goto(current + 1); });
+  bind('pdf-zoom-in', function () { zoom = Math.min(3, zoom + 0.2); refit(); });
+  bind('pdf-zoom-out', function () { zoom = Math.max(0.4, zoom - 0.2); refit(); });
+  document.addEventListener('keydown', function (e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'PageDown') goto(current + 1);
+    else if (e.key === 'PageUp') goto(current - 1);
+  });
+  var st = false;
+  pagesEl.addEventListener('scroll', function () {
+    if (st) return;
+    st = true;
+    requestAnimationFrame(function () { st = false; updateCurrent(); });
+  });
+  var rt;
+  window.addEventListener('resize', function () {
+    if (!overlay.classList.contains('open')) return;
+    clearTimeout(rt); rt = setTimeout(refit, 220);
+  });
+})();
+</script>
+</body>
+</html>
