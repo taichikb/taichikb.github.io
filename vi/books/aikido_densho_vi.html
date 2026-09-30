@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aikido Densho &mdash; Sunadomari Keikai &middot; Bản Dịch Việt Ngữ Song Ngữ</title>
+<meta name="description" content="Aikido Densho (合氣道伝書) của Sunadomari Keikai (砂泊気海): bản dịch tiếng Việt song ngữ trọn vẹn 66 trang kỹ thuật trong bốn phần, với toàn bộ 198 hình minh họa được nhận dạng và tái tạo đúng vị trí từ bản gốc tiếng Nhật. Dùng cho mục đích học tập cá nhân.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb; --bg-card: #ffffff; --bg-sidebar: #f4f4f5;
+  --ink: #18181b; --ink-muted: #52525b; --ink-faint: #a1a1aa;
+  --gold: #b45309; --gold-light: #fef3c7; --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', 'Songti SC', serif;
+}
+[data-theme="dark"] {
+  --bg-page: #09090b; --bg-card: #18181b; --bg-sidebar: #121214;
+  --ink: #f4f4f5; --ink-muted: #a1a1aa; --ink-faint: #71717a;
+  --gold: #f59e0b; --gold-light: #451a03; --border: #27272a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page); color: var(--ink);
+  font-family: var(--sans); line-height: 1.85; font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+.reader-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header { background: rgba(18,18,20,0.95); }
+.brand-area { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.1rem; }
+.brand-area svg { width: 32px; height: 32px; }
+.header-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn-control {
+  background: none; border: 1px solid var(--border); color: var(--ink);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: all 0.2s;
+}
+.btn-control:hover { background: var(--border); }
+.btn-control.on { background: var(--gold); border-color: var(--gold); color: #fff; }
+#progress-container { position: fixed; top: 53px; left: 0; width: 100%; height: 3px; z-index: 99; }
+#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #ea580c); transition: width 0.1s ease; }
+.book-wrapper { max-width: 1380px; margin: 0 auto; display: flex; min-height: calc(100vh - 60px); }
+.book-sidebar {
+  width: 320px; flex-shrink: 0; background: var(--bg-sidebar);
+  border-right: 1px solid var(--border); padding: 24px 16px;
+  position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+}
+.toc-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 12px; padding-left: 8px; }
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a { display: block; padding: 8px 12px; color: var(--ink-muted); text-decoration: none; font-size: 0.92rem; border-radius: 6px; transition: all 0.15s; line-height: 1.4; }
+.toc-nav a:hover, .toc-nav a.active { color: var(--ink); background: var(--bg-card); font-weight: 600; border-left: 3px solid var(--gold); }
+.toc-nav .toc-sub a { padding-left: 26px; font-size: 0.86rem; }
+.book-content { flex-grow: 1; max-width: 880px; margin: 0 auto; padding: 48px 32px 100px; }
+.book-hero { text-align: center; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
+.book-hero .badge { display: inline-block; background: var(--gold-light); color: var(--gold); font-weight: 600; font-size: 0.8rem; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
+.book-hero h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.2; margin-bottom: 12px; font-weight: 600; }
+.book-hero .subtitle { font-size: 1.2rem; color: var(--ink-muted); font-style: italic; margin-bottom: 16px; }
+.book-hero .meta-row { display: flex; justify-content: center; gap: 24px; color: var(--ink-faint); font-size: 0.9rem; flex-wrap: wrap; }
+h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin: 56px 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); color: var(--ink); scroll-margin-top: 80px; }
+h2 .zh { font-family: var(--cjk); font-size: 1.35rem; color: var(--ink-muted); margin-left: 10px; }
+.en-heading { font-size: 0.95rem; color: var(--ink-faint); font-style: italic; margin-bottom: 24px; }
+h3.run-in { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin: 30px 0 14px; scroll-margin-top: 90px; }
+h3.run-in .en-inline { font-size: 0.9rem; color: var(--ink-faint); font-style: italic; font-weight: 400; display: block; margin-top: 2px; }
+h4.sub-head { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; color: var(--ink); margin: 24px 0 10px; scroll-margin-top: 90px; }
+h4.sub-head .en-inline { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; font-weight: 400; display: block; margin-top: 2px; }
+p { margin-bottom: 1.35rem; }
+.bilingual-block .lang-en { display: none; }
+body.show-en .lang-en { display: block; }
+body.show-en .lang-vi { display: none; }
+body.show-en .en-heading { color: var(--gold); }
+.stanza { margin-bottom: 1.35rem; }
+.lang-en p { color: var(--ink-muted); font-size: 0.96rem; }
+.role-line { font-weight: 600; color: var(--gold); }
+.cmd-line { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.9rem; color: var(--ink-muted); background: var(--bg-sidebar); border-left: 3px solid var(--border); padding: 8px 14px; border-radius: 0 6px 6px 0; margin-bottom: 1.35rem; }
+.purpose-line { border-left: 3px solid var(--gold); padding-left: 14px; }
+table.kihon-table { width: 100%; border-collapse: collapse; margin: 20px 0 28px; font-size: 0.93rem; }
+table.kihon-table th, table.kihon-table td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; vertical-align: top; }
+table.kihon-table th { background: var(--bg-sidebar); font-weight: 600; }
+.note-box { background: var(--bg-sidebar); border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; font-size: 0.94rem; color: var(--ink-muted); }
+.chapter-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+.chapter-nav a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 600; padding: 10px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
+.chapter-nav a:hover { background: var(--border); }
+@media (max-width: 900px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2rem; }
+}
+/* ==== Inline PDF viewer (shared component) ==== */
+#pdf-overlay{position:fixed;inset:0;z-index:300;display:none;flex-direction:column;background:#3f3f46;}
+#pdf-overlay.open{display:flex;}
+.pdf-toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(24,24,27,.97);color:#f4f4f5;border-bottom:1px solid #52525b;flex-wrap:wrap;}
+.pdf-toolbar .pdf-title{font-weight:600;font-size:.92rem;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw;display:flex;align-items:center;gap:8px;}
+.pdf-btn{background:none;border:1px solid #71717a;color:#f4f4f5;padding:5px 11px;border-radius:6px;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:6px;text-decoration:none;line-height:1.4;}
+.pdf-btn:hover{background:#52525b;}
+.pdf-btn:disabled{opacity:.35;cursor:default;}
+#pdf-pages{position:relative;flex:1;overflow:auto;padding:16px 0 48px;text-align:center;-webkit-overflow-scrolling:touch;}
+.pdf-page{display:block;margin:0 auto 14px;box-shadow:0 2px 14px rgba(0,0,0,.5);background:#fff;}
+#pdf-status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#f4f4f5;font-size:.95rem;background:rgba(24,24,27,.94);padding:14px 22px;border-radius:8px;display:none;max-width:80%;}
+body.pdf-lock{overflow:hidden;}
+@media (max-width:640px){.pdf-toolbar .pdf-title{display:none;}#pdf-pageinfo{min-width:62px;}}
+
+.bilingual-block .lang-ja { display: none; }
+body.show-en .lang-ja { display: block; }
+body.show-en .lang-vi { display: none; }
+.lang-ja { font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+  "Noto Serif JP", "MS Mincho", serif; font-size: 1.02rem; line-height: 1.95;
+  color: var(--ink-muted); }
+body.show-en .ja-heading { color: var(--gold); }
+.ja-heading { font-size: 1.05rem; color: var(--ink-faint); font-style: normal;
+  margin-bottom: 24px; letter-spacing: .08em; }
+h3.run-in .ja-inline { font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+  "Noto Serif JP", "MS Mincho", serif; font-size: .95rem; color: var(--ink-faint);
+  font-weight: 400; display: block; margin-top: 3px; letter-spacing: .04em; }
+.role-line { font-weight: 600; color: var(--gold); margin-bottom: .9rem; }
+.role-line .role-ja { font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+  "Noto Serif JP", serif; font-weight: 400; color: var(--ink-faint);
+  margin-left: .6rem; }
+article.tech { margin-bottom: 3.2rem; padding-bottom: 2.2rem;
+  border-bottom: 1px solid var(--border); }
+article.tech:last-child { border-bottom: 0; }
+figure.fig { margin: 1.4rem 0; }
+figure.fig img { max-width: 100%; height: auto; display: block; margin: 0 auto;
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px; }
+figure.fig figcaption { font-size: .88rem; color: var(--ink-muted);
+  font-style: italic; text-align: center; margin-top: .5rem; }
+figure.fig.full img { max-height: 76vh; width: auto; margin: 0 auto; }
+.printed-toc { margin: 1rem 0 2rem; }
+.printed-toc .toc-row { display: flex; align-items: baseline; gap: .6rem;
+  border-bottom: 1px dotted var(--border); padding: .28rem 0; }
+.printed-toc .toc-title { flex: 1; }
+.printed-toc .toc-ja { font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+  "Noto Serif JP", serif; color: var(--ink-faint); font-size: .88rem;
+  margin-left: .55rem; }
+.printed-toc .toc-num { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Thư Viện Tinh Hoa</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="pdf-open" title="Doc truc tuyen trong trang"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
+    <a href="/assets/books/aikido_densho_vi/Aikido_Densho_VI.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
+    <button class="btn-control" id="lang-toggle" title="Chuyển đổi Việt / Nhật"><i class="fa-solid fa-language"></i> JP</button>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+<li><a href="#front">Trang đầu &amp; Mục lục</a></li>
+<li><a href="#suwari">Kỹ thuật ngồi</a></li>
+<li><a href="#hanshin">Nửa ngồi nửa đứng</a></li>
+<li><a href="#tachi">Kỹ thuật đứng</a></li>
+<li><a href="#ushiro">Kỹ thuật phía sau</a></li>
+<li><a href="#plates">Bảng ảnh minh họa</a></li>
+<li><a href="#colophon">Lời bạt &amp; Xuất bản</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Võ Học Nhật Bản &middot; Aikido &middot; Thủ Bản Tiền Chiến</span>
+      <h1>Aikido Densho</h1>
+      <div class="subtitle">Sunadomari Keikai (砂泊気海) &middot; 合氣道伝書</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-torii-gate"></i> Bản gốc tiếng Nhật &middot; thời tiền chiến</span>
+        <span><i class="fa-solid fa-language"></i> Song ngữ: Việt &middot; Nhật</span>
+        <span><i class="fa-solid fa-book"></i> 4 phần &middot; 66 kỹ thuật &middot; 198 hình minh họa</span>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Về bản dịch này.</strong> Đây là bản dịch Việt ngữ cuốn
+      <em>Aikido Densho</em> (合氣道伝書, &ldquo;Truyền thư Hợp Khí Đạo&rdquo;) của
+      <strong>Sunadomari Keikai</strong> (砂泊気海), một bản thủ bản kỹ thuật aikido
+      thời tiền chiến. Nguyên bản là <strong>tiếng Nhật</strong> &mdash; toàn bộ 66 trang
+      kỹ thuật đã được phiên âm và dịch sang tiếng Việt, chia thành bốn phần:
+      <em>座り業</em> (kỹ thuật ngồi), <em>半身半立</em> (nửa ngồi nửa đứng),
+      <em>立ち業</em> (kỹ thuật đứng) và <em>後ろ業</em> (kỹ thuật phía sau).
+      <strong>Toàn bộ 198 tấm ảnh</strong> của bản gốc &mdash; vốn được in liền trong
+      trang sách chứ không phải ảnh rời &mdash; đã được nhận dạng, cắt ra và tái tạo
+      đúng vị trí trong cả bản đọc này lẫn bản in PDF.
+      Nhấn nút <strong>JP</strong> trên thanh công cụ để đối chiếu nguyên bản tiếng Nhật.
+      Tải bản in: <a href="/assets/books/aikido_densho_vi/Aikido_Densho_VI.pdf" download style="color: var(--gold); font-weight: 600;">Aikido Densho (PDF)</a>.
+      <br><span style="font-size:0.85rem;">Bản dịch Việt ngữ này chỉ dùng cho mục đích học tập cá nhân, phi thương mại.
+      Bản quyền tác phẩm gốc &mdash; văn bản và hình ảnh &mdash; thuộc về tác giả và những người kế thừa.</span></div>
+
+<section id="front" class="chapter">
+<div class="badge">Trang đầu</div>
+<h2>Trang đầu &amp; Mục lục</h2>
+
+<article class="tech" id="p1">
+<h3 class="run-in">Aikido Densho (Truyền thư hợp khí đạo)<span class="ja-inline">合氣道伝書</span></h3>
+<div class="bilingual-block stanza"><p class="lang-vi">Bìa giới thiệu của nhà xuất bản bản điện tử: "Rare Prewar Aikido Technical Manual!" — sách kỹ thuật aikido thời tiền chiến, bản quý hiếm. "Aikido Densho" của Kanemoto Sunadomari.</p></div>
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p001_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+</article>
+<article class="tech" id="p2">
+<h3 class="run-in">Aikido Densho (Truyền thư hợp khí đạo)<span class="ja-inline">合氣道伝書</span></h3>
+<div class="bilingual-block stanza"><p class="lang-vi">Bìa gốc của sách: tên sách 合氣道伝書 (Truyền thư hợp khí đạo) in dọc trên nền vải xanh.</p><p class="lang-ja">合氣道伝書</p></div>
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p002_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+</article>
+<article class="tech" id="p4">
+<h3 class="run-in">Aikido Densho (Truyền thư hợp khí đạo)<span class="ja-inline">合氣道伝書</span></h3>
+<div class="bilingual-block stanza"><p class="lang-vi">Trang đề tự: bốn chữ 合氣道伝書 viết theo lối thư pháp, dọc giữa trang.</p><p class="lang-ja">合氣道伝書</p></div>
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p004_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+</article>
+<article class="tech" id="p6">
+<h3 class="run-in">Võ sư aikido Sunadomari Keikai<span class="ja-inline">合氣道導師 砂泊氣海</span></h3>
+<div class="bilingual-block stanza"><p class="lang-vi">Được bậc lão sư của Takemusu Aiki (武産合氣翁) chứng nhận.
+Võ sư aikido: Sunadomari Keikai (砂泊氣海).</p><p class="lang-ja">武産合氣翁認可
+合氣道導師　砂泊氣海</p></div>
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p006_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+</article>
+<article class="tech" id="p7"><h3 class="run-in">Mục lục<span class="ja-inline">目次</span></h3><div class="printed-toc">
+<div class="toc-row"><span class="toc-title">座り業<span class="toc-ja">Kỹ thuật ngồi 1</span></span><span class="toc-num">1</span></div>
+<div class="toc-row"><span class="toc-title">正面（一）<span class="toc-ja">Chính diện (1) 3</span></span><span class="toc-num">3</span></div>
+<div class="toc-row"><span class="toc-title">正面（二）<span class="toc-ja">Chính diện (2) 4</span></span><span class="toc-num">4</span></div>
+<div class="toc-row"><span class="toc-title">肩（一）<span class="toc-ja">Vai (1) 5</span></span><span class="toc-num">5</span></div>
+<div class="toc-row"><span class="toc-title">肩（二）<span class="toc-ja">Vai (2) 6</span></span><span class="toc-num">6</span></div>
+<div class="toc-row"><span class="toc-title">袖<span class="toc-ja">Tay áo 7</span></span><span class="toc-num">7</span></div>
+<div class="toc-row"><span class="toc-title">両袖<span class="toc-ja">Hai tay áo 8</span></span><span class="toc-num">8</span></div>
+<div class="toc-row"><span class="toc-title">胸<span class="toc-ja">Ngực 9</span></span><span class="toc-num">9</span></div>
+<div class="toc-row"><span class="toc-title">首締め<span class="toc-ja">Siết cổ 10</span></span><span class="toc-num">10</span></div>
+<div class="toc-row"><span class="toc-title">両手（一）<span class="toc-ja">Hai tay (1) 11</span></span><span class="toc-num">11</span></div>
+<div class="toc-row"><span class="toc-title">両手（二）<span class="toc-ja">Hai tay (2) 12</span></span><span class="toc-num">12</span></div>
+<div class="toc-row"><span class="toc-title">半身半立<span class="toc-ja">Nửa ngồi nửa đứng 13</span></span><span class="toc-num">13</span></div>
+<div class="toc-row"><span class="toc-title">手（一）<span class="toc-ja">Tay (1) 15</span></span><span class="toc-num">15</span></div>
+<div class="toc-row"><span class="toc-title">手（二）<span class="toc-ja">Tay (2) 16</span></span><span class="toc-num">16</span></div>
+<div class="toc-row"><span class="toc-title">両手（一）<span class="toc-ja">Hai tay (1) 17</span></span><span class="toc-num">17</span></div>
+<div class="toc-row"><span class="toc-title">両手（二）<span class="toc-ja">Hai tay (2) 18</span></span><span class="toc-num">18</span></div>
+<div class="toc-row"><span class="toc-title">立ち業<span class="toc-ja">Kỹ thuật đứng 19</span></span><span class="toc-num">19</span></div>
+<div class="toc-row"><span class="toc-title">正面（一）<span class="toc-ja">Chính diện (1) 21</span></span><span class="toc-num">21</span></div>
+<div class="toc-row"><span class="toc-title">正面（二）<span class="toc-ja">Chính diện (2) 22</span></span><span class="toc-num">22</span></div>
+<div class="toc-row"><span class="toc-title">正面（三）<span class="toc-ja">Chính diện (3) 23</span></span><span class="toc-num">23</span></div>
+<div class="toc-row"><span class="toc-title">横面（一）<span class="toc-ja">Ngang mặt (1) 24</span></span><span class="toc-num">24</span></div>
+<div class="toc-row"><span class="toc-title">横面（二）<span class="toc-ja">Ngang mặt (2) 25</span></span><span class="toc-num">25</span></div>
+<div class="toc-row"><span class="toc-title">横面（三）<span class="toc-ja">Ngang mặt (3) 26</span></span><span class="toc-num">26</span></div>
+<div class="toc-row"><span class="toc-title">横面（四）<span class="toc-ja">Ngang mặt (4) 27</span></span><span class="toc-num">27</span></div>
+<div class="toc-row"><span class="toc-title">肩（一）<span class="toc-ja">Vai (1) 28</span></span><span class="toc-num">28</span></div>
+<div class="toc-row"><span class="toc-title">肩（二）<span class="toc-ja">Vai (2) 29</span></span><span class="toc-num">29</span></div>
+<div class="toc-row"><span class="toc-title">肩（三）<span class="toc-ja">Vai (3) 30</span></span><span class="toc-num">30</span></div>
+<div class="toc-row"><span class="toc-title">肩（四）<span class="toc-ja">Vai (4) 31</span></span><span class="toc-num">31</span></div>
+<div class="toc-row"><span class="toc-title">肩（五）<span class="toc-ja">Vai (5) 32</span></span><span class="toc-num">32</span></div>
+<div class="toc-row"><span class="toc-title">肩（六）<span class="toc-ja">Vai (6) 33</span></span><span class="toc-num">33</span></div>
+<div class="toc-row"><span class="toc-title">袖（一）<span class="toc-ja">Tay áo (1) 34</span></span><span class="toc-num">34</span></div>
+<div class="toc-row"><span class="toc-title">袖（二）<span class="toc-ja">Tay áo (2) 35</span></span><span class="toc-num">35</span></div>
+<div class="toc-row"><span class="toc-title">袖（三）<span class="toc-ja">Tay áo (3) 36</span></span><span class="toc-num">36</span></div>
+<div class="toc-row"><span class="toc-title">両肩（一）<span class="toc-ja">Hai vai (1) 37</span></span><span class="toc-num">37</span></div>
+<div class="toc-row"><span class="toc-title">両肩（二）<span class="toc-ja">Hai vai (2) 38</span></span><span class="toc-num">38</span></div>
+<div class="toc-row"><span class="toc-title">手（一）入り身<span class="toc-ja">Tay (1) — nhập thân 39</span></span><span class="toc-num">39</span></div>
+<div class="toc-row"><span class="toc-title">手（二）体の変化<span class="toc-ja">Tay (2) — biến đổi thân pháp 40</span></span><span class="toc-num">40</span></div>
+<div class="toc-row"><span class="toc-title">手（三）体の変化<span class="toc-ja">Tay (3) — biến đổi thân pháp 41</span></span><span class="toc-num">41</span></div>
+<div class="toc-row"><span class="toc-title">手（四）体の変化<span class="toc-ja">Tay (4) — biến đổi thân pháp 42</span></span><span class="toc-num">42</span></div>
+<div class="toc-row"><span class="toc-title">手（五）体の変化<span class="toc-ja">Tay (5) — biến đổi thân pháp 43</span></span><span class="toc-num">43</span></div>
+<div class="toc-row"><span class="toc-title">手（六）体の変化<span class="toc-ja">Tay (6) — biến đổi thân pháp 44</span></span><span class="toc-num">44</span></div>
+<div class="toc-row"><span class="toc-title">手（七）四方投げ<span class="toc-ja">Tay (7) — ném bốn hướng 45</span></span><span class="toc-num">45</span></div>
+<div class="toc-row"><span class="toc-title">手（八）合気投げ<span class="toc-ja">Tay (8) — ném hợp khí 46</span></span><span class="toc-num">46</span></div>
+<div class="toc-row"><span class="toc-title">手（九）合気投げ<span class="toc-ja">Tay (9) — ném hợp khí 47</span></span><span class="toc-num">47</span></div>
+<div class="toc-row"><span class="toc-title">両手（一）四方投げ<span class="toc-ja">Hai tay (1) — ném bốn hướng 48</span></span><span class="toc-num">48</span></div>
+<div class="toc-row"><span class="toc-title">両手（二）四方投げ<span class="toc-ja">Hai tay (2) — ném bốn hướng 49</span></span><span class="toc-num">49</span></div>
+<div class="toc-row"><span class="toc-title">両手（三）<span class="toc-ja">Hai tay (3) 50</span></span><span class="toc-num">50</span></div>
+<div class="toc-row"><span class="toc-title">両手（四）<span class="toc-ja">Hai tay (4) 51</span></span><span class="toc-num">51</span></div>
+<div class="toc-row"><span class="toc-title">両手（五）<span class="toc-ja">Hai tay (5) 52</span></span><span class="toc-num">52</span></div>
+<div class="toc-row"><span class="toc-title">手（一）<span class="toc-ja">Tay (1) 53</span></span><span class="toc-num">53</span></div>
+<div class="toc-row"><span class="toc-title">手（二）<span class="toc-ja">Tay (2) 54</span></span><span class="toc-num">54</span></div>
+<div class="toc-row"><span class="toc-title">手（三）<span class="toc-ja">Tay (3) 55</span></span><span class="toc-num">55</span></div>
+<div class="toc-row"><span class="toc-title">胸と手（一）<span class="toc-ja">Ngực và tay (1) 56</span></span><span class="toc-num">56</span></div>
+<div class="toc-row"><span class="toc-title">胸と手（二）<span class="toc-ja">Ngực và tay (2) 57</span></span><span class="toc-num">57</span></div>
+<div class="toc-row"><span class="toc-title">首締め（一）<span class="toc-ja">Siết cổ (1) 58</span></span><span class="toc-num">58</span></div>
+<div class="toc-row"><span class="toc-title">首締め（二）<span class="toc-ja">Siết cổ (2) 59</span></span><span class="toc-num">59</span></div>
+<div class="toc-row"><span class="toc-title">首締め（三）<span class="toc-ja">Siết cổ (3) 60</span></span><span class="toc-num">60</span></div>
+<div class="toc-row"><span class="toc-title">後ろ業<span class="toc-ja">Kỹ thuật phía sau 61</span></span><span class="toc-num">61</span></div>
+<div class="toc-row"><span class="toc-title">後ろ絞（一）<span class="toc-ja">Siết phía sau (1) 63</span></span><span class="toc-num">63</span></div>
+<div class="toc-row"><span class="toc-title">後ろ絞（二）<span class="toc-ja">Siết phía sau (2) 64</span></span><span class="toc-num">64</span></div>
+<div class="toc-row"><span class="toc-title">後ろ絞（三）<span class="toc-ja">Siết phía sau (3) 65</span></span><span class="toc-num">65</span></div>
+<div class="toc-row"><span class="toc-title">後ろ絞（四）<span class="toc-ja">Siết phía sau (4) 66</span></span><span class="toc-num">66</span></div>
+<div class="toc-row"><span class="toc-title">両手（一）<span class="toc-ja">Hai tay (1) 67</span></span><span class="toc-num">67</span></div>
+<div class="toc-row"><span class="toc-title">両手（二）<span class="toc-ja">Hai tay (2) 68</span></span><span class="toc-num">68</span></div>
+<div class="toc-row"><span class="toc-title">両手（三）<span class="toc-ja">Hai tay (3) 69</span></span><span class="toc-num">69</span></div>
+<div class="toc-row"><span class="toc-title">両手（四）<span class="toc-ja">Hai tay (4) 70</span></span><span class="toc-num">70</span></div>
+<div class="toc-row"><span class="toc-title">手（一）<span class="toc-ja">Tay (1) 71</span></span><span class="toc-num">71</span></div>
+<div class="toc-row"><span class="toc-title">手（二）<span class="toc-ja">Tay (2) 72</span></span><span class="toc-num">72</span></div>
+<div class="toc-row"><span class="toc-title">手（三）<span class="toc-ja">Tay (3) 73</span></span><span class="toc-num">73</span></div>
+<div class="toc-row"><span class="toc-title">手（四）<span class="toc-ja">Tay (4) 74</span></span><span class="toc-num">74</span></div>
+<div class="toc-row"><span class="toc-title">その他の業<span class="toc-ja">Các kỹ thuật khác 76</span></span><span class="toc-num">76</span></div>
+</div></article>
+</section>
+<section id="suwari" class="chapter">
+<div class="badge">Chương I</div>
+<h2>Kỹ thuật ngồi</h2>
+<div class="ja-heading">座り業</div>
+<article class="tech" id="p9">
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p009_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+<div class="bilingual-block stanza"><p class="lang-vi">Thuận theo dòng cương–nhu mà tiến bước, phóng thích khí.
+Lấy thuật hợp khí làm con đường tu thân.
+Khí Hải (hiệu của tác giả)</p><p class="lang-ja">剛と柔流にすゝんで氣を放つ
+合氣の術を修身の道
+氣海</p></div>
+</article>
+<article class="tech" id="p10">
+<h3 class="run-in">Chính diện (1) (shōmen 1)<span class="ja-inline">正面（一）</span></h3>
+<p class="role-line">(người thực hiện đòn) · (người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（仕手） （受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải đánh vào mặt, tay trái đâm vào hông (nách), đồng thời nâng hông lên. Tay phải đỡ lấy tay phải của đối phương. Tay phải nắm cổ tay phải của đối phương, tay trái nắm cùi chỏ phải. Đồng thời hơi tiến đầu gối trái, dùng tay phải kéo cho ngã, tay trái khóa cùi chỏ.</p><p class="lang-ja">右手で面を打ち、左手で脇を突くと同時に腰を上げる。右手で相手の右手を受ける。右手で相手の右手首をつかみ、左手で右肘をつかむ。同時に左膝を少し進めながら右手引き倒し、左手で肘を押さえる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p010_f01.jpg" alt="Shite đánh vào mặt và nâng hông lên, uke đưa tay phải ra đỡ." loading="lazy" decoding="async"><figcaption>Shite đánh vào mặt và nâng hông lên, uke đưa tay phải ra đỡ.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p010_f02.jpg" alt="Shite nắm cổ tay và khóa cùi chỏ, vật đối phương xuống chiếu." loading="lazy" decoding="async"><figcaption>Shite nắm cổ tay và khóa cùi chỏ, vật đối phương xuống chiếu.</figcaption></figure>
+</article>
+<article class="tech" id="p11">
+<h3 class="run-in">Chính diện (2) (shōmen 2)<span class="ja-inline">正面（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng tay phải (như lưỡi gươm) đánh tới, đồng thời tay trái đâm tới. Đồng thời đỡ lấy tay phải của đối phương đang đánh tới bằng tay phải, lui đầu gối phải ra sau, tay trái nắm cùi chỏ kéo ngã về phía dưới bên phải.</p><p class="lang-ja">右手刀で打ち出すと同時に左手で突く。打ち来る相手の右手を右手で受けると同時に、右膝を後ろへ退いて、左手で肘をつかみ右下方へ引き倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p011_f01.jpg" alt="Uke đánh tới bằng tay phải và đâm tay trái." loading="lazy" decoding="async"><figcaption>Uke đánh tới bằng tay phải và đâm tay trái.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p011_f02.jpg" alt="Shite đỡ và kéo ngã đối phương xuống chiếu." loading="lazy" decoding="async"><figcaption>Shite đỡ và kéo ngã đối phương xuống chiếu.</figcaption></figure>
+</article>
+<article class="tech" id="p12">
+<h3 class="run-in">Vai (1) (kata 1)<span class="ja-inline">肩（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải nắm vai trái của đối phương. Tay phải đánh vào mặt, tay trái đánh vào cùi chỏ phải của đối phương đồng thời tiến đầu gối trái, tay phải nắm lấy tay phải đối phương và đẩy ngã về phía trước.</p><p class="lang-ja">右手で相手の左肩をつかむ。右手で面を打ち、左で相手の右肘を打ちながら左膝進み、右手で相手の右手をとって前方へ押し倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p012_f01.jpg" alt="Uke nắm vai trái của shite." loading="lazy" decoding="async"><figcaption>Uke nắm vai trái của shite.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p012_f02.jpg" alt="Shite đánh vào mặt và đưa tay trái đánh vào cùi chỏ đối phương." loading="lazy" decoding="async"><figcaption>Shite đánh vào mặt và đưa tay trái đánh vào cùi chỏ đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p012_f03.jpg" alt="Shite đẩy ngã đối phương về phía trước." loading="lazy" decoding="async"><figcaption>Shite đẩy ngã đối phương về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p13">
+<h3 class="run-in">Vai (2) (kata 2)<span class="ja-inline">肩（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải nắm vai trái của đối phương, tay trái đánh ra. Đỡ lấy đòn đánh tới bằng tay trái, tay trái đánh cùi chỏ xuống và vật ngửa đối phương.</p><p class="lang-ja">右手で相手の左肩をつかみ、左手で打ち出す。打ってくるのを左手で受け、左手で肘を打ち下ろして仰向けに倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p013_f01.jpg" alt="Uke nắm vai trái của shite và đánh ra bằng tay trái." loading="lazy" decoding="async"><figcaption>Uke nắm vai trái của shite và đánh ra bằng tay trái.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p013_f02.jpg" alt="Shite đỡ đòn đánh tới bằng tay trái." loading="lazy" decoding="async"><figcaption>Shite đỡ đòn đánh tới bằng tay trái.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p013_f03.jpg" alt="Shite vật ngửa đối phương xuống chiếu." loading="lazy" decoding="async"><figcaption>Shite vật ngửa đối phương xuống chiếu.</figcaption></figure>
+</article>
+<article class="tech" id="p14">
+<h3 class="run-in">Tay áo (sode)<span class="ja-inline">袖</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải nắm tay áo trái của đối phương. Đồng thời khi bị nắm, tay phải đánh vào mặt, áp sát sang trái và đánh cùi chỏ trái của đối phương cho ngã.</p><p class="lang-ja">右手で相手の左袖をつかむ。つかまれると同時に右手で面を打ち、左へ寄って相手の左肘を打ち倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p014_f01.jpg" alt="Uke nắm tay áo trái của shite." loading="lazy" decoding="async"><figcaption>Uke nắm tay áo trái của shite.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p014_f02.jpg" alt="Shite đánh vào mặt, áp sát sang trái và vật đối phương xuống." loading="lazy" decoding="async"><figcaption>Shite đánh vào mặt, áp sát sang trái và vật đối phương xuống.</figcaption></figure>
+</article>
+<article class="tech" id="p15">
+<h3 class="run-in">Hai tay áo (ryōsode)<span class="ja-inline">両袖</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nắm hai tay áo của đối phương. Tay phải đánh vào mặt, tay trái đánh cùi chỏ phải của đối phương, tay phải nắm lấy tay phải đối phương và đánh ngã về phía trước.</p><p class="lang-ja">両手で相手の両袖を持つ。右手で面を打って、左手で相手の右肘を打ち、右手で相手の右手をとり前方に打ち倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p015_f01.jpg" alt="Uke nắm hai tay áo của shite." loading="lazy" decoding="async"><figcaption>Uke nắm hai tay áo của shite.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p015_f02.jpg" alt="Shite đánh vào mặt đối phương." loading="lazy" decoding="async"><figcaption>Shite đánh vào mặt đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p015_f03.jpg" alt="Shite vật đối phương ngã về phía trước." loading="lazy" decoding="async"><figcaption>Shite vật đối phương ngã về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p16">
+<h3 class="run-in">Ngực (mune)<span class="ja-inline">胸</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải nắm ngực đối phương. Nhón gót lên, đánh vào mặt bằng bên phải, đồng thời tiến đầu gối trái và mở thân người sang bên phải.</p><p class="lang-ja">右手で相手の胸を持つ。つま先立って右で面を打ち、同時に左膝を進めて体を右に開く。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p016_f01.jpg" alt="Tư thế đầu: tay phải nắm ngực đối phương." loading="lazy" decoding="async"><figcaption>Tư thế đầu: tay phải nắm ngực đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p016_f02.jpg" alt="Nhón gót lên, đánh vào mặt đối phương." loading="lazy" decoding="async"><figcaption>Nhón gót lên, đánh vào mặt đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p016_f03.jpg" alt="Tiến đầu gối trái, xoay mở thân và vật ngã đối phương." loading="lazy" decoding="async"><figcaption>Tiến đầu gối trái, xoay mở thân và vật ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p17">
+<h3 class="run-in">Siết cổ (kubishime)<span class="ja-inline">首締め</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Nới lỏng cổ áo đối phương rồi siết cổ. (tay phải ở trên) Vừa kéo đầu gối phải vào, vừa đánh vào mặt bằng tay phải; luồn tay trái từ dưới lên tay trái đối phương để phá thế, rồi đặt tay trái lên cằm và tay phải lên đầu mà vặn.</p><p class="lang-ja">相手の衿を緩にとって首を締める。（右手上）右膝を引きつつ右手で面を打ち、左手を下から相手の左手にかけて崩し、左手を顎に右手を頭にかけて捻る。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p017_f01.jpg" alt="Nắm cổ áo đối phương và siết cổ." loading="lazy" decoding="async"><figcaption>Nắm cổ áo đối phương và siết cổ.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p017_f02.jpg" alt="Kéo đầu gối phải vào, đánh vào mặt đối phương." loading="lazy" decoding="async"><figcaption>Kéo đầu gối phải vào, đánh vào mặt đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p017_f03.jpg" alt="Luồn tay trái từ dưới lên tay trái đối phương để phá thế." loading="lazy" decoding="async"><figcaption>Luồn tay trái từ dưới lên tay trái đối phương để phá thế.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p017_f04.jpg" alt="Đặt tay trái lên cằm, tay phải lên đầu và vặn cho ngã." loading="lazy" decoding="async"><figcaption>Đặt tay trái lên cằm, tay phải lên đầu và vặn cho ngã.</figcaption></figure>
+</article>
+<article class="tech" id="p18">
+<h3 class="run-in">Hai tay (1) (ryōte 1)<span class="ja-inline">両手（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng hai tay nắm hai tay đối phương. Hướng lòng bàn tay lên trên, duỗi thẳng ra rồi vật ngã về phía đã duỗi.</p><p class="lang-ja">両手で相手の両手をつかむ。掌を上に向けて真っすぐに伸ばした方に倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p018_f01.jpg" alt="Hai tay nắm hai tay đối phương." loading="lazy" decoding="async"><figcaption>Hai tay nắm hai tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p018_f02.jpg" alt="Hướng lòng bàn tay lên và duỗi thẳng hai tay." loading="lazy" decoding="async"><figcaption>Hướng lòng bàn tay lên và duỗi thẳng hai tay.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p018_f03.jpg" alt="Đối phương mất thăng bằng." loading="lazy" decoding="async"><figcaption>Đối phương mất thăng bằng.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p018_f04.jpg" alt="Vật ngã đối phương về phía hai tay duỗi." loading="lazy" decoding="async"><figcaption>Vật ngã đối phương về phía hai tay duỗi.</figcaption></figure>
+</article>
+<article class="tech" id="p19">
+<h3 class="run-in">Hai tay (2) (ryōte 2)<span class="ja-inline">両手（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Đặt tay phải lên trên tay phải đối phương, bật sang bên phải để gỡ tay trái ra, kéo đầu gối phải lại rồi dùng tay trái kéo tay áo trái đối phương mà vật ngã.</p><p class="lang-ja">前同。右手で相手の右手の上に乗せ、右方にはねて左手をはずし、右膝を引き左手で相手の左袖を引き倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p019_f01.jpg" alt="Tư thế đầu, giống động tác trước." loading="lazy" decoding="async"><figcaption>Tư thế đầu, giống động tác trước.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p019_f02.jpg" alt="Đặt tay phải lên tay phải đối phương và bật sang bên phải." loading="lazy" decoding="async"><figcaption>Đặt tay phải lên tay phải đối phương và bật sang bên phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p019_f03.jpg" alt="Kéo tay áo trái đối phương và vật ngã." loading="lazy" decoding="async"><figcaption>Kéo tay áo trái đối phương và vật ngã.</figcaption></figure>
+</article>
+</section>
+<section id="hanshin" class="chapter">
+<div class="badge">Chương II</div>
+<h2>Nửa ngồi nửa đứng</h2>
+<div class="ja-heading">半身半立</div>
+<article class="tech" id="p21">
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p021_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+<div class="bilingual-block stanza"><p class="lang-vi">Sự kết nối giữa thân và hồn là khởi đầu của hợp khí; sự kết nối của khí trải rộng khắp đại vũ trụ. — Ký danh: Khí Hải (Kikai)</p><p class="lang-ja">身と魂のむすびは合氣のはじまり　宇大に広き氣のむすびを　　氣海</p></div>
+</article>
+<article class="tech" id="p22">
+<h3 class="run-in">Tay (1) (te 1)<span class="ja-inline">手（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái nắm ngang tay phải đối phương rồi đánh ra bằng tay phải. Theo đà bị kéo, tiến đầu gối phải, đồng thời nâng tay phải lên, nắm cổ tay trái đối phương mà vung lên, rồi làm như ghé sát đầu và vật ngã sang bên trái.</p><p class="lang-ja">左手で相手の右手を横からとり、右手で打ち出す。引かれるまま右膝を進め、同時に右手を上げ相手の左手首をつかんで振りかぶり、頭につける様にして左側に倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p022_f01.jpg" alt="Tay trái nắm ngang tay phải đối phương." loading="lazy" decoding="async"><figcaption>Tay trái nắm ngang tay phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p022_f02.jpg" alt="Theo đà bị kéo, tiến đầu gối phải và nâng tay phải." loading="lazy" decoding="async"><figcaption>Theo đà bị kéo, tiến đầu gối phải và nâng tay phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p022_f03.jpg" alt="Nắm cổ tay trái đối phương và vung lên." loading="lazy" decoding="async"><figcaption>Nắm cổ tay trái đối phương và vung lên.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p022_f04.jpg" alt="Vật ngã đối phương sang bên trái." loading="lazy" decoding="async"><figcaption>Vật ngã đối phương sang bên trái.</figcaption></figure>
+</article>
+<article class="tech" id="p23">
+<h3 class="run-in">Tay (2) (te 2)<span class="ja-inline">手（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái nắm ngang tay phải đối phương. Tiến đầu gối phải ra sau lưng đối phương, dùng cùi chỏ phải đè ngã đầu gối trái đối phương, rồi tay trái nắm cổ chân phải mà vật ngã.</p><p class="lang-ja">左手で相手の右手を横からとる。右膝を相手の後ろへ進め、右肘で相手の左膝を押し倒し、左手で右足首をつかみ倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p023_f01.jpg" alt="Tay trái nắm ngang tay phải đối phương." loading="lazy" decoding="async"><figcaption>Tay trái nắm ngang tay phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p023_f02.jpg" alt="Tiến đầu gối phải ra sau lưng đối phương." loading="lazy" decoding="async"><figcaption>Tiến đầu gối phải ra sau lưng đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p023_f03.jpg" alt="Đè cùi chỏ phải vào gối trái và vật ngã đối phương." loading="lazy" decoding="async"><figcaption>Đè cùi chỏ phải vào gối trái và vật ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p24">
+<h3 class="run-in">Hai tay (1) (ryōte 1)<span class="ja-inline">両手（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng hai tay nắm hai cổ tay đối phương. Tiến đầu gối phải một chút, tay trái nắm cổ chân trái đối phương, tay phải nắm đầu gối rồi đẩy ngã. (Cũng có thể không giữ đầu gối mà đánh ngã.)</p><p class="lang-ja">両手で相手の両手首をつかむ。右膝を少し進め、左手で相手の左足首をつかみ、右手で膝をつかんで押し倒す。（膝を持たずにたたき倒してもよい。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p024_f01.jpg" alt="Hai tay nắm hai cổ tay đối phương." loading="lazy" decoding="async"><figcaption>Hai tay nắm hai cổ tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p024_f02.jpg" alt="Tay trái nắm cổ chân, tay phải nắm đầu gối đối phương." loading="lazy" decoding="async"><figcaption>Tay trái nắm cổ chân, tay phải nắm đầu gối đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p024_f03.jpg" alt="Đẩy ngã đối phương." loading="lazy" decoding="async"><figcaption>Đẩy ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p25">
+<h3 class="run-in">Hai tay (2) (ryōte 2)<span class="ja-inline">両手（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Tay trái giữ tay trái đối phương, tay phải vừa đâm ra trước vừa vung lên; đưa đầu gối phải ra trước, nhón gót, xoay vòng sang trái quanh đầu gối phải và đứng dậy, vật ngã đối phương về phía sau.</p><p class="lang-ja">前同。左手で相手の左手を持ち、右手を前へ突き出しながら振りかぶり、右膝を前へ出してつま先立ち、右膝を中心に左まわりに回転しながら立ち上がり後方に倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p025_f01.jpg" alt="Tay trái giữ tay trái đối phương." loading="lazy" decoding="async"><figcaption>Tay trái giữ tay trái đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p025_f02.jpg" alt="Đưa đầu gối phải ra trước và nhón gót." loading="lazy" decoding="async"><figcaption>Đưa đầu gối phải ra trước và nhón gót.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p025_f03.jpg" alt="Xoay vòng sang trái quanh đầu gối phải." loading="lazy" decoding="async"><figcaption>Xoay vòng sang trái quanh đầu gối phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p025_f04.jpg" alt="Đứng dậy và vật ngã đối phương về phía sau." loading="lazy" decoding="async"><figcaption>Đứng dậy và vật ngã đối phương về phía sau.</figcaption></figure>
+</article>
+</section>
+<section id="tachi" class="chapter">
+<div class="badge">Chương III</div>
+<h2>Kỹ thuật đứng</h2>
+<div class="ja-heading">立ち業</div>
+<article class="tech" id="p27">
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p027_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+<div class="bilingual-block stanza"><p class="lang-vi">Mưa máu sôi trào — sắc đỏ trở thành khí, và sự kết nối của linh hồn vang lên thành sức mạnh. — Ký danh: Khí Hải (Kikai)</p><p class="lang-ja">たぎりたつ血の雨《赤は氣ととなりて　赤?お?霊むすび力とよみなる　　氣海</p></div>
+</article>
+<article class="tech" id="p28">
+<h3 class="run-in">Chính diện (1) (shōmen 1)<span class="ja-inline">正面（一）</span></h3>
+<p class="role-line">(người thực hiện đòn) · (người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（仕手） （受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải đánh ra, tay trái đâm vào hông phải đối phương. Tay phải đỡ tay phải đối phương. Tiến từ chân phải, bước chân trái vào, tay trái nắm cùi chỏ phải đối phương. (Tập trung lực vào đầu ngón tay.)</p><p class="lang-ja">右手で打ち出し、左手で相手の右脇を突く。右手で相手の右手を受ける。右足より進み左足踏み込み、左手で相手の右肘をつかむ。（指先に力を入れる。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p028_f01.jpg" alt="Tay phải đánh ra, tay trái đâm vào hông phải đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đánh ra, tay trái đâm vào hông phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p028_f02.jpg" alt="Tay phải đỡ tay phải đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đỡ tay phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p028_f03.jpg" alt="Bước vào và nắm cùi chỏ phải đối phương, vật ngã." loading="lazy" decoding="async"><figcaption>Bước vào và nắm cùi chỏ phải đối phương, vật ngã.</figcaption></figure>
+</article>
+<article class="tech" id="p29">
+<h3 class="run-in">Chính diện (2) (shōmen 2)<span class="ja-inline">正面（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải đánh vào mặt đối phương. Kéo chân trái lùi ra sau thật rộng, tay phải chém xuống cổ đối phương rồi đẩy ngã về phía trước. (Hoặc dùng tay trái kéo tay phải hay tay áo phải đối phương.)</p><p class="lang-ja">右手で相手の面を打つ。左足大きく後ろへ引き、右手を相手の首へ切り下ろし、前へ押し倒す。（または、左手で相手の右手か右袖を引く。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p029_f01.jpg" alt="Tay phải đánh vào mặt đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đánh vào mặt đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p029_f02.jpg" alt="Kéo chân trái lùi lại thật rộng." loading="lazy" decoding="async"><figcaption>Kéo chân trái lùi lại thật rộng.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p029_f03.jpg" alt="Chém tay phải xuống cổ và đẩy ngã đối phương." loading="lazy" decoding="async"><figcaption>Chém tay phải xuống cổ và đẩy ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p30">
+<h3 class="run-in">Chính diện (3) (shōmen 3)<span class="ja-inline">正面（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Tiến chân trái, nhập thân, vừa vào bên phải đối phương vừa đâm nắm đấm trái vào hông, tay phải chém xuống thủ đao của đối phương. Hơn nữa, vừa xoay sâu ra sau lưng đối phương, tay trái nắm cổ áo sau, vừa bước chân phải vào và đẩy mạnh cằm đối phương cho ngã. (Hoặc dùng cùi chỏ trước bên phải đẩy ngược cổ lên cho ngã.)</p><p class="lang-ja">前同。左足を進め入身になり、相手の右側に入りつつ左拳で脇を突き、右手で相手の手刀を切り下ろす。更に、深く相手の後ろに回りつつ左手で後ろ衿をとり、右足を踏み込み相手の顎を強く押して倒す。（または、右前肘で首を押し上げて倒す。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p030_f01.jpg" alt="Tiến chân trái, nhập thân vào bên phải đối phương." loading="lazy" decoding="async"><figcaption>Tiến chân trái, nhập thân vào bên phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p030_f02.jpg" alt="Đâm nắm đấm trái vào hông, chém tay phải xuống." loading="lazy" decoding="async"><figcaption>Đâm nắm đấm trái vào hông, chém tay phải xuống.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p030_f03.jpg" alt="Xoay ra sau lưng đối phương và nắm cổ áo sau." loading="lazy" decoding="async"><figcaption>Xoay ra sau lưng đối phương và nắm cổ áo sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p030_f04.jpg" alt="Đẩy cằm đối phương và vật ngã." loading="lazy" decoding="async"><figcaption>Đẩy cằm đối phương và vật ngã.</figcaption></figure>
+</article>
+<article class="tech" id="p31">
+<h3 class="run-in">Mặt ngang (1) (yokomen 1)<span class="ja-inline">横面（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải đánh ngang vào mặt. Đưa chân trái sang bên trái, tay trái chém hạ tay phải của đối phương rồi nắm lấy, tay phải đánh hạ xuống cổ.</p><p class="lang-ja">右手で横面を打つ。左足を左方へ出し、左手で相手の右手を切り下ろしてとをつかみ、右手で首へ打ち下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p031_f01.jpg" alt="Tư thế ban đầu, đối phương đánh ngang vào mặt." loading="lazy" decoding="async"><figcaption>Tư thế ban đầu, đối phương đánh ngang vào mặt.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p031_f02.jpg" alt="Nắm tay đối phương, đánh hạ xuống cổ và vật ngã." loading="lazy" decoding="async"><figcaption>Nắm tay đối phương, đánh hạ xuống cổ và vật ngã.</figcaption></figure>
+</article>
+<article class="tech" id="p32">
+<h3 class="run-in">Mặt ngang (2)<span class="ja-inline">横面（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Đỡ bằng tay trái, kéo chân trái lại, tay phải đánh vào mặt. Hai tay giữ tay phải của đối phương, tiến chân vào áp sát, tiến chân phải đánh ngã.</p><p class="lang-ja">前同 左手で受け左足を引き右で面を打つ。両手で相手の右手を持ち、足を進めて食い入り、右足を進めて打ち倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p032_f01.jpg" alt="Tư thế ban đầu, hai người đối diện." loading="lazy" decoding="async"><figcaption>Tư thế ban đầu, hai người đối diện.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p032_f02.jpg" alt="Đỡ và kéo chân trái lại, tay phải đánh vào mặt." loading="lazy" decoding="async"><figcaption>Đỡ và kéo chân trái lại, tay phải đánh vào mặt.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p032_f03.jpg" alt="Hai tay giữ tay phải đối phương, tiến chân vào áp sát." loading="lazy" decoding="async"><figcaption>Hai tay giữ tay phải đối phương, tiến chân vào áp sát.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p032_f04.jpg" alt="Tiến chân phải đánh ngã đối phương." loading="lazy" decoding="async"><figcaption>Tiến chân phải đánh ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p33">
+<h3 class="run-in">Mặt ngang (3)<span class="ja-inline">横面（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Kéo chân trái lại, đồng thời quỳ gối trái, tay phải đánh vào hông trái của đối phương, tay trái nắm tay áo phải của đối phương kéo ngã.</p><p class="lang-ja">前同 左足を引くと同時に左膝をつき、右手で相手の左脇を打ち、左手で相手の右袖をつかんで引き倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p033_f01.jpg" alt="Tư thế ban đầu, hai người đối diện." loading="lazy" decoding="async"><figcaption>Tư thế ban đầu, hai người đối diện.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p033_f02.jpg" alt="Tay phải đánh vào hông trái, tay trái nắm tay áo phải." loading="lazy" decoding="async"><figcaption>Tay phải đánh vào hông trái, tay trái nắm tay áo phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p033_f03.jpg" alt="Quỳ gối trái, nắm tay áo kéo ngã đối phương." loading="lazy" decoding="async"><figcaption>Quỳ gối trái, nắm tay áo kéo ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p34">
+<h3 class="run-in">Mặt ngang (4)<span class="ja-inline">横面（四）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Tiến chân trái, đỡ bằng tay trái, đồng thời tay phải đánh vào mặt đối phương, lập tức chém hạ tay phải của đối phương, vòng sâu ra sau lưng đối phương nắm lấy cổ áo. Tiến chân phải, dùng cùi chỏ trước bên phải đè hạ cổ đối phương xuống mà vật ngã.</p><p class="lang-ja">前同 左足を進め左手で受け、同時に右手で相手の面を打ち、直ちに相手の右手を切り下ろし、深く相手の後ろに回り衿をとる。右足を進め右前肘で相手の首を押し下げて倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p034_f01.jpg" alt="Tư thế ban đầu, hai người đối diện." loading="lazy" decoding="async"><figcaption>Tư thế ban đầu, hai người đối diện.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p034_f02.jpg" alt="Tay phải đánh vào mặt, vòng ra sau lưng đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đánh vào mặt, vòng ra sau lưng đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p034_f03.jpg" alt="Dùng cùi chỏ phải đè hạ cổ đối phương." loading="lazy" decoding="async"><figcaption>Dùng cùi chỏ phải đè hạ cổ đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p35">
+<h3 class="run-in">Vai (1) (kata 1)<span class="ja-inline">肩（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay phải nắm vai trái của đối phương kéo đi. Tay phải đánh vào mặt, nắm tay phải của đối phương đẩy ra bằng vai trái, tiến chân trái, tay trái nắm cùi chỏ phải của đối phương vật ngã về phía trước.</p><p class="lang-ja">右手で相手の左肩をつかんで引く。右手で面を打ち、相手の右手をつかんで左肩で押し出し、左足を進めて、左手で相手の右肘をつかんで前へ倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p035_f01.jpg" alt="Nắm vai trái đối phương và đánh vào mặt." loading="lazy" decoding="async"><figcaption>Nắm vai trái đối phương và đánh vào mặt.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p035_f02.jpg" alt="Vật ngã đối phương về phía trước." loading="lazy" decoding="async"><figcaption>Vật ngã đối phương về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p36">
+<h3 class="run-in">Vai (2)<span class="ja-inline">肩（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái nắm vai phải của đối phương. Tiến từ tay trái, bước chân trái ra sau lưng đối phương, duỗi cùi chỏ phải ra trước cổ đối phương.</p><p class="lang-ja">左手で相手の右肩をつかむ。左手より進み左足を相手の後ろへ踏み込み、右肘から相手の首の前へ伸ばす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p036_f01.jpg" alt="Nắm vai phải của đối phương." loading="lazy" decoding="async"><figcaption>Nắm vai phải của đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p036_f02.jpg" alt="Bước chân trái ra sau lưng, duỗi cùi chỏ phải ra trước cổ." loading="lazy" decoding="async"><figcaption>Bước chân trái ra sau lưng, duỗi cùi chỏ phải ra trước cổ.</figcaption></figure>
+</article>
+<article class="tech" id="p37">
+<h3 class="run-in">Vai (3)<span class="ja-inline">肩（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái giữ vai phải của đối phương, tay phải đánh ra. Đỡ bằng tay trái, tiến chân phải vào giữa hai chân đối phương, cúi đầu thật sâu vượt qua đầu rồi ném về phía sau.</p><p class="lang-ja">左手で相手の右肩を持ち、右手で打ち出す。左手で受け、右足を相手の足の間へ進め、頭を深く下げて頭を越して後方に投げる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p037_f01.jpg" alt="Tay phải đánh ra, tay trái giữ vai phải đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đánh ra, tay trái giữ vai phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p037_f02.jpg" alt="Cúi đầu chui qua và ném về phía sau." loading="lazy" decoding="async"><figcaption>Cúi đầu chui qua và ném về phía sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p037_f03.jpg" alt="Đối phương bị ném về phía sau." loading="lazy" decoding="async"><figcaption>Đối phương bị ném về phía sau.</figcaption></figure>
+</article>
+<article class="tech" id="p38">
+<h3 class="run-in">Vai (4)<span class="ja-inline">肩（四）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái giữ vai phải của đối phương, tay phải đánh ngang vào mặt. Đỡ bằng tay trái rồi tay phải đánh vào mặt, hai tay giữ tay phải của đối phương tiến chân phải, chui qua dưới tay ném về phía trước.</p><p class="lang-ja">左手で相手の右肩を持ち、右手で横面を打ち出す。左手で受けて右手で面を打ち、両手で相手の右手を持って右足を進め、手の下をくぐり前方へ投げる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p038_f01.jpg" alt="Tay phải đánh ngang vào mặt, tay trái giữ vai phải." loading="lazy" decoding="async"><figcaption>Tay phải đánh ngang vào mặt, tay trái giữ vai phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p038_f02.jpg" alt="Đỡ và đánh vào mặt, hai tay giữ tay phải đối phương." loading="lazy" decoding="async"><figcaption>Đỡ và đánh vào mặt, hai tay giữ tay phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p038_f03.jpg" alt="Chui qua dưới tay ném về phía trước." loading="lazy" decoding="async"><figcaption>Chui qua dưới tay ném về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p39">
+<h3 class="run-in">Vai (5)<span class="ja-inline">肩（五）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Đỡ bằng tay trái, đổi sang giữ bằng tay phải kéo về phía sau bên phải, đồng thời tiến chân trái một bước và buông tay phải ra. Quấn tay phải vào cổ đối phương, bước chân phải ra sau lưng đối phương đẩy ngã về phía trước.</p><p class="lang-ja">前同 左手で受けて、右で持ち直して右後方に引き寄せ、同時に左足を一歩進めて右手を離す。右手を相手の首へ巻き、右足を相手の後方へ踏み込み前方へ押し倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p039_f01.jpg" alt="Đỡ và đổi tay giữ, kéo đối phương về phía sau." loading="lazy" decoding="async"><figcaption>Đỡ và đổi tay giữ, kéo đối phương về phía sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p039_f02.jpg" alt="Quấn tay vào cổ, bước ra sau lưng đối phương." loading="lazy" decoding="async"><figcaption>Quấn tay vào cổ, bước ra sau lưng đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p039_f03.jpg" alt="Đẩy ngã đối phương về phía trước." loading="lazy" decoding="async"><figcaption>Đẩy ngã đối phương về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p40">
+<h3 class="run-in">Vai (6)<span class="ja-inline">肩（六）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Tay phải đánh vào mặt, tay trái nắm tay phải của đối phương, kéo chân trái lại mở thân ra, chém xuống phía sau đầu đối phương.</p><p class="lang-ja">前同 右手で面を打ち、左手で相手の右手をつかみ、左足を引いて体を開き、相手の頭の後方に切りおとす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p040_f01.jpg" alt="Tay phải đánh vào mặt, tay trái nắm tay phải đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đánh vào mặt, tay trái nắm tay phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p040_f02.jpg" alt="Mở thân và chém xuống phía sau đầu đối phương." loading="lazy" decoding="async"><figcaption>Mở thân và chém xuống phía sau đầu đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p41">
+<h3 class="run-in">Tay áo (1) (sode 1)<span class="ja-inline">袖（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái nắm tay áo phải của đối phương kéo đi. Trong khi bị kéo, dùng hai bàn tay (như lưỡi dao) đẩy cùi chỏ lên và tiến tới, tay trái nắm tay trái của đối phương, tiến chân phải ra trước đối phương, tay phải chém hạ cùi chỏ xuống.</p><p class="lang-ja">左手で相手の右袖を持ち引く。引かれるまま両手刀で肘を押し上げながら進み、左手で相手の左手をつかみ、右足を相手の前へ進め、右手で肘を切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p041_f01.jpg" alt="Nắm tay áo phải của đối phương kéo đi." loading="lazy" decoding="async"><figcaption>Nắm tay áo phải của đối phương kéo đi.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p041_f02.jpg" alt="Đẩy cùi chỏ lên và tiến tới, nắm tay trái đối phương." loading="lazy" decoding="async"><figcaption>Đẩy cùi chỏ lên và tiến tới, nắm tay trái đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p041_f03.jpg" alt="Chém hạ cùi chỏ, vật ngã đối phương." loading="lazy" decoding="async"><figcaption>Chém hạ cùi chỏ, vật ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p42">
+<h3 class="run-in">Tay áo (2)<span class="ja-inline">袖（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái giữ tay áo phải của đối phương, tay phải đánh vào mặt. Đỡ bằng tay phải rồi cuốn vào luôn, tay trái kéo tay áo trái của đối phương, kéo chân phải lại quỳ gối kéo ngã.</p><p class="lang-ja">左手で相手の右袖を持ち、右手で面を打つ。右手で受けてそのまま巻き込み、左で相手の左袖を引き、右足を引いて膝をつき引落とす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p042_f01.jpg" alt="Nắm tay áo phải, tay phải đánh vào mặt." loading="lazy" decoding="async"><figcaption>Nắm tay áo phải, tay phải đánh vào mặt.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p042_f02.jpg" alt="Đỡ và cuốn tay đối phương vào." loading="lazy" decoding="async"><figcaption>Đỡ và cuốn tay đối phương vào.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p042_f03.jpg" alt="Tay trái kéo tay áo trái, kéo chân phải lại." loading="lazy" decoding="async"><figcaption>Tay trái kéo tay áo trái, kéo chân phải lại.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p042_f04.jpg" alt="Quỳ gối kéo ngã đối phương." loading="lazy" decoding="async"><figcaption>Quỳ gối kéo ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p43">
+<h3 class="run-in">Tay áo (3)<span class="ja-inline">袖（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Tay trái giữ tay áo phải của đối phương, tay phải đâm ra. Dẫm chân phải lên chân trái của đối phương, đặt tay phải từ trên xuống móc vào cùi chỏ đối phương, kéo chân trái về phía sau.</p><p class="lang-ja">左手で相手の右袖を持ち、右手で突き出す。右足で相手の左足を踏み、右手を上から相手の肘にかけ、左足を後ろへ引く。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p043_f01.jpg" alt="Nắm tay áo phải, tay phải đâm ra." loading="lazy" decoding="async"><figcaption>Nắm tay áo phải, tay phải đâm ra.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p043_f02.jpg" alt="Dẫm chân trái, móc cùi chỏ và kéo chân trái về sau." loading="lazy" decoding="async"><figcaption>Dẫm chân trái, móc cùi chỏ và kéo chân trái về sau.</figcaption></figure>
+</article>
+<article class="tech" id="p44">
+<h3 class="run-in">Hai vai (1) (ryōkata 1)<span class="ja-inline">両肩（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nắm hai vai của đối phương. Tay trái đánh vào mặt đối phương, tiến chân phải theo chiều ngang, bước chân trái ra sau lưng đối phương, đưa thân trên lao thẳng vào, chui qua dưới tay đối phương, dùng cùi chỏ trái đánh vào sườn đối phương.</p><p class="lang-ja">両手で相手の両肩をつかむ。左手で相手の面を打ち、右足横向きに進め、左足相手の後方へ踏み込み、上体を真っ直ぐに突っ込み相手の手の下をくぐり、左肘で相手の肋を打つ。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p044_f01.jpg" alt="Hai tay nắm hai vai đối phương." loading="lazy" decoding="async"><figcaption>Hai tay nắm hai vai đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p044_f02.jpg" alt="Đánh vào mặt và tiến chân phải theo chiều ngang." loading="lazy" decoding="async"><figcaption>Đánh vào mặt và tiến chân phải theo chiều ngang.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p044_f03.jpg" alt="Chui qua dưới tay, cùi chỏ trái đánh vào sườn đối phương." loading="lazy" decoding="async"><figcaption>Chui qua dưới tay, cùi chỏ trái đánh vào sườn đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p45">
+<h3 class="run-in">Hai vai (2)<span class="ja-inline">両肩（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Tay phải đánh vào mặt, kéo vai sang trái, mở chân trái ra sau. Chui đầu ra sau tay đối phương, tay phải đẩy cằm đồng thời bước chân phải sâu vào sau lưng đối phương.</p><p class="lang-ja">前同 右手で面を打ち、左へ肩を引き、左足を後ろへ開く。相手の手の後ろへ頭をくぐり、右手で顎を押すと同時に右足を深く相手の後ろへ踏み込む。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p045_f01.jpg" alt="Các bước: đánh vào mặt, kéo vai sang trái, chui qua sau tay đối phương rồi bước chân phải sâu vào sau lưng đối phương." loading="lazy" decoding="async"><figcaption>Các bước: đánh vào mặt, kéo vai sang trái, chui qua sau tay đối phương rồi bước chân phải sâu vào sau lưng đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p46">
+<h3 class="run-in">Tay (1) 〈Nhập thân〉 (te 1, irimi)<span class="ja-inline">手（一）〈入身〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng tay trái nắm cổ tay phải của đối phương. Dồn lực vào đầu các ngón tay phải, hướng lòng bàn tay lên trên rồi đâm chéo sang trái; từ chân phải bước sâu vào bên trái, áp sát thân đối phương hơn, chú ý về phía sau, đồng thời dùng tay trái đón lấy tay trái đối phương từ phía dưới. Từ tay trái đối phương, gỡ tay phải ra đánh vào mặt, vừa bước chân trái tới vừa dùng cùi chỏ trái ấn cổ xuống mà vật ngã. Lúc này dồn lực vào đầu các ngón tay trái, hướng cẳng tay vào phía trong.</p><p class="lang-ja">左手で相手の右手首をつかむ。右指頭に力を入れ、掌を上に向けて斜め左に突き出し、右足より相手の体に近く左側に深く入り、後方に注目しつつ左手で相手の左手を下からとる。相手の左手より右手を脱して面を打ち、左足を踏み込みつつ左前肘で首を押し下げ倒す。この時左手の指先に力を入れ腕を内側に向けるようにする。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p046_f01.jpg" alt="Chuỗi bốn ảnh: nắm cổ tay phải đối phương, nhập thân sâu vào bên trái, đánh vào mặt rồi vật ngã bằng cùi chỏ trái." loading="lazy" decoding="async"><figcaption>Chuỗi bốn ảnh: nắm cổ tay phải đối phương, nhập thân sâu vào bên trái, đánh vào mặt rồi vật ngã bằng cùi chỏ trái.</figcaption></figure>
+</article>
+<article class="tech" id="p47">
+<h3 class="run-in">Tay (2) 〈Biến đổi thân pháp〉 (te 2, tai no henka)<span class="ja-inline">手（二）〈体の変化〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Dồn lực vào đầu các ngón tay phải, vừa đâm ra phía trước bên trái theo hình bán nguyệt vừa hướng lòng bàn tay lên trên, lấy chân phải làm trục xoay mạnh sang trái rồi chuyển về phía sau.</p><p class="lang-ja">前同。右手先に力を入れ、左前方に半円形に突き出しつつ掌を上に向け、右足を軸として大きく左に回転し後方にそなへる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p047_f01.jpg" alt="Hai người đứng đối diện, người thực hiện đưa tay phải ra trước." loading="lazy" decoding="async"><figcaption>Hai người đứng đối diện, người thực hiện đưa tay phải ra trước.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p047_f02.jpg" alt="Xoay mạnh sang trái quanh trục chân phải, đưa đối phương về phía sau." loading="lazy" decoding="async"><figcaption>Xoay mạnh sang trái quanh trục chân phải, đưa đối phương về phía sau.</figcaption></figure>
+</article>
+<article class="tech" id="p48">
+<h3 class="run-in">Tay (3) 〈Biến đổi thân pháp〉 (te 3, tai no henka)<span class="ja-inline">手（三）〈体の変化〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Khi bị nắm, lập tức tiến bằng chân phải, bước vào phía sau đối phương, duỗi tay phải ra và dùng tay trái chém vào cổ đối phương. (Nếu đối phương rút chân lại, bước chân trái tới và dùng tay trái kéo tay áo phải của đối phương.)</p><p class="lang-ja">前同。つかまれたら直ちに右足から進んで相手の後ろへ踏み込み、右手を伸ばして左手で相手の首を切る。（相手が足を引いたら、左足踏み込み左手で相手の右袖を引く。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p048_f01.jpg" alt="Bước chân phải vào phía sau đối phương." loading="lazy" decoding="async"><figcaption>Bước chân phải vào phía sau đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p048_f02.jpg" alt="Duỗi tay phải ra, dùng tay trái chém vào cổ đối phương." loading="lazy" decoding="async"><figcaption>Duỗi tay phải ra, dùng tay trái chém vào cổ đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p49">
+<h3 class="run-in">Tay (4) 〈Biến đổi thân pháp〉 (te 4, tai no henka)<span class="ja-inline">手（四）〈体の変化〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Dùng tay trái đánh vào mặt đối phương, dùng chính tay đó nắm lấy tay trái đối phương, đồng thời rút chân trái về phía sau, dùng tay phải khóa cùi chỏ rồi đẩy ngã.</p><p class="lang-ja">前同。左手で相手の面を打ち、その手で相手の左手をとり同時に左足を後ろへ引いて、右手で肘をおさえて突き倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p049_f01.jpg" alt="Tay trái đánh vào mặt đối phương." loading="lazy" decoding="async"><figcaption>Tay trái đánh vào mặt đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p049_f02.jpg" alt="Khóa cùi chỏ bằng tay phải và đẩy ngã đối phương." loading="lazy" decoding="async"><figcaption>Khóa cùi chỏ bằng tay phải và đẩy ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p50">
+<h3 class="run-in">Tay (5) 〈Biến đổi thân pháp〉 (te 5, tai no henka)<span class="ja-inline">手（五）〈体の変化〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng tay trái nắm cổ tay phải đối phương, dùng tay phải đánh vào mặt. Dùng tay trái đánh vào mặt, đẩy mạnh tay phải tới, bước chân phải vào đè lên chân trái đối phương, dùng tay phải ấn hông và tay trái giữ cổ.</p><p class="lang-ja">左手で相手の右手首をつかみ、右手で面を打つ。左手で面を打ち、右手をぐっと突き出し、右足を踏み込んで相手の左足を踏み、右手で腰を押し左手で首を押さえる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p050_f01.jpg" alt="Nắm cổ tay phải đối phương và đánh vào mặt." loading="lazy" decoding="async"><figcaption>Nắm cổ tay phải đối phương và đánh vào mặt.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p050_f02.jpg" alt="Bước chân phải đè lên chân trái đối phương, ấn hông và giữ cổ." loading="lazy" decoding="async"><figcaption>Bước chân phải đè lên chân trái đối phương, ấn hông và giữ cổ.</figcaption></figure>
+</article>
+<article class="tech" id="p51">
+<h3 class="run-in">Tay (6) 〈Biến đổi thân pháp〉 (te 6, tai no henka)<span class="ja-inline">手（六）〈体の変化〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng tay trái nắm cổ tay phải đối phương. Tiến chân trái ra trước đối phương, đưa tay phải từ phía trong lên và vòng ra sau cổ đối phương. Tiếp đó tiến chân phải về phía sau, vòng tay trái từ trước cổ ra, dùng tay phải kéo cổ áo sau rồi tiến chân trái sâu thêm.</p><p class="lang-ja">左手で相手の右手首をつかむ。左足を相手の前へ進め、右手を内から上げ相手の首の後ろへ回す。更に右足を後ろへ進め、左手を首の前から回して、右手で後ろ衿首を引いて左足を更に深く進める。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p051_f01.jpg" alt="Tiến chân trái ra trước đối phương, vòng tay phải ra sau cổ." loading="lazy" decoding="async"><figcaption>Tiến chân trái ra trước đối phương, vòng tay phải ra sau cổ.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p051_f02.jpg" alt="Vòng tay trái từ trước cổ, kéo cổ áo sau và tiến sâu chân trái." loading="lazy" decoding="async"><figcaption>Vòng tay trái từ trước cổ, kéo cổ áo sau và tiến sâu chân trái.</figcaption></figure>
+</article>
+<article class="tech" id="p52">
+<h3 class="run-in">Tay (7) 〈Ném bốn hướng〉 (te 7, shihōnage)<span class="ja-inline">手（七）〈四方投げ〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Vừa vung tay phải lên vừa tiến chân phải, dùng tay trái nắm cổ chân phải đối phương, xoay thân và đánh ngã. (Luyện tập để có thể ném được về mọi hướng trước, sau, trái, phải.)</p><p class="lang-ja">前同。右手振りかぶると同時に右足進め、左手で相手の右足首を持ち体を回転させて打ち倒す。（前後左右いずれの方向にも投げられるように練習する。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p052_f01.jpg" alt="Vung tay phải lên và tiến chân phải." loading="lazy" decoding="async"><figcaption>Vung tay phải lên và tiến chân phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p052_f02.jpg" alt="Nắm cổ chân phải đối phương và xoay thân." loading="lazy" decoding="async"><figcaption>Nắm cổ chân phải đối phương và xoay thân.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p052_f03.jpg" alt="Đánh ngã đối phương xuống thảm." loading="lazy" decoding="async"><figcaption>Đánh ngã đối phương xuống thảm.</figcaption></figure>
+</article>
+<article class="tech" id="p53">
+<h3 class="run-in">Tay (8) 〈Ném hợp khí〉 (te 8, aikinage)<span class="ja-inline">手（八）〈合気投げ〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Khi bị kéo, cứ theo đà bị kéo mà tiến chân phải ra phía trước bên trái đối phương, đồng thời đẩy tay phải tới cùng hướng đó. Cứ thế, lấy chân phải làm trục xoay thân sang trái để đứng ngang hàng với đối phương, rồi đẩy tay phải xuống phía trước. (Nếu đối phương buông tay ra, cứ thế vòng tay trái từ phía trước và từ phía sau mà bế bổng lên.)</p><p class="lang-ja">前同。引かれたとき、引かれるままに右足を相手の前左へ進め、同時に右手同じ方向に突き出す。そのままのとき、右足を軸に左方向に体を回転させて相手と並び、右手を前下へ突き出す。（相手が手を離したら、そのまま前から左手後ろから回して抱き上げる。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p053_f01.jpg" alt="Tiến chân phải ra trước bên trái đối phương, đẩy tay phải tới." loading="lazy" decoding="async"><figcaption>Tiến chân phải ra trước bên trái đối phương, đẩy tay phải tới.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p053_f02.jpg" alt="Xoay thân sang trái, đứng ngang hàng đối phương và đẩy tay phải xuống phía trước." loading="lazy" decoding="async"><figcaption>Xoay thân sang trái, đứng ngang hàng đối phương và đẩy tay phải xuống phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p54">
+<h3 class="run-in">Tay (9) 〈Ném hợp khí〉 (te 9, aikinage)<span class="ja-inline">手（九）〈合気投げ〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng tay trái nắm cổ tay phải đối phương, dùng tay phải đánh tới. Vừa dùng tay trái đánh vào mặt đối phương vừa xoay vòng, dùng tay trái nắm cùi chỏ mà ném. (Sau khi ghì mạnh xuống, bước chân phải vào phía sau đối phương, dùng cùi chỏ phải đánh vào mạng sườn đối phương mà đánh ngã.)</p><p class="lang-ja">左手で相手の右手首をつかみ、右手で打ち出す。左手で相手の面を打ちながらぐるぐり、左手で肘をつかんで投げる。（ぐぐった後、右足を相手の後ろへ踏み込んで、右肘で相手の脇腹を打ちながら打ち倒す。）</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p054_f01.jpg" alt="Nắm cổ tay phải đối phương, tay phải đánh tới." loading="lazy" decoding="async"><figcaption>Nắm cổ tay phải đối phương, tay phải đánh tới.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p054_f02.jpg" alt="Đánh vào mặt, xoay vòng rồi ném bằng cùi chỏ." loading="lazy" decoding="async"><figcaption>Đánh vào mặt, xoay vòng rồi ném bằng cùi chỏ.</figcaption></figure>
+</article>
+<article class="tech" id="p55">
+<h3 class="run-in">Hai tay (1) 〈Ném bốn hướng〉 (ryōte 1, shihōnage)<span class="ja-inline">両手（一）〈四方投げ〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Dùng hai tay nắm hai tay đối phương. Khi đối phương để chân phải ra trước và người thực hiện cũng để chân phải ra trước, bước chân trái một bước rồi xoay người. Vừa xoay vừa dùng tay phải nắm tay phải đối phương, vung lên và chém xuống về phía sau.</p><p class="lang-ja">両手で相手の両手をとる。相手が右足、仕手も右足が前に出ているとき、左足を一歩進めて回る。回りながら右手で相手の右手をつかみ、振りかぶりながら後ろへ切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p055_f01.jpg" alt="Hai tay nắm hai tay đối phương." loading="lazy" decoding="async"><figcaption>Hai tay nắm hai tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p055_f02.jpg" alt="Bước chân trái một bước và xoay người." loading="lazy" decoding="async"><figcaption>Bước chân trái một bước và xoay người.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p055_f03.jpg" alt="Nắm tay phải đối phương, vung lên và chém xuống phía sau." loading="lazy" decoding="async"><figcaption>Nắm tay phải đối phương, vung lên và chém xuống phía sau.</figcaption></figure>
+</article>
+<article class="tech" id="p56">
+<h3 class="run-in">Hai tay (2) 〈Ném bốn hướng〉 (ryōte 2, shihōnage)<span class="ja-inline">両手（二）〈四方投げ〉</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Khi đối phương để chân trái ra trước còn người thực hiện để chân phải ra trước, rút chân trái một bước lớn về phía sau rồi xoay người. Vừa xoay vừa dùng tay trái nắm tay trái đối phương, vung lên và chém xuống.</p><p class="lang-ja">前同。相手は左足、仕手は右足が前に出ているとき、左足を大きく後ろへ引いて回る。回りながら左手で相手の左手をつかんで振りかぶり切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p056_f01.jpg" alt="Hai tay nắm hai tay đối phương." loading="lazy" decoding="async"><figcaption>Hai tay nắm hai tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p056_f02.jpg" alt="Rút chân trái một bước lớn về phía sau và xoay người." loading="lazy" decoding="async"><figcaption>Rút chân trái một bước lớn về phía sau và xoay người.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p056_f03.jpg" alt="Nắm tay trái đối phương, vung lên và chém xuống." loading="lazy" decoding="async"><figcaption>Nắm tay trái đối phương, vung lên và chém xuống.</figcaption></figure>
+</article>
+<article class="tech" id="p57">
+<h3 class="run-in">Hai tay (3) (ryōte 3)<span class="ja-inline">両手（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Tiến bằng chân trái trước, tiến chân phải ra phía sau bên trái đối phương (nhìn từ phía mình), duỗi tay trái ra, vung tay phải lên ngay chính diện rồi tiến tới và chém xuống cổ.</p><p class="lang-ja">前同。左足より進み、右足を相手の左後ろ（自分から見て）へ進め、左手を伸ばし、右手を真正面に振りかぶり進んで首へ切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p057_f01.jpg" alt="Tiến chân trái, rồi tiến chân phải ra sau bên trái đối phương." loading="lazy" decoding="async"><figcaption>Tiến chân trái, rồi tiến chân phải ra sau bên trái đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p057_f02.jpg" alt="Vung tay phải lên chính diện rồi chém xuống cổ đối phương." loading="lazy" decoding="async"><figcaption>Vung tay phải lên chính diện rồi chém xuống cổ đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p58">
+<h3 class="run-in">Hai tay (4) (ryōte 4)<span class="ja-inline">両手（四）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Đưa chân phải ra trước đối phương, đẩy tay trái lên và đâm tới phía bên kia cổ như đang ấn. Chân trái tiến về phía sau đối phương, tay trái hướng lòng bàn tay lên trên.</p><p class="lang-ja">前同。右足を相手の前へ、左手をつき上げて首の向こう側へ押し気味に突き出す。左足は相手の後方へ進め、左手は掌を上に向ける。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p058_f01.jpg" alt="Tay phải đưa ra trước, tay trái đẩy lên bên kia cổ đối phương." loading="lazy" decoding="async"><figcaption>Tay phải đưa ra trước, tay trái đẩy lên bên kia cổ đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p058_f02.jpg" alt="Chân trái tiến về phía sau đối phương, lòng bàn tay trái hướng lên." loading="lazy" decoding="async"><figcaption>Chân trái tiến về phía sau đối phương, lòng bàn tay trái hướng lên.</figcaption></figure>
+</article>
+<article class="tech" id="p59">
+<h3 class="run-in">Hai tay (5) (ryōte 5)<span class="ja-inline">両手（五）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Vòng tay trái từ bên ngoài vào rồi kéo ghì đối phương vào, bước chân trái một bước và ra đòn ném hông.</p><p class="lang-ja">前同。左手を外から回して引きつり込み、左足を一歩進めて腰投げをかける。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p059_f01.jpg" alt="Vòng tay trái từ ngoài vào và kéo đối phương vào." loading="lazy" decoding="async"><figcaption>Vòng tay trái từ ngoài vào và kéo đối phương vào.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p059_f02.jpg" alt="Bước chân trái và thực hiện đòn ném hông." loading="lazy" decoding="async"><figcaption>Bước chân trái và thực hiện đòn ném hông.</figcaption></figure>
+</article>
+<article class="tech" id="p60">
+<h3 class="run-in">Hai tay (6) (ryōte 6)<span class="ja-inline">両手（六）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Vừa tiến chân phải sang bên trái đối phương, vừa đưa tay phải từ phía trên cùi chỏ tay phải đối phương đâm chéo ra phía trước.</p><p class="lang-ja">前同。右足を相手の左横へ進めながら、右手を相手の右手肘の上から斜め前に突き出す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p060_f01.jpg" alt="Hai người đứng đối diện, tay phải nắm tay phải đối phương." loading="lazy" decoding="async"><figcaption>Hai người đứng đối diện, tay phải nắm tay phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p060_f02.jpg" alt="Tiến chân phải sang bên trái đối phương, tay phải đâm chéo ra trước từ trên cùi chỏ." loading="lazy" decoding="async"><figcaption>Tiến chân phải sang bên trái đối phương, tay phải đâm chéo ra trước từ trên cùi chỏ.</figcaption></figure>
+</article>
+<article class="tech" id="p61">
+<h3 class="run-in">Ngực (1) (mune 1)<span class="ja-inline">胸（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Nắm ngực đối phương bằng tay phải rồi kéo. Đánh vào mặt bằng tay phải, nắm lấy bàn tay đã nắm mình mà hạ hông xuống một chút; theo đà bị kéo, tiến sâu chân trái lên, dùng tay trái móc vào khớp khuỷu tay đối phương mà đẩy ngã.</p><p class="lang-ja">右手で相手の胸元をつかんで引く。右手で面を打ち、つかんだ手をとって腰を少しさげ、引かれるままに左足を深く進め、左手で相手の肘関節にかけて押し倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p061_f01.jpg" alt="Đối phương nắm ngực ta, ta đánh vào mặt." loading="lazy" decoding="async"><figcaption>Đối phương nắm ngực ta, ta đánh vào mặt.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p061_f02.jpg" alt="Hạ hông, tiến chân trái, đẩy khuỷu tay đối phương xuống mà vật ngã." loading="lazy" decoding="async"><figcaption>Hạ hông, tiến chân trái, đẩy khuỷu tay đối phương xuống mà vật ngã.</figcaption></figure>
+</article>
+<article class="tech" id="p62">
+<h3 class="run-in">Ngực (2) (mune 2)<span class="ja-inline">胸（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Nắm ngực đối phương bằng tay phải, đánh bằng tay trái. Đỡ bằng tay phải, kéo chân phải về sau, dùng tay trái nắm tay áo trái của đối phương mà kéo.</p><p class="lang-ja">右手で相手の胸元をつかみ、左手で打つ。右手で受け、右足を引いて左手で相手の左袖をつかんで引く。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p062_f01.jpg" alt="Đối phương nắm ngực và đánh bằng tay trái." loading="lazy" decoding="async"><figcaption>Đối phương nắm ngực và đánh bằng tay trái.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p062_f02.jpg" alt="Ta đỡ bằng tay phải và kéo chân phải về sau." loading="lazy" decoding="async"><figcaption>Ta đỡ bằng tay phải và kéo chân phải về sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p062_f03.jpg" alt="Nắm tay áo trái của đối phương mà kéo." loading="lazy" decoding="async"><figcaption>Nắm tay áo trái của đối phương mà kéo.</figcaption></figure>
+</article>
+<article class="tech" id="p63">
+<h3 class="run-in">Ngực và tay (1) (mune to te 1)<span class="ja-inline">胸と手（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Giữ cổ tay phải của đối phương bằng tay trái, nắm ngực bằng tay phải. Khi bị kéo thì theo đà bị kéo, làm như vung bàn tay đang bị nắm lên, tiến từ chân trái, đưa chân phải ra sau lưng đối phương rồi chém xuống.</p><p class="lang-ja">左手で相手の右手首を持ち、右手で胸元をつかむ。引かれたら引かれるまま、つかまれた手振りかぶる様にして左足より進み、右足を相手の後ろへ進めて切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p063_f01.jpg" alt="Giữ cổ tay phải và nắm ngực đối phương." loading="lazy" decoding="async"><figcaption>Giữ cổ tay phải và nắm ngực đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p063_f02.jpg" alt="Tiến chân phải ra sau lưng đối phương và chém xuống." loading="lazy" decoding="async"><figcaption>Tiến chân phải ra sau lưng đối phương và chém xuống.</figcaption></figure>
+</article>
+<article class="tech" id="p64">
+<h3 class="run-in">Ngực và tay (2) (mune to te 2)<span class="ja-inline">胸と手（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Ngay khi bị nắm tay phải, đẩy chéo sang trái, tiến chân trái rồi nắm lại bằng tay trái, dùng tay phải nắm tay áo phải của đối phương và tiến chân phải.</p><p class="lang-ja">前同　右手を持たれた瞬間左斜めへつき出し、左足を進めて左手でとり直し、右手で相手の右袖をつかんで右足を進める。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p064_f01.jpg" alt="Đối phương nắm tay phải ta." loading="lazy" decoding="async"><figcaption>Đối phương nắm tay phải ta.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p064_f02.jpg" alt="Đẩy chéo sang trái, nắm lại bằng tay trái, nắm tay áo phải và tiến chân phải." loading="lazy" decoding="async"><figcaption>Đẩy chéo sang trái, nắm lại bằng tay trái, nắm tay áo phải và tiến chân phải.</figcaption></figure>
+</article>
+<article class="tech" id="p65">
+<h3 class="run-in">Siết cổ (1) (kubishime 1)<span class="ja-inline">首締め（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nắm cổ áo mà siết cổ. Dùng tay phải kéo tay áo trái của đối phương, kéo hết chân phải về sau, rồi đánh vào ngực bằng tay trái.</p><p class="lang-ja">両手で襟にとって首を締める。右手で相手の左袖引いて右足充分引きき、左で胸打つ。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p065_f01.jpg" alt="Đối phương hai tay nắm cổ áo và siết cổ." loading="lazy" decoding="async"><figcaption>Đối phương hai tay nắm cổ áo và siết cổ.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p065_f02.jpg" alt="Kéo tay áo trái, kéo hết chân phải về, đánh vào ngực bằng tay trái." loading="lazy" decoding="async"><figcaption>Kéo tay áo trái, kéo hết chân phải về, đánh vào ngực bằng tay trái.</figcaption></figure>
+</article>
+<article class="tech" id="p66">
+<h3 class="run-in">Siết cổ (2) (kubishime 2)<span class="ja-inline">首締め（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. (a) Vừa đánh vào mặt bằng tay phải vừa kéo chân trái về một chút, từ bên trái chui qua tay đối phương rồi cứ thế duỗi thẳng cả hai tay. (b) Sau khi chui qua, gỡ tay phải ra và đánh vào thân (hông). (c) Sau khi chui qua, đưa tay phải ra nắm đai và nhấc lên.</p><p class="lang-ja">前同　（イ）右手で面を打ちながら左足を少し引きき、左から相手の手をくぐりそのまま両手を真っ直ぐに伸ばす。（ロ）くぐってから右手を外して胴を打つ。（ハ）くぐってから右手を出して帯をつかんでつり上げる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p066_f01.jpg" alt="Đánh vào mặt, kéo chân trái về một chút." loading="lazy" decoding="async"><figcaption>Đánh vào mặt, kéo chân trái về một chút.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p066_f02.jpg" alt="Chui qua tay đối phương từ bên trái, duỗi thẳng hai tay." loading="lazy" decoding="async"><figcaption>Chui qua tay đối phương từ bên trái, duỗi thẳng hai tay.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p066_f03.jpg" alt="Gỡ tay phải ra và đánh vào thân." loading="lazy" decoding="async"><figcaption>Gỡ tay phải ra và đánh vào thân.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p066_f04.jpg" alt="Đưa tay phải ra nắm đai và nhấc đối phương lên." loading="lazy" decoding="async"><figcaption>Đưa tay phải ra nắm đai và nhấc đối phương lên.</figcaption></figure>
+</article>
+<article class="tech" id="p67">
+<h3 class="run-in">Siết cổ (3) (kubishime 3)<span class="ja-inline">首締め（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Đưa tay trái từ dưới lên móc vào cánh tay trái đối phương, giữ đầu bằng tay phải, đồng thời vừa giữ tay áo phải của đối phương bằng tay trái vừa tiến chân phải.</p><p class="lang-ja">前同　左手を下から入れて相手の左腕にかけ、右手で頭を押さえ、同時に左手で相手の右袖を持ちながら右足を進める。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p067_f01.jpg" alt="Đưa tay trái từ dưới lên móc vào cánh tay trái đối phương." loading="lazy" decoding="async"><figcaption>Đưa tay trái từ dưới lên móc vào cánh tay trái đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p067_f02.jpg" alt="Giữ đầu bằng tay phải và tiến chân phải." loading="lazy" decoding="async"><figcaption>Giữ đầu bằng tay phải và tiến chân phải.</figcaption></figure>
+</article>
+</section>
+<section id="ushiro" class="chapter">
+<div class="badge">Chương IV</div>
+<h2>Kỹ thuật phía sau</h2>
+<div class="ja-heading">後ろ業</div>
+<article class="tech" id="p69">
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p069_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+<div class="bilingual-block stanza"><p class="lang-vi">(Trang thư pháp thảo thư, chữ khó đọc trọn vẹn) "Thống nhất khí…; chính linh soi chiếu, thần lực bay lên." — Ký tên: Khí Hải (氣海).</p><p class="lang-ja">統一氣しりむする?カリ先?希る?　直靈に照りて神力とぶ?　（氣海）</p></div>
+</article>
+<article class="tech" id="p70">
+<h3 class="run-in">Cổ áo sau (1) (ushiro-eri 1)<span class="ja-inline">後ろ衿（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Nắm cổ áo sau của đối phương bằng tay phải. Vừa kéo chân phải thẳng ra sau vừa vung tay phải lên, đánh vào mặt đối phương bằng tay trái. Hạ chân trái mạnh ra sau, luồn ra sau tay đối phương, nắm tay phải đối phương bằng tay phải, giữ khuỷu tay phải bằng tay trái, rồi tiến chân trái trở lại và ném đối phương bay về phía trước.</p><p class="lang-ja">右手で相手の後ろ衿をつかむ。右足を真後ろへ引きつつ右手を振りかぶり、左手で相手の面を打つ。左足を大きく後ろへ下げ相手の手の後ろへ抜け、右手で相手の右手をとり、左で右肘を押さえて、左足を再び進め前方に投げとばす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p070_f01.jpg" alt="Chuỗi động tác: kéo chân phải ra sau, vung tay phải, đánh vào mặt, ném bay về phía trước." loading="lazy" decoding="async"><figcaption>Chuỗi động tác: kéo chân phải ra sau, vung tay phải, đánh vào mặt, ném bay về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p71">
+<h3 class="run-in">Cổ áo sau (2) (ushiro-eri 2)<span class="ja-inline">後ろ衿（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Nắm cổ áo sau của đối phương bằng tay phải. Đỡ bằng tay trái cú đánh của người thực hiện đòn. Kéo chân phải về một chút, đánh vào mặt bằng tay trái; trong khi vẫn bị nắm, kéo chân trái ra sau lưng đối phương và chém tay trái thẳng xuống dưới.</p><p class="lang-ja">右手で相手の後ろ衿をつかむ。仕手が打つのを左手で受ける。右足を少し引いて左で面を打ち、つかまれたまま左足を相手の後ろへ引き、左手を真下へ切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p071_f01.jpg" alt="Đối phương nắm cổ áo sau." loading="lazy" decoding="async"><figcaption>Đối phương nắm cổ áo sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p071_f02.jpg" alt="Đánh vào mặt và chém tay trái thẳng xuống." loading="lazy" decoding="async"><figcaption>Đánh vào mặt và chém tay trái thẳng xuống.</figcaption></figure>
+</article>
+<article class="tech" id="p72">
+<h3 class="run-in">Cổ áo sau (3) (ushiro-eri 3)<span class="ja-inline">後ろ衿（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Đồng thời với lúc đối phương toan nắm cổ áo sau, lấy chân phải làm trụ xoay sang phải, nhập vào phía sau bên phải đối phương, dùng cạnh tay phải đánh hạ tay phải đối phương xuống. Kế đó, vừa bước chân phải vào phía sau đối phương vừa dùng tay phải đánh vào mặt đối phương mà vật ngã.</p><p class="lang-ja">前同　相手が後ろ衿を取ろうとするのと同時に、右足を軸にして右に回りつつ相手の右後方に入り、右手刀で相手の右手を打ち下ろす。次に右足を相手の後方に踏み込みつつ右手で相手の面を打ち倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p072_f01.jpg" alt="Đối phương toan nắm cổ áo sau." loading="lazy" decoding="async"><figcaption>Đối phương toan nắm cổ áo sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p072_f02.jpg" alt="Xoay sang phải, đánh hạ tay phải đối phương, rồi đánh vào mặt mà vật ngã." loading="lazy" decoding="async"><figcaption>Xoay sang phải, đánh hạ tay phải đối phương, rồi đánh vào mặt mà vật ngã.</figcaption></figure>
+</article>
+<article class="tech" id="p73">
+<h3 class="run-in">Cổ áo sau (4) (ushiro-eri 4)<span class="ja-inline">後ろ衿（四）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Vừa đánh vào thân (hông) bằng tay trái vừa kéo chân trái về mà xoay sang trái, rồi bước chân phải vào thêm và dùng tay phải đẩy cằm đối phương.</p><p class="lang-ja">前同　左手で胴を打ちながら左足を引いて左へ回り、右足を更に踏み込んで右手で顎を押す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p073_f01.jpg" alt="Tư thế ban đầu, đối phương nắm cổ áo sau." loading="lazy" decoding="async"><figcaption>Tư thế ban đầu, đối phương nắm cổ áo sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p073_f02.jpg" alt="Đánh vào thân, xoay sang trái, bước chân phải vào và đẩy cằm." loading="lazy" decoding="async"><figcaption>Đánh vào thân, xoay sang trái, bước chân phải vào và đẩy cằm.</figcaption></figure>
+</article>
+<article class="tech" id="p74">
+<h3 class="run-in">Vai (1) (kata 1)<span class="ja-inline">肩（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nắm hai vai đối phương từ phía sau. Vung tay trái lên trên đầu, làm như che đầu, đồng thời tiến chân trái nửa bước. Hạ hông xuống, xoay sang phải và đưa chân trái ra sau lưng đối phương; đồng thời duỗi hết cùi chỏ trái hoặc cả hai tay, ném đối phương bay về phía sau bên trái.</p><p class="lang-ja">両手で相手の両肩を後ろからつかむ。左手を頭上に振りかぶり、頭を覆うようにして同時に左足を半歩進める。腰をさげて右に回転した左足を相手の後ろへ進め、同時に左肘または両手を充分伸ばして相手を左後方へ投げ飛ばす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p074_f01.jpg" alt="Hai tay nắm hai vai đối phương từ phía sau." loading="lazy" decoding="async"><figcaption>Hai tay nắm hai vai đối phương từ phía sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p074_f02.jpg" alt="Tiến nửa bước, hạ hông và xoay sang phải." loading="lazy" decoding="async"><figcaption>Tiến nửa bước, hạ hông và xoay sang phải.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p074_f03.jpg" alt="Ném đối phương bay về phía sau bên trái." loading="lazy" decoding="async"><figcaption>Ném đối phương bay về phía sau bên trái.</figcaption></figure>
+</article>
+<article class="tech" id="p75">
+<h3 class="run-in">Vai (2) (kata 2)<span class="ja-inline">肩（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Kéo chân trái ra sau bên phải đối phương, đưa tay trái từ trên xuống, tay phải từ dưới lên mà ôm nhấc đối phương lên.</p><p class="lang-ja">前同　左足を相手の右後ろへ引き、左手を上から、右手を下から入れ抱き上げる。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p075_f01.jpg" alt="Kéo chân trái ra sau bên phải đối phương." loading="lazy" decoding="async"><figcaption>Kéo chân trái ra sau bên phải đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p075_f02.jpg" alt="Ôm và nhấc đối phương lên." loading="lazy" decoding="async"><figcaption>Ôm và nhấc đối phương lên.</figcaption></figure>
+</article>
+<article class="tech" id="p76">
+<h3 class="run-in">Cánh tay (1) (ude 1)<span class="ja-inline">腕（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nắm hai cánh tay trên của đối phương từ phía sau. (Đẩy về phía trước.) Vung tay phải lên, bước chân phải tới rồi xoay sang trái; tay phải đè cổ, tay trái kéo tay áo bên trái của đối phương.</p><p class="lang-ja">両手で相手の両上腕を後ろからつかむ。（前へ押す。）右手を振りかぶり右足進めて左に転じ、右手で首を押さえ左手で相手の左袖を引く。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p076_f01.jpg" alt="Tư thế đầu: hai tay nắm hai cánh tay trên của đối phương từ phía sau." loading="lazy" decoding="async"><figcaption>Tư thế đầu: hai tay nắm hai cánh tay trên của đối phương từ phía sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p076_f02.jpg" alt="Xoay sang trái, tay phải đè cổ và tay trái kéo tay áo đối phương." loading="lazy" decoding="async"><figcaption>Xoay sang trái, tay phải đè cổ và tay trái kéo tay áo đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p77">
+<h3 class="run-in">Cánh tay (2) (ude 2)<span class="ja-inline">腕（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Kéo chân phải ra sau lưng bên trái đối phương, tay trái giữ tay trái đối phương áp vào ngực mình, tay phải đẩy cùi chỏ trái đối phương và vật ngã về phía trước.</p><p class="lang-ja">前同　右足を相手の左後ろに引き、左手で相手の左手を押さえて自分の胸につけ、右手で相手の左肘を押して前へ倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p077_f01.jpg" alt="Tư thế chuẩn bị, giữ tay trái đối phương." loading="lazy" decoding="async"><figcaption>Tư thế chuẩn bị, giữ tay trái đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p077_f02.jpg" alt="Kéo chân phải ra sau lưng trái đối phương và vật ngã về phía trước." loading="lazy" decoding="async"><figcaption>Kéo chân phải ra sau lưng trái đối phương và vật ngã về phía trước.</figcaption></figure>
+</article>
+<article class="tech" id="p78">
+<h3 class="run-in">Hai tay (1) (ryōte 1)<span class="ja-inline">両手（一）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nắm hai cổ tay đối phương từ phía sau. Kéo chân phải ra sau, tay phải vòng qua đầu tới trước, kéo chân trái ra sau lưng đối phương, tay trái nắm cùi chỏ phải đối phương, rồi bước chân trái tới trước thêm và đẩy ngã.</p><p class="lang-ja">両手で相手の両手首を後ろからつかむ。右足を後ろに引き、右手は頭を越して前へ回し、左足を相手の後ろへ引き、左手で相手の右肘をつかみ、左足を更に前へ進め押し倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p078_f01.jpg" alt="Nắm hai cổ tay đối phương từ phía sau." loading="lazy" decoding="async"><figcaption>Nắm hai cổ tay đối phương từ phía sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p078_f02.jpg" alt="Vòng tay phải qua đầu và bước chân trái ra sau lưng đối phương." loading="lazy" decoding="async"><figcaption>Vòng tay phải qua đầu và bước chân trái ra sau lưng đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p078_f03.jpg" alt="Nắm cùi chỏ phải và đẩy ngã đối phương." loading="lazy" decoding="async"><figcaption>Nắm cùi chỏ phải và đẩy ngã đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p79">
+<h3 class="run-in">Hai tay (2) (ryōte 2)<span class="ja-inline">両手（二）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Xoay chân phải từ trước sang trái, đồng thời giơ tay phải lên và xoay sang trái. Vòng chân phải ra tận sau lưng đối phương, hai tay duỗi ra làm đối phương ngửa người và vật ngã ngửa.</p><p class="lang-ja">前同　右足を前から左に回し、同時に右手あげて左に回る。右足を相手の後ろまで回し、両手を伸ばして相手を反り返らせ仰向けに倒す。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p079_f01.jpg" alt="Xoay chân phải từ trước sang trái, đồng thời giơ tay phải lên." loading="lazy" decoding="async"><figcaption>Xoay chân phải từ trước sang trái, đồng thời giơ tay phải lên.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p079_f02.jpg" alt="Vòng ra sau lưng và đẩy đối phương ngã ngửa." loading="lazy" decoding="async"><figcaption>Vòng ra sau lưng và đẩy đối phương ngã ngửa.</figcaption></figure>
+</article>
+<article class="tech" id="p80">
+<h3 class="run-in">Hai tay (3) (ryōte 3)<span class="ja-inline">両手（三）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Như trên. Dẫn tay trái xuống phía trước, kéo chân phải ra sau. Dẫn tay phải ra sau lưng bên phải đối phương, rồi dùng tay trái ném tung đối phương về phía sau bên phải.</p><p class="lang-ja">前同　左手を前下へ誘導し、右足を後ろへ引く。右手を相手の右後ろへ導き、左手で右後方に投げとばす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p080_f01.jpg" alt="Dẫn tay trái xuống phía trước rồi ném đối phương về phía sau bên phải." loading="lazy" decoding="async"><figcaption>Dẫn tay trái xuống phía trước rồi ném đối phương về phía sau bên phải.</figcaption></figure>
+</article>
+<article class="tech" id="p81">
+<h3 class="run-in">Hai tay (4) (ryōte 4)<span class="ja-inline">両手（四）</span></h3>
+<p class="role-line">(người nhận đòn) · (người thực hiện đòn)<span class="role-ja">（受け手） （仕手）</span></p>
+<div class="bilingual-block stanza"><p class="lang-vi">Hai tay nâng hai cổ tay đối phương từ phía dưới lên. Hạ chân phải ra sau lưng bên phải đối phương, đặt tay phải vào hông, duỗi tay trái ra và chém xuống ngực đối phương.</p><p class="lang-ja">両手で相手の両手首を下からもちあげる。右足を相手の右後ろへ下げ、右手を腰につけ左手を伸ばして相手の胸元へ切り下ろす。</p></div>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p081_f01.jpg" alt="Nâng hai cổ tay đối phương từ phía dưới lên." loading="lazy" decoding="async"><figcaption>Nâng hai cổ tay đối phương từ phía dưới lên.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p081_f02.jpg" alt="Hạ chân phải ra sau lưng phải và chém tay trái xuống ngực đối phương." loading="lazy" decoding="async"><figcaption>Hạ chân phải ra sau lưng phải và chém tay trái xuống ngực đối phương.</figcaption></figure>
+</article>
+</section>
+<section id="plates" class="chapter">
+<div class="badge">Phụ lục</div>
+<h2>Bảng ảnh minh họa</h2>
+<div class="ja-heading">図版</div>
+<article class="tech" id="p82">
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p082_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+<div class="bilingual-block stanza"><p class="lang-vi">Thần là sức mạnh vượt qua mọi chiều không gian. Hãy một lòng rèn luyện để học lẽ huyền diệu của khí. (Ký tên: Khí Hải)</p><p class="lang-ja">神かは次元をこえる力なり　ひたすらみがかん気の妙をまなぶ　気海</p></div>
+</article>
+<article class="tech" id="p83">
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p083_f01.jpg" alt="Kỹ thuật quỳ: người thực hiện khống chế cánh tay khi đối phương cúi người." loading="lazy" decoding="async"><figcaption>Kỹ thuật quỳ: người thực hiện khống chế cánh tay khi đối phương cúi người.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p083_f02.jpg" alt="Cận cảnh nắm cổ tay khi cả hai đang quỳ." loading="lazy" decoding="async"><figcaption>Cận cảnh nắm cổ tay khi cả hai đang quỳ.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p083_f03.jpg" alt="Kỹ thuật đứng: nâng và khống chế cánh tay đối phương." loading="lazy" decoding="async"><figcaption>Kỹ thuật đứng: nâng và khống chế cánh tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p083_f04.jpg" alt="Đối phương nằm trên thảm, người thực hiện quỳ bên cạnh khóa giữ." loading="lazy" decoding="async"><figcaption>Đối phương nằm trên thảm, người thực hiện quỳ bên cạnh khóa giữ.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p083_f05.jpg" alt="Đối phương nằm ngửa, người thực hiện quỳ giữ cánh tay." loading="lazy" decoding="async"><figcaption>Đối phương nằm ngửa, người thực hiện quỳ giữ cánh tay.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p083_f06.jpg" alt="Hai người quỳ, khống chế cổ tay đối phương." loading="lazy" decoding="async"><figcaption>Hai người quỳ, khống chế cổ tay đối phương.</figcaption></figure>
+</article>
+<article class="tech" id="p84">
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p084_f01.jpg" alt="Ba người đứng: võ sư đứng giữa cùng hai môn sinh." loading="lazy" decoding="async"><figcaption>Ba người đứng: võ sư đứng giữa cùng hai môn sinh.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p084_f02.jpg" alt="Võ sư khống chế cánh tay giơ cao của môn sinh." loading="lazy" decoding="async"><figcaption>Võ sư khống chế cánh tay giơ cao của môn sinh.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p084_f03.jpg" alt="Võ sư dang hai tay khống chế hai môn sinh đang cúi người." loading="lazy" decoding="async"><figcaption>Võ sư dang hai tay khống chế hai môn sinh đang cúi người.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p084_f04.jpg" alt="Võ sư khóa cánh tay môn sinh từ phía sau." loading="lazy" decoding="async"><figcaption>Võ sư khóa cánh tay môn sinh từ phía sau.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p084_f05.jpg" alt="Võ sư cùng hai môn sinh cúi người: thế khống chế hai người." loading="lazy" decoding="async"><figcaption>Võ sư cùng hai môn sinh cúi người: thế khống chế hai người.</figcaption></figure>
+</article>
+<article class="tech" id="p85">
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f01.jpg" alt="Hai người đứng, khống chế tay đối phương." loading="lazy" decoding="async"><figcaption>Hai người đứng, khống chế tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f02.jpg" alt="Đối phương cầm kiếm (太刀) tấn công, võ sư ứng phó." loading="lazy" decoding="async"><figcaption>Đối phương cầm kiếm (太刀) tấn công, võ sư ứng phó.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f03.jpg" alt="Võ sư đối mặt người cầm kiếm đang giơ gươm lên." loading="lazy" decoding="async"><figcaption>Võ sư đối mặt người cầm kiếm đang giơ gươm lên.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f04.jpg" alt="Hai người đứng quấn lấy nhau, giành thế khống chế." loading="lazy" decoding="async"><figcaption>Hai người đứng quấn lấy nhau, giành thế khống chế.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f05.jpg" alt="Người cầm kiếm rút gươm tấn công." loading="lazy" decoding="async"><figcaption>Người cầm kiếm rút gươm tấn công.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f06.jpg" alt="Khống chế cổ tay đối phương." loading="lazy" decoding="async"><figcaption>Khống chế cổ tay đối phương.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p085_f07.jpg" alt="Võ sư khống chế môn sinh đang cúi người." loading="lazy" decoding="async"><figcaption>Võ sư khống chế môn sinh đang cúi người.</figcaption></figure>
+</article>
+<article class="tech" id="p86">
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f01.jpg" alt="Võ sư đứng giữa, hai môn sinh nắm hai cánh tay." loading="lazy" decoding="async"><figcaption>Võ sư đứng giữa, hai môn sinh nắm hai cánh tay.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f02.jpg" alt="Võ sư đối mặt người cầm kiếm." loading="lazy" decoding="async"><figcaption>Võ sư đối mặt người cầm kiếm.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f03.jpg" alt="Võ sư ở thế thấp đối phó người cầm kiếm." loading="lazy" decoding="async"><figcaption>Võ sư ở thế thấp đối phó người cầm kiếm.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f04.jpg" alt="Võ sư dang tay khống chế hai môn sinh cúi người." loading="lazy" decoding="async"><figcaption>Võ sư dang tay khống chế hai môn sinh cúi người.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f05.jpg" alt="Võ sư khống chế cánh tay môn sinh." loading="lazy" decoding="async"><figcaption>Võ sư khống chế cánh tay môn sinh.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f06.jpg" alt="Võ sư cùng hai môn sinh cúi người: thế khống chế hai người." loading="lazy" decoding="async"><figcaption>Võ sư cùng hai môn sinh cúi người: thế khống chế hai người.</figcaption></figure>
+<figure class="fig"><img src="/assets/books/aikido_densho_vi/img/p086_f07.jpg" alt="Khóa giữ đối phương nằm trên thảm." loading="lazy" decoding="async"><figcaption>Khóa giữ đối phương nằm trên thảm.</figcaption></figure>
+</article>
+</section>
+<section id="colophon" class="chapter">
+<div class="badge">Cuối sách</div>
+<h2>Lời bạt &amp; Xuất bản</h2>
+<div class="ja-heading">奥付</div>
+<article class="tech" id="p87">
+<div class="bilingual-block stanza"><p class="lang-vi">Cuốn sách này được biên soạn với mong muốn lưu truyền lâu dài cho hậu thế và được kế tục những kỹ thuật của võ sư hợp khí đạo Sunadomari Keikai, người được 武産合気翁 (Vũ Sản Hợp Khí Ông) công nhận. Nhân dịp biên soạn cuốn sách, tôi xin trân trọng gửi lời cảm tạ sâu sắc tới toàn thể những người có liên quan đã tận tình giúp đỡ. Tháng Năm năm Bình Thành thứ 5. (Không bán.)</p><p class="lang-ja">本書は、武産合気翁認可　砂泊気海合気道導師の技を後世に末永く残し、受け継いで頂きたく作成いたしました。本書作成にあたり、御協力頂きました関係者各位にこの場をもちまして厚く御礼申し上げます。平成五年五月（非売品）</p></div>
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p087_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+</article>
+<article class="tech" id="p89">
+<figure class="fig full"><img src="/assets/books/aikido_densho_vi/img/p089_full.jpg" alt="" loading="lazy" decoding="async"></figure>
+</article>
+</section>
+
+    <div class="chapter-nav">
+      <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> Thư Viện Sách</a>
+      <a href="#book-content">Về đầu trang <i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+  </main>
+</div>
+
+<script>
+// language toggle
+document.getElementById('lang-toggle').addEventListener('click', function(){
+  document.body.classList.toggle('show-en');
+  this.classList.toggle('on');
+  this.innerHTML = document.body.classList.contains('show-en')
+    ? '<i class="fa-solid fa-language"></i> VI'
+    : '<i class="fa-solid fa-language"></i> JP';
+});
+// theme
+var themeBtn = document.getElementById('theme-toggle');
+var savedTheme = localStorage.getItem('densho-theme');
+if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+themeBtn.addEventListener('click', function(){
+  var d = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (d) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('densho-theme','light'); this.innerHTML = '<i class="fa-solid fa-moon"></i>'; }
+  else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('densho-theme','dark'); this.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+});
+// font size
+var fs = parseInt(localStorage.getItem('densho-fs') || '17');
+function applyFs(){ document.querySelector('.book-content').style.fontSize = fs + 'px'; }
+applyFs();
+document.getElementById('font-up').addEventListener('click', function(){ fs = Math.min(24, fs+1); localStorage.setItem('densho-fs', fs); applyFs(); });
+document.getElementById('font-down').addEventListener('click', function(){ fs = Math.max(13, fs-1); localStorage.setItem('densho-fs', fs); applyFs(); });
+// progress
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+  document.getElementById('progress-bar').style.width = p + '%';
+});
+// TOC active
+var links = document.querySelectorAll('.toc-nav a');
+var sections = document.querySelectorAll('section.chapter');
+window.addEventListener('scroll', function(){
+  var pos = window.scrollY + 120;
+  sections.forEach(function(sec){
+    if (sec.offsetTop <= pos && sec.offsetTop + sec.offsetHeight > pos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var al = document.querySelector('.toc-nav a[href="#' + sec.id + '"]');
+      if (al) al.classList.add('active');
+    }
+  });
+});
+</script>
+
+
+<div id="pdf-overlay" role="dialog" aria-modal="true" aria-label="Trình đọc PDF">
+  <div class="pdf-toolbar">
+    <span class="pdf-title"><i class="fa-solid fa-file-pdf"></i> <span id="pdf-title-text">Đọc bản in</span></span>
+    <button class="pdf-btn" id="pdf-prev" title="Trang trước"><i class="fa-solid fa-chevron-up"></i></button>
+    <span id="pdf-pageinfo" style="font-size:.85rem;min-width:88px;text-align:center;">&ndash; / &ndash;</span>
+    <button class="pdf-btn" id="pdf-next" title="Trang sau"><i class="fa-solid fa-chevron-down"></i></button>
+    <button class="pdf-btn" id="pdf-zoom-out" title="Thu nhỏ">A-</button>
+    <button class="pdf-btn" id="pdf-zoom-in" title="Phóng to">A+</button>
+    <a class="pdf-btn" id="pdf-download" href="#" download><i class="fa-solid fa-download"></i> Tải về</a>
+    <button class="pdf-btn" id="pdf-close" title="Đóng (Esc)"><i class="fa-solid fa-xmark"></i> Đóng</button>
+  </div>
+  <div id="pdf-pages"></div>
+  <div id="pdf-status">Đang tải…</div>
+</div>
+
+<script>
+/* ==== Inline PDF viewer (shared component) ==== */
+(function () {
+  var overlay = document.getElementById('pdf-overlay');
+  if (!overlay) return;
+  var pagesEl  = document.getElementById('pdf-pages');
+  var statusEl = document.getElementById('pdf-status');
+  var infoEl   = document.getElementById('pdf-pageinfo');
+  var dlLink   = document.getElementById('pdf-download');
+  var dlAnchor = document.querySelector('.header-controls a[download]') ||
+                 document.querySelector('a[href$=".pdf"]');
+  var url = overlay.getAttribute('data-pdf') || (dlAnchor && dlAnchor.getAttribute('href'));
+  if (!url) return;
+  if (dlLink) dlLink.href = url;
+  var titleEl = document.getElementById('pdf-title-text');
+  if (titleEl) {
+    var t = (document.title || '').split('\u00b7')[0].trim();
+    titleEl.textContent = overlay.getAttribute('data-title') || t || '\u0110\u1ecdc b\u1ea3n in';
+  }
+
+  var PDFJS_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+  var libState = 0;                 /* 0 none, 1 loading, 2 ready, 3 failed */
+  var pdfDoc = null, zoom = 1, items = [], current = 1, observer = null;
+  var FAIL = 'Kh\u00f4ng t\u1ea3i \u0111\u01b0\u1ee3c tr\u00ecnh \u0111\u1ecdc PDF. H\u00e3y d\u00f9ng n\u00fat \u201cT\u1ea3i v\u1ec1\u201d.';
+
+  function setStatus(msg) {
+    if (!statusEl) return;
+    if (msg) { statusEl.textContent = msg; statusEl.style.display = 'block'; }
+    else { statusEl.style.display = 'none'; }
+  }
+
+  function loadLib(cb) {
+    if (libState === 2) return cb();
+    if (libState === 3) { setStatus(FAIL); return; }
+    if (libState === 1) {
+      var t = setInterval(function () {
+        if (libState === 1) return;
+        clearInterval(t);
+        if (libState === 2) cb(); else setStatus(FAIL);
+      }, 80);
+      return;
+    }
+    libState = 1;
+    var s = document.createElement('script');
+    s.src = PDFJS_BASE + 'pdf.min.js';
+    s.onload = function () {
+      try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_BASE + 'pdf.worker.min.js'; } catch (e) {}
+      libState = 2; cb();
+    };
+    s.onerror = function () { libState = 3; setStatus(FAIL); };
+    document.head.appendChild(s);
+  }
+
+  function fit() {
+    var avail = pagesEl.clientWidth - 28;
+    if (!avail || avail < 100) avail = 640;
+    return Math.max(0.35, Math.min(avail / 420, 1.7));   /* A5 width ~= 420pt */
+  }
+
+  function draw(it) {
+    if (!it || it.done || it.busy) return;
+    it.busy = true;
+    it.page.render({ canvasContext: it.canvas.getContext('2d'),
+                     viewport: it.page.getViewport({ scale: it.scale }) }).promise
+      .then(function () { it.done = true; it.busy = false; })
+      .catch(function () { it.busy = false; });
+  }
+
+  /* the counter follows the scroll position, not the pre-render margin */
+  function updateCurrent() {
+    if (!items.length) return;
+    var top = pagesEl.scrollTop + 20, best = 1, bd = Infinity;
+    for (var i = 0; i < items.length; i++) {
+      var d = Math.abs(items[i].canvas.offsetTop - top);
+      if (d < bd) { bd = d; best = items[i].n; }
+    }
+    if (best !== current) {
+      current = best;
+      infoEl.textContent = current + ' / ' + pdfDoc.numPages;
+    }
+  }
+
+  function observe() {
+    if (observer) observer.disconnect();
+    if (!('IntersectionObserver' in window)) { items.forEach(draw); return; }
+    observer = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var n = +e.target.dataset.page;
+        draw(items[n - 1]);
+        if (items[n]) draw(items[n]);          /* pre-render next */
+      });
+    }, { root: pagesEl, rootMargin: '700px 0px' });
+    items.forEach(function (it) { observer.observe(it.canvas); });
+  }
+
+  function build() {
+    pagesEl.innerHTML = '';
+    items = []; current = 1;
+    setStatus('\u0110ang d\u1ef1ng trang\u2026');
+    var chain = Promise.resolve();
+    for (var i = 1; i <= pdfDoc.numPages; i++) {
+      (function (n) {
+        chain = chain.then(function () {
+          return pdfDoc.getPage(n).then(function (page) {
+            var s = fit() * zoom;
+            var vp = page.getViewport({ scale: s });
+            var cv = document.createElement('canvas');
+            cv.className = 'pdf-page';
+            cv.dataset.page = n;
+            cv.width = Math.floor(vp.width);
+            cv.height = Math.floor(vp.height);
+            cv.style.width = Math.floor(vp.width) + 'px';
+            cv.style.height = Math.floor(vp.height) + 'px';
+            pagesEl.appendChild(cv);
+            items.push({ n: n, canvas: cv, page: page, scale: s, done: false, busy: false });
+          });
+        });
+      })(i);
+    }
+    chain.then(function () {
+      setStatus(null);
+      infoEl.textContent = '1 / ' + pdfDoc.numPages;
+      observe();
+      updateCurrent();
+    }).catch(function (e) { setStatus('L\u1ed7i: ' + (e && e.message ? e.message : e)); });
+  }
+
+  function goto(n) {
+    if (!pdfDoc) return;
+    n = Math.max(1, Math.min(pdfDoc.numPages, n));
+    var it = items[n - 1];
+    if (it) { pagesEl.scrollTop = it.canvas.offsetTop - 12; current = n; infoEl.textContent = n + ' / ' + pdfDoc.numPages; }
+  }
+
+  function refit() {
+    if (!pdfDoc || !items.length) return;
+    var s = fit() * zoom;
+    items.forEach(function (it) {
+      var vp = it.page.getViewport({ scale: s });
+      it.scale = s; it.done = false;
+      it.canvas.width = Math.floor(vp.width);
+      it.canvas.height = Math.floor(vp.height);
+      it.canvas.style.width = Math.floor(vp.width) + 'px';
+      it.canvas.style.height = Math.floor(vp.height) + 'px';
+    });
+    var pr = pagesEl.getBoundingClientRect();
+    items.forEach(function (it) {
+      var r = it.canvas.getBoundingClientRect();
+      if (r.bottom > pr.top - 700 && r.top < pr.bottom + 700) draw(it);
+    });
+  }
+
+  function open() {
+    overlay.classList.add('open');
+    document.body.classList.add('pdf-lock');
+    if (pdfDoc) return;
+    setStatus('\u0110ang t\u1ea3i t\u00e0i li\u1ec7u\u2026');
+    loadLib(function () {
+      window.pdfjsLib.getDocument(url).promise
+        .then(function (d) { pdfDoc = d; build(); })
+        .catch(function (e) { setStatus('Kh\u00f4ng m\u1edf \u0111\u01b0\u1ee3c PDF: ' + (e && e.message ? e.message : e)); });
+    });
+  }
+  function close() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('pdf-lock');
+  }
+
+  var openBtn = document.getElementById('pdf-open');
+  if (openBtn) openBtn.addEventListener('click', function (e) { e.preventDefault(); open(); });
+  var bind = function (id, fn) { var el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+  bind('pdf-close', close);
+  bind('pdf-prev', function () { goto(current - 1); });
+  bind('pdf-next', function () { goto(current + 1); });
+  bind('pdf-zoom-in', function () { zoom = Math.min(3, zoom + 0.2); refit(); });
+  bind('pdf-zoom-out', function () { zoom = Math.max(0.4, zoom - 0.2); refit(); });
+  document.addEventListener('keydown', function (e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'PageDown') goto(current + 1);
+    else if (e.key === 'PageUp') goto(current - 1);
+  });
+  var st = false;
+  pagesEl.addEventListener('scroll', function () {
+    if (st) return;
+    st = true;
+    requestAnimationFrame(function () { st = false; updateCurrent(); });
+  });
+  var rt;
+  window.addEventListener('resize', function () {
+    if (!overlay.classList.contains('open')) return;
+    clearTimeout(rt); rt = setTimeout(refit, 220);
+  });
+})();
+</script>
+</body>
+</html>
