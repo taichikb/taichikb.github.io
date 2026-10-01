@@ -37,17 +37,12 @@ on:
   # A 6-hour cadence always puts one slot overnight in Vietnam; that is
   # unavoidable. Drop the '18' entry to get 3/day instead (07:05/13:05/19:05).
   # GitHub cron can drift a few minutes, hence :05 rather than :00.
+  #
+  # Deliberately NOT triggered by pushes. The queue advances on time, not on
+  # content edits - otherwise fixing a typo in one article would publish a
+  # post. Use workflow_dispatch when you want to advance it right away.
   schedule:
     - cron: '5 0,6,12,18 * * *'
-  push:
-    branches: [main]
-    paths:
-      - 'vi/articles/**/index.html'
-      - 'techniques/**/index.html'
-      - 'articles/**/index.html'
-      - 'facebook/media/generated/**'
-      - 'scripts/publish_to_fb.py'
-      - '.github/workflows/facebook-autopost.yml'
   workflow_dispatch:
 
 jobs:

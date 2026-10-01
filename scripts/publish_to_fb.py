@@ -869,14 +869,23 @@ def emit_mode(repo, cfg):
     queue_dir = os.path.join(repo, "facebook", "queue")
     os.makedirs(queue_dir, exist_ok=True)
 
+    # queue.json is a LEAN index: the long message text lives only in
+    # next.json. With 200+ posts the full payload was ~500 KB and the workflow
+    # rewrites this file on every run, which would add megabytes of git history
+    # a day for no benefit - Make only ever reads today's item from next.json.
+    LEAN = ("key", "slug", "date", "status", "title", "link", "image_url", "site")
+    lean_items = [{k: it.get(k, "") for k in LEAN} for it in items]
+
     queue_doc = {
         "generated": state["generated"],
         "timezone": "Asia/Ho_Chi_Minh (UTC+7)",
-        "count": len(items),
-        "items": items,
+        "count": len(lean_items),
+        "note": "Lean index. The full post payload for today is in next.json.",
+        "items": lean_items,
     }
     with open(os.path.join(queue_dir, "queue.json"), "w", encoding="utf-8") as fh:
         json.dump(queue_doc, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
 
     due = next((it for it in items if it["date"] == today.isoformat()), None)
     next_doc = {
