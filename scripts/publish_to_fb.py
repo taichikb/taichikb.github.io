@@ -43,10 +43,15 @@ except Exception:
     pass
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-REPO_DEFAULT = r"D:\Taichi-Health-Finance\Intranet\deploy"
+# The site repo this script lives in (scripts/ is always one level below the
+# root). Derived from __file__ on purpose: GitHub Actions checks the site out
+# to a different absolute path on Linux, and a hardcoded Windows path made
+# content_paths() walk a directory that does not exist - so --emit silently
+# reported "no unpublished posts found" in CI.
+REPO_DEFAULT = os.path.dirname(HERE)
 SITE_BASE_DEFAULT = "https://taichinow.github.io"
 CONFIG_PATH = os.path.join(HERE, "fb_publish_config.json")
-LOG_PATH = os.path.join(os.path.dirname(HERE), "logs", "fb_publish_log.jsonl")
+LOG_PATH = os.path.join(REPO_DEFAULT, "logs", "fb_publish_log.jsonl")
 
 # Make.com webhook zones. A token only lives in one zone; we try them in order
 # and stop at the first one that answers. A 404 means nothing was published,
@@ -906,6 +911,9 @@ def content_paths(repo, cfg):
     for rel in dirs:
         root_dir = os.path.join(repo, rel.replace("/", os.sep))
         if not os.path.isdir(root_dir):
+            # Loud on purpose: a wrong --repo used to make this fail silently
+            # and surface only as "no unpublished posts found".
+            print("[warn] source dir missing, skipping: %s" % root_dir)
             continue
         for root, _dirs, files in os.walk(root_dir):
             if "index.html" in files:
