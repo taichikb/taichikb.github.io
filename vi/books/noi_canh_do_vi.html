@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người (Neijing Tu) | TaichiNOW</title>
+<meta name="description" content="Bản dịch &amp; khảo cứu tiếng Việt về Nội Cảnh Đồ (Neijing Tu) — bức đồ nội đan nổi tiếng nhất về cơ thể người, khắc trên bia đá Bạch Vân Quán năm 1886. Nhâm Mạch &amp; Đốc Mạch, Tam Quan, Hà Xa, và đối chiếu với lý thuyết kinh lạc hiện đại.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 310px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.45rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 0.98rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.book-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.book-tag {
+  background: #f5f5f4;
+  color: #44403c;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: 1px solid #e7e5e4;
+}
+body.dark-mode .book-tag {
+  background: #262626;
+  color: #d4d4d4;
+  border-color: #404040;
+}
+.chapter-block {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.95rem;
+  color: var(--text-primary);
+  margin: 0.2rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fefce8;
+  border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.tech-table th, .tech-table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  text-align: left;
+}
+.tech-table th {
+  background: #f8fafc;
+  color: var(--accent-crimson);
+  font-weight: 600;
+}
+.reader-tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+.tool-btn {
+  background: #fff;
+  border: 1px solid #d6d3d1;
+  color: #44403c;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+body.dark-mode .tool-btn {
+  background: #262626;
+  border-color: #404040;
+  color: #e5e5e5;
+}
+.tool-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+
+.book-layout, .main-container {
+  display: block !important; max-width: 900px !important;
+  margin: 0 auto !important; padding: 2rem 1.5rem !important;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+body.dark-mode .page-nav a.disabled { color: #555; }
+
+.vn-fig{margin:1.9rem 0;text-align:center}
+.vn-fig img{max-width:100%;height:auto;border:1px solid #e7e5e4;padding:8px;background:#fff}
+.vn-fig figcaption{font-size:.85rem;color:#78716c;margin-top:.6rem;font-style:italic;line-height:1.6}
+body.dark-mode .vn-fig img{background:#1a1a1a;border-color:#2e2e2e}
+body.dark-mode .vn-fig figcaption{color:#a8a29e}
+.vn-fig.tall{max-width:460px;margin-left:auto;margin-right:auto}
+.vn-two{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;align-items:start;margin:1.6rem 0}
+.vn-two .vn-fig{margin:0}
+@media(max-width:720px){.vn-two{grid-template-columns:1fr}}
+.vn-poem{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.05rem;line-height:2.1;
+  background:#fafaf9;border:1px solid #e7e5e4;border-radius:10px;padding:1.2rem 1.5rem;margin:1.5rem 0}
+.vn-poem .tr{display:block;font-family:inherit;font-size:.9rem;color:#78716c;font-style:italic;line-height:1.7}
+body.dark-mode .vn-poem{background:#1a1a1a;border-color:#2e2e2e}
+body.dark-mode .vn-poem .tr{color:#a8a29e}
+.vn-cjk{font-family:'Noto Serif SC','Songti SC',serif}
+
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/">Trang Chủ</a>
+    <a href="/vi/techniques/">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/">Video</a>
+    <a href="/vi/podcast/">Podcast</a>
+    <a href="/vi/philosophy/">Triết Lý</a>
+    <a href="/vi/history/">Lịch Sử</a>
+    <a href="/vi/contact/">Liên Hệ</a>
+    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
+<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
+</nav>
+</header>
+
+<div class="reader-layout">
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn: Bức Đồ Nổi Tiếng Nhất Về Cơ Thể Người</a></li>
+      <li class="toc-item"><a href="#nguon-goc" class="toc-link">Nguồn Gốc &amp; Xuất Xứ</a></li>
+      <li class="toc-item"><a href="#cach-doc" class="toc-link">Cách Đọc Bức Đồ: Từ Dưới Lên</a></li>
+      <li class="toc-item"><a href="#kinh-mach" class="toc-link">Bản Đồ Kinh Mạch Trong Tranh</a></li>
+      <li class="toc-item"><a href="#hien-dai" class="toc-link">Đối Chiếu Lý Thuyết Kinh Lạc Hiện Đại</a></li>
+      <li class="toc-item"><a href="#tu-lieu" class="toc-link">Tư Liệu &amp; Nguồn Tham Khảo</a></li>
+    </ul>
+  </details>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/vi/">Trang Chủ</a>
+    <span class="sep">/</span>
+    <a href="/vi/books/">Thư Viện Sách</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người</span>
+  </nav>
+
+  <main class="reader-content">
+
+    <div class="book-hero">
+      <span class="book-badge">Đồ Hình Nội Đan Đạo Gia &middot; Bia Đá Bạch Vân Quán 1886</span>
+      <h1>Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người</h1>
+      <div class="book-orig-title">內景圖 &middot; 內經圖 &middot; Neijing Tu (Chart of the Inner Landscape)</div>
+      <div class="book-author-meta">
+        <strong>Nguyên tác:</strong> Khuyết danh — truyền thống Nội đan (Neidan) Đạo gia<br>
+        <strong>Nguồn bản khắc:</strong> Bia đá năm 1886 tại Bạch Vân Quán (白雲觀), Bắc Kinh<br>
+        <strong>Biên khảo &amp; dịch tiếng Việt:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW
+      </div>
+      <div class="book-tags">
+        <span class="book-tag"><i class="fa-solid fa-mountain"></i> Nội Đan (Neidan)</span>
+        <span class="book-tag"><i class="fa-solid fa-water"></i> Nhâm Mạch &amp; Đốc Mạch</span>
+        <span class="book-tag"><i class="fa-solid fa-circle-notch"></i> Tiểu Chu Thiên</span>
+        <span class="book-tag"><i class="fa-solid fa-door-closed"></i> Tam Quan (三關)</span>
+        <span class="book-tag"><i class="fa-solid fa-fire-burner"></i> Tam Đan Điền</span>
+      </div>
+    </div>
+
+    <section id="loi-dan" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Dẫn Nhập</span>
+        <h2 class="chapter-title">Lời Dẫn: Bức Đồ Nổi Tiếng Nhất Về Cơ Thể Người</h2>
+      </div>
+      <p>Trong kho tàng đồ hình của Đạo gia, <strong>Nội Cảnh Đồ</strong> (內景圖, còn viết 內經圖 — Neijing Tu)
+      là bức họa nổi tiếng nhất về cơ thể con người. Trên một tờ giấy duy nhất, toàn bộ hình hài con người
+      được ẩn giấu bên trong một phong cảnh: đầu là đỉnh núi, cột sống là một dòng sông uốn lượn, tim là một
+      vì sao đang xoay, và các tạng phủ là những cung điện, thửa ruộng và lò luyện.</p>
+      <p>Đây không đơn thuần là một bức tranh giải phẫu. Nó là <strong>bản đồ của phép luyện Nội đan</strong> —
+      con đường vận hành <em>Tinh – Khí – Thần</em> — đồng thời cũng là hình ảnh được yêu thích nhất của
+      <strong>hệ kinh lạc</strong> trong thế giới Hán ngữ. Bức đồ vẽ con đường vận chuyển tinh khí bằng hình ảnh
+      dòng nước chảy, và dùng cửa thành, cây cầu, lầu cao để chỉ những nơi then chốt mà tinh khí phải đi qua.</p>
+      <div class="quote-box">
+        &ldquo;Nhà ta khéo trồng thửa ruộng nhà mình — trong có mầm linh sống vạn năm.&rdquo;
+        <div style="text-align: right; margin-top: 6px; font-weight: 600;">— Câu thơ khắc trên Nội Cảnh Đồ</div>
+      </div>
+    </section>
+
+    <section id="nguon-goc" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 1</span>
+        <h2 class="chapter-title">Nguồn Gốc &amp; Xuất Xứ</h2>
+      </div>
+      <p>Bức đồ có nhiều tên gọi: <span class="vn-cjk">內景圖</span> &ldquo;Đồ cảnh trong&rdquo; (Nội Cảnh Đồ),
+      <span class="vn-cjk">內經圖</span> &ldquo;Đồ kinh trong&rdquo; (Nội Kinh Đồ) — trong tiếng Anh thường gọi là
+      <em>Chart of the Inner Landscape</em> hoặc <em>Chart of the Inner Warp</em>. Gốc rễ của nó truy ngược về
+      <span class="vn-cjk">黃庭經</span> <strong>Hoàng Đình Kinh</strong> (Kinh Hoàng Đình, thế kỷ IV) — một thư tịch
+      hành thiền mô tả cơ thể như một thế giới bên trong gồm thần linh và cung điện — và về các đồ hình cơ thể
+      của Yến La Tử <span class="vn-cjk">煙蘿子</span> (khoảng thế kỷ X).</p>
+      <p>Bản hiện tồn có niên đại muộn. Bản hoành tráng cổ nhất còn lưu là <strong>bia đá khắc năm 1886</strong>
+      trong sân <strong>Bạch Vân Quán</strong> (白雲觀 — Abbey of the White Clouds) ở Bắc Kinh, đặt cạnh bức
+      <strong>Tu Chân Đồ</strong> (修真圖 — Đồ Tu Chân) nổi tiếng hơn. Lời bạt trên bia kể rằng đạo sĩ
+      <strong>Lưu Thành Ấn</strong> (劉誠印, hiệu Tố Vân đạo nhân 素雲道人) tình cờ thấy bức tranh trên một cuộn lụa cũ
+      trong thư phòng của một ngôi chùa trên <strong>Tung Sơn</strong> (嵩山, Hà Nam), nhận ra rằng &ldquo;gân cốt khớp
+      đốt, kinh mạch rõ ràng phân minh, mỗi chỗ đều chứa khiếu yếu&rdquo;, bèn cho khắc lên đá để lưu truyền rộng rãi.
+      Một cuộn tô màu được vẽ tại <span class="vn-cjk">如意館</span> (Như Ý Quán) của hoàng cung nhà Thanh hiện được
+      lưu giữ tại Bảo tàng Lịch sử Y học Cổ truyền Trung Quốc ở Bắc Kinh.</p>
+      <div class="key-point">
+        <strong>Giải phẫu hay Đan đạo?</strong> Bức đồ đôi khi được gọi là &ldquo;Đồ Cảnh Trong&rdquo; và đọc như một
+        bản đồ tạng phủ — nhưng đó chỉ là một nửa ý nghĩa. Với tư cách minh họa <em>y học</em>, nó trình bày quan hệ
+        giữa các tạng phủ; với tư cách đồ hình <em>nội đan</em>, nó trình bày một phép tu luyện. Cùng một hình ảnh,
+        hai cách đọc: thầy thuốc nhìn tạng phủ và kinh mạch, người tu luyện nhìn hành trình của Đan.
+      </div>
+    </section>
+
+    <section id="cach-doc" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 2</span>
+        <h2 class="chapter-title">Cách Đọc Bức Đồ: Từ Dưới Lên</h2>
+      </div>
+      <p>Như hầu hết các đồ hình cơ thể của Nội đan, bức đồ được đọc <strong>từ dưới lên trên</strong>, theo ba
+      giai đoạn của phép tu luyện. Ba phần chính của nó là <strong>Hạ – Trung – Thượng Đan Điền</strong>
+      (三丹田, tam đan điền).</p>
+
+      <figure class="vn-fig tall">
+  <img src="/assets/images/noi-canh-do/neijing-tu-bw.jpg" alt="N&#7897;i C&#7843;nh &#272;&#7891; &mdash; b&#7843;n kh&#7855;c g&#7895; &#273;en tr&#7855;ng c&#7911;a bia &#273;&#225; B&#7841;ch V&#226;n Qu&#225;n 1886">
+  <figcaption>Nội Cảnh Đồ ở dạng khắc gỗ đen trắng cổ điển. Toàn bộ cơ thể được vẽ như một ngọn núi;
+  cột sống chạy như một dòng sông dọc bên phải. Hãy đọc từ bánh xe nước ở chân lên tới các đỉnh núi trên đầu.</figcaption>
+</figure>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Hạ Đan Điền — Đảo ngược dòng nước</h3>
+      <p>Ở phần dưới cùng, một bé trai và một bé gái — <strong>Dương và Âm</strong> — đang đạp bánh xe nước
+      ở đáy cột sống (尾閭, Vĩ Lư, tức <em>weilü</em>). Thay vì để tinh (精, <em>jing</em>) chảy xuống và hao tán,
+      hai em <strong>đảo ngược dòng chảy</strong>: dòng nước leo lên cột sống chính là
+      <span class="vn-cjk">河車</span> <strong>Hà Xa</strong> (<em>heche</em> — &ldquo;xe sông&rdquo;), và nước biến thành
+      một lò lửa nung nóng <strong>Hạ Đan Điền</strong>. Bốn ký hiệu âm dương bên cạnh tượng trưng cho bốn hành
+      bên ngoài (Mộc, Hỏa, Kim, Thủy); hành thứ năm (Thổ) chính là sự hòa hợp của chúng. Bên trái là hình ảnh
+      <strong>trâu sắt cày ruộng, gieo đồng tiền vàng</strong> — hạt giống đầu tiên của Kim Đan.</p>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Trung Đan Điền — Ngưu Lang và Chức Nữ</h3>
+      <p>Ở trung tâm, tại vùng tim, <strong>Trung Đan Điền</strong> được vẽ như một đường xoáy ốc. Phía trên là
+      <strong>Ngưu Lang</strong> (chàng chăn trâu) đang giữ chòm sao Bắc Đẩu; phía dưới là <strong>Chức Nữ</strong>
+      đang dệt vải. Trong câu chuyện cổ, hai người chỉ gặp nhau mỗi năm một lần, qua chiếc cầu Ô Thước. Trong ngôn ngữ
+      Đan đạo, họ không phải là đôi tình nhân mà là <strong>Tâm và Thận</strong> — Hỏa và Thủy, Ly và Khảm — và sự
+      giao hòa của họ (心腎交會, &ldquo;tâm thận tương giao&rdquo;) chính là khoảnh khắc Đan được sinh ra.</p>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Thượng Đan Điền — Nê Hoàn và hai mạch lớn</h3>
+      <p>Phần trên cùng là <strong>Thượng Đan Điền</strong>, tức <span class="vn-cjk">泥丸宮</span>
+      <strong>Nê Hoàn Cung</strong> (<em>niwan</em>) trên đầu. <strong>Lầu mười hai tầng</strong> là cổ họng và khí quản;
+      phía sau là <strong>Ngọc Chẩm</strong> ở nền sọ. Tại đây hai mạch lớn cuối cùng cũng xuất hiện:
+      <strong>Đốc Mạch</strong> (督脈, <em>Du Mai</em>) nổi lên ở phía sau, và <strong>Nhâm Mạch</strong>
+      (任脈, <em>Ren Mai</em>) bắt đầu ở phía trước. Bên cạnh Đốc Mạch là <strong>Lão Tử</strong>, chòm râu trắng dài
+      chấm đất; bên cạnh Nhâm Mạch là nhà sư <strong>Bồ Đề Đạt Ma</strong>, hai tay giơ lên đỡ trời. Hai chấm tròn
+      là đôi mắt — Mặt Trời và Mặt Trăng, Âm và Dương.</p>
+
+      <div class="vn-two">
+  <figure class="vn-fig">
+    <img src="/assets/images/noi-canh-do/neijing-tu-color.jpg" alt="B&#7843;n N&#7897;i C&#7843;nh &#272;&#7891; t&#244; m&#224;u">
+    <figcaption>Bản cuộn tô màu — cùng một phong cảnh, được vẽ như một cơ thể của nước, mây và lửa.</figcaption>
+  </figure>
+  <figure class="vn-fig">
+    <img src="/assets/images/noi-canh-do/neijing-tu-painting.jpg" alt="Tranh v&#7869; N&#7897;i C&#7843;nh &#272;&#7891; ph&#7893; bi&#7871;n">
+    <figcaption>Bản tranh vẽ phổ biến, với dòng tinh khí sáng rực chảy ngược lên cột sống tới đỉnh đầu.</figcaption>
+  </figure>
+</div>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Bài thơ ẩn trong tranh</h3>
+      <p>Bức đồ mang theo những vần thơ vừa là thi ca vừa là chỉ dẫn. Hai câu nổi tiếng nhất:</p>
+      <div class="vn-poem">
+        <span class="vn-cjk">鐵牛畊地種金錢</span> <span class="tr">Trâu sắt cày ruộng, gieo đồng tiền vàng;</span>
+        <span class="vn-cjk">刻石兒童把貫串</span> <span class="tr">Đứa trẻ khắc đá cầm xâu tiền.</span>
+        <span class="vn-cjk">一粒粟中藏世界</span> <span class="tr">Một hạt kê chứa cả thế giới;</span>
+        <span class="vn-cjk">半升鐺内煮山川</span> <span class="tr">Nửa thăng nồi nấu sông núi.</span>
+      </div>
+      <p>Tên của các vị <em>thần tạng phủ</em> viết quanh Trung Đan Điền đều xuất phát từ chương tám của
+      <strong>Hoàng Đình Kinh</strong>: Tâm là <em>Đan Nguyên</em> &ldquo;Nguồn Đan&rdquo;, Thận là <em>Huyền Minh</em>
+      &ldquo;Huyền Diệu U Minh&rdquo;, Can là <em>Long Yên</em> &ldquo;Rồng Khói&rdquo;, Phế là <em>Hạo Hoa</em>
+      &ldquo;Sáng Rực Rỡ&rdquo;, Tỳ là <em>Thường Tại</em> &ldquo;Luôn Hiện Hữu&rdquo;, và Đởm là <em>Long Diệu</em>
+      &ldquo;Rồng Chói Lọi&rdquo;. Đây không phải là các tạng mà là <strong>các chức năng được nhân cách hóa</strong> —
+      thân–tâm của truyền thống được vẽ như một triều đình thiên giới.</p>
+    </section>
+
+    <section id="kinh-mach" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 3</span>
+        <h2 class="chapter-title">Bản Đồ Kinh Mạch Trong Tranh</h2>
+      </div>
+      <p>Dù không phải là sách giáo khoa châm cứu, bức đồ được xây dựng trên <strong>hệ kinh lạc</strong>
+      (經絡, <em>jing-luo</em>) — và đặc biệt trên hai &ldquo;kỳ kinh bát mạch&rdquo; mà các nhà Đan đạo dùng trên hết:</p>
+      <ul style="line-height:1.9;">
+        <li><strong>Đốc Mạch</strong> <span class="vn-cjk">督脈</span> — mạch chạy lên dọc lưng và cột sống. Trong tranh,
+          nó là <strong>dòng sông</strong> leo lên ngọn núi, và là lộ trình của Hà Xa.</li>
+        <li><strong>Nhâm Mạch</strong> <span class="vn-cjk">任脈</span> — mạch chạy lên đường giữa phía trước. Nó gặp
+          Đốc Mạch ở lưỡi và vòm miệng — tức <strong>Cầu Ô Thước</strong> (鵲橋), nơi duy nhất vòng tuần hoàn có thể khép kín.</li>
+        <li><strong>Tiểu Chu Thiên</strong> <span class="vn-cjk">小周天</span> — vòng tuần hoàn khép kín hình thành khi
+          hơi thở và ý niệm dẫn tinh khí lên Đốc Mạch rồi trở xuống Nhâm Mạch. Toàn bộ bức đồ chính là vòng tuần hoàn đó.</li>
+        <li><strong>Tam Quan</strong> <span class="vn-cjk">三關</span> (<em>sanguan</em>) — ba cửa ải hẹp trên đường đi lên:
+          <strong>Vĩ Lư</strong> <span class="vn-cjk">尾閭</span> ở xương cụt, <strong>Giáp Tích</strong>
+          <span class="vn-cjk">夾脊</span> giữa hai thận, và <strong>Ngọc Chẩm</strong> <span class="vn-cjk">玉枕</span>
+          ở nền sọ.</li>
+        <li><strong>Tam Đan Điền</strong> <span class="vn-cjk">三丹田</span> — Hạ điền ở bụng (Khí Hải), Trung điền ở tim,
+          và Thượng điền ở đầu.</li>
+      </ul>
+      <p>Mọi thứ còn lại trong tranh — con trâu, khung cửi, ngọn tháp, các vị tiên — đều là <strong>biểu tượng</strong>
+      cho một giai đoạn của cùng một hành trình. Hãy đọc cột sống như con đường, Tam Quan như ba trạm gác, và
+      Tiểu Chu Thiên như chuyến đi vòng tròn.</p>
+    </section>
+
+    <section id="hien-dai" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 4</span>
+        <h2 class="chapter-title">Đối Chiếu Lý Thuyết Kinh Lạc Hiện Đại</h2>
+      </div>
+      <p>Y học cổ truyền Trung Quốc mô tả mười hai kinh chính và tám kỳ kinh, qua đó khí và huyết vận hành, và
+      trên đó có khoảng 361 huyệt. Nội Cảnh Đồ chủ yếu trình bày hai kỳ kinh — Nhâm và Đốc — cùng vòng tuần hoàn
+      giữa chúng. Câu hỏi hiện đại hiển nhiên là: <em>liệu có một cấu trúc giải phẫu nào tương ứng với nó không?</em>
+      Sau hơn năm mươi năm nghiên cứu, câu trả lời trung thực là: <strong>chưa từng tìm thấy một &ldquo;cơ quan kinh lạc&rdquo;
+      riêng biệt và duy nhất nào</strong> — nhưng một số hệ giải phẫu có thật lại khớp với nó một cách đáng ngạc nhiên.
+      Bốn hệ quan trọng nhất:</p>
+
+      <figure class="vn-fig">
+  <img src="/assets/images/noi-canh-do/neijing-tu-vs-ans.png" alt="N&#7897;i C&#7843;nh &#272;&#7891; &#273;&#7863;t c&#7841;nh s&#417; &#273;&#7891; h&#7879; th&#7847;n kinh t&#7921; ch&#7911;">
+  <figcaption>Nội Cảnh Đồ đặt cạnh sơ đồ <strong>hệ thần kinh tự chủ</strong> (Autonomic Nervous System). Trục dọc của bức đồ —
+  dòng sông chảy ngược lên lưng, dòng suối chảy xuống phía trước — nằm đúng vào vị trí của chuỗi giao cảm (sympathetic chain)
+  và luồng phó giao cảm phế vị / cùng (vagal &amp; sacral). Sự tương đồng là thật, nhưng đó là sự tương đồng về
+  <em>chức năng và vùng chi phối</em>, không phải về một đường ống duy nhất.</figcaption>
+</figure>
+
+      <table class="tech-table">
+  <thead>
+    <tr><th>Trong bức đồ</th><th>Kinh mạch / Đông y cổ điển</th><th>Tương ứng hiện đại được đề xuất</th><th>Mức độ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sông chảy ngược lên cột sống (Hà Xa)</td><td>Đốc Mạch 督脈 (Mạch Đốc)</td><td>Trục thần kinh tự chủ dọc cột sống (chuỗi giao cảm); &ldquo;Đường Lưng Nông&rdquo; trong hệ mạc cân</td><td>Trùng một phần</td></tr>
+    <tr><td>Dòng chảy xuống đường giữa phía trước</td><td>Nhâm Mạch 任脈 (Mạch Nhâm)</td><td>Mạc cân đường giữa phía trước; vùng phó giao cảm (phế vị &amp; cùng)</td><td>Giả thuyết</td></tr>
+    <tr><td>Vòng khép kín (nối ở lưỡi)</td><td>Tiểu Chu Thiên 小周天</td><td>Mô hình điều hòa vòng kín: mạc cân + phản hồi tự chủ</td><td>Suy diễn</td></tr>
+    <tr><td>Tam Quan 三關</td><td>Các cửa ải trên Đốc Mạch</td><td>Các điểm nghẽn giải phẫu: xương cụt, mạc ngực–thắt lưng, vùng chẩm dưới</td><td>Mô tả</td></tr>
+    <tr><td>Lò lửa / Hạ Đan Điền</td><td>Khí Hải 氣海 (Qihai, Nhâm-6)</td><td>Khoang mạc cân &amp; gian bào vùng bụng dưới; đám rối tự chủ ruột và chậu</td><td>Ẩn dụ</td></tr>
+    <tr><td>Tạng phủ với thần danh</td><td>Tạng Phủ 臟腑 và công năng</td><td>Các tạng cộng với điều hòa thân–tâm / tự chủ của chúng</td><td>Tượng trưng</td></tr>
+    <tr><td>Các huyệt khiếu (竅) ghi trên đồ</td><td>Huyệt đạo (361 huyệt cổ điển)</td><td>Giao điểm các mặt phẳng mạc cân với tính chất điện &amp; cơ học đặc thù</td><td>Có bằng chứng (mạc cân)</td></tr>
+  </tbody>
+</table>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Góc nhìn 1 — Mạc cân: ứng viên hàng đầu</h3>
+      <p>Giả thuyết hiện đại mạnh nhất cho rằng hệ kinh lạc tương ứng với <strong>mô liên kết</strong> của cơ thể.
+      Các tái dựng toàn thân về mạc cân cho thấy những cấu trúc dạng đường có hình dạng và vị trí giống các kinh
+      cổ điển; các nghiên cứu CT và MRI trên cơ thể sống cũng tìm thấy cùng một dạng hình. Hiện tượng
+      <strong>&ldquo;kim bám&rdquo;</strong> và cảm giác <em>đắc khí</em> phụ thuộc vào việc kim thực sự tác động lên mô
+      mạc, và mô liên kết gian cơ truyền tải khoảng 90% lực giữa các cơ. Theo quan điểm này, kinh lạc không phải là
+      một cơ quan riêng mà là <strong>thể liên tục của mạc cân và gian bào</strong> — một &ldquo;nhà&rdquo; vật lý khả dĩ cho
+      cái mà truyền thống gọi là kinh lạc.</p>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Góc nhìn 2 — Hệ thần kinh tự chủ</h3>
+      <p>Bảng đối chiếu ở trên là rõ nhất: trục dọc cao của bức đồ chiếm đúng vùng của thân giao cảm và luồng phó
+      giao cảm. Người tập mô tả Tiểu Chu Thiên như một sự thay đổi <strong>trương lực</strong> — ấm lên, tĩnh lặng,
+      cảm giác lắng xuống — và dây thần kinh phế vị chính là kênh mà những chuyển dịch như vậy chạy qua. &ldquo;Sự đi
+      lên&rdquo; trong tranh nên được đọc như <strong>điều hòa tự chủ</strong> được hình dung như một dòng sông, chứ không
+      phải chất lỏng chảy trong một ống.</p>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Góc nhìn 3 — Kinh mạc cân</h3>
+      <p>Trong <em>Anatomy Trains</em>, Thomas Myers mô tả những <strong>chuỗi mạc cân</strong> liên tục chạy suốt
+      chiều dài cơ thể. Hai chuỗi khớp gọn gàng với bức đồ: <strong>Đường Lưng Nông</strong> (Superficial Back Line:
+      gan bàn chân → bắp chân → gân kheo → cột sống → sọ → lông mày) trùng với <strong>Đốc Mạch</strong>, và
+      <strong>Đường Trước</strong> (Front Line) trùng với <strong>Nhâm Mạch</strong>. Điều này cho Tiểu Chu Thiên một
+      cách đọc cơ sinh học — &ldquo;con đường&rdquo; là một chuỗi mô liên kết, và &ldquo;các cửa&rdquo; là những khớp cứng của nó.</p>
+
+      <h3 style="color:var(--accent-crimson); margin-top:2rem;">Góc nhìn 4 — Kênh gian bào và sinh lý thần kinh của châm cứu</h3>
+      <p>Hai ý tưởng nữa nằm xa hơn trên thang bằng chứng. <strong>Hệ tiền mạch (primo-vascular)</strong> — những
+      &ldquo;ống Bonghan&rdquo; chứa dịch được báo cáo chạy dọc mạch và tạng — sẽ là một câu trả lời thanh nhã, nhưng
+      vẫn <strong>gây tranh cãi và phần lớn chưa được tái lập</strong>. Trong khi đó,
+      <strong>sinh lý thần kinh của châm cứu</strong> thì đã được xác lập vững chắc: kim châm kích thích các sợi
+      A-delta và C mảnh, tác động qua <strong>kiểm soát cổng</strong> theo đốt sống (Melzack &amp; Wall) và ức chế
+      đi xuống, giải phóng opioid nội sinh — nền tảng công trình của Hàn Tế Sinh về giảm đau bằng châm cứu — và
+      làm tăng adenosine tại chỗ. Ở đây, &ldquo;kinh lạc&rdquo; là một <strong>mạng tín hiệu</strong>, không phải một ống dẫn.</p>
+
+      <div class="key-point">
+        <strong>Bức đồ đã đúng điều gì — và lệch ở đâu.</strong><br>
+        <em>Đúng:</em> rằng cơ thể là một mạng lưới liên tục, tự điều hòa; rằng cột sống là một kênh trung tâm của
+        mạng lưới ấy; rằng thân và tâm là một vòng khép kín; và rằng phòng bệnh cùng việc tu dưỡng hằng ngày quan
+        trọng hơn sửa chữa. <em>Lệch:</em> không có một &ldquo;ống kinh lạc&rdquo; giải phẫu duy nhất; con trâu, khung cửi
+        và các vị tiên là <strong>thi ca Đan đạo</strong>, không phải giải phẫu; và kinh lạc của Đông y nên được hiểu
+        như một <strong>bản đồ chức năng</strong> hơn là một cấu trúc vật lý đơn nhất. Vì vậy Nội Cảnh Đồ không phải
+        là một bản vẽ giải phẫu sai — nó là một <strong>loại bản đồ khác</strong>, và là một loại bản đồ bền bỉ lạ thường.
+      </div>
+
+      <div class="quote-box">
+        <strong>Kết luận.</strong> Đọc như khoa học, bức đồ lỏng lẻo về giải phẫu nhưng gợi mở về sinh lý.
+        Đọc như một hình ảnh dạy học, nó vẫn chưa có đối thủ: không sơ đồ hiện đại nào trình bày Tiểu Chu Thiên —
+        Nhâm Mạch, Đốc Mạch, Tam Quan và Tam Đan Điền — với sự tiết kiệm và vẻ đẹp như vậy. Nghiên cứu hiện đại không
+        bác bỏ bức tranh, mà <strong>dịch lại nó</strong> sang ngôn ngữ của mạc cân, hệ thần kinh tự chủ và
+        sinh lý thần kinh của châm cứu.
+      </div>
+    </section>
+
+    <section id="tu-lieu" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phụ Lục</span>
+        <h2 class="chapter-title">Tư Liệu &amp; Nguồn Tham Khảo</h2>
+      </div>
+      <p><strong>Nguồn gốc &amp; cách đọc bức đồ:</strong> Fabrizio Pregadio, <em>The Taoist Tradition</em> (Golden
+      Elixir Press) và &ldquo;Neijing tu (Chart of the Inner Warp)&rdquo;; Livia Kohn, <em>Taoist Views of the Body</em>;
+      Catherine Despeux, &ldquo;Nei-ching T'u and Hsiu-chen T'u&rdquo;; Louis Komjathy, bản dịch các đề tự của
+      <em>Diagram of the Inner Channels</em>; Joseph Needham, <em>Science and Civilisation in China</em>, tập V;
+      Kristofer Schipper, <em>The Taoist Body</em>.</p>
+      <p><strong>Lý thuyết kinh lạc hiện đại:</strong> Helene Langevin và cộng sự về châm cứu và mạng mô liên kết / mạc cân;
+      Thomas Myers, <em>Anatomy Trains</em>; Melzack &amp; Wall về kiểm soát cổng; Hàn Tế Sinh về giảm đau bằng châm cứu;
+      Kim Bong-han về hệ tiền mạch (còn tranh cãi).</p>
+      <p><strong>Hình ảnh:</strong> các bản sao thuộc phạm vi công cộng của bia đá Bạch Vân Quán và cuộn tô màu thời Thanh.</p>
+      <div class="key-point" style="margin-top:1.6rem;">
+        <strong>Đọc thêm trong thư viện:</strong>
+        <a href="/vi/books/noi_kinh_do_vi.html">Nội Kinh Đồ — Bản Đồ Kinh Mạch Nội Tại</a> &middot;
+        <a href="/vi/books/noi_canh_do_phan_tich_vi.html">Phân Tích Toàn Diện Nội Cảnh Đồ</a> &middot;
+        <a href="/daoist/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/">Huỳnh Đình Nội Cảnh Kinh</a>.
+      </div>
+    </section>
+    
+  </main>
+</div>
+
+<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
+  <p>Thư Viện Sách Thái Cực Quyền & Khí Công Tiếng Việt &middot; TaichiNOW</p>
+  <p>Bản dịch tiếng Việt chuyên sâu từ nguyên tác TS. Dương Tuấn Mẫn (YMAA) © 2026</p>
+</footer>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+</body>
+</html>
