@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Từ Điển Thái Cực Quyền — Thuật Ngữ, Phát Âm & Bát Pháp | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt Từ Điển Thái Cực Quyền (Tai Chi Lexicon) — hệ thống thuật ngữ Thái Cực theo Pinyin, thanh điệu, phát âm tiếng Anh tương đương và định nghĩa, gồm Bát Pháp căn bản và các khái niệm cốt lõi.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
+<style>
+:root {
+  --accent-gold: #0f766e;
+  --accent-crimson: #134e4a;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+}
+body.dark-mode {
+  --bg-primary: #121212; --text-primary: #f5f5f4; --text-secondary: #a8a29e;
+  background-color: #121212 !important; color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #10302f; color: #99f6e4; border-color: #0f766e; }
+body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
+body.dark-mode .tech-table th { background: #134e4a; color: #99f6e4; }
+body.dark-mode .tech-table td { border-color: #333; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0f766e, #134e4a); z-index: 9999; width: 0%; transition: width 0.1s; }
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.45rem; }
+.toc-link { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; line-height: 1.35; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.2s; }
+.toc-link:hover { background: rgba(15, 118, 110, 0.12); color: #134e4a; transform: translateX(3px); }
+.reader-content { flex: 1; min-width: 0; background: var(--bg-primary); line-height: 1.85; font-size: 1.05rem; }
+.book-hero { border-bottom: 2px solid #0f766e; padding-bottom: 2rem; margin-bottom: 3rem; text-align: center; }
+.book-badge { display: inline-block; background: #ccfbf1; color: #134e4a; font-weight: 700; font-size: 0.82rem; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid #99f6e4; }
+.book-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; color: #134e4a; line-height: 1.25; margin: 0 0 0.5rem; }
+.book-orig-title { font-family: 'Noto Serif SC', serif; font-size: 1.25rem; color: #78716c; margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.98rem; color: #57534e; margin-bottom: 1.2rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+.book-tag { background: #f0fdfa; color: #115e59; padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; border: 1px solid #99f6e4; }
+body.dark-mode .book-tag { background: #134e4a; color: #ccfbf1; border-color: #0f766e; }
+.chapter-block { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+.chapter-header { border-left: 4px solid #0f766e; padding-left: 1.2rem; margin-bottom: 1.8rem; }
+.chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: #0f766e; display: block; }
+.chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
+.key-point { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+.tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: #0f766e; text-decoration: none; font-weight: 600; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer { border: 1px solid #e7e5e4; border-radius: 10px; background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem; }
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0f766e; padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
+.page-nav a.home { color: #0f766e; }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/">Trang Chủ</a>
+    <a href="/vi/techniques/">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/">Video</a>
+    <a href="/vi/podcast/">Podcast</a>
+    <a href="/vi/philosophy/">Triết Lý</a>
+    <a href="/vi/history/">Lịch Sử</a>
+    <a href="/vi/contact/">Liên Hệ</a>
+    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
+<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
+</nav>
+</header>
+
+<div class="reader-layout">
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#cau-truc" class="toc-link">Cấu Trúc Từ Điển &amp; Hệ Thống Thanh Điệu</a></li>
+      <li class="toc-item"><a href="#bat-phap" class="toc-link">Bát Pháp — Tám Kỹ Thuật Căn Bản</a></li>
+      <li class="toc-item"><a href="#thuat-ngu" class="toc-link">Các Thuật Ngữ Cốt Lõi &amp; Hệ Bài Khí Công</a></li>
+    </ul>
+  </details>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/vi/">Trang Chủ</a>
+    <span class="sep">/</span>
+    <a href="/vi/books/">Thư Viện Sách</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Từ Điển Thái Cực Quyền</span>
+  </nav>
+
+  <main class="reader-content">
+    <div class="book-hero">
+      <span class="book-badge">Từ Điển Thuật Ngữ &middot; Thái Cực Quyền</span>
+      <h1>Từ Điển Thái Cực Quyền</h1>
+      <div class="book-orig-title">Tai Chi Lexicon</div>
+      <div class="book-author-meta"><strong>Tác giả:</strong> www.ironcrane.com (Tacoma, WA, USA)<br>
+        <strong>Ấn bản gốc:</strong> Ấn bản 2006 &middot; danh sách thuật ngữ tổng quát<br>
+        <strong>Bản dịch &amp; khảo luận tiếng Việt:</strong> Ban Biên khảo Võ học &amp; Dưỡng sinh Nội gia TaichiNOW</div>
+      <div class="book-tags">
+        <span class="book-tag">📖 Từ Điển</span>
+        <span class="book-tag">🈶 Pinyin</span>
+        <span class="book-tag">🔤 Thanh Điệu</span>
+        <span class="book-tag">☯️ Bát Pháp</span>
+      </div>
+    </div>
+
+
+    <section id="cau-truc" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Dẫn Nhập</span>
+        <h2 class="chapter-title">Cấu Trúc Từ Điển &amp; Hệ Thống Thanh Điệu</h2>
+      </div>
+
+      <p>Đây là <strong>danh sách tổng quát các thuật ngữ gắn với thực hành Thái Cực</strong>. Các thuật ngữ được trình bày theo <em>thứ tự bảng chữ cái Pinyin</em>, kèm theo <strong>thanh điệu</strong> để phát âm đúng, cùng phần tương đương ngữ âm tiếng Anh.</p>
+      <div class="key-point">Phát âm tiếng Anh được xây dựng trên các mẫu âm dễ nhận biết, gần đúng với cách phát âm tiếng Trung chuẩn — sử dụng tiếng Quan Thoại từ điển với <strong>giọng Bắc Kinh tiêu chuẩn</strong>.</div>
+      <p>Cần lưu ý: sẽ có <em>khác biệt</em> trong cách người Trung Quốc phát âm cùng một từ, do có rất nhiều phương ngữ vùng miền. Đây là thứ tiếng Trung "truyền hình" — tương tự như thứ tiếng bạn nghe trên các bản tin châu Á.</p>
+      <table class="tech-table">
+        <thead><tr><th>Thanh</th><th>Ký hiệu</th><th>Cách phát âm</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Thanh 0</strong></td><td>Trung tính</td><td>Phát âm không có ngữ điệu, không lên xuống</td></tr>
+          <tr><td><strong>Thanh 1</strong></td><td>Cao</td><td>Như đỉnh núi — nói cao và giữ đều</td></tr>
+          <tr><td><strong>Thanh 2</strong></td><td>Thăng</td><td>Giọng đi lên</td></tr>
+          <tr><td><strong>Thanh 3</strong></td><td>Trầm – lên</td><td>Bắt đầu gần thấp, chìm xuống chút rồi hơi lên (như chữ "u" hay một thung lũng)</td></tr>
+          <tr><td><strong>Thanh 4</strong></td><td>Giáng</td><td>Bắt đầu cao rồi hạ xuống</td></tr>
+        </tbody>
+      </table>
+      <p>Mỗi mục từ gồm bốn cột: <strong>Thuật ngữ tiếng Trung (Pinyin)</strong> · <strong>Thanh điệu</strong> · <strong>Phát âm tiếng Anh</strong> · <strong>Định nghĩa</strong>.</p>
+
+    </section>
+
+
+    <section id="bat-phap" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Trọng Tâm</span>
+        <h2 class="chapter-title">Bát Pháp — Tám Kỹ Thuật Căn Bản</h2>
+      </div>
+
+      <p>Từ điển giải nghĩa từng kỹ thuật trong <strong>Bát Pháp</strong> — tám kỹ thuật căn bản làm nên toàn bộ hệ thống Thái Cực Quyền:</p>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>Pinyin</th><th>Phát âm</th><th>Định nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Peng</strong></td><td>pung</td><td><em>Bằng</em> — năng lượng hướng lên, nâng đỡ; như quả bóng nổi trên nước</td></tr>
+          <tr><td>2</td><td><strong>Lu</strong></td><td>lu</td><td><em>Lý</em> — năng lượng xoay, dẫn lực đối phương đi chệch hướng</td></tr>
+          <tr><td>3</td><td><strong>Ji</strong></td><td>ji</td><td><em>Tế</em> — năng lượng ép, đẩy thẳng tới như sóng vỗ</td></tr>
+          <tr><td>4</td><td><strong>An</strong></td><td>anh</td><td><em>Án</em> — đẩy; năng lượng hướng xuống. Tay và thân phải chuyển động như một khối thống nhất</td></tr>
+          <tr><td>5</td><td><strong>Cai</strong></td><td>tsai</td><td><em>Thải</em> — giật, kéo xuống đột ngột</td></tr>
+          <tr><td>6</td><td><strong>Lie</strong></td><td>lieh</td><td><em>Liệt</em> — tách, xé; lực xoắn chia hai hướng</td></tr>
+          <tr><td>7</td><td><strong>Zhou</strong></td><td>jo</td><td><em>Chẩu</em> — dùng cùi chỏ đánh</td></tr>
+          <tr><td>8</td><td><strong>Kao</strong></td><td>kao</td><td><em>Kháo</em> — dùng vai hoặc lưng đánh/đỡ</td></tr>
+        </tbody>
+      </table>
+      <div class="key-point">Bát Pháp không phải tám "chiêu thức" mà là <strong>tám loại năng lượng</strong> — nền tảng của mọi động tác trong mọi phái Thái Cực.</div>
+
+    </section>
+
+
+    <section id="thuat-ngu" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Mở Rộng</span>
+        <h2 class="chapter-title">Các Thuật Ngữ Cốt Lõi &amp; Hệ Bài Khí Công</h2>
+      </div>
+
+      <p>Ngoài Bát Pháp, từ điển còn bao quát các khái niệm và hệ bài tập quan trọng:</p>
+      <table class="tech-table">
+        <thead><tr><th>Thuật ngữ</th><th>Phát âm</th><th>Định nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ba Duan Jin</strong></td><td>bah dewanh gin</td><td><em>Bát Đoạn Cẩm</em> — Tám đoạn gấm thêu. Một hệ bài Khí Công rất được trân trọng</td></tr>
+          <tr><td><strong>BaGua</strong></td><td>bah gwah</td><td><em>Bát Quái</em> — Tám quẻ; cũng chỉ môn Bát Quái Chưởng đi vòng tròn</td></tr>
+          <tr><td><strong>Dantien</strong></td><td>dahn tyehn</td><td><em>Đan Điền</em> — trung tâm năng lượng dưới rốn, nơi tích trữ Khí</td></tr>
+          <tr><td><strong>Qi</strong></td><td>chee</td><td><em>Khí</em> — sinh lực, năng lượng sống</td></tr>
+          <tr><td><strong>Taiji</strong></td><td>tie jee</td><td><em>Thái Cực</em> — cái tối thượng, cội nguồn của Âm Dương</td></tr>
+          <tr><td><strong>Wuji</strong></td><td>woo jee</td><td><em>Vô Cực</em> — trạng thái nguyên sơ chưa phân Âm Dương, tư thế đứng mở đầu</td></tr>
+        </tbody>
+      </table>
+      <div class="quote-box">"Một số dấu thanh mang tính chủ quan, dựa trên kinh nghiệm cá nhân, và có thể cần được tinh chỉnh thêm. Mọi thay đổi, bổ sung hay sửa lỗi đều được hoan nghênh."</div>
+
+    </section>
+
+    <nav class="page-nav">
+      <a class="disabled">← Trước</a>
+      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
+      <a href="/vi/books/">Tiếp theo →</a>
+    </nav>
+
+  </main>
+</div>
+
+<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
+  <p>Tủ Sách Thái Cực &amp; Khí Công &mdash; TaichiNOW</p>
+  <p>Bản dịch &amp; khảo luận tiếng Việt chuyên sâu © 2026</p>
+</footer>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+</body>
+</html>
