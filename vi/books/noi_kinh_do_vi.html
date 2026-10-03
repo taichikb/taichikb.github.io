@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nội Kinh Đồ — Bản Đồ Kinh Mạch Nội Tại (46 Đề Tự) | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt 46 đề tự khắc trên Nội Kinh Đồ theo bản dịch của Louis Komjathy (Diagram of the Inner Channels), kèm các bài thơ và chú giải về Tam Quan, Tam Đan Điền và Tiểu Chu Thiên.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
+<style>
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 310px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box {
+  background: #2a2415;
+  color: #fef08a;
+  border-color: #ca8a04;
+}
+body.dark-mode .key-point {
+  background: #142e20;
+  color: #a7f3d0;
+  border-color: #059669;
+}
+body.dark-mode .tech-table {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  border-color: #333;
+}
+body.dark-mode .tech-table th {
+  background: #2d2a24;
+  color: #fef08a;
+}
+body.dark-mode .tech-table td {
+  border-color: #333;
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s;
+}
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item {
+  margin-bottom: 0.45rem;
+}
+.toc-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.toc-link:hover {
+  background: rgba(197, 155, 39, 0.12);
+  color: var(--accent-crimson);
+  transform: translateX(3px);
+}
+.reader-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.book-hero {
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.book-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--accent-crimson);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--accent-crimson);
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.book-orig-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  color: #78716c;
+  margin-bottom: 1rem;
+}
+.book-author-meta {
+  font-size: 0.98rem;
+  color: #57534e;
+  margin-bottom: 1.2rem;
+}
+.book-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.book-tag {
+  background: #f5f5f4;
+  color: #44403c;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: 1px solid #e7e5e4;
+}
+body.dark-mode .book-tag {
+  background: #262626;
+  color: #d4d4d4;
+  border-color: #404040;
+}
+.chapter-block {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 90px;
+}
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.chapter-num {
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.95rem;
+  color: var(--text-primary);
+  margin: 0.2rem 0 0;
+  line-height: 1.3;
+}
+.quote-box {
+  background: #fefce8;
+  border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #713f12;
+}
+.key-point {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.tech-table th, .tech-table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  text-align: left;
+}
+.tech-table th {
+  background: #f8fafc;
+  color: var(--accent-crimson);
+  font-weight: 600;
+}
+.reader-tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+.tool-btn {
+  background: #fff;
+  border: 1px solid #d6d3d1;
+  color: #44403c;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+body.dark-mode .tool-btn {
+  background: #262626;
+  border-color: #404040;
+  color: #e5e5e5;
+}
+.tool-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+
+.book-layout, .main-container {
+  display: block !important; max-width: 900px !important;
+  margin: 0 auto !important; padding: 2rem 1.5rem !important;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+body.dark-mode .page-nav a.disabled { color: #555; }
+
+.vn-fig{margin:1.9rem 0;text-align:center}
+.vn-fig img{max-width:100%;height:auto;border:1px solid #e7e5e4;padding:8px;background:#fff}
+.vn-fig figcaption{font-size:.85rem;color:#78716c;margin-top:.6rem;font-style:italic;line-height:1.6}
+body.dark-mode .vn-fig img{background:#1a1a1a;border-color:#2e2e2e}
+body.dark-mode .vn-fig figcaption{color:#a8a29e}
+.vn-fig.tall{max-width:460px;margin-left:auto;margin-right:auto}
+.vn-two{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;align-items:start;margin:1.6rem 0}
+.vn-two .vn-fig{margin:0}
+@media(max-width:720px){.vn-two{grid-template-columns:1fr}}
+.vn-poem{font-family:'Noto Serif SC','Songti SC',serif;font-size:1.05rem;line-height:2.1;
+  background:#fafaf9;border:1px solid #e7e5e4;border-radius:10px;padding:1.2rem 1.5rem;margin:1.5rem 0}
+.vn-poem .tr{display:block;font-family:inherit;font-size:.9rem;color:#78716c;font-style:italic;line-height:1.7}
+body.dark-mode .vn-poem{background:#1a1a1a;border-color:#2e2e2e}
+body.dark-mode .vn-poem .tr{color:#a8a29e}
+.vn-cjk{font-family:'Noto Serif SC','Songti SC',serif}
+
+</style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+
+<header class="site-header">
+  <a href="/" class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/vi/">Trang Chủ</a>
+    <a href="/vi/techniques/">Kỹ Thuật</a>
+    <a href="/vi/books/" class="active">Thư Viện Sách</a>
+    <a href="/vi/videos/">Video</a>
+    <a href="/vi/podcast/">Podcast</a>
+    <a href="/vi/philosophy/">Triết Lý</a>
+    <a href="/vi/history/">Lịch Sử</a>
+    <a href="/vi/contact/">Liên Hệ</a>
+    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
+<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
+</nav>
+</header>
+
+<div class="reader-layout">
+  <details class="toc-drawer">
+    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#gioi-thieu" class="toc-link">Giới Thiệu: Nội Kinh Đồ &amp; Tu Chân Đồ</a></li>
+      <li class="toc-item"><a href="#de-tu" class="toc-link">46 Đề Tự Trên Bức Đồ</a></li>
+      <li class="toc-item"><a href="#tho" class="toc-link">Các Bài Thơ Khắc Trên Đồ</a></li>
+      <li class="toc-item"><a href="#loi-bat" class="toc-link">Lời Bạt &amp; Ý Nghĩa</a></li>
+    </ul>
+  </details>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/vi/">Trang Chủ</a>
+    <span class="sep">/</span>
+    <a href="/vi/books/">Thư Viện Sách</a>
+    <span class="sep">/</span>
+    <span class="crumb-current">Nội Kinh Đồ — Bản Đồ Kinh Mạch Nội Tại</span>
+  </nav>
+
+  <main class="reader-content">
+
+    <div class="book-hero">
+      <span class="book-badge">Bản Dịch Đề Tự &middot; Theo Louis Komjathy</span>
+      <h1>Nội Kinh Đồ — Bản Đồ Kinh Mạch Nội Tại</h1>
+      <div class="book-orig-title">內經圖 &middot; Diagram of the Inner Channels (Nei-ching T'u)</div>
+      <div class="book-author-meta">
+        <strong>Nguyên tác:</strong> Khuyết danh &mdash; bia đá Bạch Vân Quán, Bắc Kinh<br>
+        <strong>Bản dịch tiếng Anh &amp; khảo cứu:</strong> Louis Komjathy<br>
+        <strong>Chuyển ngữ tiếng Việt:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW
+      </div>
+      <div class="book-tags">
+        <span class="book-tag"><i class="fa-solid fa-scroll"></i> 46 Đề Tự</span>
+        <span class="book-tag"><i class="fa-solid fa-mountain"></i> Cảnh Quan Cơ Thể</span>
+        <span class="book-tag"><i class="fa-solid fa-water"></i> Nhâm &amp; Đốc Mạch</span>
+        <span class="book-tag"><i class="fa-solid fa-feather"></i> Thi Ca Đan Đạo</span>
+      </div>
+    </div>
+
+    <section id="gioi-thieu" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Dẫn Nhập</span>
+        <h2 class="chapter-title">Giới Thiệu: Nội Kinh Đồ &amp; Tu Chân Đồ</h2>
+      </div>
+      <p><strong>Nội Kinh Đồ</strong> (內經圖) và <strong>Tu Chân Đồ</strong> (修真圖) là hai bức đồ về cơ thể người,
+      được nhắc đến lần đầu vào thời Thanh. Cả hai đều cùng nguồn gốc với các đồ hình cơ thể của Yến La Tử
+      (thế kỷ X) trong <em>Tu Chân Thập Thư</em>: chúng gồm các chi tiết giải phẫu nhưng có thêm những yếu tố
+      biểu tượng của Nội đan. Một bản tổng hợp các đồ hình của Yến La Tử về sau được vẽ trên hình chiếu nghiêng
+      của cơ thể trong <em>Hoàng Đế Bát Thập Nhất Nan Kinh Toản Đồ Cú Giải</em> (lời tựa năm 1269).</p>
+      <p>Trong Nội Kinh Đồ, cơ thể được nhìn nghiêng: <strong>đầu là núi Côn Lôn</strong>, và
+      <strong>tủy sống là một dòng nước uốn khúc</strong> chảy ra từ đó. Sao Bắc Cực và chòm Bắc Đẩu tượng trưng cho
+      <strong>tim</strong>; con trâu cày ruộng và gieo mầm trường sinh tượng trưng cho <strong>ruột</strong>.
+      Phần văn bản kèm theo chứa tên các vị thần của ngũ tạng và của đởm theo <em>Hoàng Đình Kinh</em>, cùng
+      biểu tượng Nội đan. Bức đồ được khắc năm 1886 lên bia đá tại Bạch Vân Quán ở Bắc Kinh, theo khởi xướng của
+      Lưu Thành Ấn, dựa trên một cuộn lụa cũ tìm thấy trên Tung Sơn (Hà Nam).</p>
+      <div class="quote-box">
+        &ldquo;Người Đạo gia nói rằng &lsquo;thân người là hình ảnh của một quốc gia&rsquo;. Với họ, thân người
+        giống như một phong cảnh với núi, hồ, rừng và chỗ trú. Hơn nữa, thân như một &lsquo;quốc gia&rsquo; có một
+        nền cai trị với vua và quan. Tim, hay đúng hơn là vị thần ngự trong đó, thường được coi là vua của thân,
+        còn các tạng khác là quan.&rdquo;
+        <div style="text-align: right; margin-top: 6px; font-weight: 600;">— Kristofer Schipper, <em>The Taoist Body</em></div>
+      </div>
+      <figure class="vn-fig tall">
+  <img src="/assets/images/noi-canh-do/neijing-tu-bw.jpg" alt="N&#7897;i C&#7843;nh &#272;&#7891; &mdash; b&#7843;n kh&#7855;c g&#7895; &#273;en tr&#7855;ng c&#7911;a bia &#273;&#225; B&#7841;ch V&#226;n Qu&#225;n 1886">
+  <figcaption>Nội Cảnh Đồ ở dạng khắc gỗ đen trắng cổ điển. Toàn bộ cơ thể được vẽ như một ngọn núi;
+  cột sống chạy như một dòng sông dọc bên phải. Hãy đọc từ bánh xe nước ở chân lên tới các đỉnh núi trên đầu.</figcaption>
+</figure>
+    </section>
+
+    <section id="de-tu" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần I</span>
+        <h2 class="chapter-title">46 Đề Tự Khắc Trên Bức Đồ</h2>
+      </div>
+      <p>Bản dịch dưới đây theo bản chuyển ngữ của Louis Komjathy, được sắp theo vị trí trên bức đồ
+      (phần trên &rarr; phần giữa &rarr; phần dưới).</p>
+      <table class="tech-table">
+        <thead><tr><th style="width:3rem;">#</th><th>Đề tự</th><th>Ý nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="vn-cjk">巨峯頂</td><td>Đỉnh của ngọn núi lớn</td></tr>
+          <tr><td>2</td><td class="vn-cjk">延壽</td><td>Kéo dài tuổi thọ [đạt tiên và thành Phật]</td></tr>
+          <tr><td>3</td><td class="vn-cjk">泥丸宮</td><td>Nê Hoàn Cung (cung điện trong đầu)</td></tr>
+          <tr><td>4</td><td class="vn-cjk">一粒粟中藏世界</td><td>Một hạt kê chứa cả thế giới</td></tr>
+          <tr><td>5</td><td class="vn-cjk">仙佛</td><td>[Kéo dài tuổi thọ và] [đạt] tiên và Phật</td></tr>
+          <tr><td>6</td><td class="vn-cjk">昇陽府</td><td>Phủ Thăng Dương (nơi dương khí thăng lên)</td></tr>
+          <tr><td>7</td><td class="vn-cjk">九峯山</td><td>Núi Chín Đỉnh</td></tr>
+          <tr><td>8</td><td class="vn-cjk">鬱羅靈台</td><td>Đài Linh Ẩn trong màn lưới dày</td></tr>
+          <tr><td>9</td><td class="vn-cjk">白頭老子眉垂地</td><td>Lão Tử đầu bạc, lông mày rủ xuống đất</td></tr>
+          <tr><td>10</td><td class="vn-cjk">若向此玄玄會得</td><td>Nếu hướng về cái huyền diệu, sẽ lĩnh hội được</td></tr>
+          <tr><td>11</td><td class="vn-cjk">此玄玄外更無玄</td><td>Ngoài cái huyền diệu này, không có huyền diệu nào khác</td></tr>
+          <tr><td>12</td><td class="vn-cjk">靈峯之穴</td><td>Huyệt Linh Phong</td></tr>
+          <tr><td>13</td><td class="vn-cjk">玉真上關</td><td>Thượng Quan Ngọc Chân (tức Ngọc Chẩm)</td></tr>
+          <tr><td>14</td><td class="vn-cjk">昇法之源</td><td>Nguồn của phép thăng lên</td></tr>
+          <tr><td>15</td><td class="vn-cjk">飱咽</td><td>Yết hầu (nuốt)</td></tr>
+          <tr><td>16</td><td class="vn-cjk">督脈</td><td>Đốc Mạch</td></tr>
+          <tr><td>17</td><td class="vn-cjk">二腎府之穴</td><td>Huyệt của hai phủ thận</td></tr>
+          <tr><td>18</td><td class="vn-cjk">半升鐺内煮山川</td><td>Nửa thăng nồi nấu sông núi</td></tr>
+          <tr><td>19</td><td class="vn-cjk">十二樓臺藏秘訣</td><td>Mười hai tầng lầu ẩn giấu bí quyết</td></tr>
+          <tr><td>20</td><td class="vn-cjk">氣疾</td><td>Khí tật (bệnh do khí)…</td></tr>
+          <tr><td>21</td><td class="vn-cjk">降橋</td><td>…qua cầu giáng xuống</td></tr>
+          <tr><td>22</td><td class="vn-cjk">碧眼胡僧手托天</td><td>Vị tăng mắt xanh tay đỡ trời</td></tr>
+          <tr><td>23</td><td class="vn-cjk">任脈</td><td>Nhâm Mạch</td></tr>
+          <tr><td>24</td><td class="vn-cjk">法藏云</td><td>Pháp Tạng nói:</td></tr>
+          <tr><td>25</td><td class="vn-cjk">慈氏云</td><td>Từ Thị (Di Lặc) nói:</td></tr>
+          <tr><td>26</td><td class="vn-cjk">五十境内隱玄關</td><td>Ải huyền ẩn trong năm mươi cõi</td></tr>
+          <tr><td>27</td><td class="vn-cjk">心神丹元字守靈</td><td>Tâm thần tên Đan Nguyên, tự Thủ Linh</td></tr>
+          <tr><td>28</td><td class="vn-cjk">牛郎橋星</td><td>Ngưu Lang (chòm sao)</td></tr>
+          <tr><td>29</td><td class="vn-cjk">艮土</td><td>Thổ của quẻ Cấn (núi)</td></tr>
+          <tr><td>30</td><td class="vn-cjk">者田</td><td>Thửa ruộng này</td></tr>
+          <tr><td>31</td><td class="vn-cjk">刻石兒童把貫串</td><td>Đứa trẻ khắc đá cầm xâu tiền</td></tr>
+          <tr><td>32</td><td class="vn-cjk">膽神龍曜字威明</td><td>Đởm thần tên Long Diệu, tự Uy Minh</td></tr>
+          <tr><td>33</td><td class="vn-cjk">肺神華皓字虚成</td><td>Phế thần tên Hạo Hoa, tự Hư Thành</td></tr>
+          <tr><td>34</td><td class="vn-cjk">肝神龍烟字含明</td><td>Can thần tên Long Yên, tự Hàm Minh</td></tr>
+          <tr><td>35</td><td class="vn-cjk">我家耑種自家田</td><td>Nhà ta khéo trồng thửa ruộng nhà mình…</td></tr>
+          <tr><td>36</td><td class="vn-cjk">織女運轉</td><td>Chức Nữ vận chuyển</td></tr>
+          <tr><td>37</td><td class="vn-cjk">腎神玄冥字育嬰</td><td>Thận thần tên Huyền Minh, tự Dục Anh</td></tr>
+          <tr><td>38</td><td class="vn-cjk">脾神常在字魂亭</td><td>Tỳ thần tên Thường Tại, tự Hồn Đình</td></tr>
+          <tr><td>39</td><td class="vn-cjk">中丹田</td><td>Trung Đan Điền</td></tr>
+          <tr><td>40</td><td class="vn-cjk">鐵牛畊地種金錢</td><td>Trâu sắt cày ruộng gieo đồng tiền vàng</td></tr>
+          <tr><td>41</td><td class="vn-cjk">正丹田</td><td>Chính Đan Điền</td></tr>
+          <tr><td>42</td><td class="vn-cjk">坎水逆流</td><td>Nước Khảm chảy ngược</td></tr>
+          <tr><td>43</td><td class="vn-cjk">復復連連歩歩週</td><td>Trùng trùng liên liên, từng bước tuần hoàn</td></tr>
+          <tr><td>44</td><td class="vn-cjk">陰陽玄蹅車</td><td>Bánh xe âm dương huyền diệu</td></tr>
+          <tr><td>45</td><td class="vn-cjk">鐵牛畊地種金錢</td><td>Trâu sắt cày ruộng gieo đồng tiền vàng</td></tr>
+          <tr><td>46</td><td class="vn-cjk">此圖向無傳</td><td>Bức đồ này xưa nay chưa từng được truyền</td></tr>
+        </tbody>
+      </table>
+      <div class="key-point">
+        <strong>Ghi chú của người hiệu đính:</strong> bức đồ thiếu Tỳ trong ngũ tạng, và chỉ nhắc đến Đởm trong
+        lục phủ. Tỳ — với tư cách là Thổ ở trung tâm — được mô tả bằng ẩn dụ và được coi là thiết yếu như trung gian
+        giữa Thủy và Hỏa. Về Đởm, tuy là một trong lục phủ, nhưng vì Đởm tàng tinh của ngũ tạng nên được nhấn mạnh.
+        Về sau, &ldquo;Tam Tiêu&rdquo; thay Đởm làm đại diện trong lục phủ, như thấy trong &ldquo;Lục Tự Quyết&rdquo;.
+      </div>
+    </section>
+
+    <section id="tho" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần II</span>
+        <h2 class="chapter-title">Các Bài Thơ Khắc Trên Đồ</h2>
+      </div>
+      <div class="vn-poem">
+        <span class="vn-cjk">我家耑種自家田</span><span class="tr">Nhà ta khéo trồng thửa ruộng nhà mình —</span>
+        <span class="vn-cjk">内有靈苗活萬年</span><span class="tr">Trong có mầm linh sống vạn năm.</span>
+        <span class="vn-cjk">花似黄金色不異</span><span class="tr">Hoa tựa vàng ròng, sắc không lạ;</span>
+        <span class="vn-cjk">子如玉粒果皆圓</span><span class="tr">Hạt như gạo ngọc, quả đều tròn.</span>
+        <span class="vn-cjk">栽培全賴中宮土</span><span class="tr">Vun trồng hoàn toàn nhờ Thổ ở Trung Cung;</span>
+        <span class="vn-cjk">灌溉須憑上谷泉</span><span class="tr">Tưới tắm phải nhờ suối ở Thượng Cốc.</span>
+        <span class="vn-cjk">功課一朝成大道</span><span class="tr">Một sớm công phu thành Đại Đạo —</span>
+        <span class="vn-cjk">逍遙陸地作蓬仙</span><span class="tr">Thong dong trên đất, làm tiên Bồng Lai.</span>
+      </div>
+      <div class="vn-poem">
+        <span class="vn-cjk">復復連連歩歩週</span><span class="tr">Trùng trùng liên liên, từng bước tuần hoàn;</span>
+        <span class="vn-cjk">機關撥轉水東流</span><span class="tr">Cơ quan xoay chuyển, nước chảy về đông.</span>
+        <span class="vn-cjk">萬丈深潭應見底</span><span class="tr">Ao sâu muôn trượng, phải thấy tới đáy;</span>
+        <span class="vn-cjk">甘泉湧起南山頭</span><span class="tr">Suối ngọt trào lên tới đỉnh Nam Sơn.</span>
+      </div>
+      <p>Pháp Tạng <span class="vn-cjk">法藏</span> nói: &ldquo;Mắt biếc soi trong bốn biển lớn; ánh trắng lan khắp núi Tu Di.&rdquo;
+      Từ Thị <span class="vn-cjk">慈氏</span> (Di Lặc) nói: &ldquo;Giữa hai lông mày, ánh trắng thường phóng ra;
+      có thể giải thoát chúng sinh khỏi nỗi khổ luân hồi.&rdquo;</p>
+    </section>
+
+    <section id="loi-bat" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Phần III</span>
+        <h2 class="chapter-title">Lời Bạt &amp; Ý Nghĩa</h2>
+      </div>
+      <p>Lời bạt trên bia kể: &ldquo;Bức đồ này xưa nay chưa từng được truyền. Nguyên nhân căn bản là vì Đạo Đan
+      rộng lớn và tinh vi, kẻ căn cơ nông cạn không có khả năng lĩnh hội, cho nên ít khi được truyền trên đời.
+      Ta tình cờ thấy bức đồ trong số sách vẽ ở thư phòng của Cao Tùng Sơn, đúng lúc nó được treo trên tường.
+      Cách vẽ công phu tỉ mỉ; các chú giải về gân cốt khớp đốt, kinh mạch rõ ràng phân minh, mỗi chỗ đều chứa khiếu yếu.
+      Ta ngắm nghía hồi lâu, thấy lòng có chỗ hội ngộ. Mới hiểu rằng hô hấp thổ nạp của một thân người chính là
+      sự đầy vơi, tiêu tức của trời đất. Nếu có thể hiểu thấu một cách thần diệu, thì con đường Kim Đan Đại Đạo
+      đã đi được hơn nửa. Thật không dám giữ riêng cho mình, nên vội cho khắc bản để lưu truyền rộng rãi.&rdquo;
+      — Tố Vân đạo nhân kính khắc và ghi.</p>
+      <div class="key-point">
+        <strong>Ba cửa ải (Tam Quan)</strong> — <strong>Vĩ Lư Quan</strong> ở xương cụt (bảy đốt sống, bảy huyệt),
+        <strong>Giáp Tích Quan</strong> ở giữa hai thận, và <strong>Ngọc Chẩm Quan</strong> ở sau đầu — là bước đầu
+        của phép luyện Đan. Nắm được ba cửa này rồi mới có thể vượt Tam Quan để tới chín khiếu, rồi giáng xuống
+        biến ngọc dịch thành kim đan.
+      </div>
+      <div class="key-point" style="margin-top:1.6rem;">
+        <strong>Đọc thêm:</strong>
+        <a href="/vi/books/noi_canh_do_vi.html">Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người</a> &middot;
+        <a href="/vi/books/noi_canh_do_phan_tich_vi.html">Phân Tích Toàn Diện Nội Cảnh Đồ</a> &middot;
+        <a href="/vi/books/">Thư Viện Sách</a>.
+      </div>
+    </section>
+    
+  </main>
+</div>
+
+<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
+  <p>Thư Viện Sách Thái Cực Quyền & Khí Công Tiếng Việt &middot; TaichiNOW</p>
+  <p>Bản dịch tiếng Việt chuyên sâu từ nguyên tác TS. Dương Tuấn Mẫn (YMAA) © 2026</p>
+</footer>
+
+<script>
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  let pb = document.getElementById("reading-progress");
+  if (pb) pb.style.width = scrolled + "%";
+};
+
+let currentFontSize = 17;
+function adjustFontSize(delta) {
+  currentFontSize += delta;
+  if (currentFontSize < 14) currentFontSize = 14;
+  if (currentFontSize > 24) currentFontSize = 24;
+  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
+}
+
+if (localStorage.getItem('taichi_reader_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+</script>
+
+</body>
+</html>
