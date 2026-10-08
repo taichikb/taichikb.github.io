@@ -36,7 +36,7 @@ SECTION_TITLES = {
 # Curated additions: pages that live inside another page rather than at their
 # own top-level slug, so the git-tree walk above cannot find them. They are
 # hand-registered here (with an explicit anchor) so the index stays exhaustive.
-# Each entry: (section, slug, title, live_url_path, source_path, image_id)
+# Each entry: (section, slug, title, live_url_path, source_path, image_id[, extra_search_terms])
 CURATED = [
     (
         "vi/articles",
@@ -46,6 +46,12 @@ CURATED = [
         "vi/books/martial_arts_qigong_health_vitality_vi.html#sec2b-guong-luong-tu",
         "vi/books/martial_arts_qigong_health_vitality_vi.html",
         "articles__complete-taichi-practice-guide-for-the-30-beginner",
+        # Extra search terms. The visible title is Vietnamese, but readers will
+        # plausibly search in English for the physics half of the comparison.
+        "quantum physics mechanics vacuum symmetry breaking complementarity "
+        "uncertainty casimir dirac antimatter renormalization planck scale "
+        "invariance fractal measurement observer i ching tao dao taoism "
+        "yin yang yang wuxing wu xing five elements bagua ba gua",
     ),
 ]
 
@@ -132,8 +138,13 @@ def card_html(r: dict, e, args, section: str | None = None) -> str:
         tags += '<span class="tag">shared illustration</span>'
     sec = f' data-sec="{section}"' if section else ""
     slug_disp = r["slug"].split("#")[0] if r.get("curated") else r["slug"]
+    # data-t drives the client-side search; curated cards may carry extra
+    # English keywords so the physics vocabulary is findable.
+    search_blob = r["title"].lower()
+    if r.get("keywords"):
+        search_blob = f'{search_blob} {r["keywords"].lower()}'
     return (
-        f'<article class="card" data-t="{e(r["title"].lower())}"{sec}>'
+        f'<article class="card" data-t="{e(search_blob)}"{sec}>'
         f'<a class="thumb" href="{e(r["live"])}">{thumb}</a>'
         f'<h3><a href="{e(r["live"])}">{e(r["title"])}</a></h3>'
         f'<p class="meta">{e(slug_disp)}{tags}</p>'
@@ -225,6 +236,11 @@ def render_index_html(sections, args, total, illustrated, missing_h1) -> str:
   font-family: Inter, system-ui, sans-serif; font-weight: 600; }}
 .idx .card h3 a {{ text-decoration: none; color: inherit; }}
 .idx .card h3 a:hover {{ text-decoration: underline; }}
+/* The chip/search filter toggles the `hidden` DOM property. A bare `hidden`
+   attribute is normally display:none via the UA stylesheet, but any author
+   `display` declaration wins over it — and .idx .card sets display:flex. So
+   without these two rules the filter silently does nothing. */
+.idx [hidden] {{ display: none !important; }}
 .idx .meta {{ margin: 0 .9rem; font-size: .72rem; opacity: .5; word-break: break-all; }}
 .idx .tag {{ margin-left: .4rem; padding: .1rem .4rem; border-radius: 4px;
   background: rgba(0,0,0,.07); }}
@@ -313,7 +329,13 @@ opens the page's HTML in the GitHub repository.</p>
     }});
     heads.forEach(function (h) {{ 
       var grid = document.querySelector('.grid[data-section="' + h.dataset.section + '"]');
-      h.hidden = (h.dataset.section !== filter && filter !== 'all') || (grid && grid.hidden); }});
+      h.hidden = (h.dataset.section !== filter && filter !== 'all') || (grid && grid.hidden);
+      // Any note tied to this heading (e.g. the Quantum Mirror .qnote blurb)
+      // has to follow the heading, or it lingers above an unrelated section.
+      if (h.nextElementSibling && h.nextElementSibling.classList.contains('qnote')) {{
+        h.nextElementSibling.hidden = h.hidden;
+      }}
+    }});
     empty.hidden = shown !== 0;
   }}
 
@@ -404,7 +426,9 @@ def main(argv: list[str] | None = None) -> int:
                 "shared_with": rep_of.get(slug, slug) if rep_of.get(slug) != slug else "",
             })
         # curated entries that belong to this section
-        for section, slug, title, live_path, source_path, image_id in CURATED:
+        for entry in CURATED:
+            section, slug, title, live_path, source_path, image_id = entry[:6]
+            keywords = entry[6] if len(entry) > 6 else ""
             if section != d:
                 continue
             rows.append({
@@ -415,6 +439,7 @@ def main(argv: list[str] | None = None) -> int:
                 "image": image_id,
                 "shared_with": "",
                 "curated": True,
+                "keywords": keywords,
             })
         rows.sort(key=lambda r: r["title"].lower())
         sections[d] = rows
