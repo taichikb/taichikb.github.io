@@ -21,7 +21,6 @@
     { title: 'Bát quái quyền chưởng', url: '/vi/books/b%C3%A1t%20qu%C3%A1i%20quy%E1%BB%81n%20ch%C6%B0%E1%BB%9Fng/b%C3%A1t%20qu%C3%A1i%20quy%E1%BB%81n%20ch%C6%B0%E1%BB%9Fng_vi.html' },
     { title: "Beginner's Guide Qigong", url: '/vi/books/Beginners-guide-to-understanding-qigong/Beginners-guide-to-understanding-qigong_vi.html' },
     { title: 'Chen-Style Handout', url: '/vi/books/Chen-Style-Tai-Chi-Handout-Jerry-Cheng/Chen-Style-Tai-Chi-Handout-Jerry-Cheng_vi.html' },
-    { title: 'Chikung Bible', url: '/vi/books/Chikung%20bible/Chikung%20bible_vi.html' },
     { title: 'Xing Yi Nei Gong', url: '/vi/books/Dan%20Miller%20and%20Tim%20Cartmell%20-%20Xing%20Yi%20Nei%20Gong/Dan%20Miller%20and%20Tim%20Cartmell%20-%20Xing%20Yi%20Nei%20Gong_vi.html' },
     { title: 'How Stuff Works', url: '/vi/books/How%20Stuff%20Works/How%20Stuff%20Works_vi.html' }
   ];
