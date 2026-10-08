@@ -33,6 +33,28 @@ SECTION_TITLES = {
     "vi/articles": "Vietnamese Articles",
 }
 
+# Curated additions: pages that live inside another page rather than at their
+# own top-level slug, so the git-tree walk above cannot find them. They are
+# hand-registered here (with an explicit anchor) so the index stays exhaustive.
+# Each entry: (section, slug, title, live_url_path, source_path, image_id)
+CURATED = [
+    (
+        "vi/articles",
+        "vi/books/martial_arts_qigong_health_vitality_vi#sec2b-guong-luong-tu",
+        "“Khoa Học Trung Hoa” Soi Gương Qua Vật Lý Lượng Tử Hiện Đại "
+        "(Nguyên Lý Âm Dương, Ngũ Hành & Cơ Học Lượng Tử)",
+        "vi/books/martial_arts_qigong_health_vitality_vi.html#sec2b-guong-luong-tu",
+        "vi/books/martial_arts_qigong_health_vitality_vi.html",
+        "articles__complete-taichi-practice-guide-for-the-30-beginner",
+    ),
+]
+
+# Illustration fallbacks for pages the plan does not cover (e.g. one half of a
+# bilingual pair). Maps slug -> illustration id already present in the plan.
+IMAGE_FALLBACK = {
+    "vi/articles/giai-phau-nang-luong-toan-tap": "articles__complete-taichi-practice-guide-for-the-30-beginner",
+}
+
 
 def git(repo: str, *args: str) -> str:
     return subprocess.run(["git", "-C", repo, *args],
@@ -90,6 +112,35 @@ NAV_ITEMS = [
 ]
 
 
+def card_html(r: dict, e, args, section: str | None = None) -> str:
+    """One index card. ``section`` overrides the card's data-section so curated
+    cards can be surfaced under their own chip filter."""
+    thumb = (f'<img src="/facebook/media/generated/{e(r["image"])}.jpg" '
+             f'alt="" loading="lazy" decoding="async">'
+             if r["image"] else
+             '<div class="noimg">no illustration</div>')
+    gh_img = (f'{args.github}/blob/{args.branch}/facebook/media/generated/'
+              f'{r["image"]}.jpg' if r["image"] else "")
+    links = [f'<a href="{e(r["live"])}">Đọc / Read</a>',
+             f'<a href="{e(r["source"])}">Source</a>']
+    if gh_img:
+        links.append(f'<a href="{e(gh_img)}">Illustration</a>')
+    tags = ""
+    if r.get("curated"):
+        tags += '<span class="tag tag-qm">Quantum Mirror</span>'
+    elif r.get("shared_with"):
+        tags += '<span class="tag">shared illustration</span>'
+    sec = f' data-sec="{section}"' if section else ""
+    slug_disp = r["slug"].split("#")[0] if r.get("curated") else r["slug"]
+    return (
+        f'<article class="card" data-t="{e(r["title"].lower())}"{sec}>'
+        f'<a class="thumb" href="{e(r["live"])}">{thumb}</a>'
+        f'<h3><a href="{e(r["live"])}">{e(r["title"])}</a></h3>'
+        f'<p class="meta">{e(slug_disp)}{tags}</p>'
+        f'<p class="links">{" · ".join(links)}</p>'
+        f'</article>')
+
+
 def render_index_html(sections, args, total, illustrated, missing_h1) -> str:
     """The new 'All Articles' section page: a searchable index of every page."""
     e = htmllib.escape
@@ -106,25 +157,23 @@ def render_index_html(sections, args, total, illustrated, missing_h1) -> str:
                      f'<span class="count">{len(rows)}</span></h2>')
         cards.append(f'<div class="grid" data-section="{d}">')
         for r in rows:
-            thumb = (f'<img src="/facebook/media/generated/{e(r["image"])}.jpg" '
-                     f'alt="" loading="lazy" decoding="async">'
-                     if r["image"] else
-                     '<div class="noimg">no illustration</div>')
-            gh_img = (f'{args.github}/blob/{args.branch}/facebook/media/generated/'
-                      f'{r["image"]}.jpg' if r["image"] else "")
-            links = [f'<a href="{e(r["live"])}">Đọc / Read</a>',
-                     f'<a href="{e(r["source"])}">Source</a>']
-            if gh_img:
-                links.append(f'<a href="{e(gh_img)}">Illustration</a>')
-            shared = ('<span class="tag">shared illustration</span>'
-                      if r.get("shared_with") else "")
-            cards.append(
-                f'<article class="card" data-t="{e(r["title"].lower())}">'
-                f'<a class="thumb" href="{e(r["live"])}">{thumb}</a>'
-                f'<h3><a href="{e(r["live"])}">{e(r["title"])}</a></h3>'
-                f'<p class="meta">{e(r["slug"])}{shared}</p>'
-                f'<p class="links">{" · ".join(links)}</p>'
-                f'</article>')
+            cards.append(card_html(r, e, args))
+        cards.append('</div>')
+
+    # Curated "Quantum Mirror" feature section. Its cards use a different
+    # data-section so the chip filter can surface them on their own.
+    qm_cards = [card_html(r, e, args, section="quantum")
+                for d in SOURCE_DIRS for r in (sections.get(d) or [])
+                if r.get("curated")]
+    if qm_cards:
+        cards.append('<h2 id="quantum-mirror" data-section="quantum">'
+                     'Quantum Mirror · Khoa Học Trung Hoa &amp; Vật Lý Lượng Tử '
+                     f'<span class="count">{len(qm_cards)}</span></h2>')
+        cards.append('<p class="qnote">Đối chiếu nguyên lý Âm Dương, Ngũ Hành và Bát Quái '
+                     'với chân không lượng tử, nguyên lý bổ sung, thang bậc và vấn đề đo lường '
+                     'trong vật lý hiện đại — một lớp chú giải, không phải một phép quy đổi.</p>')
+        cards.append('<div class="grid" data-section="quantum">')
+        cards.extend(qm_cards)
         cards.append('</div>')
 
     generated = datetime.now().strftime("%Y-%m-%d")
@@ -179,6 +228,9 @@ def render_index_html(sections, args, total, illustrated, missing_h1) -> str:
 .idx .meta {{ margin: 0 .9rem; font-size: .72rem; opacity: .5; word-break: break-all; }}
 .idx .tag {{ margin-left: .4rem; padding: .1rem .4rem; border-radius: 4px;
   background: rgba(0,0,0,.07); }}
+.idx .tag-qm {{ background: rgba(37,99,235,.12); color: #1e3a8a; }}
+.idx .qnote {{ margin: -.4rem 0 1rem; font-size: .9rem; line-height: 1.55;
+  opacity: .72; max-width: 70ch; }}
 .idx .links {{ margin: .6rem .9rem .9rem; font-size: .85rem; }}
 .idx .links a {{ text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.25); }}
 .idx .empty {{ padding: 2rem 0; opacity: .6; }}
@@ -187,6 +239,7 @@ def render_index_html(sections, args, total, illustrated, missing_h1) -> str:
   .idx .chip[aria-pressed=true] {{ background: #f2f2f2; color: #111; border-color: #f2f2f2; }}
   .idx .card, .idx .stats, .idx .thumb {{ border-color: rgba(255,255,255,.16); }}
   .idx .thumb {{ background: #1c1f24; }}
+  .idx .tag-qm {{ background: rgba(96,165,250,.18); color: #bfdbfe; }}
 }}
 </style>
 </head>
@@ -216,6 +269,7 @@ opens the page's HTML in the GitHub repository.</p>
   <input type="search" id="q" placeholder="Tìm bài viết… / search titles" aria-label="Search articles">
   <button class="chip" data-f="all" aria-pressed="true">All</button>
   {''.join(f'<button class="chip" data-f="{d}" aria-pressed="false">{e(SECTION_TITLES[d])}</button>' for d in SOURCE_DIRS)}
+  <button class="chip" data-f="quantum" aria-pressed="false">Quantum Mirror</button>
 </div>
 
 {chr(10).join(cards)}
@@ -247,16 +301,19 @@ opens the page's HTML in the GitHub repository.</p>
     grids.forEach(function (grid) {{
       var visible = 0;
       [].slice.call(grid.children).forEach(function (card) {{
-        var ok = (filter === 'all' || grid.dataset.section === filter)
+        // A card may declare its own section (e.g. a curated "quantum" card
+        // living in the vi/articles grid); otherwise it inherits the grid's.
+        var sec = card.dataset.sec || grid.dataset.section;
+        var ok = (filter === 'all' || sec === filter)
                  && (!term || card.dataset.t.indexOf(term) !== -1);
         card.hidden = !ok;
         if (ok) {{ visible++; shown++; }}
       }});
       grid.hidden = visible === 0;
     }});
-    heads.forEach(function (h) {{ h.hidden = (h.dataset.section !== filter && filter !== 'all')
-                                             || document.querySelector(
-                                                  '.grid[data-section="' + h.dataset.section + '"]').hidden; }});
+    heads.forEach(function (h) {{ 
+      var grid = document.querySelector('.grid[data-section="' + h.dataset.section + '"]');
+      h.hidden = (h.dataset.section !== filter && filter !== 'all') || (grid && grid.hidden); }});
     empty.hidden = shown !== 0;
   }}
 
@@ -291,6 +348,14 @@ def main(argv: list[str] | None = None) -> int:
 
     repo = os.path.abspath(args.repo)
 
+    # The tree walk uses a git ref, but the *links* must point at a real branch
+    # name. "HEAD" resolves fine for git show but would produce blob/HEAD/... in
+    # the GitHub URLs, so normalise it to the actual branch.
+    if args.branch in ("HEAD", ""):
+        resolved = git(repo, "rev-parse", "--abbrev-ref", "HEAD").strip()
+        if resolved and resolved != "HEAD":
+            args.branch = resolved
+
     # slug -> illustration id (from the plan), so duplicate pages share one image
     image_of: dict[str, str] = {}
     rep_of: dict[str, str] = {}
@@ -318,7 +383,7 @@ def main(argv: list[str] | None = None) -> int:
             slug = line[: -len("/index.html")]
             if slug in INDEX_SLUGS:
                 continue
-            if not image_of.get(slug):
+            if not image_of.get(slug) and not IMAGE_FALLBACK.get(slug):
                 # No illustration: a section hub, a redirect notice, or a page
                 # the illustration plan does not cover. Listing it here would
                 # add a "no illustration" row, so it is reported and skipped.
@@ -335,8 +400,21 @@ def main(argv: list[str] | None = None) -> int:
                 "title": title,
                 "live": f"{args.site}/{slug}/",
                 "source": f"{args.github}/blob/{args.branch}/{slug}/index.html",
-                "image": image_of.get(slug, ""),
+                "image": image_of.get(slug) or IMAGE_FALLBACK.get(slug, ""),
                 "shared_with": rep_of.get(slug, slug) if rep_of.get(slug) != slug else "",
+            })
+        # curated entries that belong to this section
+        for section, slug, title, live_path, source_path, image_id in CURATED:
+            if section != d:
+                continue
+            rows.append({
+                "slug": slug,
+                "title": title,
+                "live": f"{args.site}/{live_path}",
+                "source": f"{args.github}/blob/{args.branch}/{source_path}",
+                "image": image_id,
+                "shared_with": "",
+                "curated": True,
             })
         rows.sort(key=lambda r: r["title"].lower())
         sections[d] = rows
