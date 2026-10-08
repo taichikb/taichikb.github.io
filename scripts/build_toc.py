@@ -42,10 +42,10 @@ CURATED = [
         "vi/articles",
         "vi/books/martial_arts_qigong_health_vitality_vi#sec2b-guong-luong-tu",
         "“Khoa Học Trung Hoa” Soi Gương Qua Vật Lý Lượng Tử Hiện Đại "
-        "(Nguyên Lý Âm Dương, Ngũ Hành &amp; Cơ Học Lượng Tử)",
+        "(Nguyên Lý Âm Dương, Ngũ Hành & Cơ Học Lượng Tử)",
         "vi/books/martial_arts_qigong_health_vitality_vi.html#sec2b-guong-luong-tu",
         "vi/books/martial_arts_qigong_health_vitality_vi.html",
-        "vi__articles__giai-phau-nang-luong-toan-tap",
+        "articles__complete-taichi-practice-guide-for-the-30-beginner",
     ),
 ]
 
@@ -131,11 +131,12 @@ def card_html(r: dict, e, args, section: str | None = None) -> str:
     elif r.get("shared_with"):
         tags += '<span class="tag">shared illustration</span>'
     sec = f' data-sec="{section}"' if section else ""
+    slug_disp = r["slug"].split("#")[0] if r.get("curated") else r["slug"]
     return (
         f'<article class="card" data-t="{e(r["title"].lower())}"{sec}>'
         f'<a class="thumb" href="{e(r["live"])}">{thumb}</a>'
         f'<h3><a href="{e(r["live"])}">{e(r["title"])}</a></h3>'
-        f'<p class="meta">{e(r["slug"])}{tags}</p>'
+        f'<p class="meta">{e(slug_disp)}{tags}</p>'
         f'<p class="links">{" · ".join(links)}</p>'
         f'</article>')
 
@@ -346,6 +347,14 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     repo = os.path.abspath(args.repo)
+
+    # The tree walk uses a git ref, but the *links* must point at a real branch
+    # name. "HEAD" resolves fine for git show but would produce blob/HEAD/... in
+    # the GitHub URLs, so normalise it to the actual branch.
+    if args.branch in ("HEAD", ""):
+        resolved = git(repo, "rev-parse", "--abbrev-ref", "HEAD").strip()
+        if resolved and resolved != "HEAD":
+            args.branch = resolved
 
     # slug -> illustration id (from the plan), so duplicate pages share one image
     image_of: dict[str, str] = {}
