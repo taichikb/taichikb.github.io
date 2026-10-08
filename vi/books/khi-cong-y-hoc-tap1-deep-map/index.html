@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bản Đồ Tư Duy Khí Công Y Học Tập 1 — Toàn Bộ Khái Niệm &amp; Liên Kết Sách — TaichiNOW</title>
+<meta name="description" content="Bản đồ tư duy tương tác toàn bộ khái niệm trong Khí Công Y Học Trung Hoa Tập 1 của GS. Jerry Alan Johnson, kèm liên kết chéo tới 100+ sách trong thư viện TaichiNOW.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+:root{
+  --mm-yin:#000; --mm-yang:#fff; --mm-mid:#888; --mm-light:#e8e8e8;
+  --mm-bg:#fafafa; --mm-gold:#c9a961; --mm-panel:#fff;
+}
+html,body{background:#fff;}
+body.mm-body{margin:0;font-family:var(--sans,'Inter',system-ui,sans-serif);color:#111;font-size:17px;line-height:1.7;}
+/* self-contained header (works even if the shared stylesheet is unavailable) */
+.mm-body .site-header{display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 2rem;border-bottom:1px solid #e8e8e8;background:#fff;flex-wrap:wrap;gap:.8rem;}
+.mm-body .brand{display:flex;align-items:center;gap:.6rem;font-family:var(--serif,'Cormorant Garamond',serif);
+  font-size:1.5rem;font-weight:500;color:#000;text-decoration:none;}
+.mm-body .taiji-logo{width:44px!important;height:44px!important;display:inline-block;vertical-align:middle;flex:0 0 44px;}
+.mm-body .site-nav{display:flex;gap:1.05rem;align-items:center;flex-wrap:wrap;}
+.mm-body .site-nav a{font-size:.86rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;
+  color:#111;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;}
+.mm-body .site-nav a:hover,.mm-body .site-nav a.active{border-bottom-color:#000;color:#8b2635;}
+.mm-body .lang-switch{font-size:.72rem;font-weight:700;letter-spacing:.04em;border:1px solid #ddd;
+  border-radius:20px;padding:4px 12px!important;border-bottom:1px solid #ddd!important;color:#444;white-space:nowrap;}
+.mm-body .lang-switch:hover{border-color:var(--mm-gold,#c9a961)!important;color:#92400e;background:#fffdf6;}
+.mm-wrap{max-width:1360px;margin:0 auto;padding:18px 20px 70px;}
+.mm-head{text-align:center;padding:26px 12px 10px;}
+.mm-badge{display:inline-block;background:#fef3c7;color:#92400e;font-size:.74rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}
+.mm-head h1{font-family:var(--serif);font-size:2.35rem;line-height:1.22;margin:0 0 10px;color:#000;}
+.mm-head p.sub{color:#555;font-size:1rem;max-width:820px;margin:0 auto 8px;}
+.mm-stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 6px;}
+.mm-stat{background:var(--mm-bg);border:1px solid var(--mm-light);border-radius:12px;padding:9px 16px;min-width:104px;}
+.mm-stat b{display:block;font-family:var(--serif);font-size:1.5rem;color:#8b2635;line-height:1.1;}
+.mm-stat span{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:#777;font-weight:600;}
+
+/* toolbar */
+.mm-toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center;
+  margin:20px 0 6px;padding:12px;background:var(--mm-bg);border:1px solid var(--mm-light);border-radius:14px;}
+.mm-toolbar button{font-family:var(--sans);font-size:.85rem;font-weight:600;background:#fff;color:#222;
+  border:1px solid var(--mm-light);border-radius:9px;padding:7px 14px;cursor:pointer;transition:.18s;}
+.mm-toolbar button:hover{border-color:var(--mm-gold);color:#92400e;transform:translateY(-1px);}
+.mm-toolbar button.on{background:#8b2635;color:#fff;border-color:#8b2635;}
+.mm-search{flex:1 1 220px;min-width:190px;max-width:340px;padding:8px 13px;border:1px solid var(--mm-light);
+  border-radius:9px;font-family:var(--sans);font-size:.88rem;outline:none;}
+.mm-search:focus{border-color:var(--mm-gold);}
+
+/* canvas */
+.mm-stage{position:relative;margin:16px 0 6px;border:1px solid var(--mm-light);border-radius:16px;
+  background:radial-gradient(circle at 50% 50%, #fffefb 0%, #fbfaf8 44%, #f4f3f1 100%);
+  overflow:hidden;height:min(86vh,1000px);min-height:640px;}
+.mm-stage svg{display:block;width:100%;height:100%;cursor:grab;}
+.mm-stage svg.grabbing{cursor:grabbing;}
+.mm-hint{position:absolute;left:14px;bottom:12px;font-size:.75rem;color:#888;background:rgba(255,255,255,.86);
+  padding:5px 11px;border-radius:8px;border:1px solid var(--mm-light);pointer-events:none;}
+.mm-zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;}
+.mm-zoom button{width:34px;height:34px;border:1px solid var(--mm-light);background:rgba(255,255,255,.94);
+  border-radius:9px;font-size:1.05rem;font-weight:700;color:#333;cursor:pointer;line-height:1;}
+.mm-zoom button:hover{border-color:var(--mm-gold);color:#92400e;}
+
+/* nodes */
+.node-root rect{fill:#8b2635;}
+.node-root text{fill:#fff;font-weight:700;}
+.node-ch rect{stroke-width:2px;}
+.node-ch text{font-weight:700;}
+.node-cpt{cursor:pointer;}
+.node-cpt rect{transition:filter .15s;}
+.node-cpt:hover rect{filter:brightness(1.06);}
+.node-cpt.hidden{opacity:.12;pointer-events:none;}
+.node-cpt.dim{opacity:.22;}
+.link{fill:none;stroke-linecap:round;}
+.link.hidden{opacity:0;}
+.link-ch{stroke:#d8d4ce;}
+.link-cpt{stroke-width:1.6;}
+.node-label{font-family:var(--sans);font-size:11.5px;dominant-baseline:middle;}
+.ch-label{font-family:var(--serif);font-size:14px;}
+.root-label{font-family:var(--serif);font-size:15px;}
+
+/* detail panel */
+.mm-panel{margin-top:20px;border:1px solid var(--mm-light);border-radius:16px;background:#fff;
+  padding:24px 26px;box-shadow:0 10px 30px -18px rgba(0,0,0,.14);}
+.mm-panel .empty{color:#888;font-style:italic;text-align:center;padding:22px 0;}
+.mm-panel h2{font-family:var(--serif);font-size:1.72rem;margin:0 0 4px;color:#111;border:0;padding:0;}
+.mm-panel .ch-tag{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;padding:3px 11px;border-radius:20px;color:#fff;margin-bottom:10px;}
+.mm-panel .en{color:#666;font-style:italic;margin:2px 0 12px;font-size:.95rem;}
+.mm-panel .chz{font-family:var(--cjk);color:#8b2635;font-size:1.02rem;margin:0 0 10px;}
+.mm-panel .desc{color:#333;line-height:1.68;margin:0 0 16px;}
+.mm-panel h3{font-family:var(--sans);font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;
+  color:#777;font-weight:700;margin:18px 0 10px;border:0;font-style:normal;}
+.mm-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 6px;}
+.mm-actions a{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:600;
+  text-decoration:none;padding:8px 15px;border-radius:10px;border:1px solid var(--mm-light);color:#222;transition:.18s;}
+.mm-actions a.primary{background:#8b2635;color:#fff;border-color:#8b2635;}
+.mm-actions a:hover{border-color:var(--mm-gold);transform:translateY(-1px);color:#92400e;}
+.mm-actions a.primary:hover{color:#fff;background:#7a2130;}
+.mm-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:9px;}
+.mm-links a{display:block;font-size:.85rem;text-decoration:none;color:#1f2937;padding:9px 12px;
+  border:1px solid var(--mm-light);border-radius:10px;background:var(--mm-bg);transition:.16s;line-height:1.4;}
+.mm-links a:hover{border-color:var(--mm-gold);background:#fffdf6;transform:translateY(-1px);}
+.mm-links a .fam{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#9a9a9a;margin-top:3px;}
+
+/* index table */
+.mm-index{margin-top:26px;}
+.mm-index h2{font-family:var(--serif);font-size:1.7rem;margin:26px 0 14px;color:#111;border:0;}
+.mm-index .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.mm-card{border:1px solid var(--mm-light);border-radius:13px;padding:15px 17px;background:#fff;transition:.18s;}
+.mm-card:hover{box-shadow:0 10px 24px -16px rgba(0,0,0,.2);transform:translateY(-2px);}
+.mm-card .num{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:#8b2635;}
+.mm-card h4{font-family:var(--sans);font-size:.98rem;margin:3px 0 4px;font-weight:700;color:#111;}
+.mm-card .en2{font-size:.78rem;color:#888;font-style:italic;margin-bottom:7px;}
+.mm-card ul{list-style:none;padding:0;margin:6px 0 0;}
+.mm-card li{font-size:.82rem;padding:2px 0;color:#333;}
+.mm-card li a{color:#1f2937;text-decoration:none;border-bottom:1px solid #e5e5e5;}
+.mm-card li a:hover{color:#8b2635;border-bottom-color:var(--mm-gold);}
+
+.mm-foot{text-align:center;margin-top:34px;color:#888;font-size:.83rem;}
+@media(max-width:720px){
+  .mm-head h1{font-size:1.6rem;}
+  .mm-stage{height:66vh;}
+  .mm-panel{padding:18px;}
+}
+</style>
+</head>
+<body class="mm-body">
+
+<header class="site-header">
+    <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg><span>TaichiNOW</span></a>
+    <nav class="site-nav">
+<a href="/vi/" class="">Trang Chủ</a>
+<a href="/vi/techniques/" class="">Kỹ Thuật</a>
+<a href="/vi/books/" class="active">Thư Viện Sách</a>
+<a href="/vi/health/" class="">Sức Khỏe</a>
+<a href="/vi/videos/" class="">Video</a>
+<a href="/vi/podcast/" class="">Podcast</a>
+<a href="/vi/philosophy/" class="">Triết Lý</a>
+<a href="/vi/history/" class="">Lịch Sử</a>
+<a href="/vi/contact/" class="">Liên Hệ</a>
+    <a href="/" class="lang-switch">🇬🇧 English</a>
+    </nav>
+</header>
+
+<main>
+<div class="mm-wrap">
+
+  <div class="mm-head">
+    <span class="mm-badge">Bản Đồ Tư Duy · Deep Map</span>
+    <h1>Khí Công Y Học Trung Hoa — Tập 1<br><span style="font-size:1.3rem;color:#666;">Giải Phẫu &amp; Sinh Lý Năng Lượng · Toàn Bộ Khái Niệm Chính</span></h1>
+    <p class="sub">Mỗi khái niệm lớn trong tác phẩm của GS. Jerry Alan Johnson được neo vào đúng chương của sách
+      và nối tới những tác phẩm khác trong thư viện TaichiNOW đào sâu cùng chủ đề. Bấm một nút để xem liên kết.</p>
+    <p class="sub" style="margin-top:10px;">
+      <a href="/vi/articles/giai-phau-nang-luong-toan-tap/" style="display:inline-block;background:#8b2635;color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;padding:9px 18px;border-radius:10px;">📖 Đọc bài chuyên đề: Giải Phẫu Năng Lượng Toàn Tập →</a>
+    </p>
+    <div class="mm-stats">
+      <div class="mm-stat"><b id="st-c">0</b><span>Khái niệm</span></div>
+      <div class="mm-stat"><b id="st-ch">0</b><span>Chương</span></div>
+      <div class="mm-stat"><b id="st-l">0</b><span>Liên kết sách</span></div>
+      <div class="mm-stat"><b>601</b><span>Trang gốc</span></div>
+    </div>
+  </div>
+
+  <div class="mm-toolbar">
+    <input class="mm-search" id="mm-search" type="search" placeholder="⌕ Tìm khái niệm… (khí, đan điền, kinh mạch)">
+    <button id="btn-reset" class="on">Toàn Bộ</button>
+    <button id="btn-links">Chỉ Có Liên Kết</button>
+    <button id="btn-relayout">↻ Sắp Xếp Lại</button>
+    <button id="btn-png">⤓ Tải PNG</button>
+  </div>
+
+  <div class="mm-stage" id="mm-stage">
+    <svg id="mm-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="mm-zoom">
+      <button id="z-in" title="Phóng to">+</button>
+      <button id="z-out" title="Thu nhỏ">−</button>
+      <button id="z-fit" title="Vừa khung">⤢</button>
+    </div>
+    <div class="mm-hint">Kéo để di chuyển · Lăn chuột để thu phóng · Bấm “⤢” để xem toàn cảnh · Bấm một nút để mở liên kết</div>
+  </div>
+
+  <section class="mm-panel" id="mm-panel">
+    <div class="empty">▲ Bấm một khái niệm trên bản đồ để xem mô tả và liên kết tới các sách liên quan.</div>
+  </section>
+
+  <section class="mm-index">
+    <h2>Chỉ Mục Khái Niệm Theo Chương</h2>
+    <div class="grid" id="mm-cards"></div>
+  </section>
+
+  <p class="mm-foot">
+    Nguồn: <em>Chinese Medical Qigong Therapy, Vol. 1 — Energetic Anatomy and Physiology</em>, Prof. Jerry Alan Johnson.<br>
+    Liên kết chéo tới thư viện TaichiNOW · <a href="/vi/books/" style="color:#8b2635;">← Về Thư Viện Sách</a>
+  </p>
+</div>
+</main>
+
+<footer class="site-footer">
+    <p>Built with ❤️ for the Vietnamese Tai Chi community by Phạm Đức Hải</p>
+</footer>
+
+<script>
+const DATA = {"book":{"slug":"jerry_alan_johnson_chinese_medical_qigong_vol1","href":"vi/books/jerry_alan_johnson_chinese_medical_qigong_vol1_vi.html"},"chapters":[{"n":1,"id":"ch1","vi":"Nhập Môn Khí Công Y Học","en":"Introduction to Medical Qigong","secs":["sec00","sec01","sec02"]},{"n":2,"id":"ch2","vi":"Siêu Hình Học Cổ Trung Hoa","en":"Understanding Ancient Chinese Metaphysics","secs":["sec03","sec04","sec05","sec06"]},{"n":3,"id":"ch3","vi":"Sự Hình Thành & Phát Triển Của Mô","en":"Tissue Formation and Development","secs":["sec07","sec08"]},{"n":4,"id":"ch4","vi":"Ngũ Năng Lượng Của Cơ Thể Người","en":"The Five Energies of the Human Body","secs":["sec09","sec10"]},{"n":5,"id":"ch5","vi":"Thái Cực Trụ & Tam Đan Điền","en":"The Taiji Pole and the Three Dantians","secs":["sec11","sec12","sec13"]},{"n":6,"id":"ch6","vi":"Bát Mạch Kỳ Kinh","en":"The Eight Extraordinary Vessels","secs":["sec14","sec15"]},{"n":7,"id":"ch7","vi":"Lục Phủ Kỳ Hằng (Sáu Tạng Kỳ Dị)","en":"The Six Extraordinary Fu Organs","secs":["sec16","sec17"]},{"n":8,"id":"ch8","vi":"Thập Nhị Tạng Phủ, Kinh & Lạc","en":"The Twelve Zang-Fu Organs, Channels and Collaterals","secs":["sec18","sec19","sec20","sec21","sec22","sec23","sec24"]},{"n":9,"id":"ch9","vi":"Biệt Kinh, Kinh Cân & Lạc Mạch","en":"Divergent Channels, Sinew Channels and Collaterals","secs":["sec25","sec26"]},{"n":10,"id":"ch10","vi":"Các Điểm Năng Lượng Trên Cơ Thể","en":"The Energy Points of the Body","secs":["sec27","sec28","sec29","sec30","sec31","sec32"]}],"concepts":[{"id":"c-khi","ch":"ch1","anchor":"sec00","vi":"Khí — Năm Cõi Năng Lượng","en":"Qi — the Five Planes of Energy","ch_z":"氣","desc":"Nguyên lý nền: Khí là chất nền của vũ trụ và của thân thể; năm cõi năng lượng từ thô đến tinh.","books":["chikung-bible","essential-qigong","yang-root-chi-kung","beginners-qigong","mysterious-power-xingyi","complete-yiquan","four-dragons","taijiworld-qigong"],"links":[{"href":"vi/books/Chikung bible_vi.html","title":"chikung-bible"},{"href":"vi/books/essential_qigong_training_guide_vi.html","title":"Cẩm Nang Khí Công Cốt Yếu"},{"href":"vi/books/yang_jwing_ming_root_of_chinese_chi_kung_vi.html","title":"Cội Nguồn Khí Công Trung Hoa: Bí Mật Luyện Khí Công"},{"href":"vi/books/Beginners-guide-to-understanding-qigong_vi.html","title":"beginners-guide-to-understanding-qigong"},{"href":"vi/books/taijiworld_power-taiji-vol1_vi.html","title":"Thái Cực Quyền Nội Lực"},{"href":"vi/books/Baguazhang - the Complete System (Vol.1) by Erle Montaigue_vi.html","title":"Bát Quái Chưởng"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"vi/books/taijiworld_qigong_vi.html","title":"Khí Công · Erle Montaigue (Taijiworld)"}]},{"id":"c-medical-qigong","ch":"ch1","anchor":"sec01","vi":"Khí Công Y Học — Định Nghĩa & Ba Trường Phái","en":"Medical Qigong — Definition & Three Schools","ch_z":"醫學氣功","desc":"Định nghĩa Khí Công Y Học, ba trường phái chính (Đạo gia, Phật gia, Nho gia/Y học), và vị trí lâm sàng ở Trung Quốc.","books":["martial-arts-qigong","essential-qigong","healing-bodies","frantzis-dragon-tiger-1","frantzis-dragon-tiger-2","qigong-health-martial","taijiworld-chinese-self-healing"],"links":[{"href":"vi/books/martial_arts_qigong_health_vitality_vi.html","title":"Khí Công Võ Thuật Vì Sức Khỏe và Sinh Lực"},{"href":"vi/books/essential_qigong_training_guide_vi.html","title":"Cẩm Nang Khí Công Cốt Yếu"},{"href":"vi/books/Chinese Self healing Methods _vi.html","title":"Chinese Self healing Methods .."},{"href":"vi/books/Baguazhang - the Complete System (Vol.1) by Erle Montaigue_vi.html","title":"Bát Quái Chưởng"},{"href":"vi/books/Baguazhang - the Complete System (Vol.2)_vi.html","title":"Bát Quái Chưởng"},{"href":"vi/books/taijiworld_chinese-self-healing-methods_vi.html","title":"Phương Pháp Tự Chữa Lành Trung Hoa · Erle Montaigue (Taijiworld)"}]},{"id":"c-tcm-clinical","ch":"ch1","anchor":"sec02","vi":"Y Học Cổ Truyền & Năm Vị Trí Lâm Sàng","en":"TCM and the Five Clinical Positions","ch_z":"中醫","desc":"Quan hệ giữa Châm cứu, Dược thảo, Xoa bóp, Khí Công và Ngũ hành trong hệ thống y học cổ truyền.","books":["essence-tcm","hoang-de-noi-kinh-1","hoang-de-noi-kinh-2","illustrated-canon","noi-canh-do","noi-kinh-do","chikung-bible","tcm-chirali"],"links":[{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"books/read/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/","title":"1756-huynh-dinh-noi-canh-kinh-thuviensach.vn"},{"href":"vi/books/Chikung bible_vi.html","title":"chikung-bible"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"}]},{"id":"c-dao","ch":"ch2","anchor":"sec03","vi":"Đạo, Vô Cực & Thái Cực","en":"Dao, Wuji and Taiji","ch_z":"道·無極·太極","desc":"Đạo là nguồn sinh; Vô Cực là không gian vô tận; Thái Cực là cực điểm tối cao. Ba phân khu năng lượng của Đạo.","books":["dao-duc-kinh-nguyen-hien-le","dao-duc-kinh-nguyen-van-tho","huynh-dinh-noi-canh","yoga-vasistha","thuan-theo-tu-nhien","taoist-meditation-riding-dragon","frantzis-relaxing-into-being","frantzis-great-stillness","waysun-liao-tai-chi-essence"],"links":[{"href":"books/read/dao-duc-kinh-nguyen-hien-le/","title":"Đạo Đức Kinh - Nguyễn Hiến Lê"},{"href":"books/read/dao-duc-kinh-nhan-tu-nguyen-van-tho-khao-luan-binh-dich/","title":"Đạo Đức Kinh - Nhân tử Nguyễn Văn Thọ - Khảo Luận &amp; Bình Dịch"},{"href":"books/read/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/","title":"1756-huynh-dinh-noi-canh-kinh-thuviensach.vn"},{"href":"books/read/practice-of-yoga/","title":"Practice of Yoga"},{"href":"vi/articles/thuan-theo-tu-nhien/","title":"Thuận theo tự nhiên"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"vi/books/waysun_liao_tai_chi_essence_vi.html","title":"Tinh Hoa Thái Cực Quyền & Khí Công (Tai Chi: The Book of Essence)"}]},{"id":"c-yinyang","ch":"ch2","anchor":"sec03","vi":"Âm Dương & Bát Quái","en":"Yin-Yang and the Bagua","ch_z":"陰陽·八卦","desc":"Nguyên lý Âm–Dương, tám quẻ Bát Quái, và sự hình thành của chúng trong thân thể.","books":["taijiworld-bagua-chart","tom-bisio-bagua","erle-bagua-1","erle-bagua-2","park-bok-nam-1","park-bok-nam-2","bagua-daoyin","frantzis-bagua-and-tai-chi","taijiworld-advanced-taiji-bagua"],"links":[{"href":"vi/books/taijiworld_bagua-chart_vi.html","title":"Đồ Hình Bát Quái · Erle Montaigue (Taijiworld)"},{"href":"vi/books/tom_bisio_art_of_ba_gua_zhang_vi.html","title":"Nghệ Thuật Bát Quái Chưởng"},{"href":"vi/books/taijiworld_baguazhang-vol1_vi.html","title":"Bát Quái Chưởng: Hệ Thống Hoàn Chỉnh"},{"href":"vi/books/taijiworld_baguazhang-vol2_vi.html","title":"Bát Quái Chưởng: Hệ Thống Hoàn Chỉnh"},{"href":"vi/books/park_bok_nam_pa_kua_chang_vol1_vi.html","title":"Bát Quái Chưởng Toàn Thư"},{"href":"vi/books/park_bok_nam_pa_kua_chang_vol2_vi.html","title":"Bát Quái Chưởng Toàn Thư"},{"href":"vi/books/taijiworld_advanced-taiji-and-bagua_vi.html","title":"Thái Cực Quyền &amp; Bát Quái Chưởng Nâng Cao · Erle Montaigue (Taijiworld)"},{"href":"vi/books/bruce_frantzis_insiders_guide_tai_chi_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền (The Insider's Guide to Tai Chi)"}]},{"id":"c-wuxing","ch":"ch2","anchor":"sec03","vi":"Ngũ Hành — Năm Nguyên Tố","en":"The Five Elements (Wu Xing)","ch_z":"五行","desc":"Mộc–Hỏa–Thổ–Kim–Thủy như năm pha vận động; năm ánh sáng thuần khiết; sinh–khắc.","books":["taijiworld-golden-elixir","essence-tcm","hoang-de-noi-kinh-1","noi-kinh-do","tcm-chirali","taijiquan-dict-yu-gongbao","shibashi-qigong","taiji-qigong-jarmey"],"links":[{"href":"vi/books/taijiworld_advanced-taiji-and-bagua_vi.html","title":"Thái Cực Quyền &amp; Bát Quái Chưởng Nâng Cao · Erle Montaigue (Taijiworld)"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"},{"href":"vi/books/Beginners-guide-to-understanding-qigong_vi.html","title":"beginners-guide-to-understanding-qigong"}]},{"id":"c-sanhun","ch":"ch2","anchor":"sec06","vi":"Hồn & Phách — Tam Hồn Thất Phách","en":"Hun and Po — Three Ethereal & Seven Corporeal Souls","ch_z":"魂魄","desc":"Hồn (linh hồn khí) và Phách (linh hồn xác); ảnh hưởng lên Nguyên Thần; bảy linh hồn thể xác.","books":["huynh-dinh-noi-canh","noi-canh-do-phan-tich","noi-canh-do","yoga-vasistha","mantak-chia","taoist-meditation-riding-dragon","frantzis-taoist-sexual-meditation"],"links":[{"href":"books/read/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/","title":"1756-huynh-dinh-noi-canh-kinh-thuviensach.vn"},{"href":"books/read/practice-of-yoga/","title":"Practice of Yoga"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"}]},{"id":"c-yuanshen","ch":"ch2","anchor":"sec04","vi":"Nguyên Thần & Tam Bảo (Tinh–Khí–Thần)","en":"Yuan Shen and the Three Treasures (Jing-Qi-Shen)","ch_z":"元神·精氣神","desc":"Nguyên Thần là linh hồn con người; Tinh–Khí–Thần là ba kho báu tương tác; ba thể: vật chất, năng lượng, tinh thần.","books":["tinh-khi-than-truong-tho","chikung-bible","frantzis-relaxing-into-being","frantzis-great-stillness","mantak-chia","stuart-olson-cultivating-chi","four-dragons","taoist-meditation-riding-dragon"],"links":[{"href":"vi/articles/tinh-khi-than-truong-tho/","title":"TaichiNOW"},{"href":"vi/books/Chikung bible_vi.html","title":"chikung-bible"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"vi/books/stuart_olson_cultivating_the_chi_chen_kung_vi.html","title":"Bồi Dưỡng Chân Khí: Bí Mật Năng Lượng & Trường Sinh"}]},{"id":"c-tissue","ch":"ch3","anchor":"sec07","vi":"Mô, Cân Mạc & Dòng Chảy Năng Lượng","en":"Tissue, Fascia and Energy Flow","ch_z":"組織·筋膜","desc":"Sự hình thành mô, cân mạc (fascia) như mạng dẫn năng lượng, và ba kiểu phân loại cơ thể cổ đại.","books":["anatomy-physiology-marieb","essentials-human-anatomy","hole-human-anatomy","guyton-hall","costanzo-physiology","frantzis-energy-gates","tai-chi-functional-icaa"],"links":[{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"books/read/tai_chi_functional/","title":"tai chi functional"}]},{"id":"c-constitution","ch":"ch3","anchor":"sec07","vi":"Ngũ Hành Thể Chất — Mộc/Hỏa/Thổ/Kim/Thủy","en":"Five-Element Constitutions","ch_z":"體質·五行","desc":"Năm loại thể chất bẩm sinh và cách điều trị tương ứng; các thể chất kết hợp.","books":["essence-tcm","hoang-de-noi-kinh-1","tcm-chirali","aikido-meddict","taijiquan-dict-yu-gongbao","harvard-medical-guide","tai-chi-functional-icaa"],"links":[{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"},{"href":"vi/books/harvard_medical_guide_tai_chi_vi.html","title":"Cẩm Nang Y Học Harvard Về Thái Cực Quyền"},{"href":"books/read/tai_chi_functional/","title":"tai chi functional"}]},{"id":"c-extraordinary-vessel-types","ch":"ch3","anchor":"sec08","vi":"Tám Thể Chất Tính Cách Của Bát Mạch Kỳ Kinh","en":"The Eight Personality Constitutions of the Vessels","desc":"Loại tính cách bệnh lý gắn với từng Kỳ Kinh: Đốc/Dương Kiểu, Nhâm/Âm Kiểu, Đới/Dương Duy, Xung/Âm Duy.","books":["eight-extraordinary-meridians","meridian-qigong-yang","tcm-chirali","essence-tcm","taijiquan-dict-yu-gongbao"],"links":[{"href":"vi/books/EightExtraordinaryMeridians-Qigong_vi.html","title":"EightExtraordinaryMeridians-Qigong"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"}]},{"id":"c-five-energies","ch":"ch4","anchor":"sec09","vi":"Năm Loại Năng Lượng & Năng Lượng Âm Thanh","en":"The Five Energies and Sound Energy","ch_z":"五氣·聲能","desc":"Ngũ năng lượng của thân thể; cộng hưởng âm thanh; liệu pháp âm thanh qua Phát Khí; năm cao độ cổ đại.","books":["mantak-chia","four-dragons","taoist-meditation-riding-dragon","chikung-bible","stuart-olson-cultivating-chi","taijiworld-chinese-self-healing","frantzis-dragon-tiger-1"],"links":[{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"vi/books/Chikung bible_vi.html","title":"chikung-bible"},{"href":"vi/books/stuart_olson_cultivating_the_chi_chen_kung_vi.html","title":"Bồi Dưỡng Chân Khí: Bí Mật Năng Lượng & Trường Sinh"},{"href":"vi/books/taijiworld_chinese-self-healing-methods_vi.html","title":"Phương Pháp Tự Chữa Lành Trung Hoa · Erle Montaigue (Taijiworld)"},{"href":"vi/books/Baguazhang - the Complete System (Vol.1) by Erle Montaigue_vi.html","title":"Bát Quái Chưởng"}]},{"id":"c-light-energy","ch":"ch4","anchor":"sec10","vi":"Năng Lượng Ánh Sáng & Màu Sắc Hào Quang","en":"Light Energy and Aura Color","ch_z":"光能·色光","desc":"Ánh sáng vật lý–năng lượng–tâm linh; bảng quang phổ; liệu pháp màu; sinh lý học nhận thức thị giác; hào quang.","books":["frantzis-energy-gates","mantak-chia","frantzis-great-stillness","yoga_vasistha","taoist-meditation-riding-dragon"],"links":[{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"books/read/practice-of-yoga/","title":"Practice of Yoga"}]},{"id":"c-taiji-pole","ch":"ch5","anchor":"sec11","vi":"Thái Cực Trụ — Trục Năng Lượng Trung Tâm","en":"The Taiji Pole (Central Energy Axis)","ch_z":"太極柱","desc":"Trục năng lượng trung tâm chạy dọc thân; năm Kinh Xung; tương tác năng lượng bên trong; mặt nạ phòng vệ quanh lõi.","books":["yang-root-chi-kung","frantzis-energy-gates","yang-advanced-yang-style","yang-taijiquan-theory","tai-chi-chuan-comprehensive","cheng-man-ching","chen-xin-tushuo","waysun-liao-tai-chi-essence"],"links":[{"href":"vi/books/yang_jwing_ming_root_of_chinese_chi_kung_vi.html","title":"Cội Nguồn Khí Công Trung Hoa: Bí Mật Luyện Khí Công"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"books/read/tai-chi-chuan-the-18-methods/","title":"Tai Chi Chuan the 18 methods"},{"href":"vi/books/cheng_man_ching_tai_chi_vi.html","title":"Thái Cực Quyền Toàn Thư"},{"href":"vi/books/chen_xin_taijiquan_tushuo_vi.html","title":"Trần Thị Thái Cực Quyền Đồ Thuyết (陈氏太极拳图说)"},{"href":"vi/books/waysun_liao_tai_chi_essence_vi.html","title":"Tinh Hoa Thái Cực Quyền & Khí Công (Tai Chi: The Book of Essence)"}]},{"id":"c-dantian","ch":"ch5","anchor":"sec13","vi":"Tam Đan Điền — Hạ, Trung, Thượng","en":"The Three Dantians — Lower, Middle, Upper","ch_z":"三丹田","desc":"Ba kho năng lượng: Hạ (Tinh, nhịp xương), Trung (Khí, nhịp lồng ngực), Thượng (Thần, nhịp sọ não); chín khoang mỗi đan điền.","books":["tinh-khi-than-truong-tho","yang-taijiquan-theory","taoist-meditation-riding-dragon","mantak-chia","frantzis-relaxing-into-being","frantzis-great-stillness","frantzis-dragon-tiger-1","yang-grand-circulation","four-dragons","stuart-olson-cultivating-chi","yang-tai-chi-qigong","uddiyana-dan-dien"],"links":[{"href":"vi/articles/tinh-khi-than-truong-tho/","title":"TaichiNOW"},{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"vi/books/Baguazhang - the Complete System (Vol.1) by Erle Montaigue_vi.html","title":"Bát Quái Chưởng"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/books/stuart_olson_cultivating_the_chi_chen_kung_vi.html","title":"Bồi Dưỡng Chân Khí: Bí Mật Năng Lượng & Trường Sinh"},{"href":"vi/books/yang_jwing_ming_tai_chi_qigong_vi.html","title":"Khí Công Thái Cực Toàn Thư (Tai Chi Qigong: The Internal Foundation)"},{"href":"vi/articles/uddiyana-dan-dien/","title":"TaichiNOW"}]},{"id":"c-chakra","ch":"ch5","anchor":"sec11","vi":"Hệ Thống Luân Xa & Mười Hai Cổng","en":"The Chakra System and Twelve Gates","ch_z":"輪·脈輪","desc":"Bảy luân xa bên trong (và thứ tám, thứ chín bên ngoài); màu sắc, âm thanh, đám rối thần kinh; mười hai cổng luân xa nối với Tam Đan Điền.","books":["frantzis-chi-revolution","mantak-chia","yoga-toan-tap","iyengar-yoga","vinyasa-yoga","sivananda-practice-of-yoga","yoga_vasistha","routledge-yoga-meditation"],"links":[{"href":"vi/books/bruce_frantzis_insiders_guide_tai_chi_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền (The Insider's Guide to Tai Chi)"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"books/read/yoga-toan-tap/","title":"Yoga Toàn Tập (The Complete Classical Yoga Manual)"},{"href":"books/read/practice-of-yoga/","title":"Practice of Yoga"},{"href":"books/read/the-complete-book-of-vinyasa-yoga/","title":"The Complete Book of Vinyasa Yoga"}]},{"id":"c-five-spirits","ch":"ch5","anchor":"sec13","vi":"Năm Nguyên Tắc Tâm Linh & Chức Năng Tam Đan Điền","en":"The Five Spiritual Principles and Dantian Functions","desc":"Năm nguyên tắc tâm linh của Tam Đan Điền; các chức năng năng lượng; các khoang Âm–Dương và trường hào quang.","books":["frantzis-great-stillness","frantzis-relaxing-into-being","yoga_vasistha","mantak-chia","taoist-meditation-riding-dragon"],"links":[{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"books/read/practice-of-yoga/","title":"Practice of Yoga"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"}]},{"id":"c-eight-vessels","ch":"ch6","anchor":"sec14","vi":"Bát Mạch Kỳ Kinh — Tám Mạch Kỳ Đặc","en":"The Eight Extraordinary Vessels","ch_z":"奇經八脈","desc":"Tám mạch kỳ kinh lưu trữ Nguyên Khí tiên thiên; tám huyệt giao hội; sự kết hợp huyệt chủ–huyệt phối; Ma Phương.","books":["eight-extraordinary-meridians","meridian-qigong-yang","frantzis-energy-gates","yang-grand-circulation","tcm-chirali","essence-tcm","hoang-de-noi-kinh-2","noi-kinh-do","yang-taijiquan-theory"],"links":[{"href":"vi/books/EightExtraordinaryMeridians-Qigong_vi.html","title":"EightExtraordinaryMeridians-Qigong"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"}]},{"id":"c-du-ren","ch":"ch6","anchor":"sec14","vi":"Đốc Mạch & Nhâm Mạch","en":"Governing (Du) and Conception (Ren) Vessels","ch_z":"督脈·任脈","desc":"Hai mạch kỳ kinh chủ đạo: Đốc Mạch (Dương, sau lưng) và Nhâm Mạch (Âm, trước thân); Tiểu Chu Thiên.","books":["tieu-chu-thien","yang-grand-circulation","eight-extraordinary-meridians","frantzis-energy-gates","taoist-meditation-riding-dragon","meridian-qigong-yang","mantak-chia","chikung-bible"],"links":[{"href":"vi/articles/tieu-chu-thien/","title":"TaichiNOW"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/books/EightExtraordinaryMeridians-Qigong_vi.html","title":"EightExtraordinaryMeridians-Qigong"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"books/read/mantak-chia-35-books-10848-230-mb-bookmarks/","title":"Mantak Chia - 35 books 10848 230 mb bookmarks"},{"href":"vi/books/Chikung bible_vi.html","title":"chikung-bible"}]},{"id":"c-chong-dai-qiao-wei","ch":"ch6","anchor":"sec15","vi":"Xung, Đới, Kiều, Duy Mạch","en":"Thrusting, Girdle, Heel and Linking Vessels","ch_z":"衝·帶·蹻·維","desc":"Sáu mạch kỳ kinh còn lại: Xung Mạch, Đai Mạch, Âm/Dương Kiều Mạch, Âm/Dương Duy Mạch — đường đi, biểu hiện lâm sàng và bệnh lý.","books":["eight-extraordinary-meridians","meridian-qigong-yang","tcm-chirali","essence-tcm","taijiquan-dict-yu-gongbao","noi-kinh-do"],"links":[{"href":"vi/books/EightExtraordinaryMeridians-Qigong_vi.html","title":"EightExtraordinaryMeridians-Qigong"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"}]},{"id":"c-six-fu","ch":"ch7","anchor":"sec16","vi":"Sáu Tạng Kỳ Dị (Lục Phủ Kỳ Hằng)","en":"The Six Extraordinary Fu Organs","ch_z":"六腑奇恆","desc":"Tử Cung, Não, Tủy, Xương, Mạch, Túi Mật — sáu tạng kỳ dị và quan hệ của chúng với Bát Mạch Kỳ Kinh.","books":["essence-tcm","tcm-chirali","hoang-de-noi-kinh-2","noi-canh-do","noi-kinh-do","illustrated-canon","yang-meridian-qigong"],"links":[{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"books/read/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/","title":"1756-huynh-dinh-noi-canh-kinh-thuviensach.vn"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/yang_jwing_ming_meridian_qigong_exercises_vi.html","title":"Khí Công Kinh Lạc: Kết Hợp Khí Công, Yoga & Bấm Huyệt"}]},{"id":"c-brain","ch":"ch7","anchor":"sec16","vi":"Não — Biển Tủy & Bốn Thay Đổi Khi Thiền Định","en":"The Brain — Sea of Marrow and the Four Meditation Changes","ch_z":"腦","desc":"Não như biển tủy; sóng não; bốn thay đổi lớn khi thiền định; tế bào não và ký ức; bệnh lý của não.","books":["than-kinh-me-tau","song-nao-alpha-theta","routledge-yoga-meditation","yoga_vasistha","taoist-meditation-riding-dragon","four-dragons"],"links":[{"href":"vi/articles/than-kinh-me-tau/","title":"TaichiNOW"},{"href":"vi/articles/song-nao-alpha-theta/","title":"TaichiNOW"},{"href":"books/read/practice-of-yoga/","title":"Practice of Yoga"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"}]},{"id":"c-bone-marrow","ch":"ch7","anchor":"sec17","vi":"Tủy & Xương — Điện Tích Áp Điện","en":"Marrow and Bone — Piezoelectric Charge","ch_z":"髓·骨","desc":"Tủy và Tinh; Xương tạo điện tích áp điện; bệnh lý của tủy và xương; quan hệ với huyết và mạch.","books":["xi-sui-jing","yang-root-chi-kung","anatomy-physiology-marieb","essentials-human-anatomy","guyton-hall","taoist-meditation-riding-dragon"],"links":[{"href":"vi/articles/tay-tuy-kinh/","title":"TaichiNOW"},{"href":"vi/books/yang_jwing_ming_root_of_chinese_chi_kung_vi.html","title":"Cội Nguồn Khí Công Trung Hoa: Bí Mật Luyện Khí Công"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"}]},{"id":"c-zangfu","ch":"ch8","anchor":"sec18","vi":"Thập Nhị Tạng Phủ & Ngũ Tạng Lục Phủ","en":"The Twelve Zang-Fu Organs","ch_z":"臟腑","desc":"Tạng phủ nội tạng và quan hệ với Âm Dương, Ngũ Hành, Tinh, Mô, cảm xúc, khí hậu, giác quan, màu sắc, âm thanh.","books":["essence-tcm","zang-fu-organ-dynamics","hoang-de-noi-kinh-1","hoang-de-noi-kinh-2","tcm-chirali","illustrated-canon","noi-canh-do","taijiquan-dict-yu-gongbao"],"links":[{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"books/read/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/","title":"1756-huynh-dinh-noi-canh-kinh-thuviensach.vn"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"}]},{"id":"c-12-channels","ch":"ch8","anchor":"sec18","vi":"Thập Nhị Chính Kinh — Mười Hai Kinh Chính","en":"The Twelve Primary Channels","ch_z":"十二正經","desc":"Mười hai kinh mạch chính, phân loại và dòng chảy năng lượng; quan hệ biểu–lý.","books":["meridian-flow-mechanics","meridian-qigong-yang","hoang-de-noi-kinh-2","tcm-chirali","essence-tcm","dan_docherty","tay-tuy-kinh","tu-xoa-bop-kinh-lac","massage-kinh-lac","eight-extraordinary-meridians"],"links":[{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/dan_docherty_tai_chi_martial_side_vi.html","title":"Thái Cực Quyền: Bản Chất Thực Chiến"},{"href":"vi/articles/tay-tuy-kinh/","title":"TaichiNOW"},{"href":"vi/articles/tu-xoa-bop-kinh-lac/","title":"TaichiNOW"},{"href":"vi/books/EightExtraordinaryMeridians-Qigong_vi.html","title":"EightExtraordinaryMeridians-Qigong"}]},{"id":"c-liver-heart","ch":"ch8","anchor":"sec19","vi":"Can (Gan) & Tâm (Xin) — Tạng Mộc & Tạng Hỏa","en":"Liver (Gan) and Heart (Xin)","ch_z":"肝·心","desc":"Can tàng Hồn, chủ Mộc; Tâm tàng Thần, chủ Hỏa; giải phẫu năng lượng, bệnh lý và điều trị.","books":["zang-fu-organ-dynamics","essence-tcm","tcm-chirali","hoang-de-noi-kinh-2","illustrated-canon","taijiquan-dict-yu-gongbao"],"links":[{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"}]},{"id":"c-spleen-lung-kidney","ch":"ch8","anchor":"sec20","vi":"Tỳ, Phế & Thận — Tạng Thổ, Kim & Thủy","en":"Spleen, Lung and Kidney — Earth, Metal and Water","ch_z":"脾·肺·腎","desc":"Tỳ tàng Ý, Phế tàng Phách, Thận tàng Chí; ba tạng của Thổ–Kim–Thủy và hệ thống năng lượng.","books":["zang-fu-organ-dynamics","essence-tcm","tcm-chirali","hoang-de-noi-kinh-2","illustrated-canon","taijiquan-dict-yu-gongbao","yang-root-chi-kung"],"links":[{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"},{"href":"vi/books/yang_jwing_ming_root_of_chinese_chi_kung_vi.html","title":"Cội Nguồn Khí Công Trung Hoa: Bí Mật Luyện Khí Công"}]},{"id":"c-intestines","ch":"ch8","anchor":"sec21","vi":"Đại Tràng, Tiểu Trường, Vị, Bàng Quang, Tam Tiêu","en":"The Bowels — Colon, Small Intestine, Stomach, Bladder, San Jiao","ch_z":"大腸·小腸·胃·膀胱·三焦","desc":"Sáu Phủ và chức năng năng lượng; Tam Tiêu (San Jiao) như phủ kỳ đặc; quan hệ biểu–lý với Ngũ Tạng.","books":["zang-fu-organ-dynamics","essence-tcm","tcm-chirali","hoang-de-noi-kinh-2","san-jiao-triple-burner","illustrated-canon","taijiquan-dict-yu-gongbao"],"links":[{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/articles/tam-tieu-thuy-hoa/","title":"TaichiNOW"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"}]},{"id":"c-qi-blood","ch":"ch8","anchor":"sec22","vi":"Khí, Huyết, Tân Dịch — Bệnh Lý & Chẩn Đoán","en":"Qi, Blood and Body Fluids — Pathology and Diagnosis","desc":"Khí hư, khí trệ, huyết hư, huyết ứ; chẩn đoán kinh mạch; bệnh lý kinh mạch và toa điều trị.","books":["qi-deficiency-stagnation","blood-essence-jing","zang-fu-organ-dynamics","essence-tcm","tcm-chirali","hoang-de-noi-kinh-2","dong-y-doc"],"links":[{"href":"vi/articles/khi-tre-va-khi-hu/","title":"TaichiNOW"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/articles/chuoi-dong-hoc-lien-tuc/","title":"TaichiNOW"}]},{"id":"c-acupoints","ch":"ch8","anchor":"sec24","vi":"Huyệt Đạo & Ngũ Thâu Huyệt","en":"Acupoints and the Five Transporting Points","ch_z":"穴位·五輸穴","desc":"Hệ thống huyệt đạo, tên và mã quốc tế; Ngũ Thâu Huyệt; toa Khí Công Y Học theo kinh.","books":["acupuncture-point-locations","essence-tcm","tcm-chirali","illustrated-canon","hoang-de-noi-kinh-2","erles-point-locations","tu-xoa-bop-kinh-lac","meridian-flow-mechanics"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"},{"href":"vi/articles/tu-xoa-bop-kinh-lac/","title":"TaichiNOW"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"}]},{"id":"c-collaterals","ch":"ch9","anchor":"sec25","vi":"Lạc Mạch, Biệt Kinh & Kinh Cân","en":"Collaterals, Divergent and Sinew Channels","ch_z":"絡脈·經別·經筋","desc":"Mười lăm lạc mạch, mười hai biệt kinh, mười hai kinh cân (cơ gân); vùng da (bì bộ).","books":["meridian-flow-mechanics","meridian-qigong-yang","tcm-chirali","essence-tcm","hoang-de-noi-kinh-2","taijiquan-dict-yu-gongbao","frantzis-energy-gates"],"links":[{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/books/hoang_de_noi_kinh_goc_nhin_tap_2_vi.html","title":"Góc Nhìn Từ Hoàng Đế Nội Kinh"},{"href":"vi/books/taijiquan_selected_dictionary_yu_gongbao_vi.html","title":"Tinh Tuyển Thái Cực Quyền Từ Điển (精选太极拳辞典)"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"}]},{"id":"c-sinew-treatment","ch":"ch9","anchor":"sec26","vi":"Kinh Cân & Ứng Dụng Điều Trị","en":"Sinew Channels and Their Clinical Application","desc":"Đường đi kinh cân, ứng dụng trong chấn thương và điều trị cơ–xương; vai trò trong nội công.","books":["xi-sui-jing","frantzis-power-internal","yang-martial-power","yang-advanced-yang-style","erle-power-taiji-1","erle-internal-gungfu-1","taichi-martial-side"],"links":[{"href":"vi/articles/tay-tuy-kinh/","title":"TaichiNOW"},{"href":"vi/books/frantzis_insiders_guide_vi.html","title":"Cẩm Nang Người Trong Cuộc Về Thái Cực Quyền"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"},{"href":"vi/books/fu_yang_style_taijiquan_fu_zhongwen_vi.html","title":"Dương Thức Thái Cực Quyền Đích Truyền (Phó Chung Văn)"},{"href":"vi/books/taijiworld_power-taiji-vol1_vi.html","title":"Thái Cực Quyền Nội Lực"},{"href":"vi/books/taijiworld_internal-gungfu-vol1_vi.html","title":"Nội Công Gung-Fu"},{"href":"vi/books/dan_docherty_tai_chi_martial_side_vi.html","title":"Thái Cực Quyền: Bản Chất Thực Chiến"}]},{"id":"c-points-lu","ch":"ch10","anchor":"sec27","vi":"Huyệt Phế & Đại Tràng Kinh","en":"Lung and Large Intestine Channel Points","ch_z":"肺經·大腸經","desc":"Hệ thống huyệt trên Kinh Phế và Kinh Đại Tràng — vị trí, chỉ định, ứng dụng Khí Công Y Học.","books":["acupuncture-point-locations","essence-tcm","tcm-chirali","illustrated-canon","erles-point-locations","meridian-qigong-yang"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"}]},{"id":"c-points-stomach-spleen","ch":"ch10","anchor":"sec28","vi":"Huyệt Vị & Tỳ Kinh","en":"Stomach and Spleen Channel Points","ch_z":"胃經·脾經","desc":"Huyệt trên Kinh Vị và Kinh Tỳ; ứng dụng cho tiêu hóa, trung tiêu và Nguyên Khí hậu thiên.","books":["acupuncture-point-locations","essence-tcm","tcm-chirali","illustrated-canon","erles-point-locations","tegner"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"},{"href":"vi/books/tegner_vi.html","title":"Trung T&acirc;m Th&#7847;n Kinh &amp; Huy&#7879;t &#272;&#7841;o &middot; Bruce Tegner &middot; B&#7843;n D&#7883;ch Vi&#7879;t Ng&#7919; Song Ng&#7919;"}]},{"id":"c-points-heart-smallint","ch":"ch10","anchor":"sec29","vi":"Huyệt Tâm & Tiểu Trường Kinh","en":"Heart and Small Intestine Channel Points","ch_z":"心經·小腸經","desc":"Huyệt trên Kinh Tâm, Kinh Tiểu Trường, Kinh Bàng Quang và Kinh Thận — hệ thống huyệt vùng thân trước và lưng.","books":["acupuncture-point-locations","essence-tcm","tcm-chirali","illustrated-canon","erles-point-locations","tegner"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"},{"href":"vi/books/tegner_vi.html","title":"Trung T&acirc;m Th&#7847;n Kinh &amp; Huy&#7879;t &#272;&#7841;o &middot; Bruce Tegner &middot; B&#7843;n D&#7883;ch Vi&#7879;t Ng&#7919; Song Ng&#7919;"}]},{"id":"c-points-pericardium-triple","ch":"ch10","anchor":"sec30","vi":"Huyệt Tâm Bào & Tam Tiêu Kinh","en":"Pericardium and Triple Burner Channel Points","ch_z":"心包經·三焦經","desc":"Huyệt trên Kinh Tâm Bào và Kinh Tam Tiêu; quan hệ với Trung Đan Điền và điều hòa cảm xúc.","books":["acupuncture-point-locations","san-jiao-triple-burner","essence-tcm","tcm-chirali","erles-point-locations"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/articles/tam-tieu-thuy-hoa/","title":"TaichiNOW"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"}]},{"id":"c-points-gallbladder-liver","ch":"ch10","anchor":"sec31","vi":"Huyệt Đởm & Can Kinh","en":"Gallbladder and Liver Channel Points","ch_z":"膽經·肝經","desc":"Huyệt trên Kinh Đởm và Kinh Can; ứng dụng cho Can–Đởm, gân cơ và cảm xúc.","books":["acupuncture-point-locations","essence-tcm","tcm-chirali","illustrated-canon","erles-point-locations","tegner"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/essence_of_traditional_chinese_medicine_vi.html","title":"Tinh Hoa Y Học Cổ Truyền Trung Hoa"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"books/read/illustrated-canon-of-medicine/","title":"Illustrated Yellow Emperor's Inner Canon of Traditional Chinese Medicine"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"},{"href":"vi/books/tegner_vi.html","title":"Trung T&acirc;m Th&#7847;n Kinh &amp; Huy&#7879;t &#272;&#7841;o &middot; Bruce Tegner &middot; B&#7843;n D&#7883;ch Vi&#7879;t Ng&#7919; Song Ng&#7919;"}]},{"id":"c-points-extra","ch":"ch10","anchor":"sec32","vi":"Huyệt Kỳ Kinh & Điểm Ngoài Kinh","en":"Extraordinary Vessel Points and Extra Points","desc":"Huyệt trên Bát Mạch Kỳ Kinh, điểm ngoài kinh (kinh ngoại kỳ huyệt); tổng hợp hệ thống điểm năng lượng toàn thân.","books":["acupuncture-point-locations","eight-extraordinary-meridians","erles-point-locations","tcm-chirali","tegner","meridian-qigong-yang"],"links":[{"href":"vi/books/aikido_meddict_vi.html","title":"Aikido &mdash; Từ Điển Y Khoa &middot; Bản Dịch Việt Ngữ Song Ngữ"},{"href":"vi/books/EightExtraordinaryMeridians-Qigong_vi.html","title":"EightExtraordinaryMeridians-Qigong"},{"href":"vi/books/taijiworld_erles-point-locations_vi.html","title":"Vị Trí Huyệt Đạo của Erle · Erle Montaigue (Taijiworld)"},{"href":"vi/articles/02_health_tcm_energy_10_notes/","title":"10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền (TCM), Kinh Lạc &amp; Năng Lượng Tự Chữa Lành"},{"href":"vi/books/tegner_vi.html","title":"Trung T&acirc;m Th&#7847;n Kinh &amp; Huy&#7879;t &#272;&#7841;o &middot; Bruce Tegner &middot; B&#7843;n D&#7883;ch Vi&#7879;t Ng&#7919; Song Ng&#7919;"},{"href":"vi/books/Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_vi.html","title":"Dr. Yang, Jwing-Ming - Meridian Qigong Exercises_ Combining Qigong, Yoga, Acupressure-Ymaa Publication Center (2017)"}]}],"colors":{"ch1":"#8b2635","ch2":"#7c5cbf","ch3":"#0f766e","ch4":"#b45309","ch5":"#1d4ed8","ch6":"#9d174d","ch7":"#4d7c0f","ch8":"#0369a1","ch9":"#a16207","ch10":"#6d28d9"}};
+const BOOK_HREF = "/" + DATA.book.href;
+
+/* ---------- geometry ---------- */
+const W = 2700, H = 2700;
+const svg = document.getElementById('mm-svg');
+const stage = document.getElementById('mm-stage');
+
+// deterministic pseudo-random for reproducibility
+let seed = 20261008;
+function rnd(){ seed = (seed*1103515245 + 12345) & 0x7fffffff; return seed/0x7fffffff; }
+
+const chaptersById = {};
+DATA.chapters.forEach(c => chaptersById[c.id] = c);
+
+// group concepts per chapter
+const byCh = {};
+DATA.concepts.forEach(c => { (byCh[c.ch] = byCh[c.ch] || []).push(c); });
+
+// radius by chapter (fan out)
+const usedCh = DATA.chapters.filter(c => byCh[c.id]);
+const N = usedCh.length;
+const CX0 = W/2, CY0 = H/2;
+
+const nodes = [];   // {id,kind,x,y,label,...}
+const links = [];   // {source,target,kind,color}
+
+// nodes
+function nodeW(label, kind){
+  const len = label.length;
+  if(kind === 'root') return 210;
+  if(kind === 'ch')   return Math.min(214, 92 + len*2.8);
+  return Math.min(224, 78 + len*2.6);
+}
+function halfW(n){ return nodeW(n.label, n.kind) / 2; }
+
+// root
+nodes.push({id:'root', kind:'root', x:CX0, y:CY0, r:0, label:"Khí Công Y Học · Tập 1"});
+
+/* ------------------------------------------------------------------
+   DETERMINISTIC RADIAL TREE  (non-overlapping by construction)
+
+   Two hard invariants:
+
+   (A) TOKEN BUDGET.  Every angular degree of the circle is owned by exactly
+       one wedge.  A wedge's angle is proportional to its concept count —
+       this is what makes the ring balanced and gap-free.
+
+   (B) ARC FIT.  Because angle is fixed by (A), the only free variable is
+       RADIUS.  A wedge's radius is chosen so that the arc length it owns
+       (angle × radius) is at least the sum of its chip widths.  Wide wedges
+       therefore sit on larger rings — automatically, with no per-chapter
+       tuning and no possibility of spilling into a neighbour.
+
+   Invariant (A) guarantees angular disjointness; (B) guarantees each chip
+   fits inside its own wedge.  Together they imply zero overlap.
+------------------------------------------------------------------- */
+const baseW = (label) => Math.min(224, 78 + label.length * 2.6);
+const chW   = (ch)    => Math.min(214, 92 + ch.vi.length * 2.8);
+const NODE_H = 34;                     // visual height of a concept chip
+const PAD_X  = 16;                     // horizontal breathing room between chips
+const ROW_PITCH = 118;                 // radius step when a wedge wraps into sub-rows
+
+// angular demand of each wedge, in radians
+const wedges = usedCh.map((ch) => {
+  const list = byCh[ch.id] || [];
+  return { ch, list };
+});
+
+const SUM = wedges.reduce((s, w) => s + w.list.length, 0);
+const GAP = 0.10;                      // radians of dead space between wedges
+const R_CH = 300;                      // starting chapter chip ring (grown per wedge)
+const R_CH_STEP = 46;                  // growth step for the chapter chip ring
+const R_MIN = 700;                     // smallest concept ring
+
+/*
+  Step 1 — ANGLE.  Fixed by the chip-count budget, but with a *soft cap* so
+  a wide chapter can claim extra angle (up to ANG_CAP× its fair share) before
+  being pushed onto a bigger ring.  Blending angle and radius this way keeps
+  the radii of different wedges comparable, so the map reads as a balanced
+  wheel instead of a lopsided fan.  The angles are finally rescaled to sum to
+  exactly 2π − (n × GAP).
+*/
+const ANG_CAP = 1.55;                  // max angle a wedge may claim, × its fair share
+const rawAngles = wedges.map(w => Math.max(w.list.length / SUM, 0.028));
+const rawSum = rawAngles.reduce((a,b)=>a+b, 0);
+const budget = Math.PI * 2 - GAP * wedges.length;
+
+// first, fair shares (normalised so they exactly fill the budget)
+let angles = rawAngles.map(a => a / rawSum * budget);
+
+// then, iteratively hand extra angle to wedges that would otherwise need a
+// much larger radius than the median — capped at ANG_CAP× their fair share.
+const fair = angles.slice();
+for(let pass = 0; pass < 3; pass++){
+  const needR = wedges.map((w, i) => {
+    const need = w.list.reduce((s, c) => s + baseW(c.vi) + PAD_X, 0) * 1.14;
+    return need / angles[i];
+  });
+  const sorted = needR.slice().sort((a,b)=>a-b);
+  const median = sorted[Math.floor(sorted.length/2)] || 1;
+  let moved = false;
+  wedges.forEach((w, i) => {
+    if(needR[i] > median * 1.28 && angles[i] < fair[i] * ANG_CAP){
+      const give = Math.min(angles[i] * 0.14, fair[i] * ANG_CAP - angles[i]);
+      if(give > 0.001){
+        angles[i] += give;
+        // take it back from the wedges that have the most slack
+        const donors = wedges.map((_, k) => k).filter(k => k !== i && needR[k] < median);
+        const per = give / Math.max(1, donors.length);
+        donors.forEach(k => { angles[k] = Math.max(fair[k] * 0.82, angles[k] - per); });
+        moved = true;
+      }
+    }
+  });
+  if(!moved) break;
+  // renormalise back to the exact budget
+  const s = angles.reduce((a,b)=>a+b, 0);
+  angles = angles.map(a => a / s * budget);
+}
+
+/*
+  Step 2 — RADIUS.  Given the angle from step 1, find the smallest ring that
+  fits the wedge's chips by arc length.  Chip arc demand = Σ (width + PAD)
+  measured as a chord, so we inflate the demand by a small safety factor for
+  chips that sit off the exact arc.
+
+  The chapter chip is a SEPARATE, decoupled problem: its inner ring radius is
+  grown independently (by R_CH_STEP) until the chip fits its own arc.  It must
+  NOT inflate the concept ring, or the whole map balloons.
+*/
+const sized = wedges.map((w, i) => {
+  const { ch, list } = w;
+  const ang = angles[i];
+  const needArc = list.reduce((s, c) => s + baseW(c.vi) + PAD_X, 0) * 1.14;
+  const chNeed  = chW(ch) + 24;
+
+  // concept ring: only the concepts' own arc demand sets it
+  let R = R_MIN;
+  for(let guard = 0; guard < 60 && needArc > ang * R; guard++) R += 32;
+
+  // chapter ring: grown independently so the chip fits *its* arc
+  let R_ch_i = R_CH;
+  for(let guard = 0; guard < 60 && chNeed > ang * R_ch_i; guard++) R_ch_i += R_CH_STEP;
+
+  return { ch, list, R, ang, needArc, R_ch_i };
+});
+
+/* Compress the radial spread: keep the widest wedge's radius (so every
+   wedge still fits its arc) but RAISE the tighter ones so the ring reads as
+   a balanced wheel instead of a fan.  A wedge is only lifted up to the point
+   where it still fits (arc >= need), so no fit constraint is ever broken. */
+(function equaliseRadii(){
+  const rs = sized.map(s => s.R);
+  const hi = Math.max(...rs);
+  const target = Math.min(hi, R_MIN * 1.30);
+  sized.forEach(s => {
+    const minFit = s.needArc / s.ang;            // smallest radius that still fits
+    s.R = Math.max(s.R, Math.min(target, hi - 60));
+    s.R = Math.max(s.R, minFit);                 // never below its own fit radius
+  });
+})();
+
+let aCursor = -Math.PI / 2;            // start at the top, sweep clockwise
+
+/* INTERLEAVE: place the wedges around the circle so that big and small
+   chapters alternate (big-small-medium-small-big…).  Without this, all the
+   wide chapters land side-by-side and the wheel looks like a lopsided fan. */
+(function interleave(){
+  const order = sized.map((s, i) => i).sort((a, b) => sized[b].list.length - sized[a].list.length);
+  const arranged = [];
+  let lo = 0, hi = order.length - 1, toggle = true;
+  while(lo <= hi){
+    arranged.push(toggle ? order[lo++] : order[hi--]);
+    toggle = !toggle;
+  }
+  // re-order `sized` in place to match, keeping angles paired with their wedge
+  const next = arranged.map(i => sized[i]);
+  sized.length = 0;
+  next.forEach(s => sized.push(s));
+})();
+
+sized.forEach((s) => {
+  const { ch, list, R, ang, R_ch_i } = s;
+  const col = DATA.colors[ch.id] || '#8b2635';
+
+  const a0 = aCursor + GAP / 2;
+  const a1 = aCursor + ang - GAP / 2;
+  aCursor += ang + GAP;
+  const mid = (a0 + a1) / 2;
+
+  // chapter chip at the wedge mid-angle, on its own (staggered) inner ring
+  const cx = CX0 + Math.cos(mid) * R_ch_i;
+  const cy = CY0 + Math.sin(mid) * R_ch_i;
+  nodes.push({id:ch.id, kind:'ch', x:cx, y:cy, r:0, label:ch.vi, en:ch.en,
+              n:ch.n, color:col, concepts:list.length});
+  links.push({source:'root', target:ch.id, kind:'ch', color:col});
+
+  /* Place concepts along the wedge arc at radius R.  The radius was sized so
+     a single row always fits; sub-rows are a defensive fallback only. */
+  const span = a1 - a0;
+  const needOne = list.reduce((a, c) => a + baseW(c.vi) + PAD_X, 0);
+  const rows = Math.max(1, Math.ceil(needOne / Math.max(1, span * R)));
+  const perRow = Math.ceil(list.length / rows);
+
+  list.forEach((c, j) => {
+    const row = Math.floor(j / perRow);
+    const idxInRow = j % perRow;
+    const rowCount = Math.min(perRow, list.length - row * perRow);
+    const rr = R + row * ROW_PITCH;
+    // sub-rows pull in slightly at the edges so the fan stays nested
+    const inset = row ? span * 0.04 : 0;
+    const rowA0 = a0 + inset, rowA1 = a1 - inset;
+    const t = rowCount === 1 ? .5 : idxInRow / (rowCount - 1);
+    const a = rowA0 + t * (rowA1 - rowA0);
+    const x = CX0 + Math.cos(a) * rr;
+    const y = CY0 + Math.sin(a) * rr;
+    nodes.push({id:c.id, kind:'cpt', x, y, r:0, label:c.vi, en:c.en,
+                ch:c.ch, color:col, data:c});
+    links.push({source:ch.id, target:c.id, kind:'cpt', color:col});
+  });
+});
+
+/* --- safety polish: tangential relaxation for any residual clash ---------
+   The radial construction above is already non-overlapping by design; this
+   pass is a belt-and-braces net. It only ever moves a node *along its own
+   arc* (tangentially), never radially, so wedges can't collapse into each
+   other.  Two sub-passes: (1) tango-nudge concept↔concept, (2) re-space each
+   chapter's concepts to be uniformly distributed once displacements settle. */
+(function polish(){
+  const cpt = nodes.filter(n => n.kind === 'cpt');
+  for(let iter = 0; iter < 600; iter++){
+    let worst = 0;
+    for(const a of cpt){
+      for(const b of nodes){
+        if(a === b) continue;
+        const dx = (b.x - a.x);
+        const dy = (b.y - a.y);
+        const ox = (halfW(a) + halfW(b) + 14) - Math.abs(dx);
+        const oy = (NODE_H + 12) - Math.abs(dy);
+        if(ox > 0 && oy > 0){
+          worst = Math.max(worst, Math.min(ox, oy));
+          const rA = Math.hypot(a.x - CX0, a.y - CY0) || 1;
+          const tx = -(a.y - CY0) / rA, ty = (a.x - CX0) / rA;   // tangent unit
+          const proj = (dx * tx + dy * ty);
+          // push away along the tangent, but bias outward when nearly radial
+          const dir = proj >= 0 ? 1 : -1;
+          a.x += tx * dir * Math.min(ox, 5);
+          a.y += ty * dir * Math.min(ox, 5);
+        }
+      }
+    }
+    if(worst < 0.4) break;
+  }
+})();
+
+/* ---------- render ---------- */
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, cls){ const e=document.createElementNS(NS,tag);
+  for(const k in attrs) e.setAttribute(k, attrs[k]); if(cls) e.setAttribute('class',cls); return e; }
+
+let gRoot = el('g', {}); svg.appendChild(gRoot);
+const gLink = el('g', {}); gRoot.appendChild(gLink);
+const gNode = el('g', {}); gRoot.appendChild(gNode);
+
+// defs for soft shadows
+const defs = el('defs',{});
+defs.innerHTML = '<filter id="soft" x="-30%" y="-30%" width="160%" height="160%">'+
+ '<feDropShadow dx="0" dy="2.5" stdDeviation="3.4" flood-color="#000" flood-opacity="0.17"/></filter>';
+svg.appendChild(defs);
+
+const width = { root:0, ch:0, cpt:0 };
+
+// links as curved paths
+const linkEls = {};
+links.forEach((l, i) => {
+  const a = nodes.find(n => n.id === l.source);
+  const b = nodes.find(n => n.id === l.target);
+  const dx = b.x - a.x, dy = b.y - a.y;
+  const dr = Math.sqrt(dx*dx+dy*dy) * 1.28;
+  const p = el('path', {d:`M${a.x},${a.y} A${dr},${dr} 0 0,1 ${b.x},${b.y}`}, 'link '+(l.kind==='ch'?'link-ch':'link-cpt'));
+  p.style.stroke = l.color;
+  p.style.opacity = l.kind === 'ch' ? .55 : .40;
+  if(l.kind !== 'ch') p.style.strokeWidth = '1.5';
+  gLink.appendChild(p);
+  linkEls[l.target] = p;
+  l.el = p;
+});
+
+// nodes
+const nodeEls = {};
+nodes.forEach(nd => {
+  const g = el('g', {}, 'node-'+nd.kind);
+  const w = nodeW(nd.label, nd.kind);
+  const h = nd.kind === 'root' ? 46 : (nd.kind === 'ch' ? 40 : 33);
+  const r = h/2;
+  const rect = el('rect', {x: nd.x-w/2, y: nd.y-h/2, width:w, height:h, rx:r, ry:r});
+  if(nd.kind === 'root'){
+    g.appendChild(rect);
+  } else if(nd.kind === 'ch'){
+    rect.style.fill = '#fff'; rect.style.stroke = nd.color;
+    rect.setAttribute('filter','url(#soft)');
+    g.appendChild(rect);
+    const dot = el('circle', {cx:nd.x-w/2+15, cy:nd.y, r:5});
+    dot.style.fill = nd.color; g.appendChild(dot);
+  } else {
+    rect.style.fill = '#fff'; rect.style.stroke = nd.color;
+    rect.style.strokeWidth = '1.6';
+    g.appendChild(rect);
+    const dot = el('circle', {cx:nd.x-w/2+11, cy:nd.y, r:3.4});
+    dot.style.fill = nd.color; g.appendChild(dot);
+    if(nd.data && nd.data.links && nd.data.links.length){
+      const badge = el('circle',{cx:nd.x+w/2-9, cy:nd.y, r:6.6});
+      badge.style.fill = nd.color; badge.style.opacity = .16; g.appendChild(badge);
+      const bt = el('text',{x:nd.x+w/2-9, y:nd.y+0.5, 'text-anchor':'middle',
+        'dominant-baseline':'middle','font-size':'8.5','font-weight':'700'});
+      bt.textContent = nd.data.links.length; bt.style.fill = nd.color;
+      g.appendChild(bt);
+    }
+  }
+  const tx = el('text', {x: nd.kind==='root'? nd.x : nd.x - w/2 + (nd.kind==='ch'?28:21), y: nd.y+0.5});
+  tx.setAttribute('class', nd.kind==='root'?'root-label':(nd.kind==='ch'?'ch-label':'node-label'));
+  tx.textContent = nd.label;
+  g.appendChild(tx);
+  if(nd.kind === 'root') tx.setAttribute('text-anchor','middle');
+  gNode.appendChild(g);
+  nd.el = g; nd.rect = rect; nd.w = w; nd.h = h;
+  nodeEls[nd.id] = g;
+});
+
+/* ---------- pan / zoom ---------- */
+let tx=0, ty=0, k=1;
+function apply(){ gRoot.setAttribute('transform', `translate(${tx},${ty}) scale(${k})`); }
+function fit(){
+  const bb = gRoot.getBBox();
+  const pad = 40;
+  const sw = stage.clientWidth, sh = stage.clientHeight;
+  k = Math.min((sw-pad*2)/bb.width, (sh-pad*2)/bb.height, 1.45);
+  tx = (sw - bb.width*k)/2 - bb.x*k;
+  ty = (sh - bb.height*k)/2 - bb.y*k;
+  apply();
+}
+/* A fit-all view of a 38-node wheel makes the labels unreadable, so the map
+   boots at a comfortable, readable zoom centred on the root; the ⤢ button
+   still gives the fit-all overview. */
+function home(){
+  k = 0.62;
+  tx = stage.clientWidth/2 - CX0*k;
+  ty = stage.clientHeight/2 - CY0*k;
+  apply();
+}
+window.addEventListener('resize', () => { /* keep current view on resize */ });
+
+let drag=null;
+svg.addEventListener('mousedown', e => { drag={x:e.clientX-tx, y:e.clientY-ty}; svg.classList.add('grabbing'); });
+window.addEventListener('mousemove', e => { if(drag){ tx=e.clientX-drag.x; ty=e.clientY-drag.y; apply(); }});
+window.addEventListener('mouseup', () => { drag=null; svg.classList.remove('grabbing'); });
+svg.addEventListener('wheel', e => {
+  e.preventDefault();
+  const f = e.deltaY < 0 ? 1.12 : 1/1.12;
+  const r = svg.getBoundingClientRect();
+  const mx = e.clientX - r.left, my = e.clientY - r.top;
+  tx = mx - (mx-tx)*f; ty = my - (my-ty)*f; k *= f;
+  apply();
+}, {passive:false});
+document.getElementById('z-in').onclick = ()=>{ const c={x:stage.clientWidth/2,y:stage.clientHeight/2};
+  tx=c.x-(c.x-tx)*1.2; ty=c.y-(c.y-ty)*1.2; k*=1.2; apply(); };
+document.getElementById('z-out').onclick = ()=>{ const c={x:stage.clientWidth/2,y:stage.clientHeight/2};
+  tx=c.x-(c.x-tx)/1.2; ty=c.y-(c.y-ty)/1.2; k/=1.2; apply(); };
+document.getElementById('z-fit').onclick = fit;
+/* ---------- selection & panel ---------- */
+const panel = document.getElementById('mm-panel');
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function famLabel(h){
+  if(h.indexOf('/vi/articles/')===0) return 'Bài viết chuyên đề';
+  if(h.indexOf('/books/read/')===0) return 'Sách đọc trực tuyến';
+  if(h.indexOf('/daoist/')===0) return 'Đạo gia';
+  return 'Sách trong thư viện';
+}
+function showConcept(c){
+  const ch = chaptersById[c.ch];
+  const col = DATA.colors[c.ch] || '#8b2635';
+  const anchor = BOOK_HREF + '#' + c.anchor;
+  let h = '<span class="ch-tag" style="background:'+col+'">Chương '+ch.n+' · '+esc(ch.vi)+'</span>';
+  h += '<h2>'+esc(c.vi)+'</h2>';
+  h += '<p class="en">'+esc(c.en)+'</p>';
+  if(c.ch_z) h += '<p class="chz">'+esc(c.ch_z)+'</p>';
+  h += '<p class="desc">'+esc(c.desc)+'</p>';
+  h += '<div class="mm-actions">';
+  h += '<a class="primary" href="'+anchor+'" target="_blank" rel="noopener">↗ Đọc trong sách (Chương '+ch.n+')</a>';
+  h += '<a href="'+BOOK_HREF+'" target="_blank" rel="noopener">📖 Toàn bộ Tập 1</a>';
+  h += '</div>';
+  h += '<h3>Sách &amp; bài viết liên quan trong thư viện ('+c.links.length+')</h3>';
+  if(c.links.length){
+    h += '<div class="mm-links">';
+    c.links.forEach(l => {
+      h += '<a href="/'+l.href+'" target="_blank" rel="noopener">'+esc(l.title||l.href)+
+           '<span class="fam">'+famLabel('/'+l.href)+'</span></a>';
+    });
+    h += '</div>';
+  } else {
+    h += '<p class="empty">Chưa có liên kết trong thư viện cho khái niệm này.</p>';
+  }
+  panel.innerHTML = h;
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+function showChapter(ch){
+  const col = DATA.colors[ch.id] || '#8b2635';
+  const list = byCh[ch.id] || [];
+  let h = '<span class="ch-tag" style="background:'+col+'">Chương '+ch.n+'</span>';
+  h += '<h2>'+esc(ch.vi)+'</h2><p class="en">'+esc(ch.en)+'</p>';
+  h += '<p class="desc">Chương này gồm '+list.length+' khái niệm chính. Bấm từng khái niệm trên bản đồ để xem chi tiết.</p>';
+  h += '<div class="mm-actions"><a class="primary" href="'+BOOK_HREF+'" target="_blank" rel="noopener">↗ Mở chương trong sách</a></div>';
+  h += '<h3>Khái niệm trong chương</h3><div class="mm-links">';
+  list.forEach(c => { h += '<a href="#" data-cpt="'+c.id+'">'+esc(c.vi)+'<span class="fam">'+c.links.length+' liên kết sách</span></a>'; });
+  h += '</div>';
+  panel.innerHTML = h;
+  panel.querySelectorAll('a[data-cpt]').forEach(a => a.onclick = ev => {
+    ev.preventDefault(); const c = DATA.concepts.find(x=>x.id===a.dataset.cpt);
+    focusNode(c.id); showConcept(c);
+  });
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+function focusNode(id){
+  const nd = nodes.find(n=>n.id===id); if(!nd) return;
+  k = 0.85;
+  tx = stage.clientWidth/2 - nd.x*k;
+  ty = stage.clientHeight/2 - nd.y*k;
+  apply();
+}
+
+Object.values(nodeEls).forEach(g => {
+  g.addEventListener('click', e => {
+    e.stopPropagation();
+    const nd = nodes.find(n => n.el === g); if(!nd) return;
+    if(nd.kind === 'root'){ clearSel(); return; }
+    if(nd.kind === 'ch'){ showChapter(chaptersById[nd.id]); return; }
+    showConcept(nd.data);
+  });
+});
+
+/* ---------- filter / search ---------- */
+const cptNodes = nodes.filter(n=>n.kind==='cpt');
+function clearSel(){
+  panel.innerHTML = '<div class="empty">▲ Bấm một khái niệm trên bản đồ để xem mô tả và liên kết tới các sách liên quan.</div>';
+}
+function applyFilter(q, onlyLinks){
+  q = (q||'').trim().toLowerCase();
+  let shown = 0;
+  cptNodes.forEach(n => {
+    const hay = (n.label+' '+(n.en||'')+' '+(n.data.ch_z||'')+' '+(n.data.desc||'')).toLowerCase();
+    const hit = (!q || hay.indexOf(q) >= 0) && (!onlyLinks || (n.data.links&&n.data.links.length));
+    n.el.classList.toggle('hidden', !hit);
+    n.el.classList.toggle('dim', hit && !!q);
+    if(hit) shown++;
+  });
+  // hide chapters with no visible concepts
+  nodes.filter(n=>n.kind==='ch').forEach(n=>{
+    const kids = cptNodes.filter(c=>c.ch===n.id && !c.el.classList.contains('hidden'));
+    const vis = kids.length>0;
+    n.el.classList.toggle('hidden', !vis);
+    links.filter(l=>l.source===n.id||l.target===n.id).forEach(l=>{
+      const tgt = nodes.find(x=>x.id===l.target);
+      l.el && l.el.classList.toggle('hidden', !vis || (tgt&&tgt.el.classList.contains('hidden')));
+    });
+  });
+  links.filter(l=>l.kind==='cpt').forEach(l=>{
+    const s=nodes.find(x=>x.id===l.source), t=nodes.find(x=>x.id===l.target);
+    if(s && s.el.classList.contains('hidden')) l.el.classList.add('hidden');
+  });
+  return shown;
+}
+document.getElementById('mm-search').addEventListener('input', e => applyFilter(e.target.value, onlyLinks));
+let onlyLinks = false;
+const btnAll = document.getElementById('btn-reset'), btnLinks = document.getElementById('btn-links');
+btnLinks.onclick = () => {
+  onlyLinks = !onlyLinks;
+  btnLinks.classList.toggle('on', onlyLinks);
+  btnAll.classList.toggle('on', !onlyLinks);
+  applyFilter(document.getElementById('mm-search').value, onlyLinks);
+};
+btnAll.onclick = () => {
+  onlyLinks = false; btnLinks.classList.remove('on'); btnAll.classList.add('on');
+  document.getElementById('mm-search').value='';
+  applyFilter('', false);
+};
+document.getElementById('btn-relayout').onclick = () => { seed = (Date.now()&0x7fffffff); location.reload(); };
+
+/* ---------- PNG export ---------- */
+document.getElementById('btn-png').onclick = () => {
+  const clone = svg.cloneNode(true);
+  clone.setAttribute('width', W); clone.setAttribute('height', H);
+  // white background
+  const bg = document.createElementNS(NS,'rect');
+  bg.setAttribute('x',-5000); bg.setAttribute('y',-5000);
+  bg.setAttribute('width',20000); bg.setAttribute('height',20000); bg.setAttribute('fill','#fff');
+  clone.insertBefore(bg, clone.firstChild);
+  const s = new XMLSerializer().serializeToString(clone);
+  const img = new Image();
+  const url = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(s)));
+  img.onload = () => {
+    const cv = document.createElement('canvas'); cv.width=W*2; cv.height=H*2;
+    const cx = cv.getContext('2d'); cx.scale(2,2); cx.drawImage(img,0,0);
+    const a = document.createElement('a');
+    a.download = 'ban-do-tu-duy-khi-cong-y-hoc-tap1.png';
+    a.href = cv.toDataURL('image/png'); a.click();
+  };
+  img.src = url;
+};
+
+/* ---------- index cards ---------- */
+(function buildCards(){
+  const host = document.getElementById('mm-cards');
+  DATA.chapters.forEach(ch => {
+    const list = byCh[ch.id] || []; if(!list.length) return;
+    const col = DATA.colors[ch.id] || '#8b2635';
+    let h = '<div class="mm-card"><div class="num" style="color:'+col+'">Chương '+ch.n+
+            '</div><h4>'+esc(ch.vi)+'</h4><div class="en2">'+esc(ch.en)+'</div><ul>';
+    list.forEach(c => {
+      h += '<li>• <a href="#" data-cpt="'+c.id+'">'+esc(c.vi)+'</a> <span style="color:#aaa">('+
+           c.links.length+')</span></li>';
+    });
+    h += '</ul></div>';
+    host.insertAdjacentHTML('beforeend', h);
+  });
+  host.querySelectorAll('a[data-cpt]').forEach(a => a.onclick = ev => {
+    ev.preventDefault(); const c = DATA.concepts.find(x=>x.id===a.dataset.cpt);
+    focusNode(c.id); showConcept(c);
+  });
+})();
+
+/* ---------- stats ---------- */
+document.getElementById('st-c').textContent = DATA.concepts.length;
+document.getElementById('st-ch').textContent = DATA.chapters.length;
+document.getElementById('st-l').textContent = DATA.concepts.reduce((s,c)=>s+c.links.length,0);
+
+/* ---------- boot ---------- */
+setTimeout(home, 60);
+window.addEventListener('load', home);
+</script>
+</body>
+</html>
