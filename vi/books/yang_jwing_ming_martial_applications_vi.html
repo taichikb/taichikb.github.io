@@ -27,7 +27,9 @@ body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #
 body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
 body.dark-mode .tech-table th { background: #2d2a24; color: #fef08a; }
 body.dark-mode .tech-table td { border-color: #333; }
-#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #991b1b, #c59b27); z-index: 9999; width: 0%; transition: width 0.1s; }
+body.dark-mode .sub-head { color: #fbbf24; border-color: #3f3f46; }
+body.dark-mode .curve-fig { background: #1a1a1a; border-color: #2e2e2e; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #991b1b, #c59b27); z-index: 9999; width: 0%; transition: width: 0.1s; }
 .reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
 .toc-list { list-style: none; padding: 0; margin: 0; }
 .toc-item { margin-bottom: 0.45rem; }
@@ -46,11 +48,19 @@ body.dark-mode .book-tag { background: #262626; color: #d4d4d4; border-color: #4
 .chapter-header { border-left: 4px solid var(--accent-crimson); padding-left: 1.2rem; margin-bottom: 1.8rem; }
 .chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent-gold); display: block; }
 .chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.sub-head { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; color: var(--accent-crimson); margin: 2rem 0 0.7rem; padding-bottom: 0.35rem; border-bottom: 1px dashed #e7e5e4; }
 .quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
 .key-point { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #14532d; }
 .tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
-.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; vertical-align: top; }
 .tech-table th { background: #f8fafc; color: var(--accent-crimson); font-weight: 600; }
+.book-fig { margin: 1.8rem 0; text-align: center; }
+.book-fig img { max-width: 100%; height: auto; border: 1px solid #e7e5e4; border-radius: 8px; background: #fff; padding: 4px; }
+.book-fig figcaption { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.55rem; line-height: 1.55; text-align: left; }
+.book-fig figcaption strong { color: var(--accent-crimson); }
+.fig-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; margin: 1.8rem 0; }
+.fig-grid .book-fig { margin: 0; }
+body.dark-mode .book-fig img { border-color: #333; background: #1a1a1a; }
 .tool-btn { background: #fff; border: 1px solid #d6d3d1; color: #44403c; padding: 5px 10px; border-radius: 6px; font-size: 0.82rem; cursor: pointer; }
 .book-layout, .main-container { display: block !important; max-width: 900px !important; margin: 0 auto !important; padding: 2rem 1.5rem !important; }
 .breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
@@ -63,6 +73,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-crimson); padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
 .toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
 .toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-sub { padding-left: 1.4rem; font-size: 0.8rem; opacity: 0.85; }
 .page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .page-nav a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
 .page-nav a.home { color: var(--accent-gold); }
@@ -93,15 +104,16 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 </header>
 
 <div class="reader-layout">
-  <details class="toc-drawer">
+  <details class="toc-drawer" open>
     <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
     <ul class="toc-list">
-      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn: Ba Sách Trong Một</a></li>
-      <li class="toc-item"><a href="#chuong-1" class="toc-link">Chương 1: Dẫn Nhập</a></li>
-      <li class="toc-item"><a href="#chuong-2" class="toc-link">Chương 2: Phân Tích Kỹ Thuật Thái Cực</a></li>
-      <li class="toc-item"><a href="#chuong-3" class="toc-link">Chương 3: Thôi Thủ và Ứng Dụng</a></li>
-      <li class="toc-item"><a href="#chuong-4" class="toc-link">Chương 4: Phân Tích Bài Đối Luyện</a></li>
-      <li class="toc-item"><a href="#chuong-5" class="toc-link">Chương 5: Chiến Lược Thực Chiến</a></li>
+      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn — Ba Sách Trong Một</a></li>
+      <li class="toc-item"><a href="#chuong-1" class="toc-link">Chương 1 — Dẫn Nhập: Trở Thành Một Võ Sĩ Thái Cực</a></li>
+      <li class="toc-item"><a href="#chuong-2" class="toc-link">Chương 2 — Phân Tích Kỹ Thuật Thái Cực (Ứng dụng từng thức)</a></li>
+      <li class="toc-item"><a href="#chuong-3" class="toc-link">Chương 3 — Thôi Thủ: Phòng Thí Nghiệm Của Thái Cực</a></li>
+      <li class="toc-item"><a href="#chuong-4" class="toc-link">Chương 4 — Phân Tích Bài Đối Luyện Thái Cực</a></li>
+      <li class="toc-item"><a href="#chuong-5" class="toc-link">Chương 5 — Chiến Lược Thực Chiến</a></li>
+      <li class="toc-item"><a href="#chuong-6" class="toc-link">Chương 6 — Kết Luận &amp; Phụ Lục</a></li>
     </ul>
   </details>
 
@@ -119,90 +131,518 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <h1>Thái Cực Quyền Ứng Dụng Võ Thuật — Dương Thức Cao Cấp</h1>
       <div class="book-orig-title">Tai Chi Chuan Martial Applications: Advanced Yang Style</div>
       <div class="book-author-meta"><strong>Tác giả:</strong> TS. Dương Tuấn Mẫn (Dr. Yang, Jwing-Ming)<br>
-        <strong>Đơn vị xuất bản gốc:</strong> YMAA Publication Center, Wolfeboro, New Hampshire (ấn bản 3, 2016 — ISBN 978-1-59439-299-3)<br>
+        <strong>Đơn vị xuất bản gốc:</strong> YMAA Publication Center, Wolfeboro, NH — ấn bản 3, 2016 (ISBN 978-1-59439-299-3)<br>
         <strong>Bản dịch tiếng Việt chuyên sâu:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW</div>
       <div class="book-tags">
         <span class="book-tag">🥋 Ứng Dụng Quyền Thức</span>
         <span class="book-tag">🤝 Thôi Thủ</span>
         <span class="book-tag">⚔️ Bài Đối Luyện</span>
         <span class="book-tag">🧠 Chiến Lược</span>
+        <span class="book-tag">📖 Tập 2 Bộ Dương Thức Cao Cấp</span>
       </div>
     </div>
 
 
+    <!-- ============================================================ -->
+    <!-- LỜI DẪN                                                       -->
+    <!-- ============================================================ -->
     <section id="loi-dan" class="chapter-block">
       <div class="chapter-header">
         <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Lời Dẫn: Ba Sách Trong Một</h2>
+        <h2 class="chapter-title">Lời Dẫn — Ba Sách Trong Một</h2>
       </div>
 
-      <p>Đây là tập thứ hai trong bộ đôi về Dương Thức Cao Cấp, và là phần <strong>ứng dụng</strong> mà Tập 1 đã hứa hẹn. Sách gộp ba công trình vào một: <em>ứng dụng Dương thức</em>, <em>ứng dụng Thôi Thủ</em> và <em>bài đối luyện Thái Cực</em>.</p>
-      <div class="key-point"><strong>Nguyên lý chỉ đạo:</strong> Mọi tư thế trong bài quyền đều có mục đích võ thuật — chúng không được thực hiện chỉ để thư giãn và cho đẹp. Mỗi tư thế còn có nhiều tầng ứng dụng khác nhau.</div>
-      <p>TS. Dương nói rõ: Thái Cực Quyền chuyên về ba nhóm kỹ thuật — <strong>Đả Đảo Đối Phương (Downing the Enemy)</strong>, <strong>Cầm Nã (Chin Na Control)</strong> và <strong>Điểm Huyệt (Cavity Press)</strong>.</p>
+      <p>Đây là <strong>tập thứ hai</strong> trong bộ đôi <em>Advanced Yang Style Tai Chi Chuan</em> của TS. Dương Tuấn Mẫn. Tập 1 (<em>Thái Cực Quyền Vũ Lực / Tai Chi Chuan Martial Power, ấn bản 3, 2015</em>) đã trình bày nền tảng lý thuyết — Khí, Kình (Jing), cắm rễ, tích Kình và phát Kình. Tập 2 này dành toàn bộ cho phần <strong>ứng dụng võ thuật</strong> của Dương thức, và gộp ba công trình vào một:</p>
 
+      <div class="fig-grid">
+        <div class="key-point" style="margin:0"><strong>① Ứng dụng Dương thức (Ch2)</strong><br>Phân tích chi tiết từng thức trong bài quyền, mỗi tư thế có từ 6 đến 7 kỹ thuật ứng dụng. Tổng cộng hơn 250 kỹ thuật trong 37 thức.</div>
+        <div class="key-point" style="margin:0"><strong>② Ứng dụng Thôi Thủ (Ch3)</strong><br>Thôi Thủ (Tui Shou) — phòng thí nghiệm của Thái Cực — cùng với bài tập Thái Cực Cầu (Tai Chi Ball) và hai âm Heng-Ha.</div>
+        <div class="key-point" style="margin:0"><strong>③ Bài đối luyện Thái Cực (Ch4)</strong><br>Bài Đối Luyện (Fighting Set) — mô phỏng thực chiến, phân tích 30 thế từ "Tiến bộ chưởng" đến "Lại thúc đẩy thủ".</div>
+      </div>
+
+      <div class="quote-box">
+        "Sách này cho bạn chìa khóa để mở kho tàng. Nhưng nó không thể đưa bạn tới tận kho báu. Bạn phải tự mình mở cửa, bước vào và tự tìm lấy nó. Bạn có thể vấp ngã vì nản chí, thiếu kiên nhẫn, hay thiếu bền bỉ. Bạn có thể ngã, nhưng hãy đứng dậy và tiếp tục. Bạn có thể bị thương bởi những chiếc gai trên đường. Nhưng hãy hiểu rằng mỗi lần ngã, mỗi lần bị thương, đều chính là thứ bạn cần để tích lũy kinh nghiệm." — TS. Dương Tuấn Mẫn
+      </div>
+
+      <h3 class="sub-head">Lời Tựa Của Đại Sư Lương Đông Tài (1986)</h3>
+      <p>Tập 1 (TCC Martial Power) đã đặt nền tảng cho nội công và tự vệ của T'ai Chi Ch'uan. Tập 2 này tiếp tục mở rộng. Hai võ sinh yêu thích của tôi là Stuart Alve Olson và Jonathan Russell, cả hai đều có tình bạn thân thiết với TS. Dương, đã cùng tôi đề xuất ý tưởng viết lời tựa cho cuốn sách mới này. Tôi cũng hiểu rằng Jonathan Russell đã góp phần giúp TS. Dương ổn định tại Boston ngay sau khi rời quê hương để bán niên xuất (semi-retire).</p>
+      <p>Tôi thành tâm mong mọi người thu được lợi ích từ việc học tập và thực hành chuyên sâu của TS. Dương. Trong một năm tới, tôi dự đoán anh ấy sẽ đạt đẳng cấp cao nhất, và khi tới lúc đó, tên tuổi anh ấy sẽ được biết tới khắp thế giới.</p>
+      <p style="text-align:right"><em>— Lương Đông Tài (梁棟材), Đại Sư Bạch Hạc Quyền<br>Tháng 5, 1986</em></p>
+
+      <h3 class="sub-head">Bối Cảnh Lịch Sử — Từ 1986 Đến 2016</h3>
+      <p>Sách lần đầu xuất bản năm 1986 dưới tên <em>Advanced Yang Style Tai Chi Chuan: Martial Applications</em>. Từ đó:</p>
+      <ul>
+        <li><strong>Ấn bản 2 (1996):</strong> bổ sung Lời Tựa 1996 — TS. Dương nhấn mạnh rằng ngày càng nhiều người tập Thái Cực chỉ vì sức khỏe mà quên đi gốc võ thuật, và khuyến khích tái khám phá "ý nghĩa và giá trị" của mỗi động tác. Sách cũng giới thiệu hệ thống Lãn Thổ phiên âm bằng Pinyin (thay cho Wade-Giles cũ), thêm Bảng Thuật Ngữ, và thêm chữ Hán.</li>
+        <li><strong>Ấn bản 3 (2016):</strong> TS. Dương đã kiểm chứng lại mọi khái niệm 1986 qua 30 năm thực hành, và bổ sung thêm chữ Hán để đáp ứng nhu cầu học tiếng Trung ngày càng tăng. Ấn bản này giữ nguyên tiêu đề mới <em>Tai Chi Chuan Martial Applications</em>.</li>
+      </ul>
+      <p>Theo thống kê của TS. Dương, trong hơn 35 năm qua, ông đã sáng tác và xuất bản thêm <strong>hơn 10 cuốn sách khác</strong> về Khí Công và Võ Thuật Trung Hoa. Ba cuốn đặc biệt liên quan tới Thái Cực được ông khuyến nghị:</p>
+      <ol>
+        <li><em>The Root of Chinese Chi Kung</em> — nền tảng Khí Công học.</li>
+        <li><em>The Essence of Tai Chi Chi Kung</em> — "nội công" của Thái Cực.</li>
+        <li><em>Taiji Chin Na</em> — khóa khớp và điểm huyệt trong Thái Cực.</li>
+      </ol>
     </section>
 
+
+    <!-- ============================================================ -->
+    <!-- CHƯƠNG 1                                                        -->
+    <!-- ============================================================ -->
     <section id="chuong-1" class="chapter-block">
       <div class="chapter-header">
         <span class="chapter-num">Chương 1</span>
         <h2 class="chapter-title">Dẫn Nhập — Trở Thành Một Võ Sĩ Thái Cực</h2>
       </div>
 
-      <p>Chương này bàn về con đường trở thành một người tập Thái Cực võ thuật thành thục, và phương pháp <strong>phân tích kỹ thuật Thái Cực</strong>: làm sao bóc tách một tư thế thành các thành phần công — thủ — hóa — phát, rồi kiểm nghiệm nó trong nhiều tình huống khác nhau.</p>
+      <p>Chương mở đầu trình bày <strong>phương pháp nghiên cứu Thái Cực</strong> (lý thuyết + thực nghiệm), con đường trở thành người tập thành thục, và hướng dẫn sử dụng sách.</p>
 
+      <h3 class="sub-head">1-1. Dẫn Nhập Chung</h3>
+      <p>Thái Cực Quyền (Tài Jí Quán, 太極拳) dựa trên <strong>triết học Đạo gia về Âm/Dương</strong> (Yin/Yang, 陰陽) và <strong>Bát Quái</strong> (Bā Guà, 八卦), đã được tinh luyện qua hơn một nghìn năm nghiên cứu và thực nghiệm bởi hàng vạn võ sĩ. Mặc dù rất nhiều kiến thức đã được truyền qua dạy dỗ và viết lách, nhiều bậc thầy vẫn cảm thấy họ chưa học hết được môn nghệ. Càng đào sâu, lý thuyết càng trở nên sâu thẳm hơn.</p>
+      <div class="key-point"><strong>Một sự thật đáng buồn:</strong> Phần lớn người tập Thái Cực ngày nay quan tâm tới khía cạnh sức khỏe hơn là võ thuật. Trong khi đó, Thái Cực vốn được tạo ra cho mục đích chiến đấu, và mỗi thức đều có những ứng dụng võ thuật riêng.</div>
+
+      <p>Theo TS. Dương, mặc dù Dương thức có nhiều biến thể (24, 37, 81, 88, 105 thức hoặc hơn, tùy cách đếm), nó thực chất chỉ chứa <strong>37 đến 40 kỹ thuật chiến đấu cơ bản</strong>. Những kỹ thuật này là nền tảng cho hơn 250 ứng dụng khác nhau. Trong bài quyền, nhiều thức được lặp lại vì ba lý do chính:</p>
+      <ol>
+        <li><strong>Tăng số lần luyện</strong> cho những kỹ thuật quan trọng — ví dụ: Chưởng (Péng, 掤), Lãng (Lǜ, 捋), Kinh (Jǐ, 挒), An (Ān, 按) (bốn "chưởng pháp cơ bản") được lặp lại tới tám lần.</li>
+        <li><strong>Kéo dài thời gian luyện</strong> cho mỗi buổi tập. Một buổi luyện đủ sức khỏe cần khoảng 20 phút. Nếu luyện cho mục đích võ thuật, nên tập liên tục <strong>ba lần</strong>: lần một khởi động, lần hai vận Khí, lần ba thư giãn phục hồi.</li>
+        <li><strong>Tăng cường sự kiên nhẫn, chịu đựng, sức mạnh</strong> cùng các tư thế, động tác và Kình (Jīng, 勁) — sức mạnh võ thuật.</li>
+      </ol>
+
+      <p>Ba nhóm kỹ thuật chính của Thái Cực:</p>
+      <div class="key-point">
+        <strong>① Quật Ngã (Shuāi, 摔):</strong> Wrestling/downing.<br>
+        <strong>② Cầm Nã (Qín Nà, 擒拿):</strong> Joint locking / chin na.<br>
+        <strong>③ Điểm Huyệt (Tí/Dá, 提打):</strong> Cavity strike (đánh vào huyệt đạo).
+      </div>
+
+      <p>Hầu hết các môn võ Trung Hoa đều huấn luyện ba nhóm này, nhưng Thái Cực đặc biệt ở chỗ <strong>chuyên thực hiện chúng với cơ bắp thả lỏng</strong>. Sự thả lỏng này tăng cường khả năng nhạy cảm với chuyển động và ý đồ của đối phương, cho phép dùng "nhu thắng cương" (dùng mềm để thắng cứng). Nhờ có sự hỗ trợ của Khí và luyện tập Kình nhu, sức mạnh cơ bắp trở nên không quan trọng — chính vì thế mà ứng dụng võ thuật Thái Cực khó nắm bắt và khó luyện tập hơn.</p>
+
+      <h3 class="sub-head">1-2. Trở Thành Võ Sĩ Thái Cực Thành Thục</h3>
+      <p>TS. Dương đề xuất bốn tiêu chuẩn mà mỗi người học trò phải tự đánh giá trước khi tự nhận mình xứng đáng dạy lại:</p>
+
+      <table class="tech-table">
+        <thead><tr><th style="width:24%">Tiêu chuẩn</th><th>Ý nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Biết Lịch Sử</strong></td><td>Lịch sử là kinh nghiệm. Không biết quá khứ sẽ lạc lối trong tương lai. Biết nguồn cội của môn phái giúp giữ được tinh thần trách nhiệm truyền thừa.</td></tr>
+          <tr><td><strong>2. Biết Lý Thuyết &amp; Nguyên Lý</strong></td><td>Mỗi môn võ có lý thuyết riêng; nếu vi phạm là không còn đang luyện Thái Cực. Tài liệu đã được Thái Cực Quyền Vũ Lực (Tập 1) trình bày kèm bình chú.</td></tr>
+          <tr><td><strong>3. Biết Mình Đang Làm Gì</strong></td><td>Đặt câu hỏi: "Mình đã luyện các ứng dụng đủ lâu chưa? Lịch tập cho học trò có tốt không? Có đủ khả năng truyền dạy không?"</td></tr>
+          <tr><td><strong>4. Biết Các Cao Nhân Khác</strong></td><td>Hiểu các môn khác để đánh giá khách quan môn mình. Không nên xem thường môn khác; cũng đừng vì thấy môn khác hay hơn mà bỏ môn mình đang học.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-head">1-3. Cách Sử Dụng Sách</h3>
+      <p>Sách chỉ giới thiệu những <em>ứng dụng điển hình</em> của Dương thức với thế lớn và trục thấp — những ứng dụng sâu hơn và phức tạp hơn được bỏ qua vì thiếu không gian và vì khó diễn đạt sự tinh tế của động tác bằng chữ viết. Tuy nhiên, nếu luyện nghiêm túc và nghiên cứu kỹ, bạn có thể dùng kiến thức cơ bản để khám phá những tầng ứng dụng sâu hơn.</p>
+      <p>Cấu trúc luyện tập được TS. Dương đề xuất:</p>
+      <ol>
+        <li><strong>Bài quyền (Solo Sequence)</strong> — nền tảng. Mỗi động tác được thiết kế cẩn thận với trục và tư thế phù hợp với mục đích chiến đấu.</li>
+        <li><strong>Thôi Thủ (Pushing Hands)</strong> — bước đầu tiên để biến ứng dụng thành sống. Cũng giới thiệu một số ứng dụng không có trong bài quyền.</li>
+        <li><strong>Bài đối luyện (Two-Person Fighting Set)</strong> — mô phỏng chiến đấu thật. Giúp học phân tích tình huống, chiến lược, động tác và kỹ thuật.</li>
+        <li><strong>Đối kháng tự do (Free Fighting)</strong> — giai đoạn cuối, sau khi đã thuần thục ba bước trên.</li>
+      </ol>
     </section>
 
+
+    <!-- ============================================================ -->
+    <!-- CHƯƠNG 2                                                        -->
+    <!-- ============================================================ -->
     <section id="chuong-2" class="chapter-block">
       <div class="chapter-header">
         <span class="chapter-num">Chương 2</span>
-        <h2 class="chapter-title">Phân Tích Kỹ Thuật Thái Cực</h2>
+        <h2 class="chapter-title">Phân Tích Kỹ Thuật Thái Cực — Bách Ứng Trong Tam Thập Thất Thức</h2>
       </div>
 
-      <p>TS. Dương đi qua từng thức của bài quyền và phân tích ứng dụng. Nguyên tắc chung được nhấn mạnh:</p>
+      <p>Đây là chương dày nhất sách (~125 trang). TS. Dương đi qua từng thức của bài quyền Dương thức, phân tích các ứng dụng võ thuật qua hàng trăm bức ảnh minh họa.</p>
+
+      <h3 class="sub-head">2-1. Dẫn Nhập — Bài Quyền Là Gì?</h3>
+      <p>Một bài quyền là sự kết hợp nhiều kỹ thuật, được người sáng tạo hình dung theo một trận đánh thực sự. Người sáng tạo phải là chuyên gia trong môn phái, đủ kinh nghiệm để thấy được ưu khuyết điểm của từng hình thức, kỹ thuật, hay thậm chí chỉ một bước chân. Mỗi bài quyền chứa hai tới ba tầng kỹ thuật:</p>
       <ul>
-        <li><strong>Không có tư thế nào là "để đẹp"</strong> — mỗi động tác giải quyết một bài toán võ thuật cụ thể.</li>
-        <li><strong>Một tư thế, nhiều ứng dụng</strong> — cùng một động tác có thể dùng cho đòn tay, khóa khớp, quật ngã hay điểm huyệt.</li>
-        <li><strong>Hóa trước, phát sau</strong> — luôn tiếp nhận và chuyển hướng lực đối phương trước khi phản công.</li>
+        <li><strong>Tầng 1 (hiển lộ):</strong> Ứng dụng rõ ràng — nền tảng của môn phái.</li>
+        <li><strong>Tầng 2 (ngầm):</strong> Thường không thấy ngay trong động tác. Ví dụ một tư thế "giả" có thể là điểm khởi đầu cho một đòn đá ẩn. Cao thủ thường thấy được tầng này.</li>
+        <li><strong>Tầng 3 (tinh hoa):</strong> Khó nhận ra nhất, chứa các kỹ thuật hiệu quả nhất. Thường cần nhiều bước di chuyển hơn so với động tác trong bài, và phải được bậc thầy trực tiếp giải thích.</li>
       </ul>
 
+      <h3 class="sub-head">2-2. Nguyên Lý Chung Của Kỹ Thuật Thái Cực</h3>
+      <p>Bốn "chưởng pháp cơ bản" (Tứ Chưởng, 四手) của Thái Cực — Chưởng (Péng, 掤), Lãng (Lǜ, 捋), Kinh (Jǐ, 挒), An (Ān, 按) — là nền tảng cho mọi kỹ thuật. Mỗi thế trong bài quyền là sự kết hợp của bốn chưởng này. Tám "cửa" (Bát Môn, 八門) và "năm bước" (Ngũ Bộ, 五步) là hệ tọa độ để phân tích hướng tấn công (Tiến, Lùi, Trông, Ngó, Trung) và sức mạnh (Hóa, Lấy, Phát, Chấn).</p>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch2-wardoff-app.jpg" alt="Ứng dụng 2 của thế Chưởng" loading="lazy">
+        <figcaption><strong>Hình 2-1 — "Ứng dụng 2 của thế Chưởng" (Ward-Off / 掤, nguyên tác tr. 14).</strong> Bốn hình liên tiếp: (1) đỡ đòn đấm phải của đối phương bằng tay trái; (2) dẫn cổ tay đối phương xuống bằng tay phải đồng thời bước chân trái ra sau gốc chân phải của họ; (3) đặt đùi trái sát ngang đùi phải đối phương; (4) dùng lực Chưởng đẩy vai đối phương khiến họ té. Đây là một ví dụ kinh điển về nguyên tắc "hóa lực, dẫn lực, phát lực" của Thái Cực — biến sức mạnh đang tấn công thành sức mạnh phản đòn.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">2-3. Phân Tích Một Số Ứng Dụng Tiêu Biểu</h3>
+      <p>Sau đây là một số ứng dụng tiêu biểu được trích từ chương. Sách gốc phân tích chi tiết hơn 250 ứng dụng trong gần 125 trang.</p>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch2-three-fists.jpg" alt="Ứng dụng 3 - Tam Chưởng" loading="lazy">
+        <figcaption><strong>Hình 2-2 — "Ứng dụng 3" (nguyên tác tr. 15).</strong> Cùng một tư thế Ward-Off, ba tình huống chiến đấu khác nhau: chuyển hóa đòn đấm thẳng, khóa tay, và điểm huyệt nách. Minh họa nguyên lý <strong>"nhất thức đa dụng"</strong> (một thế, nhiều ứng dụng) — cùng một chuyển động nhưng tùy ngữ cảnh mà ứng dụng khác nhau.</figcaption>
+      </figure>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch2-cavity-strike.jpg" alt="Ứng dụng Điểm Huyệt" loading="lazy">
+        <figcaption><strong>Hình 2-3 — "Ứng dụng Điểm Huyệt" (Cavity Strike, nguyên tác tr. 17).</strong> Khi đối phương đấm phải, dùng hai tay đỡ đòn rồi túm ngực đối phương kéo xuống. Tay phải vòng qua dưới nách giữ chặt; tay trái đẩy vai. Dùng vai phải ép lưng trên, đồng thời đùi trái chặn đùi sau. Kết hợp <strong>quật đối phương + khóa khớp + điểm huyệt</strong> trong một động tác duy nhất.</figcaption>
+      </figure>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch2-strum-pipa.jpg" alt="Ứng dụng Lãm Thủ Cổ Phi" loading="lazy">
+        <figcaption><strong>Hình 2-4 — "Ứng dụng Lãm Thủ Cổ Phi" (Strum the Pipa / 琵琶式, nguyên tác tr. 27).</strong> Tay phải đánh vào mặt, tay trái quật ngực — đồng thời bước chân và chuyển trọng tâm. Thế này thể hiện nguyên tắc <strong>"công thủ hợp nhất"</strong>: trong khi phòng thủ một đòn, người tập đã khởi động phản công. Theo Đạo gia, đây là biểu hiện của <strong>"trong âm có dương, trong tĩnh có động"</strong>.</figcaption>
+      </figure>
+
+      <div class="quote-box">"Học ứng dụng võ thuật trong bài quyền Thái Cực cũng giống như học chức năng của các bộ phận trong một chiếc xe. Sau khi đã biết hết chức năng từng bộ phận, bạn lái xe và thử mọi thứ." — TS. Dương</div>
     </section>
 
+
+    <!-- ============================================================ -->
+    <!-- CHƯƠNG 3                                                        -->
+    <!-- ============================================================ -->
     <section id="chuong-3" class="chapter-block">
       <div class="chapter-header">
         <span class="chapter-num">Chương 3</span>
-        <h2 class="chapter-title">Thôi Thủ và Ứng Dụng</h2>
+        <h2 class="chapter-title">Thôi Thủ — Phòng Thí Nghiệm Của Thái Cực</h2>
       </div>
 
-      <p>Thôi Thủ (Pushing Hands) là phòng thí nghiệm của Thái Cực — nơi lý thuyết được kiểm chứng trong tiếp xúc thật. Chương này trình bày nguyên lý Thôi Thủ, hai âm <strong>Hen</strong> và <strong>Ha</strong>, bài tập <strong>Thái Cực Cầu (Tai Chi Ball)</strong> và tiến trình luyện Thôi Thủ từ cố định tới tự do.</p>
-      <div class="quote-box">"Thôi Thủ không phải là thi đấu ai đẩy mạnh hơn. Nó là bài học về sự lắng nghe — dùng xúc giác để hiểu Ý của đối phương trước khi họ hành động."</div>
+      <p>Hầu như mọi môn võ Trung Hoa — nội lẫn ngoại — đều có hình thức luyện tập đối thủ tương tự Thôi Thủ (Tui Shou, 推手). Ở Nam phái ngoại công, nó được gọi là <strong>Cầu Thủ (Giao Shou)</strong> hay <strong>Phiên Thủ (Pan Shou)</strong>. Ở Bắc phái ngoại công, gọi là <strong>Đả Thủ (Da Shou)</strong> hay <strong>Đối Thủ (Dui Shou)</strong>. Tên gọi khác nhau nhưng mục đích giống nhau: rèn luyện kỹ năng cảm nhận và phản ứng. Kỹ thuật cụ thể của mỗi môn phản ánh tinh hoa và bí truyền của môn đó.</p>
 
+      <h3 class="sub-head">3-1. Dẫn Nhập — Tại Sao Thôi Thủ Là Phòng Thí Nghiệm?</h3>
+      <p>TS. Dương ví von Thôi Thủ như một bài học lái xe:</p>
+      <div class="key-point">
+        <strong>Tập Thái Cực quyền không có Thôi Thủ</strong> = mua xe mà không biết lái.<br>
+        <strong>Thôi Thủ</strong> = lái xe trong bãi đỗ — học cách điều khiển an toàn.<br>
+        <strong>Bài đối luyện (Fighting Set)</strong> = lái xe có người hướng dẫn — học lái trên đường thật.<br>
+        <strong>Đối kháng tự do (Free Fighting)</strong> = lái xe một mình — giai đoạn sau cùng.
+      </div>
+
+      <p>Trong Thôi Thủ, bước đầu tiên là phát triển hai Kình nền tảng: <strong>Kình Nghe (Tīng Jīng, 聽勁)</strong> và <strong>Kình Hiểu (Dǒng Jīng, 懂勁)</strong>. Hai Kình này là nền tảng của mọi kỹ thuật Thái Cực và được phát triển qua luyện tập <strong>Kình Bám Dính (Zhān Nián Jīng, 黏黏勁)</strong>. Cho tới khi bạn "nghe" và hiểu được Kình của đối phương, bạn không thể hiểu ý đồ và sức mạnh của họ, và không thể chiến đấu hiệu quả.</p>
+
+      <h3 class="sub-head">3-2. Chín Nguyên Tắc Vàng Của Thôi Thủ</h3>
+      <p>Sách ghi lại chín nguyên tắc cốt lõi, mỗi nguyên tắc kèm theo thơ chữ Hán cổ điển và lời dịch. Dưới đây là phiên dịch cô đọng:</p>
+      <ol>
+        <li><strong>Tâm (心) phải tĩnh.</strong> Tĩnh thì khí mới thấm xuống xương.</li>
+        <li><strong>Thân (身) phải linh.</strong> Mọi bộ phận nhẹ nhàng, liên kết chặt chẽ — "liên hệ mà không đứt".</li>
+        <li><strong>Khí (氣) phải ngưng tụ.</strong> Khí chạy dọc sống lưng, hồi vào Đan Điền; ra ngoài thì thong dong tự nhiên.</li>
+        <li><strong>Kình (勁) phải hợp nhất.</strong> Gốc ở chân, sinh từ chân, chủ ở eo, biểu hiện ở tay — từ chân lên eo phải liên tục như một dòng khí duy nhất.</li>
+        <li><strong>Thần (神) phải nội cư.</strong> Giữ tinh thần bên trong, không để phân tán ra ngoài.</li>
+        <li><strong>Khí phải đầy, kích thích và trầm xuống Đan Điền.</strong></li>
+        <li><strong>Khí phải lưu thông tự do, chạy khắp nơi trong cơ thể.</strong> Ví dụ thơ cổ: "Vận khí như xâu chuỗi qua chín khúc cong — không chỗ nào không tới."</li>
+        <li><strong>Động tác liên tục, không đứt đoạn.</strong> "Bước chân như mèo đi, dẫn Kình như rút tơ từ kén."</li>
+        <li><strong>Gốc phải vững.</strong> Huyệt Dũng Tuyền không có gốc thì eo không có chủ — mất gốc là mất hết.</li>
+      </ol>
+
+      <h3 class="sub-head">3-3. Hai Âm "Heng" (哼) và "Ha" (哈)</h3>
+      <p>Đây là hai âm phát ra khi thở, có vai trò đặc biệt trong ứng dụng võ thuật Thái Cực — chúng nâng cao <strong>tinh thần sinh lực (Jīng Shén, 精神)</strong> và kích thích Khí vươn xa hơn, mạnh hơn.</p>
+      <table class="tech-table">
+        <thead><tr><th style="width:18%">Âm</th><th>Tính chất</th><th>Cách phát</th><th>Ứng dụng</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Heng (哼)</strong><br>Hít vào</td>
+            <td>Âm (Yin) thuần khiết — khi thở ra</td>
+            <td>Phát âm nhỏ, khí trầm xuống xương</td>
+            <td>Dùng khi <strong>hóa giải, nhượng bộ, rút lui</strong>. Tinh thần thu nội, khí cô đọng sâu vào tủy.</td>
+          </tr>
+          <tr>
+            <td><strong>Heng (哼)</strong><br>Thở ra</td>
+            <td>Dương có Âm — khi thở ra</td>
+            <td>Phát âm nhỏ, khí không xuất hoàn toàn</td>
+            <td>Dùng khi tấn công với Kình Dương có Âm, giữ lại một phần lực.</td>
+          </tr>
+          <tr>
+            <td><strong>Ha (哈)</strong><br>Thở ra</td>
+            <td>Dương thuần khiết</td>
+            <td>Phát âm lớn, mạnh mẽ</td>
+            <td>Dùng khi <strong>tấn công thuần Dương</strong>. Nâng cao tinh thần, khí hỗ trợ Kình tối đa.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Trong luyện tập, mặc dù có thể phát âm thầm, tốt nhất là nên bắt đầu với <strong>Ha thành tiếng lớn</strong> và <strong>Heng nhỏ hơn, thở vào/ra với một chút âm thanh từ thanh quản</strong>. Sách gốc minh họa hai phương pháp tập Heng-Ha qua hình vẽ trang 147.</p>
+
+      <h3 class="sub-head">3-4. Luyện Tập Thái Cực Cầu (Tai Chi Ball)</h3>
+      <p>Thái Cực Cầu (Tài Jí Qiú, 太極球) là bài tập phổ biến trong nội công để luyện Kình Nghe và Kình Hiểu. Nó cũng luyện <strong>kỹ năng bám dính</strong> thông qua các chuyển động tiến/lùi hình tròn. Trong tư thế Thái Cực Cầu, người tập tưởng tượng đang ôm một quả cầu nặng khoảng 30 pounds trong tay — không nắm quá chặt cũng không quá lỏng. Quả cầu có thể lớn dần, nhỏ dần tùy theo trình độ.</p>
+
+      <h3 class="sub-head">3-5. Luyện Tập Thôi Thủ — Các Bài Cơ Bản</h3>
+      <p>Trước khi tập Thôi Thủ, cần nắm vững hai khái niệm chiến lược:</p>
+      <ul>
+        <li><strong>Khai Môn (Kōng Mén, 空門):</strong> "Cánh cửa mở" — không gian mà bạn có thể dễ dàng tiếp cận và tấn công đối phương. Ngược lại, cũng là hướng mà đối phương có thể tấn công bạn. Vị trí của bạn xác định hướng cửa mở.</li>
+        <li><strong>Đóng Môn (Bì Mén, 閉門):</strong> "Cửa đóng" — hướng bạn vững nhất, mà đối phương khó tiếp cận nhất.</li>
+      </ul>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch3-pushhands-basic.jpg" alt="Bài tập Thôi Thủ cơ bản" loading="lazy">
+        <figcaption><strong>Hình 3-1 — "Bài tập Thôi Thủ cơ bản" (nguyên tác tr. 155).</strong> Hình 1: tay phải dùng mu bàn tay chạm vào đối phương (đẩy thẳng). Hình 2: dùng lòng bàn tay chạm (đẩy ngang). Mắt luôn nhìn vào đối phương, Ý theo Khí — tập luyện kỹ năng <strong>"nghe lực"</strong> (Tīng Jīng) và <strong>"hiểu lực"</strong> (Dǒng Jīng). Bạn cũng tập Hóa Kình (Huà Jīng, 化勁) — chuyển hóa sức mạnh của đối phương thành vô hiệu.</figcaption>
+      </figure>
+
+      <p>Các bài tập thảo luận ở trên chỉ là một số ví dụ tiêu biểu. Có rất nhiều phương pháp khác và bạn có thể tự tạo ra phương pháp của riêng mình, miễn là chúng giúp luyện Kình Nghe, Kình Hiểu và Kình Bám Dính.</p>
+
+      <h3 class="sub-head">3-6. Ứng Dụng Võ Thuật Của Thôi Thủ</h3>
+      <p>Sau khi đã thuần thục các bài tập cơ bản, bạn sẽ học cách ứng dụng các kỹ thuật Thôi Thủ vào tình huống chiến đấu thực sự. Sách trình bày hàng chục ứng dụng qua các tình huống tấn công cụ thể: Shoulder Blade (Phiên Bối), White Snake Shoots Out Tongue (Bạch Xà Xuyên Thuyền), Green Dragon Emerges from Water (Thanh Long Hiện Thủy), và nhiều tình huống khác.</p>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch3-shoulder-blade.jpg" alt="Ứng dụng Shoulder Blade" loading="lazy">
+        <figcaption><strong>Hình 3-2 — "Ứng dụng Shoulder Blade" (Phiên Bối, nguyên tác tr. 188).</strong> Khi đối phương dùng cánh tay phải ấn vào vai phải (Hình 1), dùng trọng tâm trái xoay thân (Hình 2) để dẫn công kích vào <strong>"emptiness"</strong> — chỗ trống — khiến đối phương mất thăng bằng. Sau đó bước chân đứng sau lưng đối phương (Hình 3) và dùng tay trái ấn vai trái phản đòn (Hình 4). Đây là một ví dụ điển hình của nguyên lý <strong>"dẫn lực để phát lực"</strong> (Yǐn Jīng, 引勁).</figcaption>
+      </figure>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch3-reference.jpg" alt="Tư thế tiến bộ ấn chưởng" loading="lazy">
+        <figcaption><strong>Hình 3-3 — "Tư thế tham khảo" (Reference, nguyên tác tr. 206).</strong> Tư thế "Tiến bộ ấn chưởng" (Step Forward and Push). Chân sau chịu 70% trọng lượng, chân trước 30%. Tay trước ấn ra, tay sau giữ ở hông. Toàn bộ cơ thể là một khối thống nhất, dồn lực vào bàn tay phía trước thông qua eo — <strong>"từ chân lên eo, từ eo ra tay"</strong>.</figcaption>
+      </figure>
     </section>
 
+
+    <!-- ============================================================ -->
+    <!-- CHƯƠNG 4                                                        -->
+    <!-- ============================================================ -->
     <section id="chuong-4" class="chapter-block">
       <div class="chapter-header">
         <span class="chapter-num">Chương 4</span>
-        <h2 class="chapter-title">Phân Tích Bài Đối Luyện</h2>
+        <h2 class="chapter-title">Phân Tích Bài Đối Luyện Thái Cực (Taiji Fighting Set)</h2>
       </div>
 
-      <p>Bài đối luyện Thái Cực (Fighting Set) được tạo ra để mô phỏng thực chiến. TS. Dương phân tích từng động tác của bài, chỉ ra cách nó dần dẫn người tập tới khả năng sử dụng kỹ thuật trong một cuộc giao đấu thật.</p>
+      <p>Bài Đối Luyện Thái Cực (Tài Jí Duì Liàn, 太極對練) là bài tập hai người được thiết kế để <strong>mô phỏng chiến đấu thật</strong>. Tuy nhiên, không giống như chiến đấu tự do (có thể gây thương tích), bài đối luyện có thể luyện tập nhiều lần với cường độ cao và nhiều tình huống khác nhau.</p>
 
+      <div class="key-point">
+        <strong>Lưu ý quan trọng:</strong> Những hình minh họa ứng dụng thay thế trong chương này <strong>không thực sự được thực hiện trong bài quyền</strong> — chúng được đánh dấu bằng một chấm lớn ở góc trên bên trái. Hình ảnh chỉ để giúp người tập hình dung ứng dụng tiềm ẩn của từng thế.
+      </div>
+
+      <h3 class="sub-head">4-1. Dẫn Nhập</h3>
+      <p>Trước đây, nhiều người tập Thái Cực giới thiệu bài đối luyện như một dạng tập luyện hữu ích nhưng không cần thiết. Họ cho rằng khi bạn đã thuần thục bài quyền và Thôi Thủ, bạn đã đủ khả năng để đối phó với mọi tình huống. Tuy nhiên, thực tế cho thấy:</p>
+      <ul>
+        <li>Thôi Thủ chủ yếu tập luyện <em>cảm giác</em> và <em>phản ứng với lực tiếp xúc</em>.</li>
+        <li>Chiến đấu thật bắt đầu từ <em>khoảng cách</em> — đối phương có thể đấm hoặc đá trước khi bạn chạm vào họ.</li>
+        <li>Bài đối luyện giúp bạn <strong>đóng khoảng cách an toàn</strong>, <strong>đọc ý đồ đối phương</strong>, và <strong>phản ứng theo tình huống cụ thể</strong>.</li>
+      </ul>
+
+      <h3 class="sub-head">4-2. Nguyên Tắc Chung</h3>
+      <p>Ba nguyên tắc cốt lõi của bài đối luyện:</p>
+      <ol>
+        <li><strong>Tốc độ và cường độ thật:</strong> Khi tập, hai bên dùng tốc độ và lực thật, nhưng <em>kiểm soát để không gây thương tích nghiêm trọng</em>. Đây là cách duy nhất để xây dựng phản xạ thật.</li>
+        <li><strong>Tấn công từ phía trước:</strong> Đối phương chỉ tấn công từ phía trước để người tập dễ theo dõi và phản ứng. Khi đã thành thục, có thể cho tấn công từ mọi hướng.</li>
+        <li><strong>Mỗi thế có nhiều ứng dụng:</strong> Trong chiến đấu thật, một thế có thể phản ứng với nhiều kiểu tấn công khác nhau — sách chỉ trình bày những ứng dụng tiêu biểu.</li>
+      </ol>
+
+      <h3 class="sub-head">4-3. Phân Tích Các Thế Trong Bài Đối Luyện</h3>
+      <p>Sách phân tích 30 thế trong bài Đối Luyện Dương thức (xem Phụ Lục B), từ thế đầu tiên <em>Tiến bộ chưởng</em> đến thế cuối <em>Lại thúc đẩy thủ</em>. Mỗi thế được mô tả qua 3-5 bức ảnh liên tiếp, kèm theo chuyển động tay chân và ứng dụng thay thế.</p>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch4-step-fwd-punch.jpg" alt="Tiến bộ chưởng" loading="lazy">
+        <figcaption><strong>Hình 4-1 — "Thế 1: Tiến bộ chưởng" (上步捶, Step Forward for Punch, nguyên tác tr. 227).</strong> Trắng (áo trắng) và Đen (áo đen) đứng cách nhau ba bước chân, hai tay đặt trước eo (Hình 1). Đen bước tới một bước bằng chân trái, rồi tiếp tục bước chân phải và đồng thời đấm bằng tay phải vào solar plexus (đám rối thần kinh dạ dày) của Trắng (Hình 2). Trắng dùng tay phải đỡ và tay trái đấm trả vào ngực Đen (Hình 3). Đây là thế mở đầu của bài Đối Luyện — đơn giản nhưng đặt nền tảng cho tất cả các thế sau.</figcaption>
+      </figure>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch4-stepback-wardoff.jpg" alt="Lui bộ ấn chưởng" loading="lazy">
+        <figcaption><strong>Hình 4-2 — "Lui bộ ấn chưởng" (退步搬攔捶, Step Back, Deflect, Parry and Punch, nguyên tác tr. 233).</strong> Trắng lui một bước về phía sau bằng chân phải, đồng thời dùng lực Chưởng (Péng) đẩy đòn đấm của Đen sang trái. Tay phải Trắng chuyển từ chưởng sang "bộ" (搬, deflect/parry) — đẩy cổ tay Đen xuống. Sau đó tay trái Trắng quét ngang để chặn (攔, parry), rồi đấm thẳng vào ngực Đen bằng tay phải (捶, punch). Bước chân phải chặn ngang chân sau Đen để hạn chế di chuyển.</figcaption>
+      </figure>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch4-r-elbow-stroke.jpg" alt="Dương thức hữu khuỷu phất" loading="lazy">
+        <figcaption><strong>Hình 4-3 — "Dương thức hữu khuỷu phất" (右摟膝拗步, Yang Style Right Elbow Strike, nguyên tác tr. 241).</strong> Tay trái Trắng khóa cổ tay phải của Đen (Hình 1), đồng thời khuỷu tay phải đánh thẳng vào sườn Đen (Hình 2). Chân phải Trắng bước lên đè lên đùi Đen để cố định vị trí (Hình 3). Đây là một thế <strong>kết hợp cầm nã (khóa khớp) + đánh (khuỷu tay) + hạn chế di chuyển</strong> — ba trong một.</figcaption>
+      </figure>
+
+      <p>Trong sách gốc, 30 thế của bài Đối Luyện được minh họa qua khoảng 100 trang, với hơn 300 bức ảnh chi tiết. Sách cũng liệt kê đầy đủ tên gọi của 30 thế trong <strong>Phụ Lục B</strong>.</p>
     </section>
 
+
+    <!-- ============================================================ -->
+    <!-- CHƯƠNG 5                                                        -->
+    <!-- ============================================================ -->
     <section id="chuong-5" class="chapter-block">
       <div class="chapter-header">
         <span class="chapter-num">Chương 5</span>
-        <h2 class="chapter-title">Chiến Lược Thực Chiến</h2>
+        <h2 class="chapter-title">Chiến Lược Thực Chiến Của Thái Cực</h2>
       </div>
 
-      <p>Chương cuối trình bày <strong>chiến lược giao đấu của Thái Cực</strong> — hoàn toàn khác biệt với phần lớn các môn ngoại gia. Thay vì đối đầu trực diện, Thái Cực dựa trên: nhượng bộ để dẫn dụ, mượn lực để phát lực, và luôn giữ thế "âm" cho tới khi thời cơ "dương" xuất hiện.</p>
-      <div class="key-point">Sách khép lại bằng phần hướng dẫn giúp người đọc <strong>chọn một người thầy đủ tư cách</strong> — một lời nhắc rằng Thái Cực võ thuật khó có thể tự học trọn vẹn từ sách.</div>
+      <p>Không có gì lạ khi những võ sĩ đã luyện tập nhiều năm vẫn bị đánh bại bởi những người hầu như không qua trường lớp võ thuật. Ví dụ, một võ sĩ đoạt giải đấu giải có thể ngã gục trên đường phố vì anh ta chỉ tập cho các trận đấu mà thôi — tập kỹ thuật ghi điểm, chứ không phải kỹ thuật tự vệ thực sự. Hơn nữa, các trận đấu thể thao thường cấm đánh vào mặt và hạ bộ, nên nhiều võ sĩ không phát triển cách bảo vệ các vùng này — lại chính là những vùng mà kẻ tấn công trên đường phố nhắm vào.</p>
 
+      <h3 class="sub-head">5-1. Dẫn Nhập</h3>
+      <p>TS. Dương trích dẫn câu nói cổ của giới võ Trung Hoa: <strong>"Nhất dũng, nhị lực, tam công phu"</strong> (一膽、二力、三功夫 — Một, dũng cảm; Hai, sức mạnh; Ba, công phu). Trong chiến đấu thật, <strong>dũng cảm là yếu tố quan trọng nhất</strong>. Một người dũng cảm, dù không có công phu, vẫn có cơ hội đánh bại một võ sĩ giỏi nhưng nhát gan.</p>
+      <p>Đáng tiếc là, trong 50 năm qua, võ thuật Thái Cực đã bị bỏ qua phần chiến đấu thực sự. Thôi Thủ — một bài tập vô hại và thân thiện — đã trở thành tiêu chuẩn đánh giá "khả năng chiến đấu Thái Cực". Nhưng trong chiến đấu thật, không ai đứng chờ bạn đặt tay lên tay họ rồi đẩy nhau. Thay vào đó, đối phương sẽ đấm và đá bạn với toàn bộ tốc độ và sức mạnh.</p>
+
+      <h3 class="sub-head">5-2. Về Một Trận Chiến Thật</h3>
+
+      <h4 style="margin-top:1.4rem;color:var(--accent-crimson)">Trước Trận Đấu</h4>
+      <p>TS. Dương ghi nhớ lời của thầy Bạch Hạc Quyền: <em>"Nếu một người khiêu chiến vì danh dự bị xúc phạm, nhân phẩm của anh ta thấp. Nếu bạn nhận lời, nhân phẩm của bạn cũng chẳng cao hơn. Nhưng nếu bạn biết khiêm nhường và cúi đầu, nhân phẩm của bạn cao hơn họ. Cúi đầu đòi hỏi rất nhiều dũng cảm."</em></p>
+      <p>Khiêm nhường không phải hèn nhát — đó là biểu hiện của dũng cảm, trí tuệ, bình tĩnh và bao dung. Trái lại, nếu bạn bị buộc phải chiến đấu để bảo vệ mạng sống hoặc gia đình, hãy chiến đấu dũng cảm. Trong trường hợp đó, không ai trách bạn cả.</p>
+
+      <h4 style="margin-top:1.4rem;color:var(--accent-crimson)">Khoảng Cách Chiến Đấu Phù Hợp</h4>
+      <p>Thái Cực chuyên về <strong>đánh cận chiến (ngắn)</strong>, sau đó là trung chiến, cuối cùng là đánh xa. Bạn nên duy trì khoảng cách cận chiến vì đó là lợi thế. Nếu đối phương cũng chuyên cận chiến (như Hạc Quyền, Xà Quyền), kỹ thuật của bạn phải cao hơn. Nếu đối phương chuyên đánh xa (như Trường Quyền, Praying Mantis), bạn cần ý thức về khoảng cách mà họ thích đá nhất.</p>
+
+      <h4 style="margin-top:1.4rem;color:var(--accent-crimson)">Năm Điều Cần Biết Trước Trận Đấu</h4>
+      <ol>
+        <li><strong>Biết khoảng cách chiến đấu phù hợp.</strong> Luôn duy trì khoảng cách có lợi nhất cho bạn.</li>
+        <li><strong>Biết khả năng chiến đấu của đối phương.</strong> Quan sát phong cách, dùng đòn giả để thử phản ứng và tốc độ.</li>
+        <li><strong>Biết cách tránh đòn.</strong> Hiểu các kỹ thuật né tránh để không bị trúng đòn.</li>
+        <li><strong>Biết cách lừa đối phương.</strong> Tạo cơ hội tiến vào khoảng cách trung và cận chiến một cách an toàn.</li>
+        <li><strong>Biết cách tiếp cận (Kết Nối).</strong> Khi đã vào cận chiến, biết cách chặn và kết nối với đối phương để dùng kỹ thuật Thái Cực.</li>
+      </ol>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch5-defend-34.jpg" alt="Bài tập phòng thủ 3-4" loading="lazy">
+        <figcaption><strong>Hình 5-1 — "Bài tập phòng thủ số 3 và 4" (Defend 3 / Defend 4, nguyên tác tr. 332).</strong> Hình bên trái: khi đối phương đấm thẳng bằng tay trái, xoay thân sang trái đồng thời khóa cổ tay đối phương bằng tay phải. Hình bên phải: tay phải tiếp tục giữ cổ tay, tay trái xoay vào khuỷu tay đối phương để khóa chân. Đây là bài tập trung gian giữa Thôi Thủ và chiến đấu tự do — luyện phản xạ khóa tay khi đối phương cố đấm.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">5-3. Cách Kết Nối Trong Chiến Đấu Thái Cực</h3>
+      <p>Nhiều võ sĩ Thái Cực gặp khó khăn trong các trận đấu đường phố, dù đã luyện Thôi Thủ và bài đối luyện nhiều năm. Lý do: <strong>phần lớn luyện tập Thái Cực ngày nay chỉ giới hạn ở các kỹ thuật <em>sau khi</em> đã kết nối với đối phương</strong>. Nhưng trong chiến đấu thật, trận đấu thường bắt đầu khi đối phương ở ngoài tầm tay — họ tấn công bằng đấm và đá nhanh. Nếu không có kinh nghiệm <em>kết nối</em>, bạn sẽ trở thành nạn nhân.</p>
+
+      <p>TS. Dương đề xuất năm phẩm chất cần rèn luyện để trở thành một võ sĩ Thái Cực giỏi:</p>
+
+      <table class="tech-table">
+        <thead><tr><th style="width:22%">Phẩm chất</th><th>Ý nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Nhẫn Nại (Endurance)</strong></td><td>Chịu đựng nỗi đau mà người khác không chịu nổi. Kiểm soát cơn giận mà người khác không kiểm soát được. Khiêm nhường khi người khác không khiêm nhường. Đây là chìa khóa thành công và là cửa vào thiền định Thái Cực sâu hơn.</td></tr>
+          <tr><td><strong>2. Khoan Dung (Tolerance)</strong></td><td>Dung thứ cảm xúc mà người khác không dung thứ được, chịu đựng nỗi đau mà người khác không chịu được.</td></tr>
+          <tr><td><strong>3. Nhân Từ (Humanity)</strong></td><td>Yêu thương điều người khác không yêu. Giúp đỡ người mà người khác không muốn giúp. Kính trọng cha mẹ và người lớn — không chỉ của mình mà của tất cả mọi người.</td></tr>
+          <tr><td><strong>4. Tha Thứ (Forgiveness)</strong></td><td>Tha thứ cho người mà người khác không tha thứ. Hiểu quan điểm của đối phương — chỉ khi đó mới dễ tha thứ và sống hạnh phúc. Sau khi thắng trận, hãy khiêm tốn xin lỗi.</td></tr>
+          <tr><td><strong>5. Hòa Bình (Peace)</strong></td><td>Tâm luôn bình an. Chiến đấu là giải pháp cuối cùng. Khi có tâm bình an, bạn có ít kẻ thù hơn, phán đoán tốt hơn, và biết ơn cuộc sống hơn.</td></tr>
+        </tbody>
+      </table>
+
+      <figure class="book-fig">
+        <img src="/assets/images/books/yang-martial-applications/ch5-one-arm-drill.jpg" alt="Bài luyện một tay" loading="lazy">
+        <figcaption><strong>Hình 5-2 — "Bài luyện một tay đẩy" (Drill 6: One-Arm Drill, nguyên tác tr. 335).</strong> Trắng và Đen đứng đối diện, hai tay phải chạm nhẹ vào nhau. Đen bắt đầu đẩy bằng tay phải — Trắng dùng cổ tay bám theo cánh tay Đen (không chống cứng). Khi Đen thay đổi hướng đẩy, Trắng đi theo, dùng eo xoay để dẫn đến khi Đen mất thăng bằng. Cuối cùng, Trắng phản đòn bằng một đòn đá hoặc đấm. Đây là bài tập trung gian giữa Thôi Thủ hai tay và chiến đấu thật — rèn luyện phản xạ với một tay.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">5-4. Thời Điểm Tấn Công (Attack Timing)</h3>
+      <p>Trong chiến đấu thật, có hai tình huống tấn công tiêu biểu:</p>
+      <ul>
+        <li><strong>Chủ động tấn công:</strong> Bạn là người khởi xướng. Đây là tình huống tốt nhất nếu bạn đã chuẩn bị kỹ và biết rõ đối phương. Tuy nhiên, Thái Cực vốn là môn <em>phòng thủ</em> chứ không chủ trương chủ động tấn công.</li>
+        <li><strong>Phản công:</strong> Đối phương tấn công trước, bạn dùng Hóa Kình chuyển hóa lực của họ rồi phản đòn. Đây là <strong>thế mạnh cốt lõi</strong> của Thái Cực.</li>
+      </ul>
+      <p>Để phản công hiệu quả, cần nhận biết các "thời điểm tấn công" của đối phương: thời điểm ý đồ hình thành, thời điểm cơ thể bắt đầu di chuyển, và thời điểm đòn chạm mục tiêu. Phản ứng càng sớm càng tốt — phản ứng ở giai đoạn ý đồ là tốt nhất.</p>
+
+      <h3 class="sub-head">5-5. Kình Trong Chiến Đấu</h3>
+      <p>Không có kỹ thuật Thái Cực nào có thể thực hiện được nếu không có <strong>Kình (Jīng, 勁) — sức mạnh võ thuật</strong>. Kình trong chiến đấu không giống sức mạnh cơ bắp thuần túy; nó là sự kết hợp của Khí, Ý đồ và cơ thể, được phóng ra trong một khoảnh khắc ngắn. Sách gốc phân tích sáu loại Kình thường dùng trong chiến đấu:</p>
+      <table class="tech-table">
+        <thead><tr><th>Loại Kình</th><th>Đặc tính</th><th>Cách dùng</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ngoại Phát Kình (Wài Fā Jīng)</strong></td><td>Mềm bên ngoài, cứng bên trong</td><td>Tấn công cận chiến khi cần sức mạnh đột ngột</td></tr>
+          <tr><td><strong>Kình Phát Âm (Hēng/Hā Jīng)</strong></td><td>Phát ra kèm âm thanh Heng-Ha</td><td>Tăng cường uy áp và tinh thần</td></tr>
+          <tr><td><strong>Kình Ném (Tuō Jīng)</strong></td><td>Ném đối phương ra xa bằng lực quán tính</td><td>Kết hợp với cú đấm/đá để tăng tầm</td></tr>
+          <tr><td><strong>Toàn Kình (Quán Jīng)</strong></td><td>Kình từ gốc đến ngọn, liên tục</td><td>Dùng khi cần lực xuyên phá mạnh</td></tr>
+          <tr><td><strong>Kình Lực (Lì Jīng)</strong></td><td>Sức mạnh thuần túy của cơ bắp</td><td>Dùng khi không kịp dùng Kình khác</td></tr>
+          <tr><td><strong>Kình Nhu (Róu Jīng)</strong></td><td>Mềm mại, dai, bám dính</td><td>Dùng khi cần dẫn lực và chờ thời</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-head">5-6. Thơ Và Ca Khúc Thái Cực Quyền</h3>
+      <p>Sách dịch một số bài thơ và ca khúc cổ điển về chiến lược Thái Cực. Đây là một trong những phần quý giá nhất vì nó lưu giữ trí tuệ của các bậc thầy xưa qua hình thức thơ ca. TS. Dương dịch cả chữ Hán, phiên âm Pinyin, và bản dịch tiếng Anh. Một số bài tiêu biểu:</p>
+      <div class="quote-box">
+        <strong>Taiji Song No. 12 (Thái Cực Ca số 12):</strong><br>
+        "柔過氣節，實按手要輕。<br>
+        想發，必先蓄。<br>
+        蓄勁如開弓，發勁如放箭。<br>
+        曲中求直，蓄而後發。"<br><br>
+        <em>(Nhu quá khí tiết, thật án thủ yếu khinh. Tưởng phát, tất tiên tích. Tích kình như khai cung, phát kình như phóng tiễn. Khúc trung cầu trực, tích nhi hậu phát.)</em><br><br>
+        Dịch nghĩa: <strong>Khi dùng nhu, vượt qua khí tiết; khi ấn thật, tay phải nhẹ. Muốn phát, phải tích trước. Tích kình như kéo cung; phát kình như bắn tên. Trong cong tìm thẳng, tích rồi mới phát.</strong>
+      </div>
+      <div class="quote-box">
+        <strong>Sun Zhi (Tố Tư), 13 bài (第十三式):</strong><br>
+        "緊拉弓，緩放箭，曲中求直，蓄而後發。<br>
+        收即是放，放即是收，斷而復連。"<br><br>
+        Dịch nghĩa: <strong>Kéo cung thật chặt, buông tên thong thả. Trong cong tìm thẳng, tích rồi mới phát. Thu chính là phát, phát chính là thu, đứt rồi lại nối.</strong>
+      </div>
+
+      <p>Sách cũng dịch bài thơ bất hủ của Vương Tôn Ninh (Wáng Zōng Yuè, 王宗岳), <em>Taijiquan Jing (Thái Cực Kinh, 太極經)</em> — một trong những văn bản nền tảng nhất của Thái Cực Quyền. Bài thơ cô đọng toàn bộ tinh hoa của Thái Cực trong vài trăm chữ.</p>
     </section>
 
+
+    <!-- ============================================================ -->
+    <!-- CHƯƠNG 6 + PHỤ LỤC                                             -->
+    <!-- ============================================================ -->
+    <section id="chuong-6" class="chapter-block">
+      <div class="chapter-header">
+        <span class="chapter-num">Chương 6</span>
+        <h2 class="chapter-title">Kết Luận &amp; Phụ Lục</h2>
+      </div>
+
+      <p>Thái Cực Quyền là một môn võ thuật cổ điển, nhưng tinh hoa của nó vẫn sống động qua hàng ngàn năm. Học ứng dụng võ thuật Thái Cực không phải để đánh bại người khác — mà là để hiểu chính mình, hiểu đối phương, và hiểu cách vũ trụ vận hành qua các nguyên lý Âm-Dương, Cứng-Mềm, Tĩnh-Động.</p>
+
+      <div class="key-point">Người tập Thái Cực nghiêm túc cần tìm một người thầy đủ tư cách — một lời nhắc rằng Thái Cực võ thuật khó có thể tự học trọn vẹn từ sách.</div>
+
+      <h3 class="sub-head">Phụ Lục A — 37 Thức Dương Thức Thái Cực Quyền</h3>
+      <p>Sách liệt kê 37 thức (có chữ Hán và Pinyin) của bài Dương thức Thái Cực Quyền dạng dài. Tiêu biểu:</p>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>Tiếng Việt</th><th>Pinyin / Chữ Hán</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Thập Tam Thức</td><td>Shí Sān Shì (十三式)</td></tr>
+          <tr><td>2</td><td>Chưởng (Bộ / Lãm / Tấn / Chấn / Đẩy)</td><td>Peng (掤)</td></tr>
+          <tr><td>3</td><td>Lãng</td><td>Lü (履)</td></tr>
+          <tr><td>4</td><td>Kinh</td><td>Ji (擠)</td></tr>
+          <tr><td>5</td><td>An</td><td>An (按)</td></tr>
+          <tr><td>6</td><td>Phiên Thủ</td><td>Pi Shou (披身)</td></tr>
+          <tr><td>7</td><td>Hữu Lãm Thủ</td><td>You Lou Shou (右摟手)</td></tr>
+          <tr><td>8</td><td>Tả Lãm Thủ</td><td>Zuo Lou Shou (左摟手)</td></tr>
+          <tr><td>9</td><td>Tả Ấn Chưởng</td><td>Zuo Ye Shen Quan (左野馬分鬃)</td></tr>
+          <tr><td>10</td><td>Hữu Ấn Chưởng</td><td>You Ye Ma Fen Zong (右野馬分鬃)</td></tr>
+          <tr><td>11</td><td>Thiên Tỳ Hình</td><td>Tian Ji Shi (掤捶式)</td></tr>
+          <tr><td>12</td><td>Tả Hiến Thủ</td><td>Zuo Xian Shou (左攬雀尾)</td></tr>
+          <tr><td>13</td><td>Đơn Tốt Thủ</td><td>Dan Bian (單鞭)</td></tr>
+          <tr><td>14</td><td>Hữu Xung Phất</td><td>You Jin Ji Dao (右金雞獨立)</td></tr>
+          <tr><td>15</td><td>Tả Xung Phất</td><td>Zuo Jin Ji Dao (左金雞獨立)</td></tr>
+          <tr><td>16</td><td>Đẩy Thủ</td><td>Tui Shou (推手)</td></tr>
+          <tr><td>17</td><td>Bạch Xà Xuyên Thuyền</td><td>Bai She Tan Xin (白蛇吐信)</td></tr>
+          <tr><td>...</td><td>... (tiếp tục đến thức 37)</td><td>...</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.92rem;color:var(--text-secondary)"><em>Trên đây là 16 thức đầu tiên của 37 thức. Sách gốc liệt kê đầy đủ cả 37 thức ở trang 359.</em></p>
+
+      <h3 class="sub-head">Phụ Lục B — Bài Đối Luyện Dương Thức (30 Thế)</h3>
+      <p>Sách liệt kê 30 thế của Bài Đối Luyện Dương Thức. Một số thế tiêu biểu đã được minh họa trong Chương 4:</p>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>Tiếng Việt</th><th>Pinyin / Chữ Hán</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Tiến Bộ Chưởng</td><td>Shang Bu Chui (上步捶)</td></tr>
+          <tr><td>2</td><td>Nâng Thủ Trung Hạ Thức</td><td>Ju Shou Shang Xia Shi (舉手上勢)</td></tr>
+          <tr><td>3</td><td>Bộ Bộ Liên Hoa, Bạch Xà Xuyên Thuyền</td><td>Bo Bo Lian Hua, Bai She Tan Xin</td></tr>
+          <tr><td>4</td><td>Bộ Kính, Bộ Kính, Bộ Kính</td><td>Shan Tui Hu (閃退)</td></tr>
+          <tr><td>5</td><td>Lui Bộ Đả Bộ Chưởng</td><td>Tui Bu Ban Lan Chui (退步搬攔捶)</td></tr>
+          <tr><td>6</td><td>Lục Phân Tả Hữu Hữu Đẩy</td><td>Liu Fen Zuo You (六封四閉)</td></tr>
+          <tr><td>7</td><td>Đản Biên</td><td>Dan Bian (單鞭)</td></tr>
+          <tr><td>8</td><td>Hữu Ấn Chưởng</td><td>You Ye Ma Fen Zong (右野馬分鬃)</td></tr>
+          <tr><td>9</td><td>Tả Hữu Đả Bộ, Xuyên Thủ</td><td>Zuo You Da Bu, Chuan Shou</td></tr>
+          <tr><td>10</td><td>Ấn Chưởng</td><td>An Chui (按捶)</td></tr>
+          <tr><td>11</td><td>Tả Hữu Lãm Thủ</td><td>Zuo You Lou Xi (左右摟膝拗步)</td></tr>
+          <tr><td>12</td><td>Hữu Xung Bối Lãm</td><td>You Chong Bei Lou (右衝背摟)</td></tr>
+          <tr><td>13</td><td>Tả Xung Bối Lãm</td><td>Zuo Chong Bei Lou (左衝背摟)</td></tr>
+          <tr><td>14</td><td>Hữu Khuỷu Phất</td><td>You Zhou Di (右肘底看捶)</td></tr>
+          <tr><td>15</td><td>Hữu Phiên Thủ</td><td>You Chan Shou (右攬手)</td></tr>
+          <tr><td>16</td><td>Hữu Tả Phất</td><td>You Zuo Pi (右左披)</td></tr>
+          <tr><td>17</td><td>Thiên Khí Lâm Tuyền</td><td>Tian Qi Lin Yuan (天氣氤氳)</td></tr>
+          <tr><td>...</td><td>... (tiếp tục đến thế 30)</td><td>...</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.92rem;color:var(--text-secondary)"><em>Trên đây là 16 thế đầu tiên của 30 thế. Sách gốc liệt kê đầy đủ cả 30 thế ở trang 361–363.</em></p>
+
+      <h3 class="sub-head">Phụ Lục C — Bảng Dịch Và Thuật Ngữ Chữ Hán</h3>
+      <p>Sách cung cấp bảng dịch Anh-Trung-Pinyin cho tất cả thuật ngữ chuyên ngành được dùng trong sách. Tiêu biểu:</p>
+      <table class="tech-table">
+        <thead><tr><th>Tiếng Anh</th><th>Tiếng Việt</th><th>Pinyin</th><th>Chữ Hán</th></tr></thead>
+        <tbody>
+          <tr><td>Ward-Off</td><td>Chưởng</td><td>Péng</td><td>掤</td></tr>
+          <tr><td>Roll-Back</td><td>Lãng</td><td>Lǜ</td><td>履</td></tr>
+          <tr><td>Press</td><td>Kinh</td><td>Jǐ</td><td>擠</td></tr>
+          <tr><td>Push</td><td>An</td><td>Ān</td><td>按</td></tr>
+          <tr><td>Pushing Hands</td><td>Thôi Thủ</td><td>Tuī Shǒu</td><td>推手</td></tr>
+          <tr><td>Fighting Set</td><td>Bài Đối Luyện</td><td>Duì Liàn</td><td>對練</td></tr>
+          <tr><td>Joint Lock</td><td>Cầm Nã / Khóa Khớp</td><td>Qín Nà</td><td>擒拿</td></tr>
+          <tr><td>Cavity Strike</td><td>Điểm Huyệt</td><td>Dian Xue</td><td>點穴</td></tr>
+          <tr><td>Sensing Jing</td><td>Kình Nghe</td><td>Tīng Jīng</td><td>聽勁</td></tr>
+          <tr><td>Understanding Jing</td><td>Kình Hiểu</td><td>Dǒng Jīng</td><td>懂勁</td></tr>
+          <tr><td>Neutralizing Jing</td><td>Hóa Kình</td><td>Huà Jīng</td><td>化勁</td></tr>
+          <tr><td>Leading Jing</td><td>Dẫn Kình</td><td>Yǐn Jīng</td><td>引勁</td></tr>
+          <tr><td>Taiji Ball</td><td>Thái Cực Cầu</td><td>Tài Jí Qiú</td><td>太極球</td></tr>
+          <tr><td>Dan Tian</td><td>Đan Điền</td><td>Dān Tián</td><td>丹田</td></tr>
+          <tr><td>Yi (Mind-Intent)</td><td>Ý</td><td>Yì</td><td>意</td></tr>
+          <tr><td>Jing Shen (Spirit of Vitality)</td><td>Tinh Thần Sinh Lực</td><td>Jīng Shén</td><td>精神</td></tr>
+          <tr><td>Heng Sound</td><td>Âm Heng</td><td>Hēng</td><td>哼</td></tr>
+          <tr><td>Ha Sound</td><td>Âm Ha</td><td>Hā</td><td>哈</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-head">Lời Cảm Ơn &amp; Về Tác Giả</h3>
+      <p>TS. Dương Tuấn Mẫn gửi lời cảm ơn chân thành tới các bậc thầy đã truyền dạy, các đồng môn đã hỗ trợ, và các học trò đã giúp ông kiểm nghiệm và hoàn thiện cuốn sách qua nhiều thập kỷ. Trong số các thầy tiêu biểu có Đại Sư Lương Đông Tài (Bạch Hạc Quyền), Đại Sư Tưởng Vinh Khải (Đại Lãm Thủ), và các võ sư nổi tiếng khác.</p>
+      <p>TS. Dương bắt đầu học võ từ năm lên 9 tuổi dưới sự dạy dỗ của bố ông, Dương Hành Hùng — người thầy võ Kungfu truyền thống. Tới năm 15 tuổi, ông bắt đầu học Thái Cực Quyền. Tới năm 16, ông học Thái Cực Cầu và Thôi Thủ. Tới năm 20, ông chính thức nhận mình là "võ sinh nội gia". Năm 1974, ông tốt nghiệp Đại học Tĩnh Cứu Quốc (Đài Loan) với bằng Cử nhân Kỹ thuật Hóa học. Ông sang Mỹ năm 1974 và nhận bằng Thạc sĩ Khoa học vật liệu tại Đại học Rhode Island (1977), rồi bằng Tiến sĩ Khoa học vật liệu tại Đại học Bang New York ở Stony Brook (1981).</p>
+    </section>
+
+
     <nav class="page-nav">
-      <a class="disabled">← Trước</a>
+      <a href="/vi/books/yang_jwing_ming_martial_power_vi.html"><i class="fa-solid fa-circle-left"></i> Thái Cực Quyền Vũ Lực (Tập 1)</a>
       <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a href="/vi/books/">Tiếp theo →</a>
+      <a class="disabled">Tiếp theo →</a>
     </nav>
 
   </main>
