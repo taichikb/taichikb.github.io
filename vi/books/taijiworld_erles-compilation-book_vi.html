@@ -67,16 +67,9 @@ body {
 .book-hero .meta-row { display: flex; justify-content: center; gap: 24px; color: var(--ink-faint); font-size: 0.9rem; flex-wrap: wrap; }
 h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin: 56px 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); color: var(--ink); scroll-margin-top: 80px; }
 h2 .zh { font-family: var(--cjk); font-size: 1.35rem; color: var(--ink-muted); margin-left: 10px; }
-.en-heading { font-size: 0.95rem; color: var(--ink-faint); font-style: italic; margin-bottom: 24px; }
 h3.run-in { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin: 30px 0 14px; scroll-margin-top: 90px; }
-h3.run-in .en-inline { font-size: 0.9rem; color: var(--ink-faint); font-style: italic; font-weight: 400; display: block; margin-top: 2px; }
 p { margin-bottom: 1.35rem; }
-.bilingual-block .lang-en { display: none; }
-body.show-en .lang-en { display: block; }
-body.show-en .lang-vi { display: none; }
-body.show-en .en-heading { color: var(--gold); }
 .stanza { margin-bottom: 1.35rem; }
-.lang-en p { color: var(--ink-muted); font-size: 0.96rem; }
 .note-box { background: var(--bg-sidebar); border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; font-size: 0.94rem; color: var(--ink-muted); }
 .chapter-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
 .chapter-nav a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 600; padding: 10px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
@@ -112,7 +105,6 @@ body.pdf-lock{overflow:hidden;}
     <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
     <button class="btn-control" id="pdf-open" title="Doc truc tuyen trong trang"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
     <a href="/assets/books/taijiworld/erles-compilation-book/Erles_Compilation_Book.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
-    <button class="btn-control" id="lang-toggle" title="Chuyển đổi Việt / Anh"><i class="fa-solid fa-language"></i> EN</button>
     <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
     <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
     <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
@@ -189,15 +181,7 @@ body.pdf-lock{overflow:hidden;}
 </div>
 
 <script>
-// language toggle
-var startEn = false;
-document.getElementById('lang-toggle').addEventListener('click', function(){
-  document.body.classList.toggle('show-en');
-  this.classList.toggle('on');
-  this.innerHTML = document.body.classList.contains('show-en')
-    ? '<i class="fa-solid fa-language"></i> VI'
-    : '<i class="fa-solid fa-language"></i> EN';
-});
+
 // theme
 var themeBtn = document.getElementById('theme-toggle');
 var savedTheme = localStorage.getItem('fiverings-theme');
