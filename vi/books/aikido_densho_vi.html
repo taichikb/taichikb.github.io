@@ -68,18 +68,10 @@ body {
 .book-hero .meta-row { display: flex; justify-content: center; gap: 24px; color: var(--ink-faint); font-size: 0.9rem; flex-wrap: wrap; }
 h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin: 56px 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); color: var(--ink); scroll-margin-top: 80px; }
 h2 .zh { font-family: var(--cjk); font-size: 1.35rem; color: var(--ink-muted); margin-left: 10px; }
-.en-heading { font-size: 0.95rem; color: var(--ink-faint); font-style: italic; margin-bottom: 24px; }
 h3.run-in { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin: 30px 0 14px; scroll-margin-top: 90px; }
-h3.run-in .en-inline { font-size: 0.9rem; color: var(--ink-faint); font-style: italic; font-weight: 400; display: block; margin-top: 2px; }
 h4.sub-head { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; color: var(--ink); margin: 24px 0 10px; scroll-margin-top: 90px; }
-h4.sub-head .en-inline { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; font-weight: 400; display: block; margin-top: 2px; }
 p { margin-bottom: 1.35rem; }
-.bilingual-block .lang-en { display: none; }
-body.show-en .lang-en { display: block; }
-body.show-en .lang-vi { display: none; }
-body.show-en .en-heading { color: var(--gold); }
 .stanza { margin-bottom: 1.35rem; }
-.lang-en p { color: var(--ink-muted); font-size: 0.96rem; }
 .role-line { font-weight: 600; color: var(--gold); }
 .cmd-line { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.9rem; color: var(--ink-muted); background: var(--bg-sidebar); border-left: 3px solid var(--border); padding: 8px 14px; border-radius: 0 6px 6px 0; margin-bottom: 1.35rem; }
 .purpose-line { border-left: 3px solid var(--gold); padding-left: 14px; }
@@ -110,12 +102,9 @@ body.pdf-lock{overflow:hidden;}
 @media (max-width:640px){.pdf-toolbar .pdf-title{display:none;}#pdf-pageinfo{min-width:62px;}}
 
 .bilingual-block .lang-ja { display: none; }
-body.show-en .lang-ja { display: block; }
-body.show-en .lang-vi { display: none; }
 .lang-ja { font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
   "Noto Serif JP", "MS Mincho", serif; font-size: 1.02rem; line-height: 1.95;
   color: var(--ink-muted); }
-body.show-en .ja-heading { color: var(--gold); }
 .ja-heading { font-size: 1.05rem; color: var(--ink-faint); font-style: normal;
   margin-bottom: 24px; letter-spacing: .08em; }
 h3.run-in .ja-inline { font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
@@ -157,7 +146,6 @@ figure.fig.full img { max-height: 76vh; width: auto; margin: 0 auto; }
     <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
     <button class="btn-control" id="pdf-open" title="Doc truc tuyen trong trang"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
     <a href="/assets/books/aikido_densho_vi/Aikido_Densho_VI.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
-    <button class="btn-control" id="lang-toggle" title="Chuyển đổi Việt / Nhật"><i class="fa-solid fa-language"></i> JP</button>
     <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
     <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
     <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
@@ -909,14 +897,7 @@ Khí Hải (hiệu của tác giả)</p><p class="lang-ja">剛と柔流にすゝ
 </div>
 
 <script>
-// language toggle
-document.getElementById('lang-toggle').addEventListener('click', function(){
-  document.body.classList.toggle('show-en');
-  this.classList.toggle('on');
-  this.innerHTML = document.body.classList.contains('show-en')
-    ? '<i class="fa-solid fa-language"></i> VI'
-    : '<i class="fa-solid fa-language"></i> JP';
-});
+
 // theme
 var themeBtn = document.getElementById('theme-toggle');
 var savedTheme = localStorage.getItem('densho-theme');
