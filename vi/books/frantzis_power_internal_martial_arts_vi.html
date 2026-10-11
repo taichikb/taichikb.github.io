@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Uy Lực Nội Gia Quyền — Bruce Kumar Frantzis | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm The Power of Internal Martial Arts của Đại sư Bruce Kumar Frantzis — bí quyết chiến đấu của Bát Quái, Thái Cực và Hình Ý: phát Kình, Nội Công 16 phần và quá trình hòa tan.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #7c3aed;
   --accent-crimson: #5b21b6;
@@ -64,89 +57,407 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .page-nav a { color: #5b21b6; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
 .page-nav a.home { color: #7c3aed; }
 .page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uy Lực Nội Gia Quyền — Bruce Kumar Frantzis | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm The Power of Internal Martial Arts của Đại sư Bruce Kumar Frantzis — bí quyết chiến đấu của Bát Quái, Thái Cực và Hình Ý: phát Kình, Nội Công 16 phần và quá trình hòa tan.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn: Ba Môn Nội Gia</a></li>
-      <li class="toc-item"><a href="#ba-tiep-can" class="toc-link">Ba Tiếp Cận: Động Vật – Con Người – Tâm Linh</a></li>
-      <li class="toc-item"><a href="#ngoai-noi" class="toc-link">Ngoại Gia và Nội Gia — Một Liên Tục Thể</a></li>
-      <li class="toc-item"><a href="#noicong" class="toc-link">Nội Công 16 Phần &amp; Quá Trình Hòa Tan</a></li>
-      <li class="toc-item"><a href="#chan-dung" class="toc-link">Chân Dung Các Bậc Thầy</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Uy Lực Nội Gia Quyền (Bruce Kumar Frantzis)</span>
-  </nav>
-
-  <main class="reader-content">
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Lời Dẫn: Ba Môn Nội Gia</a></li>
+        <li><a href="#sec01">Ba Tiếp Cận: Động Vật – Con Người – Tâm Linh</a></li>
+        <li><a href="#sec02">Ngoại Gia và Nội Gia — Một Liên Tục Thể</a></li>
+        <li><a href="#sec03">Nội Công 16 Phần &amp;amp; Quá Trình Hòa Tan</a></li>
+        <li><a href="#sec04">Chân Dung Các Bậc Thầy</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Nội Gia Quyền &middot; Bát Quái – Thái Cực – Hình Ý</span>
+      <span class="badge">Nội Gia Quyền &amp;middot; Bát Quái – Thái Cực – Hình Ý &middot; Tác giả: Đại sư Bruce Kumar Frantzis (North Atlantic Books)
+        Ấn bản gốc: North Atlantic Books &amp;middot; ấn bản mở rộng
+        Bản dịch &amp;amp; khảo luận tiếng Việt: Ban Biên khảo Võ học &amp;amp; Dưỡng sinh Nội gia TaichiNOW</span>
       <h1>Uy Lực Nội Gia Quyền</h1>
-      <div class="book-orig-title">The Power of Internal Martial Arts: Combat Secrets of Ba Gua, Tai Chi, and Hsing-I</div>
-      <div class="book-author-meta"><strong>Tác giả:</strong> Đại sư Bruce Kumar Frantzis (North Atlantic Books)<br>
-        <strong>Ấn bản gốc:</strong> North Atlantic Books &middot; ấn bản mở rộng<br>
-        <strong>Bản dịch &amp; khảo luận tiếng Việt:</strong> Ban Biên khảo Võ học &amp; Dưỡng sinh Nội gia TaichiNOW</div>
-      <div class="book-tags">
-        <span class="book-tag">🥋 Nội Gia Quyền</span>
-        <span class="book-tag">⚡ Phát Kình</span>
-        <span class="book-tag">⚙️ Nội Công 16 Phần</span>
-        <span class="book-tag">🐉 Ba Môn</span>
-      </div>
+      <div class="subtitle">The Power of Internal Martial Arts: Combat Secrets of Ba Gua, Tai Chi, and Hsing-I</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Lời Dẫn: Ba Môn Nội Gia</h2>
 
-
-    <section id="loi-dan" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Lời Dẫn: Ba Môn Nội Gia</h2>
-      </div>
 
       <p>Đây là tác phẩm <strong>đồ sộ nhất</strong> của Frantzis về sức mạnh chiến đấu của ba môn nội gia Trung Hoa: <em>Thái Cực Quyền</em>, <em>Hình Ý Quyền (Hsing-I)</em> và <em>Bát Quái Chưởng (Ba Gua)</em>. Cuốn sách trả lời câu hỏi trung tâm: <strong>làm sao phát ra uy lực mà không cần dùng sức cơ bắp thô?</strong></p>
-      <div class="key-point">Nội gia quyền lấy <strong>Khí</strong> và <strong>Ý</strong> làm nguồn lực, lấy <strong>cấu trúc thân thể</strong> (gân, xương, khớp) làm đường dẫn, và lấy <strong>tĩnh lặng tâm thức</strong> làm nền — để tạo ra thứ sức mạnh mà ngoại gia không có.</div>
+      <div class="key-takeaway">Nội gia quyền lấy <strong>Khí</strong> và <strong>Ý</strong> làm nguồn lực, lấy <strong>cấu trúc thân thể</strong> (gân, xương, khớp) làm đường dẫn, và lấy <strong>tĩnh lặng tâm thức</strong> làm nền — để tạo ra thứ sức mạnh mà ngoại gia không có.</div>
       <p>Frantzis kể lại hành trình cá nhân của mình qua võ thuật — từ ngoại gia tới nội gia — và mô tả chi tiết quá trình "khám phá bên trong thân thể" của chính mình, làm cho cuốn sách vừa là sách kỹ thuật, vừa là hồi ký tu tập.</p>
+</section>
 
-    </section>
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Ba Tiếp Cận: Động Vật – Con Người – Tâm Linh</h2>
 
-
-    <section id="ba-tiep-can" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Triết Lý</span>
-        <h2 class="chapter-title">Ba Tiếp Cận: Động Vật – Con Người – Tâm Linh</h2>
-      </div>
 
       <p>Frantzis phân biệt ba thái độ tiếp cận võ thuật:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Tiếp cận</th><th>Đặc điểm</th><th>Giới hạn</th></tr></thead>
         <tbody>
           <tr><td><strong>Động vật (Animal)</strong></td><td>Thuần bản năng, sức mạnh và phản xạ thô; chiến đấu bằng hung hãn.</td><td>Dễ chấn thương, tàn bạo, không bền.</td></tr>
@@ -154,19 +465,16 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>Tâm linh (Spiritual)</strong></td><td>Lấy Khí, Ý và tĩnh lặng làm gốc; chiến đấu từ trung tâm tĩnh lặng.</td><td>Đòi hỏi kiên trì nhiều năm; khó dạy đại trà.</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Nội gia quyền đặt <strong>tầng tâm linh</strong> làm mục tiêu — nhờ đó người tập có thể duy trì và <em>tăng</em> uy lực khi tuổi cao, thay vì suy giảm như võ thuật ngoại gia.</div>
+      <div class="key-takeaway">Nội gia quyền đặt <strong>tầng tâm linh</strong> làm mục tiêu — nhờ đó người tập có thể duy trì và <em>tăng</em> uy lực khi tuổi cao, thay vì suy giảm như võ thuật ngoại gia.</div>
+</section>
 
-    </section>
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Ngoại Gia và Nội Gia — Một Liên Tục Thể</h2>
 
-
-    <section id="ngoai-noi" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Phân Định</span>
-        <h2 class="chapter-title">Ngoại Gia và Nội Gia — Một Liên Tục Thể</h2>
-      </div>
 
       <p>Frantzis không chia đôi thế giới võ thuật thành "tốt" và "xấu", mà đặt nó trên một <strong>liên tục thể</strong>. Sách phân tích các tiêu chí:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Tiêu chí</th><th>Ngoại gia</th><th>Nội gia</th></tr></thead>
         <tbody>
           <tr><td>Sức mạnh</td><td>Cơ bắp, thể lực</td><td>Khí, gân xương, cấu trúc</td></tr>
@@ -175,33 +483,27 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td>Phản xạ</td><td>Phản xạ có điều kiện</td><td>Cảm nhận trực tiếp (listening energy)</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Năm đặc trưng của nội gia: phát lực bằng Khí, Nội Công 16 phần, cấu trúc gân–xương, hòa tan khối tắc, và <strong>Ý dẫn Khí</strong>.</div>
+      <div class="key-takeaway">Năm đặc trưng của nội gia: phát lực bằng Khí, Nội Công 16 phần, cấu trúc gân–xương, hòa tan khối tắc, và <strong>Ý dẫn Khí</strong>.</div>
       <p>Sách cũng nhấn mạnh giá trị của <em>tập luyện chéo (cross-training)</em>: người ngoại gia có thể học nội gia để tăng hiệu quả và tuổi thọ tập luyện.</p>
+</section>
 
-    </section>
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Nội Công 16 Phần &amp; Quá Trình Hòa Tan</h2>
 
-
-    <section id="noicong" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Trọng Tâm</span>
-        <h2 class="chapter-title">Nội Công 16 Phần &amp; Quá Trình Hòa Tan</h2>
-      </div>
 
       <p>Chương ba trình bày chi tiết <strong>hệ thống Nội Công 16 phần</strong> — xương sống kỹ thuật của toàn bộ nội gia quyền trong truyền thống của Lưu Hồng Kiệt — và tiến trình học nó, được ví như <em>rèn một thanh gươm Samurai</em>: phải qua nhiều công đoạn, mỗi bước xây trên bước trước.</p>
-      <div class="key-point"><strong>Bốn cấp độ của quá trình luyện "Ý":</strong> (1) Cảm nhận thân thể và Khí · (2) Các động tác chuyển tiếp phát triển "Ý" · (3) Công phu trên kinh mạch cụ thể · (4) "Hsin" — Tâm/Ý hợp nhất.</div>
+      <div class="key-takeaway"><strong>Bốn cấp độ của quá trình luyện "Ý":</strong> (1) Cảm nhận thân thể và Khí · (2) Các động tác chuyển tiếp phát triển "Ý" · (3) Công phu trên kinh mạch cụ thể · (4) "Hsin" — Tâm/Ý hợp nhất.</div>
       <p>Quá trình <strong>Hòa tan (Dissolving)</strong> được tách thành: <em>Hòa tan bên ngoài</em>, <em>Hòa tan bên trong</em>, và <em>Hòa tan đồng thời vào nội – ngoại không gian</em>. Đây là kỹ thuật then chốt để giải phóng khối tắc năng lượng và giải phóng cảm xúc bị dồn nén.</p>
+</section>
 
-    </section>
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Chân Dung Các Bậc Thầy</h2>
 
-
-    <section id="chan-dung" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chân Dung</span>
-        <h2 class="chapter-title">Chân Dung Các Bậc Thầy</h2>
-      </div>
 
       <p>Sách dành nhiều "chân dung nội gia cao thủ" để minh họa cho lý thuyết:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Bậc thầy</th><th>Đặc trưng được khắc họa</th></tr></thead>
         <tbody>
           <tr><td><strong>Vương Thụ Kim (Wang Shu Jin)</strong></td><td>Khí lực phi thường nơi thân thể đầy đặn — chứng minh uy lực nội gia không đến từ cơ bắp.</td></tr>
@@ -209,39 +511,57 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>Lưu Hồng Kiệt (Liu Hung Chieh)</strong></td><td>Đạo sư Thủy Phái, người truyền Nội Công 16 phần.</td></tr>
         </tbody>
       </table>
-      <div class="quote-box">"Uy lực nội gia không nằm ở cơ bắp, mà ở cấu trúc, ở Khí, và ở tâm trí tĩnh lặng điều khiển cả hai."</div>
-
-    </section>
-
-    <nav class="page-nav">
-      <a class="disabled">← Trước</a>
-      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a href="/vi/books/">Tiếp theo →</a>
-    </nav>
-
+      <div class="callout">"Uy lực nội gia không nằm ở cơ bắp, mà ở cấu trúc, ở Khí, và ở tâm trí tĩnh lặng điều khiển cả hai."</div>
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Tủ Sách Bruce Kumar Frantzis &mdash; Đạo Gia Thủy Phái (Water Tradition) &middot; TaichiNOW</p>
-  <p>Bản dịch &amp; khảo luận tiếng Việt chuyên sâu © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

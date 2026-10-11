@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nghệ Thuật Kiếm Thuật Trung Hoa — Thái Cực Kiếm | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt chuyên sâu The Art of Chinese Swordsmanship (Zhang Yun) — ba ngàn năm lịch sử kiếm jian, Thái Cực quyền và Thái Cực kiếm, cấu tạo và cách cầm kiếm, kiếm quyển – kiếm hoa, và bài 32 thức Thái Cực kiếm.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #0f766e;
   --accent-crimson: #134e4a;
@@ -64,78 +57,399 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
 .page-nav a.home { color: #0f766e; }
 .page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nghệ Thuật Kiếm Thuật Trung Hoa — Thái Cực Kiếm | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu The Art of Chinese Swordsmanship (Zhang Yun) — ba ngàn năm lịch sử kiếm jian, Thái Cực quyền và Thái Cực kiếm, cấu tạo và cách cầm kiếm, kiếm quyển – kiếm hoa, và bài 32 thức Thái Cực kiếm.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#kiem-jian" class="toc-link">Kiếm Jian: Ba Ngàn Năm &amp; Một Biểu Tượng</a></li>
-      <li class="toc-item"><a href="#thai-cuc-kiem" class="toc-link">Từ Thái Cực Quyền Đến Thái Cực Kiếm</a></li>
-      <li class="toc-item"><a href="#cau-tao" class="toc-link">Cấu Tạo Kiếm, Chiều Dài &amp; Cách Cầm</a></li>
-      <li class="toc-item"><a href="#kiem-hoa" class="toc-link">Kiếm Quyển &amp; Kiếm Hoa</a></li>
-      <li class="toc-item"><a href="#32-thuc" class="toc-link">Bài 32 Thức Thái Cực Kiếm</a></li>
-      <li class="toc-item"><a href="#thuc-hanh" class="toc-link">Các Giai Đoạn Tập &amp; Bảy Nguyên Lý</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Kiếm Thuật Trung Hoa (Thái Cực Kiếm)</span>
-  </nav>
-
-  <main class="reader-content">
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Kiếm Jian: Ba Ngàn Năm &amp;amp; Một Biểu Tượng</a></li>
+        <li><a href="#sec01">Từ Thái Cực Quyền Đến Thái Cực Kiếm</a></li>
+        <li><a href="#sec02">Cấu Tạo Kiếm, Chiều Dài &amp;amp; Cách Cầm</a></li>
+        <li><a href="#sec03">Kiếm Quyển &amp;amp; Kiếm Hoa</a></li>
+        <li><a href="#sec04">Bài 32 Thức Thái Cực Kiếm</a></li>
+        <li><a href="#sec05">Các Giai Đoạn Tập &amp;amp; Bảy Nguyên Lý</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Thái Cực Kiếm &middot; 32 Thức</span>
+      <span class="badge">Thái Cực Kiếm &amp;middot; 32 Thức &middot; Tác giả: Zhang Yun (môn sinh hệ thống Yin Cheng Gong Fa)
+        Ấn bản gốc: Weatherhill, New York &amp;amp; Tokyo &amp;middot; 1998
+        Bản dịch &amp;amp; khảo luận tiếng Việt: Ban Biên khảo Võ học &amp;amp; Dưỡng sinh Nội gia TaichiNOW</span>
       <h1>Nghệ Thuật Kiếm Thuật Trung Hoa</h1>
-      <div class="book-orig-title">The Art of Chinese Swordsmanship: A Manual of Taiji Jian</div>
-      <div class="book-author-meta"><strong>Tác giả:</strong> Zhang Yun (môn sinh hệ thống Yin Cheng Gong Fa)<br>
-        <strong>Ấn bản gốc:</strong> Weatherhill, New York &amp; Tokyo &middot; 1998<br>
-        <strong>Bản dịch &amp; khảo luận tiếng Việt:</strong> Ban Biên khảo Võ học &amp; Dưỡng sinh Nội gia TaichiNOW</div>
-      <div class="book-tags">
-        <span class="book-tag">🗡️ Kiếm (Jian)</span>
-        <span class="book-tag">☯️ Thái Cực Kiếm</span>
-        <span class="book-tag">📜 Lịch Sử</span>
-        <span class="book-tag">🥋 Ứng Dụng</span>
-      </div>
+      <div class="subtitle">The Art of Chinese Swordsmanship: A Manual of Taiji Jian</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Kiếm Jian: Ba Ngàn Năm &amp; Một Biểu Tượng</h2>
 
-
-    <section id="kiem-jian" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Lịch Sử</span>
-        <h2 class="chapter-title">Kiếm Jian: Ba Ngàn Năm &amp; Một Biểu Tượng</h2>
-      </div>
 
       <p>Kiếm <strong>jian</strong> — kiếm thẳng hai lưỡi — vừa là vũ khí phổ biến nhất trong võ thuật truyền thống Trung Hoa, vừa là một vũ khí <em>rất đặc biệt</em>. Phổ biến vì hầu như phái nào cũng dùng. Đặc biệt vì nó không chỉ là binh khí, mà là một <strong>biểu tượng trung tâm của văn hóa Trung Hoa</strong>.</p>
-      <div class="key-point">Kiếm jian mang tinh thần của người Trung Hoa, được tán tụng trong nghệ thuật và truyền thuyết suốt hàng ngàn năm, và đã trở thành cách diễn đạt những giá trị cùng chuẩn mực đạo đức sâu sắc nhất. Người ta tập nó không chỉ để khỏe và giỏi võ, mà còn để <strong>rèn luyện nhân cách</strong>.</div>
-      <table class="tech-table">
+      <div class="key-takeaway">Kiếm jian mang tinh thần của người Trung Hoa, được tán tụng trong nghệ thuật và truyền thuyết suốt hàng ngàn năm, và đã trở thành cách diễn đạt những giá trị cùng chuẩn mực đạo đức sâu sắc nhất. Người ta tập nó không chỉ để khỏe và giỏi võ, mà còn để <strong>rèn luyện nhân cách</strong>.</div>
+      <table class="styled-table">
         <thead><tr><th>Thời kỳ</th><th>Chất liệu &amp; đặc điểm</th></tr></thead>
         <tbody>
           <tr><td><strong>Nhà Hạ</strong> (2100–1600 TCN)</td><td>Ghi chép sớm nhất về jian; dùng ở vùng tây bắc rồi lan xuống trung và nam Trung Hoa</td></tr>
@@ -143,63 +457,51 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>Xuân Thu</strong> (khoảng 2700 năm trước)</td><td>Thợ rèn giỏi được trọng vọng và nổi danh. Kiếm đào lên sau hơn hai ngàn năm <em>vẫn sắc tới mức chém được đồng tiền</em>. Kiếm dài hơn thời Chu nhờ luyện kim tinh vi hơn.</td></tr>
         </tbody>
       </table>
-      <div class="quote-box">Tỉ lệ thiếc cao thì đồng cứng hơn nhưng giòn; tỉ lệ thiếc thấp thì dai hơn nhưng mềm. Các thợ cổ đã biết làm <em>tỉ lệ thiếc thấp ở giữa lưỡi</em> để lấy độ dai, và <em>cao ở phần lưỡi bén</em> để lấy độ sắc — nhờ đó chế được kiếm vừa dài vừa sắc.</div>
+      <div class="callout">Tỉ lệ thiếc cao thì đồng cứng hơn nhưng giòn; tỉ lệ thiếc thấp thì dai hơn nhưng mềm. Các thợ cổ đã biết làm <em>tỉ lệ thiếc thấp ở giữa lưỡi</em> để lấy độ dai, và <em>cao ở phần lưỡi bén</em> để lấy độ sắc — nhờ đó chế được kiếm vừa dài vừa sắc.</div>
+</section>
 
-    </section>
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Từ Thái Cực Quyền Đến Thái Cực Kiếm</h2>
 
-
-    <section id="thai-cuc-kiem" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Nguyên Lý</span>
-        <h2 class="chapter-title">Từ Thái Cực Quyền Đến Thái Cực Kiếm</h2>
-      </div>
 
       <p>Phần này đi qua: ôn lại các nguyên lý Thái Cực (tr. 22), các <strong>thành tố nội tại</strong> (tr. 24), kỹ thuật của Thái Cực quyền (tr. 28), <strong>bốn yếu tố Thái Cực</strong> (tr. 32), đặc điểm của Thái Cực kiếm (tr. 33), trình tự huấn luyện căn bản (tr. 34) và lợi ích của việc tập (tr. 35).</p>
-      <div class="key-point">Điểm quyết định: Thái Cực kiếm không phải là "Thái Cực quyền cầm thêm kiếm". Nếu tay không đã không có nội tại, thì cầm kiếm vào chỉ thành một bài múa kiếm.</div>
+      <div class="key-takeaway">Điểm quyết định: Thái Cực kiếm không phải là "Thái Cực quyền cầm thêm kiếm". Nếu tay không đã không có nội tại, thì cầm kiếm vào chỉ thành một bài múa kiếm.</div>
       <p>Lời tựa kể một câu chuyện đáng nhớ. Người viết lời tựa — khi ấy gần đai đen một môn võ "thật" — được bà ngoại ép đến gặp một người mới từ Bắc Kinh sang. Anh ta xem Thái Cực quyền là "thứ chuyển động chậm chạp của các cụ già". Zhang Yun chỉ đáp bình thản: <em>"Thái Cực có thể dùng để đánh thật, và rất hiệu quả."</em></p>
-      <div class="quote-box">"Tôi lao vào tấn công, và chuyện kỳ lạ nhất xảy ra: tôi nằm dài trên sàn mà hoàn toàn không biết mình làm sao lại ở đó. Mỗi lần tôi đấm hay đá, tôi chỉ gặp cái trống không."</div>
+      <div class="callout">"Tôi lao vào tấn công, và chuyện kỳ lạ nhất xảy ra: tôi nằm dài trên sàn mà hoàn toàn không biết mình làm sao lại ở đó. Mỗi lần tôi đấm hay đá, tôi chỉ gặp cái trống không."</div>
       <p>Sau trải nghiệm đó, anh trở thành học trò đầu tiên của Zhang Yun tại Hoa Kỳ, rồi được gửi sang Trung Quốc bốn tháng, tập sáu tiếng một ngày, sáu ngày một tuần, sống cùng Lộ Thắng Lợi — vị "sư bá" mà anh gọi là Shibo.</p>
+</section>
 
-    </section>
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Cấu Tạo Kiếm, Chiều Dài &amp; Cách Cầm</h2>
 
-
-    <section id="cau-tao" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Khí Cụ</span>
-        <h2 class="chapter-title">Cấu Tạo Kiếm, Chiều Dài &amp; Cách Cầm</h2>
-      </div>
 
       <p>Chương ba đi vào chi tiết thực dụng thường bị các sách bỏ qua: <strong>các bộ phận của kiếm</strong> (tr. 37), <strong>chiều dài, trọng lượng và điểm cân bằng</strong> (tr. 39), <strong>các thế cầm</strong> (tr. 47), <strong>các lối nắm chuôi</strong> (jiàn grips, tr. 42), và <strong>nguyên tắc chung khi cầm kiếm</strong> (tr. 44).</p>
-      <div class="key-point">Chiều dài, trọng lượng và điểm cân bằng là ba thông số quyết định bài kiếm có chạy được hay không. Kiếm quá nặng thì tay phải gồng để kéo theo — và một khi tay đã gồng, toàn bộ sự nhu của Thái Cực mất sạch.</div>
+      <div class="key-takeaway">Chiều dài, trọng lượng và điểm cân bằng là ba thông số quyết định bài kiếm có chạy được hay không. Kiếm quá nặng thì tay phải gồng để kéo theo — và một khi tay đã gồng, toàn bộ sự nhu của Thái Cực mất sạch.</div>
       <p>Sách còn giới thiệu hai khái niệm ít thấy: <strong>kiếm ngón tay (finger sword)</strong> và <strong>người phụ kiếm (sword helper)</strong> (tr. 45) — tức vai trò của bàn tay không cầm kiếm trong việc dẫn hướng và điểm xuyết, điều mà người mới thường để mặc cho tay ấy buông thõng.</p>
+</section>
 
-    </section>
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Kiếm Quyển &amp; Kiếm Hoa</h2>
 
-
-    <section id="kiem-hoa" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Kỹ Thuật</span>
-        <h2 class="chapter-title">Kiếm Quyển &amp; Kiếm Hoa</h2>
-      </div>
 
       <p>Hai kỹ thuật nền tảng của Thái Cực kiếm là <strong>kiếm quyển</strong> (jian circles) và <strong>kiếm hoa</strong> (jian flowers) — các vòng kiếm và các đóa kiếm (tr. 47). Đây không phải màn trình diễn: vòng kiếm là cách kiếm đổi hướng mà không mất đà, và kiếm hoa là cách che kín một vùng không gian quanh mình.</p>
-      <div class="key-point">Chương bốn nối kỹ thuật với thân pháp: nguyên lý chuyển động của thân (tr. 52), chuyển động của tay (tr. 55), tấn pháp (tr. 55), bộ pháp (tr. 64), và <strong>sự tích hợp giữa động tác và các thành tố nội tại</strong> (tr. 74).</div>
+      <div class="key-takeaway">Chương bốn nối kỹ thuật với thân pháp: nguyên lý chuyển động của thân (tr. 52), chuyển động của tay (tr. 55), tấn pháp (tr. 55), bộ pháp (tr. 64), và <strong>sự tích hợp giữa động tác và các thành tố nội tại</strong> (tr. 74).</div>
       <p>Chương năm là <strong>mười ba thuật ngữ then chốt</strong> (thirteen key terms, tr. 75) — bộ từ vựng kỹ thuật của Thái Cực kiếm — rồi đến các kỹ thuật phối hợp (tr. 91) và <em>cách vung kiếm</em> (tr. 92).</p>
-      <div class="quote-box">Tác giả dùng hệ thống Pinyin cho mọi từ tiếng Trung và in nghiêng lần đầu. Với các từ chỉ kỹ thuật kiếm khó dịch thẳng sang Anh ngữ, ông dùng nguyên tiếng Trung sau khi đã định nghĩa ngắn gọn — và lặp lại các định nghĩa ấy để người tập dễ nhớ.</div>
+      <div class="callout">Tác giả dùng hệ thống Pinyin cho mọi từ tiếng Trung và in nghiêng lần đầu. Với các từ chỉ kỹ thuật kiếm khó dịch thẳng sang Anh ngữ, ông dùng nguyên tiếng Trung sau khi đã định nghĩa ngắn gọn — và lặp lại các định nghĩa ấy để người tập dễ nhớ.</div>
+</section>
 
-    </section>
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Bài 32 Thức Thái Cực Kiếm</h2>
 
-
-    <section id="32-thuc" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Bài Kiếm</span>
-        <h2 class="chapter-title">Bài 32 Thức Thái Cực Kiếm</h2>
-      </div>
 
       <p>Bài <strong>32 thức Thái Cực kiếm</strong> được phát triển tại <em>Hội Thái Cực Quyền Ngô gia Bắc Kinh</em> dưới sự hướng dẫn của Vương Bồi Sinh. Đích thân Vương chỉ dạy Zhang Yun cách xây dựng bản ngắn này.</p>
-      <div class="key-point">Lý do chọn bài ngắn, theo lời Vương: người phương Tây rất bận rộn, thường không đủ thời gian để theo đuổi bài kiếm trường quyền đến mức tinh thông. Bài 32 thức giữ lại phần lõi mà vẫn học được trong thời gian thực tế.</div>
+      <div class="key-takeaway">Lý do chọn bài ngắn, theo lời Vương: người phương Tây rất bận rộn, thường không đủ thời gian để theo đuổi bài kiếm trường quyền đến mức tinh thông. Bài 32 thức giữ lại phần lõi mà vẫn học được trong thời gian thực tế.</div>
       <p>Cấu trúc chương sáu: thông tin căn bản (tr. 95), <strong>mô tả và minh họa từng thức</strong> từ tr. 98 đến tr. 252 — nghĩa là hơn 150 trang cho 32 thức, trung bình gần năm trang mỗi thức, gồm cả hình minh họa ứng dụng. Kết chương là <em>bảng tóm tắt các hướng chuyển động</em>.</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Giai đoạn học</th><th>Việc cần làm</th></tr></thead>
         <tbody>
           <tr><td><strong>1. Hình</strong></td><td>Thuộc trình tự và hướng đi của 32 thức</td></tr>
@@ -207,53 +509,68 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>3. Nội tại</strong></td><td>Nối động tác kiếm với các thành tố nội tại để kiếm "sống"</td></tr>
         </tbody>
       </table>
-      <div class="quote-box">"Điều tôi viết ở đây đều bắt nguồn từ tri thức và trí tuệ của Vương lão sư. Đóng góp của tôi chỉ là ghi chép lại lời dạy của ông để nhiều người hơn có thể tiếp cận." — Zhang Yun, Lời tựa</div>
+      <div class="callout">"Điều tôi viết ở đây đều bắt nguồn từ tri thức và trí tuệ của Vương lão sư. Đóng góp của tôi chỉ là ghi chép lại lời dạy của ông để nhiều người hơn có thể tiếp cận." — Zhang Yun, Lời tựa</div>
+</section>
 
-    </section>
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Các Giai Đoạn Tập &amp; Bảy Nguyên Lý</h2>
 
-
-    <section id="thuc-hanh" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Thực Hành</span>
-        <h2 class="chapter-title">Các Giai Đoạn Tập &amp; Bảy Nguyên Lý</h2>
-      </div>
 
       <p>Chương bảy bàn <strong>các giai đoạn tập luyện</strong> (tr. 253), <strong>hai phong cách tập</strong> (tr. 256) và <strong>các nguyên lý cao cấp</strong> (tr. 257). Chương tám chuyển sang thực chiến: kỹ thuật nội và ngoại (tr. 261), <strong>bảy nguyên lý then chốt</strong> (tr. 262), và cách tập các kỹ năng chiến đấu (tr. 270).</p>
-      <div class="key-point">Lời dặn mà Zhang Yun nhắc đi nhắc lại: <em>"phải luôn chú ý đến ý của kiếm"</em>. Vương Bồi Sinh đã nói với ông điều này nhiều lần khi dạy Thái Cực kiếm, và chính nó giúp ông hiểu ra kiếm. Ý của kiếm đi trước kiếm — kiếm chỉ là phần theo sau.</div>
+      <div class="key-takeaway">Lời dặn mà Zhang Yun nhắc đi nhắc lại: <em>"phải luôn chú ý đến ý của kiếm"</em>. Vương Bồi Sinh đã nói với ông điều này nhiều lần khi dạy Thái Cực kiếm, và chính nó giúp ông hiểu ra kiếm. Ý của kiếm đi trước kiếm — kiếm chỉ là phần theo sau.</div>
       <p>Phụ lục gồm <strong>biểu đồ truyền thừa</strong> (tr. 274) và <strong>các huyệt đạo chính trên cơ thể người</strong> (tr. 280) — phần tham chiếu cho những chỗ trong sách nhắc đến huyệt.</p>
       <p>Về Vương Bồi Sinh: sinh ra ở Bắc Kinh, tập võ từ năm 12 tuổi, học với nhiều danh sư gồm Mã Quý, Trương Ngọc Liên, Dương Vũ Đình, Cao Khắc Hưng, Lương Tuấn Bá, Triệu Nhuận Đình, Hàn Mộ Hiệp, Ngô Tú Phong. Bắt đầu học Thái Cực năm 13 tuổi với Dương Vũ Đình, rồi được sư công Vương Mậu Trai — người được coi là Thái Cực quyền sư xuất sắc nhất Hoa Bắc thời ấy — kèm riêng. <strong>Năm 18 tuổi đã là võ sư chuyên nghiệp trẻ nhất Trung Hoa.</strong> Ngoài Thái Cực kiếm, ông còn tinh thông Bát Quái Thuần Dương Kiếm, Tam Tài Kiếm, Võ Đang Kiếm, Thanh Bình Kiếm, Đạt Ma Kiếm, và Côn Ngô Kiếm.</p>
-
-    </section>
-
-    <nav class="page-nav">
-      <a class="disabled">← Trước</a>
-      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a href="/vi/books/">Tiếp theo →</a>
-    </nav>
-
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Tủ Sách Thái Cực &amp; Khí Công &mdash; TaichiNOW</p>
-  <p>Bản dịch &amp; khảo luận tiếng Việt chuyên sâu © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thái Cực Quyền Ứng Dụng Võ Thuật — Dương Thức Cao Cấp — TS. Dương Tuấn Mẫn | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm Tai Chi Chuan Martial Applications: Advanced Yang Style của TS. Dương Tuấn Mẫn (YMAA, ấn bản 3, 2016) — ba sách trong một: ứng dụng Dương thức, thôi thủ và bài đối luyện.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -78,89 +71,402 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .page-nav a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
 .page-nav a.home { color: var(--accent-gold); }
 .page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thái Cực Quyền Ứng Dụng Võ Thuật — Dương Thức Cao Cấp — TS. Dương Tuấn Mẫn | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm Tai Chi Chuan Martial Applications: Advanced Yang Style của TS. Dương Tuấn Mẫn (YMAA, ấn bản 3, 2016) — ba sách trong một: ứng dụng Dương thức, thôi thủ và bài đối luyện.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer" open>
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn — Ba Sách Trong Một</a></li>
-      <li class="toc-item"><a href="#chuong-1" class="toc-link">Chương 1 — Dẫn Nhập: Trở Thành Một Võ Sĩ Thái Cực</a></li>
-      <li class="toc-item"><a href="#chuong-2" class="toc-link">Chương 2 — Phân Tích Kỹ Thuật Thái Cực (Ứng dụng từng thức)</a></li>
-      <li class="toc-item"><a href="#chuong-3" class="toc-link">Chương 3 — Thôi Thủ: Phòng Thí Nghiệm Của Thái Cực</a></li>
-      <li class="toc-item"><a href="#chuong-4" class="toc-link">Chương 4 — Phân Tích Bài Đối Luyện Thái Cực</a></li>
-      <li class="toc-item"><a href="#chuong-5" class="toc-link">Chương 5 — Chiến Lược Thực Chiến</a></li>
-      <li class="toc-item"><a href="#chuong-6" class="toc-link">Chương 6 — Kết Luận &amp; Phụ Lục</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Thái Cực Quyền Ứng Dụng Võ Thuật — Dương Thức Cao Cấp</span>
-  </nav>
-
-  <main class="reader-content">
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Lời Dẫn — Ba Sách Trong Một</a></li>
+        <li><a href="#sec01">Dẫn Nhập — Trở Thành Một Võ Sĩ Thái Cực</a></li>
+        <li><a href="#sec02">Phân Tích Kỹ Thuật Thái Cực — Bách Ứng Trong Tam Thập Thất Thức</a></li>
+        <li><a href="#sec03">Thôi Thủ — Phòng Thí Nghiệm Của Thái Cực</a></li>
+        <li><a href="#sec04">Phân Tích Bài Đối Luyện Thái Cực (Taiji Fighting Set)</a></li>
+        <li><a href="#sec05">Chiến Lược Thực Chiến Của Thái Cực</a></li>
+        <li><a href="#sec06">Kết Luận &amp;amp; Phụ Lục</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Ba Sách Trong Một &middot; YMAA Publication Center</span>
-      <h1>Thái Cực Quyền Ứng Dụng Võ Thuật — Dương Thức Cao Cấp</h1>
-      <div class="book-orig-title">Tai Chi Chuan Martial Applications: Advanced Yang Style</div>
-      <div class="book-author-meta"><strong>Tác giả:</strong> TS. Dương Tuấn Mẫn (Dr. Yang, Jwing-Ming)<br>
-        <strong>Đơn vị xuất bản gốc:</strong> YMAA Publication Center, Wolfeboro, NH — ấn bản 3, 2016 (ISBN 978-1-59439-299-3)<br>
-        <strong>Bản dịch tiếng Việt chuyên sâu:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW</div>
-      <div class="book-tags">
-        <span class="book-tag">🥋 Ứng Dụng Quyền Thức</span>
-        <span class="book-tag">🤝 Thôi Thủ</span>
-        <span class="book-tag">⚔️ Bài Đối Luyện</span>
-        <span class="book-tag">🧠 Chiến Lược</span>
-        <span class="book-tag">📖 Tập 2 Bộ Dương Thức Cao Cấp</span>
-      </div>
+      <h1>yang_jwing_ming_martial_applications_vi</h1>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Lời Dẫn — Ba Sách Trong Một</h2>
 
-
-    <!-- ============================================================ -->
-    <!-- LỜI DẪN                                                       -->
-    <!-- ============================================================ -->
-    <section id="loi-dan" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Lời Dẫn — Ba Sách Trong Một</h2>
-      </div>
 
       <p>Đây là <strong>tập thứ hai</strong> trong bộ đôi <em>Advanced Yang Style Tai Chi Chuan</em> của TS. Dương Tuấn Mẫn. Tập 1 (<em>Thái Cực Quyền Vũ Lực / Tai Chi Chuan Martial Power, ấn bản 3, 2015</em>) đã trình bày nền tảng lý thuyết — Khí, Kình (Jing), cắm rễ, tích Kình và phát Kình. Tập 2 này dành toàn bộ cho phần <strong>ứng dụng võ thuật</strong> của Dương thức, và gộp ba công trình vào một:</p>
 
       <div class="fig-grid">
-        <div class="key-point" style="margin:0"><strong>① Ứng dụng Dương thức (Ch2)</strong><br>Phân tích chi tiết từng thức trong bài quyền, mỗi tư thế có từ 6 đến 7 kỹ thuật ứng dụng. Tổng cộng hơn 250 kỹ thuật trong 37 thức.</div>
-        <div class="key-point" style="margin:0"><strong>② Ứng dụng Thôi Thủ (Ch3)</strong><br>Thôi Thủ (Tui Shou) — phòng thí nghiệm của Thái Cực — cùng với bài tập Thái Cực Cầu (Tai Chi Ball) và hai âm Heng-Ha.</div>
-        <div class="key-point" style="margin:0"><strong>③ Bài đối luyện Thái Cực (Ch4)</strong><br>Bài Đối Luyện (Fighting Set) — mô phỏng thực chiến, phân tích 30 thế từ "Tiến bộ chưởng" đến "Lại thúc đẩy thủ".</div>
+        <div class="key-takeaway" style="margin:0"><strong>① Ứng dụng Dương thức (Ch2)</strong><br>Phân tích chi tiết từng thức trong bài quyền, mỗi tư thế có từ 6 đến 7 kỹ thuật ứng dụng. Tổng cộng hơn 250 kỹ thuật trong 37 thức.</div>
+        <div class="key-takeaway" style="margin:0"><strong>② Ứng dụng Thôi Thủ (Ch3)</strong><br>Thôi Thủ (Tui Shou) — phòng thí nghiệm của Thái Cực — cùng với bài tập Thái Cực Cầu (Tai Chi Ball) và hai âm Heng-Ha.</div>
+        <div class="key-takeaway" style="margin:0"><strong>③ Bài đối luyện Thái Cực (Ch4)</strong><br>Bài Đối Luyện (Fighting Set) — mô phỏng thực chiến, phân tích 30 thế từ "Tiến bộ chưởng" đến "Lại thúc đẩy thủ".</div>
       </div>
 
-      <div class="quote-box">
+      <div class="callout">
         "Sách này cho bạn chìa khóa để mở kho tàng. Nhưng nó không thể đưa bạn tới tận kho báu. Bạn phải tự mình mở cửa, bước vào và tự tìm lấy nó. Bạn có thể vấp ngã vì nản chí, thiếu kiên nhẫn, hay thiếu bền bỉ. Bạn có thể ngã, nhưng hãy đứng dậy và tiếp tục. Bạn có thể bị thương bởi những chiếc gai trên đường. Nhưng hãy hiểu rằng mỗi lần ngã, mỗi lần bị thương, đều chính là thứ bạn cần để tích lũy kinh nghiệm." — TS. Dương Tuấn Mẫn
       </div>
 
@@ -181,23 +487,18 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <li><em>The Essence of Tai Chi Chi Kung</em> — "nội công" của Thái Cực.</li>
         <li><em>Taiji Chin Na</em> — khóa khớp và điểm huyệt trong Thái Cực.</li>
       </ol>
-    </section>
+</section>
 
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Dẫn Nhập — Trở Thành Một Võ Sĩ Thái Cực</h2>
 
-    <!-- ============================================================ -->
-    <!-- CHƯƠNG 1                                                        -->
-    <!-- ============================================================ -->
-    <section id="chuong-1" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 1</span>
-        <h2 class="chapter-title">Dẫn Nhập — Trở Thành Một Võ Sĩ Thái Cực</h2>
-      </div>
 
       <p>Chương mở đầu trình bày <strong>phương pháp nghiên cứu Thái Cực</strong> (lý thuyết + thực nghiệm), con đường trở thành người tập thành thục, và hướng dẫn sử dụng sách.</p>
 
       <h3 class="sub-head">1-1. Dẫn Nhập Chung</h3>
       <p>Thái Cực Quyền (Tài Jí Quán, 太極拳) dựa trên <strong>triết học Đạo gia về Âm/Dương</strong> (Yin/Yang, 陰陽) và <strong>Bát Quái</strong> (Bā Guà, 八卦), đã được tinh luyện qua hơn một nghìn năm nghiên cứu và thực nghiệm bởi hàng vạn võ sĩ. Mặc dù rất nhiều kiến thức đã được truyền qua dạy dỗ và viết lách, nhiều bậc thầy vẫn cảm thấy họ chưa học hết được môn nghệ. Càng đào sâu, lý thuyết càng trở nên sâu thẳm hơn.</p>
-      <div class="key-point"><strong>Một sự thật đáng buồn:</strong> Phần lớn người tập Thái Cực ngày nay quan tâm tới khía cạnh sức khỏe hơn là võ thuật. Trong khi đó, Thái Cực vốn được tạo ra cho mục đích chiến đấu, và mỗi thức đều có những ứng dụng võ thuật riêng.</div>
+      <div class="key-takeaway"><strong>Một sự thật đáng buồn:</strong> Phần lớn người tập Thái Cực ngày nay quan tâm tới khía cạnh sức khỏe hơn là võ thuật. Trong khi đó, Thái Cực vốn được tạo ra cho mục đích chiến đấu, và mỗi thức đều có những ứng dụng võ thuật riêng.</div>
 
       <p>Theo TS. Dương, mặc dù Dương thức có nhiều biến thể (24, 37, 81, 88, 105 thức hoặc hơn, tùy cách đếm), nó thực chất chỉ chứa <strong>37 đến 40 kỹ thuật chiến đấu cơ bản</strong>. Những kỹ thuật này là nền tảng cho hơn 250 ứng dụng khác nhau. Trong bài quyền, nhiều thức được lặp lại vì ba lý do chính:</p>
       <ol>
@@ -207,7 +508,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       </ol>
 
       <p>Ba nhóm kỹ thuật chính của Thái Cực:</p>
-      <div class="key-point">
+      <div class="key-takeaway">
         <strong>① Quật Ngã (Shuāi, 摔):</strong> Wrestling/downing.<br>
         <strong>② Cầm Nã (Qín Nà, 擒拿):</strong> Joint locking / chin na.<br>
         <strong>③ Điểm Huyệt (Tí/Dá, 提打):</strong> Cavity strike (đánh vào huyệt đạo).
@@ -218,7 +519,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <h3 class="sub-head">1-2. Trở Thành Võ Sĩ Thái Cực Thành Thục</h3>
       <p>TS. Dương đề xuất bốn tiêu chuẩn mà mỗi người học trò phải tự đánh giá trước khi tự nhận mình xứng đáng dạy lại:</p>
 
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th style="width:24%">Tiêu chuẩn</th><th>Ý nghĩa</th></tr></thead>
         <tbody>
           <tr><td><strong>1. Biết Lịch Sử</strong></td><td>Lịch sử là kinh nghiệm. Không biết quá khứ sẽ lạc lối trong tương lai. Biết nguồn cội của môn phái giúp giữ được tinh thần trách nhiệm truyền thừa.</td></tr>
@@ -237,17 +538,12 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <li><strong>Bài đối luyện (Two-Person Fighting Set)</strong> — mô phỏng chiến đấu thật. Giúp học phân tích tình huống, chiến lược, động tác và kỹ thuật.</li>
         <li><strong>Đối kháng tự do (Free Fighting)</strong> — giai đoạn cuối, sau khi đã thuần thục ba bước trên.</li>
       </ol>
-    </section>
+</section>
 
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phân Tích Kỹ Thuật Thái Cực — Bách Ứng Trong Tam Thập Thất Thức</h2>
 
-    <!-- ============================================================ -->
-    <!-- CHƯƠNG 2                                                        -->
-    <!-- ============================================================ -->
-    <section id="chuong-2" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 2</span>
-        <h2 class="chapter-title">Phân Tích Kỹ Thuật Thái Cực — Bách Ứng Trong Tam Thập Thất Thức</h2>
-      </div>
 
       <p>Đây là chương dày nhất sách (~125 trang). TS. Dương đi qua từng thức của bài quyền Dương thức, phân tích các ứng dụng võ thuật qua hàng trăm bức ảnh minh họa.</p>
 
@@ -285,24 +581,19 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <figcaption><strong>Hình 2-4 — "Ứng dụng Lãm Thủ Cổ Phi" (Strum the Pipa / 琵琶式, nguyên tác tr. 27).</strong> Tay phải đánh vào mặt, tay trái quật ngực — đồng thời bước chân và chuyển trọng tâm. Thế này thể hiện nguyên tắc <strong>"công thủ hợp nhất"</strong>: trong khi phòng thủ một đòn, người tập đã khởi động phản công. Theo Đạo gia, đây là biểu hiện của <strong>"trong âm có dương, trong tĩnh có động"</strong>.</figcaption>
       </figure>
 
-      <div class="quote-box">"Học ứng dụng võ thuật trong bài quyền Thái Cực cũng giống như học chức năng của các bộ phận trong một chiếc xe. Sau khi đã biết hết chức năng từng bộ phận, bạn lái xe và thử mọi thứ." — TS. Dương</div>
-    </section>
+      <div class="callout">"Học ứng dụng võ thuật trong bài quyền Thái Cực cũng giống như học chức năng của các bộ phận trong một chiếc xe. Sau khi đã biết hết chức năng từng bộ phận, bạn lái xe và thử mọi thứ." — TS. Dương</div>
+</section>
 
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Thôi Thủ — Phòng Thí Nghiệm Của Thái Cực</h2>
 
-    <!-- ============================================================ -->
-    <!-- CHƯƠNG 3                                                        -->
-    <!-- ============================================================ -->
-    <section id="chuong-3" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 3</span>
-        <h2 class="chapter-title">Thôi Thủ — Phòng Thí Nghiệm Của Thái Cực</h2>
-      </div>
 
       <p>Hầu như mọi môn võ Trung Hoa — nội lẫn ngoại — đều có hình thức luyện tập đối thủ tương tự Thôi Thủ (Tui Shou, 推手). Ở Nam phái ngoại công, nó được gọi là <strong>Cầu Thủ (Giao Shou)</strong> hay <strong>Phiên Thủ (Pan Shou)</strong>. Ở Bắc phái ngoại công, gọi là <strong>Đả Thủ (Da Shou)</strong> hay <strong>Đối Thủ (Dui Shou)</strong>. Tên gọi khác nhau nhưng mục đích giống nhau: rèn luyện kỹ năng cảm nhận và phản ứng. Kỹ thuật cụ thể của mỗi môn phản ánh tinh hoa và bí truyền của môn đó.</p>
 
       <h3 class="sub-head">3-1. Dẫn Nhập — Tại Sao Thôi Thủ Là Phòng Thí Nghiệm?</h3>
       <p>TS. Dương ví von Thôi Thủ như một bài học lái xe:</p>
-      <div class="key-point">
+      <div class="key-takeaway">
         <strong>Tập Thái Cực quyền không có Thôi Thủ</strong> = mua xe mà không biết lái.<br>
         <strong>Thôi Thủ</strong> = lái xe trong bãi đỗ — học cách điều khiển an toàn.<br>
         <strong>Bài đối luyện (Fighting Set)</strong> = lái xe có người hướng dẫn — học lái trên đường thật.<br>
@@ -327,7 +618,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h3 class="sub-head">3-3. Hai Âm "Heng" (哼) và "Ha" (哈)</h3>
       <p>Đây là hai âm phát ra khi thở, có vai trò đặc biệt trong ứng dụng võ thuật Thái Cực — chúng nâng cao <strong>tinh thần sinh lực (Jīng Shén, 精神)</strong> và kích thích Khí vươn xa hơn, mạnh hơn.</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th style="width:18%">Âm</th><th>Tính chất</th><th>Cách phát</th><th>Ứng dụng</th></tr></thead>
         <tbody>
           <tr>
@@ -381,21 +672,16 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <img src="/assets/images/books/yang-martial-applications/ch3-reference.jpg" alt="Tư thế tiến bộ ấn chưởng" loading="lazy">
         <figcaption><strong>Hình 3-3 — "Tư thế tham khảo" (Reference, nguyên tác tr. 206).</strong> Tư thế "Tiến bộ ấn chưởng" (Step Forward and Push). Chân sau chịu 70% trọng lượng, chân trước 30%. Tay trước ấn ra, tay sau giữ ở hông. Toàn bộ cơ thể là một khối thống nhất, dồn lực vào bàn tay phía trước thông qua eo — <strong>"từ chân lên eo, từ eo ra tay"</strong>.</figcaption>
       </figure>
-    </section>
+</section>
 
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phân Tích Bài Đối Luyện Thái Cực (Taiji Fighting Set)</h2>
 
-    <!-- ============================================================ -->
-    <!-- CHƯƠNG 4                                                        -->
-    <!-- ============================================================ -->
-    <section id="chuong-4" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 4</span>
-        <h2 class="chapter-title">Phân Tích Bài Đối Luyện Thái Cực (Taiji Fighting Set)</h2>
-      </div>
 
       <p>Bài Đối Luyện Thái Cực (Tài Jí Duì Liàn, 太極對練) là bài tập hai người được thiết kế để <strong>mô phỏng chiến đấu thật</strong>. Tuy nhiên, không giống như chiến đấu tự do (có thể gây thương tích), bài đối luyện có thể luyện tập nhiều lần với cường độ cao và nhiều tình huống khác nhau.</p>
 
-      <div class="key-point">
+      <div class="key-takeaway">
         <strong>Lưu ý quan trọng:</strong> Những hình minh họa ứng dụng thay thế trong chương này <strong>không thực sự được thực hiện trong bài quyền</strong> — chúng được đánh dấu bằng một chấm lớn ở góc trên bên trái. Hình ảnh chỉ để giúp người tập hình dung ứng dụng tiềm ẩn của từng thế.
       </div>
 
@@ -434,17 +720,12 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       </figure>
 
       <p>Trong sách gốc, 30 thế của bài Đối Luyện được minh họa qua khoảng 100 trang, với hơn 300 bức ảnh chi tiết. Sách cũng liệt kê đầy đủ tên gọi của 30 thế trong <strong>Phụ Lục B</strong>.</p>
-    </section>
+</section>
 
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Chiến Lược Thực Chiến Của Thái Cực</h2>
 
-    <!-- ============================================================ -->
-    <!-- CHƯƠNG 5                                                        -->
-    <!-- ============================================================ -->
-    <section id="chuong-5" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 5</span>
-        <h2 class="chapter-title">Chiến Lược Thực Chiến Của Thái Cực</h2>
-      </div>
 
       <p>Không có gì lạ khi những võ sĩ đã luyện tập nhiều năm vẫn bị đánh bại bởi những người hầu như không qua trường lớp võ thuật. Ví dụ, một võ sĩ đoạt giải đấu giải có thể ngã gục trên đường phố vì anh ta chỉ tập cho các trận đấu mà thôi — tập kỹ thuật ghi điểm, chứ không phải kỹ thuật tự vệ thực sự. Hơn nữa, các trận đấu thể thao thường cấm đánh vào mặt và hạ bộ, nên nhiều võ sĩ không phát triển cách bảo vệ các vùng này — lại chính là những vùng mà kẻ tấn công trên đường phố nhắm vào.</p>
 
@@ -480,7 +761,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <p>TS. Dương đề xuất năm phẩm chất cần rèn luyện để trở thành một võ sĩ Thái Cực giỏi:</p>
 
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th style="width:22%">Phẩm chất</th><th>Ý nghĩa</th></tr></thead>
         <tbody>
           <tr><td><strong>1. Nhẫn Nại (Endurance)</strong></td><td>Chịu đựng nỗi đau mà người khác không chịu nổi. Kiểm soát cơn giận mà người khác không kiểm soát được. Khiêm nhường khi người khác không khiêm nhường. Đây là chìa khóa thành công và là cửa vào thiền định Thái Cực sâu hơn.</td></tr>
@@ -506,7 +787,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h3 class="sub-head">5-5. Kình Trong Chiến Đấu</h3>
       <p>Không có kỹ thuật Thái Cực nào có thể thực hiện được nếu không có <strong>Kình (Jīng, 勁) — sức mạnh võ thuật</strong>. Kình trong chiến đấu không giống sức mạnh cơ bắp thuần túy; nó là sự kết hợp của Khí, Ý đồ và cơ thể, được phóng ra trong một khoảnh khắc ngắn. Sách gốc phân tích sáu loại Kình thường dùng trong chiến đấu:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Loại Kình</th><th>Đặc tính</th><th>Cách dùng</th></tr></thead>
         <tbody>
           <tr><td><strong>Ngoại Phát Kình (Wài Fā Jīng)</strong></td><td>Mềm bên ngoài, cứng bên trong</td><td>Tấn công cận chiến khi cần sức mạnh đột ngột</td></tr>
@@ -520,7 +801,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h3 class="sub-head">5-6. Thơ Và Ca Khúc Thái Cực Quyền</h3>
       <p>Sách dịch một số bài thơ và ca khúc cổ điển về chiến lược Thái Cực. Đây là một trong những phần quý giá nhất vì nó lưu giữ trí tuệ của các bậc thầy xưa qua hình thức thơ ca. TS. Dương dịch cả chữ Hán, phiên âm Pinyin, và bản dịch tiếng Anh. Một số bài tiêu biểu:</p>
-      <div class="quote-box">
+      <div class="callout">
         <strong>Taiji Song No. 12 (Thái Cực Ca số 12):</strong><br>
         "柔過氣節，實按手要輕。<br>
         想發，必先蓄。<br>
@@ -529,7 +810,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <em>(Nhu quá khí tiết, thật án thủ yếu khinh. Tưởng phát, tất tiên tích. Tích kình như khai cung, phát kình như phóng tiễn. Khúc trung cầu trực, tích nhi hậu phát.)</em><br><br>
         Dịch nghĩa: <strong>Khi dùng nhu, vượt qua khí tiết; khi ấn thật, tay phải nhẹ. Muốn phát, phải tích trước. Tích kình như kéo cung; phát kình như bắn tên. Trong cong tìm thẳng, tích rồi mới phát.</strong>
       </div>
-      <div class="quote-box">
+      <div class="callout">
         <strong>Sun Zhi (Tố Tư), 13 bài (第十三式):</strong><br>
         "緊拉弓，緩放箭，曲中求直，蓄而後發。<br>
         收即是放，放即是收，斷而復連。"<br><br>
@@ -537,25 +818,20 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       </div>
 
       <p>Sách cũng dịch bài thơ bất hủ của Vương Tôn Ninh (Wáng Zōng Yuè, 王宗岳), <em>Taijiquan Jing (Thái Cực Kinh, 太極經)</em> — một trong những văn bản nền tảng nhất của Thái Cực Quyền. Bài thơ cô đọng toàn bộ tinh hoa của Thái Cực trong vài trăm chữ.</p>
-    </section>
+</section>
 
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Kết Luận &amp; Phụ Lục</h2>
 
-    <!-- ============================================================ -->
-    <!-- CHƯƠNG 6 + PHỤ LỤC                                             -->
-    <!-- ============================================================ -->
-    <section id="chuong-6" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 6</span>
-        <h2 class="chapter-title">Kết Luận &amp; Phụ Lục</h2>
-      </div>
 
       <p>Thái Cực Quyền là một môn võ thuật cổ điển, nhưng tinh hoa của nó vẫn sống động qua hàng ngàn năm. Học ứng dụng võ thuật Thái Cực không phải để đánh bại người khác — mà là để hiểu chính mình, hiểu đối phương, và hiểu cách vũ trụ vận hành qua các nguyên lý Âm-Dương, Cứng-Mềm, Tĩnh-Động.</p>
 
-      <div class="key-point">Người tập Thái Cực nghiêm túc cần tìm một người thầy đủ tư cách — một lời nhắc rằng Thái Cực võ thuật khó có thể tự học trọn vẹn từ sách.</div>
+      <div class="key-takeaway">Người tập Thái Cực nghiêm túc cần tìm một người thầy đủ tư cách — một lời nhắc rằng Thái Cực võ thuật khó có thể tự học trọn vẹn từ sách.</div>
 
       <h3 class="sub-head">Phụ Lục A — 37 Thức Dương Thức Thái Cực Quyền</h3>
       <p>Sách liệt kê 37 thức (có chữ Hán và Pinyin) của bài Dương thức Thái Cực Quyền dạng dài. Tiêu biểu:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tiếng Việt</th><th>Pinyin / Chữ Hán</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Thập Tam Thức</td><td>Shí Sān Shì (十三式)</td></tr>
@@ -582,7 +858,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h3 class="sub-head">Phụ Lục B — Bài Đối Luyện Dương Thức (30 Thế)</h3>
       <p>Sách liệt kê 30 thế của Bài Đối Luyện Dương Thức. Một số thế tiêu biểu đã được minh họa trong Chương 4:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tiếng Việt</th><th>Pinyin / Chữ Hán</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Tiến Bộ Chưởng</td><td>Shang Bu Chui (上步捶)</td></tr>
@@ -609,7 +885,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h3 class="sub-head">Phụ Lục C — Bảng Dịch Và Thuật Ngữ Chữ Hán</h3>
       <p>Sách cung cấp bảng dịch Anh-Trung-Pinyin cho tất cả thuật ngữ chuyên ngành được dùng trong sách. Tiêu biểu:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Tiếng Anh</th><th>Tiếng Việt</th><th>Pinyin</th><th>Chữ Hán</th></tr></thead>
         <tbody>
           <tr><td>Ward-Off</td><td>Chưởng</td><td>Péng</td><td>掤</td></tr>
@@ -636,38 +912,56 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <h3 class="sub-head">Lời Cảm Ơn &amp; Về Tác Giả</h3>
       <p>TS. Dương Tuấn Mẫn gửi lời cảm ơn chân thành tới các bậc thầy đã truyền dạy, các đồng môn đã hỗ trợ, và các học trò đã giúp ông kiểm nghiệm và hoàn thiện cuốn sách qua nhiều thập kỷ. Trong số các thầy tiêu biểu có Đại Sư Lương Đông Tài (Bạch Hạc Quyền), Đại Sư Tưởng Vinh Khải (Đại Lãm Thủ), và các võ sư nổi tiếng khác.</p>
       <p>TS. Dương bắt đầu học võ từ năm lên 9 tuổi dưới sự dạy dỗ của bố ông, Dương Hành Hùng — người thầy võ Kungfu truyền thống. Tới năm 15 tuổi, ông bắt đầu học Thái Cực Quyền. Tới năm 16, ông học Thái Cực Cầu và Thôi Thủ. Tới năm 20, ông chính thức nhận mình là "võ sinh nội gia". Năm 1974, ông tốt nghiệp Đại học Tĩnh Cứu Quốc (Đài Loan) với bằng Cử nhân Kỹ thuật Hóa học. Ông sang Mỹ năm 1974 và nhận bằng Thạc sĩ Khoa học vật liệu tại Đại học Rhode Island (1977), rồi bằng Tiến sĩ Khoa học vật liệu tại Đại học Bang New York ở Stony Brook (1981).</p>
-    </section>
-
-
-    <nav class="page-nav">
-      <a href="/vi/books/yang_jwing_ming_martial_power_vi.html"><i class="fa-solid fa-circle-left"></i> Thái Cực Quyền Vũ Lực (Tập 1)</a>
-      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a class="disabled">Tiếp theo →</a>
-    </nav>
-
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Thư Viện Sách Thái Cực Quyền &amp; Khí Công Tiếng Việt &middot; TaichiNOW</p>
-  <p>Bản dịch tiếng Việt chuyên sâu từ nguyên tác TS. Dương Tuấn Mẫn (YMAA) © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

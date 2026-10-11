@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ngô Thức Thái Cực Quyền — Bản dịch toàn văn | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt trung thực từng trang của ấn phẩm 《吳式太極拳》(1958) do Từ Trí Nhất biên soạn — 146 trang, 162 đồ hình, kèm nguyên bản Hán văn.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -182,93 +175,394 @@ body.dark-mode .key-point { color: #a7f3d0; }
   font-size: 0.74rem; color: #a8a29e; font-weight: 600;
   letter-spacing: 0.05em; margin-bottom: 3px;
 }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ngô Thức Thái Cực Quyền — Bản dịch toàn văn | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt trung thực từng trang của ấn phẩm 《吳式太極拳》(1958) do Từ Trí Nhất biên soạn — 146 trang, 162 đồ hình, kèm nguyên bản Hán văn.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/books/wu_style_taijiquan_xu_zhiyi_en_full.html" class="lang-switch">English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Ngô Thức Thái Cực Quyền — Bản dịch toàn văn | TaichiNOW</span>
-  </nav>
-
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Tác Phẩm</summary>
-    <ul class="toc-list">
-        <li class="toc-item"><a href="#p67" class="toc-link">Ngô thức Thái Cực Quyền quyền thức đồ giải<span class="pg">tr.64</span></a></li>
-        <li class="toc-item"><a href="#p132" class="toc-link">Thứ nhất, Đơn đáp thủ<span class="pg">tr.129</span></a></li>
-        <li class="toc-item"><a href="#p134" class="toc-link">Thứ hai, Song đáp thủ<span class="pg">tr.131</span></a></li>
-        <li class="toc-item"><a href="#p137" class="toc-link">Thứ ba, Tám động tác cơ bản<span class="pg">tr.134</span></a></li>
-        <li class="toc-item"><a href="#p143" class="toc-link">Vương Tông Nhạc luận Thái Cực quyền<span class="pg">tr.140</span></a></li>
-        <li class="toc-item"><a href="#p144" class="toc-link">Vũ Vũ Tương luận Thái Cực quyền<span class="pg">tr.141</span></a></li>
-        <li class="toc-item"><a href="#p145" class="toc-link">Thập tam thế hành công tâm giải<span class="pg">tr.142</span></a></li>
-        <li class="toc-item"><a href="#p146" class="toc-link">Đả thủ ca<span class="pg">tr.143</span></a></li>
-    </ul>
-  </details>
-
-  <main class="reader-content">
-
-    <div class="book-hero">
-      <span class="book-badge">Bản Dịch Toàn Văn 146 Trang &middot; Kèm Nguyên Bản Hán Văn</span>
-      <h1>Ngô Thức Thái Cực Quyền</h1>
-      <div class="book-orig-title">《吳式太極拳》 — 徐致一 編著 · 人民體育出版社 (1958 · tái bản 1982)</div>
-      <div class="book-author-meta">
-        <strong>Tác giả:</strong> Từ Trí Nhất (徐致一, 1892–1961) — đệ tử Ngô Giám Tuyền, người đầu tiên dùng phương pháp khoa học hiện đại để luận giải Thái Cực Quyền<br>
-        <strong>Nguyên tác:</strong> Nhân Dân Thể Dục Xuất Bản Xã (人民體育出版社), Bắc Kinh, 1958 — bản in lần thứ 7, 1982<br>
-        <strong>Việt ngữ &amp; khảo tả đồ hình:</strong> Ban Biên khảo TaichiNOW
-      </div>
-      <p style="font-size:0.95rem;color:var(--text-secondary);margin:0.8rem 0 0;">
-        Bản dịch trung thực từng trang của ấn bản gốc, dựng lại theo đúng số trang sách in; phần đồ hình tư thế được cắt trực tiếp từ bản scan và chèn đúng vị trí như trong sách.
-      </p>
-      <div class="book-tags">
-        <span class="book-tag">Ngô Thức Thái Cực Quyền</span>
-        <span class="book-tag">Lý Luận Khoa Học</span>
-        <span class="book-tag">84 Thức</span>
-        <span class="book-tag">Thôi Thủ Ngô Thức</span>
-        <span class="book-tag">162 Đồ Hình</span>
-      </div>
-      <a class="book-pdf-link" href="/assets/books/wu_style_taijiquan_xu_zhiyi/wu_style_taijiquan_xu_zhiyi_vi.pdf" download>
-        <i class="fa-solid fa-file-pdf"></i> Tải bản PDF (A4, 227 trang)
-      </a>
-    </div>
-
-<aside id="toc">
-    <h2>Mục lục</h2>
-        <a class="toc-link" href="#p67">Ngô thức Thái Cực Quyền quyền thức đồ giải<span class="pg">tr.64</span></a>
-    <a class="toc-link" href="#p132">Thứ nhất, Đơn đáp thủ<span class="pg">tr.129</span></a>
-    <a class="toc-link" href="#p134">Thứ hai, Song đáp thủ<span class="pg">tr.131</span></a>
-    <a class="toc-link" href="#p137">Thứ ba, Tám động tác cơ bản<span class="pg">tr.134</span></a>
-    <a class="toc-link" href="#p143">Vương Tông Nhạc luận Thái Cực quyền<span class="pg">tr.140</span></a>
-    <a class="toc-link" href="#p144">Vũ Vũ Tương luận Thái Cực quyền<span class="pg">tr.141</span></a>
-    <a class="toc-link" href="#p145">Thập tam thế hành công tâm giải<span class="pg">tr.142</span></a>
-    <a class="toc-link" href="#p146">Đả thủ ca<span class="pg">tr.143</span></a>
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Phần 1</a></li>
+        <li><a href="#sec01">Phần 2</a></li>
+        <li><a href="#sec02">Phần 3</a></li>
+        <li><a href="#sec03">Phần 4</a></li>
+        <li><a href="#sec04">Phần 5</a></li>
+        <li><a href="#sec05">Phần 6</a></li>
+        <li><a href="#sec06">Phần 7</a></li>
+        <li><a href="#sec07">Phần 8</a></li>
+        <li><a href="#sec08">Phần 9</a></li>
+      </ul>
+    </nav>
   </aside>
-  <section id="p1" class="chapter-block">
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>wu_style_taijiquan_xu_zhiyi_vi</h1>
+    </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Phần 1</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 封面</div>
     <h2 class="chapter-title">Trang 封面</h2>
@@ -512,7 +806,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>• 63 • （6）Đinh tự bộ (丁字步): Đây là một loại bước ít dùng trong Ngô thức Thái Cực Quyền. Nó là bước quá độ khi chuyển thân, chân trái đã chuyển động còn chân phải chưa dịch vị trí (vì thế trong phần đồ giải ở sau không thấy loại bước này); về hình dáng, mũi bàn chân phải hướng vào mặt trong chân trái, giống hình chữ 丁, cho nên gọi là đinh tự bộ.</p>
 <p>（7）Giao xoa bộ (交叉步): Đây là thức chân phải vồng ra trước, được hình thành do chuyển thân sang phải mà hai chân không rời khỏi chỗ cũ. Khi tồn thối, mũi bàn chân phải hướng ra trước, mũi bàn chân trái hướng ra ngoài chân phải thành hình chữ 丁; hai đầu gối thì gối phải ở trên, gối trái ở dưới, đều hướng ra trước. Loại thức này trong Ngô thức Thái Cực Quyền chỉ có một; để tránh thân thể lên xuống quá nhiều ảnh hưởng đến điều tức, cũng có thể khi tẩu giá giảm hết mức độ ngồi xổm, hoặc duỗi thẳng hai chân mà đổi thành bước hình chữ 丁.</p>
 <p>Những động tác cơ bản liệt kê trên đây chỉ được giải thích rất đơn giản, lại không có hình kèm theo; đối với người mới học thì không dễ thấy ngay rõ ràng. Nhưng trong đồ giải quyền thức ở chương sau đều sẽ nhắc đến những động tác cơ bản này; mong người mới học đối chiếu hai phần giải thích với nhau, có lẽ sẽ được giúp ích nhiều hơn trong việc lĩnh hội.</p>
-</section><section id="p67" class="chapter-block">
+</section>
+
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Phần 2</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 64</div>
     <h2 class="chapter-title">Ngô thức Thái Cực Quyền quyền thức đồ giải</h2>
@@ -530,10 +829,10 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>3. Tất cả mũi tên có đường liền hoặc đường chấm trong hình đều biểu thị xu hướng động tác của tay hoặc chân. Mũi tên trong mọi hình là biểu thị xu hướng động tác từ hình này chuyển sang hình kế tiếp. Những động tác vốn tương đối đơn giản, có thể thuyết minh trong văn tự mà vẽ thêm mũi tên lại gây lẫn lộn, thì không biểu thị xu hướng động tác trong hình nữa; có thể tham khảo văn tự và hình sau là rõ.</p>
 <p>4. Mũi tên có đường liền biểu thị xu hướng động tác của tay phải hoặc chân phải; mũi tên có đường chấm biểu thị xu hướng động tác của tay trái hoặc chân trái.</p>
 <p>5. Do động tác của chân trong Thái Cực quyền cũng khá tinh tế, để biểu thị quan hệ giữa bàn chân và mặt đất, người ta vẽ bóng mờ bên cạnh bàn chân để phân biệt:</p>
-<blockquote class="quote-box"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Gót chân phải chạm đất, mũi bàn chân hếch lên, bàn chân trái đặt toàn bộ trên mặt đất, hai chân tách nhau trước sau; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ①, biểu thị toàn bộ bàn chân chạm đất;</blockquote>
-<blockquote class="quote-box"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Gót chân trái và mũi bàn chân phải chạm đất, hai chân tách nhau trước sau; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ②, chỉ chỗ bên cạnh bàn chân không có bóng mờ, biểu thị toàn bộ bàn chân rời khỏi mặt đất;</blockquote>
-<blockquote class="quote-box"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Mũi bàn chân phải chạm đất, gót chân nhấc lên, bàn chân trái đặt toàn bộ trên mặt đất; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ③, biểu thị gót chân chạm đất;</blockquote>
-<blockquote class="quote-box"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Mũi bàn chân phải chạm đất, gót chân nhấc lên, bàn chân trái đặt toàn bộ trên mặt đất; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ④, biểu thị mũi bàn chân chạm đất.</blockquote>
+<blockquote class="callout"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Gót chân phải chạm đất, mũi bàn chân hếch lên, bàn chân trái đặt toàn bộ trên mặt đất, hai chân tách nhau trước sau; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ①, biểu thị toàn bộ bàn chân chạm đất;</blockquote>
+<blockquote class="callout"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Gót chân trái và mũi bàn chân phải chạm đất, hai chân tách nhau trước sau; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ②, chỉ chỗ bên cạnh bàn chân không có bóng mờ, biểu thị toàn bộ bàn chân rời khỏi mặt đất;</blockquote>
+<blockquote class="callout"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Mũi bàn chân phải chạm đất, gót chân nhấc lên, bàn chân trái đặt toàn bộ trên mặt đất; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ③, biểu thị gót chân chạm đất;</blockquote>
+<blockquote class="callout"><strong>[Chú giải quy ước tô bóng bàn chân]</strong> — Mũi bàn chân phải chạm đất, gót chân nhấc lên, bàn chân trái đặt toàn bộ trên mặt đất; bên cạnh bàn chân có kèm một hình minh họa nhỏ, đánh dấu ④, biểu thị mũi bàn chân chạm đất.</blockquote>
 <span id="p71" class="page-anchor"></span><h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">Đệ nhất thức: Dự bị thức (Hình 1)</h4>
 <p>Thế này không có động tác gì, chỉ cần tĩnh tâm đứng thẳng, thân thể ngay ngắn, không ưỡn ngực, mắt nhìn thẳng về phía trước, hai vai thư giãn, hai cánh tay buông tự nhiên, đầu ngón tay hướng xuống, mu bàn tay hướng về trước (dùng thùy chưởng chứ không dùng phủ chưởng, đây là tư thế những năm cuối đời của tiên sinh Ngô), hai chân đứng song song, hai chân thẳng, đầu gối không được ưỡn ra; phần còn lại có thể tham khảo thuyết minh liên quan trong chương cơ bản động tác.</p>
 <figure class="figure-wrap" id="fig15"><div class="figure-caption-title">图 15</div><a class="figure-image-container" href="photos/p071_fig015.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig15.jpg" alt="图 15" loading="lazy"></a><figcaption class="figure-caption">Hai chân đứng song song, hướng về phía độc giả, hai cánh tay buông tự nhiên hai bên thân, đầu ngón tay hướng xuống, mu bàn tay hướng về trước, thân thể ngay ngắn, đầu ngay ngắn. Đây là thế dự bị (sách đánh số là 圖 1).</figcaption></figure>
@@ -897,7 +1196,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Năm, kình đoạn ý bất đoạn (劲断意不断 – kình đứt mà ý không đứt):</strong> Đây là nói trong khi thôi thủ, do dụng kình quá hoặc không đủ, khi cánh tay hai người bỗng rời nhau ra, không được dùng cách đáp lại tay từ đầu, mà phải trong tình trạng hai tay đã rời nhau tiếp tục làm động tác tưởng tượng bất đâu bất đỉnh, khiến cánh tay hai người, do kình đoạn mà ý không đoạn, có thể trở lại trạng thái cũ, vẫn đáp vào nhau. Khi thôi thủ, cơ hội loại này rất nhiều, phải chuyên tâm luyện tập, không được bỏ qua. Luyện tốt rồi, đối với đả tán thủ (tức cách luyện hai người tự do vấn kình, không đáp tay trước nữa) hoặc khi ứng dụng, đều là thủ pháp tiếp ứng cực kỳ quan trọng. Bởi vì thôi thủ là đáp tay trước rồi vấn kình sau, còn tán thủ là không đáp tay mà đã động kình; nếu không biết bằng không mà tiếp kình, thường sẽ bị người ta khống chế, trừ phi thấy tay là tránh, rất khó thoát khỏi. Có khi một người công phu sâu cố ý múa hờ một tay trước người công phu cạn, người sau duỗi tay tiếp ứng mà hơi chần chừ, liền bị người trước đổi tay phong tỏa rồi đánh văng ra — chính là hiệu quả của việc luyện thứ công phu ấy đến thuần thục. Khi bàn giá tử, trên động tác kỹ kích mà làm nhiều sự tưởng tượng kình đoạn ý bất đoạn, cũng có thể tăng trưởng công phu tiếp ứng và công phu bằng không hóa đả.</p>
 <p><span id="p131" class="page-anchor"></span><span id="p132" class="page-anchor"></span>Những điều nói trên đều là phép tắc phải chú ý khi luyện thôi thủ. Còn như thôi thủ như bằng, lữ, tễ, án v.v., tính chất khác với các phép tắc nói trên, cho nên để ở thiên đồ giải phía sau mà nói riêng. Ngoài ra, những tư thế nên vận dụng khi thôi thủ như hàm hung, trầm kiên, khuất thối, tọa thân v.v., và những tiêu chuẩn quan trọng trong động tác như khinh tùng, viên hoạt, liên quán, hoàn chỉnh v.v., đều hoàn toàn tương thông với phép tắc bàn giá tử; người học có thể tham khảo phần thuyết minh ở các chương liên quan khác, ở đây lược bỏ. Lại nữa, khi học thôi thủ cũng có người giảng dạy ở giữa cách “thôi ngưu kình” (推牛劲 – kình đẩy trâu). Đó là hai bên đều dùng sức lớn vẽ vòng tròn và hỏi kình lẫn nhau (dụng lực không được bên lớn bên nhỏ; nếu không thì hoặc bên lực lớn bị khiên động mà lạc vào khoảng không, hoặc bên lực nhỏ bị đè bẹp mà không vững). Mục đích là làm cường kiện công phu ở eo và chân, đồng thời có thể nếm thử trên cánh tay cái vị của nhận kình (韌劲 – kình dai). Thứ công phu này là luyện riêng để ứng phó với người có sức tay quá lớn; nếu bản thân thể lực khá tốt thì cũng có thể không luyện. Nếu muốn luyện, thì sau khi luyện xong phải tiếp luyện công phu thôi thủ dùng khinh kình, để tiêu trừ ảnh hưởng của nhận kình; bởi vì thủ pháp của Thái Cực quyền lấy nhu hóa làm chính, cho nên trên động tác cũng phải lấy khinh linh làm chính.</p>
 <p>Chương Tám  Đồ giải thôi thủ Thái Cực quyền Ngô thức Thôi thủ của Thái Cực quyền tuy là phương pháp chủ yếu luyện công phu kỹ kích, nhưng nếu coi nó là một môn vận động dưỡng sinh thì cũng rất thú vị. Bởi vì khi hai người đối luyện đều chuộng xảo chứ không chuộng lực, không những biến hóa khá nhiều, mà còn có lý luận phong phú để nghiên cứu, càng khiến người ta say mê, luyện lâu không chán. Dưới đây là căn cứ theo yêu cầu của vận động dưỡng sinh, giới thiệu cho người mới học một số phương pháp nhập môn; cho nên phần đồ giải làm dưới đây chỉ hạn ở định bộ thôi thủ (定步推手 – thôi thủ cố định bộ) thích hợp với yêu cầu thông thường và tám động tác cơ bản của thôi thủ:</p>
-</section><section id="p132" class="chapter-block">
+</section>
+
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phần 3</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 129</div>
     <h2 class="chapter-title">Thứ nhất, Đơn đáp thủ</h2>
@@ -907,7 +1211,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig148"><div class="figure-caption-title">图 148</div><a class="figure-image-container" href="photos/p133_fig148.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig148.jpg" alt="图 148" loading="lazy"></a><figcaption class="figure-caption">Hai người đối diện đứng, đều lấy chân phải ở trước thành hư bộ, cổ tay cánh tay phải dán vào nhau; người bên trái (giáp phương) cổ tay phải hơi chìm xuống rồi từ từ duỗi về phía trước ngực đối phương, người bên phải (ất phương) khuất tý truỵ trửu dẫn tay phải đối phương về phía vai phải của mình（原書作「單搭手」，未編號）</figcaption></figure>
 <p>Giả định do giáp phương ra tay trước, tay phải của giáp phải hơi chìm cổ tay, tức thì từ từ duỗi về phía trước ngực của ất, đồng thời biến hư bộ thành cung bộ, khiến thân thể từ từ tiến lên; tay phải của ất phải theo hướng tay của giáp mà từ từ khuất tý truỵ trửu (cổ tay hai người không được buông lỏng ra) dẫn tay giáp về phía vai phải của mình, trong quá trình dẫn dắt phải theo đường cung hình chữ ㄟ, đồng thời hơi tọa thân (bởi vì ất vốn đứng ở hư bộ, chỉ có thể hơi tọa thân; nếu đứng cung bộ thì phải tọa thân hết mức), để thích ứng với thế tới. Đến lúc này, tay phải của giáp không nên duỗi về trước nữa, mà phải từ từ thu về, và do ất phương theo động tác trước đó của giáp mà duỗi tay về phía trước ngực của giáp. Khi duỗi tay phải theo đường cung hình chữ ㄟ (để hợp với đường cung trên thành một vòng tròn), đồng thời biến hư bộ thành cung bộ từ từ tiến thân; giáp phương cũng theo động tác trước đó của ất, thừa thế khuất tý truỵ trửu dẫn tay ất về phía vai phải của mình, đồng thời biến cung bộ thành hư bộ và tọa thân hết mức. Một qua một lại như vậy là vẽ được một vòng tròn, sau đó có thể làm liên tục như lúc bắt đầu; nếu cảm thấy vai tay hoặc chân đứng phía sau đã mỏi, có thể đổi sang thôi thuận bộ tả đáp thủ hoặc ảo bộ tả hữu đáp thủ. Động tác dẫn tay phải về phía bên vai nói trên, có thể tham khảo đồ giải của song đáp thủ, hình 3; động tác dẫn tay trái về phía bên vai có thể tham khảo hình 5 của song đáp thủ (động tác này trong song đáp thủ đều gọi là húc, 擖).</p>
 <p>Thôi thủ của đơn đáp thủ tuy đơn giản hơn song đáp thủ, nhưng trên động tác cũng phải chú ý hai yêu cầu sau: (1) tiến thoái của hai bên (bao gồm sự biến đổi của bộ pháp và sự khuất thân của cánh tay) phải cố gắng nhất trí về tốc độ động tác, để hợp với yêu cầu “bất đâu bất đỉnh”; (2) khi tọa thân, tức khi biến cung bộ thành hư bộ, phải hơi hàm hung và thả lỏng yêu phúc, để hợp với yêu cầu “khí trầm đan điền” và “khí trực cổ đãng.”</p>
-</section><section id="p134" class="chapter-block">
+</section>
+
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Phần 4</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 131</div>
     <h2 class="chapter-title">Thứ hai, Song đáp thủ</h2>
@@ -927,7 +1236,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig153"><div class="figure-caption-title">图 153</div><a class="figure-image-container" href="photos/p136_fig153.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig153.jpg" alt="图 153" loading="lazy"></a><figcaption class="figure-caption">Hai người đều đứng ảo bộ chân trái ở trước, tay phải đáp nhau trước ngực; tay phải của người bên trái (giáp phương) ở trên, cánh tay phải đè lên trên cánh tay trái của đối phương（原書作「圖 5」，未編號；原圖下題「圖 5」）</figcaption></figure>
 <p>Trên đây, từ hữu đáp thủ thức của hình 1 trải qua động tác của hình 3, hình 4 mà biến thành tả đáp thủ thức của hình 2; lại từ tả đáp thủ thức trải qua hình 5 và động tác dưới hình 5 mà trở về hữu đáp thủ thức của hình 1 — đó là cách vẽ vòng tròn của song đáp thủ. Một qua một lại như vậy đã có động tác thôi thủ của hai thức thuận bộ hữu đáp thủ và ảo bộ tả đáp thủ. Sau khi hoán bộ thì biến thành thuận bộ tả đáp thủ; trải qua động tác duỗi tay và dẫn tay như nhau sẽ biến thành thức ảo bộ hữu đáp thủ. Sau khi thôi bốn thức cho thục rồi, tự nhiên có thể dẫn khởi biến hóa, có thể thuận thôi, nghịch thôi, cao thôi, đê thôi, vẽ ra những vòng tròn chằng chịt phức tạp; đây là yêu cầu bước đầu của việc luyện định bộ thôi thủ.</p>
 <p>Khi mới học thôi thủ, bao giờ cũng chỉ biết dùng bàn tay mà không biết dùng phần cổ tay, cẳng tay (tức tiểu tý) ngoài bàn tay; cho nên trên các thức đáp thủ, tay đáp ở bên cùi chỏ đối phương bao giờ cũng dùng lòng bàn tay mà đáp. Như hình 1 của song đáp thủ, tay trái của giáp phương, và hình 2 tay của giáp phương phải. Nhưng thôi thủ tiến bộ hơn một chút thì không phải đơn thuần dùng tay để hoàn thành động tác. Ở đây không lấy toàn thân để bàn, chỉ lấy cổ tay và cẳng tay của thượng chi để nói: phàm người thôi thủ đã lâu, bao giờ cũng dùng cổ tay hoặc dùng cẳng tay để đáp lên cánh tay đối phương. Như hình 1 của song đáp thủ, tay trái của ất, và hình 2 tay phải của ất, đều dùng cổ tay cẳng tay mà đáp; đây là thức cố ý để tay không ra dành cho việc khác. Từ hình 3 có thể thấy, giáp phương dẫn dắt tay phải của ất là dùng bàn tay; từ hình 5 có thể thấy, ất phương dẫn dắt tay trái của giáp là dùng cổ tay cẳng tay. Thử hỏi, hai tay của ất để không mà không dùng, có phải linh hoạt hơn hai tay của giáp nhiều lắm không? Trả lời là khẳng định. Bởi vì hai tay của ất có thể bất cứ lúc nào hạ xuống gia tăng động tác mới trên cánh tay trái của giáp, khiến giáp phương bị thiệt. Đây là một phương pháp rất quan trọng trong thôi thủ, cho nên đặc biệt lược giới thiệu ở đây, để người mới học thôi thủ sau này có chỗ tham khảo.</p>
-</section><section id="p137" class="chapter-block">
+</section>
+
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phần 5</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 134</div>
     <h2 class="chapter-title">Thứ ba, Tám động tác cơ bản</h2>
@@ -953,7 +1267,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig162"><div class="figure-caption-title">图 162</div><a class="figure-image-container" href="photos/p142_fig162.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig162.jpg" alt="图 162" loading="lazy"></a><figcaption class="figure-caption">Hai người tay phải đáp nhau; người bên trái (giáp phương) thừa thế tự chuyển thân, lấy vai trái kháo vào thân thể đối phương（原圖下題「圖 9 靠」，未編號）</figcaption></figure>
 <p><span id="p143" class="page-anchor"></span>Điều nói trên chỉ để người mới học thôi thủ tham khảo; cho nên phần đồ giải đã làm chỉ hạn ở việc giới thiệu những động tác cơ bản của định bộ thôi thủ. Còn như phương pháp dụng kình trong động tác và những tư thế liên quan như hàm hung, tọa thân, trầm kiên, thuỳ trửu v.v. đều không phải là chỗ mà người mới học có thể lĩnh hội, hơn nữa nói quá phức tạp thì đối với người mới học cũng không thích hợp, cho nên lược bỏ mà không bàn. Tóm lại, khi học thôi thủ, nếu chỉ học vẽ vòng tròn thì rất dễ học được, chỉ có điều thú vị ít hơn một chút; nhưng muốn học thôi thủ bát pháp thì tương đối phức tạp, hơn nữa cũng rất khó tự thông mà không có thầy; nếu có cơ hội, vẫn nên theo thầy mà học thì hơn.</p>
 <h3 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">Phụ lục</h3>
-</section><section id="p143" class="chapter-block">
+</section>
+
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Phần 6</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 140</div>
     <h2 class="chapter-title">Vương Tông Nhạc luận Thái Cực quyền</h2>
@@ -961,7 +1280,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Vương Tông Nhạc luận Thái Cực quyền</div>
 <p>Thái Cực là do Vô Cực mà sinh ra, là cơ của động tĩnh, là mẹ của âm dương. Động thì phân, tĩnh thì hợp. Không quá không kém, tùy khúc tựu thân. Người cương ta nhu gọi là tẩu, ta thuận người nghịch gọi là triêm. Người động gấp thì gấp ứng, người động chậm thì chậm theo; tuy biến hóa muôn mối, mà lý là một mối suốt thông. Từ triêu thục mà dần ngộ đổng kình, từ đổng kình mà lên tới thần minh; nhưng không phải dụng công lâu dài thì không thể hoát nhiên quán thông được. Hư lĩnh đỉnh kình, khí trầm đan điền. Không lệch không nghiêng, khi ẩn khi hiện. Trái nặng thì trái hư, phải nặng thì phải hư. Ngẩng lên thì càng cao, cúi xuống thì càng sâu. Tiến thì càng dài, lùi thì càng gấp. Một chiếc lông cũng không thêm được, ruồi muỗi cũng không đậu được. Người không biết ta, ta riêng biết người; anh hùng đi tới đâu không có địch thủ, đại để đều do đó mà tới. Thuật này có rất nhiều bàng môn; tuy thế có khác nhau, đại khái không ngoài việc mạnh hiếp yếu, chậm nhường nhanh. Có lực đánh không lực, tay chậm nhường tay nhanh — ấy đều là năng lực tự nhiên của tiên thiên, không phải là việc do học lực mà có thể làm ra. Xét câu “bốn lượng bạt ngàn cân,” rõ ràng không phải thắng bằng sức; xem hình dáng lão bát tuần có thể ngự được đám đông, nhanh thì làm được gì! Đứng như bình chuẩn, sống như bánh xe. Lệch trầm thì tùy, song trọng thì trệ. Thường thấy những người luyện công thuần mấy năm mà không vận hóa được, đều tự mình bị người khống chế, là vì chưa ngộ ra cái bệnh song trọng mà thôi. Muốn tránh bệnh ấy, phải biết âm dương. Triêm tức là tẩu, tẩu tức là triêm. Âm không rời dương, dương không rời âm; âm dương tương tế, mới gọi là đổng kình. Sau khi đổng kình, càng luyện càng tinh, âm thầm ghi nhớ suy xét, dần dần tới chỗ tòng tâm sở dục. Vốn là xả kỷ tòng nhân, phần nhiều lầm mà xả cận cầu viễn; cái gọi là sai một ly, đi một dặm, người học không thể không phân biện cho tường.</p>
 <p>Trường quyền là như Trường Giang đại hải cuồn cuộn không dứt. Thập tam thế là: bằng, lữ, tễ, án, thái, liệt, trửu, kháo — ấy là bát quái; tiến bộ, thoái bộ, tả cố, hữu phán, trung định — ấy là ngũ hành. Bằng, lữ, tễ, án tức là càn, khôn, khảm, ly — bốn phương chính. Thái, liệt, trửu, kháo tức là tốn, chấn, đoái, cấn — bốn góc xiên. Tiến, thoái, cố, phán, định tức là kim, mộc, thủy, hỏa, thổ. (Nguyên chú rằng: đây là di luận của lão sư Trương Tam Phong ở Võ Đang sơn, muốn cho hào kiệt trong thiên hạ sống lâu thêm tuổi, không phải chỉ làm cái ngọn của kỹ nghệ mà thôi.)</p>
-</section><section id="p144" class="chapter-block">
+</section>
+
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Phần 7</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 141</div>
     <h2 class="chapter-title">Vũ Vũ Tương luận Thái Cực quyền</h2>
@@ -970,7 +1294,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Mỗi một cử động, toàn thân đều phải khinh linh, càng phải quán xuyến. Khí nên cổ đãng, thần nên nội liễm. Đừng để có chỗ khuyết hãm, đừng để có chỗ lồi lõm, đừng để có chỗ đứt nối. Căn ở bàn chân, phát ở bắp chân, chủ tể ở eo, hiện hình ở ngón tay. Từ chân mà bắp chân mà eo, bao giờ cũng phải là một khí hoàn chỉnh; tiến tới lùi lui mới có thể đắc cơ đắc thế. Chỗ nào không đắc cơ đắc thế, thân liền tán loạn, bệnh ấy tất phải tìm ở eo và chân. Trên dưới trước sau trái phải đều như vậy. Phàm những điều ấy đều là ý, không ở bên ngoài. Có trên tức có dưới, có trước tức có sau, có trái tức có phải. Như ý muốn hướng lên thì ngụ ý hướng xuống; như khi muốn hất vật lên mà kèm theo ý tỏa vật xuống, thì căn của nó tự đứt, phá nó rất mau chóng mà không còn nghi ngờ. Hư thực phải phân cho rõ ràng; mỗi chỗ tự có hư thực của mỗi chỗ, chỗ nào cũng đều là một hư thực ấy; toàn thân tiết tiết quán xuyến, không để có chút nào đứt đoạn.</p>
 <div class="chapter-sub">Thập tam thế ca quyết</div>
 <p>Thập tam thế thế chớ khinh thù, mệnh ý nguyên đầu tại yêu khích. Biến chuyển hư thực tu lưu ý, Khí khắp thân thể không chút trệ. Trong tĩnh, chạm thì động, động mà vẫn như tĩnh, nhân địch biến hóa mà thị hiện thần kỳ. Thế thế tồn tâm suy ý, đắc được mà không thấy phí công phu. Khắc khắc lưu tâm tại yêu gian, trong bụng tùng tĩnh khí đằng nhiên. Vĩ lư khai hợp thính tự do. Nhập môn dẫn lộ tu khẩu thọ, công phu vô tức pháp tự tu. Nhược ngôn thể dụng hà vi chuẩn, ý khí quân lai cốt nhục thần. Tưởng thôi dụng ý chung hà tại, ích thọ diên niên bất lão xuân. Ca hề ca hề bách tứ thập, tự tự chân thiết nghĩa vô di. Nhược bất hướng thử thôi cầu khứ, uổng phí công phu di thán tích.</p>
-</section><section id="p145" class="chapter-block">
+</section>
+
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Phần 8</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 142</div>
     <h2 class="chapter-title">Thập tam thế hành công tâm giải</h2>
@@ -978,7 +1307,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Thập tam thế hành công tâm giải</div>
 <p>Dĩ tâm hành khí, vụ lệnh trầm trước, nãi năng thu liễm nhập cốt. Dĩ khí vận thân, vụ lệnh thuận toại, nãi năng tiện lợi tòng tâm. Tinh thần năng đề đắc khởi, tắc vô trì trọng chi ngu, sở vị đỉnh đầu huyền dã. Ý khí tu hoán đắc linh, nãi hữu viên hoạt chi thú, sở vị biến động hư thực dã. Phát kình tu trầm trước tùng tĩnh, chuyên chủ nhất phương. Lập thân tu trung chính an thư, chi trì bát diện. Hành khí như cửu khúc châu, vô vi bất đáo. Vận động như bách luyện cương, hà kiên bất tồi! Hình như bác thố chi cốt, thần như bộ thử chi miêu. Tĩnh như sơn nhạc, động nhược giang hà. Súc kình như khai cung, phát kình như phóng tiễn. Khúc trung cầu trực, súc nhi hậu phát. Lực do tích phát, bộ tùy thân hoán. Thu tức thị phóng, đoạn nhi phục liên. Vãng phục tu hữu chiết điệp, tiến thoái tu hữu chuyển hoán. Cực nhu nhuyễn nhiên hậu cực kiên ngạnh, năng hô hấp nhiên hậu năng linh hoạt. Khí dĩ trực dưỡng nhi vô hại, kình dĩ khúc súc nhi hữu dư. Tâm vi lệnh, khí vi kỳ, yêu vi đạo. Tiên cầu khai triển, hậu cầu khẩn thấu, nãi khả trăn vu chẩn mật hĩ.</p>
 <p>Hựu viết: tiên tại tâm, hậu tại thân, phúc tùng, khí liễm nhập cốt. Thần thư thể tĩnh, khắc khắc tại tâm. Thiết ký nhất động vô hữu bất động, nhất tĩnh vô hữu bất tĩnh. Khiên động vãng lai khí thiếp bối, liễm nhập tích cốt. Nội cố tinh thần, ngoại thị an dật. Mại bộ như miêu hành, vận động như trừu ty. Toàn thân ý tại tinh thần, bất tại khí, tại khí tắc trệ. Hữu khí giả vô lực, người không khí thì thuần cương. Khí như bánh xe, eo như trục xe.</p>
-</section><section id="p146" class="chapter-block">
+</section>
+
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Phần 9</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 143</div>
     <h2 class="chapter-title">Đả thủ ca</h2>
@@ -987,46 +1321,55 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Bằng lữ tễ án tu nhận chân, thượng hạ tương tùy nhân nan tiến. Nhậm tha cự lực lai đả ngã. Khiên động tứ lượng bạt thiên cân. Dẫn tiến lạc không hợp tức xuất, triêm liên niêm tùy bất đâu đỉnh.</p>
 <p>Hựu viết: bỉ bất động, kỷ bất động; bỉ vi động, kỷ tiên động. Kình tự tùng phi tùng, tương triển vị triển. Kình đoạn ý bất đoạn.</p>
 </section>
-
-    <nav class="page-nav">
-      <a href="/vi/books/sun_style_taijiquan_sun_jianyun_vi.html" class="prev">&#8592; Trước · Tôn Thức Thái Cực Quyền</a>
-      <a href="/vi/books/" class="home">&#8962; Trang Chủ</a>
-      <a href="/vi/books/yang_style_taijiquan_fu_zhongwen_vi.html" class="next">Sau · Dương Thức Thái Cực Quyền &#8594;</a>
-    </nav>
-
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Bản dịch Thái Cực Quyền — Ngô Thức (Từ Trí Nhất, 1958)</p>
-  <p>Xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam bởi Henry Phạm</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

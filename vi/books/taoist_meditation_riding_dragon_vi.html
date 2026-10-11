@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cưỡi Rồng — Cẩm Nang Thiền Định Đạo Gia | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt chuyên sâu cẩm nang thiền định Đạo gia: vì sao phải thiền, lợi ích, điều kiện, sáu bước thiền, bốn giai đoạn (Tĩnh – Buông – Yên – Tuệ), hai cấp hơi thở, và đưa thiền vào võ thuật cùng đời sống.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #0f766e;
   --accent-crimson: #134e4a;
@@ -64,90 +57,408 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
 .page-nav a.home { color: #0f766e; }
 .page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cưỡi Rồng — Cẩm Nang Thiền Định Đạo Gia | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu cẩm nang thiền định Đạo gia: vì sao phải thiền, lợi ích, điều kiện, sáu bước thiền, bốn giai đoạn (Tĩnh – Buông – Yên – Tuệ), hai cấp hơi thở, và đưa thiền vào võ thuật cùng đời sống.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#vi-sao" class="toc-link">Vì Sao Phải Thiền Định</a></li>
-      <li class="toc-item"><a href="#dieu-kien" class="toc-link">Điều Kiện: Đầu, Chân, Tay, Mắt, Mặt, Răng, Lưỡi</a></li>
-      <li class="toc-item"><a href="#sau-buoc" class="toc-link">Sáu Bước Thiền Định</a></li>
-      <li class="toc-item"><a href="#bon-giai-doan" class="toc-link">Bốn Giai Đoạn: Tĩnh – Buông – Yên – Tuệ</a></li>
-      <li class="toc-item"><a href="#hai-cap-tho" class="toc-link">Hai Cấp Hơi Thở Nâng Cao</a></li>
-      <li class="toc-item"><a href="#doi-song" class="toc-link">Đưa Thiền Vào Đời Sống &amp; Võ Thuật</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Cưỡi Rồng (Thiền Định Đạo Gia)</span>
-  </nav>
-
-  <main class="reader-content">
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Vì Sao Phải Thiền Định</a></li>
+        <li><a href="#sec01">Điều Kiện: Đầu, Chân, Tay, Mắt, Mặt, Răng, Lưỡi</a></li>
+        <li><a href="#sec02">Sáu Bước Thiền Định</a></li>
+        <li><a href="#sec03">Bốn Giai Đoạn: Tĩnh – Buông – Yên – Tuệ</a></li>
+        <li><a href="#sec04">Hai Cấp Hơi Thở Nâng Cao</a></li>
+        <li><a href="#sec05">Đưa Thiền Vào Đời Sống &amp;amp; Võ Thuật</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Thiền Định Đạo Gia &middot; Sáu Bước &amp; Bốn Giai Đoạn</span>
+      <span class="badge">Thiền Định Đạo Gia &amp;middot; Sáu Bước &amp;amp; Bốn Giai Đoạn &middot; Tác giả: Tác giả Đạo gia (cẩm nang thực hành)
+        Ấn bản gốc: Cẩm nang thiền định Đạo gia &amp;middot; Có phụ lục, thư mục &amp;amp; thuật ngữ
+        Bản dịch &amp;amp; khảo luận tiếng Việt: Ban Biên khảo Võ học &amp;amp; Dưỡng sinh Nội gia TaichiNOW</span>
       <h1>Cưỡi Rồng: Cẩm Nang Thiền Định Đạo Gia</h1>
-      <div class="book-orig-title">Riding the Dragon — A Taoist Meditation Guide</div>
-      <div class="book-author-meta"><strong>Tác giả:</strong> Tác giả Đạo gia (cẩm nang thực hành)<br>
-        <strong>Ấn bản gốc:</strong> Cẩm nang thiền định Đạo gia &middot; Có phụ lục, thư mục &amp; thuật ngữ<br>
-        <strong>Bản dịch &amp; khảo luận tiếng Việt:</strong> Ban Biên khảo Võ học &amp; Dưỡng sinh Nội gia TaichiNOW</div>
-      <div class="book-tags">
-        <span class="book-tag">🧘 Thiền Định</span>
-        <span class="book-tag">☯️ Đạo Gia</span>
-        <span class="book-tag">🌀 Đan Điền</span>
-        <span class="book-tag">🥋 Ứng Dụng Võ</span>
-      </div>
+      <div class="subtitle">Riding the Dragon — A Taoist Meditation Guide</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Vì Sao Phải Thiền Định</h2>
 
-
-    <section id="vi-sao" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Vì Sao Phải Thiền Định</h2>
-      </div>
 
       <p>Cuốn sách chia làm hai phần: <strong>Phần I — Lý do của việc thiền định</strong>, và <strong>Phần II — Sự thực hành</strong>. Phần mở đầu gồm một cái nhìn khiêm tốn về <em>Đạo giáo</em>, những <strong>lợi ích của thiền định Đạo gia</strong>, và những <strong>trải nghiệm cá nhân</strong> của tác giả với thiền định.</p>
-      <div class="key-point">Cấu trúc này đáng chú ý: sách dành hẳn một phần cho <em>lý do</em> trước khi nói tới <em>cách làm</em>. Với thiền định, điều đó không phải dư thừa — vì người ngồi xuống mà không biết mình ngồi để làm gì thường bỏ cuộc trước khi có kết quả.</div>
+      <div class="key-takeaway">Cấu trúc này đáng chú ý: sách dành hẳn một phần cho <em>lý do</em> trước khi nói tới <em>cách làm</em>. Với thiền định, điều đó không phải dư thừa — vì người ngồi xuống mà không biết mình ngồi để làm gì thường bỏ cuộc trước khi có kết quả.</div>
       <p>Phần thực hành bắt đầu bằng các <strong>điều kiện tiên quyết để thiền thành công</strong>, được liệt kê rất cụ thể theo từng bộ phận của cơ thể.</p>
+</section>
 
-    </section>
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Điều Kiện: Đầu, Chân, Tay, Mắt, Mặt, Răng, Lưỡi</h2>
 
-
-    <section id="dieu-kien" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chuẩn Bị</span>
-        <h2 class="chapter-title">Điều Kiện: Đầu, Chân, Tay, Mắt, Mặt, Răng, Lưỡi</h2>
-      </div>
 
       <p>Đây là phần mà nhiều sách thiền bỏ qua và vì thế người mới ngồi sai ngay từ đầu. Sách đi qua từng bộ phận một.</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Bộ phận</th><th>Yêu cầu</th></tr></thead>
         <tbody>
           <tr><td><strong>1. Đầu</strong></td><td>Giữ thẳng — trục của toàn bộ tư thế</td></tr>
@@ -159,19 +470,16 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>7. Lưỡi</strong></td><td>Đặt lên vòm trên — nối mạch Nhâm và Đốc</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Trước khi ngồi còn có các <strong>kỹ thuật khởi động</strong>: <em>xoa bóp phản xạ bàn chân</em> và <em>kỹ thuật bươm bướm</em>. Hai việc này nghe có vẻ phụ, nhưng với người ngồi lâu, chúng quyết định việc đôi chân có chịu được hay không.</div>
+      <div class="key-takeaway">Trước khi ngồi còn có các <strong>kỹ thuật khởi động</strong>: <em>xoa bóp phản xạ bàn chân</em> và <em>kỹ thuật bươm bướm</em>. Hai việc này nghe có vẻ phụ, nhưng với người ngồi lâu, chúng quyết định việc đôi chân có chịu được hay không.</div>
+</section>
 
-    </section>
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Sáu Bước Thiền Định</h2>
 
-
-    <section id="sau-buoc" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Thực Hành</span>
-        <h2 class="chapter-title">Sáu Bước Thiền Định</h2>
-      </div>
 
       <p>Phần lõi: <strong>sáu bước thiền định</strong> được trình bày theo thứ tự, với hình minh họa riêng cho từng bước.</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Bước</th><th>Nội dung</th></tr></thead>
         <tbody>
           <tr><td><strong>1</strong></td><td><em>Ngồi thẳng</em> — chỉnh lại toàn bộ trục cơ thể</td></tr>
@@ -182,20 +490,17 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>6</strong></td><td><em>Buông bỏ (Letting go)</em> — bỏ cả việc đếm</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Trình tự này là một cái thang: mỗi bước là một chỗ bám, và bước sau là việc <em>buông chỗ bám của bước trước</em>. Đến bước sáu thì không còn gì để bám — đó chính là lúc thiền bắt đầu.</div>
+      <div class="key-takeaway">Trình tự này là một cái thang: mỗi bước là một chỗ bám, và bước sau là việc <em>buông chỗ bám của bước trước</em>. Đến bước sáu thì không còn gì để bám — đó chính là lúc thiền bắt đầu.</div>
       <p>Sau khi thiền xong là một loạt <strong>kỹ thuật xoa bóp</strong> rất chi tiết: đầu, thân, chân, hông, đầu gối, mắt cá; rồi <em>kỹ thuật kéo giãn</em>, <em>kỹ thuật yoga</em>, <strong>cân bằng năng lượng</strong>, <strong>thư giãn</strong>, và <em>ứng dụng xoa bóp cho sức khỏe</em>.</p>
+</section>
 
-    </section>
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Bốn Giai Đoạn: Tĩnh – Buông – Yên – Tuệ</h2>
 
-
-    <section id="bon-giai-doan" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Lộ Trình</span>
-        <h2 class="chapter-title">Bốn Giai Đoạn: Tĩnh – Buông – Yên – Tuệ</h2>
-      </div>
 
       <p>Sách mô tả bốn giai đoạn mà người thiền đi qua — không phải bốn cấp độ thành tựu mà là bốn <strong>trạng thái</strong> nối tiếp nhau.</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Giai đoạn</th><th>Tên</th><th>Đặc điểm</th></tr></thead>
         <tbody>
           <tr><td><strong>Thứ nhất</strong></td><td>Tĩnh lặng (Stillness)</td><td>Thân ngừng động; tâm vẫn động</td></tr>
@@ -204,72 +509,84 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>Thứ tư</strong></td><td>Trí tuệ (Wisdom)</td><td>Cái nhìn trực tiếp, không qua suy luận</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Giai đoạn thứ tư là điều mà các sách thiền thường ngại đặt tên. Ở đây nó được gọi thẳng là <strong>Tuệ</strong> — không phải kiến thức tích lũy, mà là năng lực thấy sự vật như nó đang là, sinh ra khi cái ồn của tâm đã lắng.</div>
+      <div class="key-takeaway">Giai đoạn thứ tư là điều mà các sách thiền thường ngại đặt tên. Ở đây nó được gọi thẳng là <strong>Tuệ</strong> — không phải kiến thức tích lũy, mà là năng lực thấy sự vật như nó đang là, sinh ra khi cái ồn của tâm đã lắng.</div>
+</section>
 
-    </section>
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Hai Cấp Hơi Thở Nâng Cao</h2>
 
-
-    <section id="hai-cap-tho" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Hơi Thở</span>
-        <h2 class="chapter-title">Hai Cấp Hơi Thở Nâng Cao</h2>
-      </div>
 
       <p>Sau sáu bước và bốn giai đoạn, sách mở riêng phần <strong>các kỹ thuật thở nâng cao</strong>, chia làm hai cấp.</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Cấp</th><th>Tên</th><th>Mục đích</th></tr></thead>
         <tbody>
           <tr><td><strong>Cấp một</strong></td><td>Các bài tập thở sâu</td><td>Xây nền: dung tích, nhịp, và sự êm của hơi thở</td></tr>
           <tr><td><strong>Cấp hai</strong></td><td>Các bài tập thở nhanh</td><td>Dùng khi cần <em>đánh động</em> hệ thống: sinh nhiệt, tống khí tắc</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Thứ tự này đi ngược với cảm giác thông thường: người mới thường muốn tập thở nhanh vì thấy "có tác dụng" ngay. Sách xếp <em>thở sâu trước, thở nhanh sau</em> — vì thở nhanh trên một nền hơi thở chưa xây sẽ chỉ sinh ra căng thẳng.</div>
+      <div class="key-takeaway">Thứ tự này đi ngược với cảm giác thông thường: người mới thường muốn tập thở nhanh vì thấy "có tác dụng" ngay. Sách xếp <em>thở sâu trước, thở nhanh sau</em> — vì thở nhanh trên một nền hơi thở chưa xây sẽ chỉ sinh ra căng thẳng.</div>
+</section>
 
-    </section>
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Đưa Thiền Vào Đời Sống &amp; Võ Thuật</h2>
 
-
-    <section id="doi-song" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Ứng Dụng</span>
-        <h2 class="chapter-title">Đưa Thiền Vào Đời Sống &amp; Võ Thuật</h2>
-      </div>
 
       <p>Phần cuối nối thiền định với phần còn lại của đời sống: <strong>tích hợp thiền định Đạo gia vào sinh hoạt hàng ngày</strong>, <strong>dinh dưỡng</strong>, và đặc biệt <strong>ứng dụng thiền định Đạo gia trong võ thuật</strong>. Kế đó là phần <strong>hỏi đáp</strong>, phần <em>cốt yếu</em>, phụ lục, thư mục, thuật ngữ và mục lục tra cứu.</p>
-      <div class="key-point">Chương về võ thuật là chương mà người tập Thái Cực nên đọc kỹ: thiền định Đạo gia không phải một việc làm thêm cho đẹp, mà là <em>phần cung cấp nhiên liệu</em> cho toàn bộ hệ thống nội tại.</div>
+      <div class="key-takeaway">Chương về võ thuật là chương mà người tập Thái Cực nên đọc kỹ: thiền định Đạo gia không phải một việc làm thêm cho đẹp, mà là <em>phần cung cấp nhiên liệu</em> cho toàn bộ hệ thống nội tại.</div>
       <p>Cuốn sách mở đầu danh mục hình bằng <strong>Hoàng Đế</strong> (Yellow Emperor) và đi qua các hình minh họa: ngồi thẳng, ngồi liên hoa (chân trái trước và chân phải trước), thế tay thiền định Đạo gia, vị trí lưỡi, khởi động chân, xoa bóp lòng bàn chân, kỹ thuật bươm bướm, sáu bước thiền, vị trí Đan Điền, làm tròn ra, xoa bóp mắt, xoa bóp mũi, xoa bóp đầu, vùng <em>Ngọc Chẩm</em>, thái dương và tai.</p>
-      <div class="quote-box">Sách khép lại bằng hai mục mang tính chiêm nghiệm: <strong>Âm Dương</strong> và <strong>Cơn Mưa Ấm</strong> — hai hình ảnh nói về trạng thái mà người thiền lâu năm nhận ra: sự đối đãi đã hóa thành sự điều hòa.</div>
-
-    </section>
-
-    <nav class="page-nav">
-      <a class="disabled">← Trước</a>
-      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a href="/vi/books/">Tiếp theo →</a>
-    </nav>
-
+      <div class="callout">Sách khép lại bằng hai mục mang tính chiêm nghiệm: <strong>Âm Dương</strong> và <strong>Cơn Mưa Ấm</strong> — hai hình ảnh nói về trạng thái mà người thiền lâu năm nhận ra: sự đối đãi đã hóa thành sự điều hòa.</div>
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Tủ Sách Thái Cực &amp; Khí Công &mdash; TaichiNOW</p>
-  <p>Bản dịch &amp; khảo luận tiếng Việt chuyên sâu © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thái Cực Thôi Thủ — Trọn Bộ Thôi Thủ Dương thị — Stuart Alve Olson | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm Tai Chi Sensing-Hands: A Complete Guide to T'ai Chi T'ui-Shou Training from Original Yang Family Records của Stuart Alve Olson — tám thức Thôi Thủ, Tứ Kỹ và luyện Cố Định Bộ / Động Bộ.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -67,88 +60,407 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .page-nav a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
 .page-nav a.home { color: var(--accent-gold); }
 .page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thái Cực Thôi Thủ — Trọn Bộ Thôi Thủ Dương thị — Stuart Alve Olson | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm Tai Chi Sensing-Hands: A Complete Guide to T'ai Chi T'ui-Shou Training from Original Yang Family Records của Stuart Alve Olson — tám thức Thôi Thủ, Tứ Kỹ và luyện Cố Định Bộ / Động Bộ.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn: Từ Ghi Chép Dương Gia Tới Cẩm Nang Trọn Bộ</a></li>
-      <li class="toc-item"><a href="#tam-ky" class="toc-link">Ba Kỹ Năng Giải Đọc &amp; Ba Phần Tu Tập</a></li>
-      <li class="toc-item"><a href="#bat-thuc" class="toc-link">Tám Thức Thôi Thủ (The Eight Styles)</a></li>
-      <li class="toc-item"><a href="#tu-ky" class="toc-link">Tứ Kỹ: Dính–Liền–Dán–Theo và Bốn Lỗi</a></li>
-      <li class="toc-item"><a href="#bo-phap" class="toc-link">Cố Định Bộ &amp; Động Bộ</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Thái Cực Thôi Thủ — Trọn Bộ Dương thị (Stuart Olson)</span>
-  </nav>
-
-  <main class="reader-content">
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Lời Dẫn: Từ Ghi Chép Dương Gia Tới Cẩm Nang Trọn Bộ</a></li>
+        <li><a href="#sec01">Ba Kỹ Năng Giải Đọc &amp;amp; Ba Phần Tu Tập</a></li>
+        <li><a href="#sec02">Tám Thức Thôi Thủ — The Eight Styles</a></li>
+        <li><a href="#sec03">Tứ Kỹ: Dính–Liền–Dán–Theo và Bốn Lỗi</a></li>
+        <li><a href="#sec04">Cố Định Bộ &amp;amp; Động Bộ</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Trọn Bộ Thôi Thủ &middot; Dương Thị Nguyên Bản</span>
+      <span class="badge">Trọn Bộ Thôi Thủ &amp;middot; Dương Thị Nguyên Bản &middot; Tác giả: Stuart Alve Olson (dịch &amp;amp; bình chú) &amp;middot; lời tựa của Jonathan Russell
+        Ấn bản gốc: Dịch từ nguyên bản ghi chép Dương gia &amp;middot; nguyên tác Trần Công (Chen Kung)
+        Bản dịch &amp;amp; khảo luận tiếng Việt: Ban Biên khảo Võ học Nội gia TaichiNOW</span>
       <h1>Thái Cực Thôi Thủ — Trọn Bộ Thôi Thủ Dương thị</h1>
-      <div class="book-orig-title">Tai Chi Sensing-Hands: A Complete Guide to T'ai Chi T'ui-Shou Training from Original Yang Family Records</div>
-      <div class="book-author-meta"><strong>Tác giả:</strong> Stuart Alve Olson (dịch &amp; bình chú) &middot; lời tựa của Jonathan Russell<br>
-        <strong>Ấn bản gốc:</strong> Dịch từ <em>nguyên bản ghi chép Dương gia</em> &middot; nguyên tác Trần Công (Chen Kung)<br>
-        <strong>Bản dịch &amp; khảo luận tiếng Việt:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW</div>
-      <div class="book-tags">
-        <span class="book-tag">🤝 Thôi Thủ</span>
-        <span class="book-tag">👂 Tứ Kỹ</span>
-        <span class="book-tag">🏛️ Dương Thị Nguyên Bản</span>
-        <span class="book-tag">☯️ Tám Thức</span>
-      </div>
+      <div class="subtitle">Tai Chi Sensing-Hands: A Complete Guide to T'ai Chi T'ui-Shou Training from Original Yang Family Records</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Lời Dẫn: Từ Ghi Chép Dương Gia Tới Cẩm Nang Trọn Bộ</h2>
 
-
-    <section id="loi-dan" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Lời Dẫn: Từ Ghi Chép Dương Gia Tới Cẩm Nang Trọn Bộ</h2>
-      </div>
 
       <p>Đây là cuốn cẩm nang Thôi Thủ đầy đủ nhất trong thư viện. Tựa đề nói rõ nguồn gốc: <strong>"Trọn bộ Thôi Thủ dịch từ nguyên bản ghi chép Dương gia"</strong>. Stuart Alve Olson — học trò năm năm của Đại sư Lương Đông Tài (T.T. Liang) — dịch và bình chú, với lời tựa của <strong>Jonathan Russell</strong>, học trò cao cấp của Lương Đông Tài.</p>
       <p>Cuốn sách nối tiếp tập <em>Nội Kình Thái Cực Quyền</em> của cùng dịch giả: nếu tập trước giải mã các loại Kình, thì tập này là <strong>giáo trình luyện Kình thành phản xạ</strong> qua đối luyện tiếp xúc.</p>
-      <div class="key-point">Phần "Cách luyện Thôi Thủ" mở đầu bằng ba kỹ năng cốt lõi và định vị Thôi Thủ trong toàn bộ hệ thống tu tập: <em>chức năng, nền tảng và biểu hiện của Thái Cực</em>, cùng ba phần tu tập.</div>
+      <div class="key-takeaway">Phần "Cách luyện Thôi Thủ" mở đầu bằng ba kỹ năng cốt lõi và định vị Thôi Thủ trong toàn bộ hệ thống tu tập: <em>chức năng, nền tảng và biểu hiện của Thái Cực</em>, cùng ba phần tu tập.</div>
+</section>
 
-    </section>
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Ba Kỹ Năng Giải Đọc &amp; Ba Phần Tu Tập</h2>
 
-    <section id="tam-ky" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Nguyên Lý</span>
-        <h2 class="chapter-title">Ba Kỹ Năng Giải Đọc &amp; Ba Phần Tu Tập</h2>
-      </div>
 
       <p>Olson trình bày <strong>ba kỹ năng giải đọc (Three Interpreting Skills)</strong> của Thôi Thủ — ba tầng nhận biết mà người tập phải phát triển song song:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Tầng</th><th>Nội dung</th></tr></thead>
         <tbody>
           <tr><td><strong>1. Giải đọc bằng Thân</strong></td><td>Nhận biết lực, hướng và trọng tâm đối phương qua điểm tiếp xúc.</td></tr>
@@ -157,18 +469,16 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         </tbody>
       </table>
       <p>Ba tầng này gắn với <strong>ba phần tu tập Thái Cực</strong>: luyện quyền thức (thân), luyện Khí (Khí Công), và luyện Ý (tĩnh tâm). Thôi Thủ là nơi cả ba hội tụ — nên nó là bài kiểm tra trung thực nhất cho toàn bộ tiến trình.</p>
-      <div class="quote-box">"Thôi Thủ không dạy bạn đẩy người khác. Nó dạy bạn hiểu người khác — và qua đó hiểu chính mình."</div>
+      <div class="callout">"Thôi Thủ không dạy bạn đẩy người khác. Nó dạy bạn hiểu người khác — và qua đó hiểu chính mình."</div>
+</section>
 
-    </section>
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Tám Thức Thôi Thủ — The Eight Styles</h2>
 
-    <section id="bat-thuc" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Trọng Tâm</span>
-        <h2 class="chapter-title">Tám Thức Thôi Thủ — The Eight Styles</h2>
-      </div>
 
       <p>Trọng tâm của sách là <strong>tám thức Thôi Thủ</strong>, được trình bày tuần tự từ đơn giản tới phức tạp:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Thức</th><th>Tên</th></tr></thead>
         <tbody>
           <tr><td><strong>Thức 1</strong></td><td>Thôi Thủ Một Tay (Single-Hand)</td></tr>
@@ -181,18 +491,16 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>Thức 8</strong></td><td>Một Tay Trử Vòng (Single-Hand Circular-Thrusting)</td></tr>
         </tbody>
       </table>
-      <div class="key-point">Điểm đặc biệt: tám thức này không phải tám động tác rời, mà là <strong>tám cặp đối trị</strong> — mỗi thức luyện một cặp "tấn công – hóa giải", giúp người tập quen dần với toàn bộ vốn kình lực của Thôi Thủ.</div>
+      <div class="key-takeaway">Điểm đặc biệt: tám thức này không phải tám động tác rời, mà là <strong>tám cặp đối trị</strong> — mỗi thức luyện một cặp "tấn công – hóa giải", giúp người tập quen dần với toàn bộ vốn kình lực của Thôi Thủ.</div>
+</section>
 
-    </section>
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Tứ Kỹ: Dính–Liền–Dán–Theo và Bốn Lỗi</h2>
 
-    <section id="tu-ky" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Tứ Kỹ</span>
-        <h2 class="chapter-title">Tứ Kỹ: Dính–Liền–Dán–Theo và Bốn Lỗi</h2>
-      </div>
 
       <p>Sách dành phần lớn dung lượng cho <strong>Tứ Kỹ của Thôi Thủ (The Four Skills)</strong> — bốn phẩm chất phải có, và bốn lỗi phải tránh:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Tứ Kỹ (nên có)</th><th>Bốn Lỗi (phải tránh)</th></tr></thead>
         <tbody>
           <tr><td><strong>Dính (Adhering)</strong></td><td>Kháng (Opposing)</td></tr>
@@ -201,56 +509,72 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>Theo (Following)</strong></td><td>Chống (Resisting)</td></tr>
         </tbody>
       </table>
-      <div class="quote-box">"<strong>Triêm–Liên–Niêm–Tùy</strong> (Dính–Liền–Dán–Theo) — bốn chữ này là linh hồn của Thôi Thủ. <strong>Đỉnh–Biền–Đâu–Kháng</strong> (Kháng–Tựa–Bỏ–Chống) — bốn chữ này là bốn cái chết của Thôi Thủ."</div>
+      <div class="callout">"<strong>Triêm–Liên–Niêm–Tùy</strong> (Dính–Liền–Dán–Theo) — bốn chữ này là linh hồn của Thôi Thủ. <strong>Đỉnh–Biền–Đâu–Kháng</strong> (Kháng–Tựa–Bỏ–Chống) — bốn chữ này là bốn cái chết của Thôi Thủ."</div>
       <p>Olson giải thích rằng bốn lỗi này không phải là "kỹ thuật sai" theo nghĩa hình thức, mà là <strong>bốn dấu hiệu cho thấy người tập đang dùng sức thay vì dùng Ý</strong>. Chỉ cần kháng, tựa, bỏ hoặc chống, người tập lập tức mất khả năng "nghe" đối phương.</p>
+</section>
 
-    </section>
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Cố Định Bộ &amp; Động Bộ</h2>
 
-    <section id="bo-phap" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Bộ Pháp</span>
-        <h2 class="chapter-title">Cố Định Bộ &amp; Động Bộ</h2>
-      </div>
 
       <p>Sách chia phần thực hành làm hai giai đoạn rõ rệt:</p>
       <ol style="line-height: 1.9;">
         <li><strong>Cố Định Bộ (Fixed-Stance)</strong> — hai chân cố định, chỉ luyện Tứ Kỹ bằng tay. Đây là giai đoạn xây nền: người tập học cảm nhận và hóa kình mà không bị phân tâm bởi việc di chuyển.</li>
         <li><strong>Động Bộ (Active-Steps)</strong> — bắt đầu bước, giữ kết nối trong khi chân đổi trọng tâm, luyện Tứ Kỹ trong tình huống động. Phần này có hướng dẫn riêng cho <em>Động Bộ ở thế trực (Direct Stance)</em>.</li>
       </ol>
-      <div class="key-point">Nguyên tắc bất biến vẫn là <strong>"xả kỷ tùng nhân"</strong> — bỏ cái tôi, đi theo đối phương. Người tập Thôi Thủ giỏi không thắng bằng sức mạnh, mà để đối phương tự mất thăng bằng vì không tìm được điểm bám.</div>
+      <div class="key-takeaway">Nguyên tắc bất biến vẫn là <strong>"xả kỷ tùng nhân"</strong> — bỏ cái tôi, đi theo đối phương. Người tập Thôi Thủ giỏi không thắng bằng sức mạnh, mà để đối phương tự mất thăng bằng vì không tìm được điểm bám.</div>
       <p>Sách khép lại bằng phần "Vượt Lên Trên Thôi Thủ" (Beyond Sensing-Hands) — nhắc rằng Thôi Thủ không phải đích cuối, mà là <em>cầu nối</em> giữa quyền thức và giao đấu thật.</p>
-
-    </section>
-
-    <nav class="page-nav">
-      <a class="disabled">← Trước</a>
-      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a href="/vi/books/">Tiếp theo →</a>
-    </nav>
-
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Thư Viện Sách Thái Cực Quyền &amp; Khí Công Tiếng Việt &middot; TaichiNOW</p>
-  <p>Bản dịch &amp; khảo luận tiếng Việt chuyên sâu © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

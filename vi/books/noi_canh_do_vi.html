@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người (Neijing Tu) | TaichiNOW</title>
-<meta name="description" content="Bản dịch &amp; khảo cứu tiếng Việt về Nội Cảnh Đồ (Neijing Tu) — bức đồ nội đan nổi tiếng nhất về cơ thể người, khắc trên bia đá Bạch Vân Quán năm 1886. Nhâm Mạch &amp; Đốc Mạch, Tam Quan, Hà Xa, và đối chiếu với lý thuyết kinh lạc hiện đại.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -295,77 +288,395 @@ body.dark-mode .vn-poem{background:#1a1a1a;border-color:#2e2e2e}
 body.dark-mode .vn-poem .tr{color:#a8a29e}
 .vn-cjk{font-family:'Noto Serif SC','Songti SC',serif}
 
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người (Neijing Tu) | TaichiNOW</title>
+<meta name="description" content="Bản dịch &amp;amp; khảo cứu tiếng Việt về Nội Cảnh Đồ (Neijing Tu) — bức đồ nội đan nổi tiếng nhất về cơ thể người, khắc trên bia đá Bạch Vân Quán năm 1886. Nhâm Mạch &amp;amp; Đốc Mạch, Tam Quan, Hà Xa, và đối chiếu với lý thuyết kinh lạc hiện đại.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Cốt Lõi</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn: Bức Đồ Nổi Tiếng Nhất Về Cơ Thể Người</a></li>
-      <li class="toc-item"><a href="#nguon-goc" class="toc-link">Nguồn Gốc &amp; Xuất Xứ</a></li>
-      <li class="toc-item"><a href="#cach-doc" class="toc-link">Cách Đọc Bức Đồ: Từ Dưới Lên</a></li>
-      <li class="toc-item"><a href="#kinh-mach" class="toc-link">Bản Đồ Kinh Mạch Trong Tranh</a></li>
-      <li class="toc-item"><a href="#hien-dai" class="toc-link">Đối Chiếu Lý Thuyết Kinh Lạc Hiện Đại</a></li>
-      <li class="toc-item"><a href="#tu-lieu" class="toc-link">Tư Liệu &amp; Nguồn Tham Khảo</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người</span>
-  </nav>
-
-  <main class="reader-content">
-
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Lời Dẫn: Bức Đồ Nổi Tiếng Nhất Về Cơ Thể Người</a></li>
+        <li><a href="#sec01">Nguồn Gốc &amp;amp; Xuất Xứ</a></li>
+        <li><a href="#sec02">Cách Đọc Bức Đồ: Từ Dưới Lên</a></li>
+        <li><a href="#sec03">Bản Đồ Kinh Mạch Trong Tranh</a></li>
+        <li><a href="#sec04">Đối Chiếu Lý Thuyết Kinh Lạc Hiện Đại</a></li>
+        <li><a href="#sec05">Tư Liệu &amp;amp; Nguồn Tham Khảo</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Đồ Hình Nội Đan Đạo Gia &middot; Bia Đá Bạch Vân Quán 1886</span>
+      <span class="badge">Đồ Hình Nội Đan Đạo Gia &amp;middot; Bia Đá Bạch Vân Quán 1886 &middot; Nguyên tác: Khuyết danh — truyền thống Nội đan (Neidan) Đạo gia
+        Nguồn bản khắc: Bia đá năm 1886 tại Bạch Vân Quán (白雲觀), Bắc Kinh
+        Biên khảo &amp;amp; dịch tiếng Việt: Ban Biên khảo Võ học Nội gia TaichiNOW</span>
       <h1>Nội Cảnh Đồ — Bản Đồ Nội Cảnh Cơ Thể Người</h1>
-      <div class="book-orig-title">內景圖 &middot; 內經圖 &middot; Neijing Tu (Chart of the Inner Landscape)</div>
-      <div class="book-author-meta">
-        <strong>Nguyên tác:</strong> Khuyết danh — truyền thống Nội đan (Neidan) Đạo gia<br>
-        <strong>Nguồn bản khắc:</strong> Bia đá năm 1886 tại Bạch Vân Quán (白雲觀), Bắc Kinh<br>
-        <strong>Biên khảo &amp; dịch tiếng Việt:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW
-      </div>
-      <div class="book-tags">
-        <span class="book-tag"><i class="fa-solid fa-mountain"></i> Nội Đan (Neidan)</span>
-        <span class="book-tag"><i class="fa-solid fa-water"></i> Nhâm Mạch &amp; Đốc Mạch</span>
-        <span class="book-tag"><i class="fa-solid fa-circle-notch"></i> Tiểu Chu Thiên</span>
-        <span class="book-tag"><i class="fa-solid fa-door-closed"></i> Tam Quan (三關)</span>
-        <span class="book-tag"><i class="fa-solid fa-fire-burner"></i> Tam Đan Điền</span>
-      </div>
+      <div class="subtitle">內景圖 &amp;middot; 內經圖 &amp;middot; Neijing Tu (Chart of the Inner Landscape)</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Lời Dẫn: Bức Đồ Nổi Tiếng Nhất Về Cơ Thể Người</h2>
 
-    <section id="loi-dan" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Lời Dẫn: Bức Đồ Nổi Tiếng Nhất Về Cơ Thể Người</h2>
-      </div>
       <p>Trong kho tàng đồ hình của Đạo gia, <strong>Nội Cảnh Đồ</strong> (內景圖, còn viết 內經圖 — Neijing Tu)
       là bức họa nổi tiếng nhất về cơ thể con người. Trên một tờ giấy duy nhất, toàn bộ hình hài con người
       được ẩn giấu bên trong một phong cảnh: đầu là đỉnh núi, cột sống là một dòng sông uốn lượn, tim là một
@@ -374,17 +685,16 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
       con đường vận hành <em>Tinh – Khí – Thần</em> — đồng thời cũng là hình ảnh được yêu thích nhất của
       <strong>hệ kinh lạc</strong> trong thế giới Hán ngữ. Bức đồ vẽ con đường vận chuyển tinh khí bằng hình ảnh
       dòng nước chảy, và dùng cửa thành, cây cầu, lầu cao để chỉ những nơi then chốt mà tinh khí phải đi qua.</p>
-      <div class="quote-box">
+      <div class="callout">
         &ldquo;Nhà ta khéo trồng thửa ruộng nhà mình — trong có mầm linh sống vạn năm.&rdquo;
         <div style="text-align: right; margin-top: 6px; font-weight: 600;">— Câu thơ khắc trên Nội Cảnh Đồ</div>
       </div>
-    </section>
+</section>
 
-    <section id="nguon-goc" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 1</span>
-        <h2 class="chapter-title">Nguồn Gốc &amp; Xuất Xứ</h2>
-      </div>
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Nguồn Gốc &amp; Xuất Xứ</h2>
+
       <p>Bức đồ có nhiều tên gọi: <span class="vn-cjk">內景圖</span> &ldquo;Đồ cảnh trong&rdquo; (Nội Cảnh Đồ),
       <span class="vn-cjk">內經圖</span> &ldquo;Đồ kinh trong&rdquo; (Nội Kinh Đồ) — trong tiếng Anh thường gọi là
       <em>Chart of the Inner Landscape</em> hoặc <em>Chart of the Inner Warp</em>. Gốc rễ của nó truy ngược về
@@ -399,19 +709,18 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
       đốt, kinh mạch rõ ràng phân minh, mỗi chỗ đều chứa khiếu yếu&rdquo;, bèn cho khắc lên đá để lưu truyền rộng rãi.
       Một cuộn tô màu được vẽ tại <span class="vn-cjk">如意館</span> (Như Ý Quán) của hoàng cung nhà Thanh hiện được
       lưu giữ tại Bảo tàng Lịch sử Y học Cổ truyền Trung Quốc ở Bắc Kinh.</p>
-      <div class="key-point">
+      <div class="key-takeaway">
         <strong>Giải phẫu hay Đan đạo?</strong> Bức đồ đôi khi được gọi là &ldquo;Đồ Cảnh Trong&rdquo; và đọc như một
         bản đồ tạng phủ — nhưng đó chỉ là một nửa ý nghĩa. Với tư cách minh họa <em>y học</em>, nó trình bày quan hệ
         giữa các tạng phủ; với tư cách đồ hình <em>nội đan</em>, nó trình bày một phép tu luyện. Cùng một hình ảnh,
         hai cách đọc: thầy thuốc nhìn tạng phủ và kinh mạch, người tu luyện nhìn hành trình của Đan.
       </div>
-    </section>
+</section>
 
-    <section id="cach-doc" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 2</span>
-        <h2 class="chapter-title">Cách Đọc Bức Đồ: Từ Dưới Lên</h2>
-      </div>
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Cách Đọc Bức Đồ: Từ Dưới Lên</h2>
+
       <p>Như hầu hết các đồ hình cơ thể của Nội đan, bức đồ được đọc <strong>từ dưới lên trên</strong>, theo ba
       giai đoạn của phép tu luyện. Ba phần chính của nó là <strong>Hạ – Trung – Thượng Đan Điền</strong>
       (三丹田, tam đan điền).</p>
@@ -472,13 +781,12 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
       &ldquo;Sáng Rực Rỡ&rdquo;, Tỳ là <em>Thường Tại</em> &ldquo;Luôn Hiện Hữu&rdquo;, và Đởm là <em>Long Diệu</em>
       &ldquo;Rồng Chói Lọi&rdquo;. Đây không phải là các tạng mà là <strong>các chức năng được nhân cách hóa</strong> —
       thân–tâm của truyền thống được vẽ như một triều đình thiên giới.</p>
-    </section>
+</section>
 
-    <section id="kinh-mach" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 3</span>
-        <h2 class="chapter-title">Bản Đồ Kinh Mạch Trong Tranh</h2>
-      </div>
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Bản Đồ Kinh Mạch Trong Tranh</h2>
+
       <p>Dù không phải là sách giáo khoa châm cứu, bức đồ được xây dựng trên <strong>hệ kinh lạc</strong>
       (經絡, <em>jing-luo</em>) — và đặc biệt trên hai &ldquo;kỳ kinh bát mạch&rdquo; mà các nhà Đan đạo dùng trên hết:</p>
       <ul style="line-height:1.9;">
@@ -498,13 +806,12 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
       <p>Mọi thứ còn lại trong tranh — con trâu, khung cửi, ngọn tháp, các vị tiên — đều là <strong>biểu tượng</strong>
       cho một giai đoạn của cùng một hành trình. Hãy đọc cột sống như con đường, Tam Quan như ba trạm gác, và
       Tiểu Chu Thiên như chuyến đi vòng tròn.</p>
-    </section>
+</section>
 
-    <section id="hien-dai" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 4</span>
-        <h2 class="chapter-title">Đối Chiếu Lý Thuyết Kinh Lạc Hiện Đại</h2>
-      </div>
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Đối Chiếu Lý Thuyết Kinh Lạc Hiện Đại</h2>
+
       <p>Y học cổ truyền Trung Quốc mô tả mười hai kinh chính và tám kỳ kinh, qua đó khí và huyết vận hành, và
       trên đó có khoảng 361 huyệt. Nội Cảnh Đồ chủ yếu trình bày hai kỳ kinh — Nhâm và Đốc — cùng vòng tuần hoàn
       giữa chúng. Câu hỏi hiện đại hiển nhiên là: <em>liệu có một cấu trúc giải phẫu nào tương ứng với nó không?</em>
@@ -520,7 +827,7 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
   <em>chức năng và vùng chi phối</em>, không phải về một đường ống duy nhất.</figcaption>
 </figure>
 
-      <table class="tech-table">
+      <table class="styled-table">
   <thead>
     <tr><th>Trong bức đồ</th><th>Kinh mạch / Đông y cổ điển</th><th>Tương ứng hiện đại được đề xuất</th><th>Mức độ</th></tr>
   </thead>
@@ -567,7 +874,7 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
       đi xuống, giải phóng opioid nội sinh — nền tảng công trình của Hàn Tế Sinh về giảm đau bằng châm cứu — và
       làm tăng adenosine tại chỗ. Ở đây, &ldquo;kinh lạc&rdquo; là một <strong>mạng tín hiệu</strong>, không phải một ống dẫn.</p>
 
-      <div class="key-point">
+      <div class="key-takeaway">
         <strong>Bức đồ đã đúng điều gì — và lệch ở đâu.</strong><br>
         <em>Đúng:</em> rằng cơ thể là một mạng lưới liên tục, tự điều hòa; rằng cột sống là một kênh trung tâm của
         mạng lưới ấy; rằng thân và tâm là một vòng khép kín; và rằng phòng bệnh cùng việc tu dưỡng hằng ngày quan
@@ -577,20 +884,19 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
         là một bản vẽ giải phẫu sai — nó là một <strong>loại bản đồ khác</strong>, và là một loại bản đồ bền bỉ lạ thường.
       </div>
 
-      <div class="quote-box">
+      <div class="callout">
         <strong>Kết luận.</strong> Đọc như khoa học, bức đồ lỏng lẻo về giải phẫu nhưng gợi mở về sinh lý.
         Đọc như một hình ảnh dạy học, nó vẫn chưa có đối thủ: không sơ đồ hiện đại nào trình bày Tiểu Chu Thiên —
         Nhâm Mạch, Đốc Mạch, Tam Quan và Tam Đan Điền — với sự tiết kiệm và vẻ đẹp như vậy. Nghiên cứu hiện đại không
         bác bỏ bức tranh, mà <strong>dịch lại nó</strong> sang ngôn ngữ của mạc cân, hệ thần kinh tự chủ và
         sinh lý thần kinh của châm cứu.
       </div>
-    </section>
+</section>
 
-    <section id="tu-lieu" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Phụ Lục</span>
-        <h2 class="chapter-title">Tư Liệu &amp; Nguồn Tham Khảo</h2>
-      </div>
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Tư Liệu &amp; Nguồn Tham Khảo</h2>
+
       <p><strong>Nguồn gốc &amp; cách đọc bức đồ:</strong> Fabrizio Pregadio, <em>The Taoist Tradition</em> (Golden
       Elixir Press) và &ldquo;Neijing tu (Chart of the Inner Warp)&rdquo;; Livia Kohn, <em>Taoist Views of the Body</em>;
       Catherine Despeux, &ldquo;Nei-ching T'u and Hsiu-chen T'u&rdquo;; Louis Komjathy, bản dịch các đề tự của
@@ -600,54 +906,70 @@ body.dark-mode .vn-poem .tr{color:#a8a29e}
       Thomas Myers, <em>Anatomy Trains</em>; Melzack &amp; Wall về kiểm soát cổng; Hàn Tế Sinh về giảm đau bằng châm cứu;
       Kim Bong-han về hệ tiền mạch (còn tranh cãi).</p>
       <p><strong>Hình ảnh:</strong> các bản sao thuộc phạm vi công cộng của bia đá Bạch Vân Quán và cuộn tô màu thời Thanh.</p>
-      <div class="key-point" style="margin-top:1.6rem;">
+      <div class="key-takeaway" style="margin-top:1.6rem;">
         <strong>Đọc thêm trong thư viện:</strong>
         <a href="/vi/books/noi_kinh_do_vi.html">Nội Kinh Đồ — Bản Đồ Kinh Mạch Nội Tại</a> &middot;
         <a href="/vi/books/noi_canh_do_phan_tich_vi.html">Phân Tích Toàn Diện Nội Cảnh Đồ</a> &middot;
         <a href="/daoist/1756-huynh-dinh-noi-canh-kinh-thuviensachvn/">Huỳnh Đình Nội Cảnh Kinh</a>.
       </div>
 <!-- NEIJING VIDEO CROSSLINKS START -->
-      <div class="key-point" style="margin-top:1rem;">
+      <div class="key-takeaway" style="margin-top:1rem;">
         <strong>Xem giảng giải:</strong>
         <a href="/vi/videos/?q=noi+kinh+do">Nội Kinh Đồ — Giải thích Tiểu Chu Thiên</a> (16:36) ·
         <a href="/vi/videos/?q=bi+phap+tu+tien">Bí pháp tu tiên Nội Kinh Đồ</a> (20:14).
         Bản gốc <code>.mkv</code> được lưu trong kho nội bộ.
       </div>
 <!-- NEIJING VIDEO CROSSLINKS END -->
-    </section>
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Thư Viện Sách Thái Cực Quyền & Khí Công Tiếng Việt &middot; TaichiNOW</p>
-  <p>Bản dịch tiếng Việt chuyên sâu từ nguyên tác TS. Dương Tuấn Mẫn (YMAA) © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

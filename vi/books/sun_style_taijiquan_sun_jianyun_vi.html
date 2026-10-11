@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tôn Thức Thái Cực Quyền — Bản dịch toàn văn | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt trung thực từng trang của ấn phẩm 《孙式太极拳》(1957/1997) do nữ tông sư Tôn Kiếm Vân biên soạn — 65 trang, 214 đồ hình, kèm nguyên bản Hán văn.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -182,97 +175,395 @@ body.dark-mode .key-point { color: #a7f3d0; }
   font-size: 0.74rem; color: #a8a29e; font-weight: 600;
   letter-spacing: 0.05em; margin-bottom: 3px;
 }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tôn Thức Thái Cực Quyền — Bản dịch toàn văn | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt trung thực từng trang của ấn phẩm 《孙式太极拳》(1957/1997) do nữ tông sư Tôn Kiếm Vân biên soạn — 65 trang, 214 đồ hình, kèm nguyên bản Hán văn.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/books/sun_style_taijiquan_sun_jianyun_en_full.html" class="lang-switch">English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Tôn Thức Thái Cực Quyền — Bản dịch toàn văn | TaichiNOW</span>
-  </nav>
-
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Tác Phẩm</summary>
-    <ul class="toc-list">
-        <li class="toc-item"><a href="#p4" class="toc-link">Lời Tựa<span class="pg">tr.前言</span></a></li>
-        <li class="toc-item"><a href="#p5" class="toc-link">Mục Lục<span class="pg">tr.目录</span></a></li>
-        <li class="toc-item"><a href="#p6" class="toc-link">Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền<span class="pg">tr.1</span></a></li>
-        <li class="toc-item"><a href="#p7" class="toc-link">Tổng thuyết về Thái Cực Quyền<span class="pg">tr.2</span></a></li>
-        <li class="toc-item"><a href="#p8" class="toc-link">Tổng thuyết về Thái Cực Quyền (tiếp)<span class="pg">tr.3</span></a></li>
-        <li class="toc-item"><a href="#p9" class="toc-link">Tổng thuyết về Thái Cực Quyền (tiếp)<span class="pg">tr.4</span></a></li>
-        <li class="toc-item"><a href="#p10" class="toc-link">Thượng Biên (上编) — 1. Tên các thức<span class="pg">tr.5</span></a></li>
-        <li class="toc-item"><a href="#p11" class="toc-link">Thượng Biên. Hai: Thuyết minh động tác<span class="pg">tr.6</span></a></li>
-        <li class="toc-item"><a href="#p56" class="toc-link">1. Thôi thủ pháp của Thái Cực Quyền (太极拳推手法, Tàijíquán Tuīshǒu Fǎ)<span class="pg">tr.51</span></a></li>
-        <li class="toc-item"><a href="#p60" class="toc-link">2. Kỹ kích của Thái Cực Quyền (太极拳技击, Tàijíquán Jì Jī)<span class="pg">tr.55</span></a></li>
-    </ul>
-  </details>
-
-  <main class="reader-content">
-
-    <div class="book-hero">
-      <span class="book-badge">Bản Dịch Toàn Văn 65 Trang &middot; Kèm Nguyên Bản Hán Văn</span>
-      <h1>Tôn Thức Thái Cực Quyền</h1>
-      <div class="book-orig-title">《孙式太极拳》 — 孙剑云 编著 · 人民体育出版社 (1957 · tu đính 1997)</div>
-      <div class="book-author-meta">
-        <strong>Tác giả:</strong> Nữ tông sư Tôn Kiếm Vân (孙剑云, 1914–2003) — ái nữ của Đại tông sư Tôn Lộc Đường<br>
-        <strong>Nguyên tác:</strong> Nhân Dân Thể Dục Xuất Bản Xã (人民体育出版社), Bắc Kinh, 1957 — bản tu đính 1997<br>
-        <strong>Việt ngữ &amp; khảo tả đồ hình:</strong> Ban Biên khảo TaichiNOW
-      </div>
-      <p style="font-size:0.95rem;color:var(--text-secondary);margin:0.8rem 0 0;">
-        Bản dịch trung thực từng trang, kèm nguyên bản Hán văn và phần thuyết minh 214 đồ hình tư thế.
-      </p>
-      <div class="book-tags">
-        <span class="book-tag">Tôn Thức Thái Cực Quyền</span>
-        <span class="book-tag">Tôn Kiếm Vân</span>
-        <span class="book-tag">Thượng Biên</span>
-        <span class="book-tag">Hạ Biên</span>
-        <span class="book-tag">214 Đồ Hình</span>
-      </div>
-      <a class="book-pdf-link" href="/assets/books/sun_style/Ton_Thuc_Thai_Cuc_Quyen_VI.pdf" download>
-        <i class="fa-solid fa-file-pdf"></i> Tải PDF toàn văn (tiếng Việt)
-      </a>
-    </div>
-
-<aside id="toc">
-    <h2>Mục lục</h2>
-        <a class="toc-link" href="#p4">Lời Tựa<span class="pg">tr.前言</span></a>
-    <a class="toc-link" href="#p5">Mục Lục<span class="pg">tr.目录</span></a>
-    <a class="toc-link" href="#p6">Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền<span class="pg">tr.1</span></a>
-    <a class="toc-link" href="#p7">Tổng thuyết về Thái Cực Quyền<span class="pg">tr.2</span></a>
-    <a class="toc-link" href="#p8">Tổng thuyết về Thái Cực Quyền (tiếp)<span class="pg">tr.3</span></a>
-    <a class="toc-link" href="#p9">Tổng thuyết về Thái Cực Quyền (tiếp)<span class="pg">tr.4</span></a>
-    <a class="toc-link" href="#p10">Thượng Biên (上编) — 1. Tên các thức<span class="pg">tr.5</span></a>
-    <a class="toc-link" href="#p11">Thượng Biên. Hai: Thuyết minh động tác<span class="pg">tr.6</span></a>
-    <a class="toc-link" href="#p56">1. Thôi thủ pháp của Thái Cực Quyền (太极拳推手法, Tàijíquán Tuīshǒu Fǎ)<span class="pg">tr.51</span></a>
-    <a class="toc-link" href="#p60">2. Kỹ kích của Thái Cực Quyền (太极拳技击, Tàijíquán Jì Jī)<span class="pg">tr.55</span></a>
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Phần 1</a></li>
+        <li><a href="#sec01">Phần 2</a></li>
+        <li><a href="#sec02">Phần 3</a></li>
+        <li><a href="#sec03">Phần 4</a></li>
+        <li><a href="#sec04">Phần 5</a></li>
+        <li><a href="#sec05">Phần 6</a></li>
+        <li><a href="#sec06">Phần 7</a></li>
+        <li><a href="#sec07">Phần 8</a></li>
+        <li><a href="#sec08">Phần 9</a></li>
+        <li><a href="#sec09">Phần 10</a></li>
+      </ul>
+    </nav>
   </aside>
-  <section id="p4" class="chapter-block">
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>sun_style_taijiquan_sun_jianyun_vi</h1>
+    </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Phần 1</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 前言</div>
     <h2 class="chapter-title">Lời Tựa</h2>
@@ -282,14 +573,24 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Bởi trình độ còn hạn hẹp, sách khó tránh khỏi những chỗ chưa thỏa đáng, tha thiết mong bạn đọc chỉ giáo.</p>
 <p>— <strong>Người biên soạn</strong></p>
 <p><em>Ghi chú: số trang in là 前言 (Lời Tựa); trang scan là 4.</em></p>
-</section><section id="p5" class="chapter-block">
+</section>
+
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Phần 2</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 目录</div>
     <h2 class="chapter-title">Mục Lục</h2>
   </div>
 <div class="chapter-sub">Mục Lục</div>
 <p>Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền ················· 1 Tổng thuyết Thái Cực Quyền ··································· 2 <strong>THƯỢNG BIÊN (上编)</strong> ········································· 5 Nhất, Tên gọi động tác ······································ 5 Nhị, Thuyết minh động tác ··································· 6 Tam, Đồ thị chỉ phương hướng và lộ tuyến động tác Tôn Thức Thái Cực Quyền <strong>HẠ BIÊN (下编)</strong> ············································· 51 Nhất, Phương pháp thôi thủ Thái Cực Quyền ·················· 51 Nhị, Kỹ kích Thái Cực Quyền ································· 55 <strong>Phụ: Tư liệu tham khảo</strong> ···································· 57 Nhất, Vương Tông Nhạc: Thái Cực Quyền Luận ·················· 57 Nhị, Vũ Vũ Tương: Thái Cực Quyền Luận ······················· 58 Tam, Thập Tam Thế Hành Công Tâm Giải ························ 58 Tứ, Thập Tam Thế Ca Quyết ··································· 59 Ngũ, Thôi Thủ Ca Quyết ······································ 59 Lục, Lý Diệc Dư: Ngũ Tự Quyết ······························· 60 Thất, Tán Phóng Mật Quyết ··································· 61 Bát, Tẩu Giá Đả Thủ Hành Công Yếu Ngôn ······················ 61 <em>Ghi chú: đây là mục lục in trong sách; trang scan là 5.</em></p>
-</section><section id="p6" class="chapter-block">
+</section>
+
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phần 3</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 1</div>
     <h2 class="chapter-title">Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền</h2>
@@ -297,7 +598,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền</div>
 <p>Người sáng lập Tôn Thức Thái Cực Quyền là Tôn Phúc Toàn (孙福全, Tôn Phúc Toàn), tự Lộc Đường (禄堂, Lộc Đường), hiệu muộn là Hàm Trai (涵斋, Hàm Trai), người huyện Hoàn, Hà Bắc. Từ nhỏ ông đã hết lòng yêu thích võ thuật. Ông theo thầy Lý Khôi Viên (李魁垣, Lý Khôi Viên) học Hình Ý Quyền (形意拳, Hình Ý Quyền), sau đó học nơi thầy của Lý là Quách Vân Thâm (郭云深, Quách Vân Thâm), được tiên sinh Quách truyền chân truyền, lại theo thầy Trình Đình Hoa (程廷华, Trình Đình Hoa) học Bát Quái Quyền (八卦拳, Bát Quái Quyền). Trải qua mấy năm nghiền ngẫm mài giũa, công phu sâu dày. Về sau ông lại theo thầy Hác Vi Chân (郝为真, Hác Vi Chân) học Thái Cực Quyền. Tôn Lộc Đường (孙禄堂, Tôn Lộc Đường) suốt đời nghiên cứu võ thuật, tinh thông Hình Ý, Bát Quái và thuật Thái Cực Quyền, đồng thời gom tinh nghĩa của ba nhà quyền thuật lại, hòa lẫn thành một mà sáng lập nên Tôn Thức Thái Cực Quyền.</p>
 <p>Đặc điểm của Tôn Thức Thái Cực Quyền là: tiến thoái tương tùy, bước tới ắt phải theo, bước lui ắt phải rút. Động tác thư triển viên hoạt, nhanh nhẹn tự nhiên. Khi luyện, hai chân hư thực (虚实) phân minh. Toàn bài khi luyện lên như mây trôi nước chảy, liên miên bất đoạn. Mỗi khi xoay mình thì lấy "khai", "hợp" tiếp nhau, cho nên còn gọi là Khai Hợp Hoạt Bộ Thái Cực Quyền (开合活步太极拳, Khai Hợp Hoạt Bộ Thái Cực Quyền). Thích hợp cho người ở mọi lứa tuổi, mọi thể chất luyện tập.</p>
-</section><section id="p7" class="chapter-block">
+</section>
+
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Phần 4</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 2</div>
     <h2 class="chapter-title">Tổng thuyết về Thái Cực Quyền</h2>
@@ -310,7 +616,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Miệng</strong>: Miệng phải hư hợp, lưỡi đặt lên vòm miệng trên, dùng mũi hô hấp.</p>
 <p><strong>Ngực</strong>: Ngực phải hàm súc, không được ưỡn ra. Ngực hàm thì khí trầm đan điền. Ngực ưỡn thì khí dồn lên vùng ngực, thượng trọng hạ khinh, gót chân phù phiếm, là điều kỵ của nhà quyền. Ngực hàm thì khí dán vào lưng, lực do sống lưng mà phát, ấy là chân lực. Trên đây tức là cái gọi là hàm hung bạt bối (含胸拔背, hàm hung bạt bối).</p>
 <p><strong>Vai</strong>: Hai vai ắt phải tùng khai, buông xuống. Tuyệt kỵ nhún vai, nếu không thì khí dồn lên trên.</p>
-</section><section id="p8" class="chapter-block">
+</section>
+
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phần 5</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 3</div>
     <h2 class="chapter-title">Tổng thuyết về Thái Cực Quyền (tiếp)</h2>
@@ -324,7 +635,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Ý và lực</strong>: Một trong những đặc điểm của Thái Cực Quyền là dụng ý bất dụng lực. Vì Thái Cực Quyền yêu cầu dùng hoạt lực, toàn thân phải tùng khai, không để mảy may chuyết lực lưu trệ giữa cân cốt huyết mạch. Yêu cầu cực nhu nhuyễn mà cực kiên cương, cực trầm trọng mà cực linh hoạt. Ý đáo lực đáo, vận dụng tự như. Nếu dùng chuyết lực thì trì trệ bất linh. Lực phù ư ngoại thì không hợp với yêu cầu của Thái Cực Quyền. Thế nào là dụng ý bất dụng lực, làm sao hoạt lực tự sinh? Ấy là vì ý chi sở chí khí tức chí, như thế khí huyết lưu chú, ngày ngày quán thâu, chu lưu khắp kinh lạc toàn thân, không lúc nào đình trệ. Luyện lâu thì chân chính nội kình (内劲) tức có thể sinh ra.</p>
 <p><strong>Động và tĩnh</strong>: Tĩnh tọa của khí công là tĩnh trung cầu động; quyền thuật là động trung cầu tĩnh. Khi luyện quyền tâm phải tĩnh, tinh thần tập trung, động tác mới có thể viên hoạt.</p>
 <p>Trên đây đã phân biệt luận thuật các yếu lĩnh vận động. Nhưng người học ắt phải chú ý Thái Cực Quyền là một môn vận động toàn thân, cái luyện là ở thần. Tinh thần là chủ soái, thân thể là kẻ sai khiến; tinh thần có thể đề khởi được thì cử động tự nhiên khinh linh. Tâm ý và động tác hình thể phối hợp nhất trí, mới có thể nội ngoại tương hợp vi nhất. Khi luyện phải chú ý thượng hạ tương tùy, các bộ phận thân thể hoàn chỉnh nhất trí. Nếu có một chỗ động tác bất chỉnh, thì sẽ khiến thần khí tán loạn. Hơn nữa, khi luyện quyền phải dĩ ý hành lực, tương liên bất đoạn, "như Trường Giang đại hà, thao thao bất tuyệt". "Vận động như trừu ty" —</p>
-</section><section id="p9" class="chapter-block">
+</section>
+
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Phần 6</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 4</div>
     <h2 class="chapter-title">Tổng thuyết về Thái Cực Quyền (tiếp)</h2>
@@ -332,28 +648,33 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Tổng thuyết về Thái Cực Quyền (tiếp)</div>
 <p>— tức là ý ấy vậy.</p>
 <p>Để tiện cho bạn đọc ghi nhớ, nay biên những yếu điểm ấy thành khẩu quyết như sau:</p>
-<blockquote class="quote-box">Thái Cực Quyền vốn nội gia quyền,</blockquote>
-<blockquote class="quote-box">Bất dụng chuyết lực ý đương tiên.</blockquote>
-<blockquote class="quote-box">Hư linh đỉnh kình thần quán chú,</blockquote>
-<blockquote class="quote-box">Hạ hài thu hồi tức tự nhiên.</blockquote>
-<blockquote class="quote-box">Hàm hung tự nhiên năng bạt bối,</blockquote>
-<blockquote class="quote-box">Thiết mạc hình thành "la oa kiên".</blockquote>
-<blockquote class="quote-box">Luyện thời trầm kiên hựu trụy khuỷu,</blockquote>
-<blockquote class="quote-box">Kiên tủng khuỷu huyền bất thị quyền.</blockquote>
-<blockquote class="quote-box">Tháp yêu năng khởi toàn thân lực,</blockquote>
-<blockquote class="quote-box">Yêu bất tháp trụ linh hoạt nan.</blockquote>
-<blockquote class="quote-box">Lưỡng thối uốn cong phân hư thực,</blockquote>
-<blockquote class="quote-box">Thái Cực yếu nghĩa tại giá lý biên.</blockquote>
-<blockquote class="quote-box">Hô hấp hạ trầm đan điền huyệt,</blockquote>
-<blockquote class="quote-box">Thuần nhiệm tự nhiên mạc cưỡng khiên.</blockquote>
-<blockquote class="quote-box">Thượng hạ tương tùy thành nhất thể,</blockquote>
-<blockquote class="quote-box">Động tác miên miên vĩnh tương liên.</blockquote>
-<blockquote class="quote-box">Động trung cầu tĩnh tĩnh trung động,</blockquote>
-<blockquote class="quote-box">Luyện thời thần khí vụ chu toàn.</blockquote>
-<blockquote class="quote-box">Thiết ký yếu điểm mạc di vong,</blockquote>
-<blockquote class="quote-box">Trì cửu tập luyện ích tự hiển.</blockquote>
+<blockquote class="callout">Thái Cực Quyền vốn nội gia quyền,</blockquote>
+<blockquote class="callout">Bất dụng chuyết lực ý đương tiên.</blockquote>
+<blockquote class="callout">Hư linh đỉnh kình thần quán chú,</blockquote>
+<blockquote class="callout">Hạ hài thu hồi tức tự nhiên.</blockquote>
+<blockquote class="callout">Hàm hung tự nhiên năng bạt bối,</blockquote>
+<blockquote class="callout">Thiết mạc hình thành "la oa kiên".</blockquote>
+<blockquote class="callout">Luyện thời trầm kiên hựu trụy khuỷu,</blockquote>
+<blockquote class="callout">Kiên tủng khuỷu huyền bất thị quyền.</blockquote>
+<blockquote class="callout">Tháp yêu năng khởi toàn thân lực,</blockquote>
+<blockquote class="callout">Yêu bất tháp trụ linh hoạt nan.</blockquote>
+<blockquote class="callout">Lưỡng thối uốn cong phân hư thực,</blockquote>
+<blockquote class="callout">Thái Cực yếu nghĩa tại giá lý biên.</blockquote>
+<blockquote class="callout">Hô hấp hạ trầm đan điền huyệt,</blockquote>
+<blockquote class="callout">Thuần nhiệm tự nhiên mạc cưỡng khiên.</blockquote>
+<blockquote class="callout">Thượng hạ tương tùy thành nhất thể,</blockquote>
+<blockquote class="callout">Động tác miên miên vĩnh tương liên.</blockquote>
+<blockquote class="callout">Động trung cầu tĩnh tĩnh trung động,</blockquote>
+<blockquote class="callout">Luyện thời thần khí vụ chu toàn.</blockquote>
+<blockquote class="callout">Thiết ký yếu điểm mạc di vong,</blockquote>
+<blockquote class="callout">Trì cửu tập luyện ích tự hiển.</blockquote>
 <p><em>Ghi chú: khẩu quyết trên đây là vần quyết dễ nhớ, giữ nguyên Hán-Việt để bảo tồn nhịp điệu và ý nghĩa gốc.</em></p>
-</section><section id="p10" class="chapter-block">
+</section>
+
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Phần 7</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 5</div>
     <h2 class="chapter-title">Thượng Biên (上编) — 1. Tên các thức</h2>
@@ -386,7 +707,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Thức thứ bảy mươi: Đảo Niển Hầu (倒撵猴, Đảo Niển Hầu) — Thức thứ chín mươi sáu: Âm Dương Hỗn Nhất (阴阳混一, Âm Dương Hỗn Nhất)</p>
 <p>Thức thứ bảy mươi mốt: Thủ Huy Tỳ Bà (thức phải) (手挥琵琶（右式）) — Thức thứ chín mươi bảy: Thâu Thức (收式)</p>
 <p>Thức thứ bảy mươi hai: Bạch Hạc Lượng Sí (白鹤亮翅, Bạch Hạc Lượng Sí)</p>
-</section><section id="p11" class="chapter-block">
+</section>
+
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Phần 8</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 6</div>
     <h2 class="chapter-title">Thượng Biên. Hai: Thuyết minh động tác</h2>
@@ -1072,7 +1398,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Tiếp thức trước, hai tay biến thành chưởng tách ra hai bên tới hai bên hông; chân trái khép sát chân phải, thân thể đứng thẳng; mắt nhìn ngang. (Hình 208)</p>
 <p><span id="p55" class="page-anchor"></span><span id="p56" class="page-anchor"></span>(Trang này không có ảnh minh họa nào được in.) (Trang quét này là trang trắng: không có chữ in, không có ảnh minh họa và không có số trang in nào trên đó.)</p>
 <p>Hạ biên (下编, Part Two)</p>
-</section><section id="p56" class="chapter-block">
+</section>
+
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Phần 9</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 51</div>
     <h2 class="chapter-title">1. Thôi thủ pháp của Thái Cực Quyền (太极拳推手法, Tàijíquán Tuīshǒu Fǎ)</h2>
@@ -1118,7 +1449,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Án bao gồm nhẹ nhàng linh hoạt hoặc nặng nề chắc thực, tả thực hữu hư hoặc hữu thực tả hư, hai tay mở hoặc hợp; nói chung phải tùy thế mà biến.</p>
 <p>Khi hai người đối luyện thôi thủ, ngoài việc chú ý thể nghiệm phương pháp dụng kình, ắt phải làm được tùy khuất tựu thân, không buông không đỉnh, không được dùng sức vụng, tĩnh tâm thính kình. Lâu ngày thì có thể dẫn vào rơi vào chỗ không, lay động bốn lạng bạt ngàn cân.</p>
 <p>Về "thính kình", tuyệt đối không được lầm tưởng là hai bên dùng lực đối đỉnh. Thường thấy khi thôi thủ, hai người dùng sức chống đỡ lẫn nhau, một bên hỏi đã có kình chưa, một bên đáp có hoặc không — đó là sai lầm lớn. "Thính kình" là cảm nhận độ lớn, hướng… của lực mà đối phương dùng để liền đó biến hóa, tuyệt đối không được đỉnh lại. Khi mới luyện, trước luyện hai cánh tay, luyện lâu thì toàn thân đều có thể cảm nhận. Có thể thính kình thì khi đối phương phát lực mới có thể hóa đi, khiến đối phương rơi vào chỗ không. Không thể thính kình thì không cần so tài với người khác, người học ắt phải lưu ý.</p>
-</section><section id="p60" class="chapter-block">
+</section>
+
+<section id="sec09">
+<span id="chuong-9"></span>
+<h2>Phần 10</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 55</div>
     <h2 class="chapter-title">2. Kỹ kích của Thái Cực Quyền (太极拳技击, Tàijíquán Jì Jī)</h2>
@@ -1144,46 +1480,55 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Kình (nâng) mở kình đối phương, mượn lực đối phương — trong đó có chữ linh (灵). Dẫn đến trước thân, kình mới bắt đầu súc — trong đó có chữ liễm (敛). Tùng mở kình ta, chớ để cong — trong đó có chữ tĩnh (静). Lúc phóng, yêu và cước nhận đúng đích — trong đó có chữ chỉnh (整).</p>
 <p>Bát, Tẩu giá đả thủ hành công yếu ngôn Tích nhân vân: năng dẫn tiến lạc không, tiện năng tứ lạng bát thiên cân; bất năng dẫn tiến lạc không, tiện bất năng tứ lạng bát thiên cân — người xưa nói: có thể dẫn tiến lạc không thì có thể tứ lạng bát thiên cân; không thể dẫn tiến lạc không thì không thể tứ lạng bát thiên cân. Ngữ thậm khái quát, sơ học vị do lĩnh ngộ, dư gia sổ ngữ dĩ giải chi, tỷ hữu chí tư kỹ giả, đắc sở tòng nhập, thứ nhật tiến hữu công hĩ — lời ấy rất khái quát, người mới học chưa thể lĩnh ngộ, ta thêm mấy lời để giải thích, mong kẻ có chí với nghề này được chỗ để vào, hầu ngày ngày tiến bộ có công. Dục yếu dẫn tiến lạc không, tứ lạng bát thiên cân, tiên yếu tri kỷ tri bỉ — rơi vào khoảng không, tứ lạng bát thiên cân, trước phải tri kỷ tri bỉ. Dục yếu tri kỷ tri bỉ, tiên yếu xả kỷ tòng nhân — muốn tri kỷ tri bỉ, trước phải xả kỷ tòng nhân. Dục yếu xả kỷ tòng nhân, tiên yếu đắc cơ đắc thế. Dục yếu đắc cơ đắc thế, tiên yếu chu thân nhất gia. Dục yếu chu thân nhất gia, tiên yếu chu thân vô hữu khuyết hãm — muốn toàn thân một nhà, trước phải toàn thân không có khuyết hãm. Dục yếu chu thân vô hữu khuyết hãm, tiên yếu thần khí cổ đãng. Dục yếu thần khí cổ đãng, tiên yếu đề khởi tinh thần. Dục yếu đề khởi tinh thần, tiên yếu thần bất ngoại tán. Dục yếu thần bất ngoại tán, tiên yếu thần khí thu liễm nhập cốt — thần khí thu liễm vào xương. Dục yếu thần khí thu liễm nhập cốt, tiên yếu lưỡng thối tiền tiết hữu lực — trước phải hai chân mạnh ở đốt trước. Lưỡng kiên tùng khai, khí hướng hạ trầm, kình khởi vu cước cân, giao hoán tại thối, hàm súc tại hung, vận động tại lưỡng kiên, chủ tể tại yêu, thượng dữ lưỡng bác tương hệ, hạ dữ lưỡng thối tương tùy, kình do nội hoán — hai vai tùng mở, khí chìm xuống dưới, kình khởi từ gót chân, trao đổi nơi chân, hàm súc nơi ngực, vận động nơi hai vai, chủ tể nơi yêu; trên liên hệ với hai cánh tay, dưới tùy theo hai chân, kình đổi từ bên trong. Thu tiện thị hợp, phóng tức thị khai — thu tức là hợp, phóng tức là khai. Tĩnh tắc câu tĩnh, tĩnh thị hợp, hợp trung ngụ khai — tĩnh thì đều tĩnh, tĩnh là hợp, trong hợp có chứa khai. Động tắc câu động, động thị khai, khai trung ngụ hợp — động thì đều động, động là khai, trong khai có chứa hợp. Xúc chi tắc toàn chuyển tự như, vô bất đắc lực, tài năng dẫn tiến lạc không, tứ lạng bát thiên cân — chạm đến thì xoay chuyển tự như, không gì không đắc lực, mới có thể dẫn tiến lạc không, tứ lạng bát thiên cân. Bình nhật tẩu giá thị tri kỷ công phu — ngày thường tẩu giá là công phu tri kỷ. Nhất động thế vấn tiên vấn tự kỷ chu thân hợp thượng sổ hạng phủ? Thiểu hữu bất hợp, tức tốc cải hoán — mỗi khi động thế, trước phải hỏi mình toàn thân có hợp với mấy điều ấy không; hơi không hợp thì đổi ngay. Tẩu giá sở dĩ yếu mạn bất yếu khoái — tẩu giá cho nên cần chậm chứ không cần nhanh. Đả thủ thị tri nhân công phu, động tĩnh cố thị tri nhân, nhưng thị vấn kỷ — đả thủ là công phu tri nhân; động tĩnh tuy là tri nhân, vẫn là hỏi mình. Tự kỷ an bài đắc hảo, nhân nhất ai ngã, ngã bất động bỉ ti hào, sấn thế nhi nhập, tiếp định bỉ kình, bỉ tự điệt xuất — mình sắp đặt cho tốt, người vừa chạm đến ta, ta không động đến họ một ly, nhân thế mà vào, tiếp định kình họ, họ tự té ra. Như tự kỷ hữu bất đắc lực xử, tiện thị song trọng vị hóa, yếu vu âm dương khai hợp cầu chi — nếu mình có chỗ không đắc lực, ấy là song trọng chưa hóa, phải cầu ở âm dương khai hợp. Sở vị tri kỷ tri bỉ, bách chiến bách thắng dã — ấy gọi là tri kỷ tri bỉ, bách chiến bách thắng. Thiết kế bìa: Tôn Kim Vinh, Chu Mộng Lân Biên tập: Lý Văn Anh Số hiệu thống nhất: 7015·2260 Định giá: 0,60 nguyên</p>
 </section>
-
-    <nav class="page-nav">
-      <a href="/vi/books/chen_xin_taijiquan_tushuo_vi.html" class="prev">&#8592; Trước · Trần Hinh Đồ Thuyết</a>
-      <a href="/vi/books/" class="home">&#8962; Trang Chủ</a>
-      <a href="/vi/books/yang_style_taijiquan_fu_zhongwen_vi.html" class="next">Sau · Dương Thức Thái Cực Quyền &#8594;</a>
-    </nav>
-
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Trang web này được xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam by Henry Phạm</p>
-  <p>TaichiNOW — Thư viện Thái Cực Quyền</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

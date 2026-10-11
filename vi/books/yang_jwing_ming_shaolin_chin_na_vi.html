@@ -1,15 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ứng Dụng Toàn Diện Thiếu Lâm Cầm Nã — TS. Dương Tuấn Mẫn | TaichiNOW</title>
-<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm Comprehensive Applications of Shaolin Chin Na của TS. Dương Tuấn Mẫn (YMAA) — nghệ thuật bắt khóa Trung Hoa áp dụng cho mọi võ phái, hơn 1500 ảnh minh họa. Bản dịch đầy đủ 7 chương.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -83,105 +76,409 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 .figure-image-container:hover img { transform: scale(1.015); }
 .figure-caption { padding: 0.7rem 1rem; font-size: 0.85rem; color: #78716c; font-style: italic; line-height: 1.6; }
 .figure-note { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 0.75rem 1rem; border-radius: 0.5rem; font-size: 0.9rem; color: #14532d; margin: 1.5rem 0; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ứng Dụng Toàn Diện Thiếu Lâm Cầm Nã — TS. Dương Tuấn Mẫn | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu tác phẩm Comprehensive Applications of Shaolin Chin Na của TS. Dương Tuấn Mẫn (YMAA) — nghệ thuật bắt khóa Trung Hoa áp dụng cho mọi võ phái, hơn 1500 ảnh minh họa. Bản dịch đầy đủ 7 chương.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/vi/">Trang Chủ</a>
-    <a href="/vi/techniques/">Kỹ Thuật</a>
-    <a href="/vi/books/" class="active">Thư Viện Sách</a>
-    <a href="/vi/videos/">Video</a>
-    <a href="/vi/podcast/">Podcast</a>
-    <a href="/vi/philosophy/">Triết Lý</a>
-    <a href="/vi/history/">Lịch Sử</a>
-    <a href="/vi/contact/">Liên Hệ</a>
-    <a href="/tai-chi/" class="lang-switch">🇬🇧 English</a>
-<a href="/all-articles/" class="">Tất Cả Bài Viết</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Mục Lục Đầy Đủ</summary>
-    <ul class="toc-list">
-      <li class="toc-item"><a href="#loi-dan" class="toc-link">Lời Dẫn: Vì Sao Cầm Nã Hiệu Quả</a></li>
-      <li class="toc-item"><a href="#ch1" class="toc-link">Chương 1 — Khái Niệm Tổng Quát</a></li>
-      <li class="toc-item"><a href="#ch1-nam-nhom" class="toc-link sub">1.2 · Năm Nhóm Cầm Nã &amp; Lý Thuyết</a></li>
-      <li class="toc-item"><a href="#ch1-cap-do" class="toc-link sub">1.3 · Các Cấp Độ Kỹ Thuật</a></li>
-      <li class="toc-item"><a href="#ch1-suc-khoe" class="toc-link sub">1.4 · Cầm Nã &amp; Sức Khỏe</a></li>
-      <li class="toc-item"><a href="#ch1-gioi-thieu" class="toc-link sub">1.5 · Về Cuốn Sách Này</a></li>
-      <li class="toc-item"><a href="#ch2" class="toc-link">Chương 2 — Cầm Nã Chống Đòn Tay Không</a></li>
-      <li class="toc-item"><a href="#ch2-ban-tay-mo" class="toc-link sub">2.2 · Chống Bàn Tay Mở</a></li>
-      <li class="toc-item"><a href="#ch2-chat" class="toc-link sub">2.3 · Chống Đòn Chém</a></li>
-      <li class="toc-item"><a href="#ch2-long-ban-tay" class="toc-link sub">2.4 · Chống Đòn Lòng Bàn Tay</a></li>
-      <li class="toc-item"><a href="#ch2-nam-dam" class="toc-link sub">2.5 · Chống Đòn Nắm Đấm</a></li>
-      <li class="toc-item"><a href="#ch3" class="toc-link">Chương 3 — Cầm Nã Chống Gạt Chặn</a></li>
-      <li class="toc-item"><a href="#ch4" class="toc-link">Chương 4 — Cầm Nã Chống Đá</a></li>
-      <li class="toc-item"><a href="#ch5" class="toc-link">Chương 5 — Cầm Nã Chống Dao</a></li>
-      <li class="toc-item"><a href="#ch6" class="toc-link">Chương 6 — Cầm Nã Chống Nắm Giữ</a></li>
-      <li class="toc-item"><a href="#ch7" class="toc-link">Chương 7 — Cầm Nã Tấn Công</a></li>
-      <li class="toc-item"><a href="#phu-luc" class="toc-link">Phụ Lục — Thuật Ngữ &amp; Hình Minh Họa</a></li>
-    </ul>
-  </details>
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/vi/">Trang Chủ</a>
-    <span class="sep">/</span>
-    <a href="/vi/books/">Thư Viện Sách</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Ứng Dụng Toàn Diện Thiếu Lâm Cầm Nã</span>
-  </nav>
-
-  <main class="reader-content">
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Lời Dẫn: Vì Sao Cầm Nã Hiệu Quả</a></li>
+        <li><a href="#sec01">Khái Niệm Tổng Quát</a></li>
+        <li><a href="#sec02">Cầm Nã Chống Đòn Tay Không</a></li>
+        <li><a href="#sec03">Cầm Nã Chống Gạt Chặn</a></li>
+        <li><a href="#sec04">Cầm Nã Chống Đá</a></li>
+        <li><a href="#sec05">Cầm Nã Chống Tấn Công Bằng Dao</a></li>
+        <li><a href="#sec06">Cầm Nã Chống Bị Nắm Giữ</a></li>
+        <li><a href="#sec07">Cầm Nã Tấn Công</a></li>
+        <li><a href="#sec08">Thuật Ngữ &amp;amp; Hình Minh Họa</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Thực Chiến Tự Vệ &middot; YMAA Publication Center</span>
-      <h1>Ứng Dụng Toàn Diện Thiếu Lâm Cầm Nã</h1>
-      <div class="book-orig-title">Comprehensive Applications of Shaolin Chin Na: The Practical Defense of Chinese Seizing Arts for All Styles</div>
-      <div class="book-author-meta"><strong>Tác giả:</strong> TS. Dương Tuấn Mẫn (Dr. Yang, Jwing-Ming)<br>
-        <strong>Đơn vị xuất bản gốc:</strong> YMAA Publication Center, Jamaica Plain, Massachusetts (ISBN 0-940871-36-X)<br>
-        <strong>Bản dịch tiếng Việt chuyên sâu:</strong> Ban Biên khảo Võ học Nội gia TaichiNOW</div>
-      <div class="book-tags">
-        <span class="book-tag">✋ Thiếu Lâm Cầm Nã</span>
-        <span class="book-tag">🛡️ Tự Vệ</span>
-        <span class="book-tag">🔒 Khóa Khớp</span>
-        <span class="book-tag">🎯 Điểm Huyệt</span>
-        <span class="book-tag">📖 7 Chương · 1500+ Ảnh</span>
-      </div>
+      <h1>yang_jwing_ming_shaolin_chin_na_vi</h1>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Lời Dẫn: Vì Sao Cầm Nã Hiệu Quả</h2>
 
-    <p class="figure-note">Bản dịch toàn văn 7 chương. Nhấp vào bất kỳ hình nào để mở ảnh gốc ở kích thước đầy đủ. — <em>Full 7-chapter translation. Click any illustration to open the full-size original.</em></p>
-
-    <!-- ================================================================
-         LỜI DẪN
-    ================================================================= -->
-    <section id="loi-dan" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Dẫn Nhập</span>
-        <h2 class="chapter-title">Lời Dẫn: Vì Sao Cầm Nã Hiệu Quả</h2>
-      </div>
 
       <p>Cuốn sách này dành cho người muốn có một kỹ năng tự vệ <strong>nhanh, mạnh và dứt khoát</strong> mà không cần học một hệ phái võ thuật hoàn toàn mới. Chin Na — nghệ thuật bắt khóa của võ thuật Trung Hoa — có thể <em>tích hợp vào bất kỳ môn phái nào một cách nhanh chóng và dễ dàng</em>.</p>
 
-      <div class="key-point">Cốt lõi của Cầm Nã là <strong>khống chế đối phương bằng cách khóa một khớp duy nhất</strong>. Một khớp bị khóa đúng cách sẽ vô hiệu hóa toàn bộ cơ thể — không cần sức mạnh, không cần tốc độ.</div>
+      <div class="key-takeaway">Cốt lõi của Cầm Nã là <strong>khống chế đối phương bằng cách khóa một khớp duy nhất</strong>. Một khớp bị khóa đúng cách sẽ vô hiệu hóa toàn bộ cơ thể — không cần sức mạnh, không cần tốc độ.</div>
 
       <p>Đây là tác phẩm có <strong>hơn 1.500 bức ảnh động tác và minh họa</strong> — một trong những cẩm nang Cầm Nã đầy đủ nhất từng được xuất bản. Sách được chia thành bảy chương, đi từ lý thuyết nền tảng tới hàng trăm đòn khóa cụ thể trong mọi tình huống giao đấu: chống đánh tay không, chống gạt chặn, chống đá, chống dao, chống bị nắm giữ, và cuối cùng là các đòn Cầm Nã tấn công dùng cho lực lượng an ninh.</p>
 
-      <div class="quote-box">"Trong mọi đòn khóa khớp Cầm Nã, luôn ẩn chứa một hoặc nhiều đòn đánh có thể làm bị thương hay giết chết đối phương. Đó là điều cần thiết — bởi đôi khi khóa khớp trở nên vô hiệu do mồ hôi trơn hoặc do sức mạnh phi thường của đối thủ."<br>— TS. Dương Tuấn Mẫn</div>
+      <div class="callout">"Trong mọi đòn khóa khớp Cầm Nã, luôn ẩn chứa một hoặc nhiều đòn đánh có thể làm bị thương hay giết chết đối phương. Đó là điều cần thiết — bởi đôi khi khóa khớp trở nên vô hiệu do mồ hôi trơn hoặc do sức mạnh phi thường của đối thủ."<br>— TS. Dương Tuấn Mẫn</div>
 
       <h4 class="section-head">Về tác giả</h4>
       <p>TS. Dương Tuấn Mẫn (Dr. Yang, Jwing-Ming) sinh năm 1946, bắt đầu học võ Trung Hoa từ năm 1961 dưới sự dẫn dắt của Đại sư Bạch Hạc Thiếu Lâm Tăng Bạch Hạc (Shaolin White Crane - Grandmaster Cheng, Gin-Gsao). Ông tốt nghiệp Cao học tại Đài Loan, lấy bằng Thạc sĩ Khoa học tại Đại học Purdue (Hoa Kỳ) năm 1974 và bằng Tiến sĩ ngành Kỹ thuật Cơ khí năm 1980. Năm 1982, ông thành lập <strong>Học viện Võ thuật Dương thị (YMAA)</strong> tại Boston.</p>
       <p>Với hơn ba mươi năm kinh nghiệm giảng dạy, TS. Dương là tác giả của hơn hai mươi hai đầu sách về võ thuật và Khí Công, được dịch sang nhiều thứ tiếng và giảng dạy tại hơn mười hai quốc gia trên thế giới (Canada, Mexico, Pháp, Ý, Ba Lan, Tây Ban Nha, Ireland, Hungary, Thụy Sĩ, Đức, Latvia, Ả Rập Saudi).</p>
 
       <h4 class="section-head">Cấu trúc bảy chương</h4>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Chương</th><th>Nội dung</th></tr></thead>
         <tbody>
           <tr><td><strong>1</strong></td><td>Khái niệm tổng quát — lý thuyết, năm nhóm Cầm Nã, cấp độ, sức khỏe.</td></tr>
@@ -193,16 +490,12 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <tr><td><strong>7</strong></td><td>Cầm Nã tấn công — kỹ thuật chủ động cho an ninh, cảnh sát.</td></tr>
         </tbody>
       </table>
-    </section>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 1 — GENERAL CONCEPTS  (pages 16-33)
-    ================================================================= -->
-    <section id="ch1" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 1</span>
-        <h2 class="chapter-title">Khái Niệm Tổng Quát</h2>
-      </div>
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Khái Niệm Tổng Quát</h2>
+
 
       <p>Trong tất cả các tình huống xung đột, tấn công bằng tay không là cơ bản nhất và có lẽ cũng phổ biến nhất. Trước khi đi vào các đòn cụ thể, chương này trình bày toàn bộ nền tảng lý thuyết của Cầm Nã: định nghĩa, phân loại, cấp độ và lợi ích sức khỏe.</p>
 
@@ -253,13 +546,13 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <p>Trước khi đi vào từng nhóm, cần hiểu rằng <em>không có kỹ thuật nào hoàn hảo cho mọi tình huống</em>. Bạn làm gì phụ thuộc vào đối phương làm gì — và vì đối phương sẽ không đứng yên để bạn khống chế, bạn phải biết thích ứng Cầm Nã với hoàn cảnh. Giống như mọi kỹ thuật võ thuật khác, Cầm Nã của bạn phải phản ứng và bám theo tình huống; kỹ thuật phải linh hoạt, sống động, nhanh và mạnh.</p>
 
-      <div class="key-point">Cầm Nã phải <strong>đánh vào sự bất ngờ</strong> của đối phương. Khi bắt khóa, bạn phải chạm vào cơ thể đối phương — nên nếu anh ta biết trước ý định của bạn, sẽ cực kỳ khó thực hiện thành công. Trong trường hợp đó, bạn có thể buộc phải dùng đòn đánh huyệt thay vì đòn bắt khóa.</div>
+      <div class="key-takeaway">Cầm Nã phải <strong>đánh vào sự bất ngờ</strong> của đối phương. Khi bắt khóa, bạn phải chạm vào cơ thể đối phương — nên nếu anh ta biết trước ý định của bạn, sẽ cực kỳ khó thực hiện thành công. Trong trường hợp đó, bạn có thể buộc phải dùng đòn đánh huyệt thay vì đòn bắt khóa.</div>
 
       <p>Thông thường, <strong>đánh vào đối phương dễ hơn nhiều so với khống chế anh ta</strong>. Khống chế đối thủ bằng một đòn Cầm Nã là cách thể hiện lòng nhân từ với người bạn không muốn làm bị thương. Để áp dụng thành công một đòn Cầm Nã bắt khóa, bạn thường cần giả đòn hoặc đánh trước để đưa đối phương vào thế. Ví dụ, bạn dùng một cú đấm khiến đối phương phải gạt, và khi anh ta gạt, bạn nhanh chóng nắm lấy tay anh ta và dùng Cầm Nã để khống chế. Hoặc bạn có thể đá vào ống chân trước để kéo sự chú ý của anh ta xuống chân, rồi ngay lập tức nắm tay và khống chế.</p>
 
       <p>Có năm nhóm Cầm Nã, và cuốn sách này sẽ trình bày chi tiết cả năm, ngoại trừ hai nhóm cuối (bấm huyệt và điểm mạch) chỉ được giới thiệu ở mức dẫn nhập, vì chúng đòi hỏi hiểu biết sâu về vận hành Khí, châm cứu và các phương pháp luyện tập chuyên biệt.</p>
 
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tên gốc</th><th>Nghĩa tiếng Việt</th><th>Đặc điểm</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Fen Jin / Zhua Jin (分筋 / 抓筋)</td><td><strong>Phân Cân</strong> — chia tách / bắt gân cơ</td><td>Làm rách cơ và gân, gây đau cực độ.</td></tr>
@@ -289,7 +582,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <li><strong>Nhóm 2 — đánh vào các cơ bao quanh phổi:</strong> Do sự bảo vệ của xương sườn, rất khó đánh trực tiếp vào các cơ quanh phổi. Tuy nhiên, một số cơ này vươn ra ngoài xương sườn. Khi bị đánh, chúng co lại vì đau và ép phổi, ngăn hít vào. Hai nhóm cơ ở bụng (cơ thẳng bụng) thường được dùng theo cách này.</li>
         <li><strong>Nhóm 3 — bấm huyệt hoặc đánh đầu dây thần kinh:</strong> Nguyên lý tương tự như đánh cơ, chỉ khác là đánh vào huyệt thay vì nhóm cơ. Nhóm này thường khó hơn cả về nguyên lý lẫn kỹ thuật, nhưng khi làm đúng thì hiệu quả hơn đánh cơ.</li>
       </ul>
-      <div class="key-point">Phổi được bảo vệ bởi xương sườn. Mỗi xương sườn không phải một khối xương liền mà gồm <strong>hai đoạn xương nối bằng dây chằng và sụn</strong>. Khi bị đánh, xương sườn hoạt động như một lò xo, nảy lực tấn công ra. Vì vậy, muốn làm phổi co lại, bạn phải đánh vào các huyệt cụ thể hoặc đầu dây thần kinh thò ra từ vùng phổi bên dưới xương sườn.</div>
+      <div class="key-takeaway">Phổi được bảo vệ bởi xương sườn. Mỗi xương sườn không phải một khối xương liền mà gồm <strong>hai đoạn xương nối bằng dây chằng và sụn</strong>. Khi bị đánh, xương sườn hoạt động như một lò xo, nảy lực tấn công ra. Vì vậy, muốn làm phổi co lại, bạn phải đánh vào các huyệt cụ thể hoặc đầu dây thần kinh thò ra từ vùng phổi bên dưới xương sườn.</div>
 
       <h4 class="section-head">4. Điểm Mạch (Dian Mai / Duan Mai) — ấn/chặn mạch máu</h4>
       <p>Dian Mai còn được biết đến với tên Dim Mak — chỉ là cùng những từ đó đọc theo phương ngữ khác. "Dian" nghĩa là dùng ngón tay chỉ hoặc ấn. "Mai" nghĩa là kênh Khí (Qi Mai) hoặc mạch máu (Xue Mai). Do đó Dian Mai nghĩa là đánh hoặc ấn vào kênh Khí hay mạch máu. Khi chỉ nghĩa là đánh/ấn mạch máu, nó còn được gọi là Duan Mai (chặn mạch).</p>
@@ -313,7 +606,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <div id="ch1-cap-do"></div>
       <h4 class="section-head">1-3 · Các cấp độ kỹ thuật Cầm Nã</h4>
       <p>Cũng như phần lớn võ thuật Trung Hoa, Cầm Nã bao gồm nhiều cấp độ khác nhau theo các tiêu chí khác nhau. Cùng một kỹ thuật — dựa trên cùng lý thuyết và nguyên lý — có thể tạo ra kết quả rất khác nhau tùy theo trình độ của người thực hiện. Có thể đánh giá qua vài tiêu chí chung:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Tiêu chí</th><th>Người mới bắt đầu</th><th>Chuyên gia</th></tr></thead>
         <tbody>
           <tr><td>Chất lực</td><td>Lực "đục" và trì trệ, kỹ thuật chậm và kém.</td><td>Lực mềm và nhẹ nhàng, kỹ thuật nhanh và hiệu quả.</td></tr>
@@ -330,7 +623,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <li><strong>Khó nhất:</strong> Bấm huyệt (Dian Xue) — đòi hỏi hiểu biết sâu về vị trí huyệt, dạng tay và kỹ thuật cụ thể, cửa sổ thời gian dễ tổn thương của mỗi huyệt, và độ sâu xuyên lực cần thiết.</li>
       </ol>
       <p>Theo y học Trung Hoa, Khí vận hành trong các kênh Khí của cơ thể và chịu ảnh hưởng đáng kể bởi thời điểm trong ngày và mùa trong năm. Hơn nữa, để dùng hiệu quả dù chỉ một số ít kỹ thuật bấm huyệt, cần luyện Jin. Thông thường, một người cần hơn mười năm luyện tập tích cực để hiểu những lý thuyết này và đạt tới sự thành thục cuối cùng của bấm huyệt.</p>
-      <div class="key-point">Một Cầm Nã tốt <strong>không nhất thiết phải phức tạp</strong>. Bạn sẽ sớm nhận ra rằng các kỹ thuật đơn giản thường nhanh hơn và dễ áp dụng hơn. Rất thường, điều này giúp chúng hiệu quả hơn những kỹ thuật trông hoa mỹ nhưng tốn nhiều thời gian.</div>
+      <div class="key-takeaway">Một Cầm Nã tốt <strong>không nhất thiết phải phức tạp</strong>. Bạn sẽ sớm nhận ra rằng các kỹ thuật đơn giản thường nhanh hơn và dễ áp dụng hơn. Rất thường, điều này giúp chúng hiệu quả hơn những kỹ thuật trông hoa mỹ nhưng tốn nhiều thời gian.</div>
 
       <h4 class="section-head">Trình tự luyện tập</h4>
       <p>Để đạt tới cấp độ Cầm Nã sâu, bạn nên theo đúng trình tự luyện tập đã được dùng từ xưa:</p>
@@ -373,25 +666,21 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         <li><strong>Điểm độc đáo nhất của sách:</strong> Bắt Cân, quăng ngã, và một số bấm huyệt Cầm Nã cũng được đưa vào một số tình huống giao đấu. Điều này cho bạn tự do kỹ thuật rộng hơn khi tự vệ.</li>
         <li><strong>Mọi đòn Cầm Nã đều có đòn khắc chế:</strong> Và mỗi đòn khắc chế lại có đòn khắc chế ngược. Nghĩa là nếu Cầm Nã của bạn rất thành thạo và bạn nắm đúng thời điểm, bạn có thể khắc chế mọi đòn Cầm Nã.</li>
       </ol>
-      <div class="quote-box">"Thắng lợi thì mất, khiêm tốn thì được." (Satisfaction loses and humility gains.)<br>— Ngạn ngữ xã hội Trung Hoa</div>
+      <div class="callout">"Thắng lợi thì mất, khiêm tốn thì được." (Satisfaction loses and humility gains.)<br>— Ngạn ngữ xã hội Trung Hoa</div>
       <p>Cuối cùng, các bậc thầy Trung Hoa luôn nói: <em>"Luyện tập tạo nên hoàn hảo."</em> Bí quyết duy nhất để hoàn thiện một môn nghệ thuật sau khi đã hiểu lý thuyết và nguyên lý cơ bản là <strong>luyện tập không ngừng</strong>. Khi luyện với bạn tập, bạn nên tránh cố ý làm đau nhau. Luôn kiểm soát lực của mình. Một số chấn thương Cầm Nã có thể vĩnh viễn — ví dụ, một khi dây chằng bị bong ra khỏi xương trong khớp, tổn thương sẽ vĩnh viễn, và cách duy nhất để sửa là phẫu thuật.</p>
-    </section>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 2 — AGAINST BAREHAND ATTACKS (pages 34-108)
-    ================================================================= -->
-    <section id="ch2" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 2</span>
-        <h2 class="chapter-title">Cầm Nã Chống Đòn Tay Không</h2>
-      </div>
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Cầm Nã Chống Đòn Tay Không</h2>
+
 
       <p>Trong mọi xung đột, tấn công bằng tay không là cơ bản nhất và có lẽ phổ biến nhất. Chương này tập trung vào các kỹ thuật Cầm Nã dùng để chống lại nhiều dạng tấn công tay không khác nhau.</p>
 
       <div id="ch2-ban-tay-mo"></div>
       <h4 class="section-head">2-2 · Cầm Nã chống bàn tay mở</h4>
       <p>Trong võ thuật Trung Hoa, nhiều môn phái như Bát Quái Chưởng, Hình Ý Quyền, Hổ Trảo, Trường Quyền hay Bạch Hạc chuyên dùng lòng bàn tay để tấn công và phòng thủ. Do đó, rất phổ biến là trước khi tấn công, tay của các võ sĩ này mở ra ở thế sẵn sàng. Điều này tạo cơ hội áp dụng các kỹ thuật Cầm Nã ngón tay.</p>
-      <div class="key-point">Nói chung, kỹ thuật Cầm Nã ngón tay chống bàn tay mở rất <strong>nhanh và hiệu quả</strong>. Tuy nhiên, hãy nhớ: nếu ngón tay đối phương nắm lại, sẽ khó hơn — thậm chí không thể — dùng các kỹ thuật này.</div>
+      <div class="key-takeaway">Nói chung, kỹ thuật Cầm Nã ngón tay chống bàn tay mở rất <strong>nhanh và hiệu quả</strong>. Tuy nhiên, hãy nhớ: nếu ngón tay đối phương nắm lại, sẽ khó hơn — thậm chí không thể — dùng các kỹ thuật này.</div>
 
       <h4 class="section-head">Tay phải chống tay phải</h4>
       <p>Khi tay phải đối phương duỗi ra phía trước với lòng bàn tay mở, bạn bước chân trái sang bên cạnh chân phải anh ta, đồng thời dùng tay phải nắm các ngón tay anh ta và ấn xuống. <em>Góc ấn rất quan trọng.</em> Bạn nên ấn cho tới khi mu bàn tay anh ta bẻ cong xuống.</p>
@@ -769,7 +1058,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h4 class="section-head">I. Chống lòng bàn tay đánh tới ngực</h4>
       <p>Khi lòng bàn tay đối phương đánh tới ngực bạn, bạn gạt và bắt cổ tay, rồi dùng các đòn:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tên đòn</th><th>Ý chính</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>—</td><td>Bắt cổ tay khi tay vừa tới, khóa khuỷu.</td></tr>
@@ -803,17 +1092,13 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <h4 class="section-head">III. Chống đấm vào bụng</h4>
       <p>Các đòn tiêu biểu: #1 — ; #2 La Hán Cúi Đầu / Quấn Khuỷu Nhỏ; #3 Thiên Vương Chống Bảo Tháp / Ấn Khuỷu Lên (Heaven King Supports the Pagoda); #4 Vác Sào Trên Vai (Carry a Pole on the Shoulder); sau đó: #1 Đạo Sĩ Chào Bằng Hai Tay; #2 Nhấn Vai Bằng Một Ngón Tay.</p>
 
-      <div class="key-point">Ở Chương 2, rất nhiều đòn xuất hiện lặp lại với các tên khác nhau — điều này là <strong>có chủ đích</strong>. Cùng một nguyên lý khóa khớp (ví dụ vặn cổ tay) được <em>tạo thế</em> theo vô số cách khác nhau tùy tình huống đối phương tấn công. Tên đòn thay đổi theo thế vào đòn, không phải theo nguyên lý khóa.</div>
-    </section>
+      <div class="key-takeaway">Ở Chương 2, rất nhiều đòn xuất hiện lặp lại với các tên khác nhau — điều này là <strong>có chủ đích</strong>. Cùng một nguyên lý khóa khớp (ví dụ vặn cổ tay) được <em>tạo thế</em> theo vô số cách khác nhau tùy tình huống đối phương tấn công. Tên đòn thay đổi theo thế vào đòn, không phải theo nguyên lý khóa.</div>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 3 — AGAINST BLOCKING (pages 109-110)
-    ================================================================= -->
-    <section id="ch3" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 3</span>
-        <h2 class="chapter-title">Cầm Nã Chống Gạt Chặn</h2>
-      </div>
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Cầm Nã Chống Gạt Chặn</h2>
+
 
       <p>Chương này trình bày các kỹ thuật Cầm Nã <em>tiếp nối</em> — dùng khi đòn đấm của bạn bị đối phương gạt hoặc chặn. Khi đối phương đỡ đòn của bạn, cánh tay anh ta ở thế thuận lợi để bạn bắt và khóa. Đây là một trong những ứng dụng tinh tế nhất của Cầm Nã: <strong>biến đòn phòng thủ của đối phương thành cơ hội khóa của mình</strong>.</p>
 
@@ -831,25 +1116,21 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <p>Các đòn tiêu biểu: #1 Gà Rừng Xòe Cánh; #2 Thiên Vương Chống Bảo Tháp / Ấn Khuỷu Lên; #3 Hai Tay Chống Xà Lớn; #4 Tiễn Ma Lên Trời; #5 Trăn Lớn Xoay Mình; #6 Một Tay Chống Trời / Ấn Cổ Tay Lên; sau đó: #1 La Hán Cúi Đầu / Quấn Khuỷu Nhỏ; #2 Tiễn Ma Lên Trời; #3 Nhấn Vai Bằng Một Ngón Tay; #4 Sư Tử Bái Phật / Quấn Khuỷu Lớn; #5 Tiều Phu Bó Củi / Xoay Khuỷu Tới; #6 Một Tay Chống Trời / Ấn Cổ Tay Lên.</p>
       <p>Tiếp theo: #1 Sư Tử Bái Phật / Quấn Khuỷu Lớn; #2 Tiễn Ma Lên Trời; #3 Nhấn Vai Bằng Một Ngón Tay; #4 Ông Già Cõng Cá; #5 La Hán Cúi Đầu.</p>
 
-      <div class="quote-box">"Khi đối phương gạt đòn của bạn, anh ta đã trao cho bạn cánh tay của mình ở một góc mà anh ta không kiểm soát được. Kẻ thắng là người phản ứng nhanh hơn."</div>
+      <div class="callout">"Khi đối phương gạt đòn của bạn, anh ta đã trao cho bạn cánh tay của mình ở một góc mà anh ta không kiểm soát được. Kẻ thắng là người phản ứng nhanh hơn."</div>
 
       <div class="figure-grid">
         <p style='grid-column:1/-1;color:#78716c;font-style:italic'>Hình minh họa lý thuyết (sơ đồ khớp, dây chằng) có trong bản gốc in.</p>
       </div>
-    </section>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 4 — AGAINST KICKING (pages 111-125)
-    ================================================================= -->
-    <section id="ch4" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 4</span>
-        <h2 class="chapter-title">Cầm Nã Chống Đá</h2>
-      </div>
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Cầm Nã Chống Đá</h2>
+
 
       <p>Chương này xem xét các kỹ thuật Cầm Nã chống lại nhiều loại đá khác nhau.</p>
 
-      <div class="key-point">Khi đối phương đá cao bằng <strong>một chân</strong>, vùng bẹn của anh ta buộc phải lộ ra. Hơn nữa, khi đá cao, gốc của anh ta không vững như khi đứng trên hai chân. Vì lý do này, các kỹ thuật Cầm Nã quật ngã rất hiệu quả chống lại những cú đá cao này. Tuy nhiên, nếu đối phương dùng <strong>đá đôi</strong> (hai cú liên tiếp), vì chúng mạnh và nhanh, gần như không thể dùng bất kỳ kỹ thuật Cầm Nã nào. Cách tốt nhất chống đá cao đôi là né hoặc giữ khoảng cách an toàn, chờ đối phương hạ chân và cố lấy lại thăng bằng, rồi tấn công ngay.</div>
+      <div class="key-takeaway">Khi đối phương đá cao bằng <strong>một chân</strong>, vùng bẹn của anh ta buộc phải lộ ra. Hơn nữa, khi đá cao, gốc của anh ta không vững như khi đứng trên hai chân. Vì lý do này, các kỹ thuật Cầm Nã quật ngã rất hiệu quả chống lại những cú đá cao này. Tuy nhiên, nếu đối phương dùng <strong>đá đôi</strong> (hai cú liên tiếp), vì chúng mạnh và nhanh, gần như không thể dùng bất kỳ kỹ thuật Cầm Nã nào. Cách tốt nhất chống đá cao đôi là né hoặc giữ khoảng cách an toàn, chờ đối phương hạ chân và cố lấy lại thăng bằng, rồi tấn công ngay.</div>
 
       <h4 class="section-head">I. Đá cao ngang</h4>
       <p>Cách tốt nhất để phòng thủ đá cao ngang là <em>tái định vị</em> bản thân vào vị trí bất lợi cho cú đá của đối phương. Ví dụ, nếu đối phương đá vào mặt bạn bằng chân phải, khi bạn di chuyển sang trái anh ta, bạn ngay lập tức đặt anh ta vào góc khó thực hiện cú đá hiệu quả.</p>
@@ -973,16 +1254,12 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <figcaption class="figure-caption">Cầm Nã chống đá (bản gốc trang 119).</figcaption>
         </figure>
       </div>
-    </section>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 5 — AGAINST KNIFE ATTACKS (pages 126-128)
-    ================================================================= -->
-    <section id="ch5" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 5</span>
-        <h2 class="chapter-title">Cầm Nã Chống Tấn Công Bằng Dao</h2>
-      </div>
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Cầm Nã Chống Tấn Công Bằng Dao</h2>
+
 
       <p>Để cung cấp cho người đọc một số ý tưởng về cách Cầm Nã có thể dùng để chống vũ khí, một số kỹ thuật chống tấn công dao được trình bày trong chương này.</p>
 
@@ -994,7 +1271,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h4 class="section-head">Bước 1 — Học né tránh</h4>
       <p>Bắt đầu bằng việc để bạn tập tấn công bạn bằng dao cao su, để bạn luyện né tránh bằng mọi cách. Ví dụ, nếu bạn tập đâm bằng tay phải, bạn có thể né ra sau, né sang trái anh ta, hoặc né sang phải anh ta.</p>
-      <div class="key-point"><strong>Né ra sau không tốt bằng né sang hai bên</strong>, vì kẻ tấn công có thể dễ dàng nhảy tới và tiếp tục tấn công. Hơn nữa, nếu bạn cứ né ra sau, bạn có thể bị dồn vào góc hoặc vào tường. Né sang bên cho bạn cơ hội vòng quanh anh ta, thậm chí bước vào "cửa không" để phản công.</div>
+      <div class="key-takeaway"><strong>Né ra sau không tốt bằng né sang hai bên</strong>, vì kẻ tấn công có thể dễ dàng nhảy tới và tiếp tục tấn công. Hơn nữa, nếu bạn cứ né ra sau, bạn có thể bị dồn vào góc hoặc vào tường. Né sang bên cho bạn cơ hội vòng quanh anh ta, thậm chí bước vào "cửa không" để phản công.</div>
 
       <h4 class="section-head">Bước 2 — Học chặn đòn</h4>
       <p>Khi bạn đã né dễ dàng, bạn phải học cách chặn đòn. Nếu bị tấn công ở nơi không đủ chỗ để tiếp tục lùi hay né, bạn sẽ phải chặn đòn một cách khéo léo. Nếu biết chặn, bạn không cần quá nhiều không gian để tự vệ.</p>
@@ -1036,22 +1313,18 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <figcaption class="figure-caption">Cầm Nã chống dao (bản gốc trang 127).</figcaption>
         </figure>
       </div>
-    </section>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 6 — AGAINST GRABBING (pages 129-343)
-    ================================================================= -->
-    <section id="ch6" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 6</span>
-        <h2 class="chapter-title">Cầm Nã Chống Bị Nắm Giữ</h2>
-      </div>
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Cầm Nã Chống Bị Nắm Giữ</h2>
+
 
       <p>Một trong những ứng dụng phổ biến nhất của Cầm Nã là chống lại việc đối phương nắm giữ. Chương này tổng hợp các kỹ thuật Cầm Nã chống lại việc bị nắm <strong>cổ tay, cẳng tay, ngực, vai và cổ</strong>. Đây là chương dài nhất của cuốn sách, với nhiều phần nhỏ.</p>
 
       <h4 class="section-head">I. Nắm bắt phía đối diện (Opposite Side Grabbing)</h4>
       <p>Đối phương nắm tay/bên đối diện với tay bạn đang dùng để phản đòn. Các đòn tiêu biểu:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tên đòn</th><th>Ý chính</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Quấn Ngón Tay Nhỏ (Small Wrap Finger)</td><td>Cuốn và khóa ngón tay nhỏ.</td></tr>
@@ -1083,7 +1356,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
       <h4 class="section-head">III. Nắm bắt từ phía sau (From the Rear)</h4>
       <p>Đối phương nắm giữ bạn từ phía sau (cổ tay, vai, cổ). Các đòn tiêu biểu gồm: Quấn Tay Ra Sau; Đạo Sĩ Chào Bằng Hai Tay; Quấn Ngón Tay Lớn; Ông Già Thăng Tướng; Tiễn Ma Lên Trời; Vượn Trắng Bái Phật; Sư Tử Bái Phật; La Hán Cúi Đầu.</p>
 
-      <div class="key-point">Chương 6 minh họa một nguyên lý cốt lõi: <strong>khi bị nắm, đừng kéo ngược lại</strong>. Thay vào đó, hãy <em>xoay</em> — vặn cổ tay của bạn theo hướng làm suy yếu ngón tay đối phương, hoặc tận dụng chính lực nắm của anh ta để đưa anh ta vào đòn khóa.</div>
+      <div class="key-takeaway">Chương 6 minh họa một nguyên lý cốt lõi: <strong>khi bị nắm, đừng kéo ngược lại</strong>. Thay vào đó, hãy <em>xoay</em> — vặn cổ tay của bạn theo hướng làm suy yếu ngón tay đối phương, hoặc tận dụng chính lực nắm của anh ta để đưa anh ta vào đòn khóa.</div>
 
       <div class="figure-grid">
         <figure class="figure-wrap" id="fig-p131_fig00">
@@ -1675,16 +1948,12 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <figcaption class="figure-caption">Cầm Nã chống bị nắm giữ (bản gốc trang 330).</figcaption>
         </figure>
       </div>
-    </section>
+</section>
 
-    <!-- ================================================================
-         CHAPTER 7 — OFFENSIVE QIN NA (pages 345-359)
-    ================================================================= -->
-    <section id="ch7" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Chương 7</span>
-        <h2 class="chapter-title">Cầm Nã Tấn Công</h2>
-      </div>
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Cầm Nã Tấn Công</h2>
+
 
       <p>Cuối cùng, một số đòn Cầm Nã tấn công — có thể dùng khá hiệu quả bởi nhân viên an ninh hoặc cảnh sát — được giới thiệu trong chương này. Khác với các chương trước (phản đòn khi bị tấn công), chương này dạy cách <strong>chủ động</strong> áp dụng Cầm Nã để khống chế đối tượng trước khi anh ta kịp phản ứng.</p>
 
@@ -1692,7 +1961,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h4 class="section-head">I. Từ phía trước</h4>
       <p>Các đòn tiêu biểu khi đối mặt với đối tượng:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tên đòn</th><th>Ghi chú</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Ông Già Thăng Tướng (Old Man Promoted to General)</td><td>Khống chế cơ bản từ phía trước.</td></tr>
@@ -1722,7 +1991,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
 
       <h4 class="section-head">II. Từ phía sau</h4>
       <p>Các đòn tiêu biểu khi bạn ở sau lưng đối tượng:</p>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>#</th><th>Tên đòn</th><th>Ý chính</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Bá Vương Mời Cơm (Feudal Lord Invites to Dinner)</td><td>Khóa cánh tay từ sau.</td></tr>
@@ -1778,19 +2047,15 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <figcaption class="figure-caption">Cầm Nã tấn công (bản gốc trang 346).</figcaption>
         </figure>
       </div>
-    </section>
+</section>
 
-    <!-- ================================================================
-         APPENDIX — GLOSSARY + FIGURES
-    ================================================================= -->
-    <section id="phu-luc" class="chapter-block">
-      <div class="chapter-header">
-        <span class="chapter-num">Phụ Lục</span>
-        <h2 class="chapter-title">Thuật Ngữ &amp; Hình Minh Họa</h2>
-      </div>
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Thuật Ngữ &amp; Hình Minh Họa</h2>
+
 
       <h4 class="section-head">Bảng thuật ngữ Cầm Nã</h4>
-      <table class="tech-table">
+      <table class="styled-table">
         <thead><tr><th>Pinyin</th><th>Hán tự</th><th>Tiếng Việt</th></tr></thead>
         <tbody>
           <tr><td>Qin Na</td><td>擒拿</td><td>Cầm Nã — bắt và khống chế</td></tr>
@@ -1812,7 +2077,7 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
         </tbody>
       </table>
 
-      <div class="quote-box">"Luyện tập tạo nên hoàn hảo. Bí quyết duy nhất để hoàn thiện một môn nghệ thuật sau khi đã hiểu lý thuyết và nguyên lý cơ bản là luyện tập không ngừng."<br>— TS. Dương Tuấn Mẫn</div>
+      <div class="callout">"Luyện tập tạo nên hoàn hảo. Bí quyết duy nhất để hoàn thiện một môn nghệ thuật sau khi đã hiểu lý thuyết và nguyên lý cơ bản là luyện tập không ngừng."<br>— TS. Dương Tuấn Mẫn</div>
 
       <p class="figure-note">Hình minh họa động tác từ bản gốc (một số trang). Nhấp để mở ảnh đầy đủ. — <em>Technique photos from the original (selected pages). Click to open full size.</em></p>
       <div class="figure-grid">
@@ -2881,37 +3146,56 @@ body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
           <figcaption class="figure-caption">Đòn Cầm Nã (bản gốc trang 346).</figcaption>
         </figure>
       </div>
-    </section>
-
-    <nav class="page-nav">
-      <a class="disabled">← Trước</a>
-      <a href="/vi/books/" class="home"><i class="fa-solid fa-book"></i> Thư Viện Sách</a>
-      <a href="/vi/books/">Tiếp theo →</a>
-    </nav>
-
+</section>
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Thư Viện Sách Thái Cực Quyền &amp; Khí Công Tiếng Việt &middot; TaichiNOW</p>
-  <p>Bản dịch tiếng Việt chuyên sâu từ nguyên tác TS. Dương Tuấn Mẫn (YMAA) © 2026</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>
