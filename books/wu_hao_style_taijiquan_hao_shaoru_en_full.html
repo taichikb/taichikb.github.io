@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wu/Hao-Style Taijiquan (Hao Shaoru) — Full Translation | TaichiNOW</title>
-<meta name="description" content="A page-faithful English translation of 《武式太极拳》(1963) compiled by Hao Shaoru — 92 pages, 236 figures, with the Chinese source transcribed alongside.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -182,104 +175,424 @@ body.dark-mode .key-point { color: #a7f3d0; }
   font-size: 0.74rem; color: #a8a29e; font-weight: 600;
   letter-spacing: 0.05em; margin-bottom: 3px;
 }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wu/Hao-Style Taijiquan (Hao Shaoru) — Full Translation | TaichiNOW</title>
+<meta name="description" content="A page-faithful English translation of 《武式太极拳》(1963) compiled by Hao Shaoru — 92 pages, 236 figures, with the Chinese source transcribed alongside.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/">Home</a>
-    <a href="/techniques/">Techniques</a>
-    <a href="/books/" class="active">Books</a>
-    <a href="/videos/">Videos</a>
-    <a href="/podcast/">Podcast</a>
-    <a href="/philosophy/">Philosophy</a>
-    <a href="/history/">History</a>
-    <a href="/contact/">Contact</a>
-    <a href="/vi/books/wu_hao_style_taijiquan_hao_shaoru_vi.html" class="lang-switch">Tiếng Việt</a>
-<a href="/all-articles/" class="">All Articles</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span class="sep">/</span>
-    <a href="/books/">Book Library</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Wu/Hao-Style Taijiquan (Hao Shaoru) — Full Translation | TaichiNOW</span>
-  </nav>
-
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Table of Contents</summary>
-    <ul class="toc-list">
-        <li class="toc-item"><a href="#p1" class="toc-link">A Short Account of Wu-Style Taijiquan<span class="pg">p.简介</span></a></li>
-        <li class="toc-item"><a href="#p4" class="toc-link">Foreword<span class="pg">p.前言</span></a></li>
-        <li class="toc-item"><a href="#p6" class="toc-link">Chapter One — The Essentials of Taijiquan<span class="pg">p.1</span></a></li>
-        <li class="toc-item"><a href="#p9" class="toc-link">Walking the Frame and Pushing Hands in Taijiquan<span class="pg">p.4</span></a></li>
-        <li class="toc-item"><a href="#p13" class="toc-link">Some Reflections on Teaching and Practice<span class="pg">p.8</span></a></li>
-        <li class="toc-item"><a href="#p14" class="toc-link">Explanation of the Sequence Diagrams<span class="pg">p.9</span></a></li>
-        <li class="toc-item"><a href="#p15" class="toc-link">Examples of the Sequence Diagrams<span class="pg">p.10</span></a></li>
-        <li class="toc-item"><a href="#p19" class="toc-link">Chapter Two — Illustrated Explanation of Wu-Style Taijiquan<span class="pg">p.14</span></a></li>
-        <li class="toc-item"><a href="#p21" class="toc-link">Some notes on the illustrations<span class="pg">p.16</span></a></li>
-        <li class="toc-item"><a href="#p22" class="toc-link">Illustrated explanation of the Wu-style taijiquan form<span class="pg">p.17</span></a></li>
-        <li class="toc-item"><a href="#p84" class="toc-link">Treatise on taijiquan<span class="pg">p.79</span></a></li>
-        <li class="toc-item"><a href="#p85" class="toc-link">The thirteen postures (also called the long form, also called the thirteen postures)<span class="pg">p.80</span></a></li>
-        <li class="toc-item"><a href="#p86" class="toc-link">Song of pushing hands　Revised by Wang Zongyue<span class="pg">p.81</span></a></li>
-        <li class="toc-item"><a href="#p88" class="toc-link">Releasing in pushing hands<span class="pg">p.83</span></a></li>
-        <li class="toc-item"><a href="#p90" class="toc-link">Secret formula for releasing　Li Yiyu<span class="pg">p.85</span></a></li>
-        <li class="toc-item"><a href="#p91" class="toc-link">Four-word secret formula　(author to be verified)<span class="pg">p.86</span></a></li>
-    </ul>
-  </details>
-
-  <main class="reader-content">
-
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Phần 1</a></li>
+        <li><a href="#sec01">Phần 2</a></li>
+        <li><a href="#sec02">Phần 3</a></li>
+        <li><a href="#sec03">Phần 4</a></li>
+        <li><a href="#sec04">Phần 5</a></li>
+        <li><a href="#sec05">Phần 6</a></li>
+        <li><a href="#sec06">Phần 7</a></li>
+        <li><a href="#sec07">Phần 8</a></li>
+        <li><a href="#sec08">Phần 9</a></li>
+        <li><a href="#sec09">Phần 10</a></li>
+        <li><a href="#sec10">Phần 11</a></li>
+        <li><a href="#sec11">Phần 12</a></li>
+        <li><a href="#sec12">Phần 13</a></li>
+        <li><a href="#sec13">Phần 14</a></li>
+        <li><a href="#sec14">Phần 15</a></li>
+        <li><a href="#sec15">Phần 16</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Full 92-Page Translation &middot; 236 Figures &middot; With Chinese Source Transcription</span>
+      <span class="badge">Full 92-Page Translation &amp;middot; 236 Figures &amp;middot; With Chinese Source Transcription &middot; Author: Hao Shaoru (郝少如, 1908–1983) — fourth-generation inheritor of Wu/Hao-style Taijiquan, grandson of Hao Weizhen (郝為真) and student of Hao Yueju (郝月如)
+        Original: Shanghai Sports Publishing House (上海體育出版社), Shanghai, 1963
+        English &amp;amp; figure notes: TaichiNOW Editorial Board</span>
       <h1>Wu/Hao-Style Taijiquan</h1>
-      <div class="book-orig-title">《武式太极拳》 — compiled by Hao Shaoru (郝少如) · Shanghai Sports Publishing House (1963)</div>
-      <div class="book-author-meta">
-        <strong>Author:</strong> Hao Shaoru (郝少如, 1908–1983) — fourth-generation inheritor of Wu/Hao-style Taijiquan, grandson of Hao Weizhen (郝為真) and student of Hao Yueju (郝月如)<br>
-        <strong>Original:</strong> Shanghai Sports Publishing House (上海體育出版社), Shanghai, 1963<br>
-        <strong>English &amp; figure notes:</strong> TaichiNOW Editorial Board
-      </div>
-      <p style="font-size:0.95rem;color:var(--text-secondary);margin:0.8rem 0 0;">
-        A page-faithful translation of the original edition, rebuilt to the book's own printed page numbers; the posture figures are cropped from the scan and inserted at the positions they occupy in the book.
-      </p>
-      <div class="book-tags">
-        <span class="book-tag">Wu/Hao-Style Taijiquan</span>
-        <span class="book-tag">Hao Shaoru</span>
-        <span class="book-tag">96 Forms</span>
-        <span class="book-tag">Wu-Style Push-Hands</span>
-        <span class="book-tag">236 Figures</span>
-      </div>
-      <a class="book-pdf-link" href="/assets/books/wu_hao_style_taijiquan_hao_shaoru/wu_hao_style_taijiquan_hao_shaoru_en_full.pdf" download>
-        <i class="fa-solid fa-file-pdf"></i> Download PDF (A4)
-      </a>
+      <div class="subtitle">《武式太极拳》 — compiled by Hao Shaoru (郝少如) · Shanghai Sports Publishing House (1963)</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Phần 1</h2>
 
-<section id="p1" class="chapter-block">
   <div class="chapter-header">
     <div class="page-marker">Book page 简介</div>
     <h2 class="chapter-title">A Short Account of Wu-Style Taijiquan</h2>
   </div>
 <div class="chapter-sub">A Short Account of Wu-Style Taijiquan</div>
 <figure class="figure-wrap" id="fig001-1"><div class="figure-caption-title">图 1</div><a class="figure-image-container" href="photos/p001_fig1.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig001-1.jpg" alt="图 1" loading="lazy"></a><figcaption class="figure-caption">Half-length portrait of Hǎo Wéizhēn (1849–1920), wearing a skullcap, bearded,</figcaption></figure>
-<blockquote class="quote-box">in a dark front-buttoned jacket.</blockquote>
+<blockquote class="callout">in a dark front-buttoned jacket.</blockquote>
 <p><span id="p2" class="page-anchor"></span>Wǔ Héqīng (武河清) of Yongnian in Hebei, courtesy name Yǔxiāng (禹襄, 1812–1880), came from a minor official-landlord family, and he and his two brothers practised martial arts at home. When Yáng Lùchán (楊露禪, 1799–1872) returned to his native village from Chenjiagou, the Yǔxiāng brothers admired his art and studied the old-frame Chen family taijiquan with him, grasping its essentials. In 1852 Yǔxiāng's elder brother Chéngqīng (澄清, 1800–1884) passed the metropolitan civil-service examination and took office as magistrate of Wuyang county in Henan. Yǔxiāng travelled to his brother's post and, taking the route through Wen county, stopped at Chenjiagou intending to seek further instruction from Lùchán's teacher Chén Chángxīng (陳長興, 1771–1853). It happened that Chángxīng was already old and ill — he was then 82 and died the following year — and at the time Chén Qīngpíng (陳青萍) was teaching the new-frame Chen taijiquan at Zhaobao town; Yǔxiāng therefore studied the new frame with Qīngpíng for over a month, and came to know its theory and method thoroughly. At a salt shop in Wuyang, Chéngqīng obtained Wáng Zōngyuè's (王宗岳, a man of the Qianlong reign) <em>Taijiquan Manual</em>. Yǔxiāng studied the manual and gained further insight; drawing on his own experience of practising, he expounded the sense of Wang's old text, writing ten annotations to the <em>Thirteen Postures Practice Song</em>, under the title <em>Essential Words on Pushing Words</em>; he further expanded this into the <em>Thirteen Postures Practice Heart-Explanation</em> in four sections, and distilled the essentials of training into the <em>Ten Requirements of Body Method</em>. All his writings rest on his own experience, and are therefore concise and to the point, without a single ornamental phrase.</p>
 <p>Yǔxiāng's nephew Lǐ Jīnglún (李經綸), courtesy name Yìshē (亦畬, 1832–1892), began studying with Yǔxiāng in 1853. In his own study of taijiquan Yìshē imitated Yǔxiāng's method of practical testing — summoning village braves to test his own skill — and revised his notes again and again. Yìshē's grandson Huáiyīn (槐蔭) wrote in the 1935 Li Lianrang-hall edition <em>Preface to the Taijiquan Manual</em>: "This manual was written by my grandfather in his later years, and was completed only after many revisions. Whenever he found a posture ingenious or a key point of a technique, he would write it on a slip of paper and paste it at his seat, testing and pondering it. After some days, if he felt something was not right and ought to be changed, he would tear it down and substitute another slip. This pasting and tearing went back and forth until it was perfect and only then stopped; in time the book was complete." Lǐ Yìshē's taijiquan essays comprise the <em>Five-Character Formula</em>; the <em>Secret Formula of Release</em>, with its four seven-character lines on bracing, drawing, reaching and releasing; and <em>Essential Words for Practice in Walking the Frame and Pushing Hands</em>, which sets out that walking the frame is pushing hands and pushing hands is walking the frame, and that form practice and pushing hands complete each other. In the spread of taijiquan in modern times, the greater part of the credit for ceaseless innovation in teaching materials and methods goes to three generations of the Yang family; but in the study and summation of the art's theory, the first place goes to Wu and Li. Compared with the abstract generality of Wang Zongyue's <em>Taijiquan Treatise</em>, theirs is far more concrete and practical — they inherit and they develop, and so were able to form a school of their own.</p>
 <p><span id="p3" class="page-anchor"></span>The Wu Yuxiang form differs both from the old and new Chen frames and from the Yang large and small frames; it studies them and transforms them, forming a school of its own. Its characteristics are: a compact posture; unhurried movement; a footwork method that strictly distinguishes substantial from insubstantial; and a chest and abdomen that, in advancing, retreating and rotating rotating, always keep upright and centred. The outer form is governed entirely by the inner conversion of substantial and insubstantial and by a "hidden turning of inner qi"; each hand governs half the body, without overstepping, and the hand does not extend past the toe. There were originally leaping movements as well, but by the fourth transmission, with Hǎo Yuèrú (郝月如, 1877–1935), these were changed to no jumping and no leaping; the double lotus-swing was likewise changed so that the foot is not slapped — reforms made to suit the needs of the old and the physically weak.</p>
 <p>In Wu-style pushing hands the footwork is of one kind only: three and a half steps forward and three and a half steps back.</p>
 <p>Yǔxiāng taught and read for his own pleasure, and Yìshē practised medicine for a living; both held themselves to be scholars, and accepted very few pupils in their home district. Among those Li transmitted it to, the most refined in skill was his fellow-townsman Hǎo Hé (郝和), courtesy name Wéizhēn (為真, 1849–1920). When Wu-style taijiquan first came to Beijing in the early Republic, some called it the Li frame; and when Wéizhēn's son Yuèrú and his grandson Shàorú went together to Nanjing and Shanghai in 1928 to teach, some called it the Hao frame. Yuèrú left behind several writings on taijiquan. Among the later generations of Wu and Li, few devoted themselves to taijiquan, and so Wu-style was passed on and practised by the Hao family. Shàorú had not taught for many years, until the Shanghai Municipal Gymnasium, in order to recover the tradition, opened a Wu-style taijiquan class in 1961 and invited Hǎo Shàorú to teach, so that it might be spread more widely. Wu-style taijiquan had never before appeared in illustrated form; the posture plates in this book were photographed from Hǎo Shàorú, who also wrote the movement explanations.</p>
 <p>(Gù Liúxīn)</p>
-</section><section id="p4" class="chapter-block">
+</section>
+
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Phần 2</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 前言</div>
     <h2 class="chapter-title">Foreword</h2>
@@ -290,7 +603,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Because my own level is limited, shortcomings can hardly be avoided; I hope readers will not begrudge their corrections and criticism.</p>
 <p>Hǎo Shàorú Shanghai, on the eve of National Day, 1961 (Note 1) Lǐ Jīnglún, courtesy name Yìshē, a native of Yongnian county, a Qing provincial graduate, born in the ninth month of the twelfth year of the Daoguang reign and died in the eleventh month of the eighteenth year of the Guangxu reign (1832–1892).</p>
 <p>(Note 2) Wǔ Héqīng, courtesy name Yǔxiāng, a native of Yongnian county, a Qing county scholar, born in the second month of the seventeenth year of the Jiaqing reign and died in the eleventh month of the sixth year of the Guangxu reign (1812–1880).</p>
-</section><section id="p6" class="chapter-block">
+</section>
+
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phần 3</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 1</div>
     <h2 class="chapter-title">Chapter One — The Essentials of Taijiquan</h2>
@@ -317,7 +635,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(3) Rise, carry, open, close In walking the taijiquan frame, each posture is divided into four movements. The first movement is <strong>rise</strong> (起) — as in the first movement of "left lazy tucking the robe". The second is <strong>carry</strong> (承) — as in the second movement of that posture. The third is <strong>open</strong> (開), which is also issuing — as in the third movement. The fourth is <strong>close</strong> (合), which is also gathering; gathering means storing — as in the fourth movement. But it is not rigid: there is opening within closing and closing upon closing. This is what is meant by neither losing nor resisting, every point exactly matching.</p>
 <p>(4) Folding and conversion Taijiquan has the art of folding and the method of conversion. Folding is mutual correspondence: where there is up there is down; where there is forward there is back; where there is left there is right. If the intent is to go up, then lodge a downward intent within it; if the intent is to go down, then lodge an upward intent within it. Forward and back, left and right, are all like this. This is what is called folding. Conversion means the step changes with the body; the source of the commanding intent lies between the waist-eyes. Converting to the left, the left waist-eye draws slightly upward and the right waist-eye lifts up the left; converting to the right, the right waist-eye draws slightly upward and the left waist-eye lifts up the right. This is what is meant by "the source of the commanding intent lies in the waist crevice".</p>
 <p>(5) Yielding self to follow others Taijiquan has the art of yielding self to follow others: wherever one is touched, there one is lively. If touched at the hand, the wrist is lively; if touched at the elbow, the elbow can be lively; if touched at the chest, the chest can be lively — and everywhere on the body likewise. Again, touched at the hand, the intent is at the elbow; touched at the elbow, the intent is at the shoulder; touched at the shoulder, the intent is at the chest; touched at the chest, the intent is at the waist; touched at the waist, the intent is at the thigh. Extend this: adhere, connect, stick and follow; neither lose nor resist; draw in and make empty; borrow force to send the other out — all are this same meaning.</p>
-</section><section id="p9" class="chapter-block">
+</section>
+
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Phần 4</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 4</div>
     <h2 class="chapter-title">Walking the Frame and Pushing Hands in Taijiquan</h2>
@@ -330,7 +653,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><span id="p12" class="page-anchor"></span>In pushing hands, my intent must be first. Wherever his force touches me, there my intent is employed. The moment his force touches my skin or hair, my intent has already entered his bones. I meet his force with my intent, not with my force colliding against his; exactly neither after nor before, my intent joins with his force. If the left is heavy, then the left is made empty; if the right is heavy, then the right is made void. Raise it and it grows higher; lower it and it grows deeper; advance it and it grows longer; retreat and it grows more pressing. Not a feather can be added, not a fly or insect can alight. Others do not know me, I alone know others. This is what is meant by adhering, connecting, sticking and following; neither losing nor resisting. The student of taijiquan must comprehend the meaning of yin and yang completing each other. In movement they divide; in stillness they join. Dividing is opening wide; joining is contracting small — and in both, the two qi of yin and yang open and close, convert, and answer each other, never parting from start to finish. Opening is largeness, not colliding; contracting is smallness, not dodging. In one movement there is no part that does not move; in one stillness there is no part that is not still. Movement is the turning of qi; stillness is the posture of preparation to move — this is what is meant by regarding stillness as movement and movement as stillness. Qi is like a cartwheel, the waist like the axle. It is not a matter of the two hands flailing and the body shifting about at random. The crux lies entirely in storing jin: storing jin is like drawing a bow, issuing jin like loosing an arrow. Without storing jin there is no force to loose the arrow. In issuing jin, upper and lower must follow one another; jin rises from the heel of the foot, pours into the waist, and takes form at the fingers. From foot to leg to waist, it must always be one whole qi. The waist is like the grip of the bow, the feet and hands like its tips; within there must be elasticity, and only then is there force to loose the arrow. Arrange oneself well: the moment he touches my skin or hair, my intent fixes upon his jin. To touch skin or hair is neither to lose nor to resist; to meet it with intent is the posture of following along. Being able to follow along, one can borrow force; being able to borrow force, one can strike — this is what is meant by borrowing force to strike, four ounces deflecting a thousand catties. At this stage the hand has measure: it can weigh the size of his jin, can gauge the length of his advance, without the least error. Advancing and retreating, looking left and right, everywhere exactly matching — this is what is meant by "know yourself and know the other, and in a hundred battles you will win a hundred". In daily walking of the frame and pushing hands, one must proceed from this: walking the frame is pushing hands, and pushing hands is walking the frame — the same principle throughout. In walking the frame, each posture must divide into four words: rise, carry, open, close. After each word ask: is it right? If slightly not right, change it at once. A hair's difference loses a thousand li. One who can grasp this meaning will find that walking, standing, sitting and lying are all taiji; the student must not fail to examine this minutely.</p>
 <p>In daily practice of walking the frame, one must by intent sink the qi down and deliver it to the elixir field (by intent, not by force; not by straining qi, not by using breath), keeping and nourishing it, not letting it float up, with the abdomen loose and still and the momentum soaring. Practising according to the method, in time one can naturally gather qi into the bone (the spine). Then, by intent, turn the qi of the spine upward from the tailbone through the elixir field. Reaching this stage, one can carry qi by intent throughout the whole body. Wherever he touches me, there my intent arrives, and the qi likewise comes out after it, as echo answers sound, swift as lightning. There is no place on the whole body where it is not so. This is what is meant by "carrying qi as through nine winding pearls, reaching the smallest place; issuing jin like steel refined a hundred times, nothing so hard it cannot break" — and likewise "where intent arrives, qi arrives". Moreover the qi of the elixir field must be nourished straight and without harm, and only then can it be like the water of the long river and the great sea, inexhaustible in use, unfailing in supply. When the practice is mature and one has refined the whole body into a single family, just like a balloon — left heavy then left empty, right heavy then right void — things come and one responds, and nothing fails to match. All of this is "carrying qi by intent", not "compelling qi by force", "within and not without" — that is, "he who prizes breath-force has no force; he who nourishes qi is purely firm".</p>
 <p>Note: "Pushing hands" in this text means taijiquan pushing hands. The text was slightly abridged and revised when published here.</p>
-</section><section id="p13" class="chapter-block">
+</section>
+
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phần 5</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 8</div>
     <h2 class="chapter-title">Some Reflections on Teaching and Practice</h2>
@@ -341,7 +669,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>In practising taijiquan, to say nothing of reaching refined skill, even basic skill cannot be attained in a single step. Therefore in teaching or practising, one must broadly divide the work into two stages.</p>
 <p>The first stage is the practice of the outer form: that is, learning the frame, with attention to the body method. But the eight body methods cannot all be grasped at once. One must first choose one or two as the emphasis emphasis, and after these are mastered, gradually add more. The coordination of the upper and lower limbs with the body method is also extremely important, because poor coordination will directly affect the body method. Coordination of the upper limbs is comparatively easy to master; but the lower limbs, since they must both support the body's stability and attend to distinguishing substantial from insubstantial, are more difficult for beginners. Only when these eight body methods are mastered can the muscles and bones of the whole body be lively and harmonious, with movements unified, and only then can one reach the stage of following the heart's desire.</p>
 <p>The second stage is the practice of the inner form, also called inner jin. One must first take the practice of intent as one's guide, and gradually refine intent, qi and frame into one. From outer form to inner form, from coarse qi to refined qi. Then there is no outer and no inner, no coarse and no refined, all in a great oblivion. Only when practice reaches this stage can one climb the high peak of taijiquan art along a road of ceaseless advance. As for those who taste but briefly and stop, or who set up novelties out of thin air, they are not worth taking as models.</p>
-</section><section id="p14" class="chapter-block">
+</section>
+
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Phần 6</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 9</div>
     <h2 class="chapter-title">Explanation of the Sequence Diagrams</h2>
@@ -349,7 +682,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Explanation of the Sequence Diagrams</div>
 <p>All the movements of Wu-style taijiquan are arranged according to the sequence of rise, carry, open, close. Four movements make up one sequence of rise, carry, open, close. For example, the four movements of the second posture, "left lazy tucking the robe", are the four diagrams in the sequence diagrams: Figure 1 is "rise", Figure 2 is "carry", Figure 3 is "open", Figure 4 is "close" — joined into one sequence. The entire set is arranged as sequences joined one to the next. Between one sequence and the next, though there appears to be a pause, one must keep the jin broken but the intent unbroken, and internally the sequences must still join in an unbroken thread — and so in practice one must not break off because of the sequence divisions.</p>
 <p>A sequence is mostly formed from a single posture, as with the "left lazy tucking the robe" cited above, which has four movements and makes one sequence. But there are also cases where two, or even four or five postures combine into one sequence — for example the fourth posture, "single whip", and the fifth, "raise the hand", whose two postures are joined together as four movements into one sequence.</p>
-</section><section id="p15" class="chapter-block">
+</section>
+
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Phần 7</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 10</div>
     <h2 class="chapter-title">Examples of the Sequence Diagrams</h2>
@@ -369,52 +707,57 @@ body.dark-mode .key-point { color: #a7f3d0; }
 </ul>
 <p>(On the right, top to bottom): 鬆 loose · 斂氣 gather qi · 沉 sink · 騰挪 soaring and shifting · 沉 sink · 吊襠 suspend the crotch · 曲 bent · 騰挪 soaring and shifting · 虛 insubstantial (Below the figure): facing due south (Bottom right): compass diagram — north (top), south (bottom), east (right), west (left)</p>
 <figure class="figure-wrap" id="fig015-qi"><div class="figure-caption-title">图 起</div><a class="figure-image-container" href="photos/p015_figqi.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig015-qi.jpg" alt="图 起" loading="lazy"></a><figcaption class="figure-caption">The first of the sequence-diagram examples. A figure stands facing the viewer,</figcaption></figure>
-<blockquote class="quote-box">both arms hanging naturally at the sides, the feet parallel and apart at shoulder width.</blockquote>
-<blockquote class="quote-box">Leader lines mark the requirements at each part of the body: at the head "emptying the</blockquote>
-<blockquote class="quote-box">collar"; at the shoulders "loose"; at the chest "enclosing the chest and drawing up the</blockquote>
-<blockquote class="quote-box">back"; at the waist "sinking and straight"; at the hips "soaring and shifting"; at the knees</blockquote>
-<blockquote class="quote-box">"bent"; at the feet "substantial"; with "spirit concentrated" also noted. A second group of</blockquote>
-<blockquote class="quote-box">leader lines on the right labels "loose", "gather qi", "sink", "soaring and shifting",</blockquote>
-<blockquote class="quote-box">"sink", "suspend the crotch", "bent", "soaring and shifting" and "insubstantial". Below the</blockquote>
-<blockquote class="quote-box">figure it is noted "facing due south"; at the lower right is a compass diagram — north at</blockquote>
-<blockquote class="quote-box">the top, south at the bottom, east at the right, west at the left.</blockquote>
+<blockquote class="callout">both arms hanging naturally at the sides, the feet parallel and apart at shoulder width.</blockquote>
+<blockquote class="callout">Leader lines mark the requirements at each part of the body: at the head "emptying the</blockquote>
+<blockquote class="callout">collar"; at the shoulders "loose"; at the chest "enclosing the chest and drawing up the</blockquote>
+<blockquote class="callout">back"; at the waist "sinking and straight"; at the hips "soaring and shifting"; at the knees</blockquote>
+<blockquote class="callout">"bent"; at the feet "substantial"; with "spirit concentrated" also noted. A second group of</blockquote>
+<blockquote class="callout">leader lines on the right labels "loose", "gather qi", "sink", "soaring and shifting",</blockquote>
+<blockquote class="callout">"sink", "suspend the crotch", "bent", "soaring and shifting" and "insubstantial". Below the</blockquote>
+<blockquote class="callout">figure it is noted "facing due south"; at the lower right is a compass diagram — north at</blockquote>
+<blockquote class="callout">the top, south at the bottom, east at the right, west at the left.</blockquote>
 <p><span id="p16" class="page-anchor"></span>Figure 2 — carry (图 2 承)</p>
 <p>(Labels on the left, top to bottom): 虛領 empty the collar · (吸) 拔 (inhaling) draw up · 鬆 loose · 騰挪 soaring and shifting · 沉 sink · 直 straight · 曲 bent · 精神貫注 spirit concentrated · 實 substantial (Labels on the right, top to bottom): 鬆 loose · 意向上開 intent opening upward · 騰挪 soaring and shifting · 沉 sink · 意向上開 intent opening upward · 斂氣 gather qi · 沉 sink · 吊 suspend · 裹 wrap · 曲 bent · 騰挪 soaring and shifting · 虛 insubstantial (Below the figure): facing south-east; the left foot set out toward the south-east; the left hip drawn back; the tailbone must be central and upright.</p>
 <figure class="figure-wrap" id="fig016-2"><div class="figure-caption-title">图 2</div><a class="figure-image-container" href="photos/p016_fig2.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig016-2.jpg" alt="图 2" loading="lazy"></a><figcaption class="figure-caption">The second of the sequence-diagram examples, captioned "Figure 2 — carry". A</figcaption></figure>
-<blockquote class="quote-box">figure stands facing south-east, the right hand raised before the face with the palm turned</blockquote>
-<blockquote class="quote-box">to the left, the left hand pressing at the front of the abdomen, the two legs set one before</blockquote>
-<blockquote class="quote-box">the other. Leader lines mark the requirements at each part: on the left, top to bottom,</blockquote>
-<blockquote class="quote-box">"empty the collar", "(inhaling) draw up", "loose", "soaring and shifting", "sink", "straight",</blockquote>
-<blockquote class="quote-box">"bent", "spirit concentrated" and "substantial"; on the right, top to bottom, "loose", "intent</blockquote>
-<blockquote class="quote-box">opening upward", "soaring and shifting", "sink", "intent opening upward", "gather qi", "sink",</blockquote>
-<blockquote class="quote-box">"suspend", "wrap", "bent", "soaring and shifting" and "insubstantial". Below the figure are</blockquote>
-<blockquote class="quote-box">noted "facing south-east", "the left foot set out toward the south-east", "the left hip drawn</blockquote>
-<blockquote class="quote-box">back" and "the tailbone must be central and upright".</blockquote>
+<blockquote class="callout">figure stands facing south-east, the right hand raised before the face with the palm turned</blockquote>
+<blockquote class="callout">to the left, the left hand pressing at the front of the abdomen, the two legs set one before</blockquote>
+<blockquote class="callout">the other. Leader lines mark the requirements at each part: on the left, top to bottom,</blockquote>
+<blockquote class="callout">"empty the collar", "(inhaling) draw up", "loose", "soaring and shifting", "sink", "straight",</blockquote>
+<blockquote class="callout">"bent", "spirit concentrated" and "substantial"; on the right, top to bottom, "loose", "intent</blockquote>
+<blockquote class="callout">opening upward", "soaring and shifting", "sink", "intent opening upward", "gather qi", "sink",</blockquote>
+<blockquote class="callout">"suspend", "wrap", "bent", "soaring and shifting" and "insubstantial". Below the figure are</blockquote>
+<blockquote class="callout">noted "facing south-east", "the left foot set out toward the south-east", "the left hip drawn</blockquote>
+<blockquote class="callout">back" and "the tailbone must be central and upright".</blockquote>
 <p><span id="p17" class="page-anchor"></span>Figure 3 — open (图 3 開)</p>
 <p>(Labels on the left, top to bottom): 虛領 empty the collar · (呼) 拔 (exhaling) draw up · 鬆 loose · 騰挪 soaring and shifting · 沉 sink · 直 straight · 曲 bent · 騰挪 soaring and shifting · 虛 insubstantial (Labels on the right, top to bottom): 鬆 loose · 意向上開 intent opening upward · 騰挪 soaring and shifting · 沉 sink · 意向上開 intent opening upward · 斂氣 gather qi · 沉 sink · 裹 wrap · 曲 bent · 精神貫注 spirit concentrated · 實 substantial (Below the figure): facing south-east; the left leg bows; the right leg presses.</p>
 <figure class="figure-wrap" id="fig017-3"><div class="figure-caption-title">图 3</div><a class="figure-image-container" href="photos/p017_fig3.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig017-3.jpg" alt="图 3" loading="lazy"></a><figcaption class="figure-caption">The third of the sequence-diagram examples, captioned "Figure 3 — open". A</figcaption></figure>
-<blockquote class="quote-box">figure stands facing south-east, the right hand raised before the face with the palm turned</blockquote>
-<blockquote class="quote-box">to the left and the fingers spread, the left hand pressing at the front of the abdomen; the</blockquote>
-<blockquote class="quote-box">left leg bows in front and the right leg presses behind. Leader lines mark the requirements</blockquote>
-<blockquote class="quote-box">at each part: on the left, top to bottom, "empty the collar", "(exhaling) draw up", "loose",</blockquote>
-<blockquote class="quote-box">"soaring and shifting", "sink", "straight", "bent", "soaring and shifting" and</blockquote>
-<blockquote class="quote-box">"insubstantial"; on the right, top to bottom, "loose", "intent opening upward", "soaring and</blockquote>
-<blockquote class="quote-box">shifting", "sink", "intent opening upward", "gather qi", "sink", "wrap", "bent", "spirit</blockquote>
-<blockquote class="quote-box">concentrated" and "substantial". Below the figure are noted "facing south-east", "the left</blockquote>
-<blockquote class="quote-box">leg bows" and "the right leg presses".</blockquote>
+<blockquote class="callout">figure stands facing south-east, the right hand raised before the face with the palm turned</blockquote>
+<blockquote class="callout">to the left and the fingers spread, the left hand pressing at the front of the abdomen; the</blockquote>
+<blockquote class="callout">left leg bows in front and the right leg presses behind. Leader lines mark the requirements</blockquote>
+<blockquote class="callout">at each part: on the left, top to bottom, "empty the collar", "(exhaling) draw up", "loose",</blockquote>
+<blockquote class="callout">"soaring and shifting", "sink", "straight", "bent", "soaring and shifting" and</blockquote>
+<blockquote class="callout">"insubstantial"; on the right, top to bottom, "loose", "intent opening upward", "soaring and</blockquote>
+<blockquote class="callout">shifting", "sink", "intent opening upward", "gather qi", "sink", "wrap", "bent", "spirit</blockquote>
+<blockquote class="callout">concentrated" and "substantial". Below the figure are noted "facing south-east", "the left</blockquote>
+<blockquote class="callout">leg bows" and "the right leg presses".</blockquote>
 <p><span id="p18" class="page-anchor"></span>Figure 4 — close (图 4 合)</p>
 <p>(Labels on the left, top to bottom): 虛領 empty the collar · (吸) 拔 (inhaling) draw up · 鬆 loose · 騰挪 soaring and shifting · 沉 sink · 直 straight · 曲 bent · 騰挪 soaring and shifting · 虛 insubstantial (Labels on the right, top to bottom): 鬆 loose · 意向上開 intent opening upward · 騰挪 soaring and shifting · 沉 sink · 斂氣 gather qi · 沉 sink · 吊 suspend · 裹 wrap · 曲 bent · 精神貫注 spirit concentrated · 實 substantial (Below the figure): facing south-east; the right foot lifted and set forward half a step; the two hands closing level with the mouth.</p>
 <figure class="figure-wrap" id="fig018-4"><div class="figure-caption-title">图 4</div><a class="figure-image-container" href="photos/p018_fig4.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig018-4.jpg" alt="图 4" loading="lazy"></a><figcaption class="figure-caption">The fourth of the sequence-diagram examples, captioned "Figure 4 — close". A</figcaption></figure>
-<blockquote class="quote-box">figure stands facing south-east, the two hands closed together before the chest at the height</blockquote>
-<blockquote class="quote-box">of the mouth, palms facing each other; the right foot is lifted and set forward half a step.</blockquote>
-<blockquote class="quote-box">Leader lines mark the requirements at each part: on the left, top to bottom, "empty the</blockquote>
-<blockquote class="quote-box">collar", "(inhaling) draw up", "loose", "soaring and shifting", "sink", "straight", "bent",</blockquote>
-<blockquote class="quote-box">"soaring and shifting" and "insubstantial"; on the right, top to bottom, "loose", "intent</blockquote>
-<blockquote class="quote-box">opening upward", "soaring and shifting", "sink", "gather qi", "sink", "suspend", "wrap",</blockquote>
-<blockquote class="quote-box">"bent", "spirit concentrated" and "substantial". Below the figure are noted "facing</blockquote>
-<blockquote class="quote-box">south-east", "the right foot lifted and set forward half a step" and "the two hands closing</blockquote>
-<blockquote class="quote-box">level with the mouth".</blockquote>
-</section><section id="p19" class="chapter-block">
+<blockquote class="callout">figure stands facing south-east, the two hands closed together before the chest at the height</blockquote>
+<blockquote class="callout">of the mouth, palms facing each other; the right foot is lifted and set forward half a step.</blockquote>
+<blockquote class="callout">Leader lines mark the requirements at each part: on the left, top to bottom, "empty the</blockquote>
+<blockquote class="callout">collar", "(inhaling) draw up", "loose", "soaring and shifting", "sink", "straight", "bent",</blockquote>
+<blockquote class="callout">"soaring and shifting" and "insubstantial"; on the right, top to bottom, "loose", "intent</blockquote>
+<blockquote class="callout">opening upward", "soaring and shifting", "sink", "gather qi", "sink", "suspend", "wrap",</blockquote>
+<blockquote class="callout">"bent", "spirit concentrated" and "substantial". Below the figure are noted "facing</blockquote>
+<blockquote class="callout">south-east", "the right foot lifted and set forward half a step" and "the two hands closing</blockquote>
+<blockquote class="callout">level with the mouth".</blockquote>
+</section>
+
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Phần 8</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 14</div>
     <h2 class="chapter-title">Chapter Two — Illustrated Explanation of Wu-Style Taijiquan</h2>
@@ -424,7 +767,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <table class="posture-table"><tr><th></th><th>Posture</th><th></th><th>Posture</th></tr><tr><td>1</td><td>Preparatory posture</td><td>14</td><td>Hand strums the lute</td></tr><tr><td>2</td><td>Left lazy tucking the robe</td><td>15</td><td>Right lazy tucking the robe</td></tr><tr><td>3</td><td>Right lazy tucking the robe</td><td>16</td><td>Single whip</td></tr><tr><td>4</td><td>Single whip</td><td>17</td><td>Raise the hand</td></tr><tr><td>5</td><td>Raise the hand</td><td>18</td><td>Look at the fist beneath the elbow</td></tr><tr><td>6</td><td>White goose spreads its wings</td><td>19</td><td>Left repulse the monkey</td></tr><tr><td>7</td><td>Brush the knee and twist the step</td><td>20</td><td>Right repulse the monkey</td></tr><tr><td>8</td><td>Hand strums the lute</td><td>21</td><td>Left repulse the monkey</td></tr><tr><td>9</td><td>Brush the knee and twist the step</td><td>22</td><td>Right repulse the monkey</td></tr><tr><td>10</td><td>Hand strums the lute</td><td>23</td><td>Hand strums the lute</td></tr><tr><td>11</td><td>Step up, deflect, seize and punch</td><td>24</td><td>White goose spreads its wings</td></tr><tr><td>12</td><td>As if sealing, as if closing</td><td>25</td><td>Brush the knee and twist the step</td></tr><tr><td>13</td><td>Embrace the tiger and push the mountain</td><td>26</td><td>Hand strums the lute</td></tr></table>
 <table class="posture-table"><tr><th></th><th>Posture</th><th></th><th>Posture</th></tr><tr><td>27</td><td>Press</td><td>51</td><td>Hand strums the lute</td></tr><tr><td>28</td><td>Blue dragon issues from the water</td><td>52</td><td>Right lazy tucking the robe</td></tr><tr><td>29</td><td>Turn the body</td><td>53</td><td>Diagonal single whip</td></tr><tr><td>30</td><td>Three-closing-the-back</td><td>54</td><td>Lower the posture</td></tr><tr><td>31</td><td>Single whip</td><td>55</td><td>Part the wild horse's mane</td></tr><tr><td>32</td><td>Lower the posture</td><td>56</td><td>Single whip</td></tr><tr><td>33</td><td>Waving hands</td><td>57</td><td>The jade maiden works the shuttle</td></tr><tr><td>34</td><td>Single whip</td><td>58</td><td>Hand strums the lute</td></tr><tr><td>35</td><td>Raise the hand</td><td>59</td><td>Right lazy tucking the robe</td></tr><tr><td>36</td><td>High pat on horse</td><td>60</td><td>Single whip</td></tr><tr><td>37</td><td>Left sharp-tiger posture</td><td>61</td><td>Lower the posture</td></tr><tr><td>38</td><td>Right raise the foot</td><td>62</td><td>Waving hands</td></tr><tr><td>39</td><td>Right hidden-tiger posture</td><td>63</td><td>Single whip</td></tr><tr><td>40</td><td>Left raise the foot</td><td>64</td><td>Lower the posture</td></tr><tr><td>41</td><td>Turn the body and kick</td><td>65</td><td>Golden rooster stands on one leg</td></tr><tr><td>42</td><td>Single whip</td><td>66</td><td>Left repulse the monkey</td></tr><tr><td>43</td><td>Treading step and strike</td><td>67</td><td>Right repulse the monkey</td></tr><tr><td>44</td><td>Turn the body, double kick</td><td>68</td><td>Left repulse the monkey</td></tr><tr><td>45</td><td>Drape the body</td><td>69</td><td>Right repulse the monkey</td></tr><tr><td>46</td><td>Retreat the step and kick</td><td>70</td><td>Hand strums the lute</td></tr><tr><td>47</td><td>Turn the body and kick</td><td>71</td><td>White goose spreads its wings</td></tr><tr><td>48</td><td>Step up, deflect, seize and punch</td><td>72</td><td>Brush the knee and twist the step</td></tr><tr><td>49</td><td>As if sealing, as if closing</td><td>73</td><td>Hand strums the lute</td></tr><tr><td>50</td><td>Embrace the tiger and push the mountain</td><td>74</td><td>Press</td></tr></table>
 <p>Seventy-fifth posture — Blue dragon issues from the water　　　Eighty-sixth posture — Step forward, ward-off, intercept, punch Seventy-sixth posture — Turn the body over　　　　　　　　　　Eighty-seventh posture — Right deflect, parry, punch Seventy-seventh posture — Three Yong-shan peaks　　　　　　　 Eighty-eighth posture — Single whip Seventy-eighth posture — Single interception　　　　　　　　　Eighty-ninth posture — Lower the posture Seventy-ninth posture — Lower the posture　　　　　　　　　　Ninetieth posture — Step up to seven stars Eightieth posture — Cupping hand　　　　　　　　　　　　　　 Ninety-first posture — Step back and bestride the tiger Eighty-first posture — Single whip　　　　　　　　　　　　　 Ninety-second posture — Turn the foot and swing the lotus Eighty-second posture — Raise the hand, lift the posture　　　 Ninety-third posture — Bend the bow and shoot the tiger Eighty-third posture — High pat the horse　　　　　　　　　　 Ninety-fourth posture — Double embracing punch Eighty-fourth posture — Punch to the heart　　　　　　　　　 Ninety-fifth posture — Hand plays the lute Eighty-fifth posture — Turn the body, cross-swing the lotus　 Nineth-sixth posture — Closing posture</p>
-</section><section id="p21" class="chapter-block">
+</section>
+
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Phần 9</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 16</div>
     <h2 class="chapter-title">Some notes on the illustrations</h2>
@@ -441,7 +789,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig022-3"><div class="figure-caption-title">图 3</div><a class="figure-image-container" href="photos/p022_fig3.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig022-3.jpg" alt="图 3" loading="lazy"></a><figcaption class="figure-caption">Diagram: a foot with the heel pressed to the ground and the toe lifted, with shading at the heel. It means that the heel is on the ground.</figcaption></figure>
 <figure class="figure-wrap" id="fig022-4"><div class="figure-caption-title">图 4</div><a class="figure-image-container" href="photos/p022_fig4.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig022-4.jpg" alt="图 4" loading="lazy"></a><figcaption class="figure-caption">Diagram: a foot with the sole raised high and the toe touching the ground, with shading at the toe. It means that the toe is on the ground.</figcaption></figure>
 <p>Means the whole foot is on the ground With no shading beside the foot: the whole foot is off the ground Means the heel is on the ground Means the toe is on the ground</p>
-</section><section id="p22" class="chapter-block">
+</section>
+
+<section id="sec09">
+<span id="chuong-9"></span>
+<h2>Phần 10</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 17</div>
     <h2 class="chapter-title">Illustrated explanation of the Wu-style taijiquan form</h2>
@@ -950,7 +1303,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig083-224"><div class="figure-caption-title">图 224</div><a class="figure-image-container" href="photos/p083_fig224.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig083-224.jpg" alt="图 224" loading="lazy"></a><figcaption class="figure-caption">Line drawing (upper middle of the page): two men in contact pushing each other, the man on the right with both hands pressing on the other's arm, both men's steps crossed. Labelled at its side "Figure 224".</figcaption></figure>
 <figure class="figure-wrap" id="fig083-225"><div class="figure-caption-title">图 225</div><a class="figure-image-container" href="photos/p083_fig225.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-hao-style-taijiquan-hao-shaoru-reader/fig083-225.jpg" alt="图 225" loading="lazy"></a><figcaption class="figure-caption">Line drawing (upper right of the page): two men in contact pushing each other, the man on the right with his right hand extended forward and his left hand pressing on the other's arm, both men's steps one before the other. Labelled at its side "Figure 225".</figcaption></figure>
 <h3 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">Appendix — Classical treatises on the art</h3>
-</section><section id="p84" class="chapter-block">
+</section>
+
+<section id="sec10">
+<span id="chuong-10"></span>
+<h2>Phần 11</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 79</div>
     <h2 class="chapter-title">Treatise on taijiquan</h2>
@@ -958,7 +1316,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Treatise on taijiquan</div>
 <p><span id="p85" class="page-anchor"></span><strong>Wang Zongyue of Shanyou</strong> Taiji is born of wuji and is the mother of yin and yang. In movement it divides; in stillness it joins. Neither excess nor deficiency: follow the bend and yield to the extension. When the other is hard and I am soft, this is called "walking away"; when I am yielding and the other is against his own advantage, this is called "sticking". If the movement is urgent, respond urgently; if the movement is slow, follow slowly. Though the transformations are myriad, the principle is one throughout. From familiarity with the postures one gradually awakens to understanding energy (dong jin); from understanding energy one ascends step by step to the divine illumination. Yet without long application one cannot break through to sudden comprehension. Empty the collar and lift the crown of the head; sink the breath to the dantian. Neither lean nor incline; now hidden, now revealed. If the left is heavy, the left becomes empty; if the right is heavy, the right vanishes. Look up and it grows higher; look down and it grows deeper. Advance and it grows longer; retreat and it grows more pressing. Not even a feather can be added, nor an insect alight. The other does not know me; I alone know the other. That the hero meets no enemy wherever he turns comes about from this alone. There are very many side doors to this art; though the postures differ, they amount to no more than the strong cheating the weak and the slow giving way to the quick. Strength beating weakness and a slow hand yielding to a quick hand are all natural endowments of the inborn body, not something that comes from learning. Consider the saying "four ounces deflect a thousand catties" — plainly it is not victory by strength. Observe the form of the aged defeating a crowd — of what use is speed? Stand like a balance beam; move like a wheel. Lean to one side and you follow; be double-weighted and you stagnate. One constantly sees men of several years' pure practice unable to transform, and it is invariably because they let themselves be controlled by the other — they have not awakened to the fault of double-weighting. To avoid this fault one must know yin and yang. Sticking is walking away, and walking away is sticking; yin does not leave yang, nor yang leave yin. Only when yin and yang aid each other is there understanding of energy. After understanding energy, the more one practises the finer it becomes; silently recognizing and pondering, one gradually arrives at doing as the heart desires. The root of it is to give up the self and follow the other; many mistake this and give up the near to seek the far.</p>
 <p>As the saying goes, "a difference of a hair's breadth is an error of a thousand li" — the student cannot but examine this carefully. This is the treatise.</p>
-</section><section id="p85" class="chapter-block">
+</section>
+
+<section id="sec11">
+<span id="chuong-11"></span>
+<h2>Phần 12</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 80</div>
     <h2 class="chapter-title">The thirteen postures (also called the long form, also called the thirteen postures)</h2>
@@ -969,7 +1332,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Song of practising the thirteen postures (author unknown)</div>
 <p><span id="p86" class="page-anchor"></span>Do not slight the thirteen postures in all; Their life and intent have their source in the waist's gap. In changing fullness and emptiness, take care; Let breath go through the body, not dulled in the least. Touched in stillness, moving yet still as before; To change with the enemy is the wonder. In every posture keep the mind weighing intent; What is gained comes without felt expenditure of effort. Moment by moment keep the mind at the waist; Within the belly, loose and still, the breath rises. The tailbone centred, spirit threading the crown; The whole body light and nimble, each part suspended. Attend closely and seek it out in yourself; Bend and extend, open and close, follow what is free. Crossing the threshold needs guiding by word of mouth; Ceaseless application, and the method settles of itself. If you ask what the standard of body and use is: Intent and breath are the lord, bone and flesh the minister. Push the question of intent to its end — where does it lie? Long life, lengthened years, an unwithering spring. Sing, O sing — a hundred and forty lines; Every word is true, its meaning beyond doubt.</p>
 <p>If one does not seek it out along this path, one wastes one's labour and will only lament too late!</p>
-</section><section id="p86" class="chapter-block">
+</section>
+
+<section id="sec12">
+<span id="chuong-12"></span>
+<h2>Phần 13</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 81</div>
     <h2 class="chapter-title">Song of pushing hands　Revised by Wang Zongyue</h2>
@@ -987,7 +1355,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>When the other does not move, I do not move; when the other moves slightly, I move first. As if loose yet not loose, about to unfold yet not — unfold. The power breaks but the intent does not break.</p>
 <p>Again it is said:</p>
 <p>In every movement, the hand alone first applies force, and then immediately loosens. One must still thread it through, and this is nothing other than beginning, sustaining, turning and closing. First the intent moves, then the power moves; the transition must be strung on a single thread. The breath should be stirred and agitated, the spirit should be gathered inward. Do not allow any place of defect, do not allow any place of concavity or convexity, do not allow any place of break or interruption. Its root is in the feet, it issues from the legs, it is governed by the waist, it takes form in the fingers. From feet to legs to waist, it must always be one complete breath. Advancing and retreating, only then does one gain the opportunity and the position; where one does not gain opportunity and position, the body becomes scattered, and one must come to lean and tilt — the fault must be sought in the waist and legs, and it is so above and below, before and behind, left and right. All of this is intent, not outward form: where there is above there is below, where there is front there is back, where there is left there is right. If the intent wishes to go up, then lodge the intent below; if a thing is about to be lifted, and you add a breaking force to it, then its root breaks of itself, and it is destroyed swiftly, beyond doubt. Fullness and emptiness should be clearly distinguished: each place has its own fullness and emptiness, and every place is always this one fullness and emptiness; the whole body is threaded joint by joint — do not let there be the least interruption.</p>
-</section><section id="p88" class="chapter-block">
+</section>
+
+<section id="sec13">
+<span id="chuong-13"></span>
+<h2>Phần 14</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 83</div>
     <h2 class="chapter-title">Releasing in pushing hands</h2>
@@ -1005,7 +1378,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>The power of the whole body is trained into one family, distinguishing clearly fullness and emptiness. In issuing power there must be a root: the power rises from the heel, is governed at the waist, takes form in the fingers, and issues from the spine and back. One must also raise up the whole of one's spirit: at the moment when the other's power is about to issue but has not yet issued, my power has already joined his power — exactly neither behind nor before, like skin catching fire, like a spring gushing out. Advancing and retreating, there is not the least scattering; seek the straight within the curved, store and then issue, and only then can one succeed at once with the hand. This is what is meant by "borrowing force to strike the man, four ounces deflecting a thousand catties."</p>
 <div class="chapter-sub">Five: the spirit gathers</div>
 <p><span id="p90" class="page-anchor"></span>When the above four are all present, they all return to the gathering of the spirit. When the spirit gathers, then one breath forges and casts, refining the breath and returning it to the spirit, and the breath's momentum soars and shifts. The spirit is poured in; opening and closing have order; fullness and emptiness are clear. When the left is empty, the right is full; when the right is empty, the left is full. Emptiness is not being utterly without force — the breath's momentum must have soaring and shifting; fullness is not being utterly locked up — the spirit must be valued and poured in. The crux lies entirely in the transforming within the chest and waist, not outside. Force is borrowed from others; breath issues from the spine. How can breath issue from the spine? The breath sinks downward, gathering from both shoulders into the spine and pouring into the waist — this is the breath going from above to below, and it is called closing. From the waist it takes form in the spine, spreads to both arms, and is applied in the fingers — this is the breath going from below to above, and it is called opening. Closing is gathering; opening is issuing. If one can understand opening and closing, then one knows yin and yang. Arriving at this stage, one day's work is one day's refinement of skill, until gradually one follows what the mind desires, and nothing fails to accord with one's intent.</p>
-</section><section id="p90" class="chapter-block">
+</section>
+
+<section id="sec14">
+<span id="chuong-14"></span>
+<h2>Phần 15</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 85</div>
     <h2 class="chapter-title">Secret formula for releasing　Li Yiyu</h2>
@@ -1015,7 +1393,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Essential words on practising the form and pushing hands　Li Yiyu</div>
 <p>The men of old said: "One can draw in and let fall into emptiness, and can deflect a thousand catties with four ounces; one cannot draw in and let fall into emptiness, and cannot deflect a thousand catties with four ounces." The words are very comprehensive, and the beginner has no way to grasp them. I add a few phrases to explain them, so that those who have the will in this art may find the way in, and so advance daily with achievement. If one wishes to draw in and let fall into emptiness, and to deflect a thousand catties with four ounces, one must first know oneself and know others. If one wishes to know oneself and know others, one must first give up up the self and follow others. If one wishes to give up the self and follow others, one must first gain the opportunity and the position. If one wishes to gain opportunity and position, one must first make the whole body one family. If one wishes to make the whole body one family, one must first have no defect in the whole body. If one wishes to have no defect in the whole body, one must first have the spirit and breath stirred and agitated. If one wishes the spirit and breath stirred and agitated, one must first raise up the spirit, so that the spirit cannot scatter outward. If one wishes the spirit not to scatter outward, one must first have the spirit and breath gather and enter the bones. If one wishes the spirit and breath to gather and enter the bones, one must first have strength in the front section of both thighs. Both shoulders loosen, the breath sinks downward, the power rises from the heel, changes in the legs, is contained in the chest, moves in both shoulders, and is governed in the waist. Above, the two arms are linked; below, the two legs follow. The power is exchanged from within: gathering is closing, releasing is opening. When still, all is still; stillness is closing, and within closing is lodged opening. When moving, all moves; movement is opening, and within opening is lodged closing. Touched, one then turns and revolves freely, and nowhere fails to get force. Only then can one draw in and let fall into emptiness, and deflect a thousand catties with four ounces. In ordinary practice of the form, this is the work of knowing oneself: at each movement, first ask whether one's whole body accords with these several items; if it accords but slightly not, then change at once — hence in practising the form one should be slow and not fast. Pushing hands is the work of knowing others; movement and stillness are indeed knowing others, but it is still asking oneself. If one has arranged oneself well, then when another touches me, I do not move him a hair's breadth, but take advantage of his momentum to enter, join and fix his power, and he falls out of himself. If one has a place where one cannot get force, then it is double-weighting not yet transformed, and one must seek it in the opening and closing of yin and yang. This is what is meant by "know yourself and know others, and in a hundred battles you will win a hundred victories."</p>
 <p>Note: The above classical treatises on boxing are selected and transcribed from the definitive edition of the <em>Taijiquan Manual</em> that Li Yiyu copied out and presented to Hao Weizhen in 1881; the text has not been altered by later hands.</p>
-</section><section id="p91" class="chapter-block">
+</section>
+
+<section id="sec15">
+<span id="chuong-15"></span>
+<h2>Phần 16</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 86</div>
     <h2 class="chapter-title">Four-word secret formula　(author to be verified)</h2>
@@ -1029,46 +1412,55 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Textual note: Li Fuyin, grandson of Li Yiyu, compiled the Lianrang Hall edition of the <em>Taijiquan Manual</em> in 1935 and took the "Four-word secret formula" to be a work of Wu Yuxiang, basing this on the <em>Brief Account of My Late Grandfather, the Honourable Lianquan</em>, written by Wu Laixu, grandson of Wu Yuxiang. Laixu said of his grandfather that "receiving the art, his insights came entirely from the four-word formula," and so Fuyin took the "Four-word secret formula" to be Wu Yuxiang's work. Considering that this formula's boxing theory is lofty and subtle, with a level above Li Yiyu's "Secret formula for releasing"; that Li Yiyu's <em>Taijiquan Manual</em>, written out for Hao He in 1881, fully records Wu Yuxiang's boxing treatises; that Wu Yuxiang died in 1880; and that Wu and Li stood as teacher and student and lived in the same village — if this formula were Wu Yuxiang's work, there is no way it would not have been included. Hence this formula is probably not Wu Yuxiang's work, and may have been composed by a disciple of Wu or of Li. Li Yiyu died in 1892, so it is also possible that he wrote this formula. It is singled out here for further examination.</p>
 <p>(Appendix note by Gu Liuxin)</p>
 </section>
-
-    <nav class="page-nav">
-      <a href="/books/sun_style_taijiquan_sun_jianyun_en_full.html" class="prev">&#8592; Previous · Sun Style Taijiquan</a>
-      <a href="/books/" class="home">&#8962; Home</a>
-      <a href="/vi/books/wu_style_taijiquan_xu_zhiyi_vi.html" class="next">Next · Wu-Style (Xu Zhiyi, Vietnamese) &#8594;</a>
-    </nav>
-
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Taijiquan translation — Wu/Hao-style (Hao Shaoru, 1963)</p>
-  <p>Built with ❤️ for the Vietnamese Tai Chi community by Henry Phạm</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chen-Style Taijiquan (Shen Jiazhen & Gu Liuxin, 1963) — Full Translation | TaichiNOW</title>
-<meta name="description" content="A page-faithful English translation of 《陈式太极拳》(1963) compiled by Shen Jiazhen and Gu Liuxin — 340 pages, 441 figures, with the Chinese source transcribed alongside.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -182,121 +175,438 @@ body.dark-mode .key-point { color: #a7f3d0; }
   font-size: 0.74rem; color: #a8a29e; font-weight: 600;
   letter-spacing: 0.05em; margin-bottom: 3px;
 }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chen-Style Taijiquan (Shen Jiazhen &amp; Gu Liuxin, 1963) — Full Translation | TaichiNOW</title>
+<meta name="description" content="A page-faithful English translation of 《陈式太极拳》(1963) compiled by Shen Jiazhen and Gu Liuxin — 340 pages, 441 figures, with the Chinese source transcribed alongside.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/">Home</a>
-    <a href="/techniques/">Techniques</a>
-    <a href="/books/" class="active">Books</a>
-    <a href="/videos/">Videos</a>
-    <a href="/podcast/">Podcast</a>
-    <a href="/philosophy/">Philosophy</a>
-    <a href="/history/">History</a>
-    <a href="/contact/">Contact</a>
-    <a href="/vi/books/chen_style_taijiquan_shen_gu_1963_vi.html" class="lang-switch">Tiếng Việt</a>
-  </nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span class="sep">/</span>
-    <a href="/books/">Book Library</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Chen-Style Taijiquan (Shen Jiazhen &amp; Gu Liuxin, 1963) — Full Translation | TaichiNOW</span>
-  </nav>
-
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Table of Contents</summary>
-    <ul class="toc-list">
-        <li class="toc-item"><a href="#p41" class="toc-link">III. The Grasping of Substantial and Insubstantial<span class="pg">p.32</span></a></li>
-        <li class="toc-item"><a href="#p42" class="toc-link">IV. Light and Heavy, Floating and Sinking, and Substantial and Insubstantial<span class="pg">p.33</span></a></li>
-        <li class="toc-item"><a href="#p46" class="toc-link">Fifth Characteristic: The Joined-Segment Continuous Movement of Waist and Spine Leading, with Inner and Outer Mutually Fitting<span class="pg">p.37</span></a></li>
-        <li class="toc-item"><a href="#p47" class="toc-link">I. The Essence of Joined-Segment Continuity<span class="pg">p.38</span></a></li>
-        <li class="toc-item"><a href="#p48" class="toc-link">II. The Relation of "When One Moves, All Move" to Waist and Spine<span class="pg">p.39</span></a></li>
-        <li class="toc-item"><a href="#p49" class="toc-link">III. Joined-Segment Continuity and Strengthening the Joints<span class="pg">p.40</span></a></li>
-        <li class="toc-item"><a href="#p51" class="toc-link">V. The Grasping of Joined-Segment Continuity<span class="pg">p.42</span></a></li>
-        <li class="toc-item"><a href="#p53" class="toc-link">Sixth Characteristic: The "One Breath Accomplished" Movement of Unbroken Connection and Endless Surging<span class="pg">p.44</span></a></li>
-        <li class="toc-item"><a href="#p54" class="toc-link">I. The Realization of "Accomplishment in One Breath"<span class="pg">p.45</span></a></li>
-        <li class="toc-item"><a href="#p56" class="toc-link">II. Examples of Famous Masters Performing the Form<span class="pg">p.47</span></a></li>
-        <li class="toc-item"><a href="#p57" class="toc-link">III. Spirit-and-Qi Surging and Accomplishment in One Breath①<span class="pg">p.48</span></a></li>
-        <li class="toc-item"><a href="#p59" class="toc-link">Seventh Characteristic: The Firmness-and-Softness-Mutually-Aiding Movement from Softness to Firmness and from Firmness to Softness<span class="pg">p.50</span></a></li>
-        <li class="toc-item"><a href="#p60" class="toc-link">I. The Boxing of Firmness and Softness Mutually Aiding<span class="pg">p.51</span></a></li>
-        <li class="toc-item"><a href="#p61" class="toc-link">II. The Period of Seeking Softness and Destroying Rigidity<span class="pg">p.52</span></a></li>
-        <li class="toc-item"><a href="#p62" class="toc-link">IV. The Transformation of Firm and Soft<span class="pg">p.53</span></a></li>
-        <li class="toc-item"><a href="#p63" class="toc-link">V. The Grasping of Firmness and Softness Mutually Aiding<span class="pg">p.54</span></a></li>
-        <li class="toc-item"><a href="#p66" class="toc-link">Eighth Characteristic: The Movement of Alternating Fast and Slow, from Slow to Fast and from Fast to Slow<span class="pg">p.57</span></a></li>
-        <li class="toc-item"><a href="#p67" class="toc-link">I. The Development Sequence of Fast and Slow<span class="pg">p.58</span></a></li>
-        <li class="toc-item"><a href="#p68" class="toc-link">II. The Time and Conditions for Turning from Slow to Fast<span class="pg">p.59</span></a></li>
-        <li class="toc-item"><a href="#p69" class="toc-link">III. Alternating Fast and Slow, and Evenness-and-Clearness, and the Categories of Jin<span class="pg">p.60</span></a></li>
-        <li class="toc-item"><a href="#p71" class="toc-link">IV. The Grasping of Alternating Fast and Slow<span class="pg">p.62</span></a></li>
-        <li class="toc-item"><a href="#p72" class="toc-link">Conclusion<span class="pg">p.63</span></a></li>
-        <li class="toc-item"><a href="#p74" class="toc-link">Sequence of the Form Names of the First Route of Chen-Style Taijiquan<span class="pg">p.65</span></a></li>
-        <li class="toc-item"><a href="#p76" class="toc-link">A Few Notes on the Illustrations<span class="pg">p.67</span></a></li>
-        <li class="toc-item"><a href="#p77" class="toc-link">Chen-Style Taijiquan, First Route<span class="pg">p.68</span></a></li>
-        <li class="toc-item"><a href="#p216" class="toc-link">Form 33. Left Wrap-Whip Cannon (1)<span class="pg">p.207</span></a></li>
-        <li class="toc-item"><a href="#p217" class="toc-link">Form 34. Left Wrap-Whip Cannon (2) (chest facing south)<span class="pg">p.208</span></a></li>
-        <li class="toc-item"><a href="#p218" class="toc-link">Form 35. Right Wrap-Whip Cannon (1) (chest turning from south to north)<span class="pg">p.209</span></a></li>
-        <li class="toc-item"><a href="#p219" class="toc-link">Form 36. Right Wrap-Whip Cannon (2) (chest facing north)<span class="pg">p.210</span></a></li>
-        <li class="toc-item"><a href="#p220" class="toc-link">Form 38. Splitting the Frame (chest facing northeast)<span class="pg">p.211</span></a></li>
-        <li class="toc-item"><a href="#p222" class="toc-link">Form 39. Flower-Flipping Sleeve Dance (chest turning from southeast to northeast)<span class="pg">p.213</span></a></li>
-        <li class="toc-item"><a href="#p223" class="toc-link">Form 40. Cover-Hand Forearm Punch (chest turning from northeast to east)<span class="pg">p.214</span></a></li>
-        <li class="toc-item"><a href="#p224" class="toc-link">Form 41. Taming the Tiger (chest turning from east to southeast)<span class="pg">p.215</span></a></li>
-        <li class="toc-item"><a href="#p243" class="toc-link">Form 61: Jade Maiden Weaves the Shuttle (chest toward east, turns to north, then turns to west)<span class="pg">p.234</span></a></li>
-        <li class="toc-item"><a href="#p244" class="toc-link">Form 62: Turn the Head and Cannon at the Door (chest toward west)<span class="pg">p.235</span></a></li>
-        <li class="toc-item"><a href="#p245" class="toc-link">Form 64: Twisted Phoenix Elbow (chest toward south, turns north)<span class="pg">p.236</span></a></li>
-        <li class="toc-item"><a href="#p246" class="toc-link">Form 65: Forward Phoenix Elbow (chest toward north)<span class="pg">p.237</span></a></li>
-        <li class="toc-item"><a href="#p247" class="toc-link">Form 67: Cannon in the Nest (chest toward north)<span class="pg">p.238</span></a></li>
-        <li class="toc-item"><a href="#p248" class="toc-link">Form 68: Well-Curb Straight Entry (chest toward north, turns south)<span class="pg">p.239</span></a></li>
-        <li class="toc-item"><a href="#p249" class="toc-link">Form 70: Buddha's Warrior Attendant Pounds the Mortar (chest toward north)<span class="pg">p.240</span></a></li>
-        <li class="toc-item"><a href="#p250" class="toc-link">Form 71: Closing Posture (chest toward north)<span class="pg">p.241</span></a></li>
-        <li class="toc-item"><a href="#p252" class="toc-link">1. General Essentials of Push-Hands<span class="pg">p.243</span></a></li>
-        <li class="toc-item"><a href="#p253" class="toc-link">2. Chen-Style Push-Hands Methods<span class="pg">p.244</span></a></li>
-        <li class="toc-item"><a href="#p260" class="toc-link">3. Two Evolutions of Chen-Style Push-Hands<span class="pg">p.251</span></a></li>
-        <li class="toc-item"><a href="#p261" class="toc-link">4. Taijiquan Push-Hands Combines Both Yin and Yang<span class="pg">p.252</span></a></li>
-        <li class="toc-item"><a href="#p262" class="toc-link">5. Essential Points of the Push-Hands Movements<span class="pg">p.253</span></a></li>
-        <li class="toc-item"><a href="#p317" class="toc-link">Four. Chen Xin's Sayings on the Thirteen Body Parts ①<span class="pg">p.308</span></a></li>
-        <li class="toc-item"><a href="#p332" class="toc-link">Six. A Selection of Short Essays on Boxing by Chen Xin and Others<span class="pg">p.323</span></a></li>
-    </ul>
-  </details>
-
-  <main class="reader-content">
-
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Phần 1</a></li>
+        <li><a href="#sec01">Phần 2</a></li>
+        <li><a href="#sec02">Phần 3</a></li>
+        <li><a href="#sec03">Phần 4</a></li>
+        <li><a href="#sec04">Phần 5</a></li>
+        <li><a href="#sec05">Phần 6</a></li>
+        <li><a href="#sec06">Phần 7</a></li>
+        <li><a href="#sec07">Phần 8</a></li>
+        <li><a href="#sec08">Phần 9</a></li>
+        <li><a href="#sec09">Phần 10</a></li>
+        <li><a href="#sec10">Phần 11</a></li>
+        <li><a href="#sec11">Phần 12</a></li>
+        <li><a href="#sec12">Phần 13</a></li>
+        <li><a href="#sec13">Phần 14</a></li>
+        <li><a href="#sec14">Phần 15</a></li>
+        <li><a href="#sec15">Phần 16</a></li>
+        <li><a href="#sec16">Phần 17</a></li>
+        <li><a href="#sec17">Phần 18</a></li>
+        <li><a href="#sec18">Phần 19</a></li>
+        <li><a href="#sec19">Phần 20</a></li>
+        <li><a href="#sec20">Phần 21</a></li>
+        <li><a href="#sec21">Phần 22</a></li>
+        <li><a href="#sec22">Phần 23</a></li>
+        <li><a href="#sec23">Phần 24</a></li>
+        <li><a href="#sec24">Phần 25</a></li>
+        <li><a href="#sec25">Phần 26</a></li>
+        <li><a href="#sec26">Phần 27</a></li>
+        <li><a href="#sec27">Phần 28</a></li>
+        <li><a href="#sec28">Phần 29</a></li>
+        <li><a href="#sec29">Phần 30</a></li>
+        <li><a href="#sec30">Phần 31</a></li>
+        <li><a href="#sec31">Phần 32</a></li>
+        <li><a href="#sec32">Phần 33</a></li>
+        <li><a href="#sec33">Phần 34</a></li>
+        <li><a href="#sec34">Phần 35</a></li>
+        <li><a href="#sec35">Phần 36</a></li>
+        <li><a href="#sec36">Phần 37</a></li>
+        <li><a href="#sec37">Phần 38</a></li>
+        <li><a href="#sec38">Phần 39</a></li>
+        <li><a href="#sec39">Phần 40</a></li>
+        <li><a href="#sec40">Phần 41</a></li>
+        <li><a href="#sec41">Phần 42</a></li>
+        <li><a href="#sec42">Phần 43</a></li>
+        <li><a href="#sec43">Phần 44</a></li>
+        <li><a href="#sec44">Phần 45</a></li>
+        <li><a href="#sec45">Phần 46</a></li>
+        <li><a href="#sec46">Phần 47</a></li>
+        <li><a href="#sec47">Phần 48</a></li>
+        <li><a href="#sec48">Phần 49</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
     <div class="book-hero">
-      <span class="book-badge">Full 340-Page Translation &middot; 441 Figures &middot; With Chinese Source Transcription</span>
+      <span class="badge">Full 340-Page Translation &amp;middot; 441 Figures &amp;middot; With Chinese Source Transcription &middot; Authors: Shen Jiazhen (沈家桢) and Gu Liuxin (顾留馨, 1908–1990) — recording the form as taught by the famous master Chen Fake (陈发科, 1887–1957)
+        Original: People's Sports Publishing House (人民體育出版社), Beijing, 1963 (4th printing, April 1982)
+        English &amp;amp; figure notes: TaichiNOW Editorial Board</span>
       <h1>Chen-Style Taijiquan</h1>
-      <div class="book-orig-title">《陈式太极拳》 — compiled by Shen Jiazhen (沈家桢) & Gu Liuxin (顾留馨) · People's Sports Publishing House (1963)</div>
-      <div class="book-author-meta">
-        <strong>Authors:</strong> Shen Jiazhen (沈家桢) and Gu Liuxin (顾留馨, 1908–1990) — recording the form as taught by the famous master Chen Fake (陈发科, 1887–1957)<br>
-        <strong>Original:</strong> People's Sports Publishing House (人民體育出版社), Beijing, 1963 (4th printing, April 1982)<br>
-        <strong>English &amp; figure notes:</strong> TaichiNOW Editorial Board
-      </div>
-      <p style="font-size:0.95rem;color:var(--text-secondary);margin:0.8rem 0 0;">
-        A page-faithful translation of the original edition, rebuilt to the book's own printed page numbers; the posture figures are cropped from the scan and inserted at the positions they occupy in the book. The volume covers both routines: the First Routine (253 numbered plates) and the Second Routine, or Cannon Fist (126 plates), together with the push-hands section.
-      </p>
-      <div class="book-tags">
-        <span class="book-tag">Chen-Style Taijiquan</span>
-        <span class="book-tag">Chen Fake</span>
-        <span class="book-tag">First & Second Routine</span>
-        <span class="book-tag">Push-Hands</span>
-        <span class="book-tag">441 Figures</span>
-      </div>
-      <a class="book-pdf-link" href="/assets/books/chen_style_taijiquan_shen_gu_1963/chen_style_taijiquan_shen_gu_1963_en_full.pdf" download>
-        <i class="fa-solid fa-file-pdf"></i> Download PDF (A4, 567 pages)
-      </a>
+      <div class="subtitle">《陈式太极拳》 — compiled by Shen Jiazhen (沈家桢) &amp; Gu Liuxin (顾留馨) · People's Sports Publishing House (1963)</div>
     </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Phần 1</h2>
 
-<section id="p1" class="chapter-block">
   <div class="chapter-header">
     <div class="page-marker">Book page cover</div>
     <h2 class="chapter-title">Page cover</h2>
@@ -662,7 +972,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <li>① "Leaning" means that the position of the centre of gravity has already gone beyond the range of the middle third, making one foot especially heavy while the other floats and swings on the ground, forming a leaning to one side; hence the other side is of course leaning-light. This is called leaning without footing, or leaning-light leaning-heavy, and is a kind of fault.</li>
 </ul>
 <p>· 31 · Its requirement and method are: if the right hand sinks down and is substantial, then the right foot must be insubstantial; and when the right hand turns to the upper ward-off and is insubstantial, then the right foot follows the hand above and turns substantial. Doing this is called "dividing substantial and insubstantial with upper and lower following each other." Hence in the Taijiquan "Song of Hand-Pushing" it is said: "Ward-off, roll-back, press, and push must be done with care; when upper and lower follow each other, one is hard to invade" — one may well imagine its importance. Therefore, when practising the form, one must fully examine whether every movement has attained this requirement of upper and lower following each other. To take one round of practising the frame: the postures within are many and varied, and the changes of posture are so frequent that to achieve upper and lower following each other one must of course spend much effort before one can grasp it proficiently. In these changes, apart from changing substantial and insubstantial with the hand following the foot when stepping out, most are changes of substantial and insubstantial with the foot following the hand. In short, if one can achieve the upper-lower substantial and insubstantial of one hand and one foot, then the position of the centre of gravity will not go beyond the range of the middle third of the distance between the two legs, making both left and right legs have their footing; and thus the inner jin can attain central correctness. Once the inner jin is centrally correct, then one can support the eight directions. Reduced to the landing point of the foot on the ground, this kind of substantial and insubstantial is insubstantial-within-substantial and substantial-within-insubstantial. Only when one possesses this upper-and-lower-following substantial and insubstantial can the stepping be nimble and unclogged, advancing and retreating freely, and can one connect and follow the opponent without producing the morbid sign of losing and butting. At the same time, when pushing hands after proficiency, one need only pay attention to the one hand in contact with the opponent, while the other hand and both feet may thereby cultivate the habit of upper and lower following each other, without needing further divided attention; one can obtain the effect of automatic coordination, which is also the key to seeking stillness within movement and thereby attaining stillness.</p>
-</section><section id="p41" class="chapter-block">
+</section>
+
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Phần 2</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 32</div>
     <h2 class="chapter-title">III. The Grasping of Substantial and Insubstantial</h2>
@@ -670,7 +985,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">III. The Grasping of Substantial and Insubstantial</div>
 <p>As said above, Taijiquan takes the clear division of substantial and insubstantial and the eccentric moment produced by the shifting of the centre of gravity as its source of motive power; this is the most effort-saving mechanical action, and can make one tireless over long periods. In practising the form, one need only shift the centre of gravity once and one can set the movement going. The procedure of this training in substantial and insubstantial is: first the substantial and insubstantial of the two feet, next the substantial and insubstantial of the two hands, and finally, and most importantly, the upper-lower substantial and insubstantial of one hand and one foot.</p>
 <p>· 32 · When Taijiquan practises one round of the frame, the two hands, in order to move in curved circles, must constantly change between sudden insubstantiality and sudden substantiality, thereby impelling the two feet to adjust their substantial and insubstantial in accordance with the substantial and insubstantial of the hands. Likewise, the two feet, in advancing and retreating, always step out insubstantially, and only on reaching their point do they settle and become substantial. This is the general stepping requirement of Taijiquan; hence the hands must change substantial and insubstantial following the substantial and insubstantial of the feet. All these belong to the requirement of upper following lower and lower following upper, of upper and lower following each other; in practising Taijiquan one must comply with this requirement and cultivate this habit. Through long and repeated practice, once it becomes a habit, then when a person comes one naturally produces the automatic "connecting", and when a person leaves one naturally produces the automatic "following", and one need no longer expend much intent in directing the movements.</p>
-</section><section id="p42" class="chapter-block">
+</section>
+
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phần 3</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 33</div>
     <h2 class="chapter-title">IV. Light and Heavy, Floating and Sinking, and Substantial and Insubstantial</h2>
@@ -714,7 +1034,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(3) According to the principles of light, heavy, floating, and sinking, constantly examine the defects in one's own division of substantial and insubstantial.</p>
 <p>(4) One must achieve the three faultless substantial-and-insubstantial of double light, double sinking, and half-light half-heavy; this requires constant attention and long training before it can be formed.</p>
 <p>(5) When pushing hands, do not forget the principle of "corner hand dealing with corner hand". The four-cardinal hand and the four-corner hand must convert into each other, and both must be practised.</p>
-</section><section id="p46" class="chapter-block">
+</section>
+
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Phần 4</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 37</div>
     <h2 class="chapter-title">Fifth Characteristic: The Joined-Segment Continuous Movement of Waist and Spine Leading, with Inner and Outer Mutually Fitting</h2>
@@ -726,7 +1051,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>· 37 · (3) "If one wishes the whole body to be one family, one must first have the whole body free of defects";</p>
 <p>(4) "Move the qi like a nine-bend pearl, so that there is no subtle place it does not reach".</p>
 <p>From the above four provisions one can see that, in order to attain "when one moves, all move", one must take the waist and spine as the centre, because the waist is the central axis of the left-right parallel turning, and the spine is the foundation of the up-down bending. Since the movements of Taijiquan require that when one moves all move, then on the movement path one cannot merely turn horizontally left and right, nor can one exclusively do bending movements up and down, forward and back; rather one must unite waist and spine so that the path of movement forms a spatial curve that is at once left-right and also up-down, forward-back, thereby establishing the foundation of "when one moves, all move". That is to say, only through taking waist and spine as the centre can one cause the nine main movement joints of the whole body② to be strung together in sequence. Moreover, one must achieve whole-body freedom from defects, strung together like a nine-bend round pearl; only thus can one's skill advance to the stage of the whole body as one family. Therefore the joined-segment continuous movement with waist and spine leading and inner and outer mutually fitting becomes the fifth characteristic of Taijiquan.</p>
-</section><section id="p47" class="chapter-block">
+</section>
+
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phần 5</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 38</div>
     <h2 class="chapter-title">I. The Essence of Joined-Segment Continuity</h2>
@@ -740,7 +1070,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <li>② "Zero-break jin" is only joint movement, whereas "continuous jin" is muscle and joint moving together.</li>
 </ul>
 <p>· 38 · Once the continuous jin is made clear, one can find the point of application of force. If the leg is front-bowed and back-collapsed without left-right rotation, then no matter how one tries it is impossible to string joints and muscles together; at this time one can only manifest the joint's contraction and release, which has no direct relation to the lengthening of the muscle. If the arm straightens and retracts directly, the situation is likewise. Therefore this requirement of continuity cannot be attained except by using the reeling-silk spiral-style rising.</p>
-</section><section id="p48" class="chapter-block">
+</section>
+
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Phần 6</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 39</div>
     <h2 class="chapter-title">II. The Relation of "When One Moves, All Move" to Waist and Spine</h2>
@@ -753,7 +1088,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Diagram of "when moving then separating, when still then joining": (a) elevation, (b) plan; the diagram marks separating, joining, and the arm</div>
 </div>
 <p>We know that the two organs, waist and spine, occupy the middle of the human body; they naturally · 39 · possess the function of a central axis. Therefore, if one can make waist and spine cooperate with the spiral movement of the third characteristic, one can attain the requirement of joined-segment continuity; hence in Taijiquan the waist and spine are called the first rulers. Because of this central axis, the two hands can use the unity of centrifugal and centripetal force to achieve "when moving then separating, when still then joining" (as in Figure 13).</p>
-</section><section id="p49" class="chapter-block">
+</section>
+
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Phần 7</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 40</div>
     <h2 class="chapter-title">III. Joined-Segment Continuity and Strengthening the Joints</h2>
@@ -770,7 +1110,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Diagram of the mobility of the (boxing) joints (the spine joint, which moves least)</div>
 </div>
 <p>· 41 ·</p>
-</section><section id="p51" class="chapter-block">
+</section>
+
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Phần 8</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 42</div>
     <h2 class="chapter-title">V. The Grasping of Joined-Segment Continuity</h2>
@@ -795,7 +1140,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>· 43 · manifestation;</p>
 <p>(4) The joined-segment continuity of issuing jin is the means of strengthening the continuity of moving jin;</p>
 <p>(5) Reducing the mobility of the wrist joint is a necessary means of raising the effect of the body method.</p>
-</section><section id="p53" class="chapter-block">
+</section>
+
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Phần 9</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 44</div>
     <h2 class="chapter-title">Sixth Characteristic: The "One Breath Accomplished" Movement of Unbroken Connection and Endless Surging</h2>
@@ -811,7 +1161,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <li>① What is called breaking of intent means that intent and movement are disjointed, inner and outer not one, the intent galloping outward and the movement without a master.</li>
 </ul>
 <p>· 44 · with no room in between for unloading the jin, nor any time of intent-galloping, and thus one can naturally attain the requirement of accomplishment in one breath. Therefore the "one breath accomplished" movement of unbroken connection and endless surging can serve as the sixth characteristic of Taijiquan.</p>
-</section><section id="p54" class="chapter-block">
+</section>
+
+<section id="sec09">
+<span id="chuong-9"></span>
+<h2>Phần 10</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 45</div>
     <h2 class="chapter-title">I. The Realization of "Accomplishment in One Breath"</h2>
@@ -827,7 +1182,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 </ul>
 <p>· 46 · but can manifest a meandering whirl and endless generation. When we practise the form on muddy ground, after finishing one round of the frame many circles of the heel may be left on the mud; these are the correct traces left by the gaze-and-glance two steps of this conversion.</p>
 <p>In short, when between going and returning the arms have folding and piling, and between advancing and retreating the legs have conversion, then not only can the inner jin before and after be joined, but also the jin used in the processes of going-and-returning and advancing-and-retreating can all be round jin, so that the faults of butting-and-resisting and losing-and-collapsing do not occur, and the two opposites of going-and-returning and advancing-and-retreating can also be unified.</p>
-</section><section id="p56" class="chapter-block">
+</section>
+
+<section id="sec10">
+<span id="chuong-10"></span>
+<h2>Phần 11</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 47</div>
     <h2 class="chapter-title">II. Examples of Famous Masters Performing the Form</h2>
@@ -836,7 +1196,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Around 1914, at the close of the annual meeting of the former Beijing Physical Education Research Society, martial artists of every style in the whole city — such as Ji Zixiu, Zhang Ce, Shang Yunxiang, Wang Maozhai, Xu Yusheng, and others — took part in an entertainment performance. In the Taijiquan field at that time, Yang Chengfu and Wu Jianquan performed Taijiquan together. Both used the large frame; in performing, the two made the audience feel only that they advanced and retreated amid finding the source on left and right, surging ceaselessly without cease, as if standing on a small rowboat crossing the Long River; their movements were on the surface extremely soft and pliant, yet within showed contained firmness and hardness; slow when just at the square, fast when reaching the circle, coordinating opening and closing with the utmost evenness and clarity, like a jade ring without end, so that one could not see clearly where the junction lay. In their advancing and retreating they did not appear to be advancing and retreating, and one felt only that they were step by step changing posture; the time to finish the performance was about eight minutes and more, and all present sighed in admiration, deeming it the utmost to behold.</p>
 <p>That the famous masters could attain this profound and correct requirement in walking the frame was of course mainly the result of their diligent study and hard practice, with skill brought home. But if within it the folding and piling of going and returning and the conversion of advancing and retreating were lacking, it would be difficult to attain such ceaseless surging and accomplishment in one breath.</p>
 <p>· 47 ·</p>
-</section><section id="p57" class="chapter-block">
+</section>
+
+<section id="sec11">
+<span id="chuong-11"></span>
+<h2>Phần 12</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 48</div>
     <h2 class="chapter-title">III. Spirit-and-Qi Surging and Accomplishment in One Breath①</h2>
@@ -861,7 +1226,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(3) When the jin breaks, the intent must be present; when the intent does not arrive, the spirit must be present — this is the method of remedying a broken jin.</p>
 <p>(4) If one can walk the frame with spirit-and-qi surging, that proves one has already poured intent into the movement. Intent being present is the sign of unbroken inner jin.</p>
 <p>(5) The mutual generation of square and round in Taiji jin is produced from "exhalation is extension, is the square" and "inhalation is compactness, is the round".</p>
-</section><section id="p59" class="chapter-block">
+</section>
+
+<section id="sec12">
+<span id="chuong-12"></span>
+<h2>Phần 13</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 50</div>
     <h2 class="chapter-title">Seventh Characteristic: The Firmness-and-Softness-Mutually-Aiding Movement from Softness to Firmness and from Firmness to Softness</h2>
@@ -873,7 +1243,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(3) "Taijiquan must absolutely not lose its pliancy. In the going and returning of the whole body, take spirit, essence, intent, and qi as the foundation; with long use it will naturally run through."</p>
 <p>(4) "The work of moving jin: first transform hardness into softness, then practise softness into firmness. When it reaches its utmost, it is both soft and firm. When firm and soft attain the mean, then yin and yang are seen. Therefore this boxing cannot be named by firmness, nor can it be named by softness, but is directly named by the namelessness of Taiji."</p>
 <p>From the above four provisions one can see that the learning of Taijiquan must first destroy the hard jin originally present in people's movements, making it transform into softness; this is the period of transforming to softness. The longer this period, the more thoroughly the rigidity can be destroyed. The essential point at this time is that one must still not lose pliancy, and beneath softness advance toward a more elastic firmness and hardness. This · 50 · firmness is not the firmness of "pig iron" produced from straining and bulging effort, but an elastic firmness produced from loosening and lengthening. Because the body and limbs lengthen and constantly twist back and forth in spiral fashion, this elasticity can be produced. Therefore it can also be named "ward-off-jin firmness". The more this tautness can be kneaded into softness, the more firm and hard the inner quality can be①. Only this elastic firmness can attain the requirement of "outwardly cultivate softness, inwardly contain firmness and hardness". This transformation of firm and soft is grasped through the concealment and manifestation of spirit, essence, intent, and qi. The saying "when concealed then soft, when manifested then firm" is precisely this principle. After one's skill becomes refined, the jin can be concealed extremely deeply within, making the outward form appear extremely soft, making one feel as if one has returned again to softness, while in fact the inner quality has become even firmer. Therefore the firmness-and-softness-mutually-aiding movement from softness to firmness and from firmness to softness becomes the seventh characteristic of Taijiquan.</p>
-</section><section id="p60" class="chapter-block">
+</section>
+
+<section id="sec13">
+<span id="chuong-13"></span>
+<h2>Phần 14</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 51</div>
     <h2 class="chapter-title">I. The Boxing of Firmness and Softness Mutually Aiding</h2>
@@ -884,7 +1259,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <li>① Like the spring of a clock: it has the softest elastic firmness, and is also the firmness of the most solid quality.</li>
 </ul>
 <p>· 51 · each boxer may learn what he loves according to his own needs. As for the saying of "pure softness without firmness" or "pure firmness without softness", no martial art whatsoever possesses it. Even in the so-called hard-style boxing, within it there is still both firmness and softness. How much more so Taijiquan, which is a boxing art that produces from yin and yang aiding each other a whole series of mutually aiding yet mutually opposed special features. Therefore the so-called "soft-art Taijiquan" or "hard-art Taijiquan" does not exist.</p>
-</section><section id="p61" class="chapter-block">
+</section>
+
+<section id="sec14">
+<span id="chuong-14"></span>
+<h2>Phần 15</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 52</div>
     <h2 class="chapter-title">II. The Period of Seeking Softness and Destroying Rigidity</h2>
@@ -896,7 +1276,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>The requirement of the above period of seeking softness and destroying rigidity is the initial requirement for transforming hardness into softness. The present period is the period of transforming softness into firmness. In this period one must first make clear what kind of firmness in nature this firmness is, and how one can move softness to become firmness. The boxing manual says that in practising the form one must "with intent seek softness, without intention become firm"; therefore the movement must not use force, and requires the whole body to loosen. This kind of "looseness"</p>
 <p>· 52 · is a conscious looseness, but not a looseness that is silent and without intent, and at the same time it has nothing in common with straining and bulging effort. What is called "looseness" means attaining looseness by lengthening the body and limbs, and by the lengthening of the loosening making the body and limbs produce elasticity. When the elasticity is strengthened, it becomes ward-off jin, and ward-off jin is precisely the spring jin required by Taijiquan. The strengthening of this spring jin is the firmness required by Taijiquan.</p>
 <p>Now that the nature of firmness is made clear, let us speak further of how one can move softness to become firmness. The strengthening of firm rigidity is realized by the continuity of the inner qi. The raising of the quality of firm rigidity is realized by twisting the reeling-silk jin back and forth to strengthen the toughness of the elasticity. Therefore movement like reeling silk and the lengthening of the body and limbs become the key to attaining both the softest and the firmest. This is what the boxing manual says: "Constantly seek softness on the outside, and over time one naturally obtains firmness and hardness within"; "it is not intentional firmness and hardness, but truly intentional softness." Taijiquan is thus transformed from softness into firmness and hardness, and only this firmness and hardness transformed from softness can attain the proficient realm of sudden softness and sudden firmness, of both soft and firm.</p>
-</section><section id="p62" class="chapter-block">
+</section>
+
+<section id="sec15">
+<span id="chuong-15"></span>
+<h2>Phần 16</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 53</div>
     <h2 class="chapter-title">IV. The Transformation of Firm and Soft</h2>
@@ -908,7 +1293,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(3) If one should be firm but uses soft, then the qi that should gather does not gather; if one should be soft but uses firm, then the qi that should scatter does not scatter — in neither case does one obtain the wondrous function of firmness and softness mutually aiding.</p>
 <p>(4) Therefore one who is good at using firm and soft: on reaching the landing point uses firmness, like a dragonfly touching the water, rising the instant it touches — this is the correct image of manifesting the firm point. In all movement and conversion one uses softness, like a cartwheel rotating and rolling on without stop — this is the correct image of manifesting the soft point.</p>
 <p>(5) Only thus does one obtain the wondrous function of firmness and softness mutually aiding, and only thus can one remove the defects of qi-deficient insubstantiality and of clogged-and-unsmooth sluggishness.</p>
-</section><section id="p63" class="chapter-block">
+</section>
+
+<section id="sec16">
+<span id="chuong-16"></span>
+<h2>Phần 17</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 54</div>
     <h2 class="chapter-title">V. The Grasping of Firmness and Softness Mutually Aiding</h2>
@@ -935,7 +1325,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <li>① According to Chen Xin's "General Discussion and Elucidation": "Pure yin without yang is the soft hand, pure yang without yin is the hard hand; one yin and nine yang is the root-headed stick, two yin and eight yang is the scattered hand; three yin and seven yang still feels hard, four yin and six yang is akin to a good hand; only five yin together with five yang, yin and yang without bias, is called the marvellous hand; the marvellous hand in one movement is one Taiji, and when the traces are fully transformed it returns to nothingness." This is the Chen style's standard for the softness-firmness degree of Taijiquan. Because Chenjiagou lies in the Yellow River's slope, where many practise hard-style boxing, and hence people fear that they will be tempered by their environment into gradually tending to hardness, there are the names hard hand, scattered hand, good hand, marvellous hand, to serve as the standard limiting practitioners from tending to hardness.</li>
 </ul>
 <p>· 56 ·</p>
-</section><section id="p66" class="chapter-block">
+</section>
+
+<section id="sec17">
+<span id="chuong-17"></span>
+<h2>Phần 18</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 57</div>
     <h2 class="chapter-title">Eighth Characteristic: The Movement of Alternating Fast and Slow, from Slow to Fast and from Fast to Slow</h2>
@@ -955,7 +1350,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Among the four lines of principle quoted here, the first two refer to the second meaning, and the latter two to the first meaning. This is a question that must be distinguished clearly when learning.</p>
 <p>· 57 · a single boxing form: that is, at the conversion it must be slow, after passing the conversion it gradually quickens, it is fastest when carried to the landing point, and afterward slows again, and so on in a cycle. (As in Figure 17.) Therefore every boxing form of Taijiquan must undergo the training of being able both to be slow and to be fast; only thus can one, in pushing hands, "when he moves slightly, I move first" and "when he moves urgently then respond urgently, when he moves slowly then follow slowly", creating conditions favourable to oneself, and can attain the unity of alternating fast and slow.</p>
 <p>Therefore the movement of alternating fast and slow, from slow to fast and from fast to slow, becomes the eighth characteristic of Taijiquan.</p>
-</section><section id="p67" class="chapter-block">
+</section>
+
+<section id="sec18">
+<span id="chuong-18"></span>
+<h2>Phần 19</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 58</div>
     <h2 class="chapter-title">I. The Development Sequence of Fast and Slow</h2>
@@ -964,7 +1364,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>At the initial stage of learning Taijiquan, one must absolutely not be fast, and must strive for slowness with all one's might, the slower the better. Because slowness allows one to carefully ponder the correctness of the postures, proceeding from coarse to fine, and there is ample time to examine the ins and outs of every movement; thus the postures are easily corrected, and at the conversion one can examine whether it is smooth. But slowness is not to be slow without limit; generally after one or two years of learning, imitating, checking, and correcting, it will do. On this point one must have a correct notion when first learning. This is the period of seeking only correctness of posture, not distinctness of jin categories.</p>
 <p>The slowness of this period must further have a condition, namely that the slowness must be sought on the premise of raising the spirit and not letting the spirit scatter. If in the movements one is so slow that in spirit and qi one manifests dullness and rigidity, and in action manifests sluggishness and immobility, then this is contrary to the requirement of Taijiquan's intent-and-qi movement. Therefore slowness must be sought under the drumming-and-surging of spirit and qi and the nimble conversion of intent and qi; this is Taijiquan's standard for slowness. For this reason, when first learning one must absolutely not contract this habit of sluggish intent and dull spirit, causing difficulties for later improvement.</p>
 <p>Later, as one's proficiency increases, one may gradually quicken the speed; but fast must not be chaotic — this is the period of training the categories of jin. Finally, after one's skill has become refined, the boxing forms may develop from extension to compactness, so that the speed of movement gradually slows again, while at the conversion · 58 · its angular velocity is even faster. This is the three-layer skill of first slow, then fast, then again slow, and is also the three stages of the development of fast and slow.</p>
-</section><section id="p68" class="chapter-block">
+</section>
+
+<section id="sec19">
+<span id="chuong-19"></span>
+<h2>Phần 20</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 59</div>
     <h2 class="chapter-title">II. The Time and Conditions for Turning from Slow to Fast</h2>
@@ -983,7 +1388,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <a href="/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig069-L0F17.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig069-L0F17.jpg" alt="图 17" loading="lazy"></a>
   <div class="figure-caption">Diagram of alternating fast and slow (the diagram marks the spiral turn of "from slow to fast" and the spiral turn of "from fast to slow", with "square and round generating each other" at the centre, and words such as "opening cannot not enter-and-exit (jin category and square point)" and "slow at the conversion" marked at the two sides)</div>
 </div>
-</section><section id="p69" class="chapter-block">
+</section>
+
+<section id="sec20">
+<span id="chuong-20"></span>
+<h2>Phần 21</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 60</div>
     <h2 class="chapter-title">III. Alternating Fast and Slow, and Evenness-and-Clearness, and the Categories of Jin</h2>
@@ -1000,7 +1410,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(2) Downward there is push jin, double separating there is pluck jin, issuing out there is rend jin;</p>
 <p>(3) When the wrist has gone out of the square-and-circle there is elbow jin, and when the elbow and arm again go out of the square-and-circle there is shoulder jin.</p>
 <p>Only movement like this can be called a Taijiquan composed of the eight gates and five steps. For this reason, after practising the form for a certain period, when walking the frame one should fully do well this movement of alternating fast and slow. By long practice of alternating fast and slow, one can make the eight-gate jin go from nothing to having, and from having to strong, becoming eight gates and five steps in name and reality.</p>
-</section><section id="p71" class="chapter-block">
+</section>
+
+<section id="sec21">
+<span id="chuong-21"></span>
+<h2>Phần 22</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 62</div>
     <h2 class="chapter-title">IV. The Grasping of Alternating Fast and Slow</h2>
@@ -1016,7 +1431,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(3) As proficiency increases, one should gradually shorten the time needed to walk one round of the frame. But seeking fastness must take steady movement and being able to manifest the categories of jin as its premise.</p>
 <p>(4) The principle of alternating fast and slow is: slow at the conversions and foldings and pilings, and after passing the conversion gradually quicken, and after passing the square point slow again. At the same time, at the conversion moving the qi must be slow, and at the landing point at the end must be fast.</p>
 <p>(5) Within the whole round of the frame, the range of variation of alternating fast and slow is required to achieve evenness-and-clarity.</p>
-</section><section id="p72" class="chapter-block">
+</section>
+
+<section id="sec22">
+<span id="chuong-22"></span>
+<h2>Phần 23</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 63</div>
     <h2 class="chapter-title">Conclusion</h2>
@@ -1028,7 +1448,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>In the Taijiquan popular today, whatever the style, and regardless of whether the postures are extended or compact, and regardless of whether the frame has a few more or a few fewer boxing forms, one need only observe carefully: these Taijiquan frames, though differing in outward appearance, all possess these common characteristics more or less within. The only difference is that some manifest them clearly on the outside, while others conceal them within by way of hidden jin. This also explains why Taijiquan, popular for several hundred years, has not been assimilated by other martial arts and can still stand alone as a style of its own — it is these common characteristics that have served as the mainstay. Therefore when learning Taijiquan one must not treat it lightly.</p>
 <p>But when first learning, to wish to grasp these eight characteristics all at once is impossible. When first learning, one need only recognize these characteristics, know that they are the summary of experience left by predecessors, and understand that they are the basic elements constituting Taijiquan; then it is not difficult, following the predecessors' experience and proceeding steadily along the direction they have already pointed out, to obtain the efficacy that Taijiquan should have.</p>
 <p>· 64 · Chapter Two: Illustrated Explanation of the First Route of Chen-Style Taijiquan</p>
-</section><section id="p74" class="chapter-block">
+</section>
+
+<section id="sec23">
+<span id="chuong-23"></span>
+<h2>Phần 24</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 65</div>
     <h2 class="chapter-title">Sequence of the Form Names of the First Route of Chen-Style Taijiquan</h2>
@@ -1038,7 +1463,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><span id="p75" class="page-anchor"></span>· 65 ·</p>
 <table class="posture-table"><tr><th>No.</th><th>Form name</th><th>No.</th><th>Form name</th></tr><tr><td>31st form</td><td>Moving Hands</td><td>58th form</td><td>Moving Hands</td></tr><tr><td>32nd form</td><td>High Pat on Horse</td><td>59th form</td><td>Swinging Foot and Dropping into the Split</td></tr><tr><td>33rd form</td><td>Right Brushing Foot</td><td>60th form</td><td>Left and Right Golden Rooster Stands on One Leg</td></tr><tr><td>34th form</td><td>Left Brushing Foot</td><td>61st form</td><td>Reversed Rolling of the Arm</td></tr><tr><td>35th form</td><td>Kick with One Heel</td><td>62nd form</td><td>Retreating Step Pressing Elbow</td></tr><tr><td>36th form</td><td>Forward Crossing Twisted Step</td><td>63rd form</td><td>Central Plate</td></tr><tr><td>37th form</td><td>Striking the Ground Punch</td><td>64th form</td><td>White Crane Spreads Its Wings</td></tr><tr><td>38th form</td><td>Turn Body Double Kick</td><td>65th form</td><td>Diagonal Twisted Step</td></tr><tr><td>39th form</td><td>Beast-Head Posture</td><td>66th form</td><td>Flash through the Back</td></tr><tr><td>40th form</td><td>Whirlwind Kick</td><td>67th form</td><td>Concealing-Hand Arm Punch</td></tr><tr><td>41st form</td><td>Kick with One Heel</td><td>68th form</td><td>Six Sealing and Four Closing</td></tr><tr><td>42nd form</td><td>Concealing-Hand Arm Punch</td><td>69th form</td><td>Single Whip</td></tr><tr><td>43rd form</td><td>Small Capturing Strike</td><td>70th form</td><td>Moving Hands</td></tr><tr><td>44th form</td><td>Clasp Head and Push the Mountain</td><td>71st form</td><td>High Pat on Horse</td></tr><tr><td>45th form</td><td>Three Changes of Palm</td><td>72nd form</td><td>Cross-Shaped Lotus Sway</td></tr><tr><td>46th form</td><td>Six Sealing and Four Closing</td><td>73rd form</td><td>Punch Pointing at the Crotch</td></tr><tr><td>47th form</td><td>Single Whip</td><td>74th form</td><td>White Ape Offers Fruit</td></tr><tr><td>48th form</td><td>Front Beckon</td><td>75th form</td><td>Six Sealing and Four Closing</td></tr><tr><td>49th form</td><td>Rear Beckon</td><td>76th form</td><td>Single Whip</td></tr><tr><td>50th form</td><td>Wild Horse Parts Its Mane</td><td>77th form</td><td>Sparrow Earth Dragon</td></tr><tr><td>51st form</td><td>Six Sealing and Four Closing</td><td>78th form</td><td>Step Up Seven Stars</td></tr><tr><td>52nd form</td><td>Single Whip</td><td>79th form</td><td>Retreating Step Straddling the Tiger</td></tr><tr><td>53rd form</td><td>Double Stamp of the Foot</td><td>80th form</td><td>Turn Body Double Lotus Sway</td></tr><tr><td>54th form</td><td>Jade Maiden Works the Shuttle</td><td>81st form</td><td>Cannon Facing the Head</td></tr><tr><td>55th form</td><td>Lazily Tucking the Robe</td><td>82nd form</td><td>Vajra Pounds the Mortar</td></tr><tr><td>56th form</td><td>Six Sealing and Four Closing</td><td>83rd form</td><td>Closing Posture</td></tr><tr><td>57th form</td><td>Single Whip</td><td></td><td></td></tr></table>
 <p>· 66 ·</p>
-</section><section id="p76" class="chapter-block">
+</section>
+
+<section id="sec24">
+<span id="chuong-24"></span>
+<h2>Phần 25</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 67</div>
     <h2 class="chapter-title">A Few Notes on the Illustrations</h2>
@@ -1054,7 +1484,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>b. Where there is no shadow beside the foot, it indicates that the whole foot is off the ground.</p>
 <p>c. Where the shadow beside the foot is joined only at the heel, it indicates that the heel is on the ground.</p>
 <p>d. Where the shadow beside the foot is joined only at the toe, it indicates that the toe is on the ground.</p>
-</section><section id="p77" class="chapter-block">
+</section>
+
+<section id="sec25">
+<span id="chuong-25"></span>
+<h2>Phần 26</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 68</div>
     <h2 class="chapter-title">Chen-Style Taijiquan, First Route</h2>
@@ -3294,7 +3729,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">The two fists separating to left and right</div>
 </div>
 <p><span id="p216" class="page-anchor"></span><strong>Thirty-second Form: Turn the Body, Six Harmonies (chest west, from north turning south)</strong> Action: From the opening of the previous form "covering-hand forearm punch," the right hand which had issued in front is gathered with forward coiling before the left shoulder; at the same time, the left hand reverse-coils and extends before the chest. At the same time the centre of gravity shifts right, and the body turns right. (Figure 50) Then, next, the two fists separate to left and right. (Figure 51) Then Shift the whole weight onto the left leg; pivoting on the left heel, lift the right foot and turn the body to the right-rear; at the same time, bring both fists together and cross them in front of the abdomen, the right fist inside, both fist-hearts facing inward. (Figure 52)</p>
-</section><section id="p216" class="chapter-block">
+</section>
+
+<section id="sec26">
+<span id="chuong-26"></span>
+<h2>Phần 27</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 207</div>
     <h2 class="chapter-title">Form 33. Left Wrap-Whip Cannon (1)</h2>
@@ -3317,7 +3757,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Left foot stepping sideways to the left, both hands double-reverse issuing power to the left and right outer sides, fist-hearts facing forward and up</div>
 </div>
 <p><strong>Key points:</strong> "Hollow the chest and raise the back" means the spine is drawn taut from top to bottom. Because of the wrapping (guo) relation in this form, the back is drawn taut on all four sides—up, down, left and right. It is another special fist-form for training the emission of power from the spine, and it is also the form in the Second Routine that trains the horizontal (heng) stepping method. This is a mass-combat type of stepping. When the leg and the arm cross · 207 · This is "wrap" (guo), the storing of power in the legs. When the two legs are separated it becomes "whip" (bian), the releasing of power in the legs, which can train a person to the skill of springing sideways with a light body. The key point of this form is that before issuing, one must wrap tightly once, making the qi sink further down, and only then can power be issued crisply to left and right, displaying a firm and resilient springiness. In this way one stores and issues twice in succession. At the same time, when the two hands go from the double-reverse opening to the double-reverse closing that makes the "wrap," the whole body is tightly wrapped and the qi clings to the spine, forming a moment of fully stored power; as soon as the foot lands with a stomp, that is immediately the left-and-right issuing of power in the "whip."</p>
-</section><section id="p217" class="chapter-block">
+</section>
+
+<section id="sec27">
+<span id="chuong-27"></span>
+<h2>Phần 28</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 208</div>
     <h2 class="chapter-title">Form 34. Left Wrap-Whip Cannon (2) (chest facing south)</h2>
@@ -3335,7 +3780,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Both fists turn double-reverse issuing power to the left and right outer sides, left foot stepping sideways to the left</div>
 </div>
 <p>· 208 · <strong>Key points:</strong> This is a mass-combat fist-form that is both "moving" (zou) and "attacking" (gong). Its key point is that when springing sideways and dropping down one must appear calm and not buoyant; at the same time, through the process of one wrap and one change, the power must not be broken, so as to meet the demand of mass combat where no gap can be found. Therefore, at the connecting point after the double-opening issuing of power of the first Wrap-Whip, one must make a fold (zhedie), so that the inner motive force connects gently along a curve into the second Wrap-Whip.</p>
-</section><section id="p218" class="chapter-block">
+</section>
+
+<section id="sec28">
+<span id="chuong-28"></span>
+<h2>Phần 29</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 209</div>
     <h2 class="chapter-title">Form 35. Right Wrap-Whip Cannon (1) (chest turning from south to north)</h2>
@@ -3353,7 +3803,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Both fists turning double-reverse issuing firm power to the left and right sides, left hand and left foot dominant, forming the first Wrap-Whip after the turn</div>
 </div>
 <p><strong>Key points:</strong> It takes the left foot as the central pivot of rotation, using the stored-power "wrap" posture to turn the body · 209 · body. The left foot sweeps half a circle sideways as the body turns, and throughout this process one must still keep the body steady—this is an important condition for whether the issuing of power of the "whip" after the turn is crisp or not. The remaining key points are the same as those of the two preceding Wrap-Whips.</p>
-</section><section id="p219" class="chapter-block">
+</section>
+
+<section id="sec29">
+<span id="chuong-29"></span>
+<h2>Phần 30</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 210</div>
     <h2 class="chapter-title">Form 36. Right Wrap-Whip Cannon (2) (chest facing north)</h2>
@@ -3389,7 +3844,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Left arm twisting shun pressing horizontally left and releasing power, right hand turned beneath the elbow bringing the forearm forward horizontally to issue elbow power</div>
 </div>
 <p>· 210 · <strong>Key points:</strong> At the beginning of this form one raises the left arm and strikes across with the right, forming a variation that stores power, and one is required to fill the body's internal power to the full. The right foot arcing half a circle and unloading a step to the right-rear can help the power fill out. This is the function of "retreating is advancing" and "defending is attacking." For once the raised left arm has been folded across, the closing power is reinforced, and the right arm at once passes above the left arm to issue elbow power—so-called striking where it is not expected and attacking where it is unprepared, making it hard for the opponent to defend. This fist-form, which issues elbow power with the forearm held across, is, apart from the later "Seize Two Arms" (duo er gong), the only form in the Second Routine for training the issuing of elbow power; there is no other such form in the Second Routine, and so it must be practised with care. (It is said this was selected from Qi Jiguang's boxing forms.)</p>
-</section><section id="p220" class="chapter-block">
+</section>
+
+<section id="sec30">
+<span id="chuong-30"></span>
+<h2>Phần 31</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 211</div>
     <h2 class="chapter-title">Form 38. Splitting the Frame (chest facing northeast)</h2>
@@ -3414,7 +3874,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Key points:</strong> This is a fist-form which, after the peng issuing of power of the preceding form, turns to storing power and embodies a releasing of power within that storing. When the two hands cross and one steps sideways half a step, the chopping power of the right hand above striking the face to the upper left and the left shoulder's outward-left shoulder-leaning power must be used simultaneously. Of the two powers only one is a leaning power—one open, one hidden; one feint, one real—and this is the special characteristic of the form. For whenever the shoulder-leaning power is issued, the head is most easily controlled by the opponent. Therefore in this form, within a close distance of seven inches, one also uses the face-striking palm in a forward-striking posture; thus it not only protects the head but also makes up for the insufficiency of the shoulder-leaning power.</p>
 <p>· 212 · In using the leaning power while storing posture and power, one must have a steady and upright power; if the leaning power misses, then on the leaning side the elbow strike and hand ward-off (peng) are both stored and ready to issue, and at any moment can remedy what is lacking.</p>
 <p>Fig. 66 is one of the hand methods that uses peng as the principal element. After the peng issuing power, the palm-chopping power and the shoulder-leaning power, it adds a unique upward-striking power. This is a linked-pearl (lianzhu) style of issuing power, whose aim is to strike the opponent rather than to send him out. But striking the opponent's lower jaw likewise has the possibility of making him fall. This is a special striking method among the hand methods of taijiquan. At the same time, because the preceding fist-form had already stored power to the full in both hands and both feet, the key point of this form's upward strike lies in concentrating the power to an even higher degree within one sinking of it, so that the upward-striking movement can display a firm and steady internal power.</p>
-</section><section id="p222" class="chapter-block">
+</section>
+
+<section id="sec31">
+<span id="chuong-31"></span>
+<h2>Phần 32</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 213</div>
     <h2 class="chapter-title">Form 39. Flower-Flipping Sleeve Dance (chest turning from southeast to northeast)</h2>
@@ -3427,7 +3892,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Right hand twisting ni chopping down with the palm edge from front-high to front-low, left hand striking to the left-rear as a feint, left foot landing solid to form a bow stance</div>
 </div>
 <p>· 213 · <strong>Key points:</strong> This form too was selected from Qi Jiguang's boxing forms, and it differs from the preceding form: the preceding form strikes upward from below, whereas this one chops downward from above. To do the downward chop well, one must first close the power at the chest, then unite the body's internal power and chop down after turning a circle. At this time, hands and feet are required to be coordinated and smooth, and under the gaining of posture and power to display one firm chop. Therefore the two hands must, after turning through one large circle, then begin the downward chop—just like holding a large hammer, turning a circle, and then striking the iron. This is the only fist-form in the Second Routine that turns a circle and chops down. When issuing the downward chop, the body must be centered and unbiased, and must have an elastic openness; this is the concrete expression of using the inertial force of the one-turn circle to strengthen the downward-chopping power. One must bring both hands and both legs into simultaneous use, so as to attain a most highly coordinated requirement.</p>
-</section><section id="p223" class="chapter-block">
+</section>
+
+<section id="sec32">
+<span id="chuong-32"></span>
+<h2>Phần 33</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 214</div>
     <h2 class="chapter-title">Form 40. Cover-Hand Forearm Punch (chest turning from northeast to east)</h2>
@@ -3441,7 +3911,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Right leg lifted and set down parallel to the left leg with a stomp to become solid, right hand changed from palm to fist placed at the right waist issuing power, left hand twisting ni releasing power backward</div>
 </div>
 <p>· 214 · open; because it is a relaxed chopping power, when doing the next fist-form one uses the elasticity of the downward chop to lead the body up, as if gathering the power from all four sides into a single point and lifting with it. And by the time the right foot lands with a stomp and the left foot stretches out in a step, there is again in the mind the intention of spreading the power out. This is the spirit this fist-form should have.</p>
-</section><section id="p224" class="chapter-block">
+</section>
+
+<section id="sec33">
+<span id="chuong-33"></span>
+<h2>Phần 34</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 215</div>
     <h2 class="chapter-title">Form 41. Taming the Tiger (chest turning from east to southeast)</h2>
@@ -3736,7 +4211,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Turning the head, both fists twining forward and shaking energy out upward</div>
 </div>
 <p>Key points: The back-breaking leaning energy of Taijiquan is always for the sake of connecting and following; it is an energy used only when unavoidable, and one does not lightly adopt body methods to strike. Because in the course of the flying body connecting and following in "The Jade Girl Works the Shuttle"— · 233 · In this, by using the lean (kao) of the turning body, one can not only free the hand that has been seized (cai), but can also promptly attack the opponent with the "turn the head and cannon at the door" (huitou dangmen pao) posture. This is the simplest method that serves both to escape and to strike, and therefore in the course of turning the body one often uses the back-bending lean (beizhe kao) to seek release. The flying-step turn of "Jade Maiden Weaves the Shuttle," striking the opponent with lean energy, is yet another example of the application of the above principle. Its key point is that before springing out one first sinks the energy in the right leg, then steps out with the left foot and springs forward. In the course of "landing" one must still take care to keep the body centered and upright—this is a necessary condition for applying lean energy. Then both fists are sent out with a shaking energy in the forward (shun) coil.</p>
-</section><section id="p243" class="chapter-block">
+</section>
+
+<section id="sec34">
+<span id="chuong-34"></span>
+<h2>Phần 35</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 234</div>
     <h2 class="chapter-title">Form 61: Jade Maiden Weaves the Shuttle (chest toward east, turns to north, then turns to west)</h2>
@@ -3754,7 +4234,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Springing step follows in, hands pushing forward and body turning left</div>
 </div>
 <p>· 234 · Bringing the turn through 180°, circle the left foot to the east side of the right foot, in order to free the right fist from being seized. (Figure 114)</p>
-</section><section id="p244" class="chapter-block">
+</section>
+
+<section id="sec35">
+<span id="chuong-35"></span>
+<h2>Phần 36</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 235</div>
     <h2 class="chapter-title">Form 62: Turn the Head and Cannon at the Door (chest toward west)</h2>
@@ -3781,7 +4266,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Movement: In the previous form the right foot is forward and the left foot behind; after both fists have sent energy forward with a double forward (shun) coil, the two arms hold each other and slightly store the posture. Supposing there is an attack from the left or right rear, both fists therefore make a small forward double forward-coil, causing the left hand to turn to the front of the chest and to join energy with the right hand at the upper right, the chest turning south. (Figure 116) When the two fists again turn to the right, both open their energy, and the left fist is sent with a forward coil to the left rear, releasing its energy as a back reverse hammer. At the same time the right fist releases energy with a forward coil to the right rear, and the weight shifts to the left leg, which becomes full. When releasing energy the left fist is the host and the right fist is the guest. (Figure 117)</p>
 <p>· 235 · Key points:</p>
 <p>This is the fist-form adopted after the previous form has sent both fists shaking out to the right-front, when suddenly on the left side a possible attack is discovered. Its requirement is that as soon as one glances back, the left fist quite naturally sends out energy as a back reverse hammer. To do this strike well, the main thing is that on the basis of the crotch sinking, as though a small circle has turned in front of the lower abdomen, then led by the waist and spine, centrifugal force is used to fling out the back of the left fist.</p>
-</section><section id="p245" class="chapter-block">
+</section>
+
+<section id="sec36">
+<span id="chuong-36"></span>
+<h2>Phần 37</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 236</div>
     <h2 class="chapter-title">Form 64: Twisted Phoenix Elbow (chest toward south, turns north)</h2>
@@ -3796,7 +4286,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
   <div class="figure-caption">Twisted Phoenix Elbow: left palm pressing the right fist as center of rotation, right forearm sending elbow energy with reverse coil toward the right of the chest</div>
 </div>
 <p>· 236 ·</p>
-</section><section id="p246" class="chapter-block">
+</section>
+
+<section id="sec37">
+<span id="chuong-37"></span>
+<h2>Phần 38</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 237</div>
     <h2 class="chapter-title">Form 65: Forward Phoenix Elbow (chest toward north)</h2>
@@ -3817,7 +4312,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 </div>
 <p>Key points:</p>
 <p>Whenever an arm goes beyond the square-round circle, it is called "going out to the corner"; whenever it enters within the square-round circle, it is called "entering the corner." Going out to the corner requires the use of seize-and-split (cai/lie); entering the corner requires the use of elbow and lean. Therefore the use of elbow and lean is like short weapons meeting in close combat—a quick battle quickly decided, with no room for delay. For this reason one must have continuous · 237 · measures used bead by bead, so as to obtain the final release. This form is the continuation of that measure. When the right hand still cannot get free, following the required energy, the right foot drills in along the ground and the right elbow strikes out to the right; at the same time the left foot kicks back along the ground behind—this forms the momentum of a bowstring slipping its catch, and forms the key point of using lightness to control heaviness and of striking with linked-bead elbows.</p>
-</section><section id="p247" class="chapter-block">
+</section>
+
+<section id="sec38">
+<span id="chuong-38"></span>
+<h2>Phần 39</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 238</div>
     <h2 class="chapter-title">Form 67: Cannon in the Nest (chest toward north)</h2>
@@ -3832,7 +4332,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Key points:</p>
 <p>Form 63 "Withdraw the Body and Punch" is a back reverse hammer of the left hand; this form is a back reverse hammer of the right hand. The key point of this form is that, following the drilling forward along the ground of the previous form, one takes the near and discards the far; while the foot-sole sinks and centrifugal force is used, one makes the dropping elbow the pivot and counter-strikes out with the back of the fist; the right foot also follows drilling in along the ground. In order that the energy be released more crisply, one must, under the joined energy of the two fists—right forward, left reverse—shrink the circle, to strengthen the stored energy, and then, led by the elbow and carrying the body, counter-strike out to the right and outward. This form requires that one movement moves the whole body; and this can only be done just right on the basis of the waist and spine working as one, using inertial force.</p>
 <p>· 238 ·</p>
-</section><section id="p248" class="chapter-block">
+</section>
+
+<section id="sec39">
+<span id="chuong-39"></span>
+<h2>Phần 40</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 239</div>
     <h2 class="chapter-title">Form 68: Well-Curb Straight Entry (chest toward north, turns south)</h2>
@@ -3871,7 +4376,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 </div>
 <p>Key points:</p>
 <p>The "Wind Sweeps the Plum Blossom" of this form is basically the same as the "Wind Sweeps the Plum Blossom" of Form 10; the difference is that the "Wind Sweeps the Plum Blossom" of Form 10 rotates 360°, while this form rotates 180°. Its function is chiefly to bring the practitioner finally to face north and so conclude the second routine (form-set).</p>
-</section><section id="p249" class="chapter-block">
+</section>
+
+<section id="sec40">
+<span id="chuong-40"></span>
+<h2>Phần 41</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 240</div>
     <h2 class="chapter-title">Form 70: Buddha's Warrior Attendant Pounds the Mortar (chest toward north)</h2>
@@ -3879,7 +4389,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Form 70: Buddha's Warrior Attendant Pounds the Mortar (chest toward north)</div>
 <p>Movement: This form is a "Buddha's Warrior Attendant Pounds the Mortar" performed without pause after "Wind Sweeps the Plum Blossom." It is the same as the "Buddha's Warrior Attendant Pounds the Mortar" done after the 360° turn of Form 12, and therefore is not described again. (Figure 126)</p>
 <p>· 240 · Key points (2): Same as Form 12.</p>
-</section><section id="p250" class="chapter-block">
+</section>
+
+<section id="sec41">
+<span id="chuong-41"></span>
+<h2>Phần 42</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 241</div>
     <h2 class="chapter-title">Form 71: Closing Posture (chest toward north)</h2>
@@ -3891,7 +4406,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>· 241 · Chapter 4: Chen-Style Taijiquan Pushing Hands The two-person pushing-hands method of Chen-style Taijiquan was originally called "throwing hands" or "hitting hands." It is an original competitive exercise created by the Taijiquan school through inheriting and developing the martial technique methods of Ming-dynasty folk martial arts. It comprehensively inherited and developed the three methods of "seizing, throwing, and casting-and-striking," and therefore its original martial character is extremely intense. Silk-reeling sticking-following and silk-reeling spiral movement are the central content of its creative achievement. On the basis of the theory that "the Taiji has two modes, with softness and with hardness," it requires that the internal energy—flexible in change, rich in elasticity and toughness, with "hardness and softness assisting each other, lightness and heaviness both complete"—serve as the commander.</p>
 <p>Chen Wangting said in the "General Song of the Boxing Classic": "Let go, bend, extend—no one knows; the various leans and entanglements I all rely on" ("the various leans" refers to two people leaning their arms against each other, applying the eight methods and kinds of energy: ward-off, roll-back, press, push, seize, split, elbow, lean). These two lines summarily explain the characteristics and methods of pushing hands. The original four lines of the "Song of Hitting Hands": "Ward-off, roll-back, press, push must be done in earnest; upper and lower following each other, the person is hard to invade; let anyone with giant strength come to strike me—four ounces deflect eight thousand catties"—this explains the function of "the various leans" and the principle of taking ward-off, roll-back, press, and push, the four hands, as the basic skill.</p>
 <p>Toward the end of the eighteenth century, Wang Zongyue of Shanxi, and in the mid-to-late nineteenth century Wu Yuxiang and Li Yishe, master and disciple, of Yongnian in Hebei, all developed the theory of Taijiquan and the techniques of pushing hands, and on the basis of their own experience in practicing boxing wrote summarizing essays on Taijiquan and pushing hands. These boxing treatises, concise in words but comprehensive in meaning, were widely copied and circulated, and became in modern times · 242 · Guiding theory for practitioners of taijiquan and push-hands; Chen Zhong-shen and his son Chen Xin of the Chen family, contemporaries of Wu and Li, likewise expounded the taijiquan and push-hands theory accumulated over generations of the Chen family.</p>
-</section><section id="p252" class="chapter-block">
+</section>
+
+<section id="sec42">
+<span id="chuong-42"></span>
+<h2>Phần 43</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 243</div>
     <h2 class="chapter-title">1. General Essentials of Push-Hands</h2>
@@ -3900,7 +4420,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Since the Yang-style taijiquan became widespread and "xieshou" (joining hands) or "dashou" (hitting hands) came to be called "tuishou" (push-hands), the term "push-hands" has become a common name. Push-hands is a method in which two people join hands and coil around each other, using the unique training method of taijiquan movement, which is like a screw. According to the principles of "adhere, connect, stick, follow; neither lose contact nor resist; neither overshoot nor fall short; yield and extend," one uses the eight methods and kinds of jin -- peng, lu, ji, an, cai, lie, zhou, kao -- to train the sensitivity of the tactile sense of the whole body's skin and of the internal feeling, to detect the size, hardness or softness, solidity or emptiness, length, speed and direction of the opponent's jin. One selects a sticking point that accords with the lever principle as the fulcrum, uses the pulling action of elasticity and friction (the point of application of force), brings into play the skills of "draw in and let him fall into emptiness," "follow his force and borrow his power," and "overcome heaviness with lightness," grasps the strategy and tactics of "if he moves quickly, respond quickly; if he moves slowly, follow slowly" and "if he does not move, I do not move; if he moves slightly, I move first," pulls the opponent's center of gravity, and at the moment when time and point of force are most appropriate "strikes the light with the heavy, breaks the empty with the solid," issuing the jin. This kind of issuing must be "calm and steady, relaxed and quiet, concentrated on one direction," going from a curved arc straight forward at the target, steady and accurate -- just as when an arrow is shot its head sinks deep into the target -- and thereby sends the opponent out cleanly. The overall requirement is to be able both to neutralize and to issue; to neutralize with relaxed purity, to issue with crispness. This competitive sport can train strength and endurance, and can also train such physical qualities as sensitivity, skill and speed.</p>
 <p>In order to avoid accidents of injury, the modern developed push-hands method restricts the use of such methods as grabbing, seizing, throwing, wrestling and striking; hence it has become a martial art that men, women, the old and the young can all practice.</p>
 <p>· 243 · The practice of the taijiquan routine originally went hand in hand with "push-hands." Once the routine is practiced to mastery, fine and delicate, centered and full, with inner and outer united and with emptiness and solidity, hardness and softness all complete, one can then fully bring out the skills of push-hands. While practicing the routine, if one also practices push-hands, one can both apply the kinds of jin obtained from walking the form harmoniously within the push-hands of paired practice, and at the same time test how correct one's practice of the taijiquan routine is, making it easy to correct and enrich its postures and movements. Holding push-hands competitions can correct certain ways of practice that distort taijiquan theory and correct one-sided understandings of push-hands, so that the technique of taijiquan is restored and developed.</p>
-</section><section id="p253" class="chapter-block">
+</section>
+
+<section id="sec43">
+<span id="chuong-43"></span>
+<h2>Phần 44</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 244</div>
     <h2 class="chapter-title">2. Chen-Style Push-Hands Methods</h2>
@@ -3953,7 +4478,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Besides shoulder kao, there is also the "seven-inch kao": when one has been peng'd or lu'd, leaning forward and losing the advantage, one then follows the momentum, advances the step, inserts into the opponent's crotch, and bends the body to lift the opponent's lower abdomen with the shoulder to meet and fell him (only one with waist-and-leg skill can do this). There is also the "back-fold kao," which is leaping up, folding and turning the body to strike with the back -- this is when one meets with being cai'd and asked for jin; in order to comply with the asked-for jin and give it, in the process of giving one turns the body with the back, which is a natural method of extricating oneself from the cai situation. At the same time one can also get an opportunity to attack: in the impact one suddenly turns and folds to issue jin -- one move with two uses; therefore it is called back-fold kao jin. In the use of the kao method, the waist, legs and body must follow the momentum and stick to the opponent's body and limbs; when the opponent moves slightly, one issues jin at once; when necessary one must also follow up slightly with the footwork, invade and occupy the opponent's position; only then can one release jin cleanly without losing one's own center of gravity.</p>
 <p>Elbow strikes and shoulder kao are both used in push-hands by following the momentum. Some of the Chen family's senior boxers were famous for specializing in elbow strikes and shoulder kao, but generally there are also those who, when pressed and losing the advantage, then use elbow and shoulder. That is, when the wrist enters within the inner circle of the square-and-round and loses the advantage, one then uses the elbow method; when the elbow method loses the advantage, one then follows with · 250 · shoulder, the shoulder kao and the back-fold kao are all methods of striking by sticking to the body. Striking the opponent with the hip also belongs within the scope of the kao method. This method of attacking with the body -- entering the tiger's den, wading into danger with a short stretch -- is usually the manifestation of "a rogue's boldness and pure skill," of daring to press close to the opponent. It is like the marshal in chess going personally into battle: it has its definite power, but if used poorly, the crisis appears at once, and so it is not a normal method. Although taijiquan push-hands has eight methods and eight jin, its basic skill is based on the four cardinal push-hands. Therefore in the "Push-Hands Song" there is the saying "peng, lu, ji, an must be (truly) recognized; top and bottom follow each other, and it is hard for the man to enter." From this too one can see the principal-and-subordinate relation between the four cardinal push-hands and the four corner push-hands. This is precious experience summed up by earlier practitioners of the art, and is a matter worthy of our attention in practice.</p>
 <p>Moreover, one must also recognize that: within the four cardinal push-hands, the two jin of peng and lu are the principal ones. Peng is the following silk-reeling (shun chan); lu is the reverse silk-reeling (ni chan); the reverse comes from the following, opposites completing each other. Peng and lu are mutually contradictory yet unified. The spiral following silk-reeling is centrifugal force; the spiral reverse silk-reeling is centripetal force.</p>
-</section><section id="p260" class="chapter-block">
+</section>
+
+<section id="sec44">
+<span id="chuong-44"></span>
+<h2>Phần 45</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 251</div>
     <h2 class="chapter-title">3. Two Evolutions of Chen-Style Push-Hands</h2>
@@ -3961,7 +4491,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">3. Two Evolutions of Chen-Style Push-Hands</div>
 <p>Chen-style push-hands originally combined seizing, throwing, and throwing-and-striking (issuing jin), applying them together and changing lively with the momentum. The seizing method originally consisted mainly of seizing the pulse, grabbing the sinews, and bending back the bones; later, in order to avoid accidents of injury, it was no longer lightly taught or applied. When the seizing method is used in push-hands, one also stops at the appropriate point, and it developed into mainly seizing the opponent's jin path; once the seizure achieves the right opportunity and advantage, one stops. One of pure and refined skill, with a single raise of the hand or a single placement of the foot, controls the opponent's jin path roundly, softly and nimbly, and can at once make the opponent lose the opportunity and advantage, leaving him no way to change, and one can then issue jin; or one may let him change freely and then, at the point of the change, issue jin accordingly. This is the high-level technique of seizing the opponent's jin path.</p>
 <p>In Chen-style push-hands, when one originally retreats and uses peng jin to dissolve the opponent's ji jin or kao jin, · 251 · Sink the body and sit down, yet the body method remains centered and upright, until the calf of the front leg touches the ground and the toes are raised, rising and falling with the movement (because the front foot extends far, it can serve to control the opponent's feet; when executing a falling technique this is extremely ingenious). But with such a low stance, rising and falling, coming and going, the amount of movement in the waist and legs is enormous; it is therefore not easy to achieve unless one has practiced since childhood. At present the general principle is not to sink the body and sit down, so that it is better suited to the general public.</p>
-</section><section id="p261" class="chapter-block">
+</section>
+
+<section id="sec45">
+<span id="chuong-45"></span>
+<h2>Phần 46</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 252</div>
     <h2 class="chapter-title">4. Taijiquan Push-Hands Combines Both Yin and Yang</h2>
@@ -3970,7 +4505,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>The philosophers of ancient China held that in the world there exist two mutually inseparable yet mutually opposing forces, namely yin and yang. The two are the root of the change and development of all things; the harmony of yin and yang is the transformation and unity of the opposing sides of a contradiction. Taiji (the Supreme Ultimate) is precisely a theory of yin and yang encompassing the two forces of yin and yang. Yin and yang stand for such opposing things as movement and stillness, hardness and softness, emptiness and fullness, lightness and heaviness, slowness and speed; as for the relation between the two opposing sides, the two have a unified relation of mutual dependence, mutual restraint, and mutual use.</p>
 <p>Taijiquan adopts the theory of yin and yang as its theoretical basis, requiring the simultaneous presence of movement and stillness, hardness and softness, emptiness and fullness, lightness and heaviness, slowness and speed, and also requiring that yang not depart from yin, nor yin from yang, with yin taking yang as principal and yang taking yin as root, so as to reach the stage of "understanding energy" (dong jin) in which hardness and softness surge together and yin and yang aid each other; and further requiring arrival at the stage of "divine illumination" (shen ming) in which yin and yang alternate without trace. Hence in practicing Taijiquan and push-hands one must not lean toward softness, nor may one lean toward hardness; yin and yang must aid each other. Whatever leans toward softness obtains only one side of Taiji and can be called only a soft fist, not Taijiquan; whatever leans toward hardness can be called only a hard fist, and is likewise not Taijiquan. Only that which can be both soft and hard, has both lightness and heaviness, achieves both emptiness and fullness, responds urgently and follows slowly, and suits both movement and stillness, is the complete Taijiquan.</p>
 <p>The classical Taijiquan treatise says, "Extremely soft, and only then can it be extremely hard and firm," and "Transport energy like steel tempered a hundred times, nothing is too hard to break." This correctly explains that in practicing Taijiquan one must develop the soft— · 252 · —side to the extreme, and at the same time one must also develop the hard side to the extreme, so that hardness and softness surge together and interweave in manifold change; only then can one be like what the "Appended Remarks" of the <em>Zhouyi</em> (Book of Changes) says: "Change and movement do not abide fixed, they flow through the six voids, above and below are without constancy, hardness and softness exchange with each other, one cannot make of them a fixed rule, only change is what one adapts to." To raise the skill of Taijiquan push-hands, yang-hardness and yin-softness must both be present; only then can one finally attain the comprehensive high-level skill of being able both to neutralize and to issue, that is, "the neutralizing energy is loose and clean, the issuing energy is crisp and dry."</p>
-</section><section id="p262" class="chapter-block">
+</section>
+
+<section id="sec46">
+<span id="chuong-46"></span>
+<h2>Phần 47</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 253</div>
     <h2 class="chapter-title">5. Essential Points of the Push-Hands Movements</h2>
@@ -4342,7 +4882,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>"Students today, before doing the work, first expect the result; after a little effort, at once expect completion. What of Confucius's saying of 'first the difficulty, afterwards the obtaining'? One asks: How is the work to be done? One must, as Mencius said, 'surely have affairs, yet not be set upon them; the mind must not forget, nor must one force its growth'—only then may one succeed. If the principle is not clear, invite a clear teacher; if the road is not clear, seek a good friend. When the principle is clear and the road is clear and yet one still cannot, then add the effort of daily unremitting diligence, advancing without stopping; in time one will arrive of oneself. One asks: How long does it take? Small completion takes three years, great completion takes nine years; at the time of nine years, one can observe it. Still further, after nine years, of oneself one cannot stop though one would; daily ascending, in a lifetime there will be no place to halt. Were the divine hand to arise again, it would not alter my words. Let the impatient take heart."</p>
 <p>· 307 · "Men say this art has a separate secret, and often will not reveal it to others. I say this art has nothing very wondrous; from youth it is hard to practice until old age. Practice until old age and one naturally awakens, suddenly threading through the wondrous spirit and principle. Looking back, one tries to think of the times of laziness—it is not that the foreknowledge did not speak of it, but that what was spoken did not enter my heart, and my heart on the contrary felt much affliction. Day after day it is spoken and day after day forgotten; if the heart is not used, when will one understand? If one can for a single day seek with effort, the waxing and waning of yin and yang will of themselves be true. Each day closely play with the Taiji diagram; one opening and one closing are in my own body. Advancing step by step, the work grows long; in time one will of oneself smell the true fragrance. Only let the work be long and without interval, and Taiji will show its round light everywhere. This is the true secret within boxing; let the lord calmly and carefully consider it."</p>
 <p>"Every man each embodies one Taiji; only look at whether he applies effort or not. Only let the days be long and the practice without slack, and the wondrous principle circling will of itself be penetrated."</p>
-</section><section id="p317" class="chapter-block">
+</section>
+
+<section id="sec47">
+<span id="chuong-47"></span>
+<h2>Phần 48</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 308</div>
     <h2 class="chapter-title">Four. Chen Xin's Sayings on the Thirteen Body Parts ①</h2>
@@ -4572,7 +5117,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Strike above at the throat, below at the groin; in the middle, the two ribs and the pit of the stomach; below, the two shins and the two knees; one palm behind the back takes the true soul.</p>
 <p>Note: The former song is an old transmitted Chen-family formula; as seen in the Chen-family Liangyitang manuscript boxing manual it reads: "In squeezing, grabbing, rending and pressing you must be earnest; upper and lower follow one another, and a man cannot enter. Let him come striking with giant force—pull four ounces and deflect a thousand catties." The text copied by Chen Ziming from another manuscript is titled "Formula of the Grabbing Hand" and has six lines: "In grabbing, rending, squeezing and pressing you must be earnest; with the whole body following, a man cannot enter. Let a man attack with giant force—pull four ounces and deflect a thousand catties. Lead in, drop into emptiness, and issue as they join; sticking, connecting, adhering and following, one bends and extends." What the three Chen-family texts record also differs in places from the manuscript hand-copied by Li Yiyu and revised by Wang Zongyue of the salt shop of Wuyang county. Xu Zhen's <em>Record of Verification of Taijiquan</em> says: "For in Chenjiagou it was at first only transmitted orally by ten mouths; in time it came to differ slightly, and each, according to what he heard, wrote it down, and so it could not all agree." This too is a conjectural statement: where four lines have variant readings and are expanded to six, it may likewise be judged a blemish of later men's revision of the text.</p>
 <p>The second song is a method of fighting to the death, seen only in Chen Xin's writings; it may be that Chen Xin collected and recorded an old formula and appended it after the four old-transmitted lines.</p>
-</section><section id="p332" class="chapter-block">
+</section>
+
+<section id="sec48">
+<span id="chuong-48"></span>
+<h2>Phần 49</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Book page 323</div>
     <h2 class="chapter-title">Six. A Selection of Short Essays on Boxing by Chen Xin and Others</h2>
@@ -4627,46 +5177,55 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>(Selected, edited and arranged by Gu Liuxin)</p>
 <p>· 331 ·</p>
 </section>
-
-    <nav class="page-nav">
-      <a href="/vi/books/chen_style_taijiquan_shen_gu_vi.html" class="prev">&#8592; Previous · Chen-Style Taijiquan (Shen Gu)</a>
-      <a href="/books/" class="home">&#8962; Home</a>
-      <a href="/vi/books/chen_style_combat_applications_ma_hong_vi.html" class="next">Next · Chen-Style Combat Applications (Ma Hong) &#8594;</a>
-    </nav>
-
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Taijiquan translation — Chen style (Shen Jiazhen & Gu Liuxin, 1963)</p>
-  <p>Built with ❤️ for the Vietnamese Tai Chi community by Henry Phạm</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

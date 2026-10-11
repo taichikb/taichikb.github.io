@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wu-Style Taijiquan — Full Translation | TaichiNOW</title>
-<meta name="description" content="A page-faithful English translation of 《吳式太極拳》(1958) compiled by Xu Zhiyi — 146 pages, 162 figures, with the Chinese source transcribed alongside.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -182,93 +175,394 @@ body.dark-mode .key-point { color: #a7f3d0; }
   font-size: 0.74rem; color: #a8a29e; font-weight: 600;
   letter-spacing: 0.05em; margin-bottom: 3px;
 }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wu-Style Taijiquan — Full Translation | TaichiNOW</title>
+<meta name="description" content="A page-faithful English translation of 《吳式太極拳》(1958) compiled by Xu Zhiyi — 146 pages, 162 figures, with the Chinese source transcribed alongside.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/">Home</a>
-    <a href="/techniques/">Techniques</a>
-    <a href="/books/" class="active">Books</a>
-    <a href="/videos/">Videos</a>
-    <a href="/podcast/">Podcast</a>
-    <a href="/philosophy/">Philosophy</a>
-    <a href="/history/">History</a>
-    <a href="/contact/">Contact</a>
-    <a href="/vi/books/wu_style_taijiquan_xu_zhiyi_vi.html" class="lang-switch">Tiếng Việt</a>
-<a href="/all-articles/" class="">All Articles</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span class="sep">/</span>
-    <a href="/books/">Book Library</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Wu-Style Taijiquan — Full Translation | TaichiNOW</span>
-  </nav>
-
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Table of Contents</summary>
-    <ul class="toc-list">
-        <li class="toc-item"><a href="#p67" class="toc-link">Illustrated Explanation of the Wu-style Taijiquan Boxing Forms<span class="pg">p.64</span></a></li>
-        <li class="toc-item"><a href="#p132" class="toc-link">First, Single Joining of Hands (单搭手)<span class="pg">p.129</span></a></li>
-        <li class="toc-item"><a href="#p134" class="toc-link">Second, Double Joining of Hands (双搭手)<span class="pg">p.131</span></a></li>
-        <li class="toc-item"><a href="#p137" class="toc-link">Third, the Eight Basic Movements<span class="pg">p.134</span></a></li>
-        <li class="toc-item"><a href="#p143" class="toc-link">Wang Zongyue's Treatise on Taijiquan<span class="pg">p.140</span></a></li>
-        <li class="toc-item"><a href="#p144" class="toc-link">Wu Yuxiang's Treatise on Taijiquan<span class="pg">p.141</span></a></li>
-        <li class="toc-item"><a href="#p145" class="toc-link">Heart Explanation of the Practice of the Thirteen Postures<span class="pg">p.142</span></a></li>
-        <li class="toc-item"><a href="#p146" class="toc-link">Song of Hitting Hands<span class="pg">p.143</span></a></li>
-    </ul>
-  </details>
-
-  <main class="reader-content">
-
-    <div class="book-hero">
-      <span class="book-badge">Full 146-Page Translation &middot; With Chinese Source Transcription</span>
-      <h1>Wu-Style Taijiquan</h1>
-      <div class="book-orig-title">《吳式太極拳》 — compiled by Xu Zhiyi (徐致一) · People's Sports Publishing House (1958 · 1982 reprint)</div>
-      <div class="book-author-meta">
-        <strong>Author:</strong> Xu Zhiyi (徐致一, 1892–1961) — a disciple of Wu Jianquan, and the first to explain Taijiquan through the methods of modern science<br>
-        <strong>Original:</strong> People's Sports Publishing House (人民體育出版社), Beijing, 1958 — 7th printing, 1982<br>
-        <strong>English &amp; figure notes:</strong> TaichiNOW Editorial Board
-      </div>
-      <p style="font-size:0.95rem;color:var(--text-secondary);margin:0.8rem 0 0;">
-        A page-faithful translation of the original edition, rebuilt to the book's own printed page numbers; the posture figures are cropped from the scan and inserted at the positions they occupy in the book.
-      </p>
-      <div class="book-tags">
-        <span class="book-tag">Wu-Style Taijiquan</span>
-        <span class="book-tag">Scientific Theory</span>
-        <span class="book-tag">84 Forms</span>
-        <span class="book-tag">Wu-Style Push-Hands</span>
-        <span class="book-tag">162 Figures</span>
-      </div>
-      <a class="book-pdf-link" href="/assets/books/wu_style_taijiquan_xu_zhiyi/wu_style_taijiquan_xu_zhiyi_en_full.pdf" download>
-        <i class="fa-solid fa-file-pdf"></i> Download PDF (A4, 250 pages)
-      </a>
-    </div>
-
-<aside id="toc">
-    <h2>Contents</h2>
-        <a class="toc-link" href="#p67">Illustrated Explanation of the Wu-style Taijiquan Boxing Forms<span class="pg">p.64</span></a>
-    <a class="toc-link" href="#p132">First, Single Joining of Hands (单搭手)<span class="pg">p.129</span></a>
-    <a class="toc-link" href="#p134">Second, Double Joining of Hands (双搭手)<span class="pg">p.131</span></a>
-    <a class="toc-link" href="#p137">Third, the Eight Basic Movements<span class="pg">p.134</span></a>
-    <a class="toc-link" href="#p143">Wang Zongyue's Treatise on Taijiquan<span class="pg">p.140</span></a>
-    <a class="toc-link" href="#p144">Wu Yuxiang's Treatise on Taijiquan<span class="pg">p.141</span></a>
-    <a class="toc-link" href="#p145">Heart Explanation of the Practice of the Thirteen Postures<span class="pg">p.142</span></a>
-    <a class="toc-link" href="#p146">Song of Hitting Hands<span class="pg">p.143</span></a>
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Phần 1</a></li>
+        <li><a href="#sec01">Phần 2</a></li>
+        <li><a href="#sec02">Phần 3</a></li>
+        <li><a href="#sec03">Phần 4</a></li>
+        <li><a href="#sec04">Phần 5</a></li>
+        <li><a href="#sec05">Phần 6</a></li>
+        <li><a href="#sec06">Phần 7</a></li>
+        <li><a href="#sec07">Phần 8</a></li>
+        <li><a href="#sec08">Phần 9</a></li>
+      </ul>
+    </nav>
   </aside>
-  <section id="p1" class="chapter-block">
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>wu_style_taijiquan_xu_zhiyi_en_full</h1>
+    </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Phần 1</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 封面</div>
     <h2 class="chapter-title">Trang 封面</h2>
@@ -513,7 +807,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>• 63 • (6) T-step (丁字步, dīng zì bù): This is a step rarely used in Wu-style Taijiquan. It is a transitional step occurring when, in turning the body, the left foot has already turned while the right foot has not yet shifted its position (this is why this step is not seen in the illustrated explanations later). In shape, the toes of the right foot face the inner side of the left foot, like the character 丁 — hence "T-step".</p>
 <p>(7) Crossed step (交叉步, jiāo chā bù): This is a form with the right leg bowed forward, formed by turning the body to the right without either foot leaving its place. In the squatting leg, the toes of the right foot point forward and the toes of the left foot form a T to the outer side of the right foot; of the two knees, the right is above and the left below, both facing forward. There is only one such form in Wu-style Taijiquan. To avoid too great a rise and fall of the body affecting the regulation of the breath, one may also, in practising the form, reduce the degree of squatting as far as possible, or straighten both legs and change to a T-shaped step.</p>
 <p>The basic movements listed above have been explained only very briefly, and without accompanying drawings; for a beginner they are not easily grasped at a glance. But in the illustrated explanations of the boxing forms in the next chapter all these basic movements will be referred to; beginners are asked to consult the two explanations together, which may perhaps give them more help in understanding.</p>
-</section><section id="p67" class="chapter-block">
+</section>
+
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Phần 2</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 64</div>
     <h2 class="chapter-title">Illustrated Explanation of the Wu-style Taijiquan Boxing Forms</h2>
@@ -530,10 +829,10 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>3. All the arrows in the figures, whether drawn with a solid line or a dotted line, indicate the direction of movement of a hand or a foot. In every figure the arrow indicates the direction of the movement leading from that figure to the next. Wherever an originally rather simple movement can be explained in the text, and drawing in an arrow would instead create confusion, the direction of the movement is no longer shown in the figure; by consulting the text together with the following figure, it will be clear.</p>
 <p>4. An arrow drawn with a solid line indicates the direction of movement of the right hand or the right foot; an arrow drawn with a dotted line indicates the direction of movement of the left hand or the left foot.</p>
 <p>5. Because the movements of the feet in taijiquan are also fairly fine, shading is drawn beside the feet in order to show the relation of the feet to the ground, and thereby to distinguish them:</p>
-<blockquote class="quote-box"><strong>[Key to the foot-shading convention]</strong> — The right heel touches the ground with the toes raised, the left foot rests flat on the ground, the two feet are separated front and back; a small schematic key is placed beside the feet, labelled ①, meaning that the whole foot rests on the ground;</blockquote>
-<blockquote class="quote-box"><strong>[Key to the foot-shading convention]</strong> — The left heel and the right toes touch the ground, the two feet are separated front and back; a small schematic key is placed beside the feet, labelled ②, meaning that where there is no shading beside the foot, the whole foot is off the ground;</blockquote>
-<blockquote class="quote-box"><strong>[Key to the foot-shading convention]</strong> — The right toes touch the ground with the heel lifted, the left foot rests flat on the ground; a small schematic key is placed beside the feet, labelled ③, meaning that the heel rests on the ground;</blockquote>
-<blockquote class="quote-box"><strong>[Key to the foot-shading convention]</strong> — The right toes touch the ground with the heel lifted, the left foot rests flat on the ground; a small schematic key is placed beside the feet, labelled ④, meaning that the toes rest on the ground.</blockquote>
+<blockquote class="callout"><strong>[Key to the foot-shading convention]</strong> — The right heel touches the ground with the toes raised, the left foot rests flat on the ground, the two feet are separated front and back; a small schematic key is placed beside the feet, labelled ①, meaning that the whole foot rests on the ground;</blockquote>
+<blockquote class="callout"><strong>[Key to the foot-shading convention]</strong> — The left heel and the right toes touch the ground, the two feet are separated front and back; a small schematic key is placed beside the feet, labelled ②, meaning that where there is no shading beside the foot, the whole foot is off the ground;</blockquote>
+<blockquote class="callout"><strong>[Key to the foot-shading convention]</strong> — The right toes touch the ground with the heel lifted, the left foot rests flat on the ground; a small schematic key is placed beside the feet, labelled ③, meaning that the heel rests on the ground;</blockquote>
+<blockquote class="callout"><strong>[Key to the foot-shading convention]</strong> — The right toes touch the ground with the heel lifted, the left foot rests flat on the ground; a small schematic key is placed beside the feet, labelled ④, meaning that the toes rest on the ground.</blockquote>
 <span id="p71" class="page-anchor"></span><h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">First Posture: Preparatory Posture (Figure 1)</h4>
 <p>This posture contains no movement whatever; one need only stand with a calm mind, the body upright, without thrusting out the chest, the eyes looking level ahead, the two shoulders relaxed, the two arms hanging naturally, the fingertips pointing down, the backs of the hands facing forward (a hanging palm is used, not a downward palm — this is Master Wu's posture in his later years), the two feet in a parallel stance, the two legs straight, the knees not thrust outward; for the rest, refer to the relevant explanations in the chapter on basic movements.</p>
 <figure class="figure-wrap" id="fig15"><div class="figure-caption-title">图 15</div><a class="figure-image-container" href="photos/p071_fig015.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig15.jpg" alt="图 15" loading="lazy"></a><figcaption class="figure-caption">The two feet stand parallel, facing the reader, the two arms hang naturally at the sides, the fingertips pointing down, the backs of the hands facing forward, the body upright, the head held straight. This is the preparatory posture (the book numbers this 圖 1).</figcaption></figure>
@@ -898,7 +1197,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Five, when jin breaks, intention does not break (劲断意不断):</strong> This means that in the midst of pushing hands, when because the jin used has overshot or fallen short the two men's arms suddenly separate, one must not adopt the method of joining hands afresh, but should, with the two hands apart, continue to make the imagined movement of not losing and not resisting, so that the two men's arms, because the jin has broken but the intention has not, can return to their former state and be joined once more. In pushing hands such opportunities are very many; one must earnestly practise them and not give them up. Once trained, they are the most important hand-methods of receiving for free sparring (打散手, that is, the method of practice in which two men freely ask with jin without joining hands beforehand) and equally so in application. For pushing hands is a matter of joining hands first and asking with jin afterwards, whereas free sparring moves the jin without joining hands at all; if one cannot receive jin out of empty space, one will often be controlled by the opponent, and unless one dodges the moment one sees a hand, it is very hard to escape. Sometimes a man of deep skill will deliberately make a feint with one hand at a man of shallow skill; the latter reaches out to receive it and hesitates slightly, whereupon the former changes hands, seals him off, and strikes him out — this is the effect of having trained this skill to proficiency. When practising the solo form (盘架子), making much of the imagined movement in which the jin breaks but the intention does not in the fighting applications can also increase one's skill in receiving and in neutralising and striking out of empty space.</p>
 <p><span id="p131" class="page-anchor"></span><span id="p132" class="page-anchor"></span>All that has been said above are the rules to which attention should be paid in practising pushing hands. As to the methods of pushing hands, such as warding off (掤, peng), rolling back (履, lü), pressing (挤, ji) and pushing (按, an), differ in nature from the rules above and are therefore placed later in the illustrated section and explained separately there. In addition, the postures that should be used in pushing hands — such as containing the chest, sinking the shoulders, bending the legs, sitting the body — and the important standards in movement — such as relaxation, roundness and liveliness, continuity, completeness — are entirely in accord with the rules for practising the solo form; the learner may consult the explanations in the other relevant chapters, and they are omitted here. Further, in learning pushing hands some also teach in the course of it the method called "pushing the ox jin" (推牛劲). It consists in both parties drawing circles with great force and asking each other with jin (the force must not be greater on one side than the other; otherwise either the stronger party is drawn along and falls into emptiness, or the weaker party is crushed flat and becomes unstable). Its purpose is to strengthen the waist and leg skill, and at the same time to let one taste on the arms what a tenacious jin (韌劲) is like. This kind of work is trained solely to deal with an opponent whose arm strength is excessive, and if one's own physical strength is comparatively good one may also omit it. If one does train it, one should afterwards go on to train the pushing-hands work that uses light jin, so as to dispel the influence of the tenacious jin; for the hand methods of Taijiquan take soft neutralisation as the main thing, and therefore in movement too one should take lightness and liveliness as the main thing.</p>
 <p>Chapter Eight  Wu-style Taijiquan Pushing Hands Illustrated Although the pushing hands of Taijiquan is the chief method of practising fighting skill, regarded as a form of health exercise it is also full of interest. For when two men practise together they both prize skill and not strength; not only are the variations comparatively many, but there is a rich theory to study, which attracts one the more and makes one tireless in long practice. What follows is an introduction, in the light of the requirements of health exercise, of some elementary methods for the beginner; the illustrations that follow are therefore limited to fixed-step pushing hands (定步推手) suited to general requirements, together with the eight basic movements of pushing hands:</p>
-</section><section id="p132" class="chapter-block">
+</section>
+
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phần 3</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 129</div>
     <h2 class="chapter-title">First, Single Joining of Hands (单搭手)</h2>
@@ -908,7 +1212,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig148"><div class="figure-caption-title">图 148</div><a class="figure-image-container" href="photos/p133_fig148.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig148.jpg" alt="图 148" loading="lazy"></a><figcaption class="figure-caption">Two men stand facing each other, both with the right leg in front in an empty stance and the right arms joined at wrist and forearm; the man on the left (Party A) sinks his right wrist slightly and then slowly extends it towards the other's chest, while the man on the right (Party B) bends his arm and drops his elbow to lead the other's right hand towards his own right shoulder（原書作「單搭手」，未編號）</figcaption></figure>
 <p>Suppose that Party A strikes out first. A's right hand should sink its wrist slightly, and thereupon slowly extend towards B's chest, at the same time changing the empty stance into a bow stance so that the body advances slowly. B's right hand should, following the direction of A's hand, slowly bend the arm and drop the elbow (the wrists of the two must not be released) to lead A's hand away towards his own right shoulder; in the course of leading it should follow a ㄟ-shaped arc, and at the same time sit the body back slightly (because B was originally standing in an empty stance, he can only sit back slightly; if he were standing in a bow stance he would have to sit back as far as possible), so as to accord with the incoming force. At this point A's right hand should not extend further, but should slowly draw back, and B, following A's earlier movement, should extend his hand towards A's chest. In extending the hand he should follow a ㄟ-shaped arc (so that it joins with the arc above into a single circle), and at the same time change the empty stance into a bow stance and slowly advance the body. Party A likewise, following B's earlier movement, takes the opportunity to bend the arm and drop the elbow, leading B's hand away towards his own right shoulder, and at the same time changes the bow stance into an empty stance and sits the body back as far as possible. This one going and one coming is to draw one circle, after which one may continue as at the beginning. If one feels that the shoulder and arm, or the leg that stands behind, has grown weak, one may change to pushing the smooth-step left joining-hands, or the cross-step left and right joining-hands. The movement described above, of leading the right hand towards the side of the shoulder, may be compared with the double joining of hands, figure 3, and the movement of leading the left hand towards the side of the shoulder may be compared with figure 5 of double joining of hands (in double joining of hands this movement is called hui, 擖).</p>
 <p>Although the pushing hands of single joining of hands is simpler than that of double joining of hands, in the movement attention should nevertheless be paid to the two following requirements: (1) the advance and retreat of the two parties (including the change of the step and the bending and extending of the arms) should be made to agree in speed, so as to accord with the requirement of "not losing and not resisting"; (2) in sitting the body back, that is, when changing the bow stance into an empty stance, one should slightly contain the chest and relax the waist and abdomen, so as to accord with the requirements of "qi sinks to the cinnabar field" (气沉丹田) and "the qi is directly stirred."</p>
-</section><section id="p134" class="chapter-block">
+</section>
+
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Phần 4</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 131</div>
     <h2 class="chapter-title">Second, Double Joining of Hands (双搭手)</h2>
@@ -928,7 +1237,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig153"><div class="figure-caption-title">图 153</div><a class="figure-image-container" href="photos/p136_fig153.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig153.jpg" alt="图 153" loading="lazy"></a><figcaption class="figure-caption">Both men stand in a cross stance with the left foot forward, right hands joined before the chest; the man on the left (Party A) has his right hand above, his right arm pressing upon the other's left arm（原書作「圖 5」，未編號；原圖下題「圖 5」）</figcaption></figure>
 <p>The right joining-hands form of figure 1 above, passing through the movements of figures 3 and 4, becomes the left joining-hands form of figure 2; then from the left joining-hands form, passing through figure 5 and the movements after figure 5, it returns again to the right joining-hands form of figure 1. This is the method of drawing the circle in double joining of hands. This one going and one coming already contains the pushing-hands movements of the two forms, smooth-step right joining of hands and cross-step left joining of hands. After the step is changed it becomes smooth-step left joining of hands, and through the same movements of extending the hand and leading the hand it will become the cross-step right joining-hands form. When the four forms have been pushed until familiar, changes will naturally arise; one may push with the flow, against the flow, high, or low, and draw criss-crossing, complicated circles. This is the elementary requirement for practising fixed-step pushing hands.</p>
 <p>When beginning to learn pushing hands, one always knows only how to use the hand and not how to use the wrist and upper arm (that is, the forearm) outside the hand. Therefore in the forms of joining hands, the hand that is joined at the side of the opponent's elbow is always joined with the palm of the hand. As in figure 1 of double joining of hands, A's left hand, and in figure 2 A's right hand. But pushing hands of a somewhat more advanced kind does not accomplish its movements with the hand alone. Not to speak of the whole body here, but only of the wrist and the upper arm of the upper limb: those who have pushed hands for a comparatively long time always use the wrist or the upper arm to join on the opponent's arm. As in figure 1 of double joining of hands, B's left hand, and in figure 2 B's right hand, are both joined with the wrist and upper arm; this is a form deliberately designed to leave the hand free for other uses. From figure 3 it can be seen that A leads B's right hand with the hand, and from figure 5 it can be seen that B leads A's left hand with the wrist and upper arm. Now, is B, with his two hands left free and unused, not much more nimble than A with his two hands? The answer is yes. For B's two hands can at any time drop down and add a new movement on A's left arm, to A's loss. This is a very important method in pushing hands, and it is therefore introduced briefly here, so that the beginner at pushing hands may have something to refer to later.</p>
-</section><section id="p137" class="chapter-block">
+</section>
+
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phần 5</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 134</div>
     <h2 class="chapter-title">Third, the Eight Basic Movements</h2>
@@ -954,7 +1268,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <figure class="figure-wrap" id="fig162"><div class="figure-caption-title">图 162</div><a class="figure-image-container" href="photos/p142_fig162.jpg" target="_blank" rel="noopener"><img src="/assets/images/books/wu-style-taijiquan-xu-zhiyi-reader/fig162.jpg" alt="图 162" loading="lazy"></a><figcaption class="figure-caption">Two men with right hands joined; the man on the left (Party A) takes the opportunity of himself to turn his body and leans his left shoulder against the other's body（原圖下題「圖 9 靠」，未編號）</figcaption></figure>
 <p><span id="p143" class="page-anchor"></span>What has been said above is meant only as a reference for the beginner at pushing hands, and therefore the illustrations given are limited to introducing the basic movements of fixed-step pushing hands. As to the methods of using jin in the movements, and the postures concerned, such as containing the chest, sitting the body, sinking the shoulders, dropping the elbows and so on, these are beyond the beginner's grasp, and to speak of them too intricately is also not fitting for a beginner; they are therefore omitted. In a word, in learning pushing hands, if one learns only to draw circles, it is very easy to learn, though there is comparatively little interest in it; but if one wishes to learn the eight methods of pushing hands, it is comparatively complicated, and it is also very hard to master without a teacher. If there is an opportunity, it is better to learn from a teacher.</p>
 <h3 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">Appendix</h3>
-</section><section id="p143" class="chapter-block">
+</section>
+
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Phần 6</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 140</div>
     <h2 class="chapter-title">Wang Zongyue's Treatise on Taijiquan</h2>
@@ -962,7 +1281,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Wang Zongyue's Treatise on Taijiquan</div>
 <p>Taiji is born of wuji (无极); it is the mechanism of movement and stillness, the mother of yin and yang. When it moves, they separate; when it is still, they join. Neither excess nor insufficiency; follow the bend and yield to the extension. When the other is hard and I am soft, this is called walking; when I am with him and he is against me, this is called sticking. When he moves quickly, respond quickly; when he moves slowly, follow slowly. Though the changes are of ten thousand kinds, the principle is one throughout. From familiarity with the postures one gradually awakens to understanding jin; from understanding jin one ascends step by step to spiritual clarity. Yet without long application of effort one cannot achieve sudden and complete penetration. Empty the collar and raise the strength to the top of the head; let the qi sink to the cinnabar field. Neither lean nor incline; now hidden, now appearing. If the left is heavy, then empty the left; if the right is heavy, then empty the right. Look up, and it is higher still; look down, and it is deeper still. Advance, and it grows longer; retreat, and it grows more urgent. Not a feather can be added, not a fly or insect can alight. Others do not know me, I alone know others; that the hero meets no match wherever he turns all comes from this. In this art there are very many side doors; though the forms differ, they do not in general go beyond the strong bullying the weak and the slow yielding to the fast. That the strong beat the weak, that the slow hand yields to the fast hand — these are all natural abilities of the inborn constitution, and are not a matter of acquired learning or deliberate action. Consider the saying "four ounces deflect a thousand catties" — plainly it is not by strength that one prevails. Observe how one of eighty or ninety can hold off a crowd — what can speed alone achieve! Stand like a balance, move like a wheel. If one side sinks, then follow; if double-weighted, then one stagnates. One constantly sees men of several years of pure practice who cannot transform, and in every case they are controlled by others, for they have not awakened to the fault of double-weighting. To avoid this fault one must understand yin and yang. Sticking is walking, walking is sticking. Yin does not leave yang, yang does not leave yin; only when yin and yang assist each other is it called understanding jin. After understanding jin, the more one practises the finer one becomes, silently comprehending and pondering, until gradually one follows the desire of the heart. It is fundamentally a matter of discarding oneself and following others; many err by discarding the near and seeking the far. As the saying goes, an error of a hair's breadth leads astray by a thousand li; the student must not fail to distinguish this carefully.</p>
 <p>The long boxing (长拳) is like the long river and the great sea, surging without cease. The thirteen postures (十三势) are: warding off, rolling back, pressing, pushing, plucking, rending, elbowing and leaning — these are the eight trigrams; and advancing the step, retreating the step, looking to the left, gazing to the right, and central equilibrium — these are the five elements. Warding off, rolling back, pressing and pushing are the four cardinal directions, qian, kun, kan and li. Plucking, rending, elbowing and leaning are the four diagonal corners, xun, zhen, dui and gen. Advancing, retreating, looking, gazing and equilibrium are metal, wood, water, fire and earth. (The original note says: this is a treatise handed down by the venerable Zhang Sanfeng of Wudang Mountain; he wished the heroes of the world to prolong their years and increase their span of life, and not merely to take it as the last of the arts.)</p>
-</section><section id="p144" class="chapter-block">
+</section>
+
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Phần 7</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 141</div>
     <h2 class="chapter-title">Wu Yuxiang's Treatise on Taijiquan</h2>
@@ -972,7 +1296,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Song of the Thirteen Postures</div>
 <p><span id="p145" class="page-anchor"></span>Slight not the thirteen postures; the source of command lies in the gap of the waist. In turning, the empty and the full must be heeded.</p>
 <p>Let the qi fill the whole body without the least stagnation. In stillness, when touched one moves, and moving is still as before; one shows the marvellous by changing according to the opponent. In every posture keep the mind and weigh the intention; what is gained is not felt to have cost effort. At every moment keep the mind at the waist; within the abdomen, loose and clean, the qi rises of itself. The tail gate (尾閭) is centred and the spirit runs to the top of the head; the whole body light and nimble, the top of the head suspended. Carefully keep the mind fixed on seeking it out; bending and extending, opening and closing, listen and be free. The way in at the gate must be taught by word of mouth; where skill does not rest, the method is cultivated by oneself. If one asks what is the standard for the substance and the function, the intention and the qi are the ruler, and the bones and flesh are the ministers. Consider, what after all is the purpose of the intention? To lengthen life and prolong the years in an unaging spring. Sing it, sing it, one hundred and forty words; every word is true, and the meaning leaves nothing out. If one does not set out to seek it from this, one wastes one's effort and earns only sighs.</p>
-</section><section id="p145" class="chapter-block">
+</section>
+
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Phần 8</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 142</div>
     <h2 class="chapter-title">Heart Explanation of the Practice of the Thirteen Postures</h2>
@@ -981,7 +1310,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Use the mind to move the qi, and be sure to make it sink and settle; only thus can it be gathered and enter the bones. Use the qi to move the body, and be sure to make it run smoothly; only thus can it be convenient and follow the mind. If the spirit can be raised, there is no fear of slowness and heaviness; this is what is called suspending the top of the head. The intention and the qi must be made nimble in exchange; only thus is there the delight of roundness and liveliness; this is what is called changing the empty and the full. Issuing jin must be sunk, settled, relaxed and clean, and must be concentrated upon one direction. Standing the body must be central, correct, at ease and comfortable, propping up the eight directions. Moving the qi is like a pearl of nine bendings, reaching the smallest point. Moving the body is like steel tempered a hundred times, what hardness can it not break! In form like a falcon striking a rabbit, in spirit like a cat catching a mouse. Still as a mountain, moving as a river. Storing jin is like drawing a bow, issuing jin is like loosing an arrow. Seek the straight within the curved, store and then issue. The force issues from the spine, the step changes with the body. To gather is to release, to break off is to join again. In going and returning there must be folding; in advancing and retreating there must be turning and changing. Being extremely soft and pliant, one is then extremely hard and firm; being able to breathe, one is then able to be nimble. The qi is nourished directly and does no harm; the jin is stored in the curved and has a surplus. The mind is the command, the qi is the banner, the waist is the great standard. First seek expansion, afterwards seek compactness; only then can one attain to fine density.</p>
 <p><span id="p146" class="page-anchor"></span>It is also said: first in the mind, afterwards in the body; the abdomen is relaxed, the qi is gathered and enters the bones. The spirit is at ease and the body is still, and this is kept in mind at every moment. Remember firmly: when one thing moves there is nothing that does not move; when one thing is still there is nothing that is not still. When one is drawn to move back and forth, the qi sticks to the back and is gathered into the spine. Within, the spirit is solidified; without, ease and rest are shown. Step like a cat walking, move like drawing silk. The whole body's intention lies in the spirit, not in the qi; if in the qi, then there is stagnation. He who has qi has no strength;</p>
 <p>he who has no qi is purely hard. The qi is like the wheel, the waist is like the axle.</p>
-</section><section id="p146" class="chapter-block">
+</section>
+
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Phần 9</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 143</div>
     <h2 class="chapter-title">Song of Hitting Hands</h2>
@@ -990,46 +1324,55 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Warding off, rolling back, pressing and pushing must be taken seriously; when above and below follow one another, a man cannot enter. Let him come at me with giant strength. Draw him four ounces and deflect a thousand catties. Draw him in, lead him into emptiness, and issue as soon as joined; adhere, connect, stick, follow, without losing or resisting.</p>
 <p>It is also said: if he does not move, I do not move; if he moves slightly, I move first. The jin seems relaxed and is not relaxed, about to extend and not yet extended. When the jin breaks, the intention does not break.</p>
 </section>
-
-    <nav class="page-nav">
-      <a href="/books/sun_style_taijiquan_sun_jianyun_en_full.html" class="prev">&#8592; Previous · Sun Style Taijiquan</a>
-      <a href="/books/" class="home">&#8962; Home</a>
-      <a href="/vi/books/wu_style_taijiquan_xu_zhiyi_vi.html" class="next">Next · Wu-Style (Vietnamese) &#8594;</a>
-    </nav>
-
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Taijiquan translation — Wu-style (Xu Zhiyi, 1958)</p>
-  <p>Built with ❤️ for the Vietnamese Tai Chi community by Henry Phạm</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>

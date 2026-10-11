@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sun-Style Taijiquan — Full Translation | TaichiNOW</title>
-<meta name="description" content="A page-faithful English translation of 《孙式太极拳》(1957/1997) by Sun Jianyun — 65 pages, 214 figures, with the Chinese source transcribed alongside.">
-<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css?v=20260919_safe_v2">
 <style>
+
 :root {
   --accent-gold: #c59b27;
   --accent-crimson: #991b1b;
@@ -182,97 +175,395 @@ body.dark-mode .key-point { color: #a7f3d0; }
   font-size: 0.74rem; color: #a8a29e; font-weight: 600;
   letter-spacing: 0.05em; margin-bottom: 3px;
 }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sun-Style Taijiquan — Full Translation | TaichiNOW</title>
+<meta name="description" content="A page-faithful English translation of 《孙式太极拳》(1957/1997) by Sun Jianyun — 65 pages, 214 figures, with the Chinese source transcribed alongside.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header class="site-header">
-  <a href="/" class="brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
     <span>TaichiNOW</span>
   </a>
-  <nav class="site-nav">
-    <a href="/">Home</a>
-    <a href="/techniques/">Techniques</a>
-    <a href="/books/" class="active">Books</a>
-    <a href="/videos/">Videos</a>
-    <a href="/podcast/">Podcast</a>
-    <a href="/philosophy/">Philosophy</a>
-    <a href="/history/">History</a>
-    <a href="/contact/">Contact</a>
-    <a href="/vi/books/sun_style_taijiquan_sun_jianyun_vi.html" class="lang-switch">Tiếng Việt</a>
-<a href="/all-articles/" class="">All Articles</a>
-</nav>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
-<div class="reader-layout">
+<div id="progress-container"><div id="progress-bar"></div></div>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span class="sep">/</span>
-    <a href="/books/">Book Library</a>
-    <span class="sep">/</span>
-    <span class="crumb-current">Sun-Style Taijiquan — Full Translation | TaichiNOW</span>
-  </nav>
-
-  <details class="toc-drawer">
-    <summary><i class="fa-solid fa-list-ul"></i> Table of Contents</summary>
-    <ul class="toc-list">
-        <li class="toc-item"><a href="#p4" class="toc-link">Preface<span class="pg">p.前言</span></a></li>
-        <li class="toc-item"><a href="#p5" class="toc-link">Contents<span class="pg">p.目录</span></a></li>
-        <li class="toc-item"><a href="#p6" class="toc-link">Brief Introduction to Sun-Style Taijiquan<span class="pg">p.1</span></a></li>
-        <li class="toc-item"><a href="#p7" class="toc-link">General Explanation of Taijiquan<span class="pg">p.2</span></a></li>
-        <li class="toc-item"><a href="#p8" class="toc-link">General Explanation of Taijiquan (continued)<span class="pg">p.3</span></a></li>
-        <li class="toc-item"><a href="#p9" class="toc-link">General Explanation of Taijiquan (continued)<span class="pg">p.4</span></a></li>
-        <li class="toc-item"><a href="#p10" class="toc-link">Part One (上编, Shàngbiān) — 1. Names of the Movements<span class="pg">p.5</span></a></li>
-        <li class="toc-item"><a href="#p11" class="toc-link">Part One. Two: Explanation of the Movements<span class="pg">p.6</span></a></li>
-        <li class="toc-item"><a href="#p56" class="toc-link">1. The Push-Hands Method of Taijiquan (太极拳推手法, Tàijíquán Tuīshǒu Fǎ)<span class="pg">p.51</span></a></li>
-        <li class="toc-item"><a href="#p60" class="toc-link">2. The Martial Application of Taijiquan (太极拳技击, Tàijíquán Jì Jī)<span class="pg">p.55</span></a></li>
-    </ul>
-  </details>
-
-  <main class="reader-content">
-
-    <div class="book-hero">
-      <span class="book-badge">Full 65-Page Translation &middot; With Chinese Source</span>
-      <h1>Sun-Style Taijiquan</h1>
-      <div class="book-orig-title">《孙式太极拳》 — compiled by Sun Jianyun (孙剑云) · People's Sports Publishing House (1957 · 1997 revision)</div>
-      <div class="book-author-meta">
-        <strong>Author:</strong> Sun Jianyun (孙剑云, 1914–2003) — daughter of Grandmaster Sun Lutang<br>
-        <strong>Original:</strong> People's Sports Publishing House (人民体育出版社), Beijing, 1957 — 1997 revised edition<br>
-        <strong>English translation &amp; figure notes:</strong> TaichiNOW Editorial Board
-      </div>
-      <p style="font-size:0.95rem;color:var(--text-secondary);margin:0.8rem 0 0;">
-        A page-faithful translation, with the Chinese source transcribed alongside and notes describing all 214 posture figures.
-      </p>
-      <div class="book-tags">
-        <span class="book-tag">Sun-Style Taijiquan</span>
-        <span class="book-tag">Sun Jianyun</span>
-        <span class="book-tag">Part One</span>
-        <span class="book-tag">Part Two</span>
-        <span class="book-tag">214 Figures</span>
-      </div>
-      <a class="book-pdf-link" href="/assets/books/sun_style/Sun_Style_Taijiquan_EN.pdf" download>
-        <i class="fa-solid fa-file-pdf"></i> Download full PDF (English)
-      </a>
-    </div>
-
-<aside id="toc">
-    <h2>Contents</h2>
-        <a class="toc-link" href="#p4">Preface<span class="pg">p.前言</span></a>
-    <a class="toc-link" href="#p5">Contents<span class="pg">p.目录</span></a>
-    <a class="toc-link" href="#p6">Brief Introduction to Sun-Style Taijiquan<span class="pg">p.1</span></a>
-    <a class="toc-link" href="#p7">General Explanation of Taijiquan<span class="pg">p.2</span></a>
-    <a class="toc-link" href="#p8">General Explanation of Taijiquan (continued)<span class="pg">p.3</span></a>
-    <a class="toc-link" href="#p9">General Explanation of Taijiquan (continued)<span class="pg">p.4</span></a>
-    <a class="toc-link" href="#p10">Part One (上编, Shàngbiān) — 1. Names of the Movements<span class="pg">p.5</span></a>
-    <a class="toc-link" href="#p11">Part One. Two: Explanation of the Movements<span class="pg">p.6</span></a>
-    <a class="toc-link" href="#p56">1. The Push-Hands Method of Taijiquan (太极拳推手法, Tàijíquán Tuīshǒu Fǎ)<span class="pg">p.51</span></a>
-    <a class="toc-link" href="#p60">2. The Martial Application of Taijiquan (太极拳技击, Tàijíquán Jì Jī)<span class="pg">p.55</span></a>
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Phần 1</a></li>
+        <li><a href="#sec01">Phần 2</a></li>
+        <li><a href="#sec02">Phần 3</a></li>
+        <li><a href="#sec03">Phần 4</a></li>
+        <li><a href="#sec04">Phần 5</a></li>
+        <li><a href="#sec05">Phần 6</a></li>
+        <li><a href="#sec06">Phần 7</a></li>
+        <li><a href="#sec07">Phần 8</a></li>
+        <li><a href="#sec08">Phần 9</a></li>
+        <li><a href="#sec09">Phần 10</a></li>
+      </ul>
+    </nav>
   </aside>
-  <section id="p4" class="chapter-block">
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>sun_style_taijiquan_sun_jianyun_en_full</h1>
+    </div>
+<section id="sec00">
+<span id="chuong-0"></span>
+<h2>Phần 1</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 前言</div>
     <h2 class="chapter-title">Preface</h2>
@@ -282,14 +573,24 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Confined as it is by the editor's level, the book will inevitably contain errors; readers are earnestly asked to point them out.</p>
 <p>— <strong>The Editor</strong></p>
 <p><em>Note: the printed page number is 前言; the scan page is 4.</em></p>
-</section><section id="p5" class="chapter-block">
+</section>
+
+<section id="sec01">
+<span id="chuong-1"></span>
+<h2>Phần 2</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 目录</div>
     <h2 class="chapter-title">Contents</h2>
   </div>
 <div class="chapter-sub">Contents</div>
 <p>A Brief Introduction to Sun-Style Taijiquan ················· 1 General Explanation of Taijiquan ····························· 2 <strong>PART ONE (上编)</strong> ············································· 5 1. Names of the Movements ··································· 5 2. Explanation of the Movements ····························· 6 3. Diagrams of the Directions and Routes of Sun-Style Taijiquan Movements <strong>PART TWO (下编)</strong> ··········································· 51 1. Sun-Style Taijiquan Push-Hands Method ··················· 51 2. Taijiquan Fighting Technique ····························· 55 <strong>Appendix: Reference Materials</strong> ····························· 57 1. Wang Zongyue: <em>Treatise on Taijiquan</em> ····················· 57 2. Wu Yuxiang: <em>Treatise on Taijiquan</em> ······················· 58 3. Mental Explanation of the Thirteen Postures in Action ····· 58 4. Song Formula of the Thirteen Postures ····················· 59 5. Song Formula of Push-Hands ······························· 59 6. Li Yishe: <em>Formula in Five Characters</em> ····················· 60 7. Secret Formula on Releasing ······························· 61 8. Essential Words on Practising the Form and Striking Hands · 61 <em>Note: this is the printed table of contents; the scan page is 5.</em></p>
-</section><section id="p6" class="chapter-block">
+</section>
+
+<section id="sec02">
+<span id="chuong-2"></span>
+<h2>Phần 3</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 1</div>
     <h2 class="chapter-title">Brief Introduction to Sun-Style Taijiquan</h2>
@@ -297,7 +598,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">Brief Introduction to Sun-Style Taijiquan</div>
 <p>The founder of Sun-style taiji (太极, tàijí) quan was Sun Fuquan (孙福全, Sūn Fúquán), courtesy name Lutang (禄堂, Lùtáng), late sobriquet Hanzhai (涵斋, Hánzhāi), a native of Wanxian in Hebei. From childhood he was passionately fond of martial arts. He studied Xingyi Quan (形意拳, Xíngyì Quán) under Li Kuiyuan (李魁垣, Lǐ Kuíyuán), and then studied under Li's own teacher Guo Yunshen (郭云深, Guō Yúnshēn), from whom he received the true transmission. He also studied Baguazhang (八卦拳, Bāguàzhāng) under Cheng Tinghua (程廷华, Chéng Tínghuá). After several years of study and polishing his skill ran deep. He later studied taijiquan under Hao Weizhen (郝为真, Hǎo Wéizhēn). Sun Lutang (孙禄堂, Sūn Lùtáng) devoted his whole life to the study of martial arts; he was proficient in Xingyi, Baguazhang and taijiquan, and gathering the essential meaning of the three schools into one, he created Sun-style taijiquan.</p>
 <p>The characteristics of Sun-style taijiquan are: advance and retreat follow one another; when stepping forward one must follow, when stepping back one must withdraw. The movements are extended, rounded and lively, nimble and natural. In practice the two feet are clearly distinguished as empty and full (虚实, xūshí). The whole set, once begun, is like drifting clouds and flowing water, continuous and unbroken. At every turn of the body "opening" and "closing" (开合, kāihé) join, and so it is also called kaihe huobu taijiquan (开合活步太极拳, kāihé huóbù tàijíquán). It is suitable for people of any age and any constitution to practise.</p>
-</section><section id="p7" class="chapter-block">
+</section>
+
+<section id="sec03">
+<span id="chuong-3"></span>
+<h2>Phần 4</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 2</div>
     <h2 class="chapter-title">General Explanation of Taijiquan</h2>
@@ -310,7 +616,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Mouth</strong>: The mouth should be loosely closed, the tongue touching the upper palate, breathing through the nose.</p>
 <p><strong>Chest</strong>: The chest should be contained and must not be thrust out. When the chest is contained the qi sinks to the dantian. When the chest is thrust out the qi surges into the chest region, the upper is heavy and the lower light, and the heels float — a thing taboo to the martial practitioner. When the chest is contained the qi clings to the back, and strength issues from the spine — this is true strength. The above is what is called "containing the chest and raising the back" (含胸拔背, hánxiōng bábèi).</p>
 <p><strong>Shoulders</strong>: Both shoulders must be relaxed and hanging down. One must especially avoid hunching the shoulders, otherwise the qi surges upward.</p>
-</section><section id="p8" class="chapter-block">
+</section>
+
+<section id="sec04">
+<span id="chuong-4"></span>
+<h2>Phần 5</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 3</div>
     <h2 class="chapter-title">General Explanation of Taijiquan (continued)</h2>
@@ -324,7 +635,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p><strong>Intent and strength</strong>: One of the characteristics of taijiquan is that it uses intent and does not use strength. For taijiquan requires the use of living strength; the whole body must be relaxed and open, not allowing the least bit of clumsy strength to linger between sinews, bones, blood and vessels. It requires being extremely soft and yet extremely firm and hard, extremely heavy and yet extremely nimble. Where the intent arrives the strength arrives, applied with ease. If clumsy strength is used, then it is sluggish and not nimble. If the strength floats on the outside, it does not accord with the requirements of taijiquan. What is meant by using intent and not using strength, and how does living strength arise of itself? It is because where the intent goes the qi arrives; thus the qi and blood flow and pour, day by day infusing and circulating through the channels and network vessels of the whole body, never for a moment stagnating. With long practice true inner strength (内劲, nèijìn) is then produced.</p>
 <p><strong>Movement and stillness</strong>: The quiet sitting of qigong is seeking movement within stillness; boxing art is seeking stillness within movement. In practising the quan the mind must be still and the spirit concentrated; only then can the movements be rounded and lively.</p>
 <p>The above has discussed the essentials of movement separately. But the student must certainly note that taijiquan is an exercise of the whole body, and what is trained lies in the spirit. The spirit is the commander, the body is the servant; if the spirit can be raised, then the movements are naturally light and nimble. Only when mind and intent are in harmony with the movements of the form can inner and outer join as one. In practice one must take care that above and below follow one another, and that all parts of the body are complete and unified. If there is one place where the movement is not whole, the spirit and qi will be scattered and disordered. Furthermore, in practising the quan one should move the strength by the intent, linked without interruption, "like the long Yangtze River, rolling on without cease." "In movement, like drawing silk" —</p>
-</section><section id="p9" class="chapter-block">
+</section>
+
+<section id="sec05">
+<span id="chuong-5"></span>
+<h2>Phần 6</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 4</div>
     <h2 class="chapter-title">General Explanation of Taijiquan (continued)</h2>
@@ -332,27 +648,32 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <div class="chapter-sub">General Explanation of Taijiquan (continued)</div>
 <p>— such is the meaning.</p>
 <p>To make it easy for the reader to remember, these essential points are now put into a mnemonic verse as follows:</p>
-<blockquote class="quote-box">Taijiquan is originally an inner-school boxing (内家拳, nèijiāquán);</blockquote>
-<blockquote class="quote-box">do not use clumsy strength — intent comes first.</blockquote>
-<blockquote class="quote-box">Empty and numinous, suspending the head-top (顶头, dǐngtóu), the spirit concentrated;</blockquote>
-<blockquote class="quote-box">draw the chin back and it is then natural.</blockquote>
-<blockquote class="quote-box">Containing the chest, one can naturally raise the back;</blockquote>
-<blockquote class="quote-box">on no account form "hunchback shoulders."</blockquote>
-<blockquote class="quote-box">In practice sink the shoulders and drop the elbows;</blockquote>
-<blockquote class="quote-box">with shoulders hunched and elbows suspended it is not the quan.</blockquote>
-<blockquote class="quote-box">Sinking the waist (塌腰, tāyāo) can raise the strength of the whole body;</blockquote>
-<blockquote class="quote-box">if the waist is not sunk, nimbleness is difficult.</blockquote>
-<blockquote class="quote-box">The two legs bent distinguish empty and full;</blockquote>
-<blockquote class="quote-box">here lies the essential meaning of taiji.</blockquote>
-<blockquote class="quote-box">Breathing (呼吸, hūxī) sinks down to the dantian point;</blockquote>
-<blockquote class="quote-box">let it be purely natural, do not force it.</blockquote>
-<blockquote class="quote-box">Above and below follow one another and become one body;</blockquote>
-<blockquote class="quote-box">the movements, continuous and unbroken, are forever linked.</blockquote>
-<blockquote class="quote-box">Seek stillness within movement, movement within stillness;</blockquote>
-<blockquote class="quote-box">in practice the spirit and qi must be complete in every part.</blockquote>
-<blockquote class="quote-box">Be sure to remember these points and not forget them;</blockquote>
-<blockquote class="quote-box">with lasting practice the benefit will show of itself.</blockquote>
-</section><section id="p10" class="chapter-block">
+<blockquote class="callout">Taijiquan is originally an inner-school boxing (内家拳, nèijiāquán);</blockquote>
+<blockquote class="callout">do not use clumsy strength — intent comes first.</blockquote>
+<blockquote class="callout">Empty and numinous, suspending the head-top (顶头, dǐngtóu), the spirit concentrated;</blockquote>
+<blockquote class="callout">draw the chin back and it is then natural.</blockquote>
+<blockquote class="callout">Containing the chest, one can naturally raise the back;</blockquote>
+<blockquote class="callout">on no account form "hunchback shoulders."</blockquote>
+<blockquote class="callout">In practice sink the shoulders and drop the elbows;</blockquote>
+<blockquote class="callout">with shoulders hunched and elbows suspended it is not the quan.</blockquote>
+<blockquote class="callout">Sinking the waist (塌腰, tāyāo) can raise the strength of the whole body;</blockquote>
+<blockquote class="callout">if the waist is not sunk, nimbleness is difficult.</blockquote>
+<blockquote class="callout">The two legs bent distinguish empty and full;</blockquote>
+<blockquote class="callout">here lies the essential meaning of taiji.</blockquote>
+<blockquote class="callout">Breathing (呼吸, hūxī) sinks down to the dantian point;</blockquote>
+<blockquote class="callout">let it be purely natural, do not force it.</blockquote>
+<blockquote class="callout">Above and below follow one another and become one body;</blockquote>
+<blockquote class="callout">the movements, continuous and unbroken, are forever linked.</blockquote>
+<blockquote class="callout">Seek stillness within movement, movement within stillness;</blockquote>
+<blockquote class="callout">in practice the spirit and qi must be complete in every part.</blockquote>
+<blockquote class="callout">Be sure to remember these points and not forget them;</blockquote>
+<blockquote class="callout">with lasting practice the benefit will show of itself.</blockquote>
+</section>
+
+<section id="sec06">
+<span id="chuong-6"></span>
+<h2>Phần 7</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 5</div>
     <h2 class="chapter-title">Part One (上编, Shàngbiān) — 1. Names of the Movements</h2>
@@ -385,7 +706,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Seventieth posture: Step Back and Repulse the Monkey (倒撵猴, Dào Niǎn Hóu) — Ninety-sixth posture: Yin and Yang Blended into One (阴阳混一, Yīn Yáng Hùn Yī)</p>
 <p>Seventy-first posture: Hands Play the Pipa (right form) (手挥琵琶（右式）) — Ninety-seventh posture: Closing Posture (收式, Shōu Shì)</p>
 <p>Seventy-second posture: White Crane Spreads Its Wings (白鹤亮翅, Bái Hè Liàng Chì)</p>
-</section><section id="p11" class="chapter-block">
+</section>
+
+<section id="sec07">
+<span id="chuong-7"></span>
+<h2>Phần 8</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 6</div>
     <h2 class="chapter-title">Part One. Two: Explanation of the Movements</h2>
@@ -1071,7 +1397,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Following on from the previous posture, the two hands become palms and separate to left and right as far as the sides of the hips; the left foot draws in close to the right foot, the body stands upright; the eyes look level. (Fig. 208)</p>
 <p><span id="p55" class="page-anchor"></span><span id="p56" class="page-anchor"></span>(No photographic plates are printed on this page.) (This scan page is blank: no printed text, no photographic plates, and no printed page number are present on it.)</p>
 <p>Part Two (下编, Xià Biān)</p>
-</section><section id="p56" class="chapter-block">
+</section>
+
+<section id="sec08">
+<span id="chuong-8"></span>
+<h2>Phần 9</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 51</div>
     <h2 class="chapter-title">1. The Push-Hands Method of Taijiquan (太极拳推手法, Tàijíquán Tuīshǒu Fǎ)</h2>
@@ -1119,7 +1450,12 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>Pushing includes lightness and nimbleness or heaviness and solidity, left solid and right empty or right solid and left empty, the two hands opening or closing; in sum, one must change according to the configuration.</p>
 <p>When two people drill push-hands together, besides attending to experiencing the methods of using force, one must accomplish bending and extending in accord with the other, neither losing contact nor resisting, not using clumsy strength, calming the mind and listening to force. In time, one can lead the opponent in to fall into emptiness and move a thousand catties with a pull of four ounces.</p>
 <p>As for "listening to force" (听劲, tīng jìn), one must on no account mistake it for two parties opposing each other with strength. One commonly sees, in push-hands, two people locking strength against each other, one asking whether the other has force yet, the other answering that he has or has not — this is a great error. "Listening to force" is to sense the magnitude and direction of the opponent's applied force and so change at once; one must on no account lock against it. In beginning practice, train the two arms first; with long practice the whole body can sense it. If one can listen to force, then when the opponent issues force one can dissolve it and make him fall into emptiness. If one cannot listen to force, one need not measure oneself against others; the student must certainly attend to this.</p>
-</section><section id="p60" class="chapter-block">
+</section>
+
+<section id="sec09">
+<span id="chuong-9"></span>
+<h2>Phần 10</h2>
+
   <div class="chapter-header">
     <div class="page-marker">Trang sách 55</div>
     <h2 class="chapter-title">2. The Martial Application of Taijiquan (太极拳技击, Tàijíquán Jì Jī)</h2>
@@ -1144,46 +1480,55 @@ body.dark-mode .key-point { color: #a7f3d0; }
 <p>VII. Secret Formula of Release and Discharge The Four Words: Lifting, Drawing, Loosening, Releasing Lifting opens his energy and borrows his force — within it is the word <em>ling</em> (灵, numinous). Drawing him to the front of the body, his energy then begins to store — within it is the word <em>lian</em> (敛, gathering). Loosening my own energy, do not let it bend — within it is the word <em>jing</em> (静, stillness). At the release, the waist and feet must recognize the target — within it is the word <em>zheng</em> (整, wholeness).</p>
 <p>VIII. Essential Words on Practising the Form and Practising the Hands The men of old said: if one can draw the other in to fall into emptiness, one can then four ounces deflect a thousand catties; if one cannot draw the other in to fall into emptiness, one cannot four ounces deflect a thousand catties. The saying is very summary; the beginner has no way to grasp it. I add several phrases to explain it, so that those who have the will for this art may have a point of entry, and so advance a little each day in achievement. If one wishes to draw [the other] in to fall into emptiness and four ounces deflect a thousand catties, one must first know oneself and know the other. If one wishes to know oneself and know the other, one must first give up oneself and follow the other. If one wishes to give up oneself and follow the other, one must first gain the opportunity and gain the position. If one wishes to gain the opportunity and gain the position, one must first make the whole body one family. If one wishes to make the whole body one family, one must first have no flaw anywhere in the whole body. If one wishes to have no flaw anywhere in the whole body, one must first have spirit and qi drumming and surging. If one wishes to have spirit and qi drumming and surging, one must first raise up the spirit. If one wishes to raise up the spirit, one must first keep the spirit from scattering outward. If one wishes to keep the spirit from scattering outward, one must first gather spirit and qi into the bones. If one wishes to gather spirit and qi into the bones, one must first have strength in the front section of the two legs. The two shoulders loosen and open, the qi sinks downward, energy rises from the heels, exchanges in the legs, is contained in the chest, moves in the two shoulders, and is governed in the waist; above it connects with the two arms, below it follows the two legs, and energy changes from within. Gathering is closing; issuing is opening. When still, all is still; stillness is closing, and within closing is lodged opening. When moving, all moves; movement is opening, and within opening is lodged closing. Touch it, and it revolves freely, with nothing that does not gain force — only then can one draw the other in to fall into emptiness and four ounces deflect a thousand catties. Practice of the form on ordinary days is the work of knowing oneself. At each movement one must first ask oneself whether the whole body accords with these several items. If it accords only slightly not, change it at once. This is why in practising the form one wants slowness, not speed. Push-hands is the work of knowing others; stillness and movement are indeed knowing others, yet it is still a question of asking oneself. If one has arranged oneself well, then when the other touches me, I do not move him the least bit, but enter along his tendency, join and fix his energy, and he falls out of himself. If one has a place where one does not gain force, that is double-weighting not yet transformed, and it must be sought in the opening and closing of yin and yang. This is what is called knowing oneself and knowing the other, and in a hundred battles a hundred victories. Cover design: Sun Jinrong, Zhou Menglin Responsible editor: Li Wenying Unified book number: 7015·2260 Price: 0.60 yuan</p>
 </section>
-
-    <nav class="page-nav">
-      <a href="/books/chen_xin_taijiquan_tushuo_en_full.html" class="prev">&#8592; Previous · Chen Xin Illustrated Explanation</a>
-      <a href="/books/" class="home">&#8962; Home</a>
-      <a href="/books/yang_style_taijiquan_fu_zhongwen_en_full.html" class="next">Next · Yang-Style Taijiquan &#8594;</a>
-    </nav>
-
   </main>
 </div>
 
-<footer class="site-footer" style="text-align: center; padding: 2.5rem 1rem; border-top: 1px solid #e7e5e4; margin-top: 3rem; color: #78716c; font-size: 0.9rem;">
-  <p>Built with ❤️ for the Vietnamese Tai Chi community by Henry Phạm</p>
-  <p>TaichiNOW — Taijiquan Library</p>
-</footer>
-
 <script>
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  let pb = document.getElementById("reading-progress");
-  if (pb) pb.style.width = scrolled + "%";
-};
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
 
-let currentFontSize = 17;
-function adjustFontSize(delta) {
-  currentFontSize += delta;
-  if (currentFontSize < 14) currentFontSize = 14;
-  if (currentFontSize > 24) currentFontSize = 24;
-  document.querySelector('.reader-content').style.fontSize = currentFontSize + 'px';
-}
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('taichi_reader_dark', document.body.classList.contains('dark-mode'));
-}
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
 
-if (localStorage.getItem('taichi_reader_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>
