@@ -1,11 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Shambhala Guide to Traditional Chinese Medicine | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,32 +43,394 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Shambhala Guide to Traditional Chinese Medicine | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Contents</summary><ul class="toc-list"><li class="toc-item"><a href="#p000" class="toc-link">The Sha Mb Hala Guide</a></li>
-<li class="toc-item"><a href="#p002" class="toc-link">The Sha Mb Hala Guide To</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">Traditional</a></li>
-<li class="toc-item"><a href="#p010" class="toc-link">The Sha Mb Hala Guide To</a></li>
-<li class="toc-item"><a href="#p036" class="toc-link">Universal Macrocosm</a></li>
-<li class="toc-item"><a href="#p038" class="toc-link">The Five Elemental Energies</a></li>
-<li class="toc-item"><a href="#p043" class="toc-link">Universal Macrocosm</a></li>
-<li class="toc-item"><a href="#p048" class="toc-link">The Human Energy Field</a></li>
-<li class="toc-item"><a href="#p051" class="toc-link">Chakras And Subtle Enercy Bodies</a></li>
-<li class="toc-item"><a href="#p179" class="toc-link">Health</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/books/">Books</a><span class="sep">/</span><span>The Shambhala Guide to Traditional Chinese Medicine</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · English transcript</div>
-      <h1 class="book-title">The Shambhala Guide to Traditional Chinese Medicine</h1>
-    </header>
-    <section class="pg" id="p000"><h2>The Sha Mb Hala Guide</h2>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">The Sha Mb Hala Guide</a></li>
+        <li><a href="#sec01">The Sha Mb Hala Guide To</a></li>
+        <li><a href="#sec02">Traditional</a></li>
+        <li><a href="#sec03">The Sha Mb Hala Guide To</a></li>
+        <li><a href="#sec04">Universal Macrocosm</a></li>
+        <li><a href="#sec05">The Five Elemental Energies</a></li>
+        <li><a href="#sec06">Universal Macrocosm</a></li>
+        <li><a href="#sec07">The Human Energy Field</a></li>
+        <li><a href="#sec08">Chakras And Subtle Enercy Bodies</a></li>
+        <li><a href="#sec09">Health</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>The Shambhala Guide to Traditional Chinese Medicine</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p000"></span>
+<h2>The Sha Mb Hala Guide</h2>
 <p>hines e</p>
 <p>Medicine</p>
 <p>An essential</p>
@@ -83,8 +442,16 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>血海</p>
 <h2>三险交 商丘 一公</h2>
 <p>太白 太都</p>
-<p>Daniel Reid</p></section><section class="pg" id="p002"><h2>The Sha Mb Hala Guide To</h2>
-<h2>Traditional Chinese Medicine</h2></section><section class="pg" id="p004"><p>The</p>
+<p>Daniel Reid</p></section>
+
+<section id="sec01" class="pg">
+<span id="p002"></span>
+<h2>The Sha Mb Hala Guide To</h2>
+<h2>Traditional Chinese Medicine</h2></section>
+
+<section id="sec02" class="pg">
+<span id="p004"></span>
+<p>The</p>
 <p>Sha mb hala Guide to</p>
 <h2>Traditional</h2>
 <h2>Chinese</h2>
@@ -117,7 +484,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Annotated Bibliography 141</p>
 <p>Index 153</p></section><section class="pg" id="p009"><p>Digitized bythe Internet Archive</p>
 <p>in2011</p>
-<p>http://www. archive. or g/details/shambhalaguideto0Oreid</p></section><section class="pg" id="p010"><h2>The Sha Mb Hala Guide To</h2>
+<p>http://www. archive. or g/details/shambhalaguideto0Oreid</p></section>
+
+<section id="sec03" class="pg">
+<span id="p010"></span>
+<h2>The Sha Mb Hala Guide To</h2>
 <h2>Traditional Chinese Medicine</h2></section><section class="pg" id="p012"><p>Introduction</p>
 <p>IN TRADITIONAL CHINESE MEDICINE, the human system is viewed as a microcosmic mirror of the macrocosmic universe, a whole inner world composed of the same elements and energies, and subject to the same natural laws, as the external world and cosmos (fig. l). The universal principles that govern &quot;everything under Heaven&quot; (tien hsia) are simply known as the &quot;Way&quot;&quot; (Tao), and they apply equally to stars and planets, molecules and atoms, operating exactly the same way in the human system as they do in the solar system. Because nature is the most obvious and enduring manifestation of Tao on earth, much of the traditional terminology of Chinese medicine is derived directly from natural phenomena (fire and water, wind and heat, dryness and dampness, etc.), and a traditional Chinese diagnosis often sounds more like a weather report than a medical analysis. In Chinese medicine, manifest nature is the master template by which the physician understands and manipulates the internal elements and energies of the human system.</p>
 <p>When the elemental energies within the human system remain in a natural state of dynamic balance and functional harmony, &quot;fair weather&quot; prevails inside the body, and the garden of human health four is he s, both mentally and physically. But when organic balance</p></section><section class="pg" id="p013"><p>Introduction</p>
@@ -197,7 +568,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>THE DYNAMICS OF YIN AND YANG Human energy is an electromagnetic force that functions by virtue of its dynamic polarity. In Chinese tradition, this polarity, which</p></section><section class="pg" id="p035"><p>24 The Human Energy System</p>
 <p>manifests itself throughout the material universe, is called The Great Principle of Yin and Yang, and it explains the polar nature of all events and phenomena from the galactic and planetary macrocosms down to the organic, cellular, and molecular microcosms of the human energy system. Owing to the polarity of yin and yang, human energy, like all natural forces, is always moving, constantly transforming, ever active.</p>
 <p>It is important to bear in mind that yin and yang are not two different types of energy, but rather opposite and complementary qualities of the same basic energies. The terms yin and yang, which first appeared in the Book of Change (I-Ching) around 1250 B CE, originally meant &quot;&quot;the shady side of a hill&quot; and &quot;the sunny side of a hill&quot;&#x27; respectively, indicating that they are simply opposite sides of the same coin. Not only does this definition reflect the basic polar nature of yin and yang, it also indicates their mutually transmutable relationship, for as the sun (i. e., energy) moves across the sky, the shady side of the hill becomes sunny and the sunny side grows shady, just as water (yin) transforms into its own opposite element, steam (yang), when exposed to the Fire energy of heat. As the I-Ching states, &quot;The interaction of yin and yang is called the Way [Tao], and the resulting creative process is called change.&quot; All creation and change are therefore prompted by the dynamic polarity of yin and yang, which are properties of active energy, not static matter.</p>
-<p>Yin and yang manifest their complementary polarity in every aspect of the human system (see table 1). There are yin organs functionally coupled by energy with yang organs, &quot;hot&quot;&#x27; energies and &quot;&quot;cold&quot; energies, expanding and contracting energies, &quot;&quot;evil&quot; (disease causing) and &quot;true&quot; (healing) energies. The front of the body is yin relative to the back, which is yang; the external surface is yang vis a vis the yin interior; acid pH is yang while alkaline is yin; and so forth. Thus the essential nature of yin and yang is complementary polarity, their essential relationship is one of constant interaction and mutual</p></section><section class="pg" id="p036"><p>The Human Energy System 25</p>
+<p>Yin and yang manifest their complementary polarity in every aspect of the human system (see table 1). There are yin organs functionally coupled by energy with yang organs, &quot;hot&quot;&#x27; energies and &quot;&quot;cold&quot; energies, expanding and contracting energies, &quot;&quot;evil&quot; (disease causing) and &quot;true&quot; (healing) energies. The front of the body is yin relative to the back, which is yang; the external surface is yang vis a vis the yin interior; acid pH is yang while alkaline is yin; and so forth. Thus the essential nature of yin and yang is complementary polarity, their essential relationship is one of constant interaction and mutual</p></section>
+
+<section id="sec04" class="pg">
+<span id="p036"></span>
+<p>The Human Energy System 25</p>
 <p>TABLE 1. Aspects of Yin Yang Polarity</p>
 <p>Aspects Yin</p>
 <h2>Universal Macrocosm</h2>
@@ -234,7 +609,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>introverted, gentle robust</p></section><section class="pg" id="p037"><p>26 The Human Energy System</p>
 <p>transformation, and the dynamic balance between the two determines the state of health of the whole and of all its constituent parts. Chinese philosophy cites five basic laws governing the ways in which the Great Principle of Yin and Yang functions in nature and throughout the cosmos, and Chinese medicine applies the same principles to the microcosmic universe within the human energy system.</p>
 <p>1. All events and phenomena have two complementary polar aspects, called yin and yang, and this polarity is the basis of all organic structures and their functions. 2. Every yin yang system contains myriad constituent subsystems and also is contained within myriad yin yang supersystems. 3. Yin and yang mutually give rise to one another and are functionally dependent on one another. Their activities are always relative and their qualities complementary. 4. Yin and yang naturally balance and regulate each other. Their relative balance determines the equilibrium, stability, and functional viability of the whole human energy system and each of its organic subsystems. 5. Yin and yang are transmutable and mutually transform into each other. Their transformations initiate all creation, growth, change, and decline.</p>
-<p>In the practice of Chinese medicine, the principle of yin and yang provides a convenient scale by which to gauge the overall equilibrium of the human energy system as well as the relative balance of all its constituent organ energy subsystems. In diagnosis, it serves as a tool for determining the basic nature of specific ailments and monitoring their progression within the whole system. In therapy, it indicates the type of medical treatment required to rebalance ailing organ energy systems and restore their synchronicity within the whole system. Hot and cold, full and empty, external and internal,</p></section><section class="pg" id="p038"><p>The Human Energy System 27</p>
+<p>In the practice of Chinese medicine, the principle of yin and yang provides a convenient scale by which to gauge the overall equilibrium of the human energy system as well as the relative balance of all its constituent organ energy subsystems. In diagnosis, it serves as a tool for determining the basic nature of specific ailments and monitoring their progression within the whole system. In therapy, it indicates the type of medical treatment required to rebalance ailing organ energy systems and restore their synchronicity within the whole system. Hot and cold, full and empty, external and internal,</p></section>
+
+<section id="sec05" class="pg">
+<span id="p038"></span>
+<p>The Human Energy System 27</p>
 <p>ascending and descending, and many other terms used in traditional Chinese diagnosis and therapy are simply different ways of describing various manifestations of yin and yang polarity in different parts ofthe human system.</p>
 <h2>The Five Elemental Energies</h2>
 <p>The Five Elemental Energies (wu h sing), also translated as the Five Phases, are fundamental forces of nature created by the interplay of yin and yang on earth. An ancient Chinese treatise on energy states:</p>
@@ -249,7 +628,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Each human being is endowed by nature and genetics with various different proportions and relative strengths of the Five Elemental Energies. Any inherent deficiencies and imbalances may be supplemented and replenished during the course of life by tapping various external sources of these energies, such as food, herbs, aromas, sunlight, atmospheric elements, and so on. Energy from such external sources may be cultivated and assimilated either by personal practices such as diet, exercise, sexual yoga, chee-gung, and meditation, or else by holistic medical therapies like herbs, acupuncture, massage, and so forth. In each case, a specific external energy is brought into the system by virtue of its resonance or &quot;natural affinity&quot;(gui jing) with a particular internal organ energy, with one of the Five Elemental Energies serving as a common denominator between the external source and the internal organ. Sweet herbs, for example, replenish spleen and stomach energy, because sweet is an Earth energy flavor while the spleen and stomach are Earth energy organ?. By the same principle, sour herbs and foods (Wood energy) boost liver and gallbladder functions (Wood organs), pungent (Metal) flavors influence the lungs and large intestine (Metal organs), and so forth. Acupuncture works by directly modulating the flow and potential of the various internal organ energies running through the meridian network, increasing or decreasing their strength according to the physician&#x27;s purposes. Therefore, all Chinese therapies are basically methods of energy transfer and energy control achieved by establishing resonance between various external sources of healing energy and the internal organ energies for which those particular sources have natural affinities. The goal of all these therapies is to restore natural balance and harmony within the human energy system and establish synchronicity between the whole system and the energy cycles of nature and the cosmos.</p>
 <p>Ultimately, all matter is created and controlled by the Five Elemental Energies, and eventually all matter returns to these energies in their pure primordial form as colored rays of light. According to</p></section><section class="pg" id="p042"><p>The Human Energy System 31</p>
 <p>Taoist as well as Buddhist thought, the ultimate fundamental nature of mind and all reality is the radiant luminosity of primordial Clear Light. From the Clear Light of primordial spirit, which is eternal and infinite, the mind refracts the five colored rays and uses them to condense and organize the free self existent energy of the universe into the various forms of matter and organic energy that compose our physical bodies and material world. Yellow rays of light possess the unique capacity to organize the elemental energy of Earth, which constitutes the &quot;meat and bones&quot; of our bodies as well as the planet we inhabit. Red controls the elemental energy of Fire, which brings heat to the earth and warmth to our bodies. Water energy creates the blood and other fu ids in our bodies and gives rise to the rivers, lakes, and oceans of the earth, and so forth. During the course of life, the Five Elemental Energies fow through our systems, managing their respective tissues and functions and drawing on external sources for replenishment and balance. But when we die, our spirits withdraw these energies from our dying bodies one by one, beginning with Earth, then Water, in consecutive order, and as each energy is transformed back into the pure primordial light from which it sprang, the corresponding organs and energies of the body cease to function, until the body is dead and all its constituent energies have been reabsorbed into the original Clear Light of primordial spirit, ready to be projected into whatever realm of existence and form of life come next. The Chinese refer to this process of energy reintegration at death as Returning to the Source, and it marks the boundary where medical science ends and spiritual practice begins.</p>
-<p>The major organs, colors, sounds, flavors, emotions, seasons, and other manifest qualities of nature are associated with each of the Five Elemental Energies in Chinese medicine and other Taoist disciplines (see table 2). Readers may consult this chart to determine their own individual energy types, based on the predilections listed, and to adjust their personal habits and lifestyles for better balance and harmony. Note that Fire governs an extra set of paired organs</p></section><section class="pg" id="p043"><p>TABLE 2. The Five Elemental Energies and Their Macrocosmic and</p>
+<p>The major organs, colors, sounds, flavors, emotions, seasons, and other manifest qualities of nature are associated with each of the Five Elemental Energies in Chinese medicine and other Taoist disciplines (see table 2). Readers may consult this chart to determine their own individual energy types, based on the predilections listed, and to adjust their personal habits and lifestyles for better balance and harmony. Note that Fire governs an extra set of paired organs</p></section>
+
+<section id="sec06" class="pg">
+<span id="p043"></span>
+<p>TABLE 2. The Five Elemental Energies and Their Macrocosmic and</p>
 <p>Microcosmic Associations</p>
 <p>Category Wood Fire Earth Metal Water</p>
 <h2>Universal Macrocosm</h2>
@@ -321,7 +704,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>nourishing energy lung breath k extracted from bladder food in stomach</p>
 <p>Conception Channel kidney liver</p>
 <p>gallbladder pericardium Triple Burner</p>
-<p>Figure 4. The internal circulation of nourishing energy to the vital organ energy systems, with the Governing and Conception Channels as reservoirs.</p></section><section class="pg" id="p048"><p>The Human Energy System 37</p>
+<p>Figure 4. The internal circulation of nourishing energy to the vital organ energy systems, with the Governing and Conception Channels as reservoirs.</p></section>
+
+<section id="sec07" class="pg">
+<span id="p048"></span>
+<p>The Human Energy System 37</p>
 <p>nourishing energy throughout the system, controls body heat, fuels metabolism, forms all functional links between body and mind, and much more. In Chinese medicine, all physiological pathology, as well as mental and emotional problems, are seen as symptomatic reflections of critical imbalances or malfunctions within the human energy network, which also provides the primary vehicle through which the physician may cure the patient&#x27;s ailments.</p>
 <h2>The Human Energy Field</h2>
 <p>So far, we have discussed the various forms of energy in the human system and how they function and circulate, but of equal importance to health is the strength and polarity of the field in which human energy operates and from which it draws its power. All electromagnetic energies, including those of the human system, create an electromagnetic field. The human energy field is composed of many constituent subfields created by the energies of various component organs, tissues, and individual cells, and is also part of various super fe lds in which it operates, such as groups, dwellings, ecosystems, geographic regions, and the electromagnetic field of the planet itself. All these systems must resonate in synchronicity to prevent the imbalances and aberrations in energy that cause disease and degeneration. In Pranayama: The Yoga of Breathing, Andre van Lys e beth writes:</p>
@@ -331,7 +718,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>The human energy field is direct y influenced by, and can draw energy from, all sorts of other natural electromagnetic fields, such as those of the sun, moon, planets, and stars, as well as the earth&#x27;s own f eld, and it can also be polluted by negative fields created by electric power lines and transformers, electrical appliances, broadcasting towers, metal frame construction, microwave radiation, and other artificial sources. In diagnosing and treating human disease, it is therefore just as important to consider the effects of exposure to harmful external energy fields as it is to trace imbalances in internal energies. If your headaches are caused by sleeping in a room that exposes your system to the electromagnetic field created by a nearby electric power transformer or household appliance, it will not do you much good to take acupuncture, herbs, or any other therapy for headaches unless you first eliminate the root source of the problem by sleeping in a different room or removing the offending source of electromagnetic pollution from your home.</p>
 <p>The human energy field is what Gabriel Cousens, author of Spiritual Nutrition and the Rainbow Diet, calls a Subtle Organizing Energy Field (SOE F). Such f elds, which are present in all forms of life, organize all the energies and elements required to maintain organic</p></section><section class="pg" id="p050"><p>The Human Energy System 39</p>
 <p>life forms. In humans, SOEFs arrange the energies and elements of the human system according to the master template patterns contained in D NA, which choreographs all the body&#x27;s vital functions in the harmonious symphony of life. By virtue of their power to organize random energies into patterned forms, SOEFs work against the life threatening influence of the second law of thermodynamics, or entropy, which causes the eventual dissolution of all composite systems in the universe. As long as the human energy system and its SOE F remain balanced and fully charged with polar energy, they will automatically repair all damage to the physical organism, maintain all vital functions, and resist the decaying force of entropy.</p>
-<p>Whenever the human energy f eld is invaded by aberrant internal or external energies or exposed to harmful artificial energy fields, the entire system is thrown off balance and loses its functional harmony. If this situation of imbalance is not promptly corrected, physiological pathology and abnormal mental and emotional symptoms will soon follow. Simply suppressing the physical and mental symptoms of disease to provide quick relief, as is the practice in Western allopathic medicine, will never effect a lasting cure as long as the underlying energy imbalances that caused the symptoms are allowed to remain. When suppressive allopathic medication is applied, the external symptoms of internal energy imbalance continue to shift, transform, and manifest elsewhere in the body, often leading the allopathic doctor to diagnose a different disease and apply a different drug to treat the &quot;&quot;new&quot; symptom, whereas the Chinese doctor sees the new symptom as just another manifestation of the same old problem, a clear indication that the root cause in the energy system has not been successfully corrected. In Chinese medicine, the only true cure for all disease, dysfunction, and degeneration in the human body is to restore balance to unbalanced energies and functional harmony to dysfunctional systems, and to reestablish synchronicity among all the sub- and supersystems that in fu en ce the human energy field.</p></section><section class="pg" id="p051"><p>40 The Human Energy System</p>
+<p>Whenever the human energy f eld is invaded by aberrant internal or external energies or exposed to harmful artificial energy fields, the entire system is thrown off balance and loses its functional harmony. If this situation of imbalance is not promptly corrected, physiological pathology and abnormal mental and emotional symptoms will soon follow. Simply suppressing the physical and mental symptoms of disease to provide quick relief, as is the practice in Western allopathic medicine, will never effect a lasting cure as long as the underlying energy imbalances that caused the symptoms are allowed to remain. When suppressive allopathic medication is applied, the external symptoms of internal energy imbalance continue to shift, transform, and manifest elsewhere in the body, often leading the allopathic doctor to diagnose a different disease and apply a different drug to treat the &quot;&quot;new&quot; symptom, whereas the Chinese doctor sees the new symptom as just another manifestation of the same old problem, a clear indication that the root cause in the energy system has not been successfully corrected. In Chinese medicine, the only true cure for all disease, dysfunction, and degeneration in the human body is to restore balance to unbalanced energies and functional harmony to dysfunctional systems, and to reestablish synchronicity among all the sub- and supersystems that in fu en ce the human energy field.</p></section>
+
+<section id="sec08" class="pg">
+<span id="p051"></span>
+<p>40 The Human Energy System</p>
 <h2>Chakras And Subtle Enercy Bodies</h2>
 <p>The dynamic force f eld enveloping the human energy system is actually composed of seven subtle energy &quot;bodies,&quot; each of them managed by one of the seven subtle energy centers known as chakras, which radiate the wave frequency of specific colors and are functionally associated with specific glands and nerve networks (fig. 5). The colors, which the mind refracts like a prism from the Clear Light of primordial spirit, are pure forms of universal free energy, and each one regulates specific aspects of the human energy system. The subtle energy bodies, also known as auras, extend outward from the physical body as luminous energy fields, with the densest ones closest to the physical surface and the subtlest ones radiating far beyond.</p>
 <p>Figure 5. The correspondence between the energy centers of Taoist internal alchemy, the chakras of Indian yoga, and the nerve centers of Western anatomy.</p></section><section class="pg" id="p052"><p>The Human Energy System 41</p>
@@ -851,7 +1242,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Wester na ll o pathi c medicine,4-6,8,20,39, 63, 99, 125, 126 48-51,57-58,86-90 Yin Chiao Pien (honeysuckle/forsythia tabvs. Chinesemedicine,4-6,8,20,67-68, lets), 83 105 Yin dynasty,14 diagnosis in, 4, 57-58 Yin/yang, principle of,23-28,62-66,87-90; germ theory and,48-51</p>
 <p>human body in,5 as Commanders of Eight Indicators,63 jing/shen in, 8, 9 creative/control cycles of,27-28 mechanical/chemicalbias in,6 diagnosis and,26-27,62-64 nutritional therapy and,86,87-88 diet/nutritionand,87,88-90,90 symptoms and,39 dynamics of,23-27 technology and, 6 Five Elemental Energies and, 64-66 trophology (food combining) and, 88-90 five laws of,26</p>
 <p>human energy and, 23 Yang J wing ming (on chee-gung massage),</p>
-<p>120 Yun na nBa i Yao(YunnanWhitePowder),84</p></section><section class="pg" id="p179"><h2>Health</h2>
+<p>120 Yun na nBa i Yao(YunnanWhitePowder),84</p></section>
+
+<section id="sec09" class="pg">
+<span id="p179"></span>
+<h2>Health</h2>
 <p>DANIEL REID iS The Chinese approach to health and healing is a rich a leading authority and complex tradition, encompassing disease prevention, diagnosis, and treatment of the full spectrum of on Chinese medicine. He has illnesses, as well as offering a holistic approach to mental health. More than a system of medicine in the studied Chinese medicine, martial Western sense of the term, the Chinese approach to health care reflects the Taoist belief in the importance arts, and med it a of promoting balance and harmony in body, mind, tion with Chinese masters for over and spirit. In traditional Chinese medicine, this goal is achieved through nutrition, herbs, acupuncture, mas twenty years, and sage, exercise, meditation, and other holistic methods he is the author of several popular that restore the natural patterns of the human system. books, including This book is an accessible and highly readable introThe Complete duction to all the major aspects of this vast tradition Topics covered include: Book of Chinese Health and Healing the foundation of traditional medicine in Chinese and A Handbook history of Chinese Healing . the theory of chi (energy)and how it influences Herbs.</p>
 <p>health ·the Chinese approach to health, happiness, and longevity the use of Chi nes e herbal medicine and herbal formulas diet and nutrition as a form of preventive medicine . acupuncture, acupressure, and massage including sample techniques for self massage ·the practice of chee-gung, or&quot;moving meditation, Cover art: Acupuncture chart (Ming dy na sty)</p>
 <p>as a means of promoting good health from the private colle c meditation and internal alchemy tion of M me C hu Lien, suggestions for further reading and other resources in Chinese Medicine by Pierre Huard and Ming Wong. Reproduced 1-57062-141-1 ISBN courtesy of George 51200&gt; Weidenfeld and Nicol son, L td. 1996Sha mb hala Publications, In c.</p>
@@ -860,8 +1255,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Prev</a><a href="/books/" class="home">⌂ Books</a><a href="#" class="next disabled">Next →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>

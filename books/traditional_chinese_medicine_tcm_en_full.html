@@ -1,11 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Traditional Chinese Medicine | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,40 +43,410 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traditional Chinese Medicine | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Contents</summary><ul class="toc-list"><li class="toc-item"><a href="#p000" class="toc-link">Cturepoints Illustrations Of Acupunct</a></li>
-<li class="toc-item"><a href="#p002" class="toc-link">Allen County Public Library</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">Sheila Mc Na Mara</a></li>
-<li class="toc-item"><a href="#p102" class="toc-link">Chapter Six</a></li>
-<li class="toc-item"><a href="#p111" class="toc-link">Chapters Even</a></li>
-<li class="toc-item"><a href="#p141" class="toc-link">Chapter Nine</a></li>
-<li class="toc-item"><a href="#p175" class="toc-link">Chapter Thirteen A-Z</a></li>
-<li class="toc-item"><a href="#p268" class="toc-link">Part I: Schools Of Acupuncture And Chinese Herbal Medicine</a></li>
-<li class="toc-item"><a href="#p273" class="toc-link">Part Ii: Qi Gong/Chi Kung</a></li>
-<li class="toc-item"><a href="#p291" class="toc-link">Uhunctuspoints</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/books/">Books</a><span class="sep">/</span><span>Traditional Chinese Medicine</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · English transcript</div>
-      <h1 class="book-title">Traditional Chinese Medicine</h1>
-    </header>
-    <section class="pg" id="p000"><h2>Cturepoints Illustrations Of Acupunct</h2>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Cturepoints Illustrations Of Acupunct</a></li>
+        <li><a href="#sec01">Allen County Public Library</a></li>
+        <li><a href="#sec02">Sheila Mc Na Mara</a></li>
+        <li><a href="#sec03">Chapter Six</a></li>
+        <li><a href="#sec04">Chapters Even</a></li>
+        <li><a href="#sec05">Chapter Nine</a></li>
+        <li><a href="#sec06">Chapter Thirteen A-Z</a></li>
+        <li><a href="#sec07">Part I: Schools Of Acupuncture And Chinese Herbal Medicine</a></li>
+        <li><a href="#sec08">Part Ii: Qi Gong/Chi Kung</a></li>
+        <li><a href="#sec09">Uhunctuspoints</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>Traditional Chinese Medicine</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p000"></span>
+<h2>Cturepoints Illustrations Of Acupunct</h2>
 <p>traditional</p>
 <h2>Chinese</h2>
 <h2>Medicine</h2>
-<p>Sla Mc Na mara</p></section><section class="pg" id="p002"><h2>Allen County Public Library</h2>
+<p>Sla Mc Na mara</p></section>
+
+<section id="sec01" class="pg">
+<span id="p002"></span>
+<h2>Allen County Public Library</h2>
 <p>31833029250492 610.951M23t Mc Na mara Sheila Traditional Chinese medicine</p>
 <h2>Allen County Public Library Fort Wayne, Indiana 46802</h2>
 <p>You may return this book to any location of the Allen County Public Library.</p>
-<p>DEMCO</p></section><section class="pg" id="p004"><p>Traditional</p>
+<p>DEMCO</p></section>
+
+<section id="sec02" class="pg">
+<span id="p004"></span>
+<p>Traditional</p>
 <p>Chinese Medicine</p>
 <h2>Sheila Mc Na Mara</h2>
 <p>Basic Books</p>
@@ -586,7 +953,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>in an avalanche during a skiing holiday.</p>
 <p>The TCM doctor is confident that within another three months</p>
 <p>or so, the cysts will have disappeared and the condition will be</p>
-<p>cured.</p></section><section class="pg" id="p102"><h2>Chapter Six</h2>
+<p>cured.</p></section>
+
+<section id="sec03" class="pg">
+<span id="p102"></span>
+<h2>Chapter Six</h2>
 <p>New Drugs from Old</p>
 <p>One morning in I989, a pharmacist running a small pharmaceutical</p>
 <p>consultancy in Cambridge received a phone call from a London</p>
@@ -786,7 +1157,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>sive scrutiny in the laboratory, and to reproduce them synthetically</p>
 <p>so that they can be made available to all. What better illustration</p>
 <p>of yin and yang, the two opposites which are mutually dependent</p>
-<p>and mutually supportive, could there possibly be?</p></section><section class="pg" id="p111"><h2>Chapters Even</h2>
+<p>and mutually supportive, could there possibly be?</p></section>
+
+<section id="sec04" class="pg">
+<span id="p111"></span>
+<h2>Chapters Even</h2>
 <p>Herbs and Their Uses</p>
 <p>If you ask a typical TCM doctor why traditional Chinese medicines have such a daunting number of components, he or she will explain that a medical prescription is like a country&#x27;s government: you have the Prime Minister (the active agent), the advisers (who restrain or reinforce) and the civil servants (who help the whole process to run smoothly). Or they will compare it to an orchestra, with a conductor, the various sections and the soloists. They even have a little rhyme to explain it: Yi jun, er chen, san zuo, si shi&#x27;; (One ruler, two ministers, three aids and four guides&#x27;). The Chinese love to use simile and metaphor when explaining some of their customs and practices.</p>
 <p>Pharmacology in Britain was conducted along similar lines up until relatively recently. William Hale-White&#x27;s standard work, Materia Medic a, outlined formulae which could include a basis (active ingredient), an a ju vans (to assist the active compound), a corr i gens (to correct excess activity) and the constituens (the vehicle). Modern pharmacology, however, is directed towards isolating the active agent in a herb and producing a single drug.</p>
@@ -1343,7 +1718,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>little one than a mattress cover which sounds an alarm bell. In</p>
 <p>Northern China, chicken gizzard is also used to treat children</p>
 <p>with worms. It can be bought in some Chinese herb shops.</p></section><section class="pg" id="p140"><p>Eating for Health the Chi nes e Way 125 Constipation in the elderly: Pears stewed in honey.</p>
-<p>Teas Tension headaches: Take the white parts of three or four spring onions, and boil in a mugful of water. Drink the juice. Tonsillitis: A generous handful of honeysuckle fo wer s, boiled in a mugful of water and drunk regularly, should ease discomfort. Take the pulp of two fresh pomegranates, soak in boiling water for thirty minutes, then wrap in a piece of antiseptic gauze and wring out the juice. It can be used several times a day as a gargle. Salt water is also recommended as a gargle. Spicy foods should be avoided.</p></section><section class="pg" id="p141"><h2>Chapter Nine</h2>
+<p>Teas Tension headaches: Take the white parts of three or four spring onions, and boil in a mugful of water. Drink the juice. Tonsillitis: A generous handful of honeysuckle fo wer s, boiled in a mugful of water and drunk regularly, should ease discomfort. Take the pulp of two fresh pomegranates, soak in boiling water for thirty minutes, then wrap in a piece of antiseptic gauze and wring out the juice. It can be used several times a day as a gargle. Salt water is also recommended as a gargle. Spicy foods should be avoided.</p></section>
+
+<section id="sec05" class="pg">
+<span id="p141"></span>
+<h2>Chapter Nine</h2>
 <p>QiGong</p>
 <p>In a basement gym in South Kensington, a class of nine students begins the breathing exercises which are the preliminary feature of qi gong. Eight men and one woman stand motionless, listening to the soft voice of their teacher intoning instructions, while gentle music fows almost imperceptibly through the sound system to provide a tranquil background for their concentration. It looks a very tame affair; but not for long.</p>
 <p>Slowly, from somewhere in the hall, a noise begins. It starts as a low hum, and then grows into a persistent animal sound, pitched between a moan and a whine. Unearthly, and apparently untraceable, it is difficult to pinpoint which of the people there is making it, if indeed it has any human provenance at all. No one gives any sign of having hear d, no one seems to be responsible for it.</p>
@@ -1492,7 +1871,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Prolapse Bu Z hong Yi Qi Wan (Centre Qi Boosting Pills)Helpful in cases of prolapse of the uterus or kidneys, and also used for chronic diarrhoea, and to treat tiredness, fatigue, and poor digestion.</p>
 <p>Sports injuries Die Da Wan Hu a You (Oil) Good for treating bad bruising, burns, old injuries and cuts, and for the relief of pain in arthritis. Shang Shi Z hi Ton Gao (Plaster for external use)For pain relief in cases of sport injuries, also lumbago, sciatica and arthritis.</p>
 <p>Stomach upsets Hu o Xiang Zheng Qi Yuan For stomach chills with diarrhoea and sickness, also for tummy bugs and food poisoning.</p>
-<p>Throat infections Niuhuang Yijin Pian For acute and chronic pharyngitis, laryngitis. Contains phellodendron bark and artificial cow-bezoar. Yanlixiao Jiaonang For relief in cases of swollen sore throat, upper respiratory tract infection, acute or chronic tonsillitis, also dysentery and diarrhoea. Can also be used to treat the common cold.</p></section><section class="pg" id="p175"><h2>Chapter Thirteen A-Z</h2>
+<p>Throat infections Niuhuang Yijin Pian For acute and chronic pharyngitis, laryngitis. Contains phellodendron bark and artificial cow-bezoar. Yanlixiao Jiaonang For relief in cases of swollen sore throat, upper respiratory tract infection, acute or chronic tonsillitis, also dysentery and diarrhoea. Can also be used to treat the common cold.</p></section>
+
+<section id="sec06" class="pg">
+<span id="p175"></span>
+<h2>Chapter Thirteen A-Z</h2>
 <p>Abscess Caused by bacterial infection under the skin, abcesses are usually considered a heat and fire poison in the blood. Treatment is given to clear the heat, reduce the fire and eliminate poison from the body. Commonly used herbs include Chinese golden thread, dandelion or wild chrysanthemum and violet, made into herbal tea. Applications of external medicine, using rhubarb or peony fo wer s, ground up and mixed with sesame oil, will help to hasten the healing process.</p>
 <p>Acid stomach The term covers a variety of conditions, but usually describes the regurgitation of acid or heartburn caused by indigestion. In TCM, spleen deficiency and an imbalance of spleen and liver are regarded as the main causes. The doctor will give treatment to tonify the spleen, to dry &#x27;dampness&#x27; and soothe the liver, reducing stagnation. Herbs used include ginseng, poria and liquorice; orange peel and eggshell are also used. The patient will be advised about a diet to avoid acidic food or ‘cold&#x27; food, reducing stagnation. Western doctors also recommend care with the diet, eating small, regular meals based mainly on bland foods such as chicken, rice, milk and fish. Fried and fatty foods should be avoided.</p>
 <p>Acne One of the most common problems for young people, especially during adolescence. Boys suffer more than girls, but occasionally the complaint persists beyond the teenage years. Western medicine considers this a hormone imbalance. TCM regards it as a problem</p></section><section class="pg" id="p176"><p>A-Z 161 of damp heat which is brought about either by overeating hot and damp food, or as the result of the digestive system being imbalanced. This means that the spleen and stomach are not functioning adequately, and occasionally the trouble can be traced to the lungs.</p>
@@ -1874,7 +2257,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Once the in fu en ce of the West began to pervade mainland China, traditional medicine was destined to decline in popularity, but doctors still continued to further their knowledge. Vaccination, and its increasing use in China, was one of the main topics by a distinguished medical author, Zhang-Lu, who wrote a sixteen volume treatise, On Medicine. He was born in I617, and the work took him fifty years to complete.</p>
 <p>A famous physician of the Q ing Dynasty, Wang An g, established that the brain was the source of mental activities and memory, and not the heart, as had previously been thought. He was very broad minded about the advent of Western medicine, which was just beginning to get a foothold in China, but unfortunately it was</p></section><section class="pg" id="p267"><p>252 Traditional Chinese Medicine to herald a decline in the fortunes of TCM, which would last until the mid twentieth century.</p>
 <p>Mao Zedong set up academies of Chinese medicine in all the country&#x27;s major cities in 1949. The task of preparing standard editions of all the existing literature on Chinese medicine was begun in 19s4. Four years later, the two systems were formally given equal status, and in January I986, the State Council of the People&#x27;s Republic set up the State Administration Bureau of TCM and Pharmacy.</p>
-<p>Even today, in an integrated system, TCM gets the lesser share of the nation&#x27;s resources, but as it advances in the West, offering treatments such as acupuncture which can treat conditions like intractable pain at a fraction of the cost of expensive long term drug therapies, and herbal medicines which are far more effective at treating chronic conditions than many modern synthetic remedies, TCM is almost certainly on the verge of a new renaissance. Perhaps in the not far distant future, TCM and conventional medicine will begin to merge in the West, absorbing the best of both systems into a new framework offering the whole of humanity new hope in conquering suffering and disease.</p></section><section class="pg" id="p268"><p>Useful Addresses</p>
+<p>Even today, in an integrated system, TCM gets the lesser share of the nation&#x27;s resources, but as it advances in the West, offering treatments such as acupuncture which can treat conditions like intractable pain at a fraction of the cost of expensive long term drug therapies, and herbal medicines which are far more effective at treating chronic conditions than many modern synthetic remedies, TCM is almost certainly on the verge of a new renaissance. Perhaps in the not far distant future, TCM and conventional medicine will begin to merge in the West, absorbing the best of both systems into a new framework offering the whole of humanity new hope in conquering suffering and disease.</p></section>
+
+<section id="sec07" class="pg">
+<span id="p268"></span>
+<p>Useful Addresses</p>
 <h3>Part I: Schools of Acupuncture and Chinese Herbal Medicine</h3>
 <h2>History</h2>
 <p>The Council of Acupuncture and Oriental Medicine(CCAOM)was formed in 1982 for the purpose of advancing the status of acupuncture and Oriental medicine in the United States. The council created a separate commission, the Na tio na l Accreditation Commission for Schools and Colleges of Acupuncture and Oriental Medicine (NACSCAOM), whose objective was to establish standards by which to measure educational achievement. In 1990, NACSCAOM was recognized by the U. S. Department of Education for accreditation of acupuncture programs at the professional master&#x27;s degree level, and was also recognized by the Council on PostsecondaryAccreditation (COPA).</p>
@@ -1890,7 +2277,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>4308Carlisle N. E., Suite205 Albuquerque, NM87107 Tel.:(505)888-8898 Fax: No fax Tai Hsuan Foundation: College of Acupuncture and Herbal Medicine 2600 S. King St., No.206 Honolulu, HI96826 Tel.:(800)942-4788 Fax:(800)947-1152 Texas Institute ofTraditional Chinese Medicine 4005ManchacaRd.,2ndFloor Austin, TX78704 Tel.:(512)444-8082 Fax:(512)346-3336 Traditional Acupuncture Institute American City Building 10227Win cop in Circle, Suite 100 Columbia, MD21044-3422 Tel.: (301) 596-6006 Fax:（410)964-3544 Tri State Institute ofTraditional Chinese Acupuncture Mailing:</p>
 <p>P. O. Box890, Planetarium Station I Jew York, NY10024-0890 Branch:</p>
 <p>16East16thSt.</p>
-<p>New York, NY 10024 Tel.:(212)496-7869 Fax:(212)496-0648</p></section><section class="pg" id="p273"><p>258 Traditional Chinese Medicine Wor s le yIn st it ute of Classical Acupuncture 6175Northwest153rdSt., Suite324 Miami Lakes, FL33014 Tel.:（305)823-7270 Fax:(305)823-6603 Yo San University ofTraditional Chinese Medicine 1314 Second St. Santa Monica, CA90401 Tel.:(310)917-2202 Fax:(310)917-2267</p>
+<p>New York, NY 10024 Tel.:(212)496-7869 Fax:(212)496-0648</p></section>
+
+<section id="sec08" class="pg">
+<span id="p273"></span>
+<p>258 Traditional Chinese Medicine Wor s le yIn st it ute of Classical Acupuncture 6175Northwest153rdSt., Suite324 Miami Lakes, FL33014 Tel.:（305)823-7270 Fax:(305)823-6603 Yo San University ofTraditional Chinese Medicine 1314 Second St. Santa Monica, CA90401 Tel.:(310)917-2202 Fax:(310)917-2267</p>
 <h3>Part II: Qi Gong/Chi Kung</h3>
 <p>The following is a list of organizations and teachers of Qi Con g in the United States. Although this list is by no means complete, you will be able to start your search for a suitable Qi Gong class by contacting one of the following. For further information, contact one of the above mentioned schools of Oriental medicine.</p>
 <p>The International Qi Gong Directory provides a free directory of nationally h eld events, including Qi Gong classes, training programs, conferences, workshops, and talks.</p>
@@ -2486,7 +2877,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Vomiting, 91, 151, 182, Wolfberry fruit, 107, 155</p>
 <p>Z hong qi, 120 207,208 109,166,168,172</p>
 <p>Z hu Zhen-heng, 249 178,191,203,206</p>
-<p>Walnuts,117,180 Wolfberry root, 172 Zo do ary, 106</p></section><section class="pg" id="p291"><h2>Uhunctuspoints</h2>
+<p>Walnuts,117,180 Wolfberry root, 172 Zo do ary, 106</p></section>
+
+<section id="sec09" class="pg">
+<span id="p291"></span>
+<h2>Uhunctuspoints</h2>
 <h2>Halth Usa $14.00 Canada$19.50</h2>
 <p>Tihousands of Phaergts have benefited from i the use of Chi nes e herbs to treat cond ft ions for which Western medicine Has failed. Traditional Chinese medicine (WQM) has proven effective in easing a wide tahge of conditions, from multiple sclerosis to i fertility, chronic skin problems, menstrual d is of d&amp;rs, and migraines. With an A-Z list of conditioin&#x27;s and their remedies, this comprehensive, easy to se manual thoroughly explores these claims and sucdinatly explains the theory behind the practice. The Muth or s tell how Chinese medicine evolved, how itfwbrks, and why it is attracting such attention in the Western world. The book also includes a detailed discussion of Qi Gong, the system of mental and physical scipline that underlies the traditional methods, exp li na t ions of nutritional balance and herbal lore (incl iding preparation techniques), and a brief sumimary of acupuncture methods.</p>
 <p>eQQ SHEILA MC NA MARA is the lead feature writer on the Hong Kong-based Eastern Express.</p>
@@ -2495,8 +2890,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Prev</a><a href="/books/" class="home">⌂ Books</a><a href="#" class="next disabled">Next →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>

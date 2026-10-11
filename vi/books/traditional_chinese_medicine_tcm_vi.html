@@ -1,11 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Y Học Cổ Truyền Trung Quốc | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,39 +43,409 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y Học Cổ Truyền Trung Quốc | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Mục Lục</summary><ul class="toc-list"><li class="toc-item"><a href="#p000" class="toc-link">Trung Quốc</a></li>
-<li class="toc-item"><a href="#p002" class="toc-link">Thư Viện Công Cộng Quận Allen</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">Sheila Mcnamara</a></li>
-<li class="toc-item"><a href="#p102" class="toc-link">Chương Sáu</a></li>
-<li class="toc-item"><a href="#p111" class="toc-link">Chương Bảy</a></li>
-<li class="toc-item"><a href="#p141" class="toc-link">Chương Chín</a></li>
-<li class="toc-item"><a href="#p175" class="toc-link">Chương Mười Ba A-Z</a></li>
-<li class="toc-item"><a href="#p268" class="toc-link">Lịch Sử</a></li>
-<li class="toc-item"><a href="#p291" class="toc-link">Các Huyệt Châm Cứu</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/vi/">Trang Chủ</a><span class="sep">/</span><a href="/vi/books/">Thư Viện Sách</a><span class="sep">/</span><span>Y Học Cổ Truyền Trung Quốc</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · Bản dịch tham khảo</div>
-      <h1 class="book-title">Y Học Cổ Truyền Trung Quốc</h1>
-    </header>
-    <section class="pg" id="p000"><p>Huyệt vị châm cứu — Minh họa châm cứu</p>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Trung Quốc</a></li>
+        <li><a href="#sec01">Thư Viện Công Cộng Quận Allen</a></li>
+        <li><a href="#sec02">Sheila Mcnamara</a></li>
+        <li><a href="#sec03">Chương Sáu</a></li>
+        <li><a href="#sec04">Chương Bảy</a></li>
+        <li><a href="#sec05">Chương Chín</a></li>
+        <li><a href="#sec06">Chương Mười Ba A-Z</a></li>
+        <li><a href="#sec07">Lịch Sử</a></li>
+        <li><a href="#sec08">Các Huyệt Châm Cứu</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>Y Học Cổ Truyền Trung Quốc</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p000"></span>
+<p>Huyệt vị châm cứu — Minh họa châm cứu</p>
 <p>truyền thống</p>
 <h2>Trung Quốc</h2>
 <p>Y HỌC</p>
-<p>Sheila McNamara</p></section><section class="pg" id="p002"><h2>Thư Viện Công Cộng Quận Allen</h2>
+<p>Sheila McNamara</p></section>
+
+<section id="sec01" class="pg">
+<span id="p002"></span>
+<h2>Thư Viện Công Cộng Quận Allen</h2>
 <p>31833029250492 610.951M23t McNamara Sheila Y học cổ truyền Trung Quốc</p>
 <h2>Thư Viện Công Cộng Quận Allen Fort Wayne, Indiana 46802</h2>
 <p>Bạn có thể trả cuốn sách này tại bất kỳ địa điểm nào của Thư viện Công cộng Quận Allen.</p>
-<p>DEMCO</p></section><section class="pg" id="p004"><p>Truyền thống</p>
+<p>DEMCO</p></section>
+
+<section id="sec02" class="pg">
+<span id="p004"></span>
+<p>Truyền thống</p>
 <p>Y học Trung Quốc</p>
 <h2>Sheila Mcnamara</h2>
 <p>Basic Books</p>
@@ -585,7 +952,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>trong một trận lở tuyết khi đi nghỉ trượt tuyết.</p>
 <p>Vị bác sĩ Đông y tin rằng trong vòng ba tháng nữa</p>
 <p>hoặc hơn, các nang sẽ biến mất và bệnh tình sẽ</p>
-<p>được chữa khỏi.</p></section><section class="pg" id="p102"><h2>Chương Sáu</h2>
+<p>được chữa khỏi.</p></section>
+
+<section id="sec03" class="pg">
+<span id="p102"></span>
+<h2>Chương Sáu</h2>
 <p>Thuốc mới từ cũ</p>
 <p>Một buổi sáng năm 1989, một dược sĩ điều hành một công ty tư vấn dược phẩm nhỏ</p>
 <p>ở Cambridge nhận được cuộc gọi từ một bác sĩ nhi</p>
@@ -785,7 +1156,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>xem xét kỹ lưỡng trong phòng thí nghiệm, và tái tạo chúng bằng tổng hợp</p>
 <p>để chúng có thể được cung cấp cho tất cả mọi người. Còn minh họa nào</p>
 <p>về âm và dương, hai mặt đối lập vừa phụ thuộc lẫn nhau</p>
-<p>vừa nâng đỡ lẫn nhau, tốt hơn thế có thể có chăng?</p></section><section class="pg" id="p111"><h2>Chương Bảy</h2>
+<p>vừa nâng đỡ lẫn nhau, tốt hơn thế có thể có chăng?</p></section>
+
+<section id="sec04" class="pg">
+<span id="p111"></span>
+<h2>Chương Bảy</h2>
 <p>Thảo dược và công dụng</p>
 <p>Nếu bạn hỏi một bác sĩ Đông y điển hình vì sao các loại thuốc Đông y lại có số lượng thành phần đáng nể đến vậy, thầy thuốc sẽ giải thích rằng một đơn thuốc giống như chính quyền của một quốc gia: có Thủ tướng (hoạt chất), các cố vấn (người kiềm chế hoặc tăng cường) và các công chức (người giúp toàn bộ quá trình diễn ra suôn sẻ). Hoặc họ sẽ ví nó với một dàn nhạc, có nhạc trưởng, các bè và các nghệ sĩ độc tấu. Họ thậm chí có một câu vè nhỏ để giải thích điều đó: &#x27;Yi jun, er chen, san zuo, si shi&#x27; (Một vua, hai quan, ba phụ và bốn dẫn). Người Trung Quốc thích dùng so sánh và ẩn dụ khi giải thích một số phong tục và tập quán của mình.</p>
 <p>Dược lý học ở Anh cũng được tiến hành theo hướng tương tự cho đến khá gần đây. Tác phẩm chuẩn mực của William Hale-White, Materia Medica, đã phác thảo các công thức có thể bao gồm một thành phần cơ bản (hoạt chất), một chất hỗ trợ (adjuvans, để hỗ trợ hoạt chất), một chất điều chỉnh (corrigens, để điều chỉnh hoạt tính thái quá) và chất dẫn (constituens, tá dược). Tuy nhiên, dược lý học hiện đại hướng tới việc phân lập hoạt chất trong một vị thuốc và sản xuất một loại thuốc duy nhất.</p>
@@ -1342,7 +1717,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>một đứa trẻ so với một tấm lót đệm phát ra tiếng chuông báo. Ở</p>
 <p>miền bắc Trung Quốc, mề gà cũng được dùng để trị trẻ</p>
 <p>nhiễm giun. Nó có thể mua được ở một số cửa hàng thảo dược Trung Hoa.</p></section><section class="pg" id="p140"><p>Ăn uống vì sức khỏe theo cách người Trung Hoa 125 Táo bón ở người già: Lê hầm mật ong.</p>
-<p>Trà Đau đầu do căng thẳng: Lấy phần trắng của ba bốn củ hành lá, đun sôi trong một cốc nước. Uống nước. Viêm amidan: Một nắm hoa kim ngân, đun sôi trong một cốc nước và uống đều đặn, sẽ giúp giảm khó chịu. Lấy thịt của hai quả lựu tươi, ngâm trong nước sôi ba mươi phút, rồi gói trong một miếng gạc sát khuẩn và vắt lấy nước. Có thể dùng vài lần mỗi ngày để súc miệng. Nước muối cũng được khuyên dùng để súc miệng. Nên tránh các thức ăn cay nóng.</p></section><section class="pg" id="p141"><h2>Chương Chín</h2>
+<p>Trà Đau đầu do căng thẳng: Lấy phần trắng của ba bốn củ hành lá, đun sôi trong một cốc nước. Uống nước. Viêm amidan: Một nắm hoa kim ngân, đun sôi trong một cốc nước và uống đều đặn, sẽ giúp giảm khó chịu. Lấy thịt của hai quả lựu tươi, ngâm trong nước sôi ba mươi phút, rồi gói trong một miếng gạc sát khuẩn và vắt lấy nước. Có thể dùng vài lần mỗi ngày để súc miệng. Nước muối cũng được khuyên dùng để súc miệng. Nên tránh các thức ăn cay nóng.</p></section>
+
+<section id="sec05" class="pg">
+<span id="p141"></span>
+<h2>Chương Chín</h2>
 <p>Khí công</p>
 <p>Trong một phòng tập dưới tầng hầm ở South Kensington, một lớp gồm chín học viên bắt đầu các bài tập thở — phần mở đầu của khí công. Tám người đàn ông và một người phụ nữ đứng bất động, lắng nghe giọng nói nhỏ nhẹ của người thầy đang cất lên những chỉ dẫn, trong khi một bản nhạc êm dịu gần như không thể nhận ra chảy qua hệ thống âm thanh, tạo nên một nền tĩnh lặng cho sự tập trung của họ. Trông có vẻ là một chuyện rất hiền lành; nhưng không kéo dài lâu.</p>
 <p>Chậm rãi, từ một nơi nào đó trong hội trường, một tiếng động bắt đầu. Nó khởi đầu như một tiếng ngân trầm, rồi lớn dần thành một âm thanh dai dẳng như tiếng thú, cao độ nằm giữa tiếng rên và tiếng rít. Kỳ dị và dường như không thể truy nguyên, thật khó xác định ai trong số những người ở đó đang tạo ra nó, nếu quả thật nó có nguồn gốc con người. Không ai tỏ dấu hiệu là đã nghe thấy, dường như không ai chịu trách nhiệm về nó.</p>
@@ -1491,7 +1870,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Sa tạng Bổ Trung Ích Khí Hoàn (Centre Qi Boosting Pills) Hữu ích trong các trường hợp sa tử cung hoặc sa thận, và cũng được dùng cho tiêu chảy mạn tính, cùng để chữa mệt mỏi, suy nhược và tiêu hóa kém.</p>
 <p>Chấn thương thể thao Điệt Đả Hoàn Hoa Du (Oil) Tốt để chữa vết bầm tím nặng, bỏng, vết thương cũ và vết cắt, cùng để làm giảm đau trong viêm khớp. Thương Thấp Chỉ Thống Cao (Plaster for external use) Để giảm đau trong các trường hợp chấn thương thể thao, cùng đau lưng dưới, đau thần kinh tọa và viêm khớp.</p>
 <p>Rối loạn dạ dày Hoắc Hương Chính Khí Hoàn Dùng cho dạ dày nhiễm Hàn kèm tiêu chảy và buồn nôn, cũng cho các bệnh đường ruột và ngộ độc thực phẩm.</p>
-<p>Nhiễm trùng họng Ngưu Hoàng Ích Kim Phiến Dùng cho viêm hầu họng cấp và mạn tính, viêm thanh quản. Chứa vỏ hoàng bá và ngưu hoàng nhân tạo. Yển Lỵ Tiêu Giao Nang Dùng để làm dịu các trường hợp sưng đau họng, nhiễm trùng đường hô hấp trên, viêm amiđan cấp hoặc mạn tính, cùng lỵ và tiêu chảy. Cũng có thể dùng để chữa cảm lạnh thông thường.</p></section><section class="pg" id="p175"><h2>Chương Mười Ba A-Z</h2>
+<p>Nhiễm trùng họng Ngưu Hoàng Ích Kim Phiến Dùng cho viêm hầu họng cấp và mạn tính, viêm thanh quản. Chứa vỏ hoàng bá và ngưu hoàng nhân tạo. Yển Lỵ Tiêu Giao Nang Dùng để làm dịu các trường hợp sưng đau họng, nhiễm trùng đường hô hấp trên, viêm amiđan cấp hoặc mạn tính, cùng lỵ và tiêu chảy. Cũng có thể dùng để chữa cảm lạnh thông thường.</p></section>
+
+<section id="sec06" class="pg">
+<span id="p175"></span>
+<h2>Chương Mười Ba A-Z</h2>
 <p>Áp xe Do nhiễm khuẩn dưới da, áp xe thường được coi là một loại độc do Nhiệt và Hỏa trong huyết. Việc điều trị nhằm thanh Nhiệt, giảm Hỏa và loại trừ độc chất khỏi cơ thể. Các thảo dược thường dùng gồm hoàng liên, bồ công anh hay cúc dại và hoa tím, được sắc thành trà thảo dược. Việc bôi thuốc ngoài da, dùng đại hoàng hoặc hoa mẫu đơn, nghiền nhỏ và trộn với dầu mè, sẽ giúp đẩy nhanh quá trình lành thương.</p>
 <p>Chứng dạ dày tăng axit Thuật ngữ này bao gồm nhiều tình trạng khác nhau, nhưng thường mô tả việc trào ngược axit hoặc chứng ợ nóng do khó tiêu. Trong Đông y, Tỳ hư và sự mất cân bằng giữa Tỳ và Can được coi là những nguyên nhân chính. Bác sĩ sẽ điều trị để bồi bổ Tỳ, làm khô &#x27;Thấp&#x27; và làm dịu Can, giảm uất trệ. Các thảo dược được dùng gồm nhân sâm, phục linh và cam thảo; vỏ cam và vỏ trứng cũng được dùng. Bệnh nhân sẽ được khuyên về chế độ ăn để tránh thức ăn có tính axit hoặc thức ăn &#x27;hàn&#x27;, nhằm giảm uất trệ. Các bác sĩ phương Tây cũng khuyên chú ý đến chế độ ăn, ăn thành nhiều bữa nhỏ, đều đặn, chủ yếu dựa trên các thức ăn nhạt như thịt gà, cơm, sữa và cá. Nên tránh thức ăn chiên rán và nhiều dầu mỡ.</p>
 <p>Mụn trứng cá Một trong những vấn đề phổ biến nhất ở người trẻ, đặc biệt trong tuổi vị thành niên. Nam giới mắc nhiều hơn nữ giới, nhưng đôi khi chứng này vẫn kéo dài qua những năm tuổi teen. Y học phương Tây coi đây là sự mất cân bằng hormone. Đông y coi đó là một vấn đề</p></section><section class="pg" id="p176"><p>A-Z 161 Thấp nhiệt gây ra hoặc do ăn quá nhiều thức ăn nóng và thấp, hoặc do hệ tiêu hóa bị mất cân bằng. Điều này có nghĩa là Tỳ và Vị không hoạt động đầy đủ, và đôi khi vấn đề có thể bắt nguồn từ Phế.</p>
@@ -1873,7 +2256,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Một khi ảnh hưởng của phương Tây bắt đầu lan tỏa khắp Trung Quốc đại lục, y học truyền thống tất yếu sẽ suy giảm về mức độ phổ biến, nhưng các thầy thuốc vẫn tiếp tục mở rộng kiến thức của mình. Việc tiêm chủng, cùng việc sử dụng ngày càng nhiều ở Trung Quốc, là một trong những chủ đề chính của một tác giả y học lỗi lạc, Trương Lộ, người đã viết một chuyên luận gồm mười sáu quyển, Bàn về Y học. Ông sinh năm 1617, và tác phẩm ấy đã ngốn của ông năm mươi năm để hoàn thành.</p>
 <p>Một thầy thuốc nổi tiếng của triều đại nhà Thanh, Vương Ngang, đã xác lập rằng não bộ là nguồn gốc của các hoạt động tinh thần và trí nhớ, chứ không phải là tim, như người ta từng nghĩ trước đây. Ông rất cởi mở về sự xuất hiện của y học phương Tây, vốn chỉ mới bắt đầu có chỗ đứng ở Trung Quốc, nhưng đáng tiếc là nó</p></section><section class="pg" id="p267"><p>252 Y học Trung Hoa báo hiệu sự suy giảm vận mệnh của Đông y, kéo dài cho đến giữa thế kỷ hai mươi.</p>
 <p>Mao Trạch Đông đã thành lập các học viện y học Trung Quốc ở tất cả các thành phố lớn của cả nước vào năm 1949. Công việc chuẩn bị các ấn bản chuẩn mực cho toàn bộ tài liệu hiện có về y học Trung Quốc được bắt đầu vào năm 1954. Bốn năm sau, hai hệ thống chính thức được trao địa vị bình đẳng, và vào tháng Giêng năm 1986, Quốc vụ viện nước Cộng hòa đã thành lập Cục Quản lý Nhà nước về Đông y và Dược phẩm.</p>
-<p>Cho đến tận ngày nay, trong một hệ thống tích hợp, Đông y nhận được phần ít ỏi hơn trong nguồn lực quốc gia, nhưng khi nó tiến bước ở phương Tây, mang đến những liệu pháp như châm cứu có thể chữa trị các tình trạng như đau đớn dai dẳng với chi phí chỉ bằng một phần nhỏ so với các liệu pháp dùng thuốc lâu dài đắt đỏ, cùng các vị thuốc thảo dược vốn hiệu quả hơn nhiều trong việc điều trị các bệnh mạn tính so với nhiều phương thuốc tổng hợp hiện đại, thì Đông y gần như chắc chắn đang đứng trước ngưỡng cửa của một cuộc phục hưng mới. Có lẽ trong một tương lai không xa, Đông y và y học thông thường sẽ bắt đầu hòa nhập ở phương Tây, tiếp thu những gì tinh túy nhất của cả hai hệ thống vào một khuôn khổ mới, mang đến cho toàn thể nhân loại niềm hy vọng mới trong việc chinh phục đau khổ và bệnh tật.</p></section><section class="pg" id="p268"><p>Địa chỉ Hữu ích</p>
+<p>Cho đến tận ngày nay, trong một hệ thống tích hợp, Đông y nhận được phần ít ỏi hơn trong nguồn lực quốc gia, nhưng khi nó tiến bước ở phương Tây, mang đến những liệu pháp như châm cứu có thể chữa trị các tình trạng như đau đớn dai dẳng với chi phí chỉ bằng một phần nhỏ so với các liệu pháp dùng thuốc lâu dài đắt đỏ, cùng các vị thuốc thảo dược vốn hiệu quả hơn nhiều trong việc điều trị các bệnh mạn tính so với nhiều phương thuốc tổng hợp hiện đại, thì Đông y gần như chắc chắn đang đứng trước ngưỡng cửa của một cuộc phục hưng mới. Có lẽ trong một tương lai không xa, Đông y và y học thông thường sẽ bắt đầu hòa nhập ở phương Tây, tiếp thu những gì tinh túy nhất của cả hai hệ thống vào một khuôn khổ mới, mang đến cho toàn thể nhân loại niềm hy vọng mới trong việc chinh phục đau khổ và bệnh tật.</p></section>
+
+<section id="sec07" class="pg">
+<span id="p268"></span>
+<p>Địa chỉ Hữu ích</p>
 <p>Phần I: Các Trường Châm cứu và Y học Thảo dược Trung Quốc</p>
 <h2>Lịch Sử</h2>
 <p>Hội đồng Châm cứu và Y học Phương Đông (CCAOM) được thành lập năm 1982 nhằm mục đích nâng cao vị thế của châm cứu và y học Phương Đông tại Hoa Kỳ. Hội đồng đã thành lập một ủy ban riêng, Ủy ban Kiểm định Quốc gia cho các Trường và Cao đẳng Châm cứu và Y học Phương Đông (NACSCAOM), với mục tiêu thiết lập các tiêu chuẩn để đánh giá thành tựu giáo dục. Năm 1990, NACSCAOM được Bộ Giáo dục Hoa Kỳ công nhận để kiểm định các chương trình châm cứu ở cấp bằng thạc sĩ chuyên nghiệp, và cũng được Hội đồng Kiểm định Sau Trung học (COPA) công nhận.</p>
@@ -2485,7 +2872,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Nôn mửa, 91, 151, 182, Quả Kỷ tử, 107, 155</p>
 <p>Trung khí (Zhong qi), 120 207, 208 109, 166, 168, 172</p>
 <p>Chu Chấn Hanh, 249 178, 191, 203, 206</p>
-<p>Quả Óc chó, 117, 180 Rễ Kỷ tử, 172 Zo doary, 106</p></section><section class="pg" id="p291"><h2>Các Huyệt Châm Cứu</h2>
+<p>Quả Óc chó, 117, 180 Rễ Kỷ tử, 172 Zo doary, 106</p></section>
+
+<section id="sec08" class="pg">
+<span id="p291"></span>
+<h2>Các Huyệt Châm Cứu</h2>
 <h2>Sức Khỏe Hoa Kỳ $14.00 Canada $19.50</h2>
 <p>Hàng nghìn bệnh nhân đã hưởng lợi từ việc dùng các vị thuốc Trung Quốc để chữa những chứng bệnh mà y học phương Tây đã thất bại. Y học Trung Quốc truyền thống (Đông y) đã được chứng minh là hiệu quả trong việc làm dịu một loạt các tình trạng rộng khắp, từ xơ cứng rải rác đến vô sinh, các vấn đề da mạn tính, rối loạn kinh nguyệt và đau nửa đầu. Với danh mục A-Z các chứng bệnh và cách chữa trị, cuốn cẩm nang toàn diện, dễ sử dụng này khảo sát tường tận những tuyên bố ấy và trình bày ngắn gọn lý thuyết đằng sau việc thực hành. Các tác giả kể lại y học Trung Quốc đã tiến hóa như thế nào, nó vận hành ra sao, và vì sao nó đang thu hút sự chú ý đến vậy ở thế giới phương Tây. Cuốn sách cũng bao gồm một phần thảo luận chi tiết về Khí công, hệ thống rèn luyện tinh thần và thể chất làm nền tảng cho các phương pháp truyền thống, những giải thích về cân bằng dinh dưỡng và tri thức thảo dược (bao gồm cả kỹ thuật bào chế), và một tóm tắt ngắn gọn về các phương pháp châm cứu.</p>
 <p>SHEILA MCNAMARA là cây bút phóng sự chính của tờ Eastern Express có trụ sở tại Hồng Kông.</p>
@@ -2494,8 +2885,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Trước</a><a href="/vi/books/" class="home">⌂ Trang Chủ</a><a href="#" class="next disabled">Sau →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>

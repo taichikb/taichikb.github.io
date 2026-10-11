@@ -1,11 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tiếng Nói Của Khí — Nhập Môn Y Học Cổ Truyền Trung Hoa | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,48 +43,407 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiếng Nói Của Khí — Nhập Môn Y Học Cổ Truyền Trung Hoa | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Mục Lục</summary><ul class="toc-list"><li class="toc-item"><a href="#p002" class="toc-link">Surplus-1 Bản Trùng Của Thư Viện Quốc Hội</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">Những Tiếng Nói Của Khí</a></li>
-<li class="toc-item"><a href="#p006" class="toc-link">Đề Tặng</a></li>
-<li class="toc-item"><a href="#p008" class="toc-link">Bảng Chữ Cái Phiên Âm Pin Yin</a></li>
-<li class="toc-item"><a href="#p022" class="toc-link">Nền Tảng Của Y Học Cổ Truyền Trung Quốc</a></li>
-<li class="toc-item"><a href="#p029" class="toc-link">Thủy Hỏa</a></li>
-<li class="toc-item"><a href="#p030" class="toc-link">Thủy Hỏa</a></li>
-<li class="toc-item"><a href="#p034" class="toc-link">Khuôn Khổ Lý Thuyết</a></li>
-<li class="toc-item"><a href="#p062" class="toc-link">Các Phương Thức Trị Liệu</a></li>
-<li class="toc-item"><a href="#p073" class="toc-link">Dược Thảo Trung Quốc</a></li>
-<li class="toc-item"><a href="#p078" class="toc-link">Đến Gặp Một Thầy Thuốc Đông Y</a></li>
-<li class="toc-item"><a href="#p084" class="toc-link">Tương Lai:</a></li>
-<li class="toc-item"><a href="#p095" class="toc-link">Hiệp Hội Y Học Phương Đông Hoa Kỳ (Aaom)</a></li>
-<li class="toc-item"><a href="#p106" class="toc-link">Mục Lục</a></li>
-<li class="toc-item"><a href="#p108" class="toc-link">(Nccaom)</a></li>
-<li class="toc-item"><a href="#p114" class="toc-link">Thư Viện Nih</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/vi/">Trang Chủ</a><span class="sep">/</span><a href="/vi/books/">Thư Viện Sách</a><span class="sep">/</span><span>Tiếng Nói Của Khí — Nhập Môn Y Học Cổ Truyền Trung Hoa</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · Bản dịch tham khảo</div>
-      <h1 class="book-title">Tiếng Nói Của Khí — Nhập Môn Y Học Cổ Truyền Trung Hoa</h1>
-    </header>
-    <section class="pg" id="p000"><p>601 H554 1999</p>
-<p>Một</p>
-<p>Dẫn nhập</p>
-<p>Hướng dẫn về</p>
-<p>Y học</p>
-<p>Trung Quốc</p>
-<p>Cổ truyền</p>
-<p>Alex Holland, M. Ac., L. Ac.</p></section><section class="pg" id="p002"><h2>Surplus-1 Bản Trùng Của Thư Viện Quốc Hội</h2>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Surplus-1 Bản Trùng Của Thư Viện Quốc Hội</a></li>
+        <li><a href="#sec01">Những Tiếng Nói Của Khí</a></li>
+        <li><a href="#sec02">Đề Tặng</a></li>
+        <li><a href="#sec03">Bảng Chữ Cái Phiên Âm Pin Yin</a></li>
+        <li><a href="#sec04">Nền Tảng Của Y Học Cổ Truyền Trung Quốc</a></li>
+        <li><a href="#sec05">Thủy Hỏa</a></li>
+        <li><a href="#sec06">Thủy Hỏa</a></li>
+        <li><a href="#sec07">Khuôn Khổ Lý Thuyết</a></li>
+        <li><a href="#sec08">Các Phương Thức Trị Liệu</a></li>
+        <li><a href="#sec09">Dược Thảo Trung Quốc</a></li>
+        <li><a href="#sec10">Đến Gặp Một Thầy Thuốc Đông Y</a></li>
+        <li><a href="#sec11">Tương Lai:</a></li>
+        <li><a href="#sec12">Hiệp Hội Y Học Phương Đông Hoa Kỳ (Aaom)</a></li>
+        <li><a href="#sec13">Mục Lục</a></li>
+        <li><a href="#sec14">(Nccaom)</a></li>
+        <li><a href="#sec15">Thư Viện Nih</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>Tiếng Nói Của Khí — Nhập Môn Y Học Cổ Truyền Trung Hoa</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p002"></span>
+<h2>Surplus-1 Bản Trùng Của Thư Viện Quốc Hội</h2>
 <h2>Thư Viện Viện Y Tế Quốc Gia Nih</h2>
 <p>DE C232000</p>
-<h2>Tòa Nhà 10, 10 Center Dr, Bethesda, Md 20892-1150</h2></section><section class="pg" id="p004"><h2>Những Tiếng Nói Của Khí</h2>
+<h2>Tòa Nhà 10, 10 Center Dr, Bethesda, Md 20892-1150</h2></section>
+
+<section id="sec01" class="pg">
+<span id="p004"></span>
+<h2>Những Tiếng Nói Của Khí</h2>
 <p>Một cuốn Dẫn nhập</p>
 <p>về Y học Cổ truyền Trung Quốc</p>
 <p>Alex Holland, M. Ac., L. Ac.</p>
@@ -108,7 +464,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>1. Y học Trung Quốc. I. Nhan đề.</p>
 <p>[R601. H554 1999]</p>
 <p>610&#x27;.951—dc21 99-16966 CIP</p>
-<p>23456789/0302010099</p></section><section class="pg" id="p006"><h2>Đề Tặng</h2>
+<p>23456789/0302010099</p></section>
+
+<section id="sec02" class="pg">
+<span id="p006"></span>
+<h2>Đề Tặng</h2>
 <p>Tặng mẹ tôi, Dorothy, người đã cho tôi tự do để khám phá, và tặng vợ tôi, Linda Joy Stone, người cùng tôi trên hành trình khám phá tự do...</p></section><section class="pg" id="p007"><p>iv</p>
 <p>LỜI CẢM ƠN — Tôi xin bày tỏ lòng biết ơn sâu sắc tới các thầy dạy tôi y học Trung Hoa, đặc biệt là Tiến sĩ Hoy Ping Yee Chan. Tôi biết ơn Tiến sĩ Fred Lanphear và nhiều người tại Học viện Châm cứu và Y học Phương Đông Northwest, những người đã ủng hộ tôi bằng nhiều cách trong suốt thời gian tôi viết cuốn sách này. Được làm việc cùng Học viện Northwest là một vinh dự lớn.</p>
 <p>Tôi xin cảm ơn Bob Lanphear vì khả năng tự nhiên của ông trong việc làm việc ở những lĩnh vực đòi hỏi chất lượng tinh tế, luôn dùng sự hài hước và kiên nhẫn như những cách giao tiếp thường ngày.</p>
@@ -117,7 +477,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Tôi xin cảm ơn Barbara Mitchell vì sự cần mẫn, chăm chỉ và việc giữ cho viễn cảnh quốc gia luôn sống động và cập nhật.</p>
 <p>Tôi xin ghi nhận Franklyn Bradshaw vì nguồn cảm hứng và sự thông tuệ của bà.</p>
 <p>Tôi xin cảm ơn James Blair vì những hiểu biết của ông về y học Phương Đông.</p>
-<p>Và cuối cùng, tôi xin cảm ơn Linda Joy Stone, vợ tôi, đồng nghiệp, biên tập viên tại gia, nhiếp ảnh gia, người mang lại tiếng cười, tri kỷ của đất – trái tim – tâm hồn, vì đã để tôi dùng máy tính trong khi cô ấy châm cứu tại phòng khám của chúng tôi. Cuốn sách này không thể ra đời nếu thiếu tình yêu, sự kiên nhẫn và ủng hộ của cô ấy.</p></section><section class="pg" id="p008"><h2>Bảng Chữ Cái Phiên Âm Pin Yin</h2>
+<p>Và cuối cùng, tôi xin cảm ơn Linda Joy Stone, vợ tôi, đồng nghiệp, biên tập viên tại gia, nhiếp ảnh gia, người mang lại tiếng cười, tri kỷ của đất – trái tim – tâm hồn, vì đã để tôi dùng máy tính trong khi cô ấy châm cứu tại phòng khám của chúng tôi. Cuốn sách này không thể ra đời nếu thiếu tình yêu, sự kiên nhẫn và ủng hộ của cô ấy.</p></section>
+
+<section id="sec03" class="pg">
+<span id="p008"></span>
+<h2>Bảng Chữ Cái Phiên Âm Pin Yin</h2>
 <h2>Gồm Các Phụ Âm Và Nguyên Âm</h2>
 <p>Bảng sau đây trình bày cách phát âm cùng những</p>
 <p>tương đương gần đúng trong tiếng Anh.</p>
@@ -186,7 +550,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Tài liệu tham khảo..</p>
 <p>92</p>
 <p>Mục lục ...</p>
-<p>93</p></section><section class="pg" id="p021"><p>8. Những tiếng nói của Khí</p></section><section class="pg" id="p022"><p>Chương 1</p>
+<p>93</p></section><section class="pg" id="p021"><p>8. Những tiếng nói của Khí</p></section>
+
+<section id="sec04" class="pg">
+<span id="p022"></span>
+<p>Chương 1</p>
 <h2>Nền Tảng Của Y Học Cổ Truyền Trung Quốc</h2>
 <p>Hiểu được những nền tảng của Đông y giúp chúng ta trân trọng cách thức nền y học này được thực hành cũng như cách các thầy thuốc của nó nhìn nhận thế giới. Những nguyên lý này nảy sinh từ một di sản văn hóa thấm đẫm niềm tin vào sự cân bằng và sự thống nhất của vạn vật. Nền y học cổ truyền phát triển trong khuôn khổ văn hóa ấy ôm trọn những khái niệm mà, một khi đã nắm bắt, sẽ dẫn ta đến sự trân trọng và hiểu biết sâu sắc hơn về mối quan hệ của chúng ta với thế giới, với nhau và với chính sức khỏe của mình.</p>
 <p>KHỞI NGUỒN. Nền tảng cốt lõi của Đông y là vai trò mạnh mẽ của sự cân bằng và hài hòa đối với sức khỏe. Người Trung Hoa cổ quan sát những quy luật tuần hoàn của tự nhiên và ghi nhận những ảnh hưởng mà bầu trời đầy sao tác động lên đời sống hằng ngày của họ. Qua sự quan sát kiên nhẫn, họ nhận ra rằng mọi phần của vũ trụ đều liên hệ với nhau. Họ dần hiểu được vị trí của chúng ta trong tự nhiên, nhận thức được cách các lực lượng tự nhiên ảnh hưởng mạnh mẽ đến công việc của loài người. Họ hiểu rằng chúng ta chỉ là một sự phản chiếu vi mô của một tổng thể lớn lao hơn nhiều, bao trùm mọi lực lượng của tự nhiên. Những lực lượng ấy đại diện cho muôn vàn gương mặt của Khí. Những lực lượng tự nhiên của Khí có thể được chia khái quát thành hai phương diện bình đẳng và đối lập là Âm và Dương. Những biểu hiện Âm và Dương của Khí không chỉ bao trùm sự hoang dã của tự nhiên như gió,</p></section><section class="pg" id="p023"><p>10. Những tiếng nói của Khí</p>
@@ -223,7 +591,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Âm/Dương. Cặp Âm/Dương đại diện cho sự tổng hợp của sáu phạm trù kia, song cũng có thể mô tả những phương diện mất cân bằng nhất định không khớp chính xác vào các phạm trù khác.</p>
 <p>NGŨ HÀNH. Một khuôn khổ chẩn đoán và trị liệu quan trọng khác trong Đông y là Thuyết Ngũ hành. Thuyết này tiến hóa từ sự quan sát các hiện tượng tự nhiên thành một hệ thống tương ứng gắn kết mọi quá trình tự nhiên với năm mối quan hệ tướng. Ngũ hành — Mộc, Hỏa, Thổ, Kim, Thủy — được coi là những phẩm chất năng lượng.</p>
 <p>Một phạm trù gồm những chức năng hay phẩm chất có liên quan. Ví dụ, Khí của hành Mộc gắn với những hoạt động sinh trưởng hay gia tăng, như gỗ cây vẫn làm một cách tự nhiên vào mùa xuân. Hỏa khí tương ứng với hoạt động đã đạt đỉnh và sẵn sàng suy tàn. Kim khí đại diện cho những hoạt động đang giảm sút hay suy tàn, còn Khí của hành Thủy gắn với những hoạt động đã đạt đến trạng thái suy tàn tối đa và đang chuẩn bị sinh trưởng. Khí của hành Thổ biểu thị tính trung tâm hay tính trung hòa và được xem như một bộ đệm giữa các hành khác. Ngũ hành có những tương ứng mang tính biểu tượng gắn với mọi phương diện của thế giới tự nhiên, như Bảng 2 ở trang sau chỉ ra.</p>
-<p>Một thầy thuốc Đông y có thể dùng những tương ứng Ngũ hành để hỗ trợ chẩn đoán. Ví dụ, Bảng 2 cho thấy hành Kim gắn với Phế, mũi, da, mùa thu, dịch nhầy và</p></section><section class="pg" id="p029"><p>16. Những tiếng nói của Khí</p>
+<p>Một thầy thuốc Đông y có thể dùng những tương ứng Ngũ hành để hỗ trợ chẩn đoán. Ví dụ, Bảng 2 cho thấy hành Kim gắn với Phế, mũi, da, mùa thu, dịch nhầy và</p></section>
+
+<section id="sec05" class="pg">
+<span id="p029"></span>
+<p>16. Những tiếng nói của Khí</p>
 <p>Mộc Hỏa Thổ Kim Thủy</p>
 <p>Thận</p>
 <p>Tạng âm: Can Tâm Tỳ Phế</p>
@@ -258,7 +630,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>MỘC</p>
 <h2>Thủy Hỏa</h2>
 <h2>Kim Thổ</h2>
-<p>Hình 2: Chu trình Tương sinh</p></section><section class="pg" id="p030"><h2>Nền tảng</h2>
+<p>Hình 2: Chu trình Tương sinh</p></section>
+
+<section id="sec06" class="pg">
+<span id="p030"></span>
+<h2>Nền tảng</h2>
 <p>. ...hành vận động và hòa quyện vào hành kế tiếp theo trình tự Mộc Hỏa Thổ Kim Thủy. Điều này được minh họa rõ nhất qua những mô thức sinh trưởng theo mùa, như được mô tả dưới đây.</p>
 <p>Mộc, tương ứng với mùa xuân, chuyển hóa một cách tự nhiên thành Hỏa, hành của mùa hạ. Khi mùa hạ tiến triển, nó chuyển sang cái mà ta gọi là hạ muộn. Điều này tương ứng với hành Thổ. Hạ muộn đương nhiên được tiếp nối bởi mùa thu (Kim), và mùa đông (Thủy) khép lại chu trình. Chu trình bắt đầu trở lại khi mùa đông chuyển thành mùa xuân (Mộc). Trong sơ đồ này, mỗi giai đoạn trôi chảy êm đềm sang giai đoạn kế tiếp, đồng thời nương tựa vào giai đoạn trước để được nuôi dưỡng cho chính mình.</p>
 <p>Chu trình Tương sinh là một trong nhiều chu trình được vận dụng trong khuôn khổ Đông y và thường được dùng để mô tả những quá trình cùng mối quan hệ lâm sàng giúp hình thành chẩn đoán và điều trị thích hợp.</p>
@@ -270,7 +646,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>hành đứng sau nó trong trình tự. Hành kiểm soát thường có Khí thái quá, hay hoạt động thái quá. Khí thái quá này xâm lấn hành mà nó đáng lẽ phải kiểm soát, tạo ra sự mất cân bằng. Ví dụ, Mộc nên kiểm soát Thổ để giúp giữ Thổ cân bằng, nhưng khi mối quan hệ này bị rối loạn, chẳng hạn bởi sự giận dữ quá độ (Can/Mộc), một người có thể trở nên quá trầm tư hay mắc chứng rối loạn tiêu hóa (Tỳ/Thổ).</p></section><section class="pg" id="p031"><p>18. Những tiếng nói của Khí</p>
 <p>Nhiều huyệt châm cứu tương ứng với Ngũ hành. Lấy ví dụ trên, nếu Mộc (Can) trở nên hoạt động thái quá và chi phối Thổ (Tỳ), gây ra rối loạn tiêu hóa, thì thầy châm cứu có thể châm vào các huyệt Ngũ hành để làm lắng dịu Can khí và, nếu cần, có lẽ để bổ sung Khí của Tỳ. Cách điều trị này sẽ một lần nữa tạo ra sự cân bằng giữa hai hành Mộc và Thổ, đồng thời làm giảm bớt các triệu chứng tiêu hóa.</p>
 <p>Hai chu trình này được dùng thường xuyên nhất trong Đông y. Ngũ hành cho phép chúng ta đối chiếu những hiện tượng tự nhiên quan sát được trong vũ trụ vĩ mô với vũ trụ vi mô của đời sống con người. Ở khía cạnh này, nó có thể là một công cụ rất hữu ích để hiểu mối quan hệ của con người với tổng thể lớn lao hơn của thế giới tự nhiên.</p></section><section class="pg" id="p032"><p>19</p></section><section class="pg" id="p033"><p>20. Những tiếng nói của Khí</p>
-<p>—</p></section><section class="pg" id="p034"><p>Chương 2</p>
+<p>—</p></section>
+
+<section id="sec07" class="pg">
+<span id="p034"></span>
+<p>Chương 2</p>
 <h2>Khuôn Khổ Lý Thuyết</h2>
 <p>Khi tìm hiểu Đông y, điều quan trọng là có thể diễn giải ngôn ngữ ẩn dụ của nó. Đây là một trong những nhiệm vụ khó khăn hơn của người thầy thuốc Đông y và có thể cần nhiều năm kinh nghiệm mới thành thạo. Việc khảo sát thấu đáo nằm ngoài phạm vi cuốn sách này, tuy nhiên, một mô tả và giải thích ngắn gọn về một số khái niệm nền tảng có thể nâng cao hiểu biết cơ bản của chúng ta. Cuộc khảo sát của chúng ta sẽ dẫn đến một cách nhìn mới về các chức năng của thân thể vật lý và mối quan hệ của nó với cảm xúc, tâm trí và Thần.</p>
 <p>CÁC CHẤT SỐNG CỐT YẾU: KHÍ, HUYẾT, THẦN VÀ DỊCH THỂ. Đông y nhìn nhận các quá trình sinh lý như sự tương tác giữa nhiều chất sống cốt yếu khác nhau. Chất lượng và số lượng của những chất sống cốt yếu này, cùng khả năng tương tác trôi chảy và củng cố lẫn nhau của chúng, tạo nên cơ chế cân bằng bên trong cơ thể. Những chất này thể hiện những mức độ vật chất khác nhau, từ Huyết hữu hình nhất đến Thần — hay Tinh thần — thanh khiết nhất. Tuy nhiên, ở nền tảng của tất cả các chất sống cốt yếu là sự hiện diện của Khí. Khí. Khái niệm Khí có lẽ là chất sống cốt yếu khó nắm bắt nhất, nhưng cũng có lẽ là thú vị nhất bởi bản chất đa chiều của nó. Chúng ta đã nói về tính hiện hữu khắp nơi của nó, về vai trò thiết yếu của nó trong quá trình sinh lý, sự duy trì và phát triển của hình hài con người, và về bản chất tinh tế hơn của nó liên quan đến hoạt động của tâm trí, cảm xúc và Thần của chúng ta. Khí là một điều bí ẩn, bởi vì nó</p></section><section class="pg" id="p035"><p>22 · Những tiếng nói của Khí</p>
@@ -415,7 +795,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Phế Đại trường Cổ tay phải Vị Tỳ Tam tiêu Thận Dương</p>
 <p>Bảng 3: Vị trí mạch và tương ứng với tạng phủ</p></section><section class="pg" id="p059"><p>46·Tiếng nói của Khí</p>
 <p>Một lĩnh vực của chẩn đoán bằng sờ nắn, cảm nhận mạch quay ở phía ngón tay cái của mỗi cổ tay, được các thầy thuốc Đông y đặc biệt quan tâm. Chẩn đoán mạch cung cấp thông tin chi tiết về trạng thái sức khỏe và khí của các tạng phủ nội tạng cũng như tình trạng năng lượng của toàn bộ cơ thể. Chẩn đoán mạch cực kỳ vi tế và phức tạp. Mạch được cảm nhận ở các mức phù và trầm tại ba vị trí trên mỗi cổ tay (xem Hình 9 và Bảng 3). Khi bắt mạch, thầy thuốc tập trung vào nhịp độ, độ sâu, độ mạnh, tính chất, nhịp điệu và độ dài của mạch. Theo truyền thống, có hai mươi bảy loại mạch, mỗi loại có những chỉ định cụ thể liên quan đến sự mất hòa hợp của khí trong cơ thể. Ví dụ, một người có mạch chậm hơn bình thường có thể mắc tình trạng hàn ảnh hưởng đến cơ thể, trong khi mạch nhanh hơn có thể cho thấy nhiệt. Một mạch chỉ cảm nhận được rất sâu thường cho thấy khí của cơ thể đang tập trung vào bên trong, trong khi người có mạch chỉ cảm nhận được rất gần bề mặt da có thể đang kích hoạt Vệ khí của mình để chống lại cảm lạnh hoặc cúm. Mạch có thể lớn hoặc nhỏ, mềm hoặc căng; chúng có thể cảm thấy trơn hoặc căng cứng, hoặc đều đặn hay không đều về nhịp điệu. Mỗi tính chất mạch có thể kết hợp với những tính chất khác để tạo nên một hệ thống tương ứng phức tạp và nhiều khả năng chẩn đoán khác nhau. Ví dụ, một mạch có thể vừa chậm, vừa trầm, vừa căng. Biểu hiện này có thể cho thấy một tình trạng hàn và đau sâu trong cơ thể. Hoặc một bệnh nhân có thể có mạch vừa nhỏ vừa nhanh. Điều này có thể dẫn đến chẩn đoán Huyết hư kèm theo Nhiệt.</p>
-<p>Qua sự chú tâm tập trung và luyện tập, thầy thuốc có thể học cách đọc những sắc thái vi tế của động thái khí và thậm chí có thể nhận ra những mất cân bằng trước khi chúng biểu hiện thành các triệu chứng thực thể.</p></section><section class="pg" id="p060"><h2>Khung lý thuyết</h2></section><section class="pg" id="p061"><p>48. Tiếng nói của Khí</p></section><section class="pg" id="p062"><p>Chương 3</p>
+<p>Qua sự chú tâm tập trung và luyện tập, thầy thuốc có thể học cách đọc những sắc thái vi tế của động thái khí và thậm chí có thể nhận ra những mất cân bằng trước khi chúng biểu hiện thành các triệu chứng thực thể.</p></section><section class="pg" id="p060"><h2>Khung lý thuyết</h2></section><section class="pg" id="p061"><p>48. Tiếng nói của Khí</p></section>
+
+<section id="sec08" class="pg">
+<span id="p062"></span>
+<p>Chương 3</p>
 <h2>Các Phương Thức Trị Liệu</h2>
 <p>Qua nhiều thế kỷ, các thầy thuốc Đông y đã phát triển những chiến lược trị liệu nhằm kích thích và tái lập cân bằng khí của cơ thể. Ngày nay ở Trung Quốc, những liệu pháp này được chia thành bốn loại chính: châm cứu, xoa bóp trị liệu, dược thảo và khí công y học. Trong quá trình điều trị, thầy thuốc Đông y có thể phối hợp tất cả các phương thức này hoặc chỉ dùng một phương thức tại một thời điểm. Việc lựa chọn tùy thuộc vào tình trạng bệnh được điều trị và phương thức nào mang lại hiệu quả trị liệu cao nhất. Chương này trình bày những phương thức trị liệu chính của Đông y và giúp người đọc hiểu được chúng được dùng như thế nào và vì sao.</p>
 <p>Y HỌC Ở TRUNG QUỐC NGÀY NAY Ngày nay, trong hầu hết các bệnh viện Trung Quốc, châm cứu, dược thảo, khí công y học và tuina (xoa bóp trị liệu) đều có khoa riêng và các bác sĩ làm việc trong những khoa này sát cánh cùng các bác sĩ trong các khoa y học phương Tây. Đó là một môi trường hợp tác, tin tưởng và tôn trọng lẫn nhau. Một bầu không khí hợp tác như vậy đã tạo nên một hệ thống cung cấp dịch vụ chăm sóc sức khỏe kết hợp nhiều khía cạnh của một hệ thống toàn diện. Đó là sự pha trộn khôn ngoan giữa các công nghệ phương Tây và năng lượng học phương Đông. Bệnh nhân là người thụ hưởng cuối cùng của nỗ lực hợp tác này. Người dân Trung Quốc quan niệm rằng những hoạt động tăng cường sức khỏe và nhờ đó phòng ngừa bệnh tật là chìa khóa để duy trì sức khỏe tốt. Những hoạt động hay phép dưỡng sinh tốt cho sức khỏe này bao gồm chế độ ăn uống hợp lý và kiến thức dinh dưỡng dựa trên các vị thuốc Trung Quốc, các liệu pháp vận động như</p></section><section class="pg" id="p063"><p>50. Tiếng nói của Khí</p>
@@ -461,7 +845,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>DƯỢC THẢO TRUNG QUỐC Dược thảo Trung Quốc là nhánh chính còn lại của Đông y. Tiền đề của dược thảo là nhiều loại cây cỏ và những vật liệu khác, chẳng hạn như côn trùng hoặc khoáng vật, có những đặc tính năng lượng mà khi được sử dụng một cách am hiểu có thể mang lại những hiệu quả chữa bệnh đáng kể. Việc thực hành dược thảo Trung Quốc</p></section><section class="pg" id="p072"><h2>Các phương thức</h2>
 <p>dược thảo thực sự là một nghệ thuật, bởi việc phối hợp các vị thuốc thành đúng một phương thang đòi hỏi rất nhiều kỹ năng và kiến thức. Có hàng trăm chất, phần lớn có nguồn gốc thực vật, trong dược điển Trung Quốc, và mỗi chất có những đặc tính năng lượng riêng của nó.</p>
 <p>Dược thảo Trung Quốc dùng cùng những nguyên lý lý thuyết và chẩn đoán như châm cứu. Tuy nhiên, dược thảo theo truyền thống được dùng cho nhiều trường hợp mất cân bằng tạng phủ nội tạng hơn là châm cứu, vốn được dùng chủ yếu cho các rối loạn cơ xương khớp. Hai phương pháp trị liệu là châm cứu và dược thảo khá bổ trợ cho nhau và thường được dùng cùng nhau trong cùng một lần điều trị. Mỗi hệ thống ảnh hưởng đến khí của cơ thể theo những cách riêng. Trong nhiều trường hợp, các bài thuốc dược thảo được dùng để bổ sung khí của cơ thể, còn châm cứu được dùng để điều khiển khí, tập trung nó đến nơi cần thiết. Về bản chất, cách tiếp cận trị liệu tổng quát để chữa lành trong Đông y là một cá nhân phải có sẵn khí thì mới có thể chữa lành. Nghệ thuật của dược thảo Trung Quốc nằm ở việc xây dựng các phương thang dược thảo. Mỗi phương thang chứa nhiều thành phần dược thảo khác nhau và mỗi thành phần tác động hiệp đồng với những thành phần khác để tạo ra hiệu quả trị liệu. Khi xây dựng một phương thang dược thảo, mỗi vị thuốc được trao một vị trí trong một thứ bậc năng lượng dùng những tên gọi như &quot;chủ&quot;, &quot;phó&quot;, &quot;tá&quot; và &quot;sứ&quot;. Chẳng hạn, vị chủ là thành phần quan trọng nhất và nắm giữ trọng tâm trị liệu của toàn bộ phương thang. Vị phó hỗ trợ vị chủ trong nhiệm vụ của nó bằng cách bổ sung cho hướng tiếp cận trọng tâm hoặc bằng cách điều trị những tình trạng thứ yếu. Vị tá có thể thúc đẩy sự tác động hiệp đồng của phương thang hoặc hỗ trợ ngăn ngừa những tác dụng phụ độc hại có thể xảy ra, trong khi vị sứ có thể dẫn phương thang đến một vùng cơ thể cụ thể hoặc điều hòa tác dụng của những thành phần khác.</p>
-<p>Các phương thang dược thảo nói chung có từ năm đến hai mươi thành phần riêng lẻ. Các vị thuốc riêng lẻ hiếm khi, nếu có, được dùng một mình, bởi chính trong việc phối hợp các vị thuốc mà sức mạnh thực sự của dược thảo nằm ở đó. Mỗi vị thuốc trong một phương thang có một nhiệm vụ cụ thể và một chức năng năng lượng. Một số vị thuốc kéo năng lượng đi xuống trong cơ thể, chẳng hạn để điều trị bệnh gút, phù thũng hoặc đau lưng dưới; trong khi những vị khác làm năng lượng đi lên, chẳng hạn để điều trị đau đầu hoặc những rối loạn ở phần trên cơ thể. Nhiều vị thuốc đưa khí ra bề mặt cơ thể, chẳng hạn để</p></section><section class="pg" id="p073"><p>60 · Tiếng nói của Khí</p>
+<p>Các phương thang dược thảo nói chung có từ năm đến hai mươi thành phần riêng lẻ. Các vị thuốc riêng lẻ hiếm khi, nếu có, được dùng một mình, bởi chính trong việc phối hợp các vị thuốc mà sức mạnh thực sự của dược thảo nằm ở đó. Mỗi vị thuốc trong một phương thang có một nhiệm vụ cụ thể và một chức năng năng lượng. Một số vị thuốc kéo năng lượng đi xuống trong cơ thể, chẳng hạn để điều trị bệnh gút, phù thũng hoặc đau lưng dưới; trong khi những vị khác làm năng lượng đi lên, chẳng hạn để điều trị đau đầu hoặc những rối loạn ở phần trên cơ thể. Nhiều vị thuốc đưa khí ra bề mặt cơ thể, chẳng hạn để</p></section>
+
+<section id="sec09" class="pg">
+<span id="p073"></span>
+<p>60 · Tiếng nói của Khí</p>
 <p>điều trị các vấn đề về da hoặc để xua đuổi cảm cúm hay cảm lạnh; trong khi những vị thuốc khác đưa khí đi sâu hơn để dưỡng nuôi hoặc cân bằng các tạng phủ nội tạng. Mọi vị thuốc đều có những thuộc tính về vị, chẳng hạn đắng, ngọt hoặc chua, và vân vân; về tính, chẳng hạn hàn, bình, nhiệt, v.v.; và về những kinh lạc cụ thể mà chúng có ái lực. Chẳng hạn, một số vị thuốc có thể đi vào kinh Tỳ và Can, trong khi những vị khác có thể đi vào Phế, Can và Thận, hoặc bất kỳ sự kết hợp kinh lạc nào khác. Tất cả những đặc tính này phải được cân nhắc khi xây dựng một phương thang dược thảo. Đây không phải là một việc dễ dàng và đòi hỏi kiến thức, sự kiên nhẫn và một sự am hiểu tinh tế về năng lượng học của dược thảo và sinh lý.</p>
 <p>Dược thảo có thể được kê theo nhiều cách. Hai cách phổ biến nhất là thuốc thảo dược bào chế (hay thành dược) và thuốc thảo dược thô. Thuốc bào chế (xem Hình 20) thường là những phương thang dược thảo cổ điển Trung Quốc ở dạng viên và có thể được mua không cần đơn tại các nhà thuốc Đông y. Những phương thang này có số lượng hàng trăm và được dùng cho những chứng bệnh cụ thể</p>
 <h2>Dược Thảo Trung Quốc</h2>
@@ -473,7 +861,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>KHÍ CÔNG Y HỌC Như chúng ta đã thấy, việc điều khiển khí cho mục đích trị liệu có nhiều hình thức. Có lẽ ít được hiểu biết nhất ở phương Tây là khí công y học. Hệ thống này tăng cường, làm thông suốt và tập trung dòng chảy của khí qua cơ thể thông qua những động tác cơ thể và sự hình dung cụ thể. Những mục tiêu trị liệu của khí công y học cũng giống như của những phương thức Đông y khác; tuy nhiên, trong liệu pháp này, thầy thuốc</p>
 <p>Hình 22: Bác sĩ Xuezhong &quot;Lincoln&quot; Wang đang thực hiện khí công y học dùng đôi bàn tay của mình để kích thích và điều khiển khí của bệnh nhân. Thầy khí công có thể không thực sự chạm vào bệnh nhân, mà điều khiển khí của bệnh nhân từ một khoảng cách ngắn (xem Hình 22).</p>
 <p>Trong một số trường hợp, thầy thuốc có thể dạy cho bệnh nhân những kỹ thuật khí công y học cụ thể. Điều này cho phép bệnh nhân tự kích thích khí của chính mình một cách đều đặn mà không cần thầy thuốc có mặt. Thái Cực là một ví dụ về một hình thức cụ thể của khí công y học. Trong thực hành này, các cá nhân vận động khí bên trong của mình theo những cách cụ thể thông qua chuyển động thể chất và sự hình dung. Điều này giúp giữ cho khí lưu chuyển trôi chảy trong cơ thể, dưỡng nuôi mọi mô và</p></section><section class="pg" id="p076"><h2>Các phương thức</h2>
-<p>giữ cho các cơ săn chắc. Do đó, Thái Cực có thể được xem như một hình thức khí công y học mang tính dự phòng. Hầu hết các bệnh viện ở Trung Quốc đều có khoa khí công phối hợp nhịp nhàng với các khoa châm cứu và dược thảo, cũng như với các khoa y học phương Tây. Khí công y học rất tinh tế và đòi hỏi rất nhiều sự tập trung và kỷ luật để học, nhưng nó có thể rất hiệu quả. Việc tìm được một thầy thuốc đủ trình độ ở phương Tây có thể khó khăn. Ca số 7 Dan, một người đàn ông gầy, trung niên, đã dùng thuốc huyết áp cao gần tám năm. Những loại thuốc này kiểm soát được huyết áp của anh, nhưng các tác dụng phụ lại khiến anh lo ngại thêm. Anh đến gặp tôi để tìm hiểu liệu tôi có thể giúp anh ngừng dùng thuốc huyết áp không. Tôi đồng ý, nhưng chỉ sau khi tôi đã trao đổi với bác sĩ của anh và chúng tôi thống nhất một chiến lược điều trị. Dan đang mắc một tình trạng mà âm và dương của anh mất cân bằng. Dương trong cơ thể anh liên tục bốc lên vì âm không giữ nó xuống. Tôi điều trị cho Dan bằng châm cứu, dùng những huyệt giúp ổn định nguồn năng lượng đang bốc lên trong cơ thể anh. Đồng thời, tôi cung cấp cho anh những vị thuốc giúp dưỡng nuôi phần âm đang hư của anh. Tôi cũng giới thiệu anh đến một thầy khí công y học, người đã dạy Dan cách điều hướng lại và dưỡng nuôi khí của chính mình thông qua các liệu pháp hình dung và vận động. Trong những tuần tiếp theo, Dan được bác sĩ kiểm tra huyết áp đều đặn trong khi chúng tôi từ từ giảm liều thuốc của anh. Bác sĩ của anh khá ngạc nhiên khi sau bốn tháng, Dan đã ngừng hẳn thuốc và huyết áp của anh đã ổn định ở mức bình thường. Dan tiếp tục thực hành khí công hằng ngày và đã trở lại một lối sống lành mạnh bình thường.</p></section><section class="pg" id="p077"><p>64 · Tiếng nói của Khí</p></section><section class="pg" id="p078"><p>Chương 4</p>
+<p>giữ cho các cơ săn chắc. Do đó, Thái Cực có thể được xem như một hình thức khí công y học mang tính dự phòng. Hầu hết các bệnh viện ở Trung Quốc đều có khoa khí công phối hợp nhịp nhàng với các khoa châm cứu và dược thảo, cũng như với các khoa y học phương Tây. Khí công y học rất tinh tế và đòi hỏi rất nhiều sự tập trung và kỷ luật để học, nhưng nó có thể rất hiệu quả. Việc tìm được một thầy thuốc đủ trình độ ở phương Tây có thể khó khăn. Ca số 7 Dan, một người đàn ông gầy, trung niên, đã dùng thuốc huyết áp cao gần tám năm. Những loại thuốc này kiểm soát được huyết áp của anh, nhưng các tác dụng phụ lại khiến anh lo ngại thêm. Anh đến gặp tôi để tìm hiểu liệu tôi có thể giúp anh ngừng dùng thuốc huyết áp không. Tôi đồng ý, nhưng chỉ sau khi tôi đã trao đổi với bác sĩ của anh và chúng tôi thống nhất một chiến lược điều trị. Dan đang mắc một tình trạng mà âm và dương của anh mất cân bằng. Dương trong cơ thể anh liên tục bốc lên vì âm không giữ nó xuống. Tôi điều trị cho Dan bằng châm cứu, dùng những huyệt giúp ổn định nguồn năng lượng đang bốc lên trong cơ thể anh. Đồng thời, tôi cung cấp cho anh những vị thuốc giúp dưỡng nuôi phần âm đang hư của anh. Tôi cũng giới thiệu anh đến một thầy khí công y học, người đã dạy Dan cách điều hướng lại và dưỡng nuôi khí của chính mình thông qua các liệu pháp hình dung và vận động. Trong những tuần tiếp theo, Dan được bác sĩ kiểm tra huyết áp đều đặn trong khi chúng tôi từ từ giảm liều thuốc của anh. Bác sĩ của anh khá ngạc nhiên khi sau bốn tháng, Dan đã ngừng hẳn thuốc và huyết áp của anh đã ổn định ở mức bình thường. Dan tiếp tục thực hành khí công hằng ngày và đã trở lại một lối sống lành mạnh bình thường.</p></section><section class="pg" id="p077"><p>64 · Tiếng nói của Khí</p></section>
+
+<section id="sec10" class="pg">
+<span id="p078"></span>
+<p>Chương 4</p>
 <h2>Đến Gặp Một Thầy Thuốc Đông Y</h2>
 <p>Mặc dù những nguyên lý nền tảng của Đông y được tất cả các thầy thuốc chia sẻ, những kỹ thuật khác nhau được sử dụng lại thay đổi tùy từng cá nhân. Nhiều thầy thuốc rất truyền thống và chỉ dùng những kỹ thuật hiện có trong Đông y. Những thầy thuốc khác dùng những kỹ thuật được phát triển ở Nhật Bản hoặc Hàn Quốc hay từ những nghiên cứu được thực hiện ở phương Tây. Chương này khảo sát trải nghiệm khi đến gặp một thầy thuốc Đông y, chi phí, và những điều cần tìm kiếm ở một thầy thuốc.</p>
 <p>NHIỀU CÁCH TIẾP CẬN ĐIỀU TRỊ KHÁC NHAU Các liệu pháp bao gồm trong Đông y thay đổi rất nhiều tùy thuộc vào sự đào tạo và chuyên môn của từng thầy thuốc. Đông y đã được biến đổi bởi nhiều ảnh hưởng văn hóa, và mặc dù những liệu pháp này vẫn dùng châm cứu, các kỹ thuật châm lại khác nhau. Đôi khi thầy thuốc cũng có thể dùng một liệu pháp bổ trợ cho việc châm. Chẳng hạn, một số thầy thuốc có thể đặt những nam châm nhỏ lên các huyệt vị hoặc kinh lạc (Nhật Bản). Những người khác có thể dùng châm cứu bàn tay Hàn Quốc, vốn chỉ dùng hệ vi mô của bàn tay để tác động đến khí tổng thể của cơ thể. Một số thầy thuốc khác có thể chuyên về những kỹ thuật chẩn đoán cụ thể như chẩn đoán Hara (Nhật Bản), vốn tập trung vào việc sờ nắn vùng bụng. Vẫn còn những người khác có thể dùng dây bơm ion (Nhật Bản), một loại trị liệu dùng những sợi dây nhỏ nối các kim châm cứu được đưa vào những vị trí khác nhau trên cơ thể. Đây chỉ là một vài trong số rất nhiều kỹ thuật đã được thiết lập mà các thầy thuốc ở Hoa Kỳ, Canada và châu Âu hiện đang dùng để kích thích và vận động khí của cơ thể. Tôi dự đoán rằng số lượng và</p></section><section class="pg" id="p079"><p>66. Tiếng nói của Khí các loại trị liệu sẽ tiếp tục mở rộng khi kiến thức và sự hiểu biết của chúng ta về động lực của khí tiếp tục phát triển. Tuy nhiên, dù nói vậy, chúng ta vẫn phải nhận ra rằng trong truyền thống y học Trung Quốc, tồn tại vô số cách tiếp cận trị liệu nhằm củng cố, kích thích và vận động khí. Các phương thức châm cứu, dược thảo và trị liệu xoa bóp tuina là một vài trong số những phương thức phổ biến nhất mà các thầy thuốc dùng ở Hoa Kỳ.</p>
@@ -492,7 +884,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>CHI PHÍ Đông y rất hiệu quả về chi phí và rẻ hơn nhiều so với y học thông thường. Chi phí đến gặp một thầy thuốc Đông y khác nhau tùy theo vùng miền của đất nước. Mức phí trung bình cho lần hẹn đầu tiên thường dao động từ 45 đến 80 đô-la và thường kéo dài khoảng một tiếng rưỡi. Các lần hẹn tái khám thường dao động từ khoảng 35 đến 55 đô-la cho một giờ. Một tháng dược liệu thường tốn từ 6 đến 18 đô-la mỗi lọ đối với thuốc thành phẩm và từ 25 đến 50 đô-la đối với các bài thuốc thảo dược sống. Các bài thuốc thảo dược sống được điều chỉnh phù hợp hơn với nhu cầu của bệnh nhân và do đó có thể có tác động trị liệu tức thời hơn so với thuốc thành phẩm. Đây là lý do dẫn đến sự khác biệt lớn về giá giữa thuốc thảo dược sống và thuốc thành phẩm. Một số công ty bảo hiểm chi trả cho các liệu pháp Đông y như châm cứu. Một đại diện công ty bảo hiểm</p></section><section class="pg" id="p082"><p>có thể cho bạn biết đây có phải là trường hợp như vậy không. Phạm vi bảo hiểm cho Đông y đang thay đổi nhanh chóng và các công ty bảo hiểm lớn hiện đang bắt đầu chi trả cho nhiều tình trạng cụ thể.</p>
 <p>TÌM MỘT THẦY THUỐC Việc chọn một thầy thuốc Đông y có năng lực là một phần quan trọng để đạt được kết quả trị liệu tốt. Có nhiều tổ chức ở Hoa Kỳ có danh sách các thầy thuốc được đào tạo và có đủ trình độ trên khắp cả nước (xem Phụ lục C). Ngoài ra, hãy kiểm tra xem có trường Y học Phương Đông nào gần bạn không. Các trường có danh sách sinh viên tốt nghiệp và là một nguồn giới thiệu tốt. Nhiều bang nơi Đông y được cấp phép có các tổ chức nghề nghiệp. Hãy tra cứu danh bạ điện thoại. Hầu hết các tổ chức nghề nghiệp cấp bang đều lưu giữ một danh sách giới thiệu được cập nhật gồm các thầy thuốc có đủ trình độ.</p>
 <p>Hãy kiểm tra xem thầy thuốc Đông y có được chứng nhận, cấp phép hay đăng ký hành nghề hay không. Các danh xưng này không chỉ khác nhau giữa các bang, mà những yêu cầu cho các danh xưng khác nhau này cũng khác nhau. Tốt nhất là nên kiểm tra riêng với từng bang để xác định cách họ định nghĩa những danh xưng này. Hãy chọn một thầy thuốc có thể hành nghề hợp pháp tại bang của bạn.</p>
-<p>Điều quan trọng nữa là tìm hiểu xem thầy thuốc đã học ở đâu và trong bao lâu (xem Phụ lục D để biết thêm thông tin về giáo dục, đào tạo và chứng nhận). Ngoài ra, hãy kiểm tra xem căn bệnh mà bạn đang tìm kiếm sự giúp đỡ có thể điều trị được bằng Đông y hay không (xem Phụ lục B để có danh sách các bệnh được Đông y điều trị). Một số câu hỏi khác cần cân nhắc là: Thầy thuốc có dùng kim dùng một lần không? Chi phí cho mỗi lần điều trị là bao nhiêu? Buổi hẹn đầu tiên tại phòng khám và các buổi tái khám kéo dài bao lâu? Thầy thuốc đã hành nghề được bao lâu? Thầy thuốc có từng bị đăng ký khiếu nại nào với bang hay không? Đây là một vài câu hỏi sẽ giúp bạn tìm được một thầy thuốc Đông y được đào tạo tốt, hợp pháp và giàu kinh nghiệm.</p></section><section class="pg" id="p083"><p>70·Tiếng nói của Khí</p></section><section class="pg" id="p084"><p>Chương 5</p>
+<p>Điều quan trọng nữa là tìm hiểu xem thầy thuốc đã học ở đâu và trong bao lâu (xem Phụ lục D để biết thêm thông tin về giáo dục, đào tạo và chứng nhận). Ngoài ra, hãy kiểm tra xem căn bệnh mà bạn đang tìm kiếm sự giúp đỡ có thể điều trị được bằng Đông y hay không (xem Phụ lục B để có danh sách các bệnh được Đông y điều trị). Một số câu hỏi khác cần cân nhắc là: Thầy thuốc có dùng kim dùng một lần không? Chi phí cho mỗi lần điều trị là bao nhiêu? Buổi hẹn đầu tiên tại phòng khám và các buổi tái khám kéo dài bao lâu? Thầy thuốc đã hành nghề được bao lâu? Thầy thuốc có từng bị đăng ký khiếu nại nào với bang hay không? Đây là một vài câu hỏi sẽ giúp bạn tìm được một thầy thuốc Đông y được đào tạo tốt, hợp pháp và giàu kinh nghiệm.</p></section><section class="pg" id="p083"><p>70·Tiếng nói của Khí</p></section>
+
+<section id="sec11" class="pg">
+<span id="p084"></span>
+<p>Chương 5</p>
 <h2>Tương Lai:</h2>
 <h2>Y Học Thế Giới</h2>
 <p>Bộ mặt của y học đang thay đổi. Y học phương Tây đang khám phá những biên giới mới trong tâm lý học và năng lượng sinh học, còn phương Đông đang khám phá sức mạnh của dược phẩm và phẫu thuật bắc cầu động mạch vành. Có một vẻ đẹp kỳ lạ trong sự cân bằng này và, hy vọng rằng, một số lợi ích đáng kể cho nhân loại. Chương này khám phá những khả năng của nền y học ngày mai.</p>
@@ -530,7 +926,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>ỦY BAN QUỐC GIA VỀ CHỨNG NHẬN CHÂM CỨU VÀ Y HỌC PHƯƠNG ĐÔNG (NCCAOM)</p>
 <p>1424 16TH STREET N.W., SUITE 501 WASHINGTON D.C. 20036 (202) 232-1404 FAX (202) 462-6157 TRƯỚC ĐÂY LÀ ỦY BAN QUỐC GIA VỀ CHỨNG NHẬN CÁC THẦY CHÂM CỨU (NCCA)</p>
 <p>NCCAOM được giới hành nghề thành lập năm 1982 nhằm xây dựng và thực hiện các tiêu chuẩn năng lực được công nhận trên toàn quốc cho việc hành nghề châm cứu và y học phương Đông. Kể từ khi ra đời, NCCAOM đã chứng nhận hơn sáu nghìn Chứng nhận viên Châm cứu và được dùng làm cơ sở để cấp phép ở 90% các bang đã thiết lập tiêu chuẩn hành nghề châm cứu. NCCAOM điều hành các kỳ thi Hội đồng quốc gia cho nghề châm cứu và y học phương Đông. Những kỳ thi này gồm cả phần viết lẫn phần thực hành và kiểm tra năng lực y học về lý thuyết, chẩn đoán, điều trị, chuyển tuyến và đạo đức của nghề y học phương Đông.</p>
-<p>Việc chứng nhận về châm cứu dựa trên khả năng của thí sinh đáp ứng các tiêu chuẩn về điều kiện giáo dục và/hoặc kinh nghiệm; vượt qua các kỳ thi toàn diện cả phần viết lẫn phần thực hành; hoàn thành thành công Khóa học Kỹ thuật Kim Sạch được NCCAOM phê duyệt và cam kết tuân thủ quy tắc đạo đức nghề nghiệp.</p></section><section class="pg" id="p095"><p>82. Tiếng nói của Khí</p>
+<p>Việc chứng nhận về châm cứu dựa trên khả năng của thí sinh đáp ứng các tiêu chuẩn về điều kiện giáo dục và/hoặc kinh nghiệm; vượt qua các kỳ thi toàn diện cả phần viết lẫn phần thực hành; hoàn thành thành công Khóa học Kỹ thuật Kim Sạch được NCCAOM phê duyệt và cam kết tuân thủ quy tắc đạo đức nghề nghiệp.</p></section>
+
+<section id="sec12" class="pg">
+<span id="p095"></span>
+<p>82. Tiếng nói của Khí</p>
 <p>NCCAOM là thành viên của Tổ chức Quốc gia về Bảo đảm Năng lực và được chứng nhận bởi Ủy ban Quốc gia về các Tổ chức Chứng nhận, cơ quan có các tiêu chuẩn tự nguyện cao nhất dành cho các tổ chức chứng nhận tại Hoa Kỳ.</p>
 <p>LIÊN MINH CHÂM CỨU VÀ Y HỌC PHƯƠNG ĐÔNG QUỐC GIA (NAOMA)</p>
 <p>14637 STARR ROAD S.E., OLALLA, WA 98359 (253) 851-6896 FAX (253) 851-6883 Liên minh Quốc gia là một trong hai hiệp hội thành viên nghề nghiệp quốc gia. Hiệp hội được thành lập năm 1993 để đại diện cho sự đa dạng của các thầy thuốc châm cứu và y học phương Đông tại Hoa Kỳ.</p>
@@ -567,7 +967,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Ross, Jeremy. Zang Fu: The Organ Systems of Traditional Chinese Medicine. Edinburgh: Churchill Livingstone, 1984.</p>
 <p>Shealy, C. Norman, and Caroline M. Myss. The Creation of Health. Walpole, N.H.: Stillpoint Publishing, 1993.</p>
 <p>Unschuld, Paul U. Medicine in China: A History of Ideas. University of California Press, 1985.</p>
-<p>Wilhelm, Richard. The I Ching or Book of Changes. Translated by Cary F. Baynes. New York: Bollingen Foundation, 1950.</p></section><section class="pg" id="p106"><h2>Mục lục</h2>
+<p>Wilhelm, Richard. The I Ching or Book of Changes. Translated by Cary F. Baynes. New York: Bollingen Foundation, 1950.</p></section>
+
+<section id="sec13" class="pg">
+<span id="p106"></span>
+<h2>Mục lục</h2>
 <h2>Mục Lục</h2>
 <p>Ủy ban Công nhận Bệnh án (Accreditation Commission for Case Histories)</p>
 <p>Châm cứu và Y học Phương Đông — Ca #1 24</p>
@@ -643,7 +1047,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Phong thủy 73, 88 — Tinh ....</p>
 <p>23, 30, 89, 91</p>
 <p>Sốt .. 14 — Niềm vui.</p>
-<p>31</p></section><section class="pg" id="p108"><h2>Mục lục</h2>
+<p>31</p></section>
+
+<section id="sec14" class="pg">
+<span id="p108"></span>
+<h2>Mục lục</h2>
 <p>Cứu ngải ...... 50, 54, 55-57,</p>
 <p>Thận .... 23, 24, 30, 40, 60, 89</p>
 <p>67, 89</p>
@@ -741,7 +1149,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Tỳ ... 17, 23, 27, 29,</p>
 <p>Tạng phủ ..</p>
 <p>28, 91</p>
-<p>32, 41, 60, 91</p></section><section class="pg" id="p114"><h2>Thư Viện Nih</h2>
+<p>32, 41, 60, 91</p></section>
+
+<section id="sec15" class="pg">
+<span id="p114"></span>
+<h2>Thư Viện Nih</h2>
 <p>Nghiên cứu tuyệt vời.</p>
 <p>Hỗ trợ tuyệt vời. http://nihlibrary.nih.gov</p>
 <p>10 Center Drive, Bethesda, MD 20892-1150 — 301-496-1080</p></section><section class="pg" id="p115"><p>12,95 USD (Hoa Kỳ)/20,00 CAD (Canada) — 1-55643-326-3</p>
@@ -753,8 +1165,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Trước</a><a href="/vi/books/" class="home">⌂ Trang Chủ</a><a href="#" class="next disabled">Sau →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>

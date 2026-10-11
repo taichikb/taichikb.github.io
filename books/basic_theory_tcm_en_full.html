@@ -1,11 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Basic Theory of Traditional Chinese Medicine, Vol. 2 | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,108 +43,470 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Theory of Traditional Chinese Medicine, Vol. 2 | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Contents</summary><ul class="toc-list"><li class="toc-item"><a href="#p000" class="toc-link">Basic Theory</a></li>
-<li class="toc-item"><a href="#p001" class="toc-link">实用中医文库</a></li>
-<li class="toc-item"><a href="#p003" class="toc-link">A Practicai Publishing House Of</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">实用中医文库</a></li>
-<li class="toc-item"><a href="#p005" class="toc-link">The Guiding Committee</a></li>
-<li class="toc-item"><a href="#p006" class="toc-link">《英汉对照实用中医文库》编审指导委员会</a></li>
-<li class="toc-item"><a href="#p007" class="toc-link">The Editing And Translating</a></li>
-<li class="toc-item"><a href="#p008" class="toc-link">《英汉对照实用中医文库》编译委员会</a></li>
-<li class="toc-item"><a href="#p009" class="toc-link">特邀外籍审校人员</a></li>
-<li class="toc-item"><a href="#p014" class="toc-link">为扩大中医学在国际上的影响，促进中外医学学术交流，适</a></li>
-<li class="toc-item"><a href="#p015" class="toc-link">大学英语教研室主任卢承志教授，山东大学外文系黄嘉德教授，</a></li>
-<li class="toc-item"><a href="#p016" class="toc-link">Contents</a></li>
-<li class="toc-item"><a href="#p017" class="toc-link">七情与内脏的关系 ..29</a></li>
-<li class="toc-item"><a href="#p018" class="toc-link">邪气侵装是发病的重要条件 ·49</a></li>
-<li class="toc-item"><a href="#p019" class="toc-link">因时、因地、因人制宜 ..99</a></li>
-<li class="toc-item"><a href="#p022" class="toc-link">中医基础理论（下册）</a></li>
-<li class="toc-item"><a href="#p023" class="toc-link">Pathogenic Factors</a></li>
-<li class="toc-item"><a href="#p024" class="toc-link">什么是病因？病因是指导致疾病发生的各种原因，主要有六</a></li>
-<li class="toc-item"><a href="#p026" class="toc-link">尽。&quot;宋代陈无择又引申《金匮要略》&quot;千般难，不越三条&quot;之意，</a></li>
-<li class="toc-item"><a href="#p028" class="toc-link">的六气一般并不使人致病。如气候变化异常，六气太过或不及，</a></li>
-<li class="toc-item"><a href="#p030" class="toc-link">生物（细菌、病毒等）、物理、化学等多种致病因素作用于人体所</a></li>
-<li class="toc-item"><a href="#p032" class="toc-link">如风痹，其关节疼痛呈游走性；数变，是指风邪致病发病迅速，</a></li>
-<li class="toc-item"><a href="#p034" class="toc-link">伤人体阳气。如寒邪袭表，卫阳被遏，可见恶寒；寒邪直中脾胃，</a></li>
-<li class="toc-item"><a href="#p036" class="toc-link">汗出过多则伤津，出现口渴喜饮、唇干舌燥、尿赤短少等。在大</a></li>
-<li class="toc-item"><a href="#p038" class="toc-link">脓血粘液、小便混浊、白带过多及脓水移浊等。</a></li>
-<li class="toc-item"><a href="#p040" class="toc-link">燥为秋季的主气。此时气候干燥，水分亏乏，故多燥病。燥</a></li>
-<li class="toc-item"><a href="#p042" class="toc-link">火与温热，虽性质相同，但有区别。温与热均指病邪而言，</a></li>
-<li class="toc-item"><a href="#p044" class="toc-link">等津伤症状。火邪最能损伤人体的正气，故火邪致病，还可兼见</a></li>
-<li class="toc-item"><a href="#p046" class="toc-link">&quot;疫毒&quot;、&quot;庆气&quot;、&quot;异气&quot;、&quot;乖庆之气&quot;等名称。</a></li>
-<li class="toc-item"><a href="#p048" class="toc-link">第三节寄生虫</a></li>
-<li class="toc-item"><a href="#p050" class="toc-link">第四节七情内伤</a></li>
-<li class="toc-item"><a href="#p052" class="toc-link">2.七情致病的特点</a></li>
-<li class="toc-item"><a href="#p054" class="toc-link">气虚则悲，实则笑不休&quot;</a></li>
-<li class="toc-item"><a href="#p056" class="toc-link">超过了正常的消化能力，也会因食积中焦而发病，表现为院腹胀</a></li>
-<li class="toc-item"><a href="#p058" class="toc-link">不，胃气乃厚，味过于辛，筋脉沮弛，精神乃央。&quot;此外，脚气</a></li>
-<li class="toc-item"><a href="#p060" class="toc-link">筋骨柔脆，脾胃呆滞，表现为精神不振，食少乏力，动则气短、</a></li>
-<li class="toc-item"><a href="#p062" class="toc-link">痰饮是水液代谢障碍所形成的病理产物。中医将其较稠浊的</a></li>
-<li class="toc-item"><a href="#p064" class="toc-link">饮邪由于停留的部位不同而表现各异。如《金要略》说：&quot;其</a></li>
-<li class="toc-item"><a href="#p066" class="toc-link">瘀血因其停留部位不同、形成原因各异，而有不同的临床表</a></li>
-<li class="toc-item"><a href="#p067" class="toc-link">Pathogenesis</a></li>
-<li class="toc-item"><a href="#p068" class="toc-link">病机是疾病发生、发展与变化的机理，包括发病原理和基本</a></li>
-<li class="toc-item"><a href="#p070" class="toc-link">邪不可干&quot;。只有在正气相对不足，卫外不固时，邪气才会侵入人</a></li>
-<li class="toc-item"><a href="#p072" class="toc-link">从总体上来说，基本病机不外正邪斗争、阴阳失调和升降失常三</a></li>
-<li class="toc-item"><a href="#p074" class="toc-link">争激烈，临床表现为反应剧烈的实证。实证多见于外感病的初、</a></li>
-<li class="toc-item"><a href="#p076" class="toc-link">需要指出的是，在一般情况下，疾病的现象与本质是相符的，</a></li>
-<li class="toc-item"><a href="#p078" class="toc-link">正气虚弱或邪气太盛，机体抗病能力日趋低下，不能制止邪气的</a></li>
-<li class="toc-item"><a href="#p080" class="toc-link">病邪侵入人体必从其类，即阳邪侵入人体可形成阳偏胜，阴邪侵</a></li>
-<li class="toc-item"><a href="#p082" class="toc-link">2）阴阳偏衰 阴或阳偏衰，是指&quot;精气夺则虚&quot;的虚证。</a></li>
-<li class="toc-item"><a href="#p084" class="toc-link">3）阴阳互损阴阳互损，是指在阴或阳任何--方虚损到相</a></li>
-<li class="toc-item"><a href="#p086" class="toc-link">如《伤寒论》317条所说&quot;少阴下利，里寒外热，手足厥逆，脉微欲</a></li>
-<li class="toc-item"><a href="#p088" class="toc-link">热久留，大量煎灼阴液，或因误治等其他因素大量损耗阴液所致。</a></li>
-<li class="toc-item"><a href="#p090" class="toc-link">肾不纳气，则呼多吸少、气短息促。六腑以通降为顺，若胆气上</a></li>
-<li class="toc-item"><a href="#p092" class="toc-link">枢纽。脾胃升降正常，出入有序，则能维持升清降浊、营养全身</a></li>
-<li class="toc-item"><a href="#p093" class="toc-link">Prevention</a></li>
-<li class="toc-item"><a href="#p094" class="toc-link">预防，就是采取一定的措施，防止疾病发生和发展。</a></li>
-<li class="toc-item"><a href="#p096" class="toc-link">者，正气盛，体质弱者，正气虚。因此，增强体质是提高正气抗</a></li>
-<li class="toc-item"><a href="#p098" class="toc-link">邪能力，减少或防止疾病的发生。如汉代医学家华佗创造的&quot;五</a></li>
-<li class="toc-item"><a href="#p100" class="toc-link">天花，可谓世界免疫学的先驱。近代，中国医务人员除采用传统</a></li>
-<li class="toc-item"><a href="#p102" class="toc-link">应争取早期诊断、早期治疗，以防止疾病的发展与传变。如《素</a></li>
-<li class="toc-item"><a href="#p103" class="toc-link">Treatment</a></li>
-<li class="toc-item"><a href="#p104" class="toc-link">所谓治则，即治疗疾病的法则。治则与治法不同。治则是用</a></li>
-<li class="toc-item"><a href="#p106" class="toc-link">（1）正治所谓正治，是指逆其证候性质而治的一种常规治</a></li>
-<li class="toc-item"><a href="#p108" class="toc-link">克）主之&quot;，就是热因热用的范例。</a></li>
-<li class="toc-item"><a href="#p110" class="toc-link">加少量寒凉药，或温热剂用冷服法，在寒凉剂中，酌加少量温</a></li>
-<li class="toc-item"><a href="#p112" class="toc-link">偏瘫为标。治疗可采用益气、活血、化瘀的补阳还五汤（生黄芪</a></li>
-<li class="toc-item"><a href="#p114" class="toc-link">复健康。扶正适用于各种正气虚为主，而邪气也不盛的虚证。应</a></li>
-<li class="toc-item"><a href="#p116" class="toc-link">待祛邪，正气虽虚，尚可耐攻；若兼以扶正，反会助邪的病证。</a></li>
-<li class="toc-item"><a href="#p118" class="toc-link">应用时，还应分清二者的主次。正虚为主者，以扶正为主，兼顾</a></li>
-<li class="toc-item"><a href="#p120" class="toc-link">酌加补阳药，即所谓&quot;阳中求阴&quot;，治疗阳虚证时，则可在补阳剂</a></li>
-<li class="toc-item"><a href="#p122" class="toc-link">季节，天气由凉渐寒，阴长阳消，人体滕理致密，阳气内敛，故</a></li>
-<li class="toc-item"><a href="#p124" class="toc-link">破血、通利等伤胎或有毒之药，均应禁用或慎用。</a></li>
-<li class="toc-item"><a href="#p126" class="toc-link">温解表和辛凉解表两种。</a></li>
-<li class="toc-item"><a href="#p128" class="toc-link">应用范围。对于心力衰竭或极度虚弱的患者，应禁用。</a></li>
-<li class="toc-item"><a href="#p130" class="toc-link">的一种治疗方法。可用于邪在肠胃而致大便不通，燥屎内结或热</a></li>
-<li class="toc-item"><a href="#p132" class="toc-link">滑肠壁和粪便或促进泻下的作用。适用于病后、产后、年老体弱</a></li>
-<li class="toc-item"><a href="#p134" class="toc-link">使身体机能得到协调，从而增强抗病能力，祛除病邪，恢复健康。</a></li>
-<li class="toc-item"><a href="#p136" class="toc-link">一种急救措施。</a></li>
-<li class="toc-item"><a href="#p138" class="toc-link">火、毒之邪的方法。临床常用于细菌性感染，尤其是革兰氏阳性</a></li>
-<li class="toc-item"><a href="#p140" class="toc-link">水，虫等积聚而成的有形之结渐消缓散的一种治法。包括理气、</a></li>
-<li class="toc-item"><a href="#p142" class="toc-link">改善血液循环与内脏功能的作用。临床上多用于治疗月经病、慢</a></li>
-<li class="toc-item"><a href="#p144" class="toc-link">除食滞的治法。主要适用于消化不良（呕吐、暖腐气、腹泻）的病</a></li>
-<li class="toc-item"><a href="#p146" class="toc-link">所谓&quot;阴&quot;，包括精、血和津液等。补阴即包括补精、补血和补净</a></li>
-<li class="toc-item"><a href="#p148" class="toc-link">《中医基础理论》下册是《中医基础理论》上册的续编。其内容</a></li>
-<li class="toc-item"><a href="#p150" class="toc-link">Published Along With The</a></li>
-<li class="toc-item"><a href="#p152" class="toc-link">责任编辑 姚勇</a></li>
-<li class="toc-item"><a href="#p153" class="toc-link">英汉对照实用中医文库 实用</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/books/">Books</a><span class="sep">/</span><span>Basic Theory of Traditional Chinese Medicine, Vol. 2</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · English transcript</div>
-      <h1 class="book-title">Basic Theory of Traditional Chinese Medicine, Vol. 2</h1>
-    </header>
-    <section class="pg" id="p000"><h2>Basic Theory</h2>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Basic Theory</a></li>
+        <li><a href="#sec01">实用中医文库</a></li>
+        <li><a href="#sec02">A Practicai Publishing House Of</a></li>
+        <li><a href="#sec03">实用中医文库</a></li>
+        <li><a href="#sec04">The Guiding Committee</a></li>
+        <li><a href="#sec05">《英汉对照实用中医文库》编审指导委员会</a></li>
+        <li><a href="#sec06">The Editing And Translating</a></li>
+        <li><a href="#sec07">《英汉对照实用中医文库》编译委员会</a></li>
+        <li><a href="#sec08">特邀外籍审校人员</a></li>
+        <li><a href="#sec09">为扩大中医学在国际上的影响，促进中外医学学术交流，适</a></li>
+        <li><a href="#sec10">大学英语教研室主任卢承志教授，山东大学外文系黄嘉德教授，</a></li>
+        <li><a href="#sec11">Contents</a></li>
+        <li><a href="#sec12">七情与内脏的关系 ..29</a></li>
+        <li><a href="#sec13">邪气侵装是发病的重要条件 ·49</a></li>
+        <li><a href="#sec14">因时、因地、因人制宜 ..99</a></li>
+        <li><a href="#sec15">中医基础理论（下册）</a></li>
+        <li><a href="#sec16">Pathogenic Factors</a></li>
+        <li><a href="#sec17">什么是病因？病因是指导致疾病发生的各种原因，主要有六</a></li>
+        <li><a href="#sec18">尽。&amp;quot;宋代陈无择又引申《金匮要略》&amp;quot;千般难，不越三条&amp;quot;之意，</a></li>
+        <li><a href="#sec19">的六气一般并不使人致病。如气候变化异常，六气太过或不及，</a></li>
+        <li><a href="#sec20">生物（细菌、病毒等）、物理、化学等多种致病因素作用于人体所</a></li>
+        <li><a href="#sec21">如风痹，其关节疼痛呈游走性；数变，是指风邪致病发病迅速，</a></li>
+        <li><a href="#sec22">伤人体阳气。如寒邪袭表，卫阳被遏，可见恶寒；寒邪直中脾胃，</a></li>
+        <li><a href="#sec23">汗出过多则伤津，出现口渴喜饮、唇干舌燥、尿赤短少等。在大</a></li>
+        <li><a href="#sec24">脓血粘液、小便混浊、白带过多及脓水移浊等。</a></li>
+        <li><a href="#sec25">燥为秋季的主气。此时气候干燥，水分亏乏，故多燥病。燥</a></li>
+        <li><a href="#sec26">火与温热，虽性质相同，但有区别。温与热均指病邪而言，</a></li>
+        <li><a href="#sec27">等津伤症状。火邪最能损伤人体的正气，故火邪致病，还可兼见</a></li>
+        <li><a href="#sec28">&amp;quot;疫毒&amp;quot;、&amp;quot;庆气&amp;quot;、&amp;quot;异气&amp;quot;、&amp;quot;乖庆之气&amp;quot;等名称。</a></li>
+        <li><a href="#sec29">第三节寄生虫</a></li>
+        <li><a href="#sec30">第四节七情内伤</a></li>
+        <li><a href="#sec31">2.七情致病的特点</a></li>
+        <li><a href="#sec32">气虚则悲，实则笑不休&amp;quot;</a></li>
+        <li><a href="#sec33">超过了正常的消化能力，也会因食积中焦而发病，表现为院腹胀</a></li>
+        <li><a href="#sec34">不，胃气乃厚，味过于辛，筋脉沮弛，精神乃央。&amp;quot;此外，脚气</a></li>
+        <li><a href="#sec35">筋骨柔脆，脾胃呆滞，表现为精神不振，食少乏力，动则气短、</a></li>
+        <li><a href="#sec36">痰饮是水液代谢障碍所形成的病理产物。中医将其较稠浊的</a></li>
+        <li><a href="#sec37">饮邪由于停留的部位不同而表现各异。如《金要略》说：&amp;quot;其</a></li>
+        <li><a href="#sec38">瘀血因其停留部位不同、形成原因各异，而有不同的临床表</a></li>
+        <li><a href="#sec39">Pathogenesis</a></li>
+        <li><a href="#sec40">病机是疾病发生、发展与变化的机理，包括发病原理和基本</a></li>
+        <li><a href="#sec41">邪不可干&amp;quot;。只有在正气相对不足，卫外不固时，邪气才会侵入人</a></li>
+        <li><a href="#sec42">从总体上来说，基本病机不外正邪斗争、阴阳失调和升降失常三</a></li>
+        <li><a href="#sec43">争激烈，临床表现为反应剧烈的实证。实证多见于外感病的初、</a></li>
+        <li><a href="#sec44">需要指出的是，在一般情况下，疾病的现象与本质是相符的，</a></li>
+        <li><a href="#sec45">正气虚弱或邪气太盛，机体抗病能力日趋低下，不能制止邪气的</a></li>
+        <li><a href="#sec46">病邪侵入人体必从其类，即阳邪侵入人体可形成阳偏胜，阴邪侵</a></li>
+        <li><a href="#sec47">2）阴阳偏衰 阴或阳偏衰，是指&amp;quot;精气夺则虚&amp;quot;的虚证。</a></li>
+        <li><a href="#sec48">3）阴阳互损阴阳互损，是指在阴或阳任何--方虚损到相</a></li>
+        <li><a href="#sec49">如《伤寒论》317条所说&amp;quot;少阴下利，里寒外热，手足厥逆，脉微欲</a></li>
+        <li><a href="#sec50">热久留，大量煎灼阴液，或因误治等其他因素大量损耗阴液所致。</a></li>
+        <li><a href="#sec51">肾不纳气，则呼多吸少、气短息促。六腑以通降为顺，若胆气上</a></li>
+        <li><a href="#sec52">枢纽。脾胃升降正常，出入有序，则能维持升清降浊、营养全身</a></li>
+        <li><a href="#sec53">Prevention</a></li>
+        <li><a href="#sec54">预防，就是采取一定的措施，防止疾病发生和发展。</a></li>
+        <li><a href="#sec55">者，正气盛，体质弱者，正气虚。因此，增强体质是提高正气抗</a></li>
+        <li><a href="#sec56">邪能力，减少或防止疾病的发生。如汉代医学家华佗创造的&amp;quot;五</a></li>
+        <li><a href="#sec57">天花，可谓世界免疫学的先驱。近代，中国医务人员除采用传统</a></li>
+        <li><a href="#sec58">应争取早期诊断、早期治疗，以防止疾病的发展与传变。如《素</a></li>
+        <li><a href="#sec59">Treatment</a></li>
+        <li><a href="#sec60">所谓治则，即治疗疾病的法则。治则与治法不同。治则是用</a></li>
+        <li><a href="#sec61">（1）正治所谓正治，是指逆其证候性质而治的一种常规治</a></li>
+        <li><a href="#sec62">克）主之&amp;quot;，就是热因热用的范例。</a></li>
+        <li><a href="#sec63">加少量寒凉药，或温热剂用冷服法，在寒凉剂中，酌加少量温</a></li>
+        <li><a href="#sec64">偏瘫为标。治疗可采用益气、活血、化瘀的补阳还五汤（生黄芪</a></li>
+        <li><a href="#sec65">复健康。扶正适用于各种正气虚为主，而邪气也不盛的虚证。应</a></li>
+        <li><a href="#sec66">待祛邪，正气虽虚，尚可耐攻；若兼以扶正，反会助邪的病证。</a></li>
+        <li><a href="#sec67">应用时，还应分清二者的主次。正虚为主者，以扶正为主，兼顾</a></li>
+        <li><a href="#sec68">酌加补阳药，即所谓&amp;quot;阳中求阴&amp;quot;，治疗阳虚证时，则可在补阳剂</a></li>
+        <li><a href="#sec69">季节，天气由凉渐寒，阴长阳消，人体滕理致密，阳气内敛，故</a></li>
+        <li><a href="#sec70">破血、通利等伤胎或有毒之药，均应禁用或慎用。</a></li>
+        <li><a href="#sec71">温解表和辛凉解表两种。</a></li>
+        <li><a href="#sec72">应用范围。对于心力衰竭或极度虚弱的患者，应禁用。</a></li>
+        <li><a href="#sec73">的一种治疗方法。可用于邪在肠胃而致大便不通，燥屎内结或热</a></li>
+        <li><a href="#sec74">滑肠壁和粪便或促进泻下的作用。适用于病后、产后、年老体弱</a></li>
+        <li><a href="#sec75">使身体机能得到协调，从而增强抗病能力，祛除病邪，恢复健康。</a></li>
+        <li><a href="#sec76">一种急救措施。</a></li>
+        <li><a href="#sec77">火、毒之邪的方法。临床常用于细菌性感染，尤其是革兰氏阳性</a></li>
+        <li><a href="#sec78">水，虫等积聚而成的有形之结渐消缓散的一种治法。包括理气、</a></li>
+        <li><a href="#sec79">改善血液循环与内脏功能的作用。临床上多用于治疗月经病、慢</a></li>
+        <li><a href="#sec80">除食滞的治法。主要适用于消化不良（呕吐、暖腐气、腹泻）的病</a></li>
+        <li><a href="#sec81">所谓&amp;quot;阴&amp;quot;，包括精、血和津液等。补阴即包括补精、补血和补净</a></li>
+        <li><a href="#sec82">《中医基础理论》下册是《中医基础理论》上册的续编。其内容</a></li>
+        <li><a href="#sec83">Published Along With The</a></li>
+        <li><a href="#sec84">责任编辑 姚勇</a></li>
+        <li><a href="#sec85">英汉对照实用中医文库 实用</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>Basic Theory of Traditional Chinese Medicine, Vol. 2</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p000"></span>
+<h2>Basic Theory</h2>
 <h2>Of Traditional</h2>
 <h2>Chinese Medicine</h2>
 <p>()</p>
@@ -161,7 +520,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>Sha Ng Hai University Of</h2>
 <h2>Traditional</h2>
 <h2>Chinese Medicine</h2>
-<h2>上海中医药大学出版社</h2></section><section class="pg" id="p001"><p>A Practical English Chi nes e</p>
+<h2>上海中医药大学出版社</h2></section>
+
+<section id="sec01" class="pg">
+<span id="p001"></span>
+<p>A Practical English Chi nes e</p>
 <p>Library of Traditional</p>
 <p>Chinese Medicine</p>
 <p>英汉对照</p>
@@ -170,7 +533,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Zhang En gin</p>
 <h2>主编引 张恩勤</h2></section><section class="pg" id="p002"><p>Digitized bythe Internet Archive</p>
 <p>in2012</p>
-<p>http://archive. or g/details/basictheoryoftraoolanh</p></section><section class="pg" id="p003"><h2>A Practicai Publishing House Of</h2>
+<p>http://archive. or g/details/basictheoryoftraoolanh</p></section>
+
+<section id="sec02" class="pg">
+<span id="p003"></span>
+<h2>A Practicai Publishing House Of</h2>
 <h2>Sha Ng Hai University Of</h2>
 <h2>English Chi Nes E</h2>
 <h2>Traditional</h2>
@@ -188,7 +555,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Translated Hu Zhaoyun</p>
 <p>Han Yufang</p>
 <p>Revised by ZhangQingling</p>
-<p>Zhang Enqin</p></section><section class="pg" id="p004"><p>英汉对照</p>
+<p>Zhang Enqin</p></section>
+
+<section id="sec03" class="pg">
+<span id="p004"></span>
+<p>英汉对照</p>
 <h2>实用中医文库</h2>
 <p>主编张恩勤</p>
 <p>基础理论</p>
@@ -197,7 +568,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>王敏</p>
 <h2>翻译 胡兆云草 韩毓防</h2>
 <h2>审校 张庆龄 张恩勤</h2>
-<h2>上海中医药大学出版社</h2></section><section class="pg" id="p005"><h2>The Guiding Committee</h2>
+<h2>上海中医药大学出版社</h2></section>
+
+<section id="sec04" class="pg">
+<span id="p005"></span>
+<h2>The Guiding Committee</h2>
 <h2>Of The Library</h2>
 <p>Director Hu Xi ming</p>
 <p>Deputy Directors Wang Lei Yan Shi yun</p>
@@ -221,7 +596,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Associate Editors in Chi ef of English (in the order of the number of</p>
 <p>Chinese strokes in the surnames)</p>
 <p>Yu Wen ping Li Yulin Wang Zhikui Li Yan fu</p>
-<p>Xiao Gong Zhang Minglun Ho u Ming jun Wen Hongrui</p></section><section class="pg" id="p006"><h2>《英汉对照实用中医文库》编审指导委员会</h2>
+<p>Xiao Gong Zhang Minglun Ho u Ming jun Wen Hongrui</p></section>
+
+<section id="sec05" class="pg">
+<span id="p006"></span>
+<h2>《英汉对照实用中医文库》编审指导委员会</h2>
 <p>主任胡熙明</p>
 <h2>副主任 王镭严世芸</h2>
 <h2>委员 （以姓氏笔划为序）</h2>
@@ -245,7 +624,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>李玉麟 李延福</h2>
 <h2>英文 于文平 王治奎</h2>
 <h2>侯明君 温洪瑞</h2>
-<p>共张明纶</p></section><section class="pg" id="p007"><h2>The Editing And Translating</h2>
+<p>共张明纶</p></section>
+
+<section id="sec06" class="pg">
+<span id="p007"></span>
+<h2>The Editing And Translating</h2>
 <h2>Committee Of The Library</h2>
 <p>Director2 Zo u Ji long</p>
 <p>Deputy Directors (in the order of the number of Chinese strokes in the</p>
@@ -275,7 +658,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Cui Ji pin</p>
 <p>Cao Zhiqun Dong Xinhua Dong Xuemei</p>
 <p>Han Yan Han Yufang Xie Guangfa</p>
-<p>Director ofthe Commit t ce Ofice Tai Shuren</p></section><section class="pg" id="p008"><h2>《英汉对照实用中医文库》编译委员会</h2>
+<p>Director ofthe Commit t ce Ofice Tai Shuren</p></section>
+
+<section id="sec07" class="pg">
+<span id="p008"></span>
+<h2>《英汉对照实用中医文库》编译委员会</h2>
 <p>E邹积隆</p>
 <p>主任</p>
 <h2>（以姓氏笔划为序） 副主任</h2>
@@ -308,7 +695,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>高洪仁 皋永利</h2>
 <h2>梁舒群 阎平崔洪江 崔继聘 曹志群</h2>
 <h2>董新华 董雪梅韩燕 韩毓肪 解广法</h2>
-<h2>办公室主任 太树人</h2></section><section class="pg" id="p009"><p>Specially Invited International Editors</p>
+<h2>办公室主任 太树人</h2></section>
+
+<section id="sec08" class="pg">
+<span id="p009"></span>
+<p>Specially Invited International Editors</p>
 <p>John Black</p>
 <p>Beth Hocks Howard G. Adams</p>
 <p>John Heater</p>
@@ -408,7 +799,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Chi nes e Library of Traditional Chinese</p>
 <p>Medicine, Director r of the Advanced</p>
 <p>Studies Department of Sha n dong TCM</p>
-<p>College</p></section><section class="pg" id="p014"><p>前言</p>
+<p>College</p></section>
+
+<section id="sec09" class="pg">
+<span id="p014"></span>
+<p>前言</p>
 <h2>为扩大中医学在国际上的影响，促进中外医学学术交流，适</h2>
 <h2>应国外日趋发展的&quot;中医热&quot;形势，使传统的中医学走向世界，造</h2>
 <h2>福人类，我们编写了这套《英汉对照实用中医文库》。在国内，这</h2>
@@ -433,7 +828,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>为确保文库质量，各分册中文稿还先后承蒙山东中医学院周</h2>
 <h2>凤梧教授、李克绍教授、徐国仟教授、张珍玉教授，南京中医学</h2>
 <h2>院邱茂良教授，山东中医学院附属医院院长吕同杰教授等审阅：</h2>
-<h2>英文稿先后承蒙北京医科大学英语教研室黄孝楷教授，山东医科</h2></section><section class="pg" id="p015"><h2>大学英语教研室主任卢承志教授，山东大学外文系黄嘉德教授，</h2>
+<h2>英文稿先后承蒙北京医科大学英语教研室黄孝楷教授，山东医科</h2></section>
+
+<section id="sec10" class="pg">
+<span id="p015"></span>
+<h2>大学英语教研室主任卢承志教授，山东大学外文系黄嘉德教授，</h2>
 <h2>山东医科大学药理教研室黄文兴教授、妇产科教研室邹玲教授以</h2>
 <p>及澳大利亚籍教师 Beth Hocks 女士和美籍教师 Howard G.</p>
 <p>Adams先生等审阅。</p>
@@ -453,7 +852,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>敬希国内外同道指正。</h2>
 <h2>愿中医流传世界，求普天下人健康长寿。</h2>
 <p>主编张恩勤</p>
-<p>1988年5月20日</p></section><section class="pg" id="p016"><h2>Contents</h2>
+<p>1988年5月20日</p></section>
+
+<section id="sec11" class="pg">
+<span id="p016"></span>
+<h2>Contents</h2>
 <p>目录</p>
 <p>Chapter One Pathogenic Factors</p>
 <p>第一章病因…</p>
@@ -479,7 +882,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>第三节寄生虫</h2>
 <p>Section 4 Internal Injury by Seven Emotions........28</p>
 <h2>第四节七情内伤 29</h2>
-<p>1. Relationship le tween Seven Emotions and the</p></section><section class="pg" id="p017"><p>Viscera 28</p>
+<p>1. Relationship le tween Seven Emotions and the</p></section>
+
+<section id="sec12" class="pg">
+<span id="p017"></span>
+<p>Viscera 28</p>
 <h2>七情与内脏的关系 ..29</h2>
 <p>2. Pathogenic Characteristics of Seven Emotions ...30</p>
 <h2>七情致病的特点 ...31</h2>
@@ -508,7 +915,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Cause of the Occurrence of a Disease ..46</p>
 <h2>正气不足是发病的内在根据 .47</h2>
 <p>2. The Invasion of Pathogenic Factors Is External</p>
-<p>Cause of the Occurrence of a Disease ..48</p></section><section class="pg" id="p018"><h2>邪气侵装是发病的重要条件</h2>
+<p>Cause of the Occurrence of a Disease ..48</p></section>
+
+<section id="sec13" class="pg">
+<span id="p018"></span>
+<h2>邪气侵装是发病的重要条件</h2>
 <p>Section 2 Basic Pathogenesis .48</p>
 <h2>第二节基本病机 .49</h2>
 <p>l. Conflict between Zheng and Xie .50</p>
@@ -534,7 +945,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Chapter Four Treatment .82</p>
 <p>第四章治疗 .83</p>
 <p>Section l Principles of Treatment 82</p>
-<p>第一节治则 ..83</p></section><section class="pg" id="p019"><p>l. Searching for the Primary Cause of a Disease in</p>
+<p>第一节治则 ..83</p></section>
+
+<section id="sec14" class="pg">
+<span id="p019"></span>
+<p>l. Searching for the Primary Cause of a Disease in</p>
 <p>Treatment ..82</p>
 <p>..83 治病求本</p>
 <p>2. Strengthening the Body Resistance and Eli mi na t</p>
@@ -571,14 +986,26 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>补法 .123</p>
 <p>Editor&#x27;s Notes</p>
 <p>126</p>
-<h2>编写说明</h2></section><section class="pg" id="p022"><p>Basic Theory of Traditional Chinese</p>
+<h2>编写说明</h2></section>
+
+<section id="sec15" class="pg">
+<span id="p022"></span>
+<p>Basic Theory of Traditional Chinese</p>
 <p>Medicine (II)</p>
-<h2>中医基础理论（下册）</h2></section><section class="pg" id="p023"><p>Chapter One</p>
+<h2>中医基础理论（下册）</h2></section>
+
+<section id="sec16" class="pg">
+<span id="p023"></span>
+<p>Chapter One</p>
 <h2>Pathogenic Factors</h2>
 <p>What are pathogenic factors ? Pathogenic factors refer to the various kinds of factors that cause diseases, mainly including six exogenous factors, epidemic pathogenic factors, internal injury by seven emotions, improper diet, maladjustment of work and rest, and surgical trauma.</p>
 <p>In recognizing pathogenic factors, besides understanding the objective conditions which may be pathogenic factors, traditional Chinese medicine is mainly based on the clinical manifestations of diseases, and inquires into the pathogenic factors through analyzing the symptoms and signs of diseases, thus providing a basis for treatment and medication. This method is called &quot;determination of pathogenic factors based on the differentiation of symptoms and signs&quot;.</p>
 <p>The classification of pathogenic factors varies among doctors of different times. For instance, The Yellow Emperor&#x27;s Canon of Internal Medicine(722-221 B. C.) classifies them, for the first time, into two categories: yin and yang. Up to the Eastern Han Dynasty (25-220 A. D.), Zhang Zhongjing pointed out in his Synopsis of the Golden Chamber (219 A. D.) that the pathogenic factors of diseases could be classified into three categories. He said: &quot;Though there are various kinds of diseases, they can not go beyond three categories: in the first category, pathogenic factors affect the channels and collaterals which further involve the viscera to cause internal diseases; in the second category, the four limbs and nine orifices are affect-</p>
-<p>mitted to each other resulting in blocked passage: diseases so</p></section><section class="pg" id="p024"><p>第一章</p>
+<p>mitted to each other resulting in blocked passage: diseases so</p></section>
+
+<section id="sec17" class="pg">
+<span id="p024"></span>
+<p>第一章</p>
 <p>病因</p>
 <h2>什么是病因？病因是指导致疾病发生的各种原因，主要有六</h2>
 <h2>淫、气、七情内伤、饮食不节、劳逸失度以及外伤等。</h2>
@@ -592,7 +1019,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>皮肤所中也，三者，房室、金刃、虫兽所伤。以此详之，病由都</h2></section><section class="pg" id="p025"><p>formed are through the external skin; the third category includes diseases caused by intemperance in sexual life, incised wounds and bites and stings by animals and insects. Under the three categories, the causes of all diseases can be covered without exception.&quot;&quot;From &quot;though there are various kinds of diseases, they can not go beyond three categories&#x27; in Synopsis of the Golden Chamber, Chen Wuze of the Song Dynasty (960-1279) put forward the &quot;Triple Etiology Doctrine&quot;&quot; which classifies three categories of pathogenic factors, i. e. external invasions by six exogenous factors are exopathic factors; internal injury by the emotional upset are endopathic factors; improper diet as well as traumatic injuries including injuries from falls, fractures, contusion and sprain, incised wounds and injuries by insects and animals are non-endo-exopathic factors. I think that various pathogenic factors are all exopathic factors, whereas the relative asthenia of the vital qi of the human body is the endopathic factor. Under general circumstances, exopathic factors become operative through endopathic factors. Now a few common pathogenic factors are dealt with respectively as follows:</p>
 <p>Section1</p>
 <p>Six Exogenous Factors</p>
-<p>Six exogenous factors is a general term for the six climatic conditions in excess as pathogenic factors: wind, cold, summer heat, dampness, dryness and fire. In normal condition, they are actually six normal climatic variations of nature, and are therefore also called &quot;&quot;six natural factors&quot;. Human beings live in nature and have a certain adaptability to various climatic variations, so the six normal natural factors can not make people contract diseases, But if the climatic variations are too unusual,</p></section><section class="pg" id="p026"><h2>尽。&quot;宋代陈无择又引申《金匮要略》&quot;千般难，不越三条&quot;之意，</h2>
+<p>Six exogenous factors is a general term for the six climatic conditions in excess as pathogenic factors: wind, cold, summer heat, dampness, dryness and fire. In normal condition, they are actually six normal climatic variations of nature, and are therefore also called &quot;&quot;six natural factors&quot;. Human beings live in nature and have a certain adaptability to various climatic variations, so the six normal natural factors can not make people contract diseases, But if the climatic variations are too unusual,</p></section>
+
+<section id="sec18" class="pg">
+<span id="p026"></span>
+<h2>尽。&quot;宋代陈无择又引申《金匮要略》&quot;千般难，不越三条&quot;之意，</h2>
 <h2>提出了&quot;三因学说&quot;，即六淫外袭为外因，情志内伤为内因，饮食饥</h2>
 <h2>饱以及跌仆、金刃、虫兽所伤为不内外因。笔者认为，各种致病</h2>
 <h2>因素均属外因，而人体正气的相对虚弱才是内因。在一般情况下，</h2>
@@ -605,7 +1036,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>@ They are usually related to seasonal climate and residential environments to cause diseases. For instance, spring sees more diseases due to wind; summer, more due to summer heat; autumn, more due to dryness; and winter, more due to cold. Living long in damp circumstances it is easy to be affected by dampness, while in high temperature circumstances it is easy to get sunstroke.</p>
 <p>② The six exogenous factors can either attack the body separately or simultaneously with two or more in combination to cause diseases. For example, wind cold type of common cold and wind cold dampness type of arthralgia.</p>
 <p>③ Under certain conditions the six exogenous factors can inter transform after invading the human body. For instance, pathogenic cold may transform into heat after entering the body, while in the course of time summer heat and dampness may transform into dryness impairing yin, @ The six exogenous factors cause some diseases mostly by invading the body through the skin or the mouth and nose or both, therefore diseases so caused are called &quot;exogenous diseases&quot;.</p>
-<p>From the viewpoint of modern medicine, besides climatic factors, diseases due to six exogenous factors also include the pathological changes caused by the effect of biological (bacteria,</p></section><section class="pg" id="p028"><h2>的六气一般并不使人致病。如气候变化异常，六气太过或不及，</h2>
+<p>From the viewpoint of modern medicine, besides climatic factors, diseases due to six exogenous factors also include the pathological changes caused by the effect of biological (bacteria,</p></section>
+
+<section id="sec19" class="pg">
+<span id="p028"></span>
+<h2>的六气一般并不使人致病。如气候变化异常，六气太过或不及，</h2>
 <h2>或非其时而有其气，以及气候变化过于急骤，人体正气虚弱，不</h2>
 <h2>能适应自然界的气候变化，六气才会侵犯人体而发病。这种情况</h2>
 <h2>下的六气，便称为&quot;六淫&quot;。淫，有太过之意。由于六淫是导致疾病</h2>
@@ -625,7 +1060,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>1. Wind Wind prevails in spring but there is wind in all the four seasons. Though disea es due to pathogenic wind occur frequently in spring they are not limited to spring only. Pathogenic wind is differentiated into exopathic wind and endogenous wind. Exopathic wind results mostly from the excess of pathogenic wind and is a very important pathogenic factor in diseases produced by exo pathogens. Endogenous wind is mostly caused by the functional derangement of the liver. So the chapter &quot;The Most Important Discussion&quot;&#x27; in Plain Ques-</p>
 <p>thogenic wind are caused by the disorder of the liver.&quot;, The nature and pathogenic characteristics of pathogenic wind are as follows:</p>
 <p>1) Pathogenic wind is apt to move and tends to rise, disperse, move upward and outward, and is thus of yang nature. When pathogenic wind attacks, it tends to break the barrier of skin, causing such symptoms as aversion to wind and perspiration. Pathogenic wind usually attacks the upper part of the body (head and face), skin and muscle, causing headache, dizziness, deviation of the eye and mouth and the like.</p>
-<p>2) Pathogenic wind is apt to migrate and change. By &quot;migrate&quot; it means when pathogenic wind attacks the body,</p></section><section class="pg" id="p030"><h2>生物（细菌、病毒等）、物理、化学等多种致病因素作用于人体所</h2>
+<p>2) Pathogenic wind is apt to migrate and change. By &quot;migrate&quot; it means when pathogenic wind attacks the body,</p></section>
+
+<section id="sec20" class="pg">
+<span id="p030"></span>
+<h2>生物（细菌、病毒等）、物理、化学等多种致病因素作用于人体所</h2>
 <h2>引起的病理变化。</h2>
 <h2>此外，尚有&quot;内生五邪&quot;之说。是指由于脏功能失调所引起</h2>
 <h2>的类似风、寒、湿、燥、火的证候。为便于区别，将其分别称之</h2>
@@ -646,7 +1085,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2. Cold Cold prevails in winter and exists also in other seasons. Pathogenic cold is differentiated into exopathic cold and endogenous cold. Exopathic cold refers to the environmental pathogenic cold; endogenous cold refers to the pathological manifestation of the deficiency of yang qi and loss of warmness. The</p>
 <p>deficiency and internal cold is liable to be affected by exopathic cold; and if exopathic cold enters the body and accumulates in the course of time without dispersion, it will impair yang qi and result in endogenous cold. The nature and pathogenic characteristics of pathogenic cold are as follows:</p>
 <p>1) Pathogenic cold is a yin path gen and tends to impair yang qi. Cold is of yin nature, so when pathogenic cold incurs</p>
-<p>10</p></section><section class="pg" id="p032"><h2>如风痹，其关节疼痛呈游走性；数变，是指风邪致病发病迅速，</h2>
+<p>10</p></section>
+
+<section id="sec21" class="pg">
+<span id="p032"></span>
+<h2>如风痹，其关节疼痛呈游走性；数变，是指风邪致病发病迅速，</h2>
 <h2>变幻无常，如中风患者，多卒然昏倒，不省人事；尊麻疹患者，皮</h2>
 <h2>肤瘙痒，发无定处，此起彼伏。</h2>
 <h2>3）风性主动。是指风邪为患，其症状，体征具有动摇不定</h2>
@@ -668,7 +1111,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>3. Summer heat Summer heat prevails in summer. It is transformed from fire and heat. Summer heat is a pure exo pathogen, Itsnature and pathogenic characteristics are as follows:</p>
 <p>1) Summer heat is a yang pathogen and is scorching hot in nature. Summer heat is transformed from summer&#x27;s scorching heat which is of yang nature, and is thus a yang pathogen. When pathogenic summer heat attacks the body, there tends to appear such symptoms as high fever, upset, flushed face and full rapid pulse.</p>
 <p>2) Summer heat tends to rise and disperse. It exhausts qi and impairs the body fluid. Pathogenic summer heat usually</p>
-<p>12</p></section><section class="pg" id="p034"><h2>伤人体阳气。如寒邪袭表，卫阳被遏，可见恶寒；寒邪直中脾胃，</h2>
+<p>12</p></section>
+
+<section id="sec22" class="pg">
+<span id="p034"></span>
+<h2>伤人体阳气。如寒邪袭表，卫阳被遏，可见恶寒；寒邪直中脾胃，</h2>
 <h2>中阳受损，可见胱腹冷痛。</h2>
 <h2>2）寒性凝滞。凝滞，即凝结、阻滞不通之意。寒邪伤人，可</h2>
 <h2>使经脉气血凝滞，运行不畅而出现各种疼痛。</h2>
@@ -688,7 +1135,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>4. Dampness</p>
 <p>Dampness prevails in late summer. J Late summer is a time when summer is changing into autumn, a season when dampness is the most exuberant in the year, so in this season it is easy to contract diseases due to dampness, which may also incur diseases in other seasons. Path age nic dampness is differentiated into exopathic dampness &#x27; and endogenous dampExopathic dampness is usually due to damp climate, ness. wading in water or being caught in a rain, as well as damp dwelling environments, Endogenous dampness is usually caused by the dysfunction of the spleen in transportation leading to the impairment of water metabolism. Exopathic and endogenous dampness can influence each other and are interdependent. The nature and pathogenic characteristics of pathogenic dampness are as follows:</p>
 <p>1) Dampness is heavy and turbid in nature. Heaviness in a damp disease is usually marked by heavy sensations as lassitude, heavy sensation of the head and body, and aching and sluggishness of the limbs. As turbidness is concerned, a damp disease is usually marked by turbid excreta and secreta such as</p>
-<p>14</p></section><section class="pg" id="p036"><h2>汗出过多则伤津，出现口渴喜饮、唇干舌燥、尿赤短少等。在大</h2>
+<p>14</p></section>
+
+<section id="sec23" class="pg">
+<span id="p036"></span>
+<h2>汗出过多则伤津，出现口渴喜饮、唇干舌燥、尿赤短少等。在大</h2>
 <h2>量汗出的同时，往往气随津泄而致气虚，出现气短乏力，甚则突</h2>
 <h2>然昏倒，不省人事。</h2>
 <h2>3）暑多换湿。暑季酷热多雨，故暑邪为病，多挟湿邪。临</h2>
@@ -707,7 +1158,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Dampness is viscous and lingering in nature, which is manifested in two aspects: in one aspect, the symptoms of a damp disease are usually of slimy and greasy feature, for instance, slimy and greasy fur, mucous dificult stool and difficult urination; in the other aspect, a damp disease has a long course and is often lingering and difficult to cure, as can be seen in damp arthralgia, eczema and damp warm syndrome.</p>
 <p>3) Dampness tends to go downward. The symptoms of a damp disease are mostly found in the lower part of the body, such as leuk orr hagia, stranguria with turbid urine, diarrhea and dysentery.</p>
 <p>4) Dampness is a yin pathogen which tends to obstruct the functional activities of qi and impair yang qi. Dampness is heavy and turbid, and is similar to water in nature, thus is defined as a yin pathogen. When pathogenic dampness attacks, it is most liable to lead to the disorder of the ascending or descending ability and digestive functions of qi. For example, when there is retention of dampness in the epigastrium and impediment in the functional activities of qi, there will appear distress in the chest; when dampness blocks the spleen and stomach and cause dysfunction of the spleen in water circulation as well as the disturbance of the spleen qi to ascend and the stomach qi to descend, there will appear anorexia, epigastric distress, nausea, vomiting and loose stool. As dampness is a yin pathogen which tends to impair yang qi, when it disturbs the spleen, the spleen yang will be insufficient, then there will be dysfunction of the spleen in fluid transportation and transformation and retention of dampness within the body, resulting in diarrhea. edema, difficult urination and the like.</p>
-<p>16</p></section><section class="pg" id="p038"><h2>脓血粘液、小便混浊、白带过多及脓水移浊等。</h2>
+<p>16</p></section>
+
+<section id="sec24" class="pg">
+<span id="p038"></span>
+<h2>脓血粘液、小便混浊、白带过多及脓水移浊等。</h2>
 <h2>2）湿性粘滞。粘，即粘腻，滞，即停滞。湿性粘滞主要表现</h2>
 <h2>在两方面：一是湿病症状多粘腻不爽，如舌苔粘腻、大便粘滞不</h2>
 <h2>爽、小便涩滞不畅等，二是湿邪为病，病程较长，缠绵难愈，如</h2>
@@ -724,7 +1179,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>1) Pathogenic dryness is dry and tends to impair the body fluid. When pathogenic dryness attacks, various forms of</p>
 <p>dryness are most likely to appear, such as dryness in the mouth and nose, dryness of the throat, thirst, dryness of the skin and even rhagas, oliguria and constipation.</p>
 <p>2) Pathogenic dryness tends to impair the lung. The lung is a delicate organ which prefers moisture to dryness and is vulnerable to the attack of dryness. The lung is related to the skin and hair o. the body surface and has its specific orifice in the nose, so pathogenic dryness usually attacks through the mouth and nose and is most liable to impair the lung, causing such symptoms as dryness of the nose and throat, dry cough with little phlegm, dyspnea or asthma and chest pain.</p>
-<p>18</p></section><section class="pg" id="p040"><p>5.燥</p>
+<p>18</p></section>
+
+<section id="sec25" class="pg">
+<span id="p040"></span>
+<p>5.燥</p>
 <h2>燥为秋季的主气。此时气候干燥，水分亏乏，故多燥病。燥</h2>
 <h2>邪有外燥、内燥之分。外燥多因感受外界燥邪而发病，其中又有</h2>
 <h2>温燥、凉燥之别。温燥多见于初秋，由夏之余热与燥邪相合而成；</h2>
@@ -742,7 +1201,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>1) Fire tends to burn and scorch. When pathogenic fire causes diseases, there often appear such symptoms as high fever, fu shed face, blood shot eyes, aversion to heat, desire for the cool, constipation, dark scanty urine and red tongue with yellow fur.</p>
 <p>2) Fire tends to flare up. Symptoms caused by pathogenic fire tend to appear on the upper part of the body, for instance, on the head and face. For example, when heart fire flares up, reddened tongue tip tends to appear; when stomach fire exuberates and fares up, painful swollen gum may appear; when liver fire flares up, congested swollen eyes with pain may occur.</p>
 <p>3) Fire tends to impair the body fluid and consume qi. When pathogenic fire attacks, it tends to force the body fluid to leak out and scorch the fu id, impairing and consuming yin fluid, so it is often accompanied with symptoms of fluid impair-</p>
-<p>20</p></section><section class="pg" id="p042"><p>6.火</p>
+<p>20</p></section>
+
+<section id="sec26" class="pg">
+<span id="p042"></span>
+<p>6.火</p>
 <h2>火与温热，虽性质相同，但有区别。温与热均指病邪而言，</h2>
 <h2>二者仅程度不同，并无本质差异，故中医常温热并称。火有两种</h2>
 <h2>含义：一是指人体的正气，《黄帝内经》称之为&quot;少火&quot;，二是指病</h2>
@@ -765,7 +1228,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Section 2</p>
 <p>Epidemic Pathogenic Factor</p>
 <p>Epidemic pathogenic factor is a kind of pathogen of strong infectivity. In traditional Chinese medical literature, it is also</p>
-<p>22</p></section><section class="pg" id="p044"><h2>等津伤症状。火邪最能损伤人体的正气，故火邪致病，还可兼见</h2>
+<p>22</p></section>
+
+<section id="sec27" class="pg">
+<span id="p044"></span>
+<h2>等津伤症状。火邪最能损伤人体的正气，故火邪致病，还可兼见</h2>
 <h2>少气懒言、肢体乏倦等气虚症状。</h2>
 <h2>4）火易生风动血。火邪侵入人体，往往灼伤肝阴，使筋脉</h2>
 <h2>失去养，而致肝风内动，出现高热、抽搐、目晴上视、颈项强</h2>
@@ -784,7 +1251,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>The attack of epidemic pathogenic factor is usually related to unusual climate such as long droughts, floods, extreme heat as well as air pol ut ion, water or food contamination and failure of timely effective prevention and isolation.</p>
 <p>People are often immunized after contracting epidemic diseases; in some cases life long immunity may be acquired. According to this fact, traditional Chinese medicine developed the method of &quot;human variolation as early as around the lOth century A. D., thus became the founder of artificial immunity in the world. At present, Chinese health organizations at various levels are widely practising artificial immunity to prevent diseases and have effected remarkable reduction of the morbidity of infectious diseases among which such fulminating infectious diseases as smallpox, cholera and plague were eradicated long before.</p>
 <p>Clinical practice shows that traditional Chinese medicine and medicinal herbs have a satisfactory therapeutic effect on mayinfectious di seas cs such as influenza, bacillary dysentery and infectious hepatitis, and have been highly evaluated.</p>
-<p>24</p></section><section class="pg" id="p046"><h2>&quot;疫毒&quot;、&quot;庆气&quot;、&quot;异气&quot;、&quot;乖庆之气&quot;等名称。</h2>
+<p>24</p></section>
+
+<section id="sec28" class="pg">
+<span id="p046"></span>
+<h2>&quot;疫毒&quot;、&quot;庆气&quot;、&quot;异气&quot;、&quot;乖庆之气&quot;等名称。</h2>
 <h2>气是一类人的感官所不能直接观察到的微小致病物质（病</h2>
 <h2>原微生物），且多由口鼻侵入人体。气的发现，是中医病因学</h2>
 <h2>的重大突破。气致病，具有发病急骤、病情较重、症状相似、</h2>
@@ -805,7 +1276,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>A long time ago traditional Chinese medicine realized that parasites can cause diseases. For example, the Eastern Han Dynasty physician Zhang Zhongjing discussed &quot;&quot;colic caused by ascaris&quot;(biliary ascariasis)in his Treatise on Febrile Diseases (3rd century A. D.); in the Sui Dynasty, Chao Yuanfang&#x27;s General Treatise on the Etiology and Symptomatology of Diseases (610 A. D.)had already had relatively detailed records of oxyuriasis and taeniasis, holding that the predisposing factor is unhygienic diet, and that taeniasis caused by eating undercooked beef. Traditional Chinese medicine calls schistosomiasis &quot;noxious water disease&quot;, believing it to becaused by drinking contaminated pool water.</p>
 <p>The clinical manifestations of various parasite are different. Ascarides parasitize in the intestinal tract, thus abdominal pains frequently occur: if ascarides run up into the biliary tract, they may cause colic. Patients with ancylostomiasis usually look sallow and emaciated and have paroxia.</p>
 <p>Patients suffering from oxyuriasis often complain about anus and per in ea pruritus, and white minute linear oxyurids can be found instantly in these parts. The symptoms of taeniasis are relatively slight. Patients go to seek medical advice usually because white band sha ped imaginal proglottides are found in their feces. He pato spl en omega ly and impeded circulation of blood caused by schistosomiasis lead to the accumulation and retention of fluid in the abdomen, forming&quot;tympanites&quot;. Chinese medicinal herbs are safe and reliable in treating paras i to ses.</p>
-<p>26</p></section><section class="pg" id="p048"><h2>第三节寄生虫</h2>
+<p>26</p></section>
+
+<section id="sec29" class="pg">
+<span id="p048"></span>
+<h2>第三节寄生虫</h2>
 <h2>中医早已认识到寄生虫能引起疾病，如东汉医家张仲景在</h2>
 <h2>《伤寒论》中就论述了&quot;厥&quot;（胆道虫）的证治。至隋代，在巢元</h2>
 <h2>方的《诸病源候论》中，对虫病、虫病已有较详细的记载，认</h2>
@@ -823,7 +1298,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>l. Relationship between Seven Emotions and</p>
 <p>the Viscera</p>
 <p>Traditional Chinese medicine holds that human mental activities are closely related with the viscera. The Principle of Yin Tang Doctrine and Its Relation with Natural Things or Phenomena&quot;, Chapter 5 in Plain Questions says:&quot;Man has five viscera which may bring on five moods (visceral qi) to produce joy, anger, grief, melancholy and fear&quot;. It also believes that certain viscus is related to certain emotional activity, i. e. the heart is related to joy, liver to anger, spleen to anxiety, the lung to melancholy and the kidney to fear. Only by acting on the corresponding viscus can the environmental emotional stimuli evoke specific emotional response.</p>
-<p>28</p></section><section class="pg" id="p050"><h2>第四节七情内伤</h2>
+<p>28</p></section>
+
+<section id="sec30" class="pg">
+<span id="p050"></span>
+<h2>第四节七情内伤</h2>
 <h2>七情，即喜、怒、忧、思、悲、恐、惊七种情志变化，是人体</h2>
 <h2>对客观事物的不同反映。在一般情况下，属正常精神活动范围，</h2>
 <h2>不会使人致病。但突然、强烈或长期、持久的情志刺激，超过了</h2>
@@ -838,7 +1317,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>29</p></section><section class="pg" id="p051"><p>2. Pathogenic Characteristics of Seven Emotions The seven emotions are different from the six exogenous factors in causing diseases. The six exogenous factors usually invade the body through the skin, mouth and nose, and it is exterior syndrome that mostly appears at the early stage of the onset. However, the seven emotions directly affect the corresponding viscus to bring on diseases, as the chapter The Principle of Yin Yang Doctrine and its Relation with Natural Things or Phenomena&quot;&quot; (Chapter 5) in Plain Questions says:&quot;Anger impairs the liver&quot;, &quot;Joy impairs the heart&quot;,&quot;Anxiety impairs the spleen&quot;, &quot;&quot;Mel an cho &#x27; y impairs the lung&quot;,&quot;Fear impairs the kidney&quot;. As the heart controls mental activities and is the arch governor of the five zang- organs (or the five viscera) and six fu organs (or the six bowels), the chapter Questions about Pathogens of Yawn and Others&quot; (Chapter 28) in Miraculous Pivot says: &quot;Excessive grief, sorrow, worry and melancholy will affect the heart, when the heart is affected, the five zang organs and six fu organs will all be stirred in accordance.&quot;</p>
 <p>The seven emotions mainly affect the functional activities of the visceral qi to impair the viscera, as the chapter Discussion on Etiology and Pathogenesis of Pain&quot; (Chapter 39) in Plain Questions says: &quot;Rage causes adverse upward flow of the liver qi, excessive joy relaxes the heart qi, excessive sorrow leads to the consumption of qi, fear causes the sinking of the kidney qi,... fright interrupts the flow of qi, anxiety causes the stag-</p>
 <p>Emotional stimuli may cause the functional derangement of visceral qi which can lead to changes of emotional moods, as the chapter &quot;Discussion on the Important Basis of Vitality&quot; (Chapter 8) in Miracalous Pivot says: &quot;The deficiency of the live l qi causes fear, whereas the excess of the liver qi will cause</p>
-<p>30</p></section><section class="pg" id="p052"><h2>2.七情致病的特点</h2>
+<p>30</p></section>
+
+<section id="sec31" class="pg">
+<span id="p052"></span>
+<h2>2.七情致病的特点</h2>
 <h2>七情致病与六淫不同。六淫侵袭人体，多由皮肤及口鼻而入，</h2>
 <h2>发病之初多见表证。而七情致病，则是直接影响相应的内脏而发</h2>
 <h2>病。如《素问·阴阳应象大论》说：&quot;怒伤肝&quot;、&quot;喜伤心&quot;、&quot;思伤</h2>
@@ -855,7 +1338,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Diet, work and rest are the fundamental conditions for human beings to live and maintain good health. Improper diet and maladjustment of work and rest will affect the physiological functions of the viscera and reduce the organ is m&#x27;s resistance to diseases, thus becoming pathogenic factors.</p>
 <p>1. Improper Diet It includes abnormal ingestion, unhygienic diet and food preference.</p>
 <p>1) Abnormal Ingestion It is wise to eat an appropriate amount of food. Excessive hunger and overfeeding can both give rise to diseases. Excessive hunger, i. e. inadequate ingestion, results in an inadequate intake for the transformation into qi and blood and eventually leads to the deficiency of qi and blood to bring on diseases. For instance, the chapter Five Flavours&quot;&quot; (Chapter 56) in Mira cul ox s Pivot says: &quot;No food ingestion for half a day will result in the decline of qi, and for one day in the deficiency of qi.&#x27; Meanwhile, the decline and deficiency of qi and blood will cripple the resistance to the attack of exo pathogens. Overfeeding beyond the normal digestive</p>
-<p>32</p></section><section class="pg" id="p054"><h2>气虚则悲，实则笑不休&quot;</h2>
+<p>32</p></section>
+
+<section id="sec32" class="pg">
+<span id="p054"></span>
+<h2>气虚则悲，实则笑不休&quot;</h2>
 <h2>七情既可致病，又可加重病情。在许多疾病的过程中，病情</h2>
 <h2>常因较剧烈的情绪波动而恶化。故中医十分重视对病人的精神安</h2>
 <h2>慰与调护，以促使疾病向好的方向转化。</h2>
@@ -873,7 +1360,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>33</p></section><section class="pg" id="p055"><p>ability, i. e. hyper p hagia, can also give rise to diseases by indigestion and retendtion of food in the middle-jiao, manifested as abdominaldistension and fullness, eructation with fetid c dor and acid regurgitation, anorexia, vomiting, diarrhea with stinking and filthy stool, etc., as the chapter &quot;Discussion on Arthralgia-Syndrome (Chapter 43) in Plain Questions says: &quot;Excessive diet imp a i is the intestines and stomach.&quot; As children have weak function of the spleen and stomach and have no sense of proper diet, they are more liable to fall ill.</p>
 <p>2)Un hygienic Diet Unhygienic diet can cause many kinds of gastro-intestinal diseases, manifested as diarrhea, abdominal pain, vomiting, purulent and bloody stool and the like, as well as various kinds of paras i to ses. Rotten or poisonous food may result in food poisoning. In slight cases there may appear vomiting, diarrhea and abdominal pain; in severe cases, there will be the impairment of body fluid and loss of yang, leading to depression of the socket of the eyeball and cold limbs.</p>
 <p>3) Food Preference Man is nourished by food. Only through an appropriate mixture of food can man acquire various necessary nutrients. Any food preference may cause the derangement of yin and yang, nutritional deficiency and give rise to diseases. For example, preference for cold and uncooked food is liable to impair the middle-jiao yang; preference for dry hot food is liable to produce stomach heat; a rich fatty diet is liable to cause carbuncles and furuncles. Addiction to one of the five flavours (sour, bitter, sweet, acid and salty) can also give rise to diseases, as the chapter &quot;&quot;The Close Relationship bewteen Human Activity and Nature&quot; (Chapter 3) in Plain Questions says &quot;Excessive sour nourished the liver qi and leads to the exhaustion of the spleen qi; excessive sa&#x27;ty flavour leads to large consumption of qi of bones, myoatrophy and depression of the heart qi; excessive sweetness causes sickness of the heart qi, dyspnea and chest fullness, dark complexion and an unbalance of the kidney qi; excessive bitterness</p>
-<p>34</p></section><section class="pg" id="p056"><h2>超过了正常的消化能力，也会因食积中焦而发病，表现为院腹胀</h2>
+<p>34</p></section>
+
+<section id="sec33" class="pg">
+<span id="p056"></span>
+<h2>超过了正常的消化能力，也会因食积中焦而发病，表现为院腹胀</h2>
 <h2>满、暖腐吞酸、厌食呕吐、泻下臭秒等，故《素问·痹论》说：&quot;饮</h2>
 <h2>食自倍，肠胃乃伤。&quot;小儿由于脾胃尚弱，不知饥饱，更易患病。</h2>
 <h2>2）饮食不洁 饮食不洁可引起多种胃肠道疾病（表现为呕</h2>
@@ -893,7 +1384,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(2)Mental overstrain: Referring to the overstrain from mental labour. Mental overstrain may consume and impair the heart blood and impair the spleen qi, causing palpitation, amnesia, insomnia, dreaminess, anorexia, abdominal distension, loose stool and so on.</p>
 <p>(3)Sexual overstrain: Referring to the intemperance in sexual life. Proper sexual life does no harm to health and instead is helpful to sleep and rest; but indulgence in sexual activities can exhaust and impair the kidney essence, causing lassitude in the loins and knees, dizziness, tinnitus and listlessness; and impotence, spermatorrhea or no ejaculation in males, menoxenia and leuk orr hagia in females.</p>
 <p>2) Over rest Over rest refers to excessive rest and comfort. No labour and exercises can lead to impeded circulation of qi and blood, flaccidity and crispness of tendon, muscle and bone,</p>
-<p>36</p></section><section class="pg" id="p058"><h2>不，胃气乃厚，味过于辛，筋脉沮弛，精神乃央。&quot;此外，脚气</h2>
+<p>36</p></section>
+
+<section id="sec34" class="pg">
+<span id="p058"></span>
+<h2>不，胃气乃厚，味过于辛，筋脉沮弛，精神乃央。&quot;此外，脚气</h2>
 <h2>病、夜盲病、瘘瘤病等，亦是偏嗜五味、营养不全的结果。</h2>
 <p>2.劳逸失度</p>
 <h2>劳逸失度包括过劳和过逸两个方面</h2>
@@ -915,7 +1410,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Section 7</p>
 <p>Retention of Phlegm and Fluid, and Blood Stasis</p>
 <p>Retention of phlegm and fu id and blood stasis are both pathological products in the body which form in the course of illness. When they are formed, they can in turn act, directly or indirectly, on certain tissue or organ of the human body, causing new pathological changes, forming various different syndromes. So they are also one group of pathogenic factors.</p>
-<p>38</p></section><section class="pg" id="p060"><h2>筋骨柔脆，脾胃呆滞，表现为精神不振，食少乏力，动则气短、</h2>
+<p>38</p></section>
+
+<section id="sec35" class="pg">
+<span id="p060"></span>
+<h2>筋骨柔脆，脾胃呆滞，表现为精神不振，食少乏力，动则气短、</h2>
 <h2>心悸，或发为臃肿，并使抗病能力降低，易受外邪侵袭。</h2>
 <p>第六节外伤</p>
 <h2>外伤包括枪伤、金刃伤、跌打损伤、持重努伤、烧烫伤及虫</h2>
@@ -930,7 +1429,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Retention of phlegm and fluid is characterized by accumulation of dampness as a pathological product resulting from disturbances of water metabolism. Traditional Chinese medicine classifies the thick cr turbid dampness as phlegm and the thinner clearer one as fluid. Retention of phlegm and fluid is further differentiated into concrete and formless ones. Concrete retention of phlegm and fluid refers to the visible, palpable and audible parenchymatous phlegm and fluid, whereas formless retention of phlegm and fluid refers to the various &#x27; conditions caused by the retention, such as dizziness, chest tightness, manic depressive p synch os is, subcutaneous nodule and scrofula, characterized by greasy fur and slippery pulse. It is so called &quot;formless phlegm&quot; because this kind of &quot;phlegm&quot; only shows its symptoms but has no concrete form and can be cured by methods of eliminating phlegm.</p>
 <p>Retention of phlegm and fluid is mostly due to affection by the six exogenous factors or improper diet, or internal damage by the seven emotions. These etiological factors bring forth dysfunction of qi of the lung, spleen, kidney and the sanjiao with disturbance of water fluid metabolism, resulting in accumulation of fluid within the body. Once the retention is formed, it can follow qi to circulate, inward into the viscera and outward to the skin, muscle, tendon and bone. It can actually reach everywherc and cause a number of diseases.</p>
 <p>For instance, stagnation of phlegm in the lung may cause cough with dyspnea and expectoration; phlegm stagnation in the heart may cause palpitation and chest oppression; mental confusion due to the invasion of phlegm to. the heart may cause coma and dementia; accumulation of phlegm in the middlejiao may cause epigastric fullness, vomiting, nausea and dizziness; stagnation of phlegm in the channels and collaterals may lead to numbness of the limbs, dificult flexion and ex ten</p>
-<p>40</p></section><section class="pg" id="p062"><p>1.痰饮</p>
+<p>40</p></section>
+
+<section id="sec36" class="pg">
+<span id="p062"></span>
+<p>1.痰饮</p>
 <h2>痰饮是水液代谢障碍所形成的病理产物。中医将其较稠浊的</h2>
 <h2>称为痰，清稀的称为饮。痰饮又有有形、无形之分。有形之痰乃</h2>
 <h2>指视之可见，触之可及，闻之有声的实质性痰浊和饮液；无形之</h2>
@@ -946,7 +1449,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>遂；痰在肌肉、筋骨，可致阴疽、流注；痰结聚皮下，可形成痰</h2>
 <p>41</p></section><section class="pg" id="p063"><p>sion, and even hemiplegia; stagnation of phlegm in the tendon, Pathogenic fluid has different manifestation in accordance with its stagnation in different paris of the body. As Synopsis of the Golden Chamber says:&quot;A person who used to be in good health is now very thin; if fluid flows in the intestines and makes audible noises, we call it phlegm retention (in the narrower sense); if fluid flows in the hypochondrium and causes hypochondriac pain with cough and spitting, we call it pleural effusion; if fluid circulates in the four limbs, causing anhidrosis when perspiration is expected and leading to pain of the body, we call it diffuse fluid retention; when there is cough with dyspnea, shortness of breath, inability to sleep and edema, we call it excessive fluid in the chest and hypochondrium.&quot;</p>
 <p>2. Blood Stasis Blood stasis is a path o log cia l state resulting from the reverse or impeded flow of blood in the body or the stagnation of blood flow in local parts as well as abnormal blood outside of the ves s les which remains in the body and fails to disperse. As soon as blood stasis is formed, it can further affect the circulation of blood and lead to new pathological changes, causing a variety of diseases and syndromes. So it is also one of pathogenic factors.</p>
-<p>Blood stasis is formed in two ways. In one way, it results from the impeded circulation of blood causes d by deficiency of qi, stagnation of qi, blood cold and blood heat, etc. For instance, deficiency of qi results in weak circulation of blood, stagnation of qi results in impeded circulation of blood, blood cold results in coagulation of blood, and blood heat results in the viscousness of blood. All these may impede the circulation of blood and cause blood stasis. In the other way, biood stasis is caused by abnormal blood outside of the vessels due to trauma or other reasons which fails to disperse and remains in the body.</p></section><section class="pg" id="p064"><p>核、病。</p>
+<p>Blood stasis is formed in two ways. In one way, it results from the impeded circulation of blood causes d by deficiency of qi, stagnation of qi, blood cold and blood heat, etc. For instance, deficiency of qi results in weak circulation of blood, stagnation of qi results in impeded circulation of blood, blood cold results in coagulation of blood, and blood heat results in the viscousness of blood. All these may impede the circulation of blood and cause blood stasis. In the other way, biood stasis is caused by abnormal blood outside of the vessels due to trauma or other reasons which fails to disperse and remains in the body.</p></section>
+
+<section id="sec37" class="pg">
+<span id="p064"></span>
+<p>核、病。</p>
 <h2>饮邪由于停留的部位不同而表现各异。如《金要略》说：&quot;其</h2>
 <h2>人素盛今瘦，水走肠间，沥沥有声，谓之痰饮（狭义）；饮后水流</h2>
 <h2>胁下，咳睡引痛，谓之悬饮，饮水流行，归于四肢，当汗出而不</h2>
@@ -963,7 +1470,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>因外伤及其他原因造成离经之血，未能消散，停留体内，而形成</h2>
 <p>瘀血。</p>
 <p>43</p></section><section class="pg" id="p065"><p>Blood stasis has different clinical manifestations in accordance with its stagnation in different parts of the body and the various reasons for its formations. For instance, blood stasis in the heart vessels may lead to palpitation, chest tightness and precordial pain; stasis in the lung may lead to chest pain, cough with dyspnea and hemoptysis; stasis in the stomach may lead to stabbing pain in the stomach and tarry stool: stasis in the liver may lead to costalgia and hepatomegaly; invasion of blood stasis to the heart may lead to mania; stasis in the uterus may lead to pain in the lower abdomen, dysmenorrhea, amenorrhea, purplish red black and lumpy menstruation, or metrorrhagia and metrostaxis; stagnation of blood stasis in the terminal of the blood vessels of the extremities may lead to gangrene of finger and toe;. stagnation of blood stasis in the local parts may cause loacl sweeling, pain and cyanosis.</p>
-<p>Though diseases caused by blood stasis are many and diverse, their clinical manifestations can be summed up as follows: stabbing pain, cyanosis, tumour, bleeding (dark purplish blood with blood clots), dark complexion, squamous and dry skin, purplish dark tongue or with petechiae, ecchymosis, thready and uneven pulse, knotted pulse or intermittent pulse.</p></section><section class="pg" id="p066"><h2>瘀血因其停留部位不同、形成原因各异，而有不同的临床表</h2>
+<p>Though diseases caused by blood stasis are many and diverse, their clinical manifestations can be summed up as follows: stabbing pain, cyanosis, tumour, bleeding (dark purplish blood with blood clots), dark complexion, squamous and dry skin, purplish dark tongue or with petechiae, ecchymosis, thready and uneven pulse, knotted pulse or intermittent pulse.</p></section>
+
+<section id="sec38" class="pg">
+<span id="p066"></span>
+<h2>瘀血因其停留部位不同、形成原因各异，而有不同的临床表</h2>
 <h2>现。如瘀阻心脉，可见心悸、胸闷、心痛；瘀阻于肺，则见胸痛、</h2>
 <p>22M3OHFA9</p>
 <h2>咳喘、咯血，瘀阻于胃，可有胃皖刺痛、大便色黑，瘀阻于肝，</h2>
@@ -973,7 +1484,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>血所致的病证较繁杂，但其临床表现可归纳为以下几点：</h2>
 <h2>即刺痛，紫，肿块，出血（血色紫暗并有血块），面色黛黑，肌</h2>
 <h2>肤甲错，舌质紫暗或有瘀点、瘀斑，脉细涩或结代。</h2>
-<p>46</p></section><section class="pg" id="p067"><p>Chapter Two</p>
+<p>46</p></section>
+
+<section id="sec39" class="pg">
+<span id="p067"></span>
+<p>Chapter Two</p>
 <h2>Pathogenesis</h2>
 <p>Pathogenesis is the mechanism of the occurrence, development and change of a disease. It includes the pathogenic mechanism and the basic pathogenesis, &#x27;which then can be interpreted respectively as follows.</p>
 <p>Section 1</p>
@@ -981,7 +1496,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>TCM regards the occurrence of a disease from the following two aspects: the deficiency of the vital qi or the dysfunction of the human body; the pathological damage to the body. The so called vital qi refers to the normal physiological function of the body as well as its resistant and recovering capacity. It can be briefly called &quot;zheng&quot;in TCM. The so called pathogenic factors widely refer to every kind of pathogenic element that leads to the occurrence of a disease. They are simply called &quot;xie&quot; in TCM.</p>
 <p>l. The Deficiency of the Vital qi Is the Internal Basic Cause of the Occurrence of a Disease</p>
 <p>TCM focuses its attention on the vital qi and holds that pathogenic factors can not invade the body so easily and cause a disease if the vital qi is exuberant. According to the Chapter &quot;Discussion on Acupuncture Methods&quot;( (Chapter 12), in</p>
-<p>46</p></section><section class="pg" id="p068"><p>第二章</p>
+<p>46</p></section>
+
+<section id="sec40" class="pg">
+<span id="p068"></span>
+<p>第二章</p>
 <p>病机</p>
 <h2>病机是疾病发生、发展与变化的机理，包括发病原理和基本</h2>
 <h2>病机两方面。现分述如下：</h2>
@@ -1000,7 +1519,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Section2</p>
 <p>Basic Pathogenesis</p>
 <p>In the course of a disease, various syndromes result from the different patients&#x27; constitution and invading factors. However, each syndrome has its own concrete path o</p>
-<p>48</p></section><section class="pg" id="p070"><h2>邪不可干&quot;。只有在正气相对不足，卫外不固时，邪气才会侵入人</h2>
+<p>48</p></section>
+
+<section id="sec41" class="pg">
+<span id="p070"></span>
+<h2>邪不可干&quot;。只有在正气相对不足，卫外不固时，邪气才会侵入人</h2>
 <h2>体而发病，即《素问·评热病论》所说：&quot;邪之所凑，其气必虚。&quot;</h2>
 <h2>2，邪气侵袭是发病的重要条件</h2>
 <h2>中医学重视正气，并不排除邪气在发病中的重要作用。邪气</h2>
@@ -1017,7 +1540,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>This refers to the conflict between the vital qi and pathogenic factors. Such conflict is not only related closely to the occurrence of a disease but also affects the development and the final outcome of a disease. Meanwhile, it has some direct influence on the sthenic or asthenic transformation of a disease. Therefore, the course of a disease, in a sense, is that of the conflict between the vital qi and pathogenic factors.</p>
 <p>l) The Relation between the Conflict and the Transformation of the Deficiency or Excess During the conflict, the vital qi and pathogenic factors can influence each other and mutually wax and wane. Generally speaking, when the vital qi is exuberant, it can suppress pathogenic factors so as to prevent a disease. However, either the deficiency of the vital qi or the excess of pathogenic factors can lead to the failure of the vital qi in conquering pathogenic factors. In such cases, pathogenic factors will take the advantage of the vital qi and cause a disease. With the rise and fall of the conflict between the vital qi and pathogenic factors, the transformation of syndromes from the deficiency to the excess and vice versa appear.</p>
 <p>According to the Chapter General Discussion on Sthenia and Asthenia(Chapter 28) in Plain Questions, Excess syndrome results when the invading pathogens are exuberant while exhaustion of the vital essence brings on deficiency syndrome.&quot; Excess syndrome mainly indicates the excess of pathogenic factors, namely, the pathological development mostly based on the excess of pathogenic factors. In such cases, pathogenic factors are excessive while the patient&#x27;s vital qi is strong enough to resist</p>
-<p>50</p></section><section class="pg" id="p072"><h2>从总体上来说，基本病机不外正邪斗争、阴阳失调和升降失常三</h2>
+<p>50</p></section>
+
+<section id="sec42" class="pg">
+<span id="p072"></span>
+<h2>从总体上来说，基本病机不外正邪斗争、阴阳失调和升降失常三</h2>
 <p>方面。</p>
 <p>2.正邪斗争</p>
 <h2>正邪斗争是指正气与病邪的斗争。这种斗争不仅关系着疾病</h2>
@@ -1033,7 +1560,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>特点是：邪气亢盛而正气未衰，正气足以与邪气抗争，故正邪斗</h2></section><section class="pg" id="p073"><p>pathogenic factors at the same time, thus the conflict between the two sides is very intense, which clinically shows excess syndrome of strong reaction. Such syndrome can be found in the early or middle stage of exopathic diseases or those diseases due to the stagnation of phlegm, food, water and blood within the human body. The symptoms like high fever, mania, loud speaking and coarse breathing, abdominal pain with tenderness, uroschesis and constipation, replete pulse, belong to excess syndrome.</p>
 <p>Deficiency mainly refers to the kind of pathological change with the insufficiency of the vital qi as its leading aspect. Its pathological features are: the vital qi is too weak to resist pathogenic factors, so the pathological reaction is less intense. Clinically, the patient tends to be weak in terms of the vital qi. The deficiency syndrome is mostly found in such cases as weak constitution or later stage of a disease and various kinds of chronic diseases. Its clinical manifestations are lassitude and sallow complexion, palpitation and short breath, spontaneous perspiration, night sweat or dysphoria with feverish sensation in the chest, palms and soles, or cold limbs and feeble pulse.</p>
 <p>The conflict between the vital qi and pathogenic factors can not only produce such effects as pure excess syndrome or deficiency syndrome, but also lead to the coexistance of deficiency syndrome and excess syndrome. Among them, the deficiency intermingled with excess condition refers to the deficiency syndrome complicated with excess syndrome while the former is dominant, which can be found in the patient with dropsy due to insufficiency of the spleen and so on; as for the excess intermingled with some deficiency condition, it means excess syndrome dominates with some manifestations of deficiency, such as the case of consumption of body fluid due to excessive heat. For the same reason, the disease can turn from excess to deficiency and vice versa since the conflicting sides are frequently inter chang able.</p>
-<p>52</p></section><section class="pg" id="p074"><h2>争激烈，临床表现为反应剧烈的实证。实证多见于外感病的初、</h2>
+<p>52</p></section>
+
+<section id="sec43" class="pg">
+<span id="p074"></span>
+<h2>争激烈，临床表现为反应剧烈的实证。实证多见于外感病的初、</h2>
 <h2>中期，或由痰、食、水、血等滞留体内所引起的病证，如壮热、</h2>
 <h2>狂躁、声高气粗、腹痛拒按、二便不通、脉实有力等。</h2>
 <h2>虚，主要是指正气不足，即以正气虚损为主要方面的病理变</h2>
@@ -1053,7 +1584,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) The Relation between the Conflict and the Final Outcome of a Disease In the course of a disease, the conflict between the vital qi and pathogenic factors not only shows up the deficiency or excess of a disease, but also de tei mines the outcome of the disease. If the vital qi prevails, the disease takes a favourable turn or recovers completely; if pathogenic factors prevail, the disease takes an unfavourable turn or even deteriorates and may result in death then.</p>
 <p>The most common outcome of many diseases lies in the dominant position of the vital qi. If the patient has fairly excessive vital qi, resulting in considerable capability to resist pathogenic factors, or he has been given the prompt and proper treatment, then pathological factors are restrained in development, correspondingly, their pathogenic actions are weakening or disappear; the functions of pathologically damaged viscera, channels and collaterals, tissues as well as organs will progressively recover; the consumptions of essence of life, the vital qi, blood and body fluid will gradually be remedied; yin and yang will regain their relative balance on the new basis and finally the disease is cured.</p>
 <p>The domination of pathogenic factors over the . vital qi results when a disease turns towards deterioration or even death. If the vital qi is too weak or pathogenic factors are too strong,</p>
-<p>54</p></section><section class="pg" id="p076"><h2>需要指出的是，在一般情况下，疾病的现象与本质是相符的，</h2>
+<p>54</p></section>
+
+<section id="sec44" class="pg">
+<span id="p076"></span>
+<h2>需要指出的是，在一般情况下，疾病的现象与本质是相符的，</h2>
 <h2>能够反映病机的虚与实。但在某些特殊情况下，会出现疾病的现</h2>
 <h2>象与本质相反的情况，如&quot;大实有赢状（即真实假虚）&quot;和&quot;至虚有</h2>
 <h2>盛候（即真虚假实）&quot;。临床时应注意鉴别。</h2>
@@ -1071,7 +1606,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Besides, in the course of a disease, it may turn up that the vital gi is deficient with pathogenic factors still clinging to the body or pathogenic factors are already removed and the vital qi is still deficient. As a result, the disease gets prolongated and lasts . uncured, thus turning from acute to chronic or having some sequelae left.</p>
 <p>2. Imbalance of Yin and Ying The imbalance of yin and yang refers to the pathological state of the organism in which the two sides lose their balance and coordination under the influence of pathological factors. Since the viscera, channels and collaterals, qi, blood, ying and ei, the inward and outward, ascending and descending motion of qi in the human body can be divided into yin and yang, the various kinds of pathogenic factors such as six exogenous factors, seven emotions, improper diet and overfatigue can only form a disease by way of the imbalance of yin and yang of the organism, so the imbalance of yin and yang is a high summary of various kinds of pathogenesis relating to losing balance, and is also the most basic pathogenesis of all kinds of pathological changes. Although the pathological change of the imbalance of yin and yang is very complicated, its manifestations are no more than the following aspects:</p>
 <p>l) Relative Excess of Yin or Yang It mainly refers to the fact that , the excess syndrome results</p>
-<p>56</p></section><section class="pg" id="p078"><h2>正气虚弱或邪气太盛，机体抗病能力日趋低下，不能制止邪气的</h2>
+<p>56</p></section>
+
+<section id="sec45" class="pg">
+<span id="p078"></span>
+<h2>正气虚弱或邪气太盛，机体抗病能力日趋低下，不能制止邪气的</h2>
 <h2>发展，机体受到的病理性损害逐渐加重，病情就会趋向恶化。若</h2>
 <h2>正气衰竭，邪气独盛，脏腑、经络功能衰惫，精、气、血、津液</h2>
 <h2>枯竭，甚至阴阳离决，生命活动亦告终止而死亡。</h2>
@@ -1092,7 +1631,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Since the excess of yang can lead to disorder of yin, it can also be accompanied by yin deficiency with the symptoms of thirsy, desiring for cold drink, constipation, oliguria and so on.</p>
 <p>The excess of yin means the pathological state in which yin is excessive, the function of the organism declines and the pathological products accumulate in the course of a disease. Its pathological feature is the excess yin with the inapparent deficiency of yang. The excess of yin is mainly due to the infected cold dampness and other yin pathogens, over a ting something raw or cold, or the stagnation and obstruction with pathogenic cold inside so that yang is unable to limit yin, which leads to the consequent excess of yin coldness. Yin is featured with coldness, quietness and dampness, thus the manifestations of the excess of yin are mainly aversion to cold, quietness, epigastric pain with tenderness, loose stool and so on.</p>
 <p>Since the excess of yin can lead to the disorder of yang, it</p>
-<p>58</p></section><section class="pg" id="p080"><h2>病邪侵入人体必从其类，即阳邪侵入人体可形成阳偏胜，阴邪侵</h2>
+<p>58</p></section>
+
+<section id="sec46" class="pg">
+<span id="p080"></span>
+<h2>病邪侵入人体必从其类，即阳邪侵入人体可形成阳偏胜，阴邪侵</h2>
 <h2>入人体则形成阴偏胜。</h2>
 <h2>阳偏胜，是指机体在疾病过程中所出现的阳气偏胜、机能亢</h2>
 <h2>进的病理状态。其病理特点是阳虽盛但阴虚不明显。阳偏胜形成</h2>
@@ -1114,7 +1657,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Relative Deficiency of Yin or Yang This refers to the deficient syndrome that &quot;&quot;exhaustion of vital essence brings on deficiency syndrome.&quot;</p>
 <p>The deficiency of yang suggests such a pathological state in which yang gi is insuffcient, the function of the organism declines and warmness is lacked in the course of a disease. Its pathological features are the scarcity of yang, the failure of yang in limiting yin and the relative excess of yin. The deficiency of yang is mostly in cons eu q en ce of the congenital defect or improper care after birth, or the over fatigue or persisting disease leading to the chronic damage of yang. The deficiency of yang will produce the effect of cold syndrome, so clinically its symptoms are mostly chill and cold limbs, lassitude with the inclination to stay in bed with flexion of legs, abdominal pain alleviated by warmness and pressure, loose stool, copious and clear urine, slow and feeble pulse, etc.</p>
 <p>The deficiency of yin, namely the weakness of yin, indicates the pathological state as which the yin fluid is too weak to check yang, manifested as weak hyperfunction. It is featured with the insufficiency of yin fluid, attenuation of the functions of nourishing, quietening and conditioning yang heat, yang is relatively excessive and there appears the heat syndrome of deficiency type. The deficiency of yin is mostly in the consequence of pathogenic damage from yang extending to yin, or syndromes caused by the over at ci on of five emotions and five transmissions leading to the impairment of yin, or the damage of yin fluid due to chronic diseases, or the injury of yin caused by overeating dry and hot foods. The deficiency of yin will consequently produce heat syndromes of deficiency type, manifested as dysphoria with feverish sensation in the chest, palms and soles, hectic fever, flushed face, emaciation, night sweat, dry throat</p>
-<p>60</p></section><section class="pg" id="p082"><p>阳虚症状。</p>
+<p>60</p></section>
+
+<section id="sec47" class="pg">
+<span id="p082"></span>
+<p>阳虚症状。</p>
 <h2>2）阴阳偏衰 阴或阳偏衰，是指&quot;精气夺则虚&quot;的虚证。</h2>
 <h2>阳偏衰，即阳虚，是指机体在疾病过程中所出现的阳气虚损、</h2>
 <h2>机能减退、温煦不足的病理状态。其病理特点是阳气不足，阳不</h2>
@@ -1135,7 +1682,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>yang are deficient with the domination of yang. Take for example the edema due to insufficiency of yang, once it gains the chance to influence the production of yin essence, the symptoms such as emaciation, vexation, or even clonic convulsion, may occur.</p>
 <p>4) Repellence between Yin and Yang This refers to such a pathological state in which either yin or yang is extremely excessive, and stagnated and choked inside, or either yin or yang is too deficient so that the powers of the two sides are of great disparity. The stronger one will repel the weaker one. As a result, yin and yang are separated. Syndromes such as cold syndrome with pseudo heat symptoms or heat syndrome with pseudo cold symptoms will occur.</p>
 <p>The excessive yin will repel yang. This refers to such a pathological state in which yang is too deficient to check yin, the excessive cold pathogens will be stagnated inside the body and repel yang qi to the exterior, yin and yang are separated. According to Clause No. 317 of Treatise on Febrile Diseases: Sha o yin syndrome with diarrhea, interior cold with heat outside,</p>
-<p>62</p></section><section class="pg" id="p084"><p>数等虚热证。</p>
+<p>62</p></section>
+
+<section id="sec48" class="pg">
+<span id="p084"></span>
+<p>数等虚热证。</p>
 <h2>3）阴阳互损阴阳互损，是指在阴或阳任何--方虚损到相</h2>
 <h2>当程度，病变又累及其相对的一方，造成阴阳两虚的病理状态</h2>
 <h2>阴损及阳，是指阴虚到相当程度，又累及阳的一方，使阳气</h2>
@@ -1158,7 +1709,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>It suggests such a pathological state in which yin fluid or yang qi is suddenly exhausted in a great deal so that the state of impending death appears.</p>
 <p>The exhaustion of yang refers to such a pathological state in which the sudden serious exhaustion of yang qi causes the danger of life. Generally speaking, the exhaustion of yang is mainly due to excessive pathogenic factors which are beyond the vital qi &#x27;s capacity to resist; or the constitution of yang asthenia, deficiency of the vital qi and the extravagantly consumed qi caused by overstrain; it is also likely to be the result of overuse of diaphoretic, emetic, or purgative therapy, or the excess of sweat, vomiting and purgation so that yang has been exhausted with body fluid, or to be the cons c que n ce of the extreme deficiency of yang in chronic diseases which have made yang stay outside. Clinically, its manifestations are mostly profuse sweating, cold extreme ties and skin, lassitude, apathy or even coma, faint pulse, etc.</p>
 <p>The exhaustion of yin refers to such a pathological state in which the sudden exhaustion of the yin fluid leads to the serious declination of the systematic functions of the whole body. Usual-</p>
-<p>64</p></section><section class="pg" id="p086"><h2>如《伤寒论》317条所说&quot;少阴下利，里寒外热，手足厥逆，脉微欲</h2>
+<p>64</p></section>
+
+<section id="sec49" class="pg">
+<span id="p086"></span>
+<h2>如《伤寒论》317条所说&quot;少阴下利，里寒外热，手足厥逆，脉微欲</h2>
 <h2>绝，身反不恶寒，其人面色赤&quot;，即为例证。</h2>
 <h2>阳盛格阴，是指邪热极盛，阳热之邪深伏于里，阳气被遏，</h2>
 <h2>不能外达四肢，而格阴于外的病理状态。如《伤寒论》350条所说</h2>
@@ -1179,7 +1734,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>3. Disturbance of Ascending and Descending</p>
 <p>This widely refers to such a pathological state in which the ascending or descending movement of the viscera&#x27;s functional activities are disordered and yin, yang, qi, blood are imbalanced under the influence of pathogenic factors.</p>
 <p>Since the ascending and descending, in letting and out letting movements of the functional activities closely relate to various aspects of the viscera, channels and collaterals, qi and blood, yin and yang, their disturbance may cause the functional abnormality of five zang organs, six fu organs, the interior and exterior, four limbs and nine orifices: the flaring up of heart fire will lead to aphthous stomatitis; the impairment of dispersion and descending function of the lung will lead to cough, asthma and oppressed feeling in the chest; the impaired ascending function of the spleen will lead to the result of loose stool; the upward inversion of the liver qi will lead to the result of vertigo, and distention in head; the failure of receiving qi</p>
-<p>66</p></section><section class="pg" id="p088"><h2>热久留，大量煎灼阴液，或因误治等其他因素大量损耗阴液所致。</h2>
+<p>66</p></section>
+
+<section id="sec50" class="pg">
+<span id="p088"></span>
+<h2>热久留，大量煎灼阴液，或因误治等其他因素大量损耗阴液所致。</h2>
 <h2>其临床表现多为汗出不止，汗热而粘，四肢温和，渴喜冷饮，皮</h2>
 <h2>肤皱，眼窝深陷，烦躁或昏迷，脉细数无力或大而无力等。</h2>
 <h2>亡阴、亡阳虽病机不同，表现各异，但由于阴阳互根，阴亡</h2>
@@ -1194,7 +1753,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>咳喘、胸闷，脾不升清，则大便糖泄；肝气上逆，则眩晕、头胀；</h2>
 <p>67</p></section><section class="pg" id="p089"><p>in the kidney will lead to the prolonged expiration and shortened inspiration as well as short breath. The normal condition of the six fu organs is measured with their smooth movements of descending. If the gallbladder qi goes up, it will result in vomiting of bilious fluid; if the stomach qi fails to descend, it will result in nausea, vomiting, hiccup, belching; the disorder of the large intestine &#x27;s transportation may lead to abdominal distention and constipation; the dysfunction of the urinary bladder may result in dysuria or even uroschesis. When the ascending adverseness of yin, yang, qi and blood obstructs the brain, syncope and unconsciousness will occur.</p>
 <p>TCM also expounds such a theory that the disturbance of the movements of ascending, descending, in letting and out letting manifests respective emphasis on both exopathic disease and internal injury. g The pathogenesis of exopathic disease comes from outside, so the emphasis is on the imbalance between in letting and out letting; the pathogenesis of the internal injury comes from the inside, so the emphasis is laid on the imbalance between ascending and descending. Ascending and descending, in letting and out letting closely relate to each other not only in physiology but also in pathology. In the case of cough with dyspnea caused by wind cold pathogen, the invasion of the superficial part of the body by wind cold may cause both the muscular striae and the sweat gland to be shut up, and the defensive qi obstructed, the manifestations of which are aversion to cold, fever and anhidrosis caused by imbalance between in letting and out letting. Since the lung is related to the skin and hair, the superficial pathogen can not be repelled, and the lung is affected, thus leading to the cons eu q en ce of impairment of dispersion and descending of the lung, the manifestations of which are cough and dyspnea resulting from the imbalance of ascending and descending. The two cases above are the examples of the mutual influence between the imbalance of in letting and out letting and that of ascending and descending</p>
-<p>68</p></section><section class="pg" id="p090"><h2>肾不纳气，则呼多吸少、气短息促。六腑以通降为顺，若胆气上</h2>
+<p>68</p></section>
+
+<section id="sec51" class="pg">
+<span id="p090"></span>
+<h2>肾不纳气，则呼多吸少、气短息促。六腑以通降为顺，若胆气上</h2>
 <h2>逆，则呕吐苦水，胃失和降，则恶心、呕吐、逆、暖气，大肠</h2>
 <h2>传导失职，则腹胀、便秘，膀胱气化不行，则小便不利或尿闭。</h2>
 <h2>若阴阳气血逆乱并走于上蒙蔽清窝，则出现突然昏倒、不省人事</h2>
@@ -1209,13 +1772,21 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>例证。</p>
 <h2>脾胃为后天之本，居于中焦，通上连下，为升降出入运动的</h2>
 <p>69</p></section><section class="pg" id="p091"><p>The spleen and stomach provide material basis for the acquired constitution. They are in the middle part of the body, linking the upper and the lower part of the body so as to function as a pivot in the movements of ascending, descending, in letting and out letting. The coordination of the spleen and stomach &#x27;s ascending and descending functions and the good order of their in letting and out letting movements may make the clear qi ascend and the turbid qi descend in order to nourish the whole body and expel the nuisance, and make the physiological functions of other internal organs work normally. The disorder of the ascending and descending movements of the spleen and stomach will involve the following abnormalities: the distribution of yang qi is checked; the acquired essence can not be stored up; neither food and drinks nor oxygen can be taken in; the product of metabolism can not be expelled out and consequently the other internal organs may be affected. From the above mentioned abnormalities many diseases will arise. Thus TCM has been putting a great deal of emphasis on regulating the functions of the spleen and stomach.</p>
-<p>70</p></section><section class="pg" id="p092"><h2>枢纽。脾胃升降正常，出入有序，则能维持升清降浊、营养全身</h2>
+<p>70</p></section>
+
+<section id="sec52" class="pg">
+<span id="p092"></span>
+<h2>枢纽。脾胃升降正常，出入有序，则能维持升清降浊、营养全身</h2>
 <h2>和排泄糟的功能，并使其他脏腑的生理作用得以正常发挥。若</h2>
 <h2>脾胃升降出入失常，则清阳之气不能敷布，后天之精不能归藏，</h2>
 <h2>饮食，精气无法摄入，代谢废物不能排出，并可影响其他脏腑，</h2>
 <h2>百病由之而生。故历代医家在治疗疾病时均十分重视调理脾胃的</h2>
 <p>功能。</p>
-<p>71</p></section><section class="pg" id="p093"><p>Chapter Three</p>
+<p>71</p></section>
+
+<section id="sec53" class="pg">
+<span id="p093"></span>
+<p>Chapter Three</p>
 <h2>Prevention</h2>
 <p>Prevention is to take certain precautions against the occurrence and progress of a disease.</p>
 <p>TCM has been through all the ages attaching great importance to prevention. As early as over two thousand years ago, the theory of &quot;Preventive Treatment of a Disease&quot; was put forward in the book Yellow Emperor&#x27;s Canon of Internal Medic ee. This theory, in fact, includes two aspects: adopting preventive measures before a disease comes and taking precautions against the progression of a disease.</p>
@@ -1223,7 +1794,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Taking Preventive Measures</p>
 <p>It refers to taking various precautions against the possible occurrence of a disease. As mentioned above, the occurrence of a disease is due to both deficiency of the vital qi and dysfunction of the hun ran body and the pathological damages to the human body caused by pathogenic factors. Hence, the prevention of a disease should also start with these two aspects.</p>
 <p>1. Building up the Vital qi &#x27;s Power to Resist Pathogenic Factors The fluctuation of the vital qi depends primarily on one&#x27;s constitution. Generally speaking, a man with strong constitution possesses sufficient vital qi while a constitutionally feeble</p>
-<p>72</p></section><section class="pg" id="p094"><p>第三章</p>
+<p>72</p></section>
+
+<section id="sec54" class="pg">
+<span id="p094"></span>
+<p>第三章</p>
 <p>预防</p>
 <h2>预防，就是采取一定的措施，防止疾病发生和发展。</h2>
 <h2>中医历来重视疾病的预防，早在两千多年前，《黄帝内经》中</h2>
@@ -1241,7 +1816,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Leading a Regular Life Living in nature, one should not only understand but also adapt himself to the changing patterns of the natural environment. Only proper control and arrangement of diet, daily life, work and rest can secure one with a strong body. According to the Chapter&quot;DiscussiononHowto keep Innate Vitality Qi&quot;(Chapterl) in Plain Questions, &quot;One, who knows the ways of health preservation, complies with natural law, adapts himself to the variations in nature, keeps a moderate diet, leads a regular life and shuns overwork, will obtain both physical and mental health which is the promise of longevity of over one hundred</p>
 <p>indulge himself in sexual pleasures, act willfully, exhaust all his energies, squander away his essence of life and spirit without any sense of preserving them, follow his aimless inclinations and lead a careless life with no enjoyment of a healthy life.</p>
 <p>3) Doing More Physical Exercises Frequent physical exercises can improve one&#x27;s constitution,</p>
-<p>74</p></section><section class="pg" id="p096"><h2>者，正气盛，体质弱者，正气虚。因此，增强体质是提高正气抗</h2>
+<p>74</p></section>
+
+<section id="sec55" class="pg">
+<span id="p096"></span>
+<h2>者，正气盛，体质弱者，正气虚。因此，增强体质是提高正气抗</h2>
 <h2>邪能力的关键，而人的体质强弱主要与先天赋、饮食调养、身体</h2>
 <h2>锻炼和精神状态有关。因此，要增强体质，亦须从这几方面入手。</h2>
 <p>1）优生优育</p>
@@ -1262,7 +1841,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>4) Promoting Mental Health The mental activities of man are closely related to his physiologieal and pathological changes. It means a great deal in prevention and treatment of a disease to keep high spirits and stable mental state, and try one&#x27;s best to avoid or reduce harmful mental stimulation or over excitement. According to Chapter l of Plain Questions, &quot;How can a disease occur if one keeps a serene mind, rejects lust and vain hope, keeps the vitality qi in a good condition and maintains a sound mind ?&quot;</p>
 <p>5) Preventing Diseases with Traditional Chinese Drugs r &quot;Discussion on Acupuncture Therapy The Chapter in (Chapter 72)Plain Questions says: The pills of Xiaojing Dan will keep epidemic diseases away.&quot;&#x27; This proves that prevention with traditional Chinese drugs has been practised for a long time in China. In recent years, TCM has been making wide use of the Chinese medicinal herbs for disease prevention. Satisfactory effects have been obtained in prevention of bacillary dys entry with garlic and port u alca oleracea, of virus hepatitis with oriental wormwood, cape jasmine and Chi nes e date, and of influenza with isatis leaf and isatis root.</p>
 <p>6) Providing Artificial Immunity</p>
-<p>76</p></section><section class="pg" id="p098"><h2>邪能力，减少或防止疾病的发生。如汉代医学家华佗创造的&quot;五</h2>
+<p>76</p></section>
+
+<section id="sec56" class="pg">
+<span id="p098"></span>
+<h2>邪能力，减少或防止疾病的发生。如汉代医学家华佗创造的&quot;五</h2>
 <h2>禽戏&quot;，长沙汉墓出土的帛书《导引图》，以及后世的太极拳、八段</h2>
 <h2>锦、易筋经和气功等多种健身方法，均有促进血脉流通、关节滑</h2>
 <h2>利和气机调畅的作用，可用以增强体质，防治疾病。</h2>
@@ -1280,7 +1863,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2. Taking Precautions against the Invasion of Pathogenic Factors Pathogenic factors play an important or, sometimes, even decisive role in disease causing. So, the preventive treatment of diseases means not only the improvement of constitution and the strengthening of the vital qi against pathogenic factors, but also the prevention of the invasion by pathogenic factors. According to Chapter 1 of Plain Questions, &quot;Pathogenic factors, especially pathogenic wind, are harmful and should be guarded against at all times.&quot;&#x27; This means that people should do their utmost to avoid the invasion of six exogenous factors and pestilence. A chapter of Synopsis of Prescriptions of the Golden Chamber, &quot;the Treatise on Indications and Contraindications of Fowls, Animals, Fish and Worms&quot; tells us that &quot;Dirty food, rotten meat and stinking fish are harmful to people. The six kinds of animals, whenever they die of themselves, die of pestilence. So, they are poisonous and can not be taken as food.&quot; Therefore, people should pay much attention to food hygiene. As for trauma, it can be avoided if safety precaution are taken in work and daily life.</p>
 <p>Section 2 Preventing the Progression of a Disease</p>
 <p>It is ideal to prevent the disease before it attacks a body</p>
-<p>78</p></section><section class="pg" id="p100"><h2>天花，可谓世界免疫学的先驱。近代，中国医务人员除采用传统</h2>
+<p>78</p></section>
+
+<section id="sec57" class="pg">
+<span id="p100"></span>
+<h2>天花，可谓世界免疫学的先驱。近代，中国医务人员除采用传统</h2>
 <h2>中医方法预防疾病外，还积极采用现代免疫学技术预防疾病，从</h2>
 <h2>而消灭了天花、鼠疫等烈性传染病，并使其他传染病也得到了有</h2>
 <p>效的控制。</p>
@@ -1296,7 +1883,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>未病先防，是最理想的预防措施。但如果疾病已经发生，就</h2>
 <p>79</p></section><section class="pg" id="p101"><p>However, once a disease appears, it should be diagnosed and treated as early as possible so as to arrest its progress. According to the Chapter &quot;Grand Discussion on the Concept of Yin and Yang Reflected by Various Natural and Life Phenomena&quot; (Chapter 5)in Plain Questions:&quot;The pathogenic factors seem to come as quickly as a storm does. A good doctor treats a disease caused by pathogenic factors as soon as they attack the body surface.&quot; This suggests that exopathic diseases should be cured at its initial stage in order to check its progression.</p>
 <p>Apparently, different diseases vary greatly in their progressive patterns. For instance, the miscellaneous diseases caused by internal injury often transform according to the patterns of encroachment and violation of the five elements. Having known the features of a disease, the doctor should figure out as the first thing in the process of treatment which passgae or viscera the pathological change will approach so as to take appropriate preventive measures against its progress. The book of Synopsis of Precriptions of the Golden Chamber says&quot;Doctors with preventive treatment reinforce the spleen when they find out pathogenic change in the liver, for they know the latter will certainly affect the former.&quot;&#x27;. When doctors deal with the pathological changes of the liver, they usually make an additional remedy to strengthen the spleen and stomach at the same time, from which the theoretical basis of the traditional Chinese remedy of liver diseases originates.</p>
-<p>80</p></section><section class="pg" id="p102"><h2>应争取早期诊断、早期治疗，以防止疾病的发展与传变。如《素</h2>
+<p>80</p></section>
+
+<section id="sec58" class="pg">
+<span id="p102"></span>
+<h2>应争取早期诊断、早期治疗，以防止疾病的发展与传变。如《素</h2>
 <h2>问·阴阳应象大论》说：&quot;邪风之至，疾如风雨。故善治者治皮毛，</h2>
 <h2>其次治肌肤·。&quot;说明对外感病应治愈于初期阶段，以防止其传</h2>
 <p>变。</p>
@@ -1306,14 +1897,22 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>止疾病的传变。如《金匮要略》说：&quot;夫治未病者，见肝之病，知肝</h2>
 <h2>传脾，当先实脾牌。&quot;故中医在治疗肝病时，常加健脾和胃之品，其</h2>
 <h2>理论根据，即源于此。</h2>
-<p>81</p></section><section class="pg" id="p103"><p>Chapter Four</p>
+<p>81</p></section>
+
+<section id="sec59" class="pg">
+<span id="p103"></span>
+<p>Chapter Four</p>
 <h2>Treatment</h2>
 <p>Section 1</p>
 <p>Principles of Treatment</p>
 <p>This refers to the principles in treatment of a disease, which differ greatly from therapeutic methods. Curative principles indicate the general principle guiding therapeutic methods while the methods are the specific treating techniques and subordinate to the general principle. The principles of treatment in TCM consist of the following aspects:</p>
 <p>. Searching for the Primary Cause of a Disease in Treatment</p>
 <p>Contrasted with &quot;b iao&quot;, &quot;ben&quot;&quot; means something fundamental or essential, just like the root of a tree. Searching for the primary cause of a disease in treatment is to seek the fundamental cause of a disease so as to make a proper remedy. This is one of the basic principles of diagnosis and treatment of TCM on overall analysis of symptoms and signs, the cause, nature and location of the illness and the patient&#x27;s physical condition according to the theory of traditional Chinese medicine. In practice, however, the two aspects must be applied correctly, namely, &quot;the routine treatment and the treatment contrary to the routine&quot;&#x27; and &quot;&quot;treatment of b iao (expectant treatment) and ben (causal treatment)&quot;&quot;.</p>
-<p>82</p></section><section class="pg" id="p104"><p>第四章</p>
+<p>82</p></section>
+
+<section id="sec60" class="pg">
+<span id="p104"></span>
+<p>第四章</p>
 <p>治疗</p>
 <p>第一节治则</p>
 <h2>所谓治则，即治疗疾病的法则。治则与治法不同。治则是用</h2>
@@ -1327,7 +1926,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>83</p></section><section class="pg" id="p105"><p>1) Routine Treatment and Treatment Contrary to Routine (l)Routine Treatment This refers to a routine remedy opposite to the nature of a syndrome, which can also be called &quot;reversed remedy.&#x27; Routine treatment can be applied to any syndrome whose clinical manifestations are in accordance with the nature of a disease, namely, a cold syndrome will show cold symptoms, a heat syndrome the heat symptoms, a deficiency syndrome the deficiency symptoms and an excess syndrome the excess symptoms. The remedies, however, are to treat the cold syndrome with hot na tu red drugs, the heat syndrome with cold or cool na tu red drugs, the deficiency syndrome with tonifying method and the excess syndrome with the method of purgation. Routine treatment is one of the most commonly used therapeutic methods in clinical practice.</p>
 <p>(2) Treatment Contrary to the Routine It indicates adopting a remedy according to the false symptoms of a disease, which is also called &quot;yielding method. It is applied to those syndromes whose manifestation and nature are contrary to each other, i. e., cold syndrome with pseudo heat symptom, heat syndrome with pseudo cold symptoms, and deficiency in reality with pseudo excess symptoms. Yet the nature of this method is still to treat a disease by searching for its primary causes and solving its substantial problem. The specific uses of the &quot;yelding treatment&quot;&#x27; are as follows.</p>
 <p>Using medicine of warm nature to treat pseudo heat: this is to treat cold syndrome with pseudo heat symptoms with medicines of hot nature. A typical example is written in the book Treatise on Febrile Diseases: &quot;Sha ov in disease has the symptoms and signs as diarrhea with undigested food in the stool, interior cold but exterior heat, deadly cold limbs, deep faint pulse, preference to coldness and flushed complexion The disease can be cured with Tong ma is in i Decoction made up</p>
-<p>84</p></section><section class="pg" id="p106"><p>1）正治与反治</p>
+<p>84</p></section>
+
+<section id="sec61" class="pg">
+<span id="p106"></span>
+<p>1）正治与反治</p>
 <h2>（1）正治所谓正治，是指逆其证候性质而治的一种常规治</h2>
 <h2>疗方法，又称逆治。正治法适用于疾病的表现与本质相一致的病</h2>
 <h2>证，即寒证现寒象，热证现热象，虚证现虚象，实证现实象。治</h2>
@@ -1344,7 +1947,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Using tonification to treat obstructive disease. This is to treat the excess syndrome with pseudo deficiency due to the obstruction caused by deficiency with tonics. For instance, abdominal distention due to hypofunction of the spleen can be cured with drugs invigorating the spleen with the result of the strenthening of the functional activities of the spleen qi and spontaneous subsiding of adbominal distention.</p>
 <p>Using purgatives to treat diarrhea and the like. This is to treat syndromes of excess type with pseudo deficiency symptoms manifested as diarrhea and the like with purgatives instead of astringent. Instances can be found in using respectively drugs promoting digestion to treat diarrhea due to indigestion, drugs promoting blood circulation and removing blood stasis to treat metrorrhagia and metrostaxis, drugs with heat clearing and fire purging functions to treat fecal impaction due to heat with watery discharge, and drugs (removing heat by diuresis to treat frequent, quick and painful micturition due to damp heat in the urinary bladder.</p>
 <p>Besides, another way &quot;the Corrigent Method&quot;&#x27; was also included in the method of &quot;treatment contrary to the routine&quot; in books written by the predecessors. In fact, &quot;the Corrigent Method&quot; is different from &quot;&quot;treatment contrary to the routine&quot;&quot;, and aims at anti em es is by modifying the action of the principal ingredients. It is actually the specific way of making up a</p>
-<p>86</p></section><section class="pg" id="p108"><h2>克）主之&quot;，就是热因热用的范例。</h2>
+<p>86</p></section>
+
+<section id="sec62" class="pg">
+<span id="p108"></span>
+<h2>克）主之&quot;，就是热因热用的范例。</h2>
 <h2>寒因寒用 即用寒性药物治疗真热假寒证。如用白虎汤（知</h2>
 <h2>母18克，石膏30克，甘草6克，梗米6克）治疗热伏于里，四肢厥</h2>
 <h2>逆的热厥证，即为例证。</h2>
@@ -1360,7 +1967,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Treatment of B iao and Ben &quot;B iao&quot;&#x27; and &quot;ben&quot; are opposite to each other in concept and can be applied in many aspects. For instance, between the vital qi and pathogen, the former is &quot;&quot;ben&quot; (i. e. fundamental) while the latter &quot;&quot;b iao&quot;&quot;(i. e. incidental); between the cause and the symptom of a disease, the former is &quot;ben&quot; while the latter is &quot;b iao&quot;, and the same is true of the relations between primary disease and secondary disease, interior disease and exterior disease. In treatment of the fundamental and incidental diseases, generally speaking, one must follow the principle that treatment must aim at the root cause of a disease. But, appropriate measures should be taken in consideration of the urgency and severity of the fundamental and the incidental when treatment is carried out.</p>
 <p>(1) To Treat the Incidental under Urgent Situation Acute incidental disease must be given urgent treatment aimed at symptoms since delayed treatment of them will endanger the patient&#x27;s life or affect the result of treatment of the fundamental of the disease. For instance, patients with massive hemorrhage of any cause should be treated with emer-</p>
 <p>first and &quot;ben&quot;&quot;thereafter.</p>
-<p>(2) To Treat the Fundamental When the Condition of the Disease Permits Causal treatment in chronic condition is to try one&#x27;s best to find out the root cause of a disease for treatment when the case is relatively mild. For instance, in the case of hemiparalysis due to deficiency of qi with blood stasis, the deficiency of 88</p></section><section class="pg" id="p110"><h2>加少量寒凉药，或温热剂用冷服法，在寒凉剂中，酌加少量温</h2>
+<p>(2) To Treat the Fundamental When the Condition of the Disease Permits Causal treatment in chronic condition is to try one&#x27;s best to find out the root cause of a disease for treatment when the case is relatively mild. For instance, in the case of hemiparalysis due to deficiency of qi with blood stasis, the deficiency of 88</p></section>
+
+<section id="sec63" class="pg">
+<span id="p110"></span>
+<h2>加少量寒凉药，或温热剂用冷服法，在寒凉剂中，酌加少量温</h2>
 <h2>热药，或寒凉剂用热服法。其目的都是为了防止服药格柜而引起</h2>
 <h2>呕吐，与反治法不同。</h2>
 <p>2）治标与治本</p>
@@ -1379,7 +1990,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>89</p></section><section class="pg" id="p111"><p>qi with blood stasis is fundamental while hemiparalysis is incidental, and treatment should be stressed on invigorating qi, promoting blood circulation and removing blood stasis by application of Decoction Invigorating Yang for Recuperation, made up of 120 grams of astragalus root, 6 grams of Chinese angelica root, 4.5 grams of red peony root, 3 grams of earthworm, 3 grams of chuanxiong rhizome, 3 grams of peach kernels and 3 grams of safflowers.</p>
 <p>(3) To Treat both the Incidental and the Fundamental at the Same Time It used to be believed that only when both the incidental and the fundamental of a disease were acute could they be treated at the same time. As a matter of fact, treating these two simultaneously turns out to be one of the most frequently used, most effective and safest methods. It may well be concluded that the majority of syndromes observed clinically need such treatment. An instance lies in the treatment of the common cold due to deficiency of qi. If only the exterior syndrome is relieved, gi will be harmed even more; if only qi is invigorated, pathogens will linger. The best therapy is to treat these two aspects at the same time; to treat &quot;ben&quot;&#x27; by invigorating qi and &quot;b iao&quot;&#x27; by relieving the exterior syndrome.</p>
 <p>2. Strengthening the Body Resistance and Eliminating Pathogenic Factors l) Strengthening the Body Resistance This is to strengthen the vital qi and the resistance of the human body as well as its self repairing ability to remove pathogenic factors and recover the health with proper curative measures, such as traditional Chinese drugs, acupuncture and moxibustion, and some other therapies in combination with proper diet, physical exercises and Chinese qigong, etc. This therapeutic method can be applied to any kind of deficiency syndrome dominated by the deficiency of the vital qi without</p>
-<p>90</p></section><section class="pg" id="p112"><h2>偏瘫为标。治疗可采用益气、活血、化瘀的补阳还五汤（生黄芪</h2>
+<p>90</p></section>
+
+<section id="sec64" class="pg">
+<span id="p112"></span>
+<h2>偏瘫为标。治疗可采用益气、活血、化瘀的补阳还五汤（生黄芪</h2>
 <h2>120克，当归尾6克，赤芍4.5克，地龙3克，川芎3克，桃仁3</h2>
 <h2>克，红花3克），以治其本。</h2>
 <h2>过去一般认为，只有到标本俱急时，才标本 （3）标本同治</h2>
@@ -1396,7 +2011,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Eliminating Pathogenic Factors This is to remove pathogenic factors with traditional Chinese drugs or some other therapies to restore the vital qi and cure a disease. It is applicable to syndromes dominated by pathogens with undiminished vital qi. Corresponding measures should be taken in consideration of the particular kinds and features of pathogens as well as the sites they invade. For instance, exterior wind cold syndrome should be treated by dispelling cold to relieve exterior syndrome; lingering of toxicant substance and phlegm in the chest and stomach should be treated with emetic therapy; coproma and pathogenic heat lingering in the intestines should be treated by removing heat by catharsis; indigestion should be dealt with by promoting digestion; obstruction of blood stasis should be removed by promoting blood circulation; and interior excess of toxic heat should be cured by clearing away heat and toxic materials. All these are the specific approaches of the principle of eliminating pathogenic factors.</p>
 <p>3) Strengthening the Body Resistance in Combination with Eliminating Pathogenic Factors These two aspects supplement each other. Strengthening the body resistance helps the elimination of pathogenic factors and vice versa. Clinically, they work hand in hand. However, attention has to be paid to make sure of their appropriate positions in application according to the variations of the cases.</p>
 <p>(1) Eliminating Pathogenic Factors before Strenthening the Body Resistance</p>
-<p>92</p></section><section class="pg" id="p114"><h2>复健康。扶正适用于各种正气虚为主，而邪气也不盛的虚证。应</h2>
+<p>92</p></section>
+
+<section id="sec65" class="pg">
+<span id="p114"></span>
+<h2>复健康。扶正适用于各种正气虚为主，而邪气也不盛的虚证。应</h2>
 <h2>用时，可根据其具体病情而采用相应的治疗方法。如气虚者补气，</h2>
 <h2>血虚者补血，气血两虚者气血双补，阴虚者补阴，阳虚者补阳，</h2>
 <h2>阴阳两虚者阴阳双补等，都是扶正法则的具体应用。</h2>
@@ -1416,7 +2035,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>93</p></section><section class="pg" id="p115"><p>This method is applicable to those syndromes in which pathogenic factors are excessive while the vital qi is deficient under the domination of excessive pathogens which have to be removed quickly; though the vital qi is deficient, it may well be competent in resistance, under which circumstances, to assist the vital qi may reversely promote the development of pathogenic factors. For instance, metrorrhagia and metrostaxis due to blood stasis should be treated by promoting blood circulation and removing blood stasis to arrest bleeding before enriching blood, the bleeding can not be arrested without removing the stasis.</p>
 <p>(2) Strengthening the Body Resistance before Eli mi na ting Pathogenic Factors This method is applicable to syndromes of deficiency vital qi with excess pathogenic factors under the domination of vital qi deficiency.. Under this circumstance, removing pathogenic factors will lead to the impairment of the vital qi. For instance, at the late stage of cancer, the vital qi is greatly deficient, the persistent using of anti cancer drugs will accelerate the failure in the function of organism. Hence, it is essential to replenish enough vital qi, and then to eliminate pathogenic factors with anti cancer drugs.</p>
 <p>(3) Combination of Strengthening the Body Resistance with Eliminating Pathogenic Factors This method can be applied to syndromes of deficient vital qi with excessive pathogenic factors. It can not only strengthen body resistance with pathogenic factors repelled but also eliminate pathogenic factors without hurting the vital qi. So, it becomes one of the therapeutic methods most frequently adopted in clinical practice., However, attention has to be paid to make clear of the primary or secordary role the two aspects respectively play. Strengthening the vital qi is primary while eliminating pathogenic factors is only secondary if deficiency of vital gi is dominant and vice versa if pathogenic</p>
-<p>94</p></section><section class="pg" id="p116"><h2>待祛邪，正气虽虚，尚可耐攻；若兼以扶正，反会助邪的病证。</h2>
+<p>94</p></section>
+
+<section id="sec66" class="pg">
+<span id="p116"></span>
+<h2>待祛邪，正气虽虚，尚可耐攻；若兼以扶正，反会助邪的病证。</h2>
 <h2>如瘀血所致的崩漏证，因瘀血不去，则出血不止，故应先活血化</h2>
 <h2>，待瘀去血止后补血。</h2>
 <h2>（2）先扶正后祛邪 适用于正虚邪实，而以正虚为主，正气</h2>
@@ -1434,7 +2057,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Invigorating the Deficiency This means dealing with yin deficiency syndrome, yang deficiency syndrome or the deficiency of both yin and yang by invigorating either the deficient yang or yin. For instance,</p>
 <p>nourishing yin to check yang while the cold of deficiency type due to deficiency of yang by invigorating yang to hold back yin.</p>
 <p>According to the theory of &quot;interdependence of yin and yang&quot;held by TCM, it is essential to add certain yang tonic drugs to the prescriptions for nourishing yin when treating the fever of deficiency type due to deficiency of yin, namely, &quot;to nourish</p>
-<p>96</p></section><section class="pg" id="p118"><h2>应用时，还应分清二者的主次。正虚为主者，以扶正为主，兼顾</h2>
+<p>96</p></section>
+
+<section id="sec67" class="pg">
+<span id="p118"></span>
+<h2>应用时，还应分清二者的主次。正虚为主者，以扶正为主，兼顾</h2>
 <h2>祛邪；邪实为主者，祛邪为主，兼顾扶正。</h2>
 <p>3.调整阴阳</p>
 <h2>阴阳失调是许多疾病的基本病机。因此，调整阴阳，补偏救</h2>
@@ -1457,7 +2084,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>4. Treatment in accordance with Seasonal Conditions, Local Conditions and the Physique of an Individual</p>
 <p>This means taking appropriate approaches to treatment according to the various situations seasons, regions as well as the patient&#x27;s constitution, sex and age.</p>
 <p>l) Treatment in accordance with Seasonal Conditions The climatic variations have certain effect on both physiology and pathology of the human body, therefore, they should be taken into consideration when a prescription is made. For instance, in spring and summer, as the weather turns warmer and warmer, the yang qi of body is sending up and the muscles and skin are in the relaxing state. For patients even with bad cold, such drastic remedy as diaphoretics of ephedra kind must be used cautiouly in case to avoid impairing yin by inducing too much diaphoresis. In autumn and winter, as the weather changes from cool to cold, yin becomes stronger increasingly and yang becomes weaker, meanwhile, the muscles and viscera turn to be close and yang qi is astringent internally. Medicines of</p>
-<p>98</p></section><section class="pg" id="p120"><h2>酌加补阳药，即所谓&quot;阳中求阴&quot;，治疗阳虚证时，则可在补阳剂</h2>
+<p>98</p></section>
+
+<section id="sec68" class="pg">
+<span id="p120"></span>
+<h2>酌加补阳药，即所谓&quot;阳中求阴&quot;，治疗阳虚证时，则可在补阳剂</h2>
 <h2>中酌加滋阴药，即所谓&quot;阴中求阳&quot;。</h2>
 <h2>阴阳是辨证的总纲，各种疾病的病理变化都可用阴阳失调来</h2>
 <h2>概括。因此，从广义上讲，凡解表功里，升清降浊，调整脏腑、</h2>
@@ -1476,7 +2107,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>3) Treatment in accordance with the Physigue of an Individual This refers to making up a remedy according to the age, sex, constitution and life style of a patient.</p>
 <p>Old people usually get deficiency syndrome or that of both deficiency and excess since their vital essence becomes weaker. So it is preferable for them to reduce the dosage of the drugs. Invigorators are also seldom used for babies and a re duced dosage is advisable if used, for their viscera are still delicate and their qi and blood are not suficient, which make them susceptible to either cold or hear, either deficiency or excess.</p>
 <p>Different sexes have their own features in physiology and pathology. Especially for women who are physically characterized with menstruation, leucorrhea, pregnancy and delivery, precautions must be taken in administration of drugs. Drugs with such features as drastic purgation, removal of blood stasis,</p>
-<p>100</p></section><section class="pg" id="p122"><h2>季节，天气由凉渐寒，阴长阳消，人体滕理致密，阳气内敛，故</h2>
+<p>100</p></section>
+
+<section id="sec69" class="pg">
+<span id="p122"></span>
+<h2>季节，天气由凉渐寒，阴长阳消，人体滕理致密，阳气内敛，故</h2>
 <h2>除非大热之证，当慎用石膏、硝黄类寒凉攻下之品，以防寒下伤阳。</h2>
 <p>2）因地制宜</p>
 <h2>不同的地理环境，对人体的生理、病理亦有一定影响。根据</h2>
@@ -1498,7 +2133,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Section 2</p>
 <p>Therapeutic Methods</p>
 <p>Therapeutic methods of traditional Chinese medicine are treatments of great specificity based on the ascertained differentiation of the syndrome and the ascertained diagnosis of pathogenic factors and pathogenesis. The traditional tr cat ment s fall into eight categories which are referred to as eight therapeutic methods: diaphoresis, emesis, purgation, mediation, warming, heat reducing, elimination and tonification, l. Diaphoresis Diaphoresis is a therapeutic method that treats diseases with proper diaphoretics to disperse and relieve the exterior pathogens, mainly for the exterior syndromes and also for the early stage of wind edema, skin and external diseases such as sores,</p>
-<p>102</p></section><section class="pg" id="p124"><h2>破血、通利等伤胎或有毒之药，均应禁用或慎用。</h2>
+<p>102</p></section>
+
+<section id="sec70" class="pg">
+<span id="p124"></span>
+<h2>破血、通利等伤胎或有毒之药，均应禁用或慎用。</h2>
 <h2>人体的体质有强弱之分，偏寒偏热之别。因此，虽同患一</h2>
 <h2>病，处方遣药，亦有区别。如阳盛之体，慎用温热，阴盛之体，</h2>
 <p>慎用寒凉等。</p>
@@ -1517,7 +2156,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Points for attention in using diaphoresis:</p>
 <p>(1) Sweat is a part of body fluid. Too much sweating would cause the exhaustion of body fluid. Therefore, an efficient cure for many diseases as it is, diaphoresis should never be abused. Special care must be given to the app li action of diaphoresis to patients who lack the yin fu id. These patients include: ① those who suffer from severe vomiting or diarrhea; ② those who suffer from open sores and deficiency of qi and blood; those who are deficient of yang by nature and suffer from frequent spontaneous perspiration; @ those who suffer from hemorrhage or tend to hemorrhage; and @ cases of measles in full eruption.</p>
 <p>(2) Diaphoresis is not appliacble when the pathogenic factors have invaded the inner body and the exterior syndromes have disappeared while the interior syndromes have emerged. It is contraindicated to patients suffering from heart failure or</p>
-<p>104</p></section><section class="pg" id="p126"><h2>温解表和辛凉解表两种。</h2>
+<p>104</p></section>
+
+<section id="sec71" class="pg">
+<span id="p126"></span>
+<h2>温解表和辛凉解表两种。</h2>
 <h2>1）辛温解表：适用于风寒表证（如恶寒重，发热轻，口不</h2>
 <h2>渴）。由辛味温性的解表药为主组成方剂，多具有抗菌、抗病毒及</h2>
 <p>发汗等作用。</p>
@@ -1540,7 +2183,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(3) Vomiting brings about drastic changes of the pressure inside the chest and abdomen. Therefore, emesis is contraindicated to patients with hypertension, arteriosclerosis, aneurysm, peptic ulcer, hemorrhagic tendency of pulmonary tuberculosis and to pregnant women.</p>
 <p>For those who are too weak or suffer from heart diseases, emesis should be performed with great care.</p>
 <p>3. Purgation Purgation is a therapeutic method that discharges through the lower orifice (anus) the undigested food, dry stool, cold accumulation, stagnant blood, phlegm and water retaining in the stomach and the intestines by clearing up the stomach and in-</p>
-<p>106</p></section><section class="pg" id="p128"><h2>应用范围。对于心力衰竭或极度虚弱的患者，应禁用。</h2>
+<p>106</p></section>
+
+<section id="sec72" class="pg">
+<span id="p128"></span>
+<h2>应用范围。对于心力衰竭或极度虚弱的患者，应禁用。</h2>
 <h2>（3）运用辛温解表药时，其剂量与药物的选择须根据地理环</h2>
 <h2>境和气候的不同有所区别。</h2>
 <p>2.吐法</p>
@@ -1563,7 +2210,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>1) Purgation with drugs of cold nature: This is a method to attain purgation with purgative drugs bitter cold or salty cold in nature as the major drugs supported by drugs promoting the circulation of qi, mainly for interior heat syndromes of excess type (high fever, constipation, abdominal distention and pain) namely, qi fen syndrome in the middle or later stage of a febrile disease. It is also applicable to the following indications: ① early stage of dysentery due to damp heat pathogen manifested as abdominal pain and distention with tenesmus, accumulation of heat in the stomach and intestine marked by diarrhea accompaneid with stasis of excrement; ② fire of escess type such as con jun ct iv i ties, encephalemia, pneumorrhagia and nose bleed; ③ for food or drug poisoning, this method can help clean up the poisonous substances in the stomach and intestines.</p>
 <p>2) Purgation with d urgs of warm nature: This is a method to achieve purgation with drugs pungent in flavour and warm in nature as the major drugs supported by proper purgative drugs. It has the effects of augmenting blood circulation, promoting enterogastric peristalsis and digestion. It is applicable to syndromes such as yang deficiency of the spleen and stomach, cold accumulation in the stomach and intestines, hypofunction of the digestive system, slowing down of the enterogastric peristalsis, abdominal distention, abdominal cold pain, constipation or even cold limbs.</p>
 <p>3) Laxation with emollient cathartics: This is a method</p>
-<p>108</p></section><section class="pg" id="p130"><h2>的一种治疗方法。可用于邪在肠胃而致大便不通，燥屎内结或热</h2>
+<p>108</p></section>
+
+<section id="sec73" class="pg">
+<span id="p130"></span>
+<h2>的一种治疗方法。可用于邪在肠胃而致大便不通，燥屎内结或热</h2>
 <h2>结旁流，以及停痰留饮、瘀血积水等邪正俱实之证。临床上可分</h2>
 <h2>为寒下、温下、润下、逐水等。</h2>
 <h2>1）寒下：是用性味苦寒或咸寒的泻下药为主，配合行气药</h2>
@@ -1584,7 +2235,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(2) Purgation is a comparatively drastic method to eliminate pathogenic factors. Though having quick effects, it can also impair the body fluid. Therefore, drugs should be stopped immediately once the therapeutic effect is achieved and never be overdosed. Purgation should be handled with</p>
 <p>those deficiency of yin fluid in particular, and women in pregnancy or during menstrual period.</p>
 <p>4. Mediation Mediation is a therapeutic method that eliminates pathogenic factors by way of mediation or regulation, and is mostly used to treat half exterior and half interior syndrome. It regulates the prosperity and decline of yin and yang</p>
-<p>110</p></section><section class="pg" id="p132"><h2>滑肠壁和粪便或促进泻下的作用。适用于病后、产后、年老体弱</h2>
+<p>110</p></section>
+
+<section id="sec74" class="pg">
+<span id="p132"></span>
+<h2>滑肠壁和粪便或促进泻下的作用。适用于病后、产后、年老体弱</h2>
 <h2>之便秘，习惯性便秘，以及痔疮患者之便秘等。</h2>
 <h2>4）逐水：用峻下逐水药，通过较剧烈的泻下作用，由肠道</h2>
 <h2>排出体内的大量水分以治疗水肿的方法。可用于胸水、腹水而体</h2>
@@ -1605,7 +2260,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Warming is a therapeutic method that warms the middlejiao, dispel pathogenic cold and helps recover yang, removes obstruction in the channels and collaterals, and regulates the blood vessels by getting rid of the cold, recuperating the depleted yang and activating the channels and collaterals. It is applicable to diseases in the viscera and in the channels and collaterals due to pathogenic cold.</p>
 <p>1) Warming the middle-jiao to dispel cold: Also referred to as warming the interior to dispel cold, this is mainly for interior cold syndromes due to the insufficiency of the spleen yang and stomach yang. The cold syndrome results from the hypofunction of the human body, especially the hypofunction of the alimentary system, which weakens the normal digestion and absorption, lowers energy metabolism and causes insufficient heat production and gives rise to cold syndrome. Warming the middle-jiao to dispel cold aims at warming the spleen and stomach, replenishing heat indirectly by promoting and strengthening the digestive function of the gastrointestinal tract so as to make up for the deficiency of energy.</p>
 <p>2) Warming yang to treat collapse (depletion of vang):</p>
-<p>112</p></section><section class="pg" id="p134"><h2>使身体机能得到协调，从而增强抗病能力，祛除病邪，恢复健康。</h2>
+<p>112</p></section>
+
+<section id="sec75" class="pg">
+<span id="p134"></span>
+<h2>使身体机能得到协调，从而增强抗病能力，祛除病邪，恢复健康。</h2>
 <h2>亦可用于脏腑气血不和，或寒热错杂，或虚实互见的病证。和法在</h2>
 <h2>临床上的运用，一般可分为四类：即和解少阳、调和肝脾、疏肝</h2>
 <h2>和胃、调和肠胃等。</h2>
@@ -1630,7 +2289,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>1) Clearing pathogenic heat from the qi system: This is the usual heat clearing method. It is applicable to indications of febrile diseases in the metaphase with heat in the qi system.</p>
 <p>2) Clearing pathogenic heat from the ying system and from the blood: This is mainly applicable to febrile diseases in the later stage when the pathogenic heat has entered the ying system and the blood.</p>
 <p>3) Clearing away heat and removing toxic substances:</p>
-<p>114</p></section><section class="pg" id="p136"><h2>一种急救措施。</h2>
+<p>114</p></section>
+
+<section id="sec76" class="pg">
+<span id="p136"></span>
+<h2>一种急救措施。</h2>
 <h2>3）温经散寒：多用于寒邪阻滞经络，气血凝滞不通，关节</h2>
 <h2>疼痛，活动不便的痹证。具有镇痛、改善血液循环等作用。</h2>
 <h2>运用温法的注意点：</h2>
@@ -1652,7 +2315,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(2) Most of the heat clearing drugs are of cold or cool nature. An overdose may impair the function of the spleen and stomach and give rise to symptoms like anorexia. Therefore, administration of such drugs should not last long unless necessary indeed.</p>
 <p>(3)For heat syndromes of excess type with damp symptoms, dampness should also be resolved by using aromatic drugs or removed by diuresis as a supporting therapy. If the heat is so excessive as to consume the body fu id, the method of nourishing yin and promoting the production of the body fluid should also be employed as a supporting therapy. For patients suffering from constipation, purgation is advised as a supporting therapy.</p>
 <p>7. Elimination Elimination is a therapeutic method that gradually eliminates the tangible lumps formed by the accumulation and stagnation of qi, blood, phlegm, retained food, water, worm and</p>
-<p>116</p></section><section class="pg" id="p138"><h2>火、毒之邪的方法。临床常用于细菌性感染，尤其是革兰氏阳性</h2>
+<p>116</p></section>
+
+<section id="sec77" class="pg">
+<span id="p138"></span>
+<h2>火、毒之邪的方法。临床常用于细菌性感染，尤其是革兰氏阳性</h2>
 <h2>菌引起的化脓性炎症。具有抗菌、退热作用。</h2>
 <h2>4）清虚热：适用于阴虚发热，或长期低热不退证（多因身体</h2>
 <h2>衰弱，细菌毒素及其代谢产物影响植物神经系统和体温调节中枢</h2>
@@ -1672,7 +2339,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(2) Sending down abnormally ascending qi: Also referred to as lowering the adverse flow of qi, this is a therapy that lowers the upward adverse flow of qi. It has the functions of arresting vomiting, preventing hiccup and relieving asthma as well as tranquilizing the mind. It is mainly used for syndromes of reversed flow of qi due to the functional disorders of qi of the lung, the stomach and the liver.</p>
 <p>(3) Elevating the collapsed yang: This is a therapy that re elevates the descending yang qi. It is applicable to diarrhea, anorexia, prolapse of rectum, prolapse of uterus and gastroptosia resulting from qi collapse due to deficiency of qi.</p>
 <p>2) Promoting blood circulation: This is also referred to as promoting blood circulation to remove blood stasis. It has the functions of activating blood circulation and removing obstruction in the channels and vessels, removing blood stasis, promoting blood flow, regulating the smooth muscles of the various systems and organs of the human body, and relieving the spasm</p>
-<p>118</p></section><section class="pg" id="p140"><h2>水，虫等积聚而成的有形之结渐消缓散的一种治法。包括理气、</h2>
+<p>118</p></section>
+
+<section id="sec78" class="pg">
+<span id="p140"></span>
+<h2>水，虫等积聚而成的有形之结渐消缓散的一种治法。包括理气、</h2>
 <h2>活血、利湿、消食、祛痰以及消散疮疡等。</h2>
 <h2>1）理气：为调整体内气机，使之恢复正常运行的治法。主</h2>
 <h2>要适用于脾、胃、肺、肝等气机阻滞所引起的病证。包括行气、</h2>
@@ -1694,7 +2365,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(3) Clearing away heat and promoting diuresis: This is applicable to diseases or syndromes with damp heat symptoms.</p>
 <p>(4) Warming and resolving dampness: This is applicable to the cold dampness syndrome s due to the stagnation of water as a result of asthenia of the spleen and stomach or the deficiency of the kidney yang 4) Removing phlegm: This is a therapy that removes the phlegm stagnating in various parts of the body. It is mainly applied to treat diseases in the respiratory system. It is also applicable to certain diseases or syndromes in the alimentary, circulatory and nervous systems.</p>
 <p>5) Promoting digestion and removing stagnated food: This is a therapy to remove the stagnated food by using stomachics that can promote the digestive function of the stomach and</p>
-<p>120</p></section><section class="pg" id="p142"><h2>改善血液循环与内脏功能的作用。临床上多用于治疗月经病、慢</h2>
+<p>120</p></section>
+
+<section id="sec79" class="pg">
+<span id="p142"></span>
+<h2>改善血液循环与内脏功能的作用。临床上多用于治疗月经病、慢</h2>
 <h2>性炎症、心血管疾病（如血栓形成、血管、动脉硬化、心绞痛</h2>
 <h2>等）、骨折和软组织损伤以及肝脾肿大等。</h2>
 <h2>3）利湿：运用渗湿利水药使停滞的水湿由小便排出。其主</h2>
@@ -1716,7 +2391,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>2) Enriching the blood: This is a therapy to&#x27; treat deficiency of blood (pale lips, dim complexion, scanty and light coloured mens is).</p>
 <p>3) Invigorating yang: This has the effects of regulating the function of the human body and promoting metabolism. In clinical practice it is mainly used to treat deficiency of yang (such as impotence and edema), endogenous cold syndromes due to deficiency of the kidney yang (such as diarrhea and cold limbs) as well as cold syndromes due to deficiency of the spleen yang.</p>
 <p>4) Nourishing yin: This has the effects of regulating the function of the human body and promoting metabolism. The term &quot;yin actually includes essence of life, blood and body</p>
-<p>122</p></section><section class="pg" id="p144"><h2>除食滞的治法。主要适用于消化不良（呕吐、暖腐气、腹泻）的病</h2>
+<p>122</p></section>
+
+<section id="sec80" class="pg">
+<span id="p144"></span>
+<h2>除食滞的治法。主要适用于消化不良（呕吐、暖腐气、腹泻）的病</h2>
 <p>证。</p>
 <h2>6）消散疮痛：包括外疮和内痛的性质和个体反应的特点，</h2>
 <h2>按表里、阴阳、气血等辨证施治，使疮痛消散而痊愈。</h2>
@@ -1738,7 +2417,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>(2) Tonification can be used only when obvious syndromes of weakened body resistance are manifested. If the weakened body resistance is not serious while the domination of pathogen is obvious, major efforts should be made to eliminate pathogenic factors, or add tonics to drugs eliminating pathogenic factors to assist the vital gi and strengthen the body&#x27;s resistance to pathogenic factors.</p>
 <p>(3) A patient can not depend on tonics alone. It is necessary to fully mobilize the subjective initiative of the patients who should take regular exercises and adjust their diet so as to build up a powerful physique against diseases.</p>
 <p>As for complicated cases, one single therapeutic method can seldom satisfy the requirements of the treatment. In such cases, two or more therapeutic methods should be used in coordination to keep all the aspects in view.</p>
-<p>124</p></section><section class="pg" id="p146"><h2>所谓&quot;阴&quot;，包括精、血和津液等。补阴即包括补精、补血和补净</h2>
+<p>124</p></section>
+
+<section id="sec81" class="pg">
+<span id="p146"></span>
+<h2>所谓&quot;阴&quot;，包括精、血和津液等。补阴即包括补精、补血和补净</h2>
 <p>液等。</p>
 <h2>运用补法的注意点：</h2>
 <h2>（1）使用补法时，必须注意到脾胃（消化系统）的功能。对于</h2>
@@ -1756,7 +2439,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Basic Theory of TCM (II) is the sequel of Basic Theory of TCM (I). It consists of four parts: &quot;Pathogenic Factors&quot;, &quot;Pathogenesis&quot;&quot;, &quot;Prevention&quot;and &quot;Treatment&quot;.</p>
 <p>The parts &quot;Pathogenic Factors&quot;, &quot;Pathogenesis&quot; and Prevention&quot; are written by Zhang Enqin and Wang Min, the rest by ShiLanhua.</p>
 <p>The English version of Pathogenic Factors and Section Two of Treatment&quot;&quot; in this book is translated by Hu Zhaoyun, the rest by Han Yufang. All the English translation is revised by Zhang Enqin and Zhang Qi ng ling successively; part of it by Yu Wen ping, Xiao Gong, Zheng Yi, Zhang Shaohua, Qiao Ming qi and Mr. John Heater.</p>
-<p>126</p></section><section class="pg" id="p148"><p>编写说明</p>
+<p>126</p></section>
+
+<section id="sec82" class="pg">
+<span id="p148"></span>
+<p>编写说明</p>
 <h2>《中医基础理论》下册是《中医基础理论》上册的续编。其内容</h2>
 <h2>包括&quot;病因&quot;、&quot;病机&quot;、&quot;预防&quot;和&quot;治疗&quot;四部分。</h2>
 <h2>本书&quot;病因&quot;、&quot;病机&quot;和&quot;预防&quot;部分由张恩勤和王敏撰写，&quot;治</h2>
@@ -1765,7 +2452,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <h2>防&quot;和&quot;治疗&quot;部分的第一节由韩毓防翻译。全部英文稿先后经张</h2>
 <h2>恩勤和张庆龄审校。部分章节曾经于文平、肖琪、郑艺、张少华、</h2>
 <h2>乔明琦和约翰·希特先生审校。</h2>
-<p>127</p></section><section class="pg" id="p150"><h2>Published Along With The</h2>
+<p>127</p></section>
+
+<section id="sec83" class="pg">
+<span id="p150"></span>
+<h2>Published Along With The</h2>
 <h2>Library Are:</h2>
 <p>. Rare Chinese Materia Medic a</p>
 <p>. Highly Efficacious Chinese Patent Medicines</p>
@@ -1775,10 +2466,18 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Chinese Massage in A Practical English Chi nes e Library of TCM Editor in Chi ef Dr. ZhanghEnqin</p>
 <p>ISBN7-81010-139-0/R.138 Copyright 1990 by Publishing House of Shanghai College of Traditional Chinese Medicine. All rights reserved. No part of this publication may be reproduced without prior written permission from the publisher.</p>
 <p>Printed in Shanghai No.3Printing Works</p>
-<p>英汉对照实用中医文库 中医基础理论（下册） 主编张恩勤 上海中医药大学出版社出版发行 （上海零陵路530号由 邮政编码200032） 新华书店上海发行所经销 上海市印刷三厂印刷 开本850×11681/32印张4.375插页6字数110千字 1990年7月第2版1998年8月第8次印刷 印数：17，501-20,500 ISBN7-81010-105-6/R·104 定价：7.90元</p></section><section class="pg" id="p152"><p>Responsible editor Yao Yon g</p>
+<p>英汉对照实用中医文库 中医基础理论（下册） 主编张恩勤 上海中医药大学出版社出版发行 （上海零陵路530号由 邮政编码200032） 新华书店上海发行所经销 上海市印刷三厂印刷 开本850×11681/32印张4.375插页6字数110千字 1990年7月第2版1998年8月第8次印刷 印数：17，501-20,500 ISBN7-81010-105-6/R·104 定价：7.90元</p></section>
+
+<section id="sec84" class="pg">
+<span id="p152"></span>
+<p>Responsible editor Yao Yon g</p>
 <p>Cover designed by Lu Quangen</p>
 <h2>责任编辑 姚勇</h2>
-<h2>封面设计 陆全根</h2></section><section class="pg" id="p153"><p>THE LIBRARY IS COMPOSED OF12BOOKS: Basic Theory of Tr adit lo na l Chinese Medicine (l) Baslc Th cory of Traditional Chinese Medicine (ll) Dl agnostics of Traditional Chinese Medicine The Chi nc se Materia Medic a Prescriptions of Traditional Chinese Medicine Clinic of Traditional Chinese Medicine (l) Cllnic of Traditional Chinese Medicine (ll) He a it h Preservation and Rehabilitation Chinese Acupuncture and Moxibustion Chinese Massage Chinese Medicated Diet 英汉对照 Chinese Qigong</p>
+<h2>封面设计 陆全根</h2></section>
+
+<section id="sec85" class="pg">
+<span id="p153"></span>
+<p>THE LIBRARY IS COMPOSED OF12BOOKS: Basic Theory of Tr adit lo na l Chinese Medicine (l) Baslc Th cory of Traditional Chinese Medicine (ll) Dl agnostics of Traditional Chinese Medicine The Chi nc se Materia Medic a Prescriptions of Traditional Chinese Medicine Clinic of Traditional Chinese Medicine (l) Cllnic of Traditional Chinese Medicine (ll) He a it h Preservation and Rehabilitation Chinese Acupuncture and Moxibustion Chinese Massage Chinese Medicated Diet 英汉对照 Chinese Qigong</p>
 <h2>英汉对照实用中医文库 实用</h2>
 <p>中医基础理论（上册） 中医临床各科（下册） 中医基础理论（下册） 中医养生康复学 文·库 中医诊断学 中国针灸 中药学 中国推拿 方剂学 中国药膳 中医临床各科（上册） 中国气功</p>
 <p>ISBN 7-81010-105-6</p>
@@ -1786,8 +2485,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Prev</a><a href="/books/" class="home">⌂ Books</a><a href="#" class="next disabled">Next →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>

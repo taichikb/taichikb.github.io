@@ -1,11 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Voices of Qi: An Introductory Guide to Traditional Chinese Medicine | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,50 +43,409 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voices of Qi: An Introductory Guide to Traditional Chinese Medicine | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Contents</summary><ul class="toc-list"><li class="toc-item"><a href="#p002" class="toc-link">Surplos-1 Library Of Congress Duplicate</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">Voices Of Qi</a></li>
-<li class="toc-item"><a href="#p006" class="toc-link">Dedication</a></li>
-<li class="toc-item"><a href="#p008" class="toc-link">The Pin Yin Phonetic Alphabet</a></li>
-<li class="toc-item"><a href="#p019" class="toc-link">Chapter 4 Table Of</a></li>
-<li class="toc-item"><a href="#p022" class="toc-link">Foundations Of Traditional Chinese Medicine</a></li>
-<li class="toc-item"><a href="#p029" class="toc-link">Water Fire</a></li>
-<li class="toc-item"><a href="#p030" class="toc-link">Water Fire</a></li>
-<li class="toc-item"><a href="#p034" class="toc-link">Theoretical Framework</a></li>
-<li class="toc-item"><a href="#p062" class="toc-link">Modalities For Treatment</a></li>
-<li class="toc-item"><a href="#p071" class="toc-link">Mgltipleelectrosscaouplnctoscope Intensity 电共商 Apd 1+2+3 133 探穴Apd Frequency On</a></li>
-<li class="toc-item"><a href="#p073" class="toc-link">Hines E G Tin Shinn Ines Hines</a></li>
-<li class="toc-item"><a href="#p078" class="toc-link">Visiting A Tcm Practitioner</a></li>
-<li class="toc-item"><a href="#p084" class="toc-link">Thefuture:</a></li>
-<li class="toc-item"><a href="#p093" class="toc-link">Council Of Colleges Of Acupuncture And Oriental Medicine(Ccaom)</a></li>
-<li class="toc-item"><a href="#p095" class="toc-link">Na Tio Na L Acupuncture And Oriental Medicine Alliance（Naoma)</a></li>
-<li class="toc-item"><a href="#p108" class="toc-link">(Nccaom)</a></li>
-<li class="toc-item"><a href="#p115" class="toc-link">Ne $12.95Usa/$20.00Canada 1-55643-326-3</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/books/">Books</a><span class="sep">/</span><span>Voices of Qi: An Introductory Guide to Traditional Chinese Medicine</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · English transcript</div>
-      <h1 class="book-title">Voices of Qi: An Introductory Guide to Traditional Chinese Medicine</h1>
-    </header>
-    <section class="pg" id="p000"><p>601 H554 1999 nice s of</p>
-<p>An</p>
-<p>Introductory</p>
-<p>Guide To</p>
-<p>Traditional</p>
-<p>Chinese</p>
-<p>Medicine</p>
-<p>Alex Holland, M. Ac., L. Ac.</p></section><section class="pg" id="p002"><h2>Surplos-1 Library Of Congress Duplicate</h2>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Surplos-1 Library Of Congress Duplicate</a></li>
+        <li><a href="#sec01">Voices Of Qi</a></li>
+        <li><a href="#sec02">Dedication</a></li>
+        <li><a href="#sec03">The Pin Yin Phonetic Alphabet</a></li>
+        <li><a href="#sec04">Chapter 4 Table Of</a></li>
+        <li><a href="#sec05">Foundations Of Traditional Chinese Medicine</a></li>
+        <li><a href="#sec06">Water Fire</a></li>
+        <li><a href="#sec07">Water Fire</a></li>
+        <li><a href="#sec08">Theoretical Framework</a></li>
+        <li><a href="#sec09">Modalities For Treatment</a></li>
+        <li><a href="#sec10">Mgltipleelectrosscaouplnctoscope Intensity 电共商 Apd 1+2+3 133 探穴Apd Fr…</a></li>
+        <li><a href="#sec11">Hines E G Tin Shinn Ines Hines</a></li>
+        <li><a href="#sec12">Visiting A Tcm Practitioner</a></li>
+        <li><a href="#sec13">Thefuture:</a></li>
+        <li><a href="#sec14">Council Of Colleges Of Acupuncture And Oriental Medicine(Ccaom)</a></li>
+        <li><a href="#sec15">Na Tio Na L Acupuncture And Oriental Medicine Alliance（Naoma)</a></li>
+        <li><a href="#sec16">(Nccaom)</a></li>
+        <li><a href="#sec17">Ne $12.95Usa/$20.00Canada 1-55643-326-3</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>Voices of Qi: An Introductory Guide to Traditional Chinese Medicine</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p002"></span>
+<h2>Surplos-1 Library Of Congress Duplicate</h2>
 <h2>National Institutes Of Health Nih Library</h2>
 <p>DE C232000</p>
-<h2>Bldg10,10Centerdr Bethesda, Md20892-1150</h2></section><section class="pg" id="p004"><h2>Voices Of Qi</h2>
+<h2>Bldg10,10Centerdr Bethesda, Md20892-1150</h2></section>
+
+<section id="sec01" class="pg">
+<span id="p004"></span>
+<h2>Voices Of Qi</h2>
 <p>An Introductory Guide</p>
 <p>to Traditional Chinese Medicine</p>
 <p>Alex Holland, M. Ac., L. Ac.</p>
@@ -110,7 +466,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>l. Medicine, Chinese. I Title.</p>
 <p>[R601. H5541999]</p>
 <p>610&#x27;.951—dc21 99-16966 CIP</p>
-<p>23456789/0302010099</p></section><section class="pg" id="p006"><h2>Dedication</h2>
+<p>23456789/0302010099</p></section>
+
+<section id="sec02" class="pg">
+<span id="p006"></span>
+<h2>Dedication</h2>
 <p>To my mother, Dorothy, who gave me the freedom to explore, and to my wife, Linda Joy Stone, who joins me on the exploration to freedom...</p></section><section class="pg" id="p007"><p>iv</p>
 <p>ACKNOWLEDGMENTS I wish to express my deep gratitude to my teachers in Chinese medicine, especially Dr. Hoy Ping Yee Chan. I am grateful toD r. Fred La np hear and the many individuals at the Northwest Institute of Acupuncture and Oriental Medicine who supported me in a number of ways while I was writing this book. It has been a great honor to work with the Northwest Institute.</p>
 <p>I want to thank Bob La np hear for his natural ability to work within the realms of refined quality, using humor and patience as regular forms of communication.</p>
@@ -119,7 +479,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>I wish to thank Barbara Mitchell for diligence, hard work, and keeping the national perspective alive and updated.</p>
 <p>I want to acknowledge Franklyn Brad sha w for her inspiration and wisdom.</p>
 <p>I would like to thank James Blair for his insights on Oriental medicine.</p>
-<p>And lastly I would like to thank Linda Joy Stone, my wife, colleague, in house editor, photographer, humorist, earth/heart/soul mate, for letting me use the computer while she was doing acupuncture at our clinic. This book could not have been written without her love, patience, and support.</p></section><section class="pg" id="p008"><h2>The Pin Yin Phonetic Alphabet</h2>
+<p>And lastly I would like to thank Linda Joy Stone, my wife, colleague, in house editor, photographer, humorist, earth/heart/soul mate, for letting me use the computer while she was doing acupuncture at our clinic. This book could not have been written without her love, patience, and support.</p></section>
+
+<section id="sec03" class="pg">
+<span id="p008"></span>
+<h2>The Pin Yin Phonetic Alphabet</h2>
 <h2>Of Consonants And Vowels</h2>
 <p>The following table shows pronunciations with approximate</p>
 <p>English equivalents.</p>
@@ -158,7 +522,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Chapter3</p>
 <p>Modalities for Treatment Medicine in China Today 49 Acupuncture.</p>
 <p>50 Acupressure 53 Moxibustion 54 Cupping 56 Plum Blossom Needling 57 Electro acupuncture...</p>
-<p>58 58 Chi nes e Herbal Medicine Medical QiGong 62</p></section><section class="pg" id="p019"><p>6. Voices of Qi</p>
+<p>58 58 Chi nes e Herbal Medicine Medical QiGong 62</p></section>
+
+<section id="sec04" class="pg">
+<span id="p019"></span>
+<p>6. Voices of Qi</p>
 <h3>Chapter 4 TABLE OF</h3>
 <p>CONTENTS Visiting a TCM Practitioner</p>
 <p>A Variety of Approaches to Treatment ....65</p>
@@ -188,7 +556,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>References..</p>
 <p>92</p>
 <p>Index ...</p>
-<p>93</p></section><section class="pg" id="p021"><p>8. Voices of Qi</p></section><section class="pg" id="p022"><p>Chapter1</p>
+<p>93</p></section><section class="pg" id="p021"><p>8. Voices of Qi</p></section>
+
+<section id="sec05" class="pg">
+<span id="p022"></span>
+<p>Chapter1</p>
 <h2>Foundations Of Traditional Chinese Medicine</h2>
 <p>Understanding the foundations of TCM gives us an appreciation for the way in which this medicine is practiced and the way in which its practitioners view the world. These principles emerged from a cultural heritage steeped in the belief of balance and the unity of all things. The traditional medicine that developed within this cultural framework embraces concepts that, once grasped, lead to a greater appreciation and understanding of our relationship to our world, to each other and to our own health.</p>
 <p>BEGINNINGS Fundamental to TCM are the power fu l roles that balance and harmony play in the role of health. The ancient Chinese observed the cyclical patterns of nature and acknowledged the influences that the starry heavens played in their daily lives. Through patient observation, they realized that all parts of the universe are interrelated. They came to understand our place within nature, recognizing how natural forces strongly influence the affairs of humankind. They understood that we are but a microcosmic reflection of a much greater whole that encompasses all the forces of nature. These forces represent the myriad faces of Qi. The na t ural forces of Qi can be broadly divided into the two equal and opposite aspects of Yin and Yang. These Yin and Yang expressions of Qi encompass not only the wilds of nature such as wind,</p></section><section class="pg" id="p023"><p>10. Voices of Qi</p>
@@ -226,7 +598,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Yin/Yang The Yin/Yang pair represents the summation of the other six categories, yet can also describe certain aspects of imbalance that do not fit precisely into the other categories.</p>
 <p>THE FIVE ELEMENTS Another important diagnostic and therapeutic framework in TCM is the Five Elements Theory. This theory evolved from observation of natural phenomena into a system of correspondences that ties all natural processes to five phase relationships. The Five Elements Wood, Fire, Earth, Metal, and Water are regarded as energetic qualities in-</p>
 <p>e gory of related functions or qualities. For example, the Qi of the Wood element is associated with activities of growing or increasing, as wood naturally does in the spring. Fire Qi correlates to activity that has peaked and is ready to decline. Metal Qi represents activities that are decreasing, or declining, and the Qi of Water is associated with activities that have reached a maximum state of decline and are preparing to grow. The Qi of Earth designates centrality or neutrality and is seen as a buffer among the other elements. The Five Elements have symbolic correspondences associated with all aspects of the na t ural world, as Table2 on the next page indicates.</p>
-<p>A TCM practitioner might use Five Element correspondences to assist in diagnosis. For example, Table 2 shows that the Metal element is associated with the Lungs, nose, skin, autumn, mucus and</p></section><section class="pg" id="p029"><p>16. Voices of Qi</p>
+<p>A TCM practitioner might use Five Element correspondences to assist in diagnosis. For example, Table 2 shows that the Metal element is associated with the Lungs, nose, skin, autumn, mucus and</p></section>
+
+<section id="sec06" class="pg">
+<span id="p029"></span>
+<p>16. Voices of Qi</p>
 <p>PO OM Fire Earth Metal Water</p>
 <p>Kidney</p>
 <p>Yin Organ Liver Heart Spleen Lungs</p>
@@ -261,7 +637,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>WOOD</p>
 <h2>Water Fire</h2>
 <h2>Metal Earth</h2>
-<p>Figure2: The Mutual Production Cycle</p></section><section class="pg" id="p030"><h2>Foundations</h2>
+<p>Figure2: The Mutual Production Cycle</p></section>
+
+<section id="sec07" class="pg">
+<span id="p030"></span>
+<h2>Foundations</h2>
 <p>ment moves and blends into the next in the sequential pattern of Wood Fire Earth Metal Water. This is best exemplified in the patterns of seasonal growth, as depicted below.</p>
 <p>Wood, corresponding to spring, turns naturally into Fire, the element of summer. As summer progresses it moves into what we call Indian summer. This corresponds to the element Earth. Indian summer is naturally followed by fall (Metal), and winter (Water)completes the cycle. The cycle begins again when winter changes into spring (Wood). In this scheme each phase smoothly flows into the next and at the same time depends on the previous phase for its own nourishment.</p>
 <p>The Mutual Production Cycle is one of many employed within the framework of TCM and is often used to describe clinical processes and relationships that help to formulate appropriate diagnosis and treatment.</p>
@@ -273,7 +653,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>one following it in the sequence. The controlling Element is usually excessive in Qi, or hyper acting. This excessive Qi impinges on the element that it is supposed to control, creating an imbalance. For example, Wood should control Earth to help keep it in balance, but when this relationship is disturbed, for instance by excessive anger (Liver/Wood), a person may become overly pensive or suffer from digestive disorders (Spleen/Earth).</p></section><section class="pg" id="p031"><p>18. Voices of Qi</p>
 <p>Many acupuncture points correspond to the Five Elements. Using the above example, if Wood (Liver)becomes overactive and do mi na tes the Earth(Spleen), resulting in digestive disorders, theacupuncturist might needle Five Element acupuncture points to calm the Liver Qi and perhaps, if necessary, reinforce the Qi of the Spleen. This treatment would once again bring about a balance between the Wood and Earth elements and alleviate the digestive symptoms.</p>
 <p>These two cycles are the most frequently used in TCM. The Five Elements allow us to correlate observed natural phenomena in the macrocosm with the microcosm of human life. In this regard, it can be a very useful tool in understanding people&#x27;s relationship to the greater whole of the na t ural world.</p></section><section class="pg" id="p032"><p>19</p></section><section class="pg" id="p033"><p>20. Voices of Qi</p>
-<p>-CCCCC</p></section><section class="pg" id="p034"><p>Chauter2</p>
+<p>-CCCCC</p></section>
+
+<section id="sec08" class="pg">
+<span id="p034"></span>
+<p>Chauter2</p>
 <h2>Theoretical Framework</h2>
 <p>When exploring TCM it is important to be able to interpret the metaphorical language. This is one of the more difficult tasks of the TCM practitioner and can take years of experience to perfect. An in depth exploration is beyond the scope of this book, however, a brief description and explanation of some fundamental concepts can enhance our basic understanding Our exploration will lead to a new way of viewing the functions of the physical body and its relationship to the emotions, the mind and the Spirit.</p>
 <p>VITAL SUBSTANCES: QI, BLOOD, SHEN, AND BODY FLUIDS TCM views physiological processes as the interaction among various vital substances. The quality and quantity of these vital substances, and their ability to smoothly interact and reinforce one another, provide the mechanism for balance within the body. These substances demonstrate varying degrees of materiality, from the most substantial Blood to the most rarified-Shen, or Spirit. At the foundation of all of the vital substances, however, is the presence of Qi. Qi The concept of Qi is perhaps the most difficult of the vital substances to grasp, but also perhaps the most interesting because of its multidimensional nature. We have spoken of its ubiquitousness, of its vital role in the physiological process, maintenance, and development of the human form, and of its more subtle nature in relation to the activity of our mind, emotions, and Spirit. Qi is an enigma, for it</p></section><section class="pg" id="p035"><p>22·Voices of Qi</p>
@@ -417,7 +801,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Lung Large Intestine Right Stomach Spleen Wrist Triple Burner Kidney Yang</p>
 <p>Table 3: Pulse Positions and Organ Associations</p></section><section class="pg" id="p059"><p>46·Voices of Qi</p>
 <p>One area of palpatory diagnosis, feeling the radial pulse on the thumb side of each wrist, is of special interest to practitioners of TCM. Pulse diagnosis gives detailed information on the state of the health and Qi of the internal organs as well as the energetic status of the entire body. Pulse diagnosis is extremely subtle and complex The pulse is felt at superficial and deep levels at three locations on each wrist (see Figure9 and Table3). When palpating the pulse, the practitioner focuses on its rate, depth, strength, quality, rhythm, and length. Traditionally, there are twenty seven pulse types, each one having specific indications that relate to a Qi di sha rm on yin the body. For example, a person whose pulse feels slower than normal may have a cold condition affecting their body, whereas a faster pulse may indicate heat. A pulse that is felt only very deeply usually indicates that the Qi of the body is focused inter na ll y, whereas someone whose pulse is felt only very near the surface of the skin may be activating their Protective Qi in order to fight off a cold or flu. Pulses can be big or thin, soft or tight; they may feel fluid or taut or be regular or irregular in their rhythm. Each pulse quality can be combined with others to create a complex system of correspondences and a variety of diagnostic possibilities. For example, a pulse can be slow, deep, and taut. This presentation might indicate a cold and painful condition deep in the body. Or a patient might present with a pulse that is thin and rapid. This might lead to the diagnosis of Deficient Blood with accompanyingHeat.</p>
-<p>Through focused attention and practice, the practitioner can learn to read the subtleties of Qi dynamics and may even perceive imbalances before they appear as physical complaints.</p></section><section class="pg" id="p060"><h2>Theoretical Framework</h2></section><section class="pg" id="p061"><p>48. Voices of Qi</p></section><section class="pg" id="p062"><p>Chapter3</p>
+<p>Through focused attention and practice, the practitioner can learn to read the subtleties of Qi dynamics and may even perceive imbalances before they appear as physical complaints.</p></section><section class="pg" id="p060"><h2>Theoretical Framework</h2></section><section class="pg" id="p061"><p>48. Voices of Qi</p></section>
+
+<section id="sec09" class="pg">
+<span id="p062"></span>
+<p>Chapter3</p>
 <h2>Modalities For Treatment</h2>
 <p>Over the centuries, TCM practitioners have developed therapeutic strategies for stimulating and rebalancing the Qi of the body. Today in China these therapies are divided into four main categories: acupuncture, body work, herb ology, and medical Qi Gong. During treatment, a TCM practitioner may draw on all of these modalities in combination or may use only one of them at a time. The choice is determined by the condition being treated and the modality that will have the most therapeutic effect. This cha per covers the main therapeutic modalities of TCM and gives the reader an understanding of how and why they are used.</p>
 <p>MEDICINE IN CHI NA TODAY Today in most Chinese hospitals, acupuncture, herb ology, medical Qi Gong and tuina (body work)all have their own departments and the doctors employed in these departments work side by side with doctors in the western medical departments. It is an environment of mutual cooperation, trust, and respect. Such a climate of cooperation has created a health care delivery system that incorporates many aspects of a w holistic system. It is a wise blending of western technologies and eastern energetics. The patient is the ultimate recipient of this cooperative effort. The Chinese people hold the view that activities that enhance health and thus prevent illness are a key to maintaining good health. These healthful activities, or regimens, include proper diet and nut rit io na l knowledge based on Chi nes e herbs, movement therapies such</p></section><section class="pg" id="p063"><p>50. Voice r of Qi</p>
@@ -454,7 +842,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Cupping is often used in conjunction with acupuncture or moxibustion. Sometimes the cups are applied over an inserted needle, although most of the time they are used independently either before or after needle insertion. Cupping is used most frequently to treat sprains, sore muscles, and other types of mus cul o skeletal disorders. A special technique called&quot;Running Cupping&quot;is effective for back pain by applying the cup to oiled skin. The cup is then gently moved across the tissue.</p>
 <p>PLUM BLOSSOM NEEDLING Plum Blossom needling, or Seven Star needling(seeFigure18), is a form of cutaneous needle therapy. In this technique needles are not inserted into the skin but used to stimulate the meridians by applying stimulation to the surface of the body. Both the Seven Star needle</p>
 <p>Figure 18: Plum Blossom and7StarNeedles and the Plum Blossom needle are composed of short stainless steel needles (seven or five respectively) in a bundle and attached to a handle. The needles are very short and have equal space between them.</p>
-<p>In Plum Blossom needling the surface of the skin is tapped either heavily or lightly. Light tapping reddens the skin, and heavier tapping may cause slight bleeding. The area to be tapped may be a specific point or cover several points along a specific meridian. This technique stimulates the flow of both Qi and Blood to the area where the tapping is being applied. It is used for conditions of the nervous system and also skin disorders.</p></section><section class="pg" id="p071"><p>58. Voices of Qi</p>
+<p>In Plum Blossom needling the surface of the skin is tapped either heavily or lightly. Light tapping reddens the skin, and heavier tapping may cause slight bleeding. The area to be tapped may be a specific point or cover several points along a specific meridian. This technique stimulates the flow of both Qi and Blood to the area where the tapping is being applied. It is used for conditions of the nervous system and also skin disorders.</p></section>
+
+<section id="sec10" class="pg">
+<span id="p071"></span>
+<p>58. Voices of Qi</p>
 <p>ELECTRO ACUPUNCTURE Electro acupuncture applies a small electrical current to the inserted acupuncture needles. This type of therapy is relatively new in China and was developed during the 1930&#x27;s. Traditionally, the application of a small current to the needles provided constant stimulation to the points and has been more often used to treat stubborn cases where the Qi is quite congested, such as hemiplegia or chronic mus cul o skeletal disorders. Recently, however, with the development of more technologically advanced electro acupuncture ma chi nes(see</p>
 <h2>Mgltipleelectrosscaouplnctoscope Intensity 电共商 Apd 1+2+3 133 探穴Apd Frequency On</h2>
 <h2>中国Lbe I Jing Chi Na</h2>
@@ -462,7 +854,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>CHI NES E HERBAL MEDICINE Chinese herb ology is the other major branch of TCM. The premise of herbal medicine is that many plants and other materials, such as insects or minerals, have energetic properties that, when knowledgeably used, can have dramatic healing effects. The practice of Chinese</p></section><section class="pg" id="p072"><h2>Modalities</h2>
 <p>herb ology is truly an art, for the combining of herbs into just the right formula takes a great deal of skill and knowledge. There are literally hundreds of substances, mostly of plant origin, in the Chinese pharmacopoeia, and each substance has its own specific energetic properties.</p>
 <p>Chi nes e herbal medicine uses the identical theoretic and diagnostic principles as does acupuncture. However, herbal medicine is traditionally used for more internal organ imbalances than acupuncture, which is used more predominantly in mus cul o skeletal disorders. The two therapeutic approaches of acupuncture and herbal medicine are quite complementary and are often used together in the same treatment. Each system affects the Qi of the bod yin specific ways. In many instances herbal remedies are used to supplement the body&#x27;s Qi, and acupuncture is used to manipulate Qi, focusing it where it is needed. In essence, the general therapeutic approach to healing in Chinese medicine is that an individual must have Qi available in order to heal The art of Chi nes e herbal medicine lies in the development of the herbal formulas. Each formula contains many different herbal ingredients and each works synergistically with the others to bring about the therapeutic effect. When creating an herbal formula, each herb is given a place in an energetic hierarchy that uses names such as&quot;chief,&quot; &quot;deputy&quot;&quot;assistant,&quot;and&quot;envoy&quot;For example, the chief is the most important ingredient and holds the therapeutic focus of the entire formula. The deputy assists the chief in its duties by supplementing the focused approach or by treating secondary conditions. The assistant may foster the synergistic workings of the formula or assist in the prevention of possible toxic side effects, while the envoy may direct the formula to a specific body area or harmonize the actions of the other ingredients.</p>
-<p>Herbal formulas generally have anywhere from five to twenty individual ingredients in them. Individual herbs are rarely, if ever, taken alone, for it is in combining the herbs that the true strength of herbal medicine lies. Each herb in a formula has a specific duty and energetic function. Some herbs draw energy downward in the body, for example, to treat gout, edema, or low back pain; while others cause energy to rise, for example, to treat headaches or upper body disorders. Many herbs bring Qi to the surface of the body, for example, to</p></section><section class="pg" id="p073"><p>60·Voices of Qi</p>
+<p>Herbal formulas generally have anywhere from five to twenty individual ingredients in them. Individual herbs are rarely, if ever, taken alone, for it is in combining the herbs that the true strength of herbal medicine lies. Each herb in a formula has a specific duty and energetic function. Some herbs draw energy downward in the body, for example, to treat gout, edema, or low back pain; while others cause energy to rise, for example, to treat headaches or upper body disorders. Many herbs bring Qi to the surface of the body, for example, to</p></section>
+
+<section id="sec11" class="pg">
+<span id="p073"></span>
+<p>60·Voices of Qi</p>
 <p>treat skin problems or to dispel flus or colds; whereas other herbs take Qi deeper to nourish or balance the internal organs. All herbs have attributes of flavor, for example, bitter, sweet or sour, and soon; temperature, for example, cold, neutral, hot, and so on; and specific meridians for which they have an affinity. For example, some herbs may enter the Spleen and Liver meridians, whereas others may enter the Lungs, Liver, and Kidneys, or any other combination of meridians. All these properties must be weighed when developing an herbal formula. It is no easy task and takes knowledge, patience, and a refined understanding of herbal and physiological energetics.</p>
 <p>Herbal medicines can be prescribed in a number of ways. Two of the most common are prepared (or patent) herbs and raw herbs. Prepared herbs (see Figure 20)are usually classical Chinese herbal formulas in pill form and can be bought over the counter in herbal pharmacies. These formulas number in the hundreds and are used for specific health complaints</p>
 <h2>Hines E G Tin Shinn Ines Hines</h2>
@@ -473,7 +869,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>If an herbalist does not have a raw herbal pharmacy, she may give a prescription to the patient to have it filled elsewhere. Some practitioners prefer to dispense prepared herbal medicines. The choice often depends on the therapeutic needs of the patient.</p></section><section class="pg" id="p075"><p>62. Voices of Qi</p>
 <p>MEDICAL QIGONG As we have seen, the manipulation of Qi for therapeutic purposes takes many forms. Perhaps least understood in the West is medical Qi Gong. This system enhances, clears, and focuses the flow of Qi through the body through specific body movements and visualizations. The therapeutic goals of medical Qi Gong are the same as those of other TCM modalities, however, in this therapy the practitioner</p>
 <p>Figure 22: Dr. Xuezhong&quot;Lincoln&quot;Wang Performing Medical Qi Gong uses his or her hands to stimulate and manipulate the patient&#x27;s Qi. The Qi Gong practitioner may not actually touch the patient, but manipulates the Qi of the patient from a short distance(see Figure22).</p>
-<p>In some instances the practitioner may teach specific medical Qi Gong techniques to a patient. This allows the patient to stimulate his or her own Qi on a regular basis without the need of the practitioner being present. Taiji is an example of a specific form of medical Qi Gong. In this practice individuals move their internal Qi in specific ways through physical movement and visualization. This helps to keep the Qi moving smoothly within the body, nourishing all tissues and</p></section><section class="pg" id="p076"><p>Modalities:63 keeping the muscles toned. Taiji can thus be seen as a form of medical Qi Gong that is preventative in nature. Most hospitals in China have Qi Gong departments that work in concert with the acupuncture and herbal departments, as well as with the western medical departments. Medical Qi Gong is very subtle and takes a great deal of concentration and discipline to learn, but it can be very effective. Finding a qualified practitioner in the West can be difficult. Case#7 Dan, a thin, middle aged man, had been on high blood pressure medication for nearly eight years. These controlled his blood pressure, but the side effects caused him other concerns. He came to see me to find out if I could help him get off his blood pressure medication. I agreed but only after I had spoken with his doctor and we agreed on a treatment strategy. Dan was suffering from a condition where his Yin and Yang were out of balance. The Yang in his body was constantly rising up because the Yin was not holding it down. I treated Dan with acupuncture using points that helped to stabilize the rising energy in his body. At the same time I provided him with herbs that would help to nourish his deficient Yin. I also referred him to a medical Qi Gong practitioner who taught Dan how to redirect and nourish his own Qi through visualization and movement therapies. Over the following weeks Dan had his blood pressure checked reg u larly by his physician as we slowly cut back on his medication. His doctor was quite surprised when after four months Dan was off his medications entirely and his blood pressure had stabilized at normal levels. Dan continues his Qi Gong practices daily and has resumed a normal healthylifestyle.</p></section><section class="pg" id="p077"><p>64·Voices of Qi</p></section><section class="pg" id="p078"><p>Chapter4</p>
+<p>In some instances the practitioner may teach specific medical Qi Gong techniques to a patient. This allows the patient to stimulate his or her own Qi on a regular basis without the need of the practitioner being present. Taiji is an example of a specific form of medical Qi Gong. In this practice individuals move their internal Qi in specific ways through physical movement and visualization. This helps to keep the Qi moving smoothly within the body, nourishing all tissues and</p></section><section class="pg" id="p076"><p>Modalities:63 keeping the muscles toned. Taiji can thus be seen as a form of medical Qi Gong that is preventative in nature. Most hospitals in China have Qi Gong departments that work in concert with the acupuncture and herbal departments, as well as with the western medical departments. Medical Qi Gong is very subtle and takes a great deal of concentration and discipline to learn, but it can be very effective. Finding a qualified practitioner in the West can be difficult. Case#7 Dan, a thin, middle aged man, had been on high blood pressure medication for nearly eight years. These controlled his blood pressure, but the side effects caused him other concerns. He came to see me to find out if I could help him get off his blood pressure medication. I agreed but only after I had spoken with his doctor and we agreed on a treatment strategy. Dan was suffering from a condition where his Yin and Yang were out of balance. The Yang in his body was constantly rising up because the Yin was not holding it down. I treated Dan with acupuncture using points that helped to stabilize the rising energy in his body. At the same time I provided him with herbs that would help to nourish his deficient Yin. I also referred him to a medical Qi Gong practitioner who taught Dan how to redirect and nourish his own Qi through visualization and movement therapies. Over the following weeks Dan had his blood pressure checked reg u larly by his physician as we slowly cut back on his medication. His doctor was quite surprised when after four months Dan was off his medications entirely and his blood pressure had stabilized at normal levels. Dan continues his Qi Gong practices daily and has resumed a normal healthylifestyle.</p></section><section class="pg" id="p077"><p>64·Voices of Qi</p></section>
+
+<section id="sec12" class="pg">
+<span id="p078"></span>
+<p>Chapter4</p>
 <h2>Visiting A Tcm Practitioner</h2>
 <p>Although the underlying principles of TCM are shared by all practitioners, the various techniques used vary from individual to individual. Many practitioners are very traditional and use only those techniques found in TCM. Other practitioners use techniques that have been developed in Japan or Korea or from research done here in the West. This chapter explores the experience of visiting a TCM practitioner, costs, and what to look for i na practitioner.</p>
 <p>A VARIETY OF APPROACHES TO TREATMENT The therapies encompassing TCM vary a great deal depending on the training and specialty of the individual practitioner. TCM has been modified by numerous cultural influences, and although these therapies still use acupuncture, the needling techniques vary. Sometimes the practitioner might also use a therapy that complements needling. For example, some practitioners may place small magnets o na cu puncture points or meridians (Japanese). Others may use Korean Hand acupuncture, which employs only the micro system of the hand to affect the overall Qi of the body. Other practitioners may specialize in specific diagnostic techniques such as Hara Diagnosis (Japanese), which focuses on palpating the abdomen. Still others may use ion pumping cords (Japanese), a type of therapy that uses small cords connecting acupuncture needles inserted at different sites on the body. These are but a few of the many established techniques that practitioners in the United States, Canada, and Europe currently use to stimulate and move the Qi of the body. I expect the number and</p></section><section class="pg" id="p079"><p>66. Voices of Qi types of therapies to continue to expand as our knowledge and understanding of the dynamics of Qi continues to grow. With this said, however, we must still recognize that within the tradition of Chinese medicine, innumerable therapeutic approaches exist that reinforce, stimulate, and move the Qi. The modalities of acupuncture, herbal medicine, and tuina body therapy are a few of the most common that practitioners use in the United States.</p>
@@ -493,7 +893,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>tive can let you know if this is the case. Insurance coverage for TCM is changing rapidly and major insurance companies are now starting to cover many specific conditions.</p>
 <p>FINDING A PRACTITIONER Choosing a competent TCM practitioner is an important part of achieving good therapeutic results. There are many organizations in the United States that have listings of trained and qualified practitioners throughout the country (see Appendix C). Also, check to see if there is a school of Oriental Medicine near you. Schools have listings of their graduates and are a good referral source. Many states where TCM is licensed have professional organizations. Check your phone book. Most professional state organizations keep an updated referral list of qualified practitioners.</p>
 <p>Check to see if the TCM practitioner is certified, licensed, or registered. Not only do the designations vary from state to state, but the requirements for these various designations vary as well. It is best to check with each state individually to determine how they define these designations. Choose a practitioner who can practice legally in your state.</p>
-<p>It is also important to find out where the practitioner studied and for how long (see Appendix D for fu rt her information on education, training, and certification). Also, check to see if the illness that you are seeking help for is treatable by TCM (see Appendix B for a list of diseases treated by TCM). Other questions to consider are: Does the practitioner use disposable needles? What are the costs for each treatment? How long are the first office appointment and follow up visits? How long has the practitioner been in practice? Has the practitioner had any complaints registered against him or her with the state? These are a few of the questions that will assist you in finding a well trained, legal, and experienced TCM practitioner.</p></section><section class="pg" id="p083"><p>70·Voices of Qi</p></section><section class="pg" id="p084"><p>Chaters</p>
+<p>It is also important to find out where the practitioner studied and for how long (see Appendix D for fu rt her information on education, training, and certification). Also, check to see if the illness that you are seeking help for is treatable by TCM (see Appendix B for a list of diseases treated by TCM). Other questions to consider are: Does the practitioner use disposable needles? What are the costs for each treatment? How long are the first office appointment and follow up visits? How long has the practitioner been in practice? Has the practitioner had any complaints registered against him or her with the state? These are a few of the questions that will assist you in finding a well trained, legal, and experienced TCM practitioner.</p></section><section class="pg" id="p083"><p>70·Voices of Qi</p></section>
+
+<section id="sec13" class="pg">
+<span id="p084"></span>
+<p>Chaters</p>
 <h2>Thefuture:</h2>
 <h2>World Medicine</h2>
 <p>The face of medicine is changing. Western medicine is exploring new frontiers in psychology and bio energetics, and the East is discovering the power of pharmaceuticals and the coronary bypass. There is a peculiar beauty to this balance and, hopefully, some significant benefits to humanity. This chapter explores the possibilites of the medicine of tomorrow.</p>
@@ -518,7 +922,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Southern and Northern Dy na sties317-589 . Tao Hong jing compiled the Divine Husbandman&#x27;s Classic of the Materia Medic a (Shen Non g Ben Cao Jing)which was originally attributed to the&quot;Divine Husbandman&quot;, Shen Non g. Sui Dy na sty 589-618 · Sun Si miao wrote Thousand Golden Prescriptions for Medical Emergencies (Be i li Qian Jin Yao Fang) and the Golden Supplementary Prescriptions (Qi an J in Yi Fang). Foundation of the Imperial Medical College with acupuncture as a unit in the medical department. Tang Dy na sty 618-907 Establishment of the Imperial Academy of Medicine with four departments: internal medicine, acupuncture, massage and sorcery. Five Dy na sties and Ten Kingdoms 907-960 Song Dy na sty 960-1279 Illustrated Manual on Points for Acupuncture and Moxibustion Shown on a Bronze Figure (Tongren Shuxue Zhenjiu Tu jing) by Wang Weiyi. 2nearly life sized bronze statues created depicting the meridians and points of acupuncture. Meridian Points and Moxibustion Tech ni gue s (Gao H uang Yu) by Chuang Cao. Foundation of an official agency to supply and dispense herbal medicine. Yu anDy na sty 1279-1368 ·The Divine Response Classic (Shen Ying Jing)written by Chen Hui.</p>
 <p>This book contained rhymes accompanied by illustrations for over 119acupuncture points. . WangGuorui composed The Jade Dragon Classic of the Efficacious Acupuncture and Moxibustion of B ian Que (B ian Que Shen yin g Zhenjiu Yulong Jin). This book of rhymes contained 120 acupuncture points. Ming Dy na sty 1368-1644 • 3 more bronze statues cast: a man, woman, and child, all depicting the meridians and points of acupuncture.</p></section><section class="pg" id="p091"><p>78. Voices of Qi</p>
 <p>On Pulse Diagnosis(Bin HuMai Xue)byLi Shizhen. This book described the 27 pulse types in verse. Complete Collection of Acupuncture and Moxibustion (Zhenjiu Da quan) written by Xu Fen g. . Wang Ji wrote Questions and Answers About Acupuncture and Moxibustion (Zhenjiu Wendui) ·Appearance of moxa rolls towards the end of the 14 century. Qi ngD y na sty 1644-1911 ·Chinese medicine spreads to Europe with Secrets de la Medicine des Chi no is published in France in 1671. Author was anonymous. Many publications followed over the next few years. Golden Mirror of Medicine: an encyclopedia of medicine compiled in 1742. Republic of Chi na1911-1949 . Cheng Dan an (1899-1957)establishes the Chinese Acupuncture Research Society, founded the Chinese Acupuncture Spe cialty School, and ran an acupuncture correspondence school. TCM prohibited in1929. Peoples &#x27; Republic of China 1949-present Renaisssance of TGM. . Research (1950&#x27;s)on the use of acupuncture anesthesia begins in the mid1950&#x27;s. . The development of ear acupuncture is expanded in China from knowledge received from Europe. President Richard Nix on visits China in 1971. This initiates the growth of TCM in the United States. : Between1972-75, two acupuncture jour na ls started in the United States; currently over 33 colleges of acupuncture and Oriental Medicine that are accredited or candidates for accreditation in the U. S.; 35 states license TCM; establishment of an accreditation agency to accredit TCM schools; national exam for certification established; and the creation of two national professional organizations (see Appendix C).</p></section><section class="pg" id="p092"><h2>Appendix B</h2>
-<p>Appendix B World Health Organization&#x27;s List of Diseases Helped with Traditional Chinese Medicine The World Health Organization (WHO)recognizes the ability of acupuncture and Oriental medicine to treat over 43 commonly encountered clinical disorders. In the United States, acupuncture is most commonly known for the treatment of pain and drug detoxification. Among the most common disorders for treatment recognized by WHO are: Alcohol dependence High Blood Pressure Allergies/Asthma Immune system deficiency Infertility Anxiety/Depression Arthritis/Jointproblems Insomnia Back pain Knee pain Bladder/Kidneyproblems Fibromyocitis Carpal tunnel syndrome Neck pain/Stiffness Chi ld hood illness Numbness/Poorcirculation Colds/Flu/Cough/Bronchitis Premenstrual syndrome Constipation/Diarrhea Sciatica Dizziness Sexualdysfunction/Impotence Drug Addiction/Smoking Shoulder pain Eye, ear, nose and throat disorders Skin problems Sports injuries Fatigue Gynecological disorders Stress/Tension Headache/Migraine Tendinitis Heart problems/Palpitations TMJ/Jaw pain Weight gain or loss Herpes</p></section><section class="pg" id="p093"><p>80·Voices of Qi</p>
+<p>Appendix B World Health Organization&#x27;s List of Diseases Helped with Traditional Chinese Medicine The World Health Organization (WHO)recognizes the ability of acupuncture and Oriental medicine to treat over 43 commonly encountered clinical disorders. In the United States, acupuncture is most commonly known for the treatment of pain and drug detoxification. Among the most common disorders for treatment recognized by WHO are: Alcohol dependence High Blood Pressure Allergies/Asthma Immune system deficiency Infertility Anxiety/Depression Arthritis/Jointproblems Insomnia Back pain Knee pain Bladder/Kidneyproblems Fibromyocitis Carpal tunnel syndrome Neck pain/Stiffness Chi ld hood illness Numbness/Poorcirculation Colds/Flu/Cough/Bronchitis Premenstrual syndrome Constipation/Diarrhea Sciatica Dizziness Sexualdysfunction/Impotence Drug Addiction/Smoking Shoulder pain Eye, ear, nose and throat disorders Skin problems Sports injuries Fatigue Gynecological disorders Stress/Tension Headache/Migraine Tendinitis Heart problems/Palpitations TMJ/Jaw pain Weight gain or loss Herpes</p></section>
+
+<section id="sec14" class="pg">
+<span id="p093"></span>
+<p>80·Voices of Qi</p>
 <p>Appendix C National Organizations There are a number of national organizations associated with Oriental medicine. Below is a partial list of the most important organizations and their roles in Oriental medical education and the profession.</p>
 <h2>Council Of Colleges Of Acupuncture And Oriental Medicine(Ccaom)</h2>
 <p>1010WAYNE AVE.,#1270, SILVER SPRING, MD20910 (301)608-9175 FAX(301)608-9576 The Council of Colleges was formed in 1982 for the purpose of advancing the status of acupuncture and Oriental medicine in the United States. The Council has developed academic and clinical guidelines and core curriculum requirements for master&#x27;s level programs in acupuncture as well as acupuncture and Oriental medicine.</p>
@@ -531,7 +939,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>NATIONAL COMMISSION FOR THE CERTIFICATION OF ACUPUNCTURE AND ORIENTAL MEDICINE（NCCAOM)</p>
 <p>142416TH STREET N. W., SUITE501 WASHINGTON D. C.20036 202)232-1404FAX（202)462-6157 FORMERLY NATIONAL COMMISSION FOR THE CERTIFICATION OF ACUPUNCTURISTS（NCCA)</p>
 <p>The NCCAOM was established by the profession in 1982 to develop and implement na tio na ll y recognized standards of competence for the practice of acupuncture and Oriental medicine. Since its inception, the NCCAOM has certified over six thousand Diplomates of Acupuncture and is used as the basis for licensure in 90% of the states which have established standards of practice for acupuncture. The NCC AOM administers the na tio na l Board exam i na t ions for the profession of acupuncture and Oriental medicine. These exams are both written and practical and test medical proficiency in the theory, diagnosis, treatment, referral, and ethics of the Oriental medicine profession.</p>
-<p>Certification in acupuncture is based on a candidate&#x27;s ability to meet eligibility standards of education and/or experience; passage of the comprehensive written and practical examinations; successful completion of an NCCAOM approved Clean Needle Technique Course and commit t ment to the professional code of ethics.</p></section><section class="pg" id="p095"><p>82. Voices of Qi</p>
+<p>Certification in acupuncture is based on a candidate&#x27;s ability to meet eligibility standards of education and/or experience; passage of the comprehensive written and practical examinations; successful completion of an NCCAOM approved Clean Needle Technique Course and commit t ment to the professional code of ethics.</p></section>
+
+<section id="sec15" class="pg">
+<span id="p095"></span>
+<p>82. Voices of Qi</p>
 <p>The NCC AOM is a member of the Na tio na l Organizationof Competency Assurance and certified by the National Commission for Certifying Agents, the agency with the highest voluntary standards of certifying agencies in the United States.</p>
 <h2>Na Tio Na L Acupuncture And Oriental Medicine Alliance（Naoma)</h2>
 <p>14637STARR ROADS. E., OLALLA, WA98359 253)851-6896 FAX（253)851-6883 The National Alliance is one of two national professional membership associations. It was founded in 1993 to represent the diversity of practitioners of acupuncture and Oriental medicine in the United States.</p>
@@ -644,7 +1056,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Fen g Shui 73,88 Jing....</p>
 <p>23,30,89,91</p>
 <p>Fevers.. 14Joy.</p>
-<p>31</p></section><section class="pg" id="p108"><h2>Index</h2>
+<p>31</p></section>
+
+<section id="sec16" class="pg">
+<span id="p108"></span>
+<h2>Index</h2>
 <p>Moxibustion......50,54,55-57,</p>
 <p>Kidneys....23, 24, 30, 40, 60, 89</p>
 <p>67, 89</p>
@@ -745,7 +1161,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>32,41,60,91</p></section><section class="pg" id="p114"><p>LIBRARy NI H</p>
 <p>Amazing Research.</p>
 <p>Amazing Help. http:/inihlibrary. ni h. go v</p>
-<p>10Center Drive Bethesda, MD20892-1150 301-496-1080</p></section><section class="pg" id="p115"><h2>Ne $12.95Usa/$20.00Canada 1-55643-326-3</h2>
+<p>10Center Drive Bethesda, MD20892-1150 301-496-1080</p></section>
+
+<section id="sec17" class="pg">
+<span id="p115"></span>
+<h2>Ne $12.95Usa/$20.00Canada 1-55643-326-3</h2>
 <p>Did You K 31496008191010 •One quarter of the world&#x27;s population uses trad ine ·In the United States, an estimated twel n ers of traditionalChinesemedicineeachy of . There are over sixty schools in the Unit traditional Chinese medicine. -There are nearly eight thousand practic medicine practicing in the U. S. today.</p>
 <p>0-24Thirty five states currently offer some of legal status for the practice of tr adit i Chinese medicine. In the United States alone, the Federal g ern ment has spent over sI million in re to study traditional Chinese medicine&#x27;s success in treating substance abuse. ·Research studieshave shown impressive evidence of acupuncture s efficacy in t re back pain, shoulder pain, headaches. PM asthma, osteoarthritis, and che mother a induced nausea. ·Former Surgeon General, C. Everett Ko o M. D, has recognized acupuncture as an effective method in overcoming nicotine addiction.</p>
 <p>About the Author:</p>
@@ -754,8 +1174,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Prev</a><a href="/books/" class="home">⌂ Books</a><a href="#" class="next disabled">Next →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>

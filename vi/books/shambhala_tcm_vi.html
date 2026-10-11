@@ -1,11 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cẩm Nang Shambhala Về Đông Y | TaichiNOW</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
 body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
 *{box-sizing:border-box;}
@@ -46,32 +43,394 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 .site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
 .site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
 .site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang Shambhala Về Đông Y | TaichiNOW</title>
+<meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
-<div id="reading-progress"></div>
-<header class="site-header">
-  <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#fff" stroke="#000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000"/><circle cx="100" cy="51" r="12" fill="#fff"/><circle cx="100" cy="149" r="12" fill="#000"/></svg><span>TaichiNOW</span></a>
-  <nav class="site-nav"><a href="/">Home</a><a href="/books/">Books</a><a href="/vi/books/">🇻🇳 Thư Viện Sách</a></nav>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
-<div class="reader-layout">
-  <details class="toc-drawer"><summary>Mục Lục</summary><ul class="toc-list"><li class="toc-item"><a href="#p000" class="toc-link">Cẩm Nang Shambhala</a></li>
-<li class="toc-item"><a href="#p002" class="toc-link">Cẩm Nang Shambhala Về</a></li>
-<li class="toc-item"><a href="#p004" class="toc-link">Cổ Truyền</a></li>
-<li class="toc-item"><a href="#p010" class="toc-link">Cẩm Nang Shambhala Về</a></li>
-<li class="toc-item"><a href="#p036" class="toc-link">Đại Vũ Trụ Phổ Quát</a></li>
-<li class="toc-item"><a href="#p038" class="toc-link">Ngũ Hành Năng Lượng</a></li>
-<li class="toc-item"><a href="#p043" class="toc-link">Vũ Trụ Vĩ Mô</a></li>
-<li class="toc-item"><a href="#p048" class="toc-link">Trường Năng Lượng Của Con Người</a></li>
-<li class="toc-item"><a href="#p051" class="toc-link">Luân Xa Và Những Thể Năng Lượng Vi Tế</a></li>
-<li class="toc-item"><a href="#p179" class="toc-link">Sức Khỏe</a></li></ul></details>
-  <nav class="breadcrumb"><a href="/vi/">Trang Chủ</a><span class="sep">/</span><a href="/vi/books/">Thư Viện Sách</a><span class="sep">/</span><span>Cẩm Nang Shambhala Về Đông Y</span></nav>
-  <main class="reader-content">
-    <header class="book-header">
-      <div class="book-badge">TCM · Bản dịch tham khảo</div>
-      <h1 class="book-title">Cẩm Nang Shambhala Về Đông Y</h1>
-    </header>
-    <section class="pg" id="p000"><h2>Cẩm Nang Shambhala</h2>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec00">Cẩm Nang Shambhala</a></li>
+        <li><a href="#sec01">Cẩm Nang Shambhala Về</a></li>
+        <li><a href="#sec02">Cổ Truyền</a></li>
+        <li><a href="#sec03">Cẩm Nang Shambhala Về</a></li>
+        <li><a href="#sec04">Đại Vũ Trụ Phổ Quát</a></li>
+        <li><a href="#sec05">Ngũ Hành Năng Lượng</a></li>
+        <li><a href="#sec06">Vũ Trụ Vĩ Mô</a></li>
+        <li><a href="#sec07">Trường Năng Lượng Của Con Người</a></li>
+        <li><a href="#sec08">Luân Xa Và Những Thể Năng Lượng Vi Tế</a></li>
+        <li><a href="#sec09">Sức Khỏe</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <h1>Cẩm Nang Shambhala Về Đông Y</h1>
+    </div>
+<section id="sec00" class="pg">
+<span id="p000"></span>
+<h2>Cẩm Nang Shambhala</h2>
 <p>Trung Hoa</p>
 <p>Y học</p>
 <p>Một dẫn nhập</p>
@@ -83,8 +442,16 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>血海</p>
 <h2>三险交 商丘 一公</h2>
 <p>太白 太都</p>
-<p>Daniel Reid</p></section><section class="pg" id="p002"><h2>Cẩm Nang Shambhala Về</h2>
-<h2>Y Học Cổ Truyền Trung Hoa</h2></section><section class="pg" id="p004"><p>Cẩm nang</p>
+<p>Daniel Reid</p></section>
+
+<section id="sec01" class="pg">
+<span id="p002"></span>
+<h2>Cẩm Nang Shambhala Về</h2>
+<h2>Y Học Cổ Truyền Trung Hoa</h2></section>
+
+<section id="sec02" class="pg">
+<span id="p004"></span>
+<p>Cẩm nang</p>
 <p>Shambhala về</p>
 <p>Y HỌC</p>
 <h2>Cổ Truyền</h2>
@@ -117,7 +484,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Thư mục có chú giải 141</p>
 <p>Chỉ mục 153</p></section><section class="pg" id="p009"><p>Số hóa bởi Internet Archive</p>
 <p>năm 2011</p>
-<p>http://www.archive.org/details/shambhalaguideto0Oreid</p></section><section class="pg" id="p010"><h2>Cẩm Nang Shambhala Về</h2>
+<p>http://www.archive.org/details/shambhalaguideto0Oreid</p></section>
+
+<section id="sec03" class="pg">
+<span id="p010"></span>
+<h2>Cẩm Nang Shambhala Về</h2>
 <h2>Y Học Cổ Truyền Trung Hoa</h2></section><section class="pg" id="p012"><p>Dẫn nhập</p>
 <p>TRONG Y HỌC CỔ TRUYỀN TRUNG HOA, hệ thống con người được nhìn như một tấm gương tiểu vũ trụ phản chiếu đại vũ trụ, một thế giới nội tâm trọn vẹn được cấu thành từ cùng những nguyên tố và năng lượng, và chịu sự chi phối của cùng những quy luật tự nhiên, như thế giới bên ngoài và vũ trụ (hình 1). Những nguyên lý phổ quát cai quản &quot;vạn vật dưới gầm trời&quot; (thiên hạ) được gọi đơn giản là &quot;Đạo&quot;, và chúng áp dụng như nhau cho các ngôi sao và hành tinh, phân tử và nguyên tử, vận hành y hệt trong hệ thống con người như trong thái dương hệ. Bởi lẽ tự nhiên là biểu hiện rõ ràng và bền bỉ nhất của Đạo trên mặt đất, phần lớn thuật ngữ cổ truyền của y học Trung Hoa bắt nguồn trực tiếp từ các hiện tượng tự nhiên (lửa và nước, gió và nhiệt, táo và thấp, v.v.), và một chẩn đoán cổ truyền Trung Hoa thường nghe như một bản tin thời tiết hơn là một phân tích y học. Trong y học Trung Hoa, tự nhiên hữu hình là khuôn mẫu chủ đạo để thầy thuốc hiểu và điều khiển các nguyên tố cùng năng lượng bên trong của hệ thống con người.</p>
 <p>Khi các năng lượng nguyên tố bên trong hệ thống con người duy trì ở trạng thái cân bằng động và hài hòa chức năng tự nhiên, &quot;thời tiết thuận hòa&quot; ngự trị trong cơ thể, và khu vườn sức khỏe của con người nở hoa tươi tốt, cả về tinh thần lẫn thể chất. Nhưng khi sự cân bằng hữu cơ</p></section><section class="pg" id="p013"><p>Dẫn nhập</p>
@@ -197,7 +568,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>ĐỘNG LỰC HỌC CỦA ÂM VÀ DƯƠNG Năng lượng con người là một lực điện từ vận hành nhờ tính đối cực động lực của nó. Trong truyền thống Trung Quốc, tính đối cực này,</p></section><section class="pg" id="p035"><p>24 Hệ thống năng lượng con người</p>
 <p>biểu hiện xuyên suốt vũ trụ vật chất, được gọi là Đại Nguyên lý Âm Dương, và nó giải thích bản chất đối cực của mọi sự kiện và hiện tượng từ các đại vũ trụ thiên hà và hành tinh xuống đến các tiểu vũ trụ hữu cơ, tế bào và phân tử của hệ thống năng lượng con người. Nhờ tính đối cực của âm và dương, năng lượng con người, giống như mọi lực tự nhiên, luôn chuyển động, không ngừng biến đổi, luôn hoạt động.</p>
 <p>Điều quan trọng cần ghi nhớ là âm và dương không phải là hai loại năng lượng khác nhau, mà đúng hơn là những phẩm tính đối lập và bổ trợ của cùng những năng lượng cơ bản. Những thuật ngữ âm và dương, lần đầu tiên xuất hiện trong Kinh Dịch vào khoảng năm 1250 TCN, ban đầu có nghĩa tương ứng là &quot;sườn núi râm mát&quot; và &quot;sườn núi ngập nắng&quot;, cho thấy chúng đơn giản chỉ là hai mặt đối lập của cùng một đồng xu. Định nghĩa này không chỉ phản ánh bản chất đối cực cơ bản của âm và dương, mà còn cho thấy mối quan hệ có thể chuyển hóa lẫn nhau của chúng, bởi khi mặt trời (tức năng lượng) di chuyển ngang bầu trời, sườn núi râm mát trở nên ngập nắng và sườn núi ngập nắng trở nên râm mát, cũng giống như nước (âm) biến đổi thành nguyên tố đối lập của chính nó là hơi nước (dương) khi tiếp xúc với năng lượng Hỏa của sức nóng. Như Kinh Dịch nói: &quot;Sự tương tác giữa âm và dương được gọi là Đạo [Con Đường], và tiến trình sáng tạo nảy sinh từ đó được gọi là biến đổi.&quot; Do đó mọi sự sáng tạo và biến đổi đều được thúc đẩy bởi tính đối cực động lực của âm và dương, vốn là những thuộc tính của năng lượng hoạt động, chứ không phải của vật chất tĩnh tại.</p>
-<p>Âm và dương biểu hiện tính đối cực bổ trợ của chúng trong mọi phương diện của hệ thống con người (xem bảng 1). Có những tạng thuộc âm được năng lượng ghép cặp về mặt chức năng với những tạng thuộc dương, những năng lượng &quot;nóng&quot; và năng lượng &quot;lạnh&quot;, những năng lượng giãn nở và co lại, những năng lượng &quot;tà&quot; (gây bệnh) và &quot;chính&quot; (chữa lành). Phía trước cơ thể thuộc âm so với phía sau vốn thuộc dương; bề mặt bên ngoài thuộc dương so với phần bên trong thuộc âm; pH axit thuộc dương trong khi pH kiềm thuộc âm; và vân vân. Do đó bản chất cốt lõi của âm và dương là tính đối cực bổ trợ, mối quan hệ cốt lõi của chúng là sự tương tác không ngừng và lẫn</p></section><section class="pg" id="p036"><p>Hệ thống năng lượng con người 25</p>
+<p>Âm và dương biểu hiện tính đối cực bổ trợ của chúng trong mọi phương diện của hệ thống con người (xem bảng 1). Có những tạng thuộc âm được năng lượng ghép cặp về mặt chức năng với những tạng thuộc dương, những năng lượng &quot;nóng&quot; và năng lượng &quot;lạnh&quot;, những năng lượng giãn nở và co lại, những năng lượng &quot;tà&quot; (gây bệnh) và &quot;chính&quot; (chữa lành). Phía trước cơ thể thuộc âm so với phía sau vốn thuộc dương; bề mặt bên ngoài thuộc dương so với phần bên trong thuộc âm; pH axit thuộc dương trong khi pH kiềm thuộc âm; và vân vân. Do đó bản chất cốt lõi của âm và dương là tính đối cực bổ trợ, mối quan hệ cốt lõi của chúng là sự tương tác không ngừng và lẫn</p></section>
+
+<section id="sec04" class="pg">
+<span id="p036"></span>
+<p>Hệ thống năng lượng con người 25</p>
 <p>BẢNG 1. Các phương diện của tính đối cực Âm Dương</p>
 <p>Phương diện Âm</p>
 <h2>Đại Vũ Trụ Phổ Quát</h2>
@@ -234,7 +609,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>hướng nội, dịu dàng vững chãi</p></section><section class="pg" id="p037"><p>26 Hệ thống năng lượng con người</p>
 <p>chuyển hóa, và sự cân bằng động lực giữa hai yếu tố quyết định trạng thái sức khỏe của cái toàn thể và của mọi bộ phận cấu thành nên nó. Triết học Trung Quốc nêu ra năm quy luật cơ bản chi phối cách thức mà Đại Nguyên lý Âm Dương vận hành trong tự nhiên và xuyên suốt vũ trụ, và y học Trung Quốc áp dụng những nguyên lý tương tự cho vũ trụ vi mô bên trong hệ thống năng lượng con người.</p>
 <p>1. Mọi sự kiện và hiện tượng đều có hai phương diện đối cực bổ trợ, gọi là âm và dương, và tính đối cực này là nền tảng của mọi cấu trúc hữu cơ cùng các chức năng của chúng. 2. Mọi hệ thống âm dương đều chứa vô số hệ thống con cấu thành và cũng được chứa trong vô số hệ thống siêu âm dương. 3. Âm và dương lẫn nhau sinh ra nhau và phụ thuộc lẫn nhau về mặt chức năng. Những hoạt động của chúng luôn mang tính tương đối và những phẩm tính của chúng mang tính bổ trợ. 4. Âm và dương tự nhiên cân bằng và điều hòa lẫn nhau. Sự cân bằng tương đối của chúng quyết định trạng thái cân bằng, sự ổn định và khả năng vận hành chức năng của toàn bộ hệ thống năng lượng con người cùng từng hệ thống con hữu cơ của nó. 5. Âm và dương có thể chuyển hóa và biến đổi lẫn nhau. Những chuyển hóa của chúng khởi phát mọi sự sáng tạo, tăng trưởng, biến đổi và suy tàn.</p>
-<p>Trong thực hành y học Trung Quốc, nguyên lý âm và dương cung cấp một thang đo thuận tiện để đánh giá trạng thái cân bằng tổng thể của hệ thống năng lượng con người cũng như sự cân bằng tương đối của mọi hệ thống con năng lượng tạng phủ cấu thành nên nó. Trong chẩn đoán, nó đóng vai trò là công cụ để xác định bản chất cơ bản của những chứng bệnh cụ thể và theo dõi sự tiến triển của chúng trong toàn bộ hệ thống. Trong trị liệu, nó chỉ ra loại phương pháp điều trị y học cần thiết để tái cân bằng những hệ thống năng lượng tạng phủ đang bệnh và khôi phục sự đồng bộ của chúng trong toàn bộ hệ thống. Nóng và lạnh, đầy và không, ngoài và trong,</p></section><section class="pg" id="p038"><p>Hệ thống năng lượng con người 27</p>
+<p>Trong thực hành y học Trung Quốc, nguyên lý âm và dương cung cấp một thang đo thuận tiện để đánh giá trạng thái cân bằng tổng thể của hệ thống năng lượng con người cũng như sự cân bằng tương đối của mọi hệ thống con năng lượng tạng phủ cấu thành nên nó. Trong chẩn đoán, nó đóng vai trò là công cụ để xác định bản chất cơ bản của những chứng bệnh cụ thể và theo dõi sự tiến triển của chúng trong toàn bộ hệ thống. Trong trị liệu, nó chỉ ra loại phương pháp điều trị y học cần thiết để tái cân bằng những hệ thống năng lượng tạng phủ đang bệnh và khôi phục sự đồng bộ của chúng trong toàn bộ hệ thống. Nóng và lạnh, đầy và không, ngoài và trong,</p></section>
+
+<section id="sec05" class="pg">
+<span id="p038"></span>
+<p>Hệ thống năng lượng con người 27</p>
 <p>đi lên và đi xuống, cùng nhiều thuật ngữ khác được dùng trong chẩn đoán và trị liệu truyền thống Trung Quốc, đơn giản chỉ là những cách khác nhau để mô tả các biểu hiện khác nhau của tính đối cực âm dương trong những phần khác nhau của hệ thống con người.</p>
 <h2>Ngũ Hành Năng Lượng</h2>
 <p>Ngũ hành năng lượng (wu hsing), còn được dịch là Ngũ hành, là những lực cơ bản của tự nhiên được tạo ra bởi sự tương tác giữa âm và dương trên trái đất. Một luận thuyết cổ đại của Trung Quốc về năng lượng nói rằng:</p>
@@ -249,7 +628,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Mỗi con người được tự nhiên và di truyền ban cho những tỷ lệ và độ mạnh tương đối khác nhau của Ngũ hành. Mọi sự thiếu hụt và mất cân bằng cố hữu đều có thể được bổ sung và bồi đắp trong suốt cuộc đời bằng cách khai thác các nguồn năng lượng bên ngoài khác nhau như thức ăn, thảo dược, hương thơm, ánh nắng mặt trời, các nguyên tố khí quyển, v.v. Năng lượng từ những nguồn bên ngoài ấy có thể được nuôi dưỡng và hấp thu hoặc bằng những thực hành cá nhân như ăn uống, tập luyện, thuật dưỡng sinh tình dục, khí công và thiền định, hoặc bằng các liệu pháp y học toàn diện như thảo dược, châm cứu, xoa bóp, v.v. Trong mỗi trường hợp, một nguồn năng lượng bên ngoài cụ thể được đưa vào hệ thống nhờ sự cộng hưởng hay &quot;ái lực tự nhiên&quot; (quy kinh) của nó với một năng lượng tạng phủ nội tại nhất định, trong đó một trong Ngũ hành đóng vai trò mẫu số chung giữa nguồn bên ngoài và tạng phủ bên trong. Chẳng hạn, thảo dược vị ngọt bổ sung năng lượng Tỳ và Vị, bởi vì ngọt là vị của năng lượng Thổ, còn Tỳ và Vị là tạng phủ thuộc năng lượng Thổ. Theo nguyên lý tương tự, thảo dược và thức ăn vị chua (năng lượng Mộc) tăng cường chức năng Can và Đởm (tạng Mộc), các vị cay (Kim) tác động đến Phế và Đại trường (tạng Kim), v.v. Châm cứu tác dụng bằng cách điều tiết trực tiếp dòng chảy và tiềm năng của các năng lượng tạng phủ khác nhau lưu hành trong mạng lưới kinh lạc, làm tăng hoặc giảm cường độ của chúng tùy theo mục đích của thầy thuốc. Vì vậy, mọi liệu pháp Đông y về cơ bản đều là những phương pháp chuyển giao và kiểm soát năng lượng, đạt được bằng cách thiết lập sự cộng hưởng giữa các nguồn năng lượng chữa lành bên ngoài khác nhau với những năng lượng tạng phủ nội tại mà các nguồn ấy có ái lực tự nhiên. Mục tiêu của tất cả các liệu pháp này là khôi phục sự cân bằng và hài hòa tự nhiên trong hệ thống năng lượng của con người, đồng thời thiết lập sự đồng bộ giữa toàn bộ hệ thống với các chu kỳ năng lượng của tự nhiên và vũ trụ.</p>
 <p>Rốt cuộc, mọi vật chất đều được tạo ra và chi phối bởi Ngũ hành, và cuối cùng mọi vật chất lại trở về với những năng lượng ấy ở dạng nguyên sơ thuần khiết của chúng là những tia sáng màu. Theo</p></section><section class="pg" id="p042"><p>Hệ thống năng lượng của con người 31</p>
 <p>Theo tư tưởng của cả Đạo gia lẫn Phật gia, bản tính nền tảng tối hậu của tâm và của mọi thực tại chính là ánh sáng rạng ngời của Ánh sáng trong suốt nguyên sơ. Từ Ánh sáng trong suốt của nguyên thần — vốn vĩnh hằng và vô tận — tâm khúc xạ ra năm tia sáng màu và dùng chúng để ngưng tụ và tổ chức nguồn năng lượng tự hữu tự do của vũ trụ thành những dạng vật chất và năng lượng hữu cơ khác nhau tạo nên thân thể vật chất và thế giới vật chất của chúng ta. Những tia sáng vàng có khả năng độc đáo tổ chức năng lượng nguyên tố của Thổ, thứ tạo nên &quot;thịt và xương&quot; của cơ thể chúng ta cũng như hành tinh mà chúng ta cư ngụ. Màu đỏ chi phối năng lượng nguyên tố của Hỏa, mang hơi nóng đến trái đất và hơi ấm cho cơ thể chúng ta. Năng lượng Thủy tạo ra huyết và các dịch khác trong cơ thể, đồng thời sinh ra sông, hồ và đại dương trên trái đất, v.v. Trong suốt cuộc đời, Ngũ hành chảy qua các hệ thống của chúng ta, quản lý các mô và chức năng tương ứng, đồng thời dựa vào các nguồn bên ngoài để bồi đắp và cân bằng. Nhưng khi chúng ta chết, thần của chúng ta lần lượt rút những năng lượng ấy ra khỏi thân thể đang hấp hối, bắt đầu từ Thổ, rồi đến Thủy, theo thứ tự tiếp nối; và khi mỗi năng lượng được chuyển hóa trở lại thành ánh sáng nguyên sơ thuần khiết mà từ đó nó sinh ra, các tạng phủ và năng lượng tương ứng của cơ thể ngừng hoạt động, cho đến khi thân thể chết hẳn và mọi năng lượng cấu thành nó được tái hấp thu vào Ánh sáng trong suốt nguyên thủy của nguyên thần, sẵn sàng được phóng chiếu vào bất kỳ cõi tồn tại và dạng sống nào tiếp theo. Người Trung Hoa gọi quá trình tái hợp nhất năng lượng khi chết này là Trở về Nguồn cội, và nó đánh dấu ranh giới nơi khoa học y học kết thúc và thực hành tâm linh bắt đầu.</p>
-<p>Các tạng phủ chính, màu sắc, âm thanh, mùi vị, cảm xúc, mùa và những phẩm chất biểu hiện khác của tự nhiên đều gắn với mỗi một trong Ngũ hành trong Đông y và các môn tu luyện Đạo gia khác (xem bảng 2). Độc giả có thể tham khảo bảng này để xác định thể năng lượng riêng của mình, dựa trên những khuynh hướng được liệt kê, và điều chỉnh thói quen cùng lối sống cá nhân để có sự cân bằng và hài hòa tốt hơn. Xin lưu ý rằng Hỏa còn chi phối thêm một cặp tạng phủ</p></section><section class="pg" id="p043"><p>BẢNG 2. Ngũ hành và những tương ứng vĩ mô và</p>
+<p>Các tạng phủ chính, màu sắc, âm thanh, mùi vị, cảm xúc, mùa và những phẩm chất biểu hiện khác của tự nhiên đều gắn với mỗi một trong Ngũ hành trong Đông y và các môn tu luyện Đạo gia khác (xem bảng 2). Độc giả có thể tham khảo bảng này để xác định thể năng lượng riêng của mình, dựa trên những khuynh hướng được liệt kê, và điều chỉnh thói quen cùng lối sống cá nhân để có sự cân bằng và hài hòa tốt hơn. Xin lưu ý rằng Hỏa còn chi phối thêm một cặp tạng phủ</p></section>
+
+<section id="sec06" class="pg">
+<span id="p043"></span>
+<p>BẢNG 2. Ngũ hành và những tương ứng vĩ mô và</p>
 <p>vi mô của chúng</p>
 <p>Phạm trù Mộc Hỏa Thổ Kim Thủy</p>
 <h2>Vũ Trụ Vĩ Mô</h2>
@@ -321,7 +704,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>dinh khí phế hơi thở được chiết xuất từ bàng quang thức ăn trong vị</p>
 <p>Nhâm mạch thận can</p>
 <p>đởm Tâm bào Tam tiêu</p>
-<p>Hình 4. Sự tuần hoàn nội tại của dinh khí đến các hệ năng lượng tạng phủ quan trọng, với Đốc mạch và Nhâm mạch là những bể chứa.</p></section><section class="pg" id="p048"><p>Hệ thống năng lượng của con người 37</p>
+<p>Hình 4. Sự tuần hoàn nội tại của dinh khí đến các hệ năng lượng tạng phủ quan trọng, với Đốc mạch và Nhâm mạch là những bể chứa.</p></section>
+
+<section id="sec07" class="pg">
+<span id="p048"></span>
+<p>Hệ thống năng lượng của con người 37</p>
 <p>dinh khí khắp hệ thống, kiểm soát nhiệt độ cơ thể, cung cấp nhiên liệu cho chuyển hóa, tạo nên mọi mối liên kết chức năng giữa thân và tâm, cùng nhiều điều khác nữa. Trong Đông y, mọi bệnh lý sinh lý cũng như các vấn đề tinh thần và cảm xúc đều được xem là sự phản ánh triệu chứng của những mất cân bằng nghiêm trọng hoặc trục trặc trong mạng lưới năng lượng của con người — mạng lưới cũng chính là phương tiện chính để thầy thuốc có thể chữa lành bệnh tật cho người bệnh.</p>
 <h2>Trường Năng Lượng Của Con Người</h2>
 <p>Đến đây, chúng ta đã bàn về những dạng năng lượng khác nhau trong hệ thống con người và cách chúng vận hành cùng luân chuyển, nhưng cũng quan trọng không kém đối với sức khỏe là cường độ và cực tính của trường mà trong đó năng lượng con người vận hành và từ đó nó rút ra sức mạnh của mình. Mọi năng lượng điện từ, kể cả những năng lượng của hệ thống con người, đều tạo ra một trường điện từ. Trường năng lượng của con người được cấu thành từ nhiều trường phụ hợp thành do năng lượng của các tạng phủ, mô và từng tế bào cấu thành tạo ra, đồng thời cũng là một phần của nhiều trường siêu lớn hơn mà nó vận hành trong đó, như các nhóm, nơi ở, hệ sinh thái, vùng địa lý và trường điện từ của chính hành tinh. Tất cả những hệ thống này đều phải cộng hưởng đồng bộ để ngăn ngừa những mất cân bằng và dị thường trong năng lượng gây ra bệnh tật và thoái hóa. Trong cuốn Pranayama: The Yoga of Breathing, Andre van Lysebeth viết:</p>
@@ -331,7 +718,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Trường năng lượng của con người chịu ảnh hưởng trực tiếp và có thể rút năng lượng từ mọi loại trường điện từ tự nhiên khác, như của mặt trời, mặt trăng, các hành tinh và các ngôi sao, cũng như trường của chính trái đất; đồng thời nó cũng có thể bị ô nhiễm bởi những trường tiêu cực do đường dây điện, máy biến áp, thiết bị điện, tháp phát sóng, kết cấu khung kim loại, bức xạ vi ba và những nguồn nhân tạo khác tạo ra. Vì vậy, khi chẩn đoán và chữa trị bệnh cho con người, việc xem xét tác động của việc phơi nhiễm với những trường năng lượng bên ngoài có hại cũng quan trọng không kém việc truy tìm những mất cân bằng trong năng lượng nội tại. Nếu chứng đau đầu của bạn do ngủ trong một căn phòng khiến hệ thống của bạn phơi nhiễm với trường điện từ do máy biến áp điện hoặc thiết bị gia dụng gần đó tạo ra, thì việc châm cứu, dùng thảo dược hay bất kỳ liệu pháp nào khác để trị đau đầu cũng chẳng ích lợi gì cho bạn, trừ khi trước tiên bạn loại bỏ nguồn gốc của vấn đề bằng cách ngủ ở phòng khác hoặc dời nguồn ô nhiễm điện từ gây hại ra khỏi nhà.</p>
 <p>Trường năng lượng của con người chính là cái mà Gabriel Cousens, tác giả cuốn Spiritual Nutrition and the Rainbow Diet, gọi là Trường Năng lượng Tổ chức Vi tế (SOEF). Những trường như vậy, hiện diện trong mọi dạng sống, tổ chức mọi năng lượng và nguyên tố cần thiết để duy trì sự sống hữu cơ</p></section><section class="pg" id="p050"><p>Hệ thống năng lượng của con người 39</p>
 <p>của sự sống. Ở con người, các SOEF sắp xếp năng lượng và nguyên tố của hệ thống con người theo những khuôn mẫu chủ đạo chứa trong DNA — thứ dàn dựng mọi chức năng sống còn của cơ thể trong bản giao hưởng hài hòa của sự sống. Nhờ khả năng tổ chức những năng lượng ngẫu nhiên thành những dạng có khuôn mẫu, các SOEF chống lại ảnh hưởng đe dọa sự sống của định luật thứ hai của nhiệt động học, hay entropy — thứ khiến mọi hệ thống tổ hợp trong vũ trụ cuối cùng tan rã. Chừng nào hệ thống năng lượng con người và SOEF của nó còn cân bằng và được nạp đầy năng lượng cực, chúng sẽ tự động sửa chữa mọi tổn hại cho cơ thể vật chất, duy trì mọi chức năng sống còn và chống lại lực phân hủy của entropy.</p>
-<p>Mỗi khi trường năng lượng của con người bị xâm nhập bởi những năng lượng tà khí nội tại hay bên ngoài, hoặc bị phơi nhiễm với những trường năng lượng nhân tạo có hại, toàn bộ hệ thống bị mất cân bằng và đánh mất sự hài hòa chức năng. Nếu tình trạng mất cân bằng này không được sửa chữa kịp thời, bệnh lý sinh lý cùng những triệu chứng tinh thần và cảm xúc bất thường sẽ sớm xuất hiện. Việc chỉ đơn thuần ức chế các triệu chứng thể chất và tinh thần của bệnh để mang lại sự khuây khỏa tức thời, như cách làm của y học tây y chữa triệu chứng, sẽ không bao giờ đem lại sự chữa lành lâu dài chừng nào những mất cân bằng năng lượng căn bản gây ra triệu chứng vẫn còn tồn tại. Khi thuốc tây y ức chế triệu chứng được dùng, những triệu chứng bên ngoài của sự mất cân bằng năng lượng bên trong vẫn tiếp tục dịch chuyển, biến đổi và biểu hiện ở nơi khác trong cơ thể, thường khiến thầy thuốc tây y chẩn đoán một căn bệnh khác và dùng một loại thuốc khác để trị triệu chứng &quot;mới&quot;, trong khi thầy thuốc Đông y lại xem triệu chứng mới ấy chỉ là một biểu hiện khác của cùng một vấn đề cũ — một dấu hiệu rõ ràng rằng nguyên nhân gốc rễ trong hệ thống năng lượng vẫn chưa được sửa chữa thành công. Trong Đông y, cách chữa lành đích thực duy nhất cho mọi bệnh tật, rối loạn chức năng và thoái hóa trong cơ thể con người là khôi phục sự cân bằng cho những năng lượng mất cân bằng, khôi phục hài hòa chức năng cho những hệ thống rối loạn, và tái lập sự đồng bộ giữa mọi hệ thống con và hệ thống siêu ảnh hưởng đến trường năng lượng con người.</p></section><section class="pg" id="p051"><p>40 Hệ thống năng lượng của con người</p>
+<p>Mỗi khi trường năng lượng của con người bị xâm nhập bởi những năng lượng tà khí nội tại hay bên ngoài, hoặc bị phơi nhiễm với những trường năng lượng nhân tạo có hại, toàn bộ hệ thống bị mất cân bằng và đánh mất sự hài hòa chức năng. Nếu tình trạng mất cân bằng này không được sửa chữa kịp thời, bệnh lý sinh lý cùng những triệu chứng tinh thần và cảm xúc bất thường sẽ sớm xuất hiện. Việc chỉ đơn thuần ức chế các triệu chứng thể chất và tinh thần của bệnh để mang lại sự khuây khỏa tức thời, như cách làm của y học tây y chữa triệu chứng, sẽ không bao giờ đem lại sự chữa lành lâu dài chừng nào những mất cân bằng năng lượng căn bản gây ra triệu chứng vẫn còn tồn tại. Khi thuốc tây y ức chế triệu chứng được dùng, những triệu chứng bên ngoài của sự mất cân bằng năng lượng bên trong vẫn tiếp tục dịch chuyển, biến đổi và biểu hiện ở nơi khác trong cơ thể, thường khiến thầy thuốc tây y chẩn đoán một căn bệnh khác và dùng một loại thuốc khác để trị triệu chứng &quot;mới&quot;, trong khi thầy thuốc Đông y lại xem triệu chứng mới ấy chỉ là một biểu hiện khác của cùng một vấn đề cũ — một dấu hiệu rõ ràng rằng nguyên nhân gốc rễ trong hệ thống năng lượng vẫn chưa được sửa chữa thành công. Trong Đông y, cách chữa lành đích thực duy nhất cho mọi bệnh tật, rối loạn chức năng và thoái hóa trong cơ thể con người là khôi phục sự cân bằng cho những năng lượng mất cân bằng, khôi phục hài hòa chức năng cho những hệ thống rối loạn, và tái lập sự đồng bộ giữa mọi hệ thống con và hệ thống siêu ảnh hưởng đến trường năng lượng con người.</p></section>
+
+<section id="sec08" class="pg">
+<span id="p051"></span>
+<p>40 Hệ thống năng lượng của con người</p>
 <h2>Luân Xa Và Những Thể Năng Lượng Vi Tế</h2>
 <p>Trường lực động bao quanh hệ thống năng lượng con người thực ra được cấu thành từ bảy &quot;thể&quot; năng lượng vi tế, mỗi thể được quản lý bởi một trong bảy trung tâm năng lượng vi tế gọi là luân xa — những trung tâm phát ra tần số sóng của những màu sắc cụ thể và gắn về mặt chức năng với những tuyến và mạng lưới thần kinh cụ thể (hình 5). Những màu sắc, thứ mà tâm khúc xạ như một lăng kính từ Ánh sáng trong suốt của nguyên thần, là những dạng thuần khiết của năng lượng tự do phổ quát, và mỗi màu điều hòa những khía cạnh cụ thể của hệ thống năng lượng con người. Những thể năng lượng vi tế, còn được gọi là hào quang, mở rộng ra ngoài thân thể vật chất như những trường năng lượng phát sáng, với những thể đặc nhất ở gần bề mặt vật chất nhất và những thể vi tế nhất tỏa ra xa tít phía ngoài.</p>
 <p>Hình 5. Sự tương ứng giữa các trung tâm năng lượng của thuật nội đan Đạo gia, các luân xa của du già Ấn Độ và các trung tâm thần kinh của giải phẫu học phương Tây.</p></section><section class="pg" id="p052"><p>Hệ thống năng lượng của con người 41</p>
@@ -851,7 +1242,11 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
 <p>Y học phương Tây,4-6,8,20,39, 63, 99, 125, 126 48-51,57-58,86-90 Ngân Kiều Phiến (viên kim ngân/liên kiều), so với y học Trung Quốc,4-6,8,20,67-68, 83 105 nhà Ân,14 chẩn đoán trong, 4, 57-58 Nguyên lý âm/dương,23-28,62-66,87-90; thuyết vi trùng và,48-51</p>
 <p>cơ thể người trong,5 như những Chỉ huy của Bát Cương,63 jing/shen trong, 8, 9 chu trình sinh/khắc của,27-28 thiên lệch cơ học/hóa học trong,6 chẩn đoán và,26-27,62-64 liệu pháp dinh dưỡng và,86,87-88 ăn uống/dinh dưỡng và,87,88-90,90 triệu chứng và,39 động lực của,23-27 công nghệ và, 6 Ngũ hành năng và, 64-66 thực phẩm phối hợp và, 88-90 năm quy luật của,26</p>
 <p>năng lượng con người và, 23 Dương Tĩnh Minh (về xoa bóp khí công),</p>
-<p>120 Vân Nam Bạch Dược (Bột trắng Vân Nam),84</p></section><section class="pg" id="p179"><h2>Sức Khỏe</h2>
+<p>120 Vân Nam Bạch Dược (Bột trắng Vân Nam),84</p></section>
+
+<section id="sec09" class="pg">
+<span id="p179"></span>
+<h2>Sức Khỏe</h2>
 <p>DANIEL REID là Cách tiếp cận của người Trung Quốc đối với sức khỏe và chữa lành là một truyền một chuyên gia hàng đầu thống phong phú và phức tạp, bao gồm phòng bệnh, chẩn đoán và điều trị toàn bộ về y học Trung Quốc. Ông đã phổ bệnh tật, cũng như đưa ra một cách tiếp cận toàn diện đối với sức khỏe tinh thần. Hơn cả một hệ thống y học theo học y học Trung Quốc, võ nghĩa phương Tây thông thường, cách tiếp cận của người Trung Quốc đối với chăm sóc sức khỏe phản ánh niềm tin thuật, và thiền định của Đạo giáo về tầm quan trọng với các bậc thầy Trung Quốc hơn của việc thúc đẩy cân bằng và hòa hợp trong thân, tâm và thần. Trong y học cổ truyền Trung Quốc, mục tiêu này đạt được qua dinh dưỡng, thảo hai mươi năm, và dược, châm cứu, xoa bóp, vận động, thiền định và các phương pháp toàn diện khác ông là tác giả của nhiều cuốn sách phổ biến giúp khôi phục các mô thức tự nhiên của hệ con người. Cuốn sách này là một dẫn nhập dễ tiếp cận và rất dễ đọc Cuốn Sách Hoàn Chỉnh về tất cả các khía cạnh chính của truyền thống rộng lớn này. Các chủ đề được đề cập gồm: về Sức khỏe và Chữa lành của Người Trung Quốc nền tảng của y học cổ truyền trong lịch sử Trung Quốc và Sổ tay Thảo dược. lý thuyết về khí (năng lượng) và cách nó ảnh hưởng đến</p>
 <p>sức khỏe ·cách tiếp cận của người Trung Quốc đối với sức khỏe, hạnh phúc và trường thọ việc sử dụng y học thảo dược và các công thức thảo dược Trung Quốc chế độ ăn và dinh dưỡng như một hình thức y học dự phòng . châm cứu, bấm huyệt và xoa bóp, kèm các kỹ thuật mẫu để tự xoa bóp ·thực hành khí công, hay &quot;thiền động&quot;, Ảnh bìa: Bảng châm cứu (thời nhà Minh)</p>
 <p>như một phương tiện thúc đẩy sức khỏe tốt từ bộ sưu tập tư nhân thiền định và nội đan của Bà Chu Liên, gợi ý đọc thêm và các nguồn khác về Y học Trung Quốc của Pierre Huard và Ming Wong. Tái bản 1-57062-141-1 ISBN với sự cho phép của George 51200&gt; Weidenfeld and Nicolson, Ltd. 1996 Shambhala Publications, Inc.</p>
@@ -860,8 +1255,54 @@ body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
     <nav class="page-nav"><a href="#" class="prev disabled">← Trước</a><a href="/vi/books/" class="home">⌂ Trang Chủ</a><a href="#" class="next disabled">Sau →</a></nav>
   </main>
 </div>
-<footer class="site-footer"><p>Built with ❤️ for the Vietnamese Tai Chi &amp; TCM community by Phạm Đức Hải</p></footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const s=window.scrollY;document.getElementById('reading-progress').style.width=(h>0?s/h*100:0)+'%';});
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
 </script>
-</body></html>
+
+</body>
+</html>
