@@ -30,10 +30,25 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # assets/books is NOT referenced by any site-relative URL -- every reference in
+      # the HTML is the absolute raw.githubusercontent.com/taichinow/taichinow-media/...
+      # URL, and that mirror is verified complete (spot-checked, 0 missing).
+      # Excluding it keeps the Pages artifact clear of GitHub's 1 GB limit -- it alone is
+      # ~2.1 GB and the whole tree is ~8.3 GB, which is why deploys were failing with
+      # "8099700121 bytes exceeds the allowed size of 1 GB. Deployment might fail."
+      # NOTE: tar is used rather than rsync, which is not guaranteed on the runner.
+      - name: Stage site (exclude offloaded media)
+        run: |
+          mkdir -p _site
+          tar --exclude='./.git' --exclude='./.github' --exclude='./assets/books' \
+              -cf - . | tar -xf - -C _site
+          echo "Staged artifact size:"
+          du -sh _site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
