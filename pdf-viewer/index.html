@@ -852,6 +852,14 @@ if (typeof pdfjsLib === 'undefined') {
     }, 200);
   });
 
+  // Support postMessage from parent window (e.g. jumpToPage)
+  window.addEventListener('message', (e) => {
+    if (!e.data) return;
+    if (e.data.action === 'jumpToPage' && typeof e.data.page === 'number') {
+      scrollToPage(e.data.page);
+    }
+  });
+
   // Start Loading Document
   loadDocument();
 })();

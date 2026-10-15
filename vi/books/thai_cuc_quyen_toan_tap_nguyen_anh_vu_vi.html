@@ -780,9 +780,14 @@ p { margin-bottom: 1.4rem; }
         <h2 style="font-family:var(--serif);font-size:1.8rem;margin:0;color:var(--text-primary);">
           📖 Trình Đọc Trực Tuyến 789 Trang PDF Đầy Đủ
         </h2>
-        <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-crimson);color:#ffffff;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9rem;">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở File PDF Toàn Màn Hình
-        </a>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="/pdf-viewer/?file=https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-crimson);color:#ffffff;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9rem;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở File PDF Toàn Màn Hình
+          </a>
+          <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf" download="thaicucquyen-toantap-nguyenanhvu.pdf" style="display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--text-primary);border:1px solid var(--border);padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.9rem;">
+            <i class="fa-solid fa-download"></i> Tải PDF Về Máy
+          </a>
+        </div>
       </div>
 
       <div class="pdf-container">
@@ -801,7 +806,7 @@ p { margin-bottom: 1.4rem; }
           <button class="jump-btn" onclick="jumpToPage(693)">Tập 6: Đối Luyện (Tr. 693)</button>
           <button class="jump-btn" onclick="jumpToPage(785)">Mục Lục (Tr. 785)</button>
         </div>
-        <iframe id="pdf-frame" class="pdf-viewer" src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf#page=1&toolbar=1&navpanes=1&view=FitH" title="Thái Cực Quyền Toàn Tập - Nguyễn Anh Vũ biên dịch"></iframe>
+        <iframe id="pdf-frame" class="pdf-viewer" src="/pdf-viewer/?file=https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/thaicucquyen-toantap-nguyenanhvu.pdf#page=1" title="Thái Cực Quyền Toàn Tập - Nguyễn Anh Vũ biên dịch"></iframe>
       </div>
     </section>
 
@@ -815,6 +820,13 @@ p { margin-bottom: 1.4rem; }
 </div>
 
 <script>
+function jumpToPage(pageNo) {
+  const frame = document.getElementById('pdf-frame');
+  if (frame && frame.contentWindow) {
+    frame.contentWindow.postMessage({ action: 'jumpToPage', page: pageNo }, '*');
+  }
+}
+
 window.addEventListener('scroll', () => {
   const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = (window.scrollY / docHeight) * 100;
@@ -845,6 +857,13 @@ document.getElementById('font-down').addEventListener('click', () => {
 
 const sections = document.querySelectorAll('section[id], h3[id]');
 const tocLinks = document.querySelectorAll('.toc-nav a');
+function jumpToPage(pageNo) {
+  const frame = document.getElementById('pdf-frame');
+  if (frame && frame.contentWindow) {
+    frame.contentWindow.postMessage({ action: 'jumpToPage', page: pageNo }, '*');
+  }
+}
+
 window.addEventListener('scroll', () => {
   let currentId = '';
   sections.forEach(sec => {
