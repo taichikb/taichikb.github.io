@@ -479,7 +479,11 @@ if (typeof pdfjsLib === 'undefined') {
   let currentScale = 1.0;
   let zoomMode = 'fit-width'; // 'fit-width', 'fit-page', or 'custom'
   let viewMode = 'continuous'; // 'continuous' or 'single'
-  let rotation = 0; // 0, 90, 180, 270
+  // User-controlled rotation OFFSET (0, 90, 180, 270), added on top of each page's own
+  // /Rotate. PDF.js getViewport({rotation}) REPLACES the page's /Rotate when passed
+  // explicitly, so we must always pass (page.rotate + rotation) — otherwise scanned
+  // pages that rely on /Rotate 180 render upside down.
+  let rotation = 0;
   let pageRendering = {};
   let renderedPages = new Set();
   let pageElements = [];
@@ -570,7 +574,7 @@ if (typeof pdfjsLib === 'undefined') {
     renderedPages.clear();
 
     const firstPage = await pdfDoc.getPage(1);
-    const viewport = firstPage.getViewport({ scale: 1.0, rotation: rotation });
+    const viewport = firstPage.getViewport({ scale: 1.0, rotation: rotation + (firstPage.rotate || 0) });
     calculateScale(viewport);
 
     for (let i = 1; i <= totalPages; i++) {
@@ -626,7 +630,7 @@ if (typeof pdfjsLib === 'undefined') {
 
     try {
       const page = await pdfDoc.getPage(pageNum);
-      const viewport = page.getViewport({ scale: currentScale, rotation: rotation });
+      const viewport = page.getViewport({ scale: currentScale, rotation: rotation + (page.rotate || 0) });
 
       const dpr = window.devicePixelRatio || 1;
       card.style.width = Math.floor(viewport.width) + 'px';
@@ -668,9 +672,9 @@ if (typeof pdfjsLib === 'undefined') {
     renderedPages.clear();
 
     const page = await pdfDoc.getPage(pageNum);
-    const viewport1 = page.getViewport({ scale: 1.0, rotation: rotation });
+    const viewport1 = page.getViewport({ scale: 1.0, rotation: rotation + (page.rotate || 0) });
     calculateScale(viewport1);
-    const viewport = page.getViewport({ scale: currentScale, rotation: rotation });
+    const viewport = page.getViewport({ scale: currentScale, rotation: rotation + (page.rotate || 0) });
 
     const card = document.createElement('div');
     card.className = 'pdf-page-card';
