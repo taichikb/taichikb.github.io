@@ -33,6 +33,559 @@
     <p style="color:var(--muted);">A 100-topic English series distilled from the <a href="https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9" target="_blank" rel="noopener">Health, TCM, Energy Medicine, Yoga, Taichi &amp; Qigong</a> vault (299 grounded sources). Each article follows a strict 10-section architecture: TCM theory · modern biomechanics · step-by-step drills · errors & safety · diagrams · video · cross-training · self-assessment · practice card. Vietnamese version: <a href="/vi/health/">/vi/health/</a></p>
     <p><strong>100/100 published</strong> — the full collection is complete!</p>
     <p><a href="/vi/health/" class="lang-switch">🇻🇳 Tiếng Việt</a></p>
+
+
+<!-- ============================================================
+     ENRICHMENT: 1. TCM ORGAN CLOCK & 2. CURATED HEALTH PATHWAYS
+     Distilled from Gemini NotebookLM Vault: d2401afd-0718-4fac-b429-5bca391d27a9 (299 sources)
+     ============================================================ -->
+
+<div class="health-enrichment-wrap" style="margin: 2.2rem 0; font-family: var(--sans);">
+
+  <!-- Vault Grounding Banner -->
+  <div style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); color: #f4f4f5; border-radius: 14px; padding: 1.2rem 1.4rem; margin-bottom: 2rem; border-left: 4px solid var(--accent-gold, #c9a961); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
+    <div>
+      <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-gold, #c9a961); font-weight: 700;">
+        <span>✦ Grounded Gemini NotebookLM Knowledge Vault</span>
+      </div>
+      <h3 style="font-family: var(--serif); font-size: 1.35rem; color: #ffffff; margin: 0.2rem 0 0.3rem 0;">Health, TCM, Energy Medicine, Yoga &amp; Qigong</h3>
+      <p style="font-size: 0.85rem; color: #a1a1aa; margin: 0; line-height: 1.5;">299 grounded sources: Western Medical Physiology (Guyton &amp; Hall, Ganong, Kapandji) &amp; Classical TCM (Huangdi Neijing Suwen, Acupuncture &amp; Medical Qigong).</p>
+    </div>
+    <div>
+      <a href="https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #18181b; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 0.84rem; text-decoration: none; transition: transform 0.2s, background 0.2s;">
+        <span>Open Vault Directly (299 Sources) ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- TOOL 1: INTERACTIVE TCM ORGAN CLOCK -->
+  <section class="organ-clock-section" style="background: #ffffff; border: 1px solid var(--border, #e5e0d8); border-radius: 16px; padding: 1.5rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.2rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.8rem;">
+      <div>
+        <span style="font-size: 0.72rem; font-weight: 700; color: #047857; text-transform: uppercase; letter-spacing: 0.06em; background: #ecfdf5; padding: 3px 8px; border-radius: 6px;">24-Hour Biological Rhythm</span>
+        <h3 style="font-family: var(--serif); font-size: 1.45rem; color: #18181b; margin: 0.3rem 0 0 0;">⏰ Live TCM Circadian Organ Clock</h3>
+      </div>
+      <div id="enClockTimeNow" style="font-size: 0.88rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 6px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;">
+        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block; animation: pulse 2s infinite;"></span>
+        <span id="enCurrentTimeDisplay">Local Time: --:--</span>
+      </div>
+    </div>
+
+    <p style="font-size: 0.88rem; color: #52525b; margin-bottom: 1.2rem; line-height: 1.6;">
+      According to the <em>Yellow Emperor's Classic (Huangdi Neijing)</em> and modern circadian chronobiology, Qi and blood circulate peak energy through 12 primary meridian channels every 24 hours. Click any two-hour window below to explore organ dynamics, western physiology, and suggested Tai Chi/Qigong micro-drills.
+    </p>
+
+    <!-- 12 Hours Dials / Buttons -->
+    <div class="organ-dial-grid" id="enOrganDials" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 1.4rem;">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Active Organ Detail Card -->
+    <div id="enOrganCard" style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 12px; padding: 1.4rem; transition: all 0.25s ease;">
+      <!-- Loaded dynamically -->
+    </div>
+  </section>
+
+  <!-- TOOL 2: 5 CURATED HEALTH PATHWAYS -->
+  <section class="health-pathways-section" style="margin-bottom: 2.5rem;">
+    <div style="margin-bottom: 1.2rem;">
+      <span style="font-size: 0.72rem; font-weight: 700; color: #8b2635; text-transform: uppercase; letter-spacing: 0.06em; background: #fff1f2; padding: 3px 8px; border-radius: 6px;">Targeted Clinical Regimens</span>
+      <h3 style="font-family: var(--serif); font-size: 1.5rem; color: #18181b; margin: 0.3rem 0 0.4rem 0;">🧭 5 Curated Health &amp; Somatic Care Pathways (Age 50+)</h3>
+      <p style="font-size: 0.88rem; color: #52525b; margin: 0; line-height: 1.6;">
+        Distilled from the 100-article collection into structured clinical journeys. Each pathway bridges biotensegrity fascia mechanics, vagal nerve stimulation, and mindful form practice.
+      </p>
+    </div>
+
+    <!-- Pathway Tabs -->
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem;">
+      <button class="en-pathway-tab active" onclick="switchEnPathway(0)">🦵 1. Joint &amp; Spine</button>
+      <button class="en-pathway-tab" onclick="switchEnPathway(1)">🫀 2. Hypertension &amp; Vagus</button>
+      <button class="en-pathway-tab" onclick="switchEnPathway(2)">🌙 3. Sleep &amp; Kidney-Heart</button>
+      <button class="en-pathway-tab" onclick="switchEnPathway(3)">⚖️ 4. Fall Prevention</button>
+      <button class="en-pathway-tab" onclick="switchEnPathway(4)">🌿 5. Liver Qi &amp; Fascia</button>
+    </div>
+
+    <!-- Pathway Dynamic Card Container -->
+    <div id="enPathwayContent" style="background: #ffffff; border: 1px solid var(--border, #e5e0d8); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+      <!-- Loaded dynamically -->
+    </div>
+  </section>
+
+</div>
+
+<style>
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+.dial-btn {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.dial-btn:hover {
+  border-color: #047857;
+  background: #f0fdf4;
+}
+.dial-btn.active {
+  background: #047857;
+  color: #ffffff !important;
+  border-color: #047857;
+  box-shadow: 0 4px 10px rgba(4, 120, 87, 0.25);
+}
+.dial-btn.active .dial-time, .dial-btn.active .dial-organ {
+  color: #ffffff !important;
+}
+.dial-btn.is-now {
+  border: 2px solid #10b981;
+}
+.dial-btn.is-now::after {
+  content: "• LIVE";
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #059669;
+  display: block;
+}
+.dial-btn.active.is-now::after {
+  color: #a7f3d0;
+}
+.en-pathway-tab {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e4e4e7;
+  background: #f4f4f5;
+  color: #52525b;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.en-pathway-tab:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+.en-pathway-tab.active {
+  background: #18181b !important;
+  color: #ffffff !important;
+  border-color: #18181b !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+</style>
+
+<script>
+(function() {
+  const organsEn = [
+    {
+      hourRange: "23:00 - 01:00",
+      canhGio: "Zi Hour (Tý)",
+      organ: "Gallbladder Meridian (Đởm)",
+      organZh: "Foot Shaoyang Gallbladder",
+      physio: "Cellular autophagy, spinal cord and myelin sheath repair, growth hormone release during deep NREM slow-wave sleep.",
+      tcm: "The Gallbladder rules decisiveness and clear judgment. At the Zi hour, the first spark of Yang returns; complete rest preserves foundational vitality.",
+      microDrill: "Supine meditation with Dantian visualization, tongue lightly touching the upper palate (Magpie Bridge), rhythmic slow nasal exhalations.",
+      lifestyle: "Avoid late-night eating past 20:00. Be asleep before 23:00 to prevent depletion of bone marrow and liver blood.",
+      articleTitle: "EN-019: Bone Marrow Washing (Xi Sui Jing) Fundamentals",
+      articleUrl: "/en/articles/bone-marrow-washing-xi-sui-jing/"
+    },
+    {
+      hourRange: "01:00 - 03:00",
+      canhGio: "Chou Hour (Sửu)",
+      organ: "Liver Meridian (Can)",
+      organZh: "Foot Jueyin Liver",
+      physio: "Hepatic detoxification, glycogen synthesis, muscle and myofascial matrix vascular reperfusion.",
+      tcm: "The Liver stores blood and governs sinews/tendons. Staying awake during Chou hour causes Liver Fire to surge, triggering tendon rigidity and joint stiffness.",
+      microDrill: "Deep restorative sleep; if awakened, practice gentle side-lying diaphragmatic breathing without checking screens.",
+      lifestyle: "Avoid late alcohol consumption and high-intensity blue light exposure before sleep.",
+      articleTitle: "EN-029: Liver Qi Detoxification Protocols for Stress Reduction",
+      articleUrl: "/en/articles/liver-detox-qigong-stress/"
+    },
+    {
+      hourRange: "03:00 - 05:00",
+      canhGio: "Yin Hour (Dần)",
+      organ: "Lung Meridian (Phế)",
+      organZh: "Hand Taiyin Lung",
+      physio: "Diaphragmatic oxygenation, endogenous Nitric Oxide regulation, circadian cortisol surge preparing the waking metabolism.",
+      tcm: "The Lungs govern Qi and meet in all blood vessels. At Yin hour, vital energy is distributed from the core to the peripheral extremities.",
+      microDrill: "Tu Na Diaphragmatic Breathing (Inhale gently expanding lower abdomen 4s, exhale smoothing tension 6s). Perform 8-12 rounds.",
+      lifestyle: "Rise gently without abrupt jumping; sip warm water to hydrate respiratory mucous membranes.",
+      articleTitle: "EN-061: The Diaphragm as the Primary Breathing Engine",
+      articleUrl: "/en/articles/diaphragm-primary-engine/"
+    },
+    {
+      hourRange: "05:00 - 07:00",
+      canhGio: "Mao Hour (Mão)",
+      organ: "Large Intestine Meridian (Đại Trường)",
+      organZh: "Hand Yangming Large Intestine",
+      physio: "Gastrocolic reflex, mass peristalsis, elimination of metabolic waste, morning systemic hydration reset.",
+      tcm: "The Large Intestine is the official of transmission. Expelling turbid waste welcomes clear Yang Qi into the body.",
+      microDrill: "Clockwise abdominal massage around the navel 36 times; gentle Yi Jin Jing arm swinging drills.",
+      lifestyle: "Drink 300-500ml of warm water immediately upon waking; establish consistent morning bowel evacuation.",
+      articleTitle: "EN-085: Morning 10-Minute Wake-Up Routine for Joint Lubrication",
+      articleUrl: "/en/articles/morning-10min-joint-routine/"
+    },
+    {
+      hourRange: "07:00 - 09:00",
+      canhGio: "Chen Hour (Thìn)",
+      organ: "Stomach Meridian (Vị)",
+      organZh: "Foot Yangming Stomach",
+      physio: "Gastric acid and digestive enzyme secretion peak, optimal assimilation of macro- and micronutrients.",
+      tcm: "The Stomach is the sea of grain and water. Warm nourishing breakfast ignites the Post-Heaven Qi foundation.",
+      microDrill: "Mindful 100-step Tai Chi walking post-meal, gentle circular rubbing of the epigastric region.",
+      lifestyle: "Eat a warm, nutrient-dense breakfast; strictly avoid ice-cold drinks which cause gastric vasoconstriction.",
+      articleTitle: "EN-090: Mindful Eating and Digestive Qi Energy Conservation",
+      articleUrl: "/en/articles/mindful-eating-digestive-qi/"
+    },
+    {
+      hourRange: "09:00 - 11:00",
+      canhGio: "Si Hour (Tỵ)",
+      organ: "Spleen Meridian (Tỳ)",
+      organZh: "Foot Taiyin Spleen",
+      physio: "Pancreatic enzymatic activity, blood glucose stabilization, peak cognitive alertness and memory retention.",
+      tcm: "The Spleen governs transformation and transportation, rules the flesh and muscles. Prolonged sitting damages the Spleen.",
+      microDrill: "Stand up, stretch the meridians, massage Zusanli (ST36) and Sanyinjiao (SP6) for 1 minute each.",
+      lifestyle: "Prime window for high-cognitive creative or analytical work; take a standing posture break every 45 minutes.",
+      articleTitle: "EN-005: Acupressure Points for Daily Energy Activation (ST36, LI4, PC6)",
+      articleUrl: "/en/articles/acupressure-st36-li4-pc6/"
+    },
+    {
+      hourRange: "11:00 - 13:00",
+      canhGio: "Wu Hour (Ngọ)",
+      organ: "Heart Meridian (Tâm)",
+      organZh: "Hand Shaoyin Heart",
+      physio: "Peak cardiovascular blood circulation; midday autonomic transition toward parasympathetic relaxation.",
+      tcm: "The Heart is the monarch of all organs. At Wu hour Yang reaches its zenith; quiet sitting nourishes Heart fire.",
+      microDrill: "Seated quiet posture with eyes closed for 15 minutes, sinking chest lightly (Han Xiong), relaxing shoulders.",
+      lifestyle: "Enjoy a light, peaceful lunch; take a 15-20 minute power nap (avoid exceeding 30 minutes).",
+      articleTitle: "EN-030: Heart-Centering Qigong: Emotional Balance and Sleep Quality",
+      articleUrl: "/en/articles/heart-qigong-sleep/"
+    },
+    {
+      hourRange: "13:00 - 15:00",
+      canhGio: "Wei Hour (Mùi)",
+      organ: "Small Intestine Meridian (Tiểu Trường)",
+      organZh: "Hand Taiyang Small Intestine",
+      physio: "Nutrient sorting and absorption in the jejunum/ileum, mesenteric lymphatic transport.",
+      tcm: "The Small Intestine separates the pure from the turbid (directing nutrients inward and fluids downward).",
+      microDrill: "Shoulder and upper back mobility stretches (Gomukhasana / Ward Off Peng extension drills).",
+      lifestyle: "Hydrate with warm water or herbal tea; avoid heavy exhausting physical labor right after lunch.",
+      articleTitle: "EN-045: Shoulder Mobility: Gomukhasana Meets Ward Off (Peng)",
+      articleUrl: "/en/articles/shoulder-mobility-gomukhasana-peng/"
+    },
+    {
+      hourRange: "15:00 - 17:00",
+      canhGio: "Shen Hour (Thân)",
+      organ: "Bladder Meridian (Bàng Quang)",
+      organZh: "Foot Taiyang Bladder",
+      physio: "Core body temperature peak, maximum muscle and fascial elasticity, efficient fluid clearance.",
+      tcm: "The Bladder meridian traverses from head along both sides of the spine to the feet, circulating Wei Qi (defensive energy).",
+      microDrill: "Two Hands Hold the Feet to Strengthen the Kidneys (Ba Duan Jin drill), stretching the Superficial Back Line.",
+      lifestyle: "Stay well hydrated; ideal afternoon window for moderate cardio, brisk walking, or dynamic form practice.",
+      articleTitle: "EN-048: Hamstring Lengthening for Low Stance Health",
+      articleUrl: "/en/articles/hamstring-low-stance-health/"
+    },
+    {
+      hourRange: "17:00 - 19:00",
+      canhGio: "You Hour (Dậu)",
+      organ: "Kidney Meridian (Thận)",
+      organZh: "Foot Shaoyin Kidney",
+      physio: "Adrenal hormone deceleration, blood pressure stabilization, golden window for somatic restorative training.",
+      tcm: "The Kidneys are the foundation of Pre-Heaven Qi, storing Jing and bone marrow essence. Prime time for Tai Chi practice.",
+      microDrill: "Zhan Zhuang (Standing Pole Posture) for 15-20 minutes, sinking breath to Lower Dantian, warming Mingmen.",
+      lifestyle: "Avoid exhaustion; have an early, light dinner before 19:00 to support restful digestion.",
+      articleTitle: "EN-028: Kidney Support Qigong: Strengthening Lower Back and Vital Will",
+      articleUrl: "/en/articles/kidney-qigong-lower-back/"
+    },
+    {
+      hourRange: "19:00 - 21:00",
+      canhGio: "Xu Hour (Tuất)",
+      organ: "Pericardium Meridian (Tâm Bào)",
+      organZh: "Hand Jueyin Pericardium",
+      physio: "Parasympathetic tone escalation, cardiac output deceleration, reduction in vascular resistance and mental stress.",
+      tcm: "The Pericardium is the protective shield of the Heart. Nourishing it releases pent-up daily emotional tension.",
+      microDrill: "Acupressure on Neiguan (PC6) on the inner wrist for 2-3 minutes with 4-7-8 breathing; practice the Inner Smile.",
+      lifestyle: "Unwind with peaceful reading or family conversation; disconnect from intense work emails or heated debates.",
+      articleTitle: "EN-016: Transforming Stress into Vitality: The Inner Smile Technique",
+      articleUrl: "/en/articles/inner-smile-stress-vitality/"
+    },
+    {
+      hourRange: "21:00 - 23:00",
+      canhGio: "Hai Hour (Hợi)",
+      organ: "Triple Burner Meridian (Tam Tiêu)",
+      organZh: "Hand Shaoyang San Jiao",
+      physio: "Melatonin secretion surge inducing sleepiness, endocrine equilibrium, core body cooling in preparation for sleep.",
+      tcm: "The San Jiao coordinates fluid metabolism and thermodynamic harmony throughout the upper, middle, and lower cavities.",
+      microDrill: "Warm herbal foot bath (ginger/salt) for 15 mins, followed by rubbing Yongquan (KI1) on soles 100 times.",
+      lifestyle: "Dim lights, shut down digital devices; retire to bed before 23:00 to synchronize with natural Yang restoration.",
+      articleTitle: "EN-089: Hydrotherapy and Herbal Foot Baths in TCM Practice",
+      articleUrl: "/en/articles/hydrotherapy-herbal-foot-baths/"
+    }
+  ];
+
+  const pathwaysEn = [
+    {
+      title: "1. Joint & Spinal Longevity (Preserving Knees & Spine After 50)",
+      icon: "🦵",
+      color: "#047857",
+      target: "Practitioners facing knee osteoarthritis, meniscus wear, lower back stiffness, and cervical disc compression.",
+      science: "Based on Kapandji Joint Physiology and Biotensegrity architecture. In the 'Sung' (relaxed structural expansion) state, continuous circular coiling stimulates synovial fluid secretion without micro-abrasive joint friction.",
+      rules: [
+        "Never allow knees to track past toe tips (eliminating shear torque on the ACL).",
+        "Maintain Baihui crown suspension to decompress the intervertebral discs from C1 to L5.",
+        "Sink into the Kua (hip crease) to ground kinetic load rather than collapsing into the knee joints."
+      ],
+      articles: [
+        { id: "EN-031", title: "Ground Reaction Force: Rooting Energy Through the Yongquan Point", url: "/en/articles/ground-reaction-yongquan/" },
+        { id: "EN-037", title: "Knee Alignment Rules: Preventing Shear Stress and ACL Damage", url: "/en/articles/knee-alignment-acl-safety/" },
+        { id: "EN-071", title: "Synovial Fluid Stimulation Through Continuous Circular Motions", url: "/en/articles/synovial-fluid-circular-motion/" },
+        { id: "EN-075", title: "Hip Arthritis Relief Strategies Using Gentle Taichi Rotations", url: "/en/articles/hip-arthritis-gentle-rotations/" },
+        { id: "EN-076", title: "Lumbar Spine Decompression in Standing and Seated Positions", url: "/en/articles/lumbar-decompression-standing/" }
+      ]
+    },
+    {
+      title: "2. Hypertension & Vagal Nerve Optimization (HRV & Parasympathetic Shift)",
+      icon: "🫀",
+      color: "#b91c1c",
+      target: "Individuals with fluctuating blood pressure, sympathetic overdrive, chronic anxiety, and rapid resting pulse.",
+      science: "Guyton & Hall Autonomic Mechanisms: Slow diaphragmatic breathing (5-6 breaths/min) modulates thoracic pressure, directly activating carotid baroreceptors and the Vagus nerve to dilate peripheral arterioles and down-regulate cortisol.",
+      rules: [
+        "Maintain Lower Abdominal Breathing (4s inhale / 6s exhale) or 4-7-8 pacing.",
+        "Perform slow-cadence form work to entrain cortical EEG into regenerative Alpha/Theta waves.",
+        "Never hold breath or tense neck/shoulder musculature during movement transitions."
+      ],
+      articles: [
+        { id: "EN-049", title: "Vagus Nerve Stimulation Through Yoga Inversions and Taichi Sinking", url: "/en/articles/vagus-inversions-sinking/" },
+        { id: "EN-051", title: "Parasympathetic Shift: Moving from Fight-or-Flight to Rest-and-Digest", url: "/en/articles/parasympathetic-shift/" },
+        { id: "EN-055", title: "Cortisol Reduction Protocols Through Daily 15-Minute Practices", url: "/en/articles/cortisol-reduction-15min/" },
+        { id: "EN-056", title: "Heart Rate Variability (HRV) Optimization via Coherent Breathing", url: "/en/articles/hrv-coherent-breathing/" },
+        { id: "EN-061", title: "The Diaphragm as the Primary Breathing Engine", url: "/en/articles/diaphragm-primary-engine/" }
+      ]
+    },
+    {
+      title: "3. Deep Sleep & Kidney-Heart Equilibrium (Water-Fire Coordination)",
+      icon: "🌙",
+      color: "#4338ca",
+      target: "Chronic insomnia, frequent midnight awakening, hot flashes, nocturnal restlessness, and cold feet.",
+      science: "TCM classical pathology: 'Heart and Kidneys Not Communicating' (Xin Shen Bu Jiao). Heart fire must descend to warm Kidney water, while Kidney water ascends to cool Heart fire. Grounding energy through Yongquan (KI1) restores somatic homeostasis.",
+      rules: [
+        "Warm ginger/herbal foot bath for 15 minutes before bed (during Hai hour 21:00-23:00).",
+        "Massage Yongquan (KI1) on soles 100 times to draw unrooted fire downward.",
+        "Bridge the Ren and Du vessels by touching the tongue to the roof of the mouth during seated meditation."
+      ],
+      articles: [
+        { id: "EN-002", title: "The Five Elements (Wu Xing) in Daily Health Diagnostics", url: "/en/articles/five-elements-diagnostics/" },
+        { id: "EN-004", title: "Extraordinary Vessels: The Sea of Yin (Ren Mai) and Sea of Yang (Du Mai)", url: "/en/articles/ren-du-extraordinary-vessels/" },
+        { id: "EN-007", title: "Blood and Essence (Jing): The Substrate of Longevity", url: "/en/articles/jing-blood-longevity/" },
+        { id: "EN-028", title: "Kidney Support Qigong: Strengthening Lower Back and Vital Will", url: "/en/articles/kidney-qigong-lower-back/" },
+        { id: "EN-087", title: "Evening Wind-Down: Calming the Shen Before Sleep", url: "/en/articles/evening-shen-sleep/" }
+      ]
+    },
+    {
+      title: "4. Fall Prevention & Proprioception Training (Senior Balance Mastery)",
+      icon: "⚖️",
+      color: "#d97706",
+      target: "Seniors, individuals with gait instability, reduced ankle mobility, or fear of falling (kinesiophobia).",
+      science: "Over 80% of free nerve mechanoreceptors reside in plantar fascia and periarticular capsular tissues. Tai Chi stepping with explicit Empty (0-30% weight) and Solid (70-100% weight) distribution recalibrates the sensorimotor cortex.",
+      rules: [
+        "Every stepping foot touches heel-first with zero weight before progressively loading.",
+        "Engage the tripod of the foot (calcaneus, 1st metatarsal, 5th metatarsal) with the earth.",
+        "Lower the center of mass to Lower Dantian, moving like an unshakeable weighted roly-poly toy."
+      ],
+      articles: [
+        { id: "EN-031", title: "Ground Reaction Force: Rooting Energy Through the Yongquan Point", url: "/en/articles/ground-reaction-yongquan/" },
+        { id: "EN-032", title: "Kua Integration: Opening and Closing the Hip Joint", url: "/en/articles/kua-integration-hip/" },
+        { id: "EN-053", title: "Proprioception Re-calibration for Fall Prevention in Seniors", url: "/en/articles/proprioception-fall-prevention/" },
+        { id: "EN-073", title: "Ankles and Feet Strengthening: The Foundation of Balance", url: "/en/articles/ankles-feet-balance-foundation/" },
+        { id: "EN-078", title: "Fall Recovery Dynamics: Stepping and Catching Equilibrium", url: "/en/articles/fall-recovery-stepping/" }
+      ]
+    },
+    {
+      title: "5. Liver Qi Stagnation & Fascial Restoration (Myofascial Elasticity After 50)",
+      icon: "🌿",
+      color: "#059669",
+      target: "Mental irritability, myofascial constriction, shoulder/neck stiffness, and costal fullness.",
+      science: "Huangdi Neijing: 'The Liver governs free coursing and commands the sinews/fascia'. Chronic mental stress calcifies collagen bundles. Spiral silk-reeling (Chan Si Gong) wrings metabolic toxics out of fascia and triggers immediate matrix rehydration.",
+      rules: [
+        "Practice spinal helical coiling drills (Dragon Qigong) with gentle non-straining amplitude.",
+        "Incorporate Yi Jin Jing arm swings for 15 minutes morning or late afternoon.",
+        "Sip chrysanthemum or artichoke infusion to clear liver stagnation."
+      ],
+      articles: [
+        { id: "EN-006", title: "Qi Deficiency vs. Qi Stagnation: Clinical Symptoms and Exercises", url: "/en/articles/qi-deficiency-vs-stagnation/" },
+        { id: "EN-018", title: "Fascial Energy Transmission: Collagen Networks as Bio-Conductors", url: "/en/articles/fascial-energy-transmission/" },
+        { id: "EN-023", title: "Yi Jin Jing (Tendon Changing Classic): Structural Reconditioning", url: "/en/articles/yi-jin-jing-tendon-changing/" },
+        { id: "EN-029", title: "Liver Qi Detoxification Protocols for Stress Reduction", url: "/en/articles/liver-detox-qigong-stress/" },
+        { id: "EN-035", title: "Song (Relaxation) vs. Sagging: Functional Structural Integrity", url: "/en/articles/song-relaxation-vs-sagging/" }
+      ]
+    }
+  ];
+
+  function getActiveIndexEn(hour) {
+    if (hour >= 23 || hour < 1) return 0;
+    if (hour >= 1 && hour < 3) return 1;
+    if (hour >= 3 && hour < 5) return 2;
+    if (hour >= 5 && hour < 7) return 3;
+    if (hour >= 7 && hour < 9) return 4;
+    if (hour >= 9 && hour < 11) return 5;
+    if (hour >= 11 && hour < 13) return 6;
+    if (hour >= 13 && hour < 15) return 7;
+    if (hour >= 15 && hour < 17) return 8;
+    if (hour >= 17 && hour < 19) return 9;
+    if (hour >= 19 && hour < 21) return 10;
+    return 11;
+  }
+
+  function renderEnClock() {
+    const now = new Date();
+    const curHour = now.getHours();
+    const curMin = String(now.getMinutes()).padStart(2, '0');
+    const liveIdx = getActiveIndexEn(curHour);
+
+    const timeDisplay = document.getElementById('enCurrentTimeDisplay');
+    if (timeDisplay) {
+      timeDisplay.textContent = `Local Time: ${String(curHour).padStart(2, '0')}:${curMin} (${organsEn[liveIdx].canhGio})`;
+    }
+
+    const dialsContainer = document.getElementById('enOrganDials');
+    if (!dialsContainer) return;
+
+    dialsContainer.innerHTML = '';
+    organsEn.forEach((item, index) => {
+      const btn = document.createElement('button');
+      btn.className = `dial-btn ${index === liveIdx ? 'is-now' : ''}`;
+      btn.id = `en-dial-${index}`;
+      btn.onclick = () => selectEnOrgan(index);
+      btn.innerHTML = `
+        <div class="dial-time" style="font-size: 0.72rem; color: #71717a; font-weight: 600;">${item.hourRange}</div>
+        <div class="dial-organ" style="font-size: 0.85rem; font-weight: 700; color: #18181b; margin-top: 2px;">${item.canhGio.split('(')[0].trim()}</div>
+        <div style="font-size: 0.74rem; color: #047857;">${item.organ.split('Meridian')[0].trim()}</div>
+      `;
+      dialsContainer.appendChild(btn);
+    });
+
+    selectEnOrgan(liveIdx);
+  }
+
+  window.selectEnOrgan = function(index) {
+    document.querySelectorAll('#enOrganDials .dial-btn').forEach((b, i) => {
+      if (i === index) b.classList.add('active');
+      else b.classList.remove('active');
+    });
+
+    const organ = organsEn[index];
+    const card = document.getElementById('enOrganCard');
+    if (!card) return;
+
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; border-bottom: 1px solid #e7e5e4; padding-bottom: 0.6rem;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #047857; text-transform: uppercase;">${organ.hourRange} &bull; ${organ.canhGio}</span>
+          <h4 style="font-family: var(--serif); font-size: 1.35rem; margin: 0.2rem 0 0 0; color: #18181b;">${organ.organ}</h4>
+        </div>
+        <span style="font-size: 0.78rem; background: #e7e5e4; color: #44403c; padding: 2px 8px; border-radius: 6px; font-weight: 600;">${organ.organZh}</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; font-size: 0.86rem; line-height: 1.6; color: #292524; margin-bottom: 1rem;">
+        <div style="background: #ffffff; padding: 0.9rem; border-radius: 8px; border: 1px solid #e7e5e4;">
+          <strong style="color: #047857;">🔬 Western Biomedical Science (Guyton &amp; Ganong):</strong><br>
+          ${organ.physio}
+        </div>
+        <div style="background: #ffffff; padding: 0.9rem; border-radius: 8px; border: 1px solid #e7e5e4;">
+          <strong style="color: #8b2635;">📜 Huangdi Neijing Classical Commentary:</strong><br>
+          ${organ.tcm}
+        </div>
+      </div>
+
+      <div style="background: #ecfdf5; border-left: 3px solid #059669; padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.86rem; margin-bottom: 0.9rem;">
+        <strong style="color: #065f46;">🧘 Suggested Somatic Micro-Drill:</strong> ${organ.microDrill}
+      </div>
+
+      <div style="font-size: 0.82rem; color: #78716c; margin-bottom: 1rem;">
+        <strong>💡 Circadian Lifestyle Advice:</strong> ${organ.lifestyle}
+      </div>
+
+      <div style="border-top: 1px solid #e7e5e4; padding-top: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
+        <span style="font-size: 0.82rem; color: #57534e;">In-Depth Grounded Guide:</span>
+        <a href="${organ.articleUrl}" style="display: inline-flex; align-items: center; gap: 5px; background: #18181b; color: #ffffff; font-size: 0.82rem; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none;">
+          ${organ.articleTitle} &rarr;
+        </a>
+      </div>
+    `;
+  };
+
+  window.switchEnPathway = function(idx) {
+    document.querySelectorAll('.en-pathway-tab').forEach((t, i) => {
+      if (i === idx) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+
+    const p = pathwaysEn[idx];
+    const container = document.getElementById('enPathwayContent');
+    if (!container) return;
+
+    let articlesHtml = p.articles.map(a => `
+      <li style="padding: 6px 0; border-bottom: 1px dashed #f1f5f9; display: flex; justify-content: space-between; align-items: baseline; gap: 10px;">
+        <span style="font-weight: 600; color: #18181b; font-size: 0.86rem;">${a.id}: ${a.title}</span>
+        <a href="${a.url}" style="font-size: 0.8rem; font-weight: 700; color: #047857; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+      </li>
+    `).join('');
+
+    let rulesHtml = p.rules.map(r => `<li style="margin-bottom: 4px;">${r}</li>`).join('');
+
+    container.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem;">
+        <span style="font-size: 1.8rem;">${p.icon}</span>
+        <h4 style="font-family: var(--serif); font-size: 1.35rem; color: #18181b; margin: 0;">${p.title}</h4>
+      </div>
+
+      <div style="background: #fafaf9; border-radius: 8px; padding: 0.9rem; font-size: 0.86rem; color: #44403c; line-height: 1.6; margin-bottom: 1rem; border-left: 3px solid ${p.color};">
+        <strong style="color: #18181b;">🎯 Target Population:</strong> ${p.target}<br>
+        <strong style="color: #18181b; margin-top: 4px; display: inline-block;">🔬 Biomedical Mechanism:</strong> ${p.science}
+      </div>
+
+      <div style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 0.84rem; color: #18181b; text-transform: uppercase; letter-spacing: 0.04em;">⚡ 3 Golden Practice Rules:</strong>
+        <ul style="margin: 0.4rem 0 0 1.2rem; font-size: 0.85rem; color: #52525b; line-height: 1.6;">
+          ${rulesHtml}
+        </ul>
+      </div>
+
+      <div>
+        <strong style="font-size: 0.84rem; color: #18181b; text-transform: uppercase; letter-spacing: 0.04em;">📚 Structured Curriculum Path:</strong>
+        <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+          ${articlesHtml}
+        </ul>
+      </div>
+    `;
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      renderEnClock();
+      switchEnPathway(0);
+    });
+  } else {
+    renderEnClock();
+    switchEnPathway(0);
+  }
+
+  setInterval(renderEnClock, 60000);
+})();
+</script>
+
+
+
+
+
+
+
+
+
 <style>
 .pillar-title { margin: 1.8em 0 .4em; color: var(--accent,#8b2635); font-size: 1.05em; }
 .topic-list { list-style: none; padding-left: 0; }

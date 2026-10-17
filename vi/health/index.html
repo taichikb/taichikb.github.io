@@ -33,6 +33,561 @@
     <p style="color:var(--muted);">Chuỗi 100 bài tiếng Việt khai thác Kho dữ liệu <a href="https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9" target="_blank" rel="noopener">Health, TCM, Energy Medicine, Yoga, Taichi &amp; Qigong</a> (299 nguồn grounded). Mỗi bài theo cấu trúc 10 mục chuẩn: Lý luận Đông y · Cơ sinh học hiện đại · Hướng dẫn từng bước · Lỗi &amp; an toàn · Sơ đồ · Video · Ứng dụng liên ngành · Tự đánh giá · Thẻ thực hành. Bản tiếng Anh: <a href="/health/">/health/</a></p>
     <p><strong>100/100 đã xuất bản</strong> — bộ sưu tập hoàn chỉnh!</p>
     <p><a href="/health/" class="lang-switch">🇬🇧 English</a></p>
+
+
+<!-- ============================================================
+     ENRICHMENT: 1. TCM ORGAN CLOCK & 2. CURATED HEALTH PATHWAYS
+     Distilled from Gemini NotebookLM Vault: d2401afd-0718-4fac-b429-5bca391d27a9 (299 sources)
+     ============================================================ -->
+
+<div class="health-enrichment-wrap" style="margin: 2.2rem 0; font-family: var(--sans);">
+
+  <!-- Vault Grounding Banner -->
+  <div style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); color: #f4f4f5; border-radius: 14px; padding: 1.2rem 1.4rem; margin-bottom: 2rem; border-left: 4px solid var(--accent-gold, #c9a961); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
+    <div>
+      <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-gold, #c9a961); font-weight: 700;">
+        <span>✦ Kho Tri Thức Số Hóa Gemini NotebookLM</span>
+      </div>
+      <h3 style="font-family: var(--serif); font-size: 1.35rem; color: #ffffff; margin: 0.2rem 0 0.3rem 0;">Health, TCM, Energy Medicine, Yoga &amp; Qigong</h3>
+      <p style="font-size: 0.85rem; color: #a1a1aa; margin: 0; line-height: 1.5;">299 nguồn tài liệu y sinh học (Guyton &amp; Hall, Ganong, Kapandji) &amp; Đông y cổ truyền (Hoàng Đế Nội Kinh Tố Vấn, Châm cứu, Khí công Y khoa).</p>
+    </div>
+    <div>
+      <a href="https://notebooklm.google.com/notebook/d2401afd-0718-4fac-b429-5bca391d27a9" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #18181b; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 0.84rem; text-decoration: none; transition: transform 0.2s, background 0.2s;">
+        <span>Mở Vault Trực Tiếp (299 Nguồn) ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- TOOL 1: INTERACTIVE TCM ORGAN CLOCK -->
+  <section class="organ-clock-section" style="background: #ffffff; border: 1px solid var(--border, #e5e0d8); border-radius: 16px; padding: 1.5rem; margin-bottom: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.2rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.8rem;">
+      <div>
+        <span style="font-size: 0.72rem; font-weight: 700; color: #047857; text-transform: uppercase; letter-spacing: 0.06em; background: #ecfdf5; padding: 3px 8px; border-radius: 6px;">Tiện Ích Sinh Học 24 Giờ</span>
+        <h3 style="font-family: var(--serif); font-size: 1.45rem; color: #18181b; margin: 0.3rem 0 0 0;">⏰ Đồng Hồ Sinh Học 12 Canh Giờ (TCM Organ Clock)</h3>
+      </div>
+      <div id="viClockTimeNow" style="font-size: 0.88rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 6px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;">
+        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block; animation: pulse 2s infinite;"></span>
+        <span id="viCurrentTimeDisplay">Giờ hiện tại: --:--</span>
+      </div>
+    </div>
+
+    <p style="font-size: 0.88rem; color: #52525b; margin-bottom: 1.2rem; line-height: 1.6;">
+      Theo <em>Hoàng Đế Nội Kinh</em> và cơ chế nhịp điệu Circadian hiện đại, khí huyết chu lưu qua 12 đường kinh chính trong 24 giờ. Nhấp vào từng canh giờ bên dưới để xem tạng phủ cai quản, cơ chế y sinh học và vi-bài tập Thái Cực dưỡng sinh tương ứng.
+    </p>
+
+    <!-- 12 Hours Dials / Buttons -->
+    <div class="organ-dial-grid" id="viOrganDials" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 1.4rem;">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Active Organ Detail Card -->
+    <div id="viOrganCard" style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 12px; padding: 1.4rem; transition: all 0.25s ease;">
+      <!-- Loaded dynamically -->
+    </div>
+  </section>
+
+  <!-- TOOL 2: 5 CURATED HEALTH PATHWAYS -->
+  <section class="health-pathways-section" style="margin-bottom: 2.5rem;">
+    <div style="margin-bottom: 1.2rem;">
+      <span style="font-size: 0.72rem; font-weight: 700; color: #8b2635; text-transform: uppercase; letter-spacing: 0.06em; background: #fff1f2; padding: 3px 8px; border-radius: 6px;">Chương Trình Chăm Sóc Trọng Điểm</span>
+      <h3 style="font-family: var(--serif); font-size: 1.5rem; color: #18181b; margin: 0.3rem 0 0.4rem 0;">🧭 5 Lộ Trình Phục Hồi &amp; Dưỡng Sinh Chuyên Sâu (Tuổi 50+)</h3>
+      <p style="font-size: 0.88rem; color: #52525b; margin: 0; line-height: 1.6;">
+        Tập trung tinh hoa từ 100 bài viết theo từng mục tiêu bệnh học cụ thể. Mỗi lộ trình kết hợp cơ sinh học cân mạc, kích hoạt thần kinh phế vị và các bài quyền thực hành.
+      </p>
+    </div>
+
+    <!-- Pathway Tabs -->
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem;">
+      <button class="vi-pathway-tab active" onclick="switchViPathway(0)">🦵 1. Khớp Gối &amp; Cột Sống</button>
+      <button class="vi-pathway-tab" onclick="switchViPathway(1)">🫀 2. Huyết Áp &amp; Phế Vị (HRV)</button>
+      <button class="vi-pathway-tab" onclick="switchViPathway(2)">🌙 3. Giấc Ngủ &amp; Tâm Thận</button>
+      <button class="vi-pathway-tab" onclick="switchViPathway(3)">⚖️ 4. Phòng Ngừa Té Ngã</button>
+      <button class="vi-pathway-tab" onclick="switchViPathway(4)">🌿 5. Can Khí &amp; Cân Mạc</button>
+    </div>
+
+    <!-- Pathway Dynamic Card Container -->
+    <div id="viPathwayContent" style="background: #ffffff; border: 1px solid var(--border, #e5e0d8); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+      <!-- Loaded dynamically -->
+    </div>
+  </section>
+
+</div>
+
+<style>
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+.dial-btn {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.dial-btn:hover {
+  border-color: #047857;
+  background: #f0fdf4;
+}
+.dial-btn.active {
+  background: #047857;
+  color: #ffffff !important;
+  border-color: #047857;
+  box-shadow: 0 4px 10px rgba(4, 120, 87, 0.25);
+}
+.dial-btn.active .dial-time, .dial-btn.active .dial-organ {
+  color: #ffffff !important;
+}
+.dial-btn.is-now {
+  border: 2px solid #10b981;
+}
+.dial-btn.is-now::after {
+  content: "• LIVE";
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #059669;
+  display: block;
+}
+.dial-btn.active.is-now::after {
+  color: #a7f3d0;
+}
+.vi-pathway-tab {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e4e4e7;
+  background: #f4f4f5;
+  color: #52525b;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.vi-pathway-tab:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+.vi-pathway-tab.active {
+  background: #18181b !important;
+  color: #ffffff !important;
+  border-color: #18181b !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+</style>
+
+<script>
+(function() {
+  const organsVi = [
+    {
+      hourRange: "23:00 - 01:00",
+      canhGio: "Giờ Tý",
+      organ: "Kinh Đởm (Túi Mật)",
+      organEn: "Gallbladder",
+      physio: "Quá trình tự thực tế bào (Autophagy), tái tạo tủy sống và giải phóng hormone tăng trưởng trong giấc ngủ sâu NREM giai đoạn 3/4.",
+      tcm: "Đởm là trung chính chi quan, chủ quyết đoán. Giờ Tý một dương sinh khởi, phải ngủ sâu để dưỡng chân dương.",
+      microDrill: "Tĩnh tọa buông xả, Quán tưởng Đan Điền, đặt lưỡi chạm hàm ếch trên (Thước Kiều) thở chậm.",
+      lifestyle: "Kiêng ăn đêm sau 20h. Đi ngủ trước 23h để tránh hao tổn tủy não và gan mật.",
+      articleTitle: "VI-019: Rửa Tủy Kinh (Tẩy Tủy Kinh) & Dưỡng Sinh Cốt Tủy",
+      articleUrl: "/vi/articles/tay-tuy-kinh-xi-sui-jing/"
+    },
+    {
+      hourRange: "01:00 - 03:00",
+      canhGio: "Giờ Sửu",
+      organ: "Kinh Can (Gan)",
+      organEn: "Liver",
+      physio: "Gan tổng hợp glycogen, lọc độc tố sinh học trong huyết thanh, tưới máu phục hồi cơ bắp và màng cân mạc (Fascial Matrix).",
+      tcm: "Can tàng huyết, Can chủ cân (gân cơ). Thức giờ Sửu khiến can hỏa vượng, gân cơ co rút, mắt mờ và cứng khớp.",
+      microDrill: "Giữ giấc ngủ say hoàn toàn; trước khi ngủ xoa vuốt nhẹ hai mạn sườn (vùng Can kinh).",
+      lifestyle: "Tránh xa rượu bia và màn hình điện tử phát ánh sáng xanh trước khi ngủ.",
+      articleTitle: "VI-029: Thải Độc Can Khí & Phác Đồ Giải Tỏa Stress",
+      articleUrl: "/vi/articles/thai-doc-can-khi-giai-toa-stress/"
+    },
+    {
+      hourRange: "03:00 - 05:00",
+      canhGio: "Giờ Dần",
+      organ: "Kinh Phế (Phổi)",
+      organEn: "Lungs",
+      physio: "Nhịp thở cơ hoành điều tiết nồng độ Nitric Oxide nội sinh, chuẩn bị tăng nhịp tim và cortisol sinh lý buổi sáng.",
+      tcm: "Phế triều bách mạch, chủ khí toàn thân. Giờ Dần phân bố khí huyết từ trung tâm ra tứ chi.",
+      microDrill: "Thở Tu Na cơ hoành (Hít vào phình bụng dưới 4s, thở ra xẹp bụng 6s). Thực hiện 8 chu kỳ.",
+      lifestyle: "Thức dậy từ tốn, không bật dậy đột ngột; uống 1 ly nước ấm giữ ấm lồng ngực.",
+      articleTitle: "VI-061: Cơ Hoành — Động Cơ Hít Thở Chính Của Cơ Thể",
+      articleUrl: "/vi/articles/co-hoanh-dong-co-hit-tho-chinh/"
+    },
+    {
+      hourRange: "05:00 - 07:00",
+      canhGio: "Giờ Mão",
+      organ: "Kinh Đại Trường (Ruột Già)",
+      organEn: "Large Intestine",
+      physio: "Phản xạ dạ dày - ruột (Gastrocolic reflex) đẩy chất cặn bã ra khỏi kết tràng, thanh lọc đường ruột.",
+      tcm: "Đại trường là truyền đạo chi quan. Giờ Mão bài tiết độc tố trọc khí ra ngoài để đón sinh khí mới.",
+      microDrill: "Xoa bụng quanh rốn theo chiều kim đồng hồ 36 vòng; tập bài vung tay Dịch Cân Kinh nhẹ nhàng.",
+      lifestyle: "Uống 300-500ml nước ấm sau khi rời giường; tạo thói quen đại tiện cố định giờ Mão.",
+      articleTitle: "VI-085: Quy Trình 10 Phút Đánh Thức Khớp Buổi Sáng",
+      articleUrl: "/vi/articles/quy-trinh-10-phut-danh-thuc-khop-buoi-sang/"
+    },
+    {
+      hourRange: "07:00 - 09:00",
+      canhGio: "Giờ Thìn",
+      organ: "Kinh Vị (Dạ Dày)",
+      organEn: "Stomach",
+      physio: "Nồng độ enzyme tiêu hóa và axit dạ dày đạt đỉnh, khả năng đồng hóa dinh dưỡng cao nhất trong ngày.",
+      tcm: "Vị là bể chứa thủy cốc. Giờ Thìn ăn sáng ấm nóng để tạo nguồn hậu thiên chi tinh nuôi dưỡng cơ thể.",
+      microDrill: "Đi dạo chậm 100 bước (Thối bộ Thái Cực), hai tay xoa nhẹ vùng thượng vị sau khi ăn 15 phút.",
+      lifestyle: "Ăn bữa sáng đầy đủ dinh dưỡng, ấm nóng; tuyệt đối tránh đồ uống đá lạnh làm co thắt mạch máu dạ dày.",
+      articleTitle: "VI-090: Ăn Uống Chánh Niệm & Bảo Tồn Khí Tiêu Hóa",
+      articleUrl: "/vi/articles/an-uong-chanh-niem-khi-tieu-hoa/"
+    },
+    {
+      hourRange: "09:00 - 11:00",
+      canhGio: "Giờ Tỵ",
+      organ: "Kinh Tỳ (Lá Lách / Hệ Chuyển Hóa)",
+      organEn: "Spleen",
+      physio: "Tụy điều tiết insulin ổn định đường huyết não bộ, lưu lượng tuần hoàn tối ưu cho tư duy chiến lược.",
+      tcm: "Tỳ chủ vận hóa, thống nhiếp huyết dịch và chủ cơ nhục. Ngồi lâu làm tổn thương Tỳ và cơ bắp.",
+      microDrill: "Đứng dậy vươn vai, day ấn huyệt Túc Tam Lý (ST36) và Tam Âm Giao (SP6) mỗi bên 1 phút.",
+      lifestyle: "Khoảng thời gian vàng để làm việc trí óc tập trung cao độ; đứng dậy sau mỗi 45 phút.",
+      articleTitle: "VI-005: Huyệt Vị Tự Chữa Lành: Túc Tam Lý, Hợp Cốc và Nội Quan",
+      articleUrl: "/vi/articles/huyet-tu-chua-lanh/"
+    },
+    {
+      hourRange: "11:00 - 13:00",
+      canhGio: "Giờ Ngọ",
+      organ: "Kinh Tâm (Tim)",
+      organEn: "Heart",
+      physio: "Áp lực tâm thất và cung lượng tim cao nhất; thần kinh giao cảm chuyển dịch nhẹ sang phó giao cảm.",
+      tcm: "Tâm là quân chủ chi quan. Giờ Ngọ cực dương sinh âm, cần tĩnh dưỡng nhẹ để điều hòa Tâm hỏa.",
+      microDrill: "Ngồi nhắm mắt thả lỏng 15 phút, ngực hơi thu (Hàm hung), thở tự nhiên buông xả căng thẳng.",
+      lifestyle: "Ăn trưa thanh đạm; chợp mắt ngủ trưa 15-20 phút (không ngủ quá 30 phút gây trì trệ).",
+      articleTitle: "VI-030: Khí Công Định Tâm: Cân Bằng Cảm Xúc & Cải Thiện Giấc Ngủ",
+      articleUrl: "/vi/articles/khi-cong-dinh-tam-cam-xuc-giac-ngu/"
+    },
+    {
+      hourRange: "13:00 - 15:00",
+      canhGio: "Giờ Mùi",
+      organ: "Kinh Tiểu Trường (Ruột Non)",
+      organEn: "Small Intestine",
+      physio: "Phân tách dưỡng chất tinh hoa vào tĩnh mạch cửa và mao mạch bạch huyết, điều tiết dịch nội bào.",
+      tcm: "Tiểu trường chủ thụ thịnh và phân thanh giáng trọc (chất trong hấp thụ, chất đục chuyển xuống bàng quang).",
+      microDrill: "Bài tập mở khớp vai và ngực (Kéo giãn kinh Tiểu Trường vùng bả vai), xoay khớp cổ tay.",
+      lifestyle: "Uống 1 cốc nước ấm; tránh vận động cường độ quá cao làm gián đoạn hấp thu dinh dưỡng.",
+      articleTitle: "VI-045: Vận Động Khớp Vai: Tư Thế Gomukhasana Gặp Bổng Kình (Peng)",
+      articleUrl: "/vi/articles/khop-vai-gomukhasana-bong-kinh-peng/"
+    },
+    {
+      hourRange: "15:00 - 17:00",
+      canhGio: "Giờ Thân",
+      organ: "Kinh Bàng Quang (Hệ Bài Tiết)",
+      organEn: "Bladder",
+      physio: "Thân nhiệt và tính đàn hồi của mạng cơ gân đạt mức linh hoạt nhất; thận và bàng quang lọc chất thải.",
+      tcm: "Kinh Bàng Quang chạy dài từ đầu dọc suốt sống lưng xuống gót chân, là hàng rào Vệ khí bảo vệ thân thể.",
+      microDrill: "Thức 'Hai tay ôm chân giữ eo bền thận' trong Bát Đoạn Cẩm, kéo giãn dải cân mạc nông phía sau.",
+      lifestyle: "Uống nước hoặc trà thảo mộc thanh lọc; giờ thích hợp cho các bài tập thể lực nhẹ hoặc đi bộ.",
+      articleTitle: "VI-048: Kéo Dãn Cơ Gân Kheo Cho Tư Thế Hạ Tấn Vững Chãi",
+      articleUrl: "/vi/articles/keo-dan-co-gan-kheo-ha-tan/"
+    },
+    {
+      hourRange: "17:00 - 19:00",
+      canhGio: "Giờ Dậu",
+      organ: "Kinh Thận",
+      organEn: "Kidneys",
+      physio: "Tuyến thượng thận điều chỉnh giảm cortisol, nhiệt độ cơ thể hạ dần, chuyển sang trạng thái phục hồi nội mô.",
+      tcm: "Thận là gốc của tiên thiên, tàng tinh, chủ cốt tủy. Giờ Dậu là thời điểm vàng luyện Thái Cực & Khí Công.",
+      microDrill: "Tập Trạm Trang (Đứng trụ ôm cầu) 15-20 phút, thở sâu xuống Hạ Đan Điền, xoa nóng vùng Mệnh Môn.",
+      lifestyle: "Tránh làm việc kiệt sức; dùng bữa tối thanh nhẹ, giàu dưỡng chất trước 19h.",
+      articleTitle: "VI-028: Khí Công Bổ Thận: Củng Cố Vùng Thắt Lưng & Ý Chí Sinh Lực",
+      articleUrl: "/vi/articles/khi-cong-bo-than-that-lung-sinh-luc/"
+    },
+    {
+      hourRange: "19:00 - 21:00",
+      canhGio: "Giờ Tuất",
+      organ: "Kinh Tâm Bào (Màng Tim)",
+      organEn: "Pericardium",
+      physio: "Hệ thần kinh phó giao cảm chiếm ưu thế, huyết áp tâm thu giảm, tim và mạch máu ngoại vi thư giãn.",
+      tcm: "Tâm bào là áo giáp bảo vệ Tâm quân. Giờ Tuất dưỡng tâm bào giúp giải tỏa uất kết cảm xúc trong ngày.",
+      microDrill: "Day bấm huyệt Nội Quan (PC6) trên cổ tay 3 phút kết hợp hơi thở 4-7-8; thực hành Nụ Cười Nội Tâm.",
+      lifestyle: "Dành thời gian cho gia đình, đọc sách nhẹ nhàng, ngưng bàn luận công việc áp lực căng thẳng.",
+      articleTitle: "VI-016: Chuyển Hóa Căng Thẳng Thành Sinh Lực: Kỹ Thuật Nụ Cười Nội Tâm",
+      articleUrl: "/vi/articles/nu-cuoi-noi-tam-chuyen-hoa-cang-thang/"
+    },
+    {
+      hourRange: "21:00 - 23:00",
+      canhGio: "Giờ Hợi",
+      organ: "Kinh Tam Tiêu (Hệ Nội Tiết & Nhiệt Độ)",
+      organEn: "Triple Burner",
+      physio: "Melatonin tăng tiết mạnh kích hoạt cơn buồn ngủ tự nhiên, tuần hoàn dịch não tủy chuẩn bị khởi động.",
+      tcm: "Tam Tiêu thông suốt百 mạch, điều hòa toàn bộ nhiệt lượng và tân dịch khắp thượng - trung - hạ tiêu.",
+      microDrill: "Ngâm chân nước ấm pha gừng/muối 15 phút, xoa huyệt Dũng Tuyền lòng bàn chân 100 lần mỗi bên.",
+      lifestyle: "Tắt thiết bị điện tử, tắt đèn sáng chói; chuẩn bị đi vào giấc ngủ trước 23h.",
+      articleTitle: "VI-089: Thủy Liệu Pháp & Ngâm Chân Thảo Dược Theo Đông Y",
+      articleUrl: "/vi/articles/thuy-lieu-phap-ngam-chan-thao-duoc/"
+    }
+  ];
+
+  const pathwaysVi = [
+    {
+      title: "1. Bảo Tồn Khớp Gối & Cột Sống Sau Tuổi 50 (Joint & Spinal Longevity)",
+      icon: "🦵",
+      color: "#047857",
+      target: "Người bị thoái hóa khớp gối, sụn chêm mỏng, đau thắt lưng, gù vẹo đốt sống cổ.",
+      science: "Ứng dụng cơ sinh học khớp Kapandji và cấu trúc Căng bằng sinh học (Biotensegrity). Khi cơ thể ở trạng thái 'Tùng' (Song), dịch khớp (Synovial Fluid) được kích thích tiết ra qua các chuyển động tròn xoay liên tục mà không gây mài mòn mặt sụn.",
+      rules: [
+        "Đầu gối không bao giờ vượt quá mũi chân (tránh lực cắt xé dây chằng chéo trước ACL).",
+        "Hư linh đỉnh kình (đỉnh đầu treo nhẹ) để giải áp lực nén lên đĩa đệm cột sống C1-L5.",
+        "Mở khớp háng (Kua) chia đều lực nén xuống mặt đất thay vì dồn vào khớp gối."
+      ],
+      articles: [
+        { id: "VI-031", title: "Phản Lực Mặt Đất & Cắm Rễ Qua Huyệt Dũng Tuyền", url: "/vi/articles/phan-luc-mat-dat-dung-tuyen/" },
+        { id: "VI-037", title: "Quy Tắc Gióng Hàng Khớp Gối: Ngăn Ngừa Lực Cắt & Tổn Thương ACL", url: "/vi/articles/quy-tac-giong-hang-khop-goi-acl/" },
+        { id: "VI-071", title: "Kích Thích Dịch Khớp Khớp Bằng Chuyển Động Xoay Tròn Liên Tục", url: "/vi/articles/kich-thich-dich-khop-chuyen-dong-tron/" },
+        { id: "VI-075", title: "Giảm Thoái Hóa Khớp Háng Bằng Các Động Tác Xoay Thái Cực", url: "/vi/articles/giam-thoai-hoa-khop-hang-thai-cuc/" },
+        { id: "VI-076", title: "Giải Áp Cột Sống Thắt Lưng Ở Tư Thế Đứng Và Ngồi", url: "/vi/articles/giai-ap-cot-song-that-lung/" }
+      ]
+    },
+    {
+      title: "2. Bình Ổn Huyết Áp & Nuôi Dưỡng Thần Kinh Phế Vị (Vagus Tone & HRV)",
+      icon: "🫀",
+      color: "#b91c1c",
+      target: "Người huyết áp cao dao động, rối loạn thần kinh thực vật, tim đập nhanh, stress kinh niên.",
+      science: "Dẫn giải từ Y sinh học Guyton & Hall: Hít thở chậm bằng cơ hoành (5-6 nhịp/phút) làm thay đổi áp suất lồng ngực, kích thích trực tiếp thụ thể áp lực xoang cảnh (Baroreceptors) và dây thần kinh phế vị (Vagus Nerve), lập tức hạ nhịp tim và giãn tiểu động mạch.",
+      rules: [
+        "Hít thở bụng dưới nhịp 4s vào - 6s ra hoặc công thức 4-7-8.",
+        "Tập các động tác quyền chậm rãi để đưa sóng não về vùng Alpha/Theta thư giãn sâu.",
+        "Tránh nín thở hay gồng cứng cơ vai ngực trong suốt bài tập."
+      ],
+      articles: [
+        { id: "VI-049", title: "Kích Thích Dây Thần Kinh Phế Vị Qua Hơi Thở & Hạ Trọng Tâm", url: "/vi/articles/kich-thich-than-kinh-phe-vi-thai-cuc/" },
+        { id: "VI-051", title: "Chuyển Đổi Phó Giao Cảm: Thoát Khỏi Trạng Thái Chiến-Hay-Biến", url: "/vi/articles/chuyen-doi-pho-giao-cam/" },
+        { id: "VI-055", title: "Phác Đồ Giảm Cortisol Qua Bài Tập 15 Phút Hằng Ngày", url: "/vi/articles/phac-do-giam-cortisol-15-phut/" },
+        { id: "VI-056", title: "Tối Ưu Hóa Độ Biến Thiên Nhịp Tim (HRV) Bằng Thở Đồng Nhịp", url: "/vi/articles/toi-uu-hoa-hrv-tho-dong-nhip/" },
+        { id: "VI-061", title: "Cơ Hoành Là Động Cơ Hít Thở Chính Của Cơ Thể", url: "/vi/articles/co-hoanh-dong-co-hit-tho-chinh/" }
+      ]
+    },
+    {
+      title: "3. Giấc Ngủ Sâu & Cân Bằng Tâm - Thận (Thủy Hỏa Ký Tế)",
+      icon: "🌙",
+      color: "#4338ca",
+      target: "Mất ngủ, khó vào giấc, hay tỉnh giấc lúc nửa đêm, bốc hỏa, bàn chân lạnh buốt.",
+      science: "Đông y gọi là 'Tâm Thận bất giao': Tâm hỏa không giáng xuống làm ấm Thận thủy, Thận thủy không bốc lên làm mát Tâm hỏa. Khi phối hợp xoa huyệt Dũng Tuyền với thở thiền Đan Điền, năng lượng được kéo về gốc, an định thần kinh trung ương.",
+      rules: [
+        "Ngâm chân nước ấm có gừng muối 15 phút trước giờ ngủ (giờ Hợi 21-23h).",
+        "Xoa lòng bàn chân (Huyệt Dũng Tuyền) 100 lần mỗi bên tạo cảm giác ấm lan tỏa.",
+        "Nối liền mạch Nhâm - Đốc bằng cách chạm nhẹ đầu lưỡi vòm họng trên (Thước Kiều)."
+      ],
+      articles: [
+        { id: "VI-002", title: "Ngũ Hành Trong Chẩn Đoán Sức Khỏe Hằng Ngày", url: "/vi/articles/ngu-hanh-chan-doan/" },
+        { id: "VI-004", title: "Kỳ Kinh Bát Mạch: Mạch Nhâm, Mạch Đốc và Năng Lượng Cốt Tủy", url: "/vi/articles/ky-kinh-nham-doc/" },
+        { id: "VI-007", title: "Tinh, Khí, Thần & Tinh Huyết: Nền Tảng Trường Thọ", url: "/vi/articles/tinh-khi-than-truong-tho/" },
+        { id: "VI-028", title: "Khí Công Bổ Thận: Củng Cố Vùng Thắt Lưng & Sinh Lực", url: "/vi/articles/khi-cong-bo-than-that-lung-sinh-luc/" },
+        { id: "VI-087", title: "Thư Giãn Buổi Tối: An Định Tâm Thần Trước Khi Ngủ", url: "/vi/articles/thu-gian-buoi-toi-an-dinh-than/" }
+      ]
+    },
+    {
+      title: "4. Phòng Ngừa Té Ngã & Tái Huấn Luyện Cảm Thụ Bản Thể (Proprioception)",
+      icon: "⚖️",
+      color: "#d97706",
+      target: "Người cao tuổi, người có dáng đi chông chênh, giảm độ linh hoạt cổ chân, sợ té ngã.",
+      science: "Hơn 80% đầu mút thần kinh cảm thụ vị trí cơ thể nằm trong màng cân mạc bàn chân và quanh khớp. Việc luyện tập bước chân Thái Cực với sự phân biệt rõ 'Hư' (0-30% trọng lượng) và 'Thực' (70-100%) tái huấn luyện vùng vỏ não vận động (Sensorimotor Cortex).",
+      rules: [
+        "Mỗi bước chân bước ra phải chạm nhẹ gót trước khi từ từ chuyển trọng tâm.",
+        "Luôn giữ ba điểm cung bàn chân tiếp xúc mặt sàn (Ngón cái, ngón út, gót chân).",
+        "Hạ thấp trọng tâm về Hạ Đan Điền để tạo thế vững chãi như con lật đật."
+      ],
+      articles: [
+        { id: "VI-031", title: "Phản Lực Mặt Đất & Cắm Rễ Qua Huyệt Dũng Tuyền", url: "/vi/articles/phan-luc-mat-dat-dung-tuyen/" },
+        { id: "VI-032", title: "Hội Tụ Khớp Háng (Kua): Đóng Mở Khớp Hông Trong Chuyển Động", url: "/vi/articles/hoi-tu-khop-hang-kua/" },
+        { id: "VI-053", title: "Tái Hiệu Chỉnh Cảm Thụ Bản Thể Phòng Ngừa Té Ngã Ở Người Cao Tuổi", url: "/vi/articles/tai-hieu-chinh-cam-thu-ban-the-te-nga/" },
+        { id: "VI-073", title: "Củng Cố Cổ Chân & Bàn Chân: Nền Móng Của Thăng Bằng", url: "/vi/articles/cung-co-co-chan-ban-chan-thang-bang/" },
+        { id: "VI-078", title: "Động Lực Học Phục Hồi Khi Té Ngã: Bước Chân & Lấy Lại Thăng Bằng", url: "/vi/articles/dong-luc-hoc-phuc-hoi-te-nga/" }
+      ]
+    },
+    {
+      title: "5. Giải Tỏa Can Khí Uất & Đàn Hồi Cân Mạc Sau Tuổi 50 (Fascia & Liver Qi)",
+      icon: "🌿",
+      color: "#059669",
+      target: "Người hay căng thẳng, dễ cáu gắt, gân cơ co rút, đau mỏi vai gáy và tức mạn sườn.",
+      science: "Theo Hoàng Đế Nội Kinh, 'Can chủ sơ tiết' và 'Can chủ cân'. Căng thẳng tâm lý ức chế bài tiết mật và làm xơ cứng mạng collagen. Chuyển động xoắn vặn hình xoắn ốc (Triền ti kình) giúp vắt kiệt độc tố trong cân mạc và tái ngậm nước (Rehydration).",
+      rules: [
+        "Tập các động tác vặn xoắn cột sống biên độ nhẹ nhàng (Dragon Qigong).",
+        "Thực hành bài vung tay Dịch Cân Kinh 15 phút vào sáng sớm hoặc cuối giờ chiều.",
+        "Uống trà hoa cúc hoặc trà atiso để thanh can nhiệt và giải tỏa uất kết."
+      ],
+      articles: [
+        { id: "VI-006", title: "Khí Trệ Và Khí Hư: Phân Biệt Biểu Hiện Và Bài Tập Khắc Phục", url: "/vi/articles/khi-tre-va-khi-hu/" },
+        { id: "VI-018", title: "Dẫn Truyền Năng Lượng Cân Mạc: Mạng Lưới Collagen Dẫn Truyền Sinh Học", url: "/vi/articles/dan-truyen-nang-luong-can-mac-collagen/" },
+        { id: "VI-023", title: "Dịch Cân Kinh: Tái Định Hình Cấu Trúc Cơ Gân Toàn Thân", url: "/vi/articles/dich-can-kinh-tai-dinh-hinh-co-gan/" },
+        { id: "VI-029", title: "Thải Độc Can Khí & Phác Đồ Giải Tỏa Stress", url: "/vi/articles/thai-doc-can-khi-giai-toa-stress/" },
+        { id: "VI-035", title: "Tùng (Thư Giãn Chức Năng) Khác Gì Buông Xuôi Chùng Nhão", url: "/vi/articles/tung-thu-gian-vs-buong-nhan/" }
+      ]
+    }
+  ];
+
+  function getActiveIndex(hour) {
+    if (hour >= 23 || hour < 1) return 0;
+    if (hour >= 1 && hour < 3) return 1;
+    if (hour >= 3 && hour < 5) return 2;
+    if (hour >= 5 && hour < 7) return 3;
+    if (hour >= 7 && hour < 9) return 4;
+    if (hour >= 9 && hour < 11) return 5;
+    if (hour >= 11 && hour < 13) return 6;
+    if (hour >= 13 && hour < 15) return 7;
+    if (hour >= 15 && hour < 17) return 8;
+    if (hour >= 17 && hour < 19) return 9;
+    if (hour >= 19 && hour < 21) return 10;
+    return 11; // 21:00 - 23:00
+  }
+
+  function renderViClock() {
+    const now = new Date();
+    const curHour = now.getHours();
+    const curMin = String(now.getMinutes()).padStart(2, '0');
+    const liveIdx = getActiveIndex(curHour);
+
+    const timeDisplay = document.getElementById('viCurrentTimeDisplay');
+    if (timeDisplay) {
+      timeDisplay.textContent = `Giờ địa phương: ${String(curHour).padStart(2, '0')}:${curMin} (${organsVi[liveIdx].canhGio})`;
+    }
+
+    const dialsContainer = document.getElementById('viOrganDials');
+    if (!dialsContainer) return;
+
+    dialsContainer.innerHTML = '';
+    organsVi.forEach((item, index) => {
+      const btn = document.createElement('button');
+      btn.className = `dial-btn ${index === liveIdx ? 'is-now' : ''}`;
+      btn.id = `vi-dial-${index}`;
+      btn.onclick = () => selectViOrgan(index);
+      btn.innerHTML = `
+        <div class="dial-time" style="font-size: 0.72rem; color: #71717a; font-weight: 600;">${item.hourRange}</div>
+        <div class="dial-organ" style="font-size: 0.85rem; font-weight: 700; color: #18181b; margin-top: 2px;">${item.canhGio}</div>
+        <div style="font-size: 0.74rem; color: #047857;">${item.organ.split('(')[0].trim()}</div>
+      `;
+      dialsContainer.appendChild(btn);
+    });
+
+    selectViOrgan(liveIdx);
+  }
+
+  window.selectViOrgan = function(index) {
+    document.querySelectorAll('#viOrganDials .dial-btn').forEach((b, i) => {
+      if (i === index) b.classList.add('active');
+      else b.classList.remove('active');
+    });
+
+    const organ = organsVi[index];
+    const card = document.getElementById('viOrganCard');
+    if (!card) return;
+
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; border-bottom: 1px solid #e7e5e4; padding-bottom: 0.6rem;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #047857; text-transform: uppercase;">${organ.hourRange} &bull; ${organ.canhGio}</span>
+          <h4 style="font-family: var(--serif); font-size: 1.35rem; margin: 0.2rem 0 0 0; color: #18181b;">${organ.organ}</h4>
+        </div>
+        <span style="font-size: 0.78rem; background: #e7e5e4; color: #44403c; padding: 2px 8px; border-radius: 6px; font-weight: 600;">${organ.organEn} Channel</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; font-size: 0.86rem; line-height: 1.6; color: #292524; margin-bottom: 1rem;">
+        <div style="background: #ffffff; padding: 0.9rem; border-radius: 8px; border: 1px solid #e7e5e4;">
+          <strong style="color: #047857;">🔬 Cơ Chế Y Sinh Học (Guyton &amp; Ganong):</strong><br>
+          ${organ.physio}
+        </div>
+        <div style="background: #ffffff; padding: 0.9rem; border-radius: 8px; border: 1px solid #e7e5e4;">
+          <strong style="color: #8b2635;">📜 Hoàng Đế Nội Kinh Luận Giải:</strong><br>
+          ${organ.tcm}
+        </div>
+      </div>
+
+      <div style="background: #ecfdf5; border-left: 3px solid #059669; padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.86rem; margin-bottom: 0.9rem;">
+        <strong style="color: #065f46;">🧘 Vi-Bài Tập Gợi Ý Trong Khung Giờ:</strong> ${organ.microDrill}
+      </div>
+
+      <div style="font-size: 0.82rem; color: #78716c; margin-bottom: 1rem;">
+        <strong>💡 Lời Khuyên Dưỡng Sinh:</strong> ${organ.lifestyle}
+      </div>
+
+      <div style="border-top: 1px solid #e7e5e4; padding-top: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;">
+        <span style="font-size: 0.82rem; color: #57534e;">Bài viết chuyên sâu liên quan:</span>
+        <a href="${organ.articleUrl}" style="display: inline-flex; align-items: center; gap: 5px; background: #18181b; color: #ffffff; font-size: 0.82rem; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none;">
+          ${organ.articleTitle} &rarr;
+        </a>
+      </div>
+    `;
+  };
+
+  window.switchViPathway = function(idx) {
+    document.querySelectorAll('.vi-pathway-tab').forEach((t, i) => {
+      if (i === idx) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+
+    const p = pathwaysVi[idx];
+    const container = document.getElementById('viPathwayContent');
+    if (!container) return;
+
+    let articlesHtml = p.articles.map(a => `
+      <li style="padding: 6px 0; border-bottom: 1px dashed #f1f5f9; display: flex; justify-content: space-between; align-items: baseline; gap: 10px;">
+        <span style="font-weight: 600; color: #18181b; font-size: 0.86rem;">${a.id}: ${a.title}</span>
+        <a href="${a.url}" style="font-size: 0.8rem; font-weight: 700; color: #047857; text-decoration: none; white-space: nowrap;">Đọc Bài &rarr;</a>
+      </li>
+    `).join('');
+
+    let rulesHtml = p.rules.map(r => `<li style="margin-bottom: 4px;">${r}</li>`).join('');
+
+    container.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem;">
+        <span style="font-size: 1.8rem;">${p.icon}</span>
+        <h4 style="font-family: var(--serif); font-size: 1.35rem; color: #18181b; margin: 0;">${p.title}</h4>
+      </div>
+
+      <div style="background: #fafaf9; border-radius: 8px; padding: 0.9rem; font-size: 0.86rem; color: #44403c; line-height: 1.6; margin-bottom: 1rem; border-left: 3px solid ${p.color};">
+        <strong style="color: #18181b;">🎯 Đối Tượng Trọng Tâm:</strong> ${p.target}<br>
+        <strong style="color: #18181b; margin-top: 4px; display: inline-block;">🔬 Căn Cứ Y Sinh Học:</strong> ${p.science}
+      </div>
+
+      <div style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 0.84rem; color: #18181b; text-transform: uppercase; letter-spacing: 0.04em;">⚡ 3 Quy Tắc Vàng Khi Luyện Tập:</strong>
+        <ul style="margin: 0.4rem 0 0 1.2rem; font-size: 0.85rem; color: #52525b; line-height: 1.6;">
+          ${rulesHtml}
+        </ul>
+      </div>
+
+      <div>
+        <strong style="font-size: 0.84rem; color: #18181b; text-transform: uppercase; letter-spacing: 0.04em;">📚 Chuỗi Bài Viết Theo Lộ Trình:</strong>
+        <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+          ${articlesHtml}
+        </ul>
+      </div>
+    `;
+  };
+
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      renderViClock();
+      switchViPathway(0);
+    });
+  } else {
+    renderViClock();
+    switchViPathway(0);
+  }
+
+  // Update clock every minute
+  setInterval(renderViClock, 60000);
+})();
+</script>
+
+
+
+
+
+
+
+
+
 <style>
 .pillar-title { margin: 1.8em 0 .4em; color: var(--accent,#8b2635); font-size: 1.05em; }
 .topic-list { list-style: none; padding-left: 0; }
