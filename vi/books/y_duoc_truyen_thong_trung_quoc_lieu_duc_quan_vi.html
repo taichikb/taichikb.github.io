@@ -65,8 +65,8 @@ p{margin-bottom:1.35rem;}
 .pdf-inline-bar .btn-control{background:none;border:1px solid #71717a;color:#f4f4f5;}
 .pdf-inline-bar .btn-control:hover{background:#52525b;}
 .pdf-inline-bar #pdf-pageinfo{font-size:.85rem;min-width:84px;text-align:center;}
-#pdf-pages{position:relative;background:#3f3f46;padding:18px 6px 42px;text-align:center;border-radius:0 0 10px 10px;min-height:560px;-webkit-overflow-scrolling:touch;}
-.pdf-page{display:block;margin:0 auto 16px;box-shadow:0 2px 14px rgba(0,0,0,.5);background:#fff;max-width:100%;}
+#pdf-pages{position:relative;background:#27272a;padding:18px 6px 42px;text-align:center;border-radius:0 0 10px 10px;min-height:560px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.pdf-page{display:block;margin:0 auto 16px;box-shadow:0 4px 20px rgba(0,0,0,.45);background:#fff;max-width:100%;height:auto!important;}
 #pdf-status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#f4f4f5;font-size:.95rem;background:rgba(24,24,27,.94);padding:14px 22px;border-radius:8px;display:none;max-width:80%;}
 @media (max-width:640px){.pdf-inline-title{display:none;}.pdf-inline-bar #pdf-pageinfo{min-width:62px;}}
 </style>
@@ -258,11 +258,19 @@ if(openBtn)openBtn.addEventListener('click',function(e){e.preventDefault();var r
     s.onerror=function(){libState=3;setStatus(FAIL);};
     document.head.appendChild(s);
   }
-  function fit(){var avail=cont.clientWidth-20;if(!avail||avail<100)avail=660;return Math.max(0.3,Math.min(avail/420,2.0));}
+  function calcScale(page){
+    var avail=cont.clientWidth-24;
+    if(!avail||avail<100)avail=760;
+    var unscaled=page.getViewport({scale:1.0});
+    return Math.max(0.2, (avail/unscaled.width)*zoom);
+  }
   function draw(it){
     if(!it||it.done||it.busy)return;
     it.busy=true;
-    it.page.render({canvasContext:it.canvas.getContext('2d'),viewport:it.page.getViewport({scale:it.scale})}).promise
+    var vp=it.page.getViewport({scale:it.scale});
+    var task=it.page.render({canvasContext:it.canvas.getContext('2d'),viewport:vp});
+    it.task=task;
+    task.promise
       .then(function(){it.done=true;it.busy=false;})
       .catch(function(){it.busy=false;});
   }
@@ -288,10 +296,11 @@ if(openBtn)openBtn.addEventListener('click',function(e){e.preventDefault();var r
       (function(n){
         chain=chain.then(function(){
           return pdfDoc.getPage(n).then(function(page){
-            var s=fit()*zoom;var vp=page.getViewport({scale:s});
+            var s=calcScale(page);var vp=page.getViewport({scale:s});
             var cv=document.createElement('canvas');cv.className='pdf-page';cv.dataset.page=n;
             cv.width=Math.floor(vp.width);cv.height=Math.floor(vp.height);
             cv.style.width=Math.floor(vp.width)+'px';cv.style.height=Math.floor(vp.height)+'px';
+            if(zoom>1)cv.style.maxWidth='none';
             cont.appendChild(cv);
             items.push({n:n,canvas:cv,page:page,scale:s,done:false,busy:false});
           });
@@ -307,11 +316,14 @@ if(openBtn)openBtn.addEventListener('click',function(e){e.preventDefault();var r
   }
   function refit(){
     if(!pdfDoc||!items.length)return;
-    var s=fit()*zoom;
     items.forEach(function(it){
-      var vp=it.page.getViewport({scale:s});it.scale=s;it.done=false;
+      if(it.task&&it.busy){try{it.task.cancel();}catch(e){}it.busy=false;}
+      var s=calcScale(it.page);
+      var vp=it.page.getViewport({scale:s});
+      it.scale=s;it.done=false;
       it.canvas.width=Math.floor(vp.width);it.canvas.height=Math.floor(vp.height);
       it.canvas.style.width=Math.floor(vp.width)+'px';it.canvas.style.height=Math.floor(vp.height)+'px';
+      it.canvas.style.maxWidth=zoom>1?'none':'100%';
     });
     var vr=window.innerHeight;
     items.forEach(function(it){var r=it.canvas.getBoundingClientRect();if(r.bottom>-700&&r.top<vr+700)draw(it);});
