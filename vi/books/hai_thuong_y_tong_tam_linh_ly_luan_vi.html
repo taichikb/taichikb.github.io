@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hải Thượng Y Tông Tâm Lĩnh — Tinh Hoa Lý Luận & Y Đạo | Hải Thượng Lãn Ông Lê Hữu Trác</title>
+<meta name="description" content="Trọn vẹn phần lý luận cốt yếu trong kiệt tác Hải Thượng Y Tông Tâm Lĩnh của Đại danh y Hải Thượng Lãn Ông Lê Hữu Trác (1724 – 1791): Y Huấn Cách Ngôn, Huyền Tẫn Phát Vi (Mệnh Môn, Thủy Hỏa), Y Hải Cầu Nguyên, Khôn Hóa Thái Chân, Nội Kinh Yếu Chỉ và Đạo Lưu Dư Vận.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+
+<style>
+:root {
+  --bg-page: #fcfbf9;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f7f5f0;
+  --ink: #1c1917;
+  --ink-muted: #57534e;
+  --ink-faint: #a8a29e;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --jade: #0f766e;
+  --jade-light: #ccfbf1;
+  --border: #e7e5e4;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', 'Songti SC', serif;
+}
+
+[data-theme="dark"] {
+  --bg-page: #0c0a09;
+  --bg-card: #1c1917;
+  --bg-sidebar: #171412;
+  --ink: #f5f5f4;
+  --ink-muted: #a8a29e;
+  --ink-faint: #78716c;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --jade: #2dd4bf;
+  --jade-light: #134e4a;
+  --border: #292524;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.85;
+  font-size: 17px;
+  transition: background-color .25s, color .25s;
+}
+
+/* Reader Header */
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(252, 251, 249, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(12, 10, 9, 0.95);
+}
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.brand-area svg { width: 30px; height: 30px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all .2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+.btn-control.on {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+/* Progress bar */
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width .1s ease;
+}
+
+/* Layout */
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: all .15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 44px 36px 120px;
+}
+
+/* Typography */
+.book-hero {
+  text-align: center;
+  padding-bottom: 36px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.75rem;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.book-hero .subtitle {
+  font-size: 1.2rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 64px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+p {
+  margin-bottom: 1.35rem;
+  text-align: justify;
+}
+
+/* Callout & Highlights */
+.note-box {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+.note-box strong { color: var(--ink); }
+
+.quote-box {
+  background: var(--gold-light);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin: 28px 0;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #78350f;
+  line-height: 1.7;
+}
+[data-theme="dark"] .quote-box {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fef3c7;
+}
+
+.coach-box {
+  background: var(--jade-light);
+  border-left: 4px solid var(--jade);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin: 28px 0;
+  font-size: 0.95rem;
+  color: #115e59;
+}
+[data-theme="dark"] .coach-box {
+  background: rgba(45, 212, 191, 0.12);
+  color: #ccfbf1;
+}
+
+.cjk-quote {
+  font-family: var(--cjk);
+  font-size: 1.15rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Tables */
+.concept-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 0.92rem;
+}
+.concept-table th, .concept-table td {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  text-align: left;
+}
+.concept-table th {
+  background: var(--bg-sidebar);
+  color: var(--ink);
+  font-weight: 600;
+}
+.concept-table tr:hover {
+  background: rgba(0,0,0,0.02);
+}
+[data-theme="dark"] .concept-table tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* Rule Cards */
+.rule-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+.rule-card .rule-num {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* Navigation between chapters */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.chapter-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all .2s;
+}
+.chapter-nav a:hover {
+  background: var(--border);
+}
+
+@media (max-width: 960px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2.1rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/vi/books/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Thư Viện Y Học Cổ Truyền</span>
+  </a>
+  <div class="header-controls">
+    <button class="btn-control" id="btn-toc" onclick="toggleSidebar()"><i class="fa-solid fa-list-ul"></i> Mục Lục</button>
+    <button class="btn-control" id="btn-font-dec" onclick="changeFontSize(-1)">A-</button>
+    <button class="btn-control" id="btn-font-inc" onclick="changeFontSize(1)">A+</button>
+    <button class="btn-control" id="btn-theme" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Giao Diện</button>
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Về Tủ Sách</a>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- Sidebar TOC -->
+  <aside class="book-sidebar" id="sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#tong-luan">Tổng Luận: Tác Giả & Tác Phẩm</a></li>
+        <li><a href="#y-huan-cach-ngon">1. Y Huấn Cách Ngôn (9 Điều Y Đức)</a></li>
+        <li><a href="#y-nghiep-than-co">2. Y Nghiệp Thần Cơ & Y Gia Quan Miện</a></li>
+        <li><a href="#noi-kinh-yeu-chi">3. Nội Kinh Yếu Chỉ (Tinh Yếu Y Lý)</a></li>
+        <li><a href="#y-hai-cau-nguyen">4. Y Hải Cầu Nguyên (Cội Nguồn Khí Hóa)</a></li>
+        <li><a href="#huyen-tan-phat-vi">5. Huyền Tẫn Phát Vi (Mệnh Môn Thủy Hỏa)</a></li>
+        <li><a href="#khon-hoa-thai-chan">6. Khôn Hóa Thái Chân (Tỳ Vị Hậu Thiên)</a></li>
+        <li><a href="#dao-luu-du-van">7. Đạo Lưu Dư Vận (Y Đạo & Dưỡng Sinh)</a></li>
+        <li><a href="#gia-tri-thoi-dai">8. Giá Trị Thời Đại & Lời Kết</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="book-content" id="main-content">
+    
+    <section class="book-hero">
+      <span class="badge">🇻🇳 Di Sản Y Học Cổ Truyền Việt Nam &middot; Toàn Văn Lý Luận</span>
+      <h1>Hải Thượng Y Tông Tâm Lĩnh</h1>
+      <p class="subtitle">海上醫宗心領 — Những Lĩnh Hội Tâm Huyết Về Y Đạo Của Hải Thượng Lãn Ông</p>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-pen"></i> Hải Thượng Lãn Ông Lê Hữu Trác (1724 – 1791)</span>
+        <span><i class="fa-solid fa-calendar"></i> Hoàn thành: Canh Dần 1770</span>
+        <span><i class="fa-solid fa-feather"></i> Bản dịch & Tuyển tuyển: Phần Lý Luận Y Học Cốt Yếu</span>
+      </div>
+    </section>
+
+    <!-- Tổng Luận -->
+    <section id="tong-luan">
+      <h2>Tổng Luận: Thân Thế, Sự Nghiệp & Đại Công Trình Của Lãn Ông</h2>
+      
+      <p>
+        <strong>Hải Thượng Lãn Ông Lê Hữu Trác</strong> (1724 – 1791) là bậc đại danh y lỗi lạc nhất trong lịch sử y học cổ truyền Việt Nam, một nhà văn hóa lớn, nhà tư tưởng nhân đạo kiệt xuất đã được UNESCO chính thức vinh danh là Danh nhân Văn hóa Thế giới. Ông sinh ra tại làng Liêu Xá, huyện Đường Hào, phủ Thượng Hồng, trấn Hải Dương (nay thuộc huyện Yên Mỹ, tỉnh Hưng Yên), xuất thân trong một gia tộc khoa bảng danh giá bậc nhất thời Lê - Trịnh.
+      </p>
+
+      <p>
+        Chứng kiến cảnh đất nước loạn lạc, binh lửa triền miên, sau khi mẹ già chuyển về quê ngoại ở thôn Bầu Thượng, huyện Hương Sơn, phủ Đức Quang, trấn Nghệ An (nay thuộc huyện Hương Sơn, tỉnh Hà Tĩnh), Lê Hữu Trác đã từ bỏ chốn quan trường, từ chối công danh binh nghiệp để về phụng dưỡng mẹ già. Tại vùng núi rừng tĩnh mịch Hương Sơn, ông tự đặt cho mình biệt hiệu <strong>Hải Thượng Lãn Ông</strong> ("Ông già lười vùng Hải Thượng" — lười với danh lợi phù hoa nhưng siêng năng vô tận với việc cứu sinh độ thế) và quyết chí bước vào con đường y đạo.
+      </p>
+
+      <div class="quote-box">
+        "Đạo làm thuốc là một nhân thuật chuyên lo việc sống chết của con người, gánh vác tính mệnh của muôn dân. Nghề y không thể mưu cầu phú quý, chỉ lấy việc cứu người làm chí nguyện lớn lao nhất của đời mình."
+        <br><span style="font-size:0.9rem; font-weight:600; display:block; margin-top:8px;">— Hải Thượng Lãn Ông, Lời tựa Hải Thượng Y Tông Tâm Lĩnh</span>
+      </div>
+
+      <p>
+        Trong suốt gần ba mươi năm miệt mài nghiên cứu kinh điển, đối chiếu thực tiễn điều trị trên hàng vạn người bệnh và khảo sát cây cỏ thổ nhưỡng phương Nam, Lê Hữu Trác đã hoàn thành pho bách khoa toàn thư vĩ đại <strong>Hải Thượng Y Tông Tâm Lĩnh</strong> (海上醫宗心領) gồm 28 tập, chia thành 66 quyển. Tác phẩm bao quát toàn diện từ triết học y học, y đức, y lý cơ bản, tạng tượng, mạch học, dược vật, phương tễ cho đến tất cả các chuyên khoa nội, ngoại, phụ, nhi, truyền nhiễm, cấp cứu và cả văn học ký sự.
+      </p>
+
+      <p>
+        Trong toàn bộ di sản đồ sộ ấy, <strong>phần lý luận cốt yếu</strong> chính là linh hồn và cột trụ nâng đỡ toàn bộ hệ thống y thuật của ông. Không bằng lòng với việc sao chép giáo điều y thư phương Bắc, Hải Thượng Lãn Ông đã kết hợp uyên bác tinh hoa của <em>Hoàng Đế Nội Kinh</em>, <em>Nạn Kinh</em>, Chu Đan Khê, Lý Đông Viên, Trương Cảnh Nhạc với đặc điểm thể trạng, khí hậu nhiệt đới gió mùa của người Việt Nam. Từ đó, ông sáng lập nên <strong>Học thuyết Thủy - Hỏa Mệnh Môn</strong> và <strong>Nguyên lý Hậu thiên Tỳ Vị</strong>, đưa y học Việt Nam thời trung đại đạt đến đỉnh cao rực rỡ mang tầm vóc nhân loại.
+      </p>
+    </section>
+
+    <!-- 1. Y Huấn Cách Ngôn -->
+    <section id="y-huan-cach-ngon">
+      <h2>1. Y Huấn Cách Ngôn (醫訓格言) — Bản Tuyên Ngôn Y Đức Bất Hủ</h2>
+      
+      <p>
+        Đặt ở phần mở đầu của toàn bộ pho sách, <em>Y Huấn Cách Ngôn</em> gồm <strong>9 điều răn dạy về y đức</strong> được coi là bản Tuyên ngôn Đạo đức Y học kinh điển của Việt Nam, có giá trị trường tồn tương tự như Lời thề Hippocrates của Tây phương. Hải Thượng Lãn Ông khẳng định: người thầy thuốc trước hết phải có tấm lòng từ ái, xem nỗi đau của người bệnh như nỗi đau của chính da thịt mình.
+      </p>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ nhất: Trau dồi tri thức và đạo học</div>
+        <p>
+          Phàm người học thuốc phải thấu hiểu đạo Nho, thông suốt lẽ biến hóa của Trời Đất để việc học y được hanh thông. Khi nhàn rỗi, phải luôn đọc sách thuốc cổ kim, nghiền ngẫm đến nơi đến chốn, đem mắt thấy tai nghe đối chiếu với lý luận trong sách. Gặp điều nghi ngờ phải khiêm tốn hỏi bậc cao minh, không được tự mãn, cẩu thả. Học y như đi trên băng mỏng, nắm giữ tính mệnh con người thì sai một li sẽ đi một dặm, tuyệt đối không được sơ sài.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ hai: Bình đẳng, không phân biệt giàu nghèo</div>
+        <p>
+          Khi có người mời đi thăm bệnh, phải căn cứ vào bệnh tình nguy cấp hay hoãn hoãn mà định thứ tự đến trước hay sau. Tuyệt đối không được vì nhà giàu sang quyền quý mà vội vã đến trước, thấy nhà bần hàn cơ cực mà lần lữa đến sau. Lòng nhân của người thầy thuốc phải như ánh mặt trời chiếu rọi khắp nơi, không thiên lệch, không vụ lợi. Thuốc thang bốc cho người nghèo cũng phải chu đáo, tận tâm như cho nhà vương giả.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ ba: Nghiêm cẩn và đoan chính khi khám bệnh cho phụ nữ</div>
+        <p>
+          Khi xem bệnh cho phụ nữ, gái góa, ni cô, phải có người nhà đứng bên cạnh để giữ gìn lễ tiết, tránh mọi sự ngờ vực, gièm pha. Đối với kỹ nữ hay những người chốn lầu xanh, cũng phải giữ tâm đoan chính, coi họ như con nhà tử tế mà thương xót cứu chữa. Lòng không được dấy khởi niệm tà dâm, không được cười cợt lả lơi. Thầy thuốc phải giữ phẩm hạnh thanh sạch như gương sáng, như ngọc không tỳ vết.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ tư: Tận tụy với nghề, không ham vui bỏ bệnh</div>
+        <p>
+          Đã nhận việc trị bệnh cứu người thì phải đem trọn tâm huyết lo cho người bệnh. Không được vì việc riêng tư nhàn tản, ham chơi ngao du sơn thủy, rượu chè yến tiệc mà bỏ mặc nhà cửa, để người bệnh đến cầu cứu phải đợi chờ trong cơn nguy kịch. Bệnh tật diễn biến từng khắc, sự chậm trễ của thầy thuốc có thể cướp đi sinh mệnh của một con người.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ năm: Chân thành, minh bạch trong các ca bệnh nan y</div>
+        <p>
+          Gặp chứng bệnh nan y, hiểm nghèo, dẫu dốc hết sức tài trí để cứu chữa, nhưng trước hết phải thành thực giải thích rõ bệnh cơ, nguy cơ cho thân nhân người bệnh hiểu rõ. Chữa bệnh phải đúng phép, không được khoe khoang làm liều để cầu danh, cũng không được giấu giếm để kiếm tiền. Nếu chữa khỏi thì đó là nhờ thiên mệnh và phúc ấm, nếu không qua khỏi thì gia đình người bệnh cũng không oán trách, tâm người thầy thuốc mới được thanh thản.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ sáu: Chuẩn bị thuốc men chu đáo, tinh xảo</div>
+        <p>
+          Thuốc men là vũ khí đánh giặc bệnh, phải lựa chọn vị thuốc phẩm chất tốt nhất, không tiếc giá cao. Việc bào chế phải tuân theo đúng phép tắc của cổ nhân (như sách Lôi Công bào chế), sao tẩm, chưng sấy cẩn thận, bảo quản nơi khô ráo, tránh ẩm mốc. Các dạng thuốc hoàn, tán, cao, đan phải luôn chế sẵn để khi gặp chứng cấp cứu như trúng phong, bạo quyết, thổ huyết là có dùng ngay, không để lỡ thời cơ vàng cứu mạng.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ bảy: Hòa nhã, khiêm cung với đồng nghiệp</div>
+        <p>
+          Gặp bạn đồng nghiệp trong làng y, phải giữ thái độ khiêm tốn, hòa nhã, kính cẩn. Người lớn tuổi, học vấn cao hơn mình thì kính trọng như bậc thầy; người ngang hàng thì đối đãi chân thành như anh em; người mới vào nghề thì khích lệ, chỉ bảo tận tình. Tuyệt đối không được vì đố kỵ tài năng mà chê bai, hạ bệ đồng nghiệp trước mặt bệnh nhân để tôn mình lên. Thói ganh ghét ghen tị là điều sỉ nhục nhất của người làm nghề y.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ tám: Hết lòng cưu mang người nghèo khó, cô độc</div>
+        <p>
+          Đối với những kẻ bần hàn khốn khó, kẻ mồ côi góa bụa, người neo đơn không nơi nương tựa, người thầy thuốc phải mở rộng lòng từ bi mà hết lòng săn sóc. Không những không thu tiền công, tiền thuốc mà nếu họ đói khát, túng thiếu, ta còn phải tùy sức chu cấp cơm cháo, giúp đỡ tiền bạc để họ yên tâm dưỡng bệnh. Cứu được một mạng người trong cảnh cùng quẫn như vậy, công đức ấy sáng rỡ muôn đời.
+        </p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">Điều thứ chín: Thanh cao, không màng danh lợi quà cáp</div>
+        <p>
+          Sau khi chữa khỏi bệnh, không được nuôi lòng trông ngóng quà cáp, đòi hỏi thù lao hậu hĩnh. Với người nghèo khó đã chữa khỏi, chỉ cần họ khỏe mạnh là lòng ta mãn nguyện. Với nhà giàu có, dù họ tạ ơn nhiều cũng không mừng, tạ ơn ít cũng không giận, nhận hay chối từ đều phải giữ trọn khí tiết thanh cao. Làm nghề thuốc là làm "nhân thuật", giữ lấy cái phúc thanh bạch của đất trời, chớ để mùi tiền bạc làm hoen ố ngọn đèn y đức.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. Y Nghiệp Thần Cơ -->
+    <section id="y-nghiep-than-co">
+      <h2>2. Y Nghiệp Thần Cơ & Y Gia Quan Miện</h2>
+      
+      <p>
+        Trong <em>Y Nghiệp Thần Cơ</em> (醫業神機) và <em>Y Gia Quan Miện</em> (醫家冠冕), Hải Thượng Lãn Ông trình bày về cội nguồn sâu xa và khuôn phép cốt lõi của nghề y. Ông nhận định rằng nghề y tuy biểu hiện ở thang thuốc, mũi châm, chén nước sắc, nhưng cội nguồn thực chất lại gắn liền với <strong>Cơ Mầu Nhiệm của Đạo</strong> — tức là sự vận hành biến chuyển không ngừng của Âm Dương, Trời Đất và Sinh Mệnh.
+      </p>
+
+      <div class="note-box">
+        <strong>Y Giả Ý Dã (醫者意也):</strong> Làm thuốc là dùng cái "Ý" của tâm trí để lĩnh hội cái "Cơ" của trời đất. "Cơ" là mầm mống chuyển động tinh vi nhất. Bệnh tật xuất hiện khi cơ chế khí hóa bị trật khớp, tắc nghẽn. Thầy thuốc giỏi nhìn ra được cái cơ vi diệu ấy trước khi triệu chứng bùng phát, dùng thuốc để khơi thông, trả lại trạng thái quân bình tự nhiên cho thân thể.
+      </div>
+
+      <p>
+        Về <em>Y Gia Quan Miện</em>, ông đưa ra các chuẩn mực khắt khe về trách nhiệm của người thầy thuốc đối với xã hội:
+      </p>
+      <ul style="margin-left: 24px; margin-bottom: 1.5rem;">
+        <li><strong>Nắm vững Bản — Tiêu (Gốc và Ngọn):</strong> Bệnh có gốc có ngọn, cấp bách thì trị ngọn (trị tiêu), thong thả thì trị gốc (trị bản). Bệnh nhân đang khó thở cấp, xuất huyết ồ ạt phải cấp cứu cầm máu, thông khí; sau đó mới bồi bổ tạng phủ bên trong.</li>
+        <li><strong>Không theo đuổi hư danh, tà thuật:</strong> Tuyệt đối không dùng những phương thuốc mê tín, bùa ngải hay các chất độc hại lừa bịp thiên hạ. Mọi lập luận phải dựa trên chứng lý Đông y vững vàng và kinh nghiệm kiểm chứng.</li>
+        <li><strong>Tâm đại bi làm gốc:</strong> Người không có lòng trắc ẩn, chỉ xem nghề y như một công cụ kiếm tiền làm giàu thì vĩnh viễn không bao giờ thấu suốt được thần cơ của y học.</li>
+      </ul>
+    </section>
+
+    <!-- 3. Nội Kinh Yếu Chỉ -->
+    <section id="noi-kinh-yeu-chi">
+      <h2>3. Nội Kinh Yếu Chỉ (內經要旨) — Tinh Hoa Lý Luận Hoàng Đế Nội Kinh</h2>
+      
+      <p>
+        <em>Nội Kinh Yếu Chỉ</em> là công trình rút gọn và tinh lọc kỳ công những tư tưởng nền tảng từ bộ kinh điển <em>Hoàng Đế Nội Kinh</em> (gồm cả hai phần <em>Tố Vấn</em> và <em>Linh Khu</em>). Hải Thượng Lãn Ông đã hệ thống hóa lại thành các chủ đề trọng yếu nhất:
+      </p>
+
+      <h3>3.1. Âm Dương Biện Chứng: Trục Xương Sống Của Sự Sống</h3>
+      <p>
+        Hải Thượng Lãn Ông nhấn mạnh câu nói bất hủ trong thiên <em>Âm Dương Ứng Tượng Đại Luận</em>:
+      </p>
+
+      <div class="quote-box">
+        <span class="cjk-quote">陰平陽秘，精神乃治；陰陽離決，精氣乃絕。</span>
+        "Âm bình hòa, Dương kín đáo thì tinh thần yên ổn, thân thể khỏe mạnh; Âm Dương phân ly, đoạn tuyệt thì tinh khí tiêu vong, sinh mệnh chấm dứt."
+      </div>
+
+      <p>
+        Trong cơ thể, <strong>Dương</strong> chủ về khí, động, nhiệt, ngoại, công năng sinh nhiệt và hoạt động bảo vệ; <strong>Âm</strong> chủ về huyết, tĩnh, hàn, nội, thể chất dinh dưỡng và tân dịch. Hai mặt này tuy đối lập nhưng nương tựa chặt chẽ vào nhau: "Âm tại nội, Dương chi thủ dã; Dương tại ngoại, Âm chi sứ dã" (Âm ở bên trong giữ gìn cho Dương; Dương ở bên ngoài làm sai phái bảo vệ cho Âm). Mọi bệnh tật suy cho cùng đều là sự thiên thắng hay thiên suy của Âm và Dương.
+      </p>
+
+      <h3>3.2. Tạng Tượng Khí Hóa (Ngũ Tạng Lục Phủ)</h3>
+      <p>
+        Học thuyết Tạng Tượng mô tả cơ thể người như một thể thống nhất hữu cơ, trong đó Ngũ Tạng giữ vai trò chủ quản:
+      </p>
+
+      <table class="concept-table">
+        <thead>
+          <tr>
+            <th>Tạng</th>
+            <th>Hành</th>
+            <th>Chức Năng Khí Hóa Cốt Lõi</th>
+            <th>Mối Quan Hệ Thể Khiếu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tâm (心)</strong></td>
+            <td>Hỏa</td>
+            <td>Quân chủ chi quan, làm chủ thần minh, chủ huyết mạch. Thần minh sáng suốt thì vạn sự an lạc.</td>
+            <td>Khai khiếu ra lưỡi, vinh nhuận ra mặt.</td>
+          </tr>
+          <tr>
+            <td><strong>Can (肝)</strong></td>
+            <td>Mộc</td>
+            <td>Tướng quân chi quan, chủ sơ tiết khí cơ, tàng huyết, làm chủ sự điều đạt, mềm mại.</td>
+            <td>Khai khiếu ra mắt, làm chủ đường gân (cân).</td>
+          </tr>
+          <tr>
+            <td><strong>Tỳ (脾)</strong></td>
+            <td>Thổ</td>
+            <td>Gián nghị chi quan, hậu thiên chi bản, chủ vận hóa thủy cốc, thống nhiếp huyết dịch.</td>
+            <td>Khai khiếu ra miệng, vinh nhuận ở môi, chủ cơ nhục.</td>
+          </tr>
+          <tr>
+            <td><strong>Phế (肺)</strong></td>
+            <td>Kim</td>
+            <td>Tướng phó chi quan, chủ khí toàn thân, thông điều thủy đạo, chủ túc giáng, che chở tạng phủ.</td>
+            <td>Khai khiếu ra mũi, làm chủ bì mao (da lông).</td>
+          </tr>
+          <tr>
+            <td><strong>Thận (腎)</strong></td>
+            <td>Thủy</td>
+            <td>Tác cường chi quan, tiên thiên chi bản, tàng trữ tinh ba, chủ cốt tủy, làm chủ sinh sản và tuổi thọ.</td>
+            <td>Khai khiếu ra tai và nhị âm, vinh nhuận ở tóc.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3.3. Dinh Khí, Vệ Khí & Kinh Lạc</h3>
+      <p>
+        Khí huyết tuần hoàn khắp cơ thể qua mạng lưới 12 đường kinh chính và 8 mạch kỳ kinh. <strong>Dinh khí</strong> đi trong lòng mạch, mang chất tinh hoa của thức ăn nước uống để nuôi dưỡng tạng phủ; <strong>Vệ khí</strong> đi ngoài lòng mạch, sưởi ấm cơ nhục, đóng mở lỗ chân lông, chống đỡ tà khí xâm nhập từ bên ngoài. Khí huyết điều hòa thì tà khí không thể phạm vào; khí huyết suy vi thì bệnh tật thừa cơ xâm lấn.
+      </p>
+    </section>
+
+    <!-- 4. Y Hải Cầu Nguyên -->
+    <section id="y-hai-cau-nguyen">
+      <h2>4. Y Hải Cầu Nguyên (醫海求源) — Đi Tìm Cội Nguồn Biển Y Lý</h2>
+      
+      <p>
+        Trong chuyên luận <em>Y Hải Cầu Nguyên</em> (Tìm về ngọn nguồn biển cả y học), Hải Thượng Lãn Ông đi sâu vào các vấn đề triết học y học tối thượng: Khí nguyên thủy của vũ trụ, bản chất của sự sống, cơ chế sinh bệnh và phương pháp quy nạp biện chứng Bát Cương.
+      </p>
+
+      <h3>4.1. Thuyết Thiên Nhân Hợp Nhất & Bản Thể Khí Hóa</h3>
+      <p>
+        Lê Hữu Trác khẳng định: <em>"Trời đất là một đại vũ trụ, con người là một tiểu vũ trụ"</em>. Khí trong cơ thể người và khí của trời đất cùng chung một nguồn gốc hóa sinh. Khi bốn mùa xuân ấm, hạ nóng, thu mát, đông lạnh tuần hoàn điều hòa thì con người cũng phải thuận theo quy luật ấy để sinh hoạt, ăn ngủ, giữ gìn chân khí.
+      </p>
+
+      <div class="coach-box">
+        <strong>Thuận Thiên Dưỡng Sinh:</strong> Mùa xuân khí sinh sôi thì nên đi bộ thư thái, thả lỏng tâm hồn để Can khí phát triển; mùa hè vạn vật tốt tươi thì giữ tâm vui vẻ, không tích tụ oán giận; mùa thu thu liễm thì bớt xao động bên ngoài; mùa đông bế tàng thì giữ ấm thân thể, ngủ sớm dậy muộn, không xuất mồ hôi nhiều làm hao tổn dương khí. Thuận theo tự nhiên thì trường thọ, chống lại tự nhiên thì tổn thọ yểu mệnh.
+      </div>
+
+      <h3>4.2. Nguyên Nhân Gây Bệnh (Tam Nhân Luận)</h3>
+      <p>
+        Bệnh tật không tự nhiên sinh ra mà bắt nguồn từ ba nhóm nguyên nhân:
+      </p>
+      <ul style="margin-left: 24px; margin-bottom: 1.5rem;">
+        <li><strong>Nội nhân (Bên trong):</strong> Thất tình (Hỷ, Nộ, Ưu, Tư, Bi, Khủng, Kinh — Mừng quá hại Tâm, giận quá hại Can, lo nghĩ hại Tỳ, buồn rầu hại Phế, sợ hãi hại Thận). Khi tâm thần bất an, cảm xúc thái quá sẽ làm khí cơ hỗn loạn, tạng phủ suy kiệt từ bên trong.</li>
+        <li><strong>Ngoại nhân (Bên ngoài):</strong> Lục dâm (Phong, Hàn, Thử, Thấp, Táo, Hỏa) — sáu thứ khí trời quá mức xâm nhập qua bì mao, mũi miệng khi chính khí suy yếu.</li>
+        <li><strong>Bất nội ngoại nhân:</strong> Ẩm thực thất điều (ăn uống vô độ, rượu chè, ăn đồ sống lạnh hoặc cay nóng quá mức), lao quyện (lao lực quá độ hoặc lười biếng ít vận động), phòng dục quá độ (sắc dục hao tổn thận tinh), sang chấn đao thương, côn trùng cắn.</li>
+      </ul>
+
+      <h3>4.3. Biện Chứng Bát Cương</h3>
+      <p>
+        Đối diện với muôn vàn triệu chứng phức tạp, Hải Thượng Lãn Ông chỉ dẫn phương pháp thu gom về <strong>Bát Cương</strong> (Tám Cương Lĩnh cốt lõi):
+      </p>
+      <ul style="margin-left: 24px; margin-bottom: 1.5rem;">
+        <li><strong>Âm — Dương:</strong> Cương lĩnh tổng quát của vạn bệnh.</li>
+        <li><strong>Biểu — Lý:</strong> Vị trí nông sâu của bệnh (ở da thịt, kinh lạc là Biểu; ở tạng phủ, khí huyết, cốt tủy là Lý).</li>
+        <li><strong>Hàn — Nhiệt:</strong> Tính chất của bệnh (lạnh hay nóng, cơ năng suy giảm hay kích thích hưng phấn).</li>
+        <li><strong>Hư — Thực:</strong> Trạng thái của chính khí và tà khí (Chính khí suy yếu là Hư; tà khí thịnh vượng là Thực).</li>
+      </ul>
+    </section>
+
+    <!-- 5. Huyền Tẫn Phát Vi -->
+    <section id="huyen-tan-phat-vi">
+      <h2>5. Huyền Tẫn Phát Vi (玄牝發微) — Đỉnh Cao Lý Luận Thủy Hỏa & Mệnh Môn</h2>
+      
+      <p>
+        Nếu coi toàn bộ pho sách <em>Hải Thượng Y Tông Tâm Lĩnh</em> là một lâu đài tráng lệ, thì <strong>Huyền Tẫn Phát Vi</strong> (玄牝發微 — Bộc lộ những điều vi diệu của cửa Huyền Tẫn) chính là viên ngọc quý sáng nhất trên đỉnh lâu đài ấy. Đây là công trình lý luận độc đáo, uyên bác và mang tính đột phá cách mạng nhất của Lê Hữu Trác, đặt nền móng cho học thuyết Thủy - Hỏa Mệnh Môn của y học cổ truyền Việt Nam.
+      </p>
+
+      <h3>5.1. Chữ "Huyền Tẫn" & Vị Trí Chân Chính Của Mệnh Môn</h3>
+      <p>
+        Từ "Huyền Tẫn" được mượn từ chương 6 của sách <em>Đạo Đức Kinh</em> của Lão Tử: <em>"Cốc thần bất tử, thị vị huyền tẫn. Huyền tẫn chi môn, thị vị thiên địa căn"</em> (Thần của hang thung lũng không bao giờ chết, gọi là Huyền Tẫn. Cửa Huyền Tẫn là gốc rễ của Trời Đất). "Huyền" thuộc Dương, chỉ Trời, màu nhiệm; "Tẫn" thuộc Âm, chỉ Đất, sinh sôi. Huyền Tẫn là nơi giao hòa giữa Âm và Dương Tiên Thiên để tạo hóa sinh sôi vạn vật.
+      </p>
+
+      <div class="note-box">
+        <strong>Khám Phá Của Lãn Ông Về Mệnh Môn:</strong><br>
+        Các y gia xưa kia thường tranh cãi: Người thì bảo thận trái là Thận (Thủy), thận phải là Mệnh Môn (Hỏa); người lại bảo hai quả thận đều thuộc Thủy. Hải Thượng Lãn Ông dứt khoát bác bỏ sự máy móc đó. Ông khẳng định: <strong>Mệnh Môn không phải là quả thận trái hay phải, mà là Thái Cực Chân Khí ngự tại KHOẢNG GIỮA HAI QUẢ THẬN</strong>. Đó chính là Cổng Sinh Mệnh (Mệnh Môn), nơi chứa đựng Chân Thủy và Chân Hỏa Tiên Thiên của tạo hóa ban cho con người từ lúc thụ thai.
+      </div>
+
+      <h3>5.2. Chân Hỏa & Chân Thủy: Cha và Mẹ Của Sự Sống</h3>
+      <p>
+        Trong <em>Huyền Tẫn Phát Vi</em>, Lê Hữu Trác dùng những hình ảnh ẩn dụ tuyệt đẹp và chính xác vô song để miêu tả về Chân Thủy và Chân Hỏa:
+      </p>
+
+      <div class="quote-box">
+        "Chân Hỏa là Cha, Chân Thủy là Mẹ của sinh mệnh. Chân Hỏa ví như ngọn lửa thắp sáng trong chiếc đèn kéo quân; ngọn lửa bốc lên ấm áp thì các hình nhân bên ngoài mới xoay tròn chuyển động. Chân Hỏa ấm áp thì ngũ tạng lục phủ mới có sinh khí hoạt động. Còn Chân Thủy là dầu thắp đèn, là nguồn nước trong mát nuôi dưỡng toàn thân, ngăn không cho ngọn lửa bốc cháy thiêu rụi cỗ máy sinh học."
+        <br><span style="font-size:0.9rem; font-weight:600; display:block; margin-top:8px;">— Hải Thượng Lãn Ông, Huyền Tẫn Phát Vi</span>
+      </div>
+
+      <p>
+        <strong>Mối quan hệ Thủy Hỏa Ký Tế:</strong> Thủy thuộc Âm tính trầm xuống dưới, Hỏa thuộc Dương tính bốc lên trên. Nếu để tự nhiên, Thủy chảy xuống dưới thành hàn lạnh vô tri, Hỏa bốc lên trên thành thiêu đốt điên cuồng. Nhưng trong cơ thể khỏe mạnh, Chân Hỏa của Mệnh Môn lặn xuống dưới đáy bể Thận Thủy để hun đun nước Thủy thành hơi sương bốc lên tưới mát ngũ tạng; còn Thận Thủy ở trên lại giáng xuống làm mát, bao bọc Chân Hỏa không cho bùng phát. Đó là cảnh tượng <em>"Thủy Hỏa Ký Tế"</em> — Âm Dương giao hoan, sinh mệnh trường tồn.
+      </p>
+
+      <h3>5.3. Bệnh Lý Thủy Hỏa Thất Điều: Gốc Rễ Của Trăm Bệnh</h3>
+      <p>
+        Khi Chân Thủy hoặc Chân Hỏa bị hao tổn, sự cân bằng bị phá vỡ, cơ thể sẽ lập tức sinh ra các chứng bệnh hiểm nghèo:
+      </p>
+
+      <table class="concept-table">
+        <thead>
+          <tr>
+            <th>Thể Bệnh</th>
+            <th>Cơ Chế Bệnh Sinh</th>
+            <th>Triệu Chứng Lâm Sàng Điển Hình</th>
+            <th>Pháp Trị Cốt Lõi Của Lãn Ông</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chân Âm Khô Kiệt (Thận Thủy Suy)</strong></td>
+            <td>Nguồn nước Chân Thủy cạn kiệt, không kìm giữ được Chân Hỏa. Hỏa bốc lên thành hư hỏa thiêu đốt.</td>
+            <td>Triều nhiệt buổi chiều, gò má đỏ, cốt chưng (nóng sâu trong xương), lòng bàn tay chân nóng (ngũ tâm phiền nhiệt), đạo hãn (đổ mồ hôi trộm), khô miệng, lưng gối mỏi đau, lưỡi đỏ rêu ít, mạch tế sác.</td>
+            <td><strong>Tư Âm Giáng Hỏa, Bổ Chân Thủy</strong><br>Dùng bài <em>Lục Vị Địa Hoàng Hoàn</em> làm chủ phương, tuyệt đối không dùng các vị đắng lạnh (Hoàng liên, Hoàng bá) làm phạt hại thêm tỳ vị.</td>
+          </tr>
+          <tr>
+            <td><strong>Chân Dương Hư Nhược (Mệnh Môn Hỏa Suy)</strong></td>
+            <td>Ngọn lửa Chân Hỏa lụi tàn, không sưởi ấm được Thận Thủy và Tỳ Vị. Toàn thân chìm vào giá lạnh.</td>
+            <td>Sợ lạnh, tay chân lạnh ngắt, sắc mặt trắng bệch, tinh thần ủ rũ, tiêu chảy lúc rạng sáng (ngũ canh tiết tả), tiểu đêm nhiều lần, liệt dương, suy giảm sinh lực, lưỡi bệu nhợt, mạch trầm trì vô lực.</td>
+            <td><strong>Ôn Bổ Mệnh Môn Hỏa, Dẫn Hỏa Quy Nguyên</strong><br>Dùng bài <em>Bát Vị Quế Phụ Thận Khí Hoàn</em> làm chủ phương, nhờ Nhục Quế, Phụ Tử thắp lại ngọn lửa Chân Dương sinh mệnh.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.4. Nghệ Thuật Phân Biệt: Chân Hàn Giả Nhiệt & Chân Nhiệt Giả Hàn</h3>
+      <p>
+        Đỉnh cao lâm sàng của Hải Thượng Lãn Ông là khả năng phân biệt rạch ròi giữa <strong>Chân Hàn Giả Nhiệt</strong> (Bên trong thực lạnh mà bên ngoài giả nóng) và <strong>Chân Nhiệt Giả Hàn</strong> (Bên trong thực nóng mà bên ngoài giả lạnh). Ông cảnh báo: đây là nơi ranh giới giữa sống và chết, nơi những thầy thuốc tầm thường hay phạm tội giết người không gươm giáo nhất!
+      </p>
+
+      <div class="quote-box">
+        "Người bệnh sốt cao ngùn ngụt, khát nước đòi uống, miệng nói huyên thuyên, trông như chứng đại nhiệt của mùa hè. Thầy thuốc nông cạn thấy vậy vội dùng thạch cao, hoàng liên thanh nhiệt, uống xong người bệnh chết ngay! Tại sao vậy? Vì bên dưới Chân Hỏa đã suy kiệt tột cùng, không giữ được ngọn lửa ở Mệnh Môn, khiến chút tàn hỏa cô độc bốc ngược lên đầu phát ra chứng nhiệt giả tạo. Bản chất là Âm thịnh cách Dương (Chân Hàn Giả Nhiệt). Trường hợp này phải dùng Bát Vị Quế Phụ đại nhiệt để kéo ngọn lửa trở về cội rễ (Dẫn hỏa quy nguyên), bệnh nhân mới sống sót!"
+      </div>
+    </section>
+
+    <!-- 6. Khôn Hóa Thái Chân -->
+    <section id="khon-hoa-thai-chan">
+      <h2>6. Khôn Hóa Thái Chân (坤化泰真) — Lý Luận Vận Hóa Tỳ Vị Hậu Thiên</h2>
+      
+      <p>
+        Nếu <em>Huyền Tẫn Phát Vi</em> bàn về Tiên Thiên Thủy Hỏa, thì <strong>Khôn Hóa Thái Chân</strong> (坤化泰真) là chuyên luận kiệt xuất của Lê Hữu Trác về <strong>Hậu Thiên Tỳ Vị</strong>. "Khôn" là quẻ Đất trong Kinh Dịch; Đất có đức dày chở che, nuôi dưỡng muôn loài vạn vật, trong cơ thể người tạng Tỳ thuộc Thổ tương ứng với đất Khôn.
+      </p>
+
+      <h3>6.1. Mối Quan Hệ Biện Chứng Giữa Tiên Thiên & Hậu Thiên</h3>
+      <p>
+        Hải Thượng Lãn Ông chỉ rõ mối quan hệ khăng khít sinh tử giữa Tiên Thiên (Mệnh Môn) và Hậu Thiên (Tỳ Vị):
+      </p>
+      <ul style="margin-left: 24px; margin-bottom: 1.5rem;">
+        <li><strong>Tiên Thiên sinh ra Hậu Thiên:</strong> Con người nhờ tinh huyết cha mẹ và Chân Thủy Chân Hỏa của Mệnh Môn mà hình thành thân xác. Sau khi sinh ra, Tỳ Vị muốn tiêu hóa thức ăn nước uống phải nhờ hơi ấm Chân Hỏa của Mệnh Môn hun đốt ở dưới (như nồi cơm muốn chín phải có ngọn lửa nhóm dưới đáy nồi).</li>
+        <li><strong>Hậu Thiên bồi bổ Tiên Thiên:</strong> Sau khi chào đời, Chân Thủy và Chân Hỏa của Tiên Thiên tiêu hao từng ngày. Nếu không có Tỳ Vị vận hóa cơm nước, chắt lọc chất tinh hoa thành khí huyết rót về Thận để bổ sung thì nguồn vốn Tiên Thiên sẽ sớm cạn kiệt, người ta sẽ già nua và chết yểu.</li>
+      </ul>
+
+      <div class="coach-box">
+        <strong>Phương Châm Điều Trị Của Lãn Ông:</strong> Khi gặp bệnh hư tổn mạn tính, nếu chữa hoài không khỏi ở các tạng khác thì trước hết phải điều lý Tỳ Vị để lập lại nguồn dinh dưỡng; sau đó bồi bổ Chân Thủy Chân Hỏa Mệnh Môn để giữ lấy cội rễ sự sống. Trị Hậu thiên không quên Tiên thiên, bồi bổ Tiên thiên phải nương nhờ Hậu thiên, đó là nguyên tắc vàng bất di bất dịch.
+      </div>
+    </section>
+
+    <!-- 7. Đạo Lưu Dư Vận -->
+    <section id="dao-luu-du-van">
+      <h2>7. Đạo Lưu Dư Vận (道流餘韻) — Y Đạo, Dưỡng Sinh & Thuật Nhiếp Sinh</h2>
+      
+      <p>
+        <em>Đạo Lưu Dư Vận</em> (Những dư âm sâu lắng của dòng chảy Y Đạo) là nơi Hải Thượng Lãn Ông trải lòng về triết lý sống, đạo làm người, nghệ thuật nhiếp sinh dưỡng mệnh của một bậc ẩn sĩ thông tuệ thấu suốt lẽ trời đất.
+      </p>
+
+      <h3>7.1. Trị Bệnh Khi Chưa Thành Bệnh (Bất Trị Dĩ Bệnh Trị Vị Bệnh)</h3>
+      <p>
+        Kế thừa tư tưởng của cổ nhân, Lãn Ông xem việc chữa khi bệnh đã phát tác chỉ là hạ sách của người thầy thuốc:
+      </p>
+
+      <div class="quote-box">
+        "Bệnh đã thành mới dùng thuốc men chữa trị, ví như giặc đã vào đến nhà mới rèn đúc vũ khí, khát nước mới lo đào giếng, chẳng phải là quá muộn màng sao? Bậc thánh y thời xưa xem trọng phép dưỡng sinh, điều hòa khí huyết, giữ tâm thanh tịnh để tà khí không thể bén mảng, giữ cho thân tâm không bao giờ ngã bệnh mới là thượng sách của thượng sách."
+      </div>
+
+      <h3>7.2. Tam Bảo Dưỡng Sinh: Tinh — Khí — Thần</h3>
+      <p>
+        Thuật dưỡng sinh trường thọ của Hải Thượng Lãn Ông đúc kết vào việc bảo tồn ba báu vật vô giá của sinh mệnh:
+      </p>
+      <ul style="margin-left: 24px; margin-bottom: 1.5rem;">
+        <li><strong>Dưỡng Tinh:</strong> Giữ gìn Thận tinh, không buông thả sắc dục bừa bãi. Tinh là gốc rễ của thể xác; tinh sung túc thì tủy xương cứng cáp, đầu óc minh mẫn, tai thính mắt sáng, kháng thể vững bền.</li>
+        <li><strong>Dưỡng Khí:</strong> Giữ hơi thở êm dịu, sâu dài, thở bằng đan điền bụng dưới. Tránh tức giận gào thét làm tán khí, tránh lo lắng ủ dột làm trệ khí, tránh làm việc kiệt sức làm hao khí. Khí thuận thì huyết thông, bách mạch điều hòa.</li>
+        <li><strong>Dưỡng Thần:</strong> Đây là đỉnh cao nhất của đạo dưỡng sinh. Tâm là chủ quản của Thần; tâm phải "Điềm đạm hư vô", ít ham muốn tư lợi, không mưu toan tranh đoạt, đối đãi với đời bằng lòng từ bi khoan thứ. Thần yên thì tâm định, tâm định thì lục phủ ngũ tạng đều ở trạng thái tự chữa lành hoàn hảo nhất.</li>
+      </ul>
+    </section>
+
+    <!-- 8. Giá Trị Thời Đại -->
+    <section id="gia-tri-thoi-dai">
+      <h2>8. Giá Trị Thời Đại & Lời Kết</h2>
+      
+      <p>
+        Trải qua hơn hai thế kỷ thăng trầm của lịch sử, bộ bách khoa thư <em>Hải Thượng Y Tông Tâm Lĩnh</em> và đặc biệt là hệ thống lý luận y đạo của Hải Thượng Lãn Ông Lê Hữu Trác vẫn nguyên vẹn giá trị khoa học, triết học và nhân văn sâu sắc. Những luận điểm của ông về <strong>Mệnh Môn Thủy Hỏa</strong> ngày nay được y học hiện đại soi chiếu và chứng minh tương đồng với hệ thống nội tiết thần kinh, tuyến thượng thận và cơ chế điều nhiệt, cân bằng nội môi (homeostasis) của cơ thể con người.
+      </p>
+
+      <p>
+        Tấm gương của Đại danh y Lê Hữu Trác — một nhân cách thanh cao rực rỡ, đem hết tài năng trác tuyệt phụng sự đồng bào, coi trọng tính mệnh con người hơn vàng ngọc, suốt đời tận hiến cho nền y học nước nhà — mãi mãi là ngọn hải đăng soi sáng cho các thế hệ thầy thuốc và những người đang đi tìm chân lý của sức khỏe, sự an lạc và trường thọ.
+      </p>
+
+      <div class="note-box" style="text-align: center; font-style: italic;">
+        <strong>— HẾT PHẦN LÝ LUẬN CỐT YẾU HẢI THƯỢNG Y TÔNG TÂM LĨNH —</strong><br>
+        Bản số hóa & trình bày tương tác &middot; Cơ sở tri thức TaichiNOW &middot; Vì cộng đồng Y học Cổ truyền & Thái Cực Dưỡng Sinh Việt Nam
+      </div>
+
+      <div class="chapter-nav">
+        <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> Về Thư Viện Sách Tiếng Việt</a>
+        <a href="/vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html">Đọc Hoàng Đế Nội Kinh <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+// Scrollspy for sidebar
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.toc-nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Theme toggle
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', targetTheme);
+  localStorage.setItem('theme', targetTheme);
+  const btn = document.getElementById('btn-theme');
+  btn.innerHTML = targetTheme === 'dark' ? '<i class="fa-solid fa-sun"></i> Sáng' : '<i class="fa-solid fa-moon"></i> Tối';
+}
+
+// Restore theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  const btn = document.getElementById('btn-theme');
+  if (btn) btn.innerHTML = savedTheme === 'dark' ? '<i class="fa-solid fa-sun"></i> Sáng' : '<i class="fa-solid fa-moon"></i> Tối';
+}
+
+// Font size control
+let currentFontSize = 17;
+function changeFontSize(delta) {
+  currentFontSize = Math.min(Math.max(14, currentFontSize + delta), 23);
+  document.body.style.fontSize = currentFontSize + 'px';
+  localStorage.setItem('reader_font_size', currentFontSize);
+}
+const savedFontSize = localStorage.getItem('reader_font_size');
+if (savedFontSize) {
+  currentFontSize = parseInt(savedFontSize);
+  document.body.style.fontSize = currentFontSize + 'px';
+}
+
+// Sidebar toggle for mobile
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar.style.display === 'block') {
+    sidebar.style.display = 'none';
+  } else {
+    sidebar.style.display = 'block';
+    sidebar.style.position = 'fixed';
+    sidebar.style.top = '54px';
+    sidebar.style.left = '0';
+    sidebar.style.width = '280px';
+    sidebar.style.zIndex = '999';
+    sidebar.style.height = 'calc(100vh - 54px)';
+    sidebar.style.background = 'var(--bg-card)';
+    sidebar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+  }
+}
+</script>
+</body>
+</html>
