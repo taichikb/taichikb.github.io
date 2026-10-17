@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Thẻ Khởi Động Khớp Sáng Sớm 10 Phút - TaichiNOW</title>
+<style>
+
+@page {
+    size: A4 portrait;
+    margin: 8mm 9mm 8mm 9mm;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1c1917;
+    background: #ffffff;
+    font-size: 8pt;
+    line-height: 1.32;
+}
+.page-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header {
+    border-bottom: 2px solid #8c1d1d;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.header-left h1 {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #8c1d1d;
+    letter-spacing: -0.2px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.header-left .sub {
+    font-size: 8pt;
+    color: #57534e;
+    font-weight: 500;
+}
+.badge-group {
+    text-align: right;
+}
+.badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 7pt;
+    font-weight: 600;
+    margin-left: 3px;
+}
+.badge-red { background: #fee2e2; color: #991b1b; }
+.badge-gold { background: #fef3c7; color: #92400e; }
+.badge-green { background: #d1fae5; color: #065f46; }
+.badge-blue { background: #e0f2fe; color: #0369a1; }
+
+/* Grid styles */
+.grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.card {
+    border: 1px solid #e7e5e4;
+    border-radius: 5px;
+    padding: 5px 7px;
+    background: #fafaf9;
+    page-break-inside: avoid;
+}
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 3px;
+}
+.num-circle {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #8c1d1d;
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+.card-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #1c1917;
+}
+.card-han {
+    font-size: 7pt;
+    color: #78716c;
+    margin-left: 4px;
+    font-style: italic;
+}
+.section-tag {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 1px 3px;
+    border-radius: 3px;
+    margin-right: 3px;
+    line-height: 1.1;
+}
+.tag-breath { background: #e0f2fe; color: #0369a1; }
+.tag-meridian { background: #fef3c7; color: #b45309; }
+.tag-bio { background: #ecfdf5; color: #047857; }
+.tag-rule { background: #fdf2f8; color: #9d174d; }
+.tag-time { background: #f3f4f6; color: #374151; }
+
+.row-item {
+    margin-bottom: 2px;
+    font-size: 7.5pt;
+    line-height: 1.28;
+}
+.footer {
+    border-top: 1px solid #d6d3d1;
+    padding-top: 4px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.8pt;
+    color: #78716c;
+}
+.footer strong { color: #8c1d1d; }
+.alert-box {
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.success-box {
+    background: #f0fdf4;
+    border-left: 3px solid #16a34a;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.info-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.table-compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.2pt;
+    margin-top: 3px;
+}
+.table-compare th, .table-compare td {
+    border: 1px solid #e7e5e4;
+    padding: 3px 5px;
+    text-align: left;
+}
+.table-compare th {
+    background: #f5f5f4;
+    font-weight: 600;
+}
+.text-wrong { color: #dc2626; font-weight: 600; }
+.text-right { color: #16a34a; font-weight: 600; }
+
+</style>
+</head>
+<body>
+<div class="page-container">
+    <div>
+        <div class="header">
+            <div class="header-left">
+                <h1>
+                    <span>晨起活節</span> Khởi Động Khớp Sáng Sớm 10 Phút
+                </h1>
+                <div class="sub">Kích Hoạt Bao Hoạt Dịch (Synovial Fluid) · Bôi Trơn Đa Trục Từ Đỉnh Đầu Đến Bàn Chân</div>
+            </div>
+            <div class="badge-group">
+                <span class="badge badge-gold">10 Phút Mỗi Sáng</span>
+                <span class="badge badge-green">Cơ Sinh Học Khớp</span>
+                <span class="badge badge-blue">Phòng Tránh Đau Cứng</span>
+            </div>
+        </div>
+
+        <div class="success-box" style="display:flex; justify-content:space-between; align-items:center;">
+            <span><strong>Cơ chế khoa học:</strong> Sụn khớp không có mạch máu nuôi trực tiếp; dịch khớp chỉ tiết ra nuôi sụn khi khớp chuyển động tròn chậm rãi, nhẹ nhàng không tải nặng.</span>
+            <span><strong>Uống 1 cốc nước ấm trước khi tập</strong></span>
+        </div>
+
+        <div class="grid-2col">
+            <!-- Bước 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">1</span>
+                    <span class="card-title">Đốt Sống Cổ & Vùng Vai Gáy</span>
+                    <span class="card-han">(Thời lượng: 1.5 Phút · 8-10 nhịp)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-rule">Động Tác</span> <strong>1.</strong> Gật ngửa kéo giãn cổ; <strong>2.</strong> Xoay nghiêng tai chạm vai trái/phải; <strong>3.</strong> Vẽ hình số 8 vô cực (∞) bằng cằm một cách êm ái.</div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> Hít khi ngửa vươn cằm; Thở khi gập cằm về hõm cổ. Tuyệt đối không giật cục đột ngột.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Tác Dụng</span> Bôi trơn khớp C1-C7, giải phóng cơ nâng vai và cơ ức đòn chũm, chống cứng cổ buổi sáng.</div>
+            </div>
+
+            <!-- Bước 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">2</span>
+                    <span class="card-title">Khớp Vai, Bả Vai & Lồng Ngực</span>
+                    <span class="card-han">(Thời lượng: 2.0 Phút · 10-12 nhịp)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-rule">Động Tác</span> <strong>1.</strong> Xoay tròn ổ chảo cánh tay từ trước ra sau và ngược lại; <strong>2.</strong> Khai - Hợp đai vai: Mở rộng hai cánh tay đón khí rồi ôm ngực thở ra.</div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> Hít vào khi mở rộng ngực và đẩy vai ra sau; Thở ra khi cuộn vai về trước.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Tác Dụng</span> Giải tỏa hội chứng kẹt khớp vai (Impingement), giải nén gân cơ trên gai, mở rộng dung tích sống của phổi.</div>
+            </div>
+
+            <!-- Bước 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">3</span>
+                    <span class="card-title">Trục Cột Sống & Huyệt Mệnh Môn</span>
+                    <span class="card-han">(Thời lượng: 2.0 Phút · 15-20 nhịp)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-rule">Động Tác</span> <strong>Vung tay vặn xoắn thân mình:</strong> Hai chân rộng bằng vai, xoay eo sang trái/phải tự nhiên, mu bàn tay sau vỗ nhẹ vào Mệnh Môn, tay trước vỗ vào Đan Điền.</div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> Thở tự nhiên qua mũi, giữ đỉnh đầu cố định như treo dây dọi, xoay từ đáy chậu.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Tác Dụng</span> Bơm dịch não tủy dọc trục cột sống, xoa bóp tuyến thượng thận, đánh thức nguồn năng lượng nội tạng.</div>
+            </div>
+
+            <!-- Bước 4 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">4</span>
+                    <span class="card-title">Khớp Hông & Vùng Khớp Háng (Kua)</span>
+                    <span class="card-han">(Thời lượng: 2.0 Phút · 10 vòng mỗi chiều)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-rule">Động Tác</span> <strong>Xoay tròn vùng chậu:</strong> Hai tay chống hông, vẽ vòng tròn lớn bằng xương chậu theo mặt phẳng ngang; sau đó thực hiện chuyển động mở gập háng (Khai Hợp Kua).</div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> Hít khi xương chậu đẩy về trước; Thở khi xương chậu lùi ra sau thả lỏng bụng dưới.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Tác Dụng</span> Bôi trơn chỏm xương đùi trong ổ cối, tăng độ đàn hồi dây chằng chậu đùi, giải tỏa áp lực đè nặng vùng thắt lưng L4-L5.</div>
+            </div>
+
+            <!-- Bước 5 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">5</span>
+                    <span class="card-title">Khớp Gối & Dây Chằng Bao Khớp</span>
+                    <span class="card-han">(Thời lượng: 1.5 Phút · 10 vòng mỗi chiều)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-rule">Động Tác</span> <strong>1.</strong> Khép hai chân, hai tay đặt nhẹ lên đầu gối, xoay tròn từ trái sang phải rồi đổi chiều; <strong>2.</strong> Tách rộng chân, xoay gối từ ngoài vào trong và từ trong ra ngoài.</div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> Thở êm, không nín thở; nhấp gối chùng vừa phải không để gối chịu lực bẻ nghiêng.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Tác Dụng</span> Kích thích màng hoạt dịch sản sinh dịch nhờn bôi trơn sụn chêm, bảo vệ gân bánh chè và dây chằng chéo.</div>
+            </div>
+
+            <!-- Bước 6 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">6</span>
+                    <span class="card-title">Cổ Chân & Bàn Chân (Huyệt Dũng Tuyền)</span>
+                    <span class="card-han">(Thời lượng: 1.0 Phút · Mỗi chân 15 nhịp)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-rule">Động Tác</span> <strong>1.</strong> Đứng trụ một chân, mũi chân kia chấm đất xoay tròn cổ chân; <strong>2.</strong> Kiễng nhón gót chân rồi hạ xuống, bấm nhẹ các đầu ngón chân tiếp đất để "cắm rễ".</div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> Hít khi kiễng nâng gót; Thở khi hạ gót chân bấm nhẹ huyệt Dũng Tuyền xuống sàn.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Tác Dụng</span> Kích hoạt bơm cơ bắp chân (Calf Muscle Pump) đẩy máu tĩnh mạch về tim, rèn luyện thụ thể thăng bằng chống té ngã.</div>
+            </div>
+        </div>
+
+        <div class="alert-box" style="margin-top:2px;">
+            <strong>Lưu ý quan trọng cho người trên 50 tuổi:</strong> Khởi động chậm hơn bình thường 30%. Nếu nghe tiếng lạo xạo nhẹ không đau trong khớp thì đó là hiện tượng bóng khí vỡ trong bao dịch sinh lý bình thường; nhưng nếu có cảm giác đau nhói thì hãy dừng ngay và thu hẹp biên độ chuyển động!
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><strong>TaichiNOW & TaichiKB:</strong> Khởi Động Chuẩn Cơ Sinh Học Khớp & Khí Công Dưỡng Sinh</div>
+        <div>In ra A4 để cạnh giường ngủ · Quét QR/truy cập: <strong>taichinow.github.io/vi/health/</strong></div>
+    </div>
+</div>
+</body>
+</html>

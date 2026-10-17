@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Thẻ 8 Thức Bát Đoạn Cẩm - TaichiNOW</title>
+<style>
+
+@page {
+    size: A4 portrait;
+    margin: 8mm 9mm 8mm 9mm;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1c1917;
+    background: #ffffff;
+    font-size: 8pt;
+    line-height: 1.32;
+}
+.page-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header {
+    border-bottom: 2px solid #8c1d1d;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.header-left h1 {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #8c1d1d;
+    letter-spacing: -0.2px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.header-left .sub {
+    font-size: 8pt;
+    color: #57534e;
+    font-weight: 500;
+}
+.badge-group {
+    text-align: right;
+}
+.badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 7pt;
+    font-weight: 600;
+    margin-left: 3px;
+}
+.badge-red { background: #fee2e2; color: #991b1b; }
+.badge-gold { background: #fef3c7; color: #92400e; }
+.badge-green { background: #d1fae5; color: #065f46; }
+.badge-blue { background: #e0f2fe; color: #0369a1; }
+
+/* Grid styles */
+.grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.card {
+    border: 1px solid #e7e5e4;
+    border-radius: 5px;
+    padding: 5px 7px;
+    background: #fafaf9;
+    page-break-inside: avoid;
+}
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 3px;
+}
+.num-circle {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #8c1d1d;
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+.card-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #1c1917;
+}
+.card-han {
+    font-size: 7pt;
+    color: #78716c;
+    margin-left: 4px;
+    font-style: italic;
+}
+.section-tag {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 1px 3px;
+    border-radius: 3px;
+    margin-right: 3px;
+    line-height: 1.1;
+}
+.tag-breath { background: #e0f2fe; color: #0369a1; }
+.tag-meridian { background: #fef3c7; color: #b45309; }
+.tag-bio { background: #ecfdf5; color: #047857; }
+.tag-rule { background: #fdf2f8; color: #9d174d; }
+.tag-time { background: #f3f4f6; color: #374151; }
+
+.row-item {
+    margin-bottom: 2px;
+    font-size: 7.5pt;
+    line-height: 1.28;
+}
+.footer {
+    border-top: 1px solid #d6d3d1;
+    padding-top: 4px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.8pt;
+    color: #78716c;
+}
+.footer strong { color: #8c1d1d; }
+.alert-box {
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.success-box {
+    background: #f0fdf4;
+    border-left: 3px solid #16a34a;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.info-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.table-compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.2pt;
+    margin-top: 3px;
+}
+.table-compare th, .table-compare td {
+    border: 1px solid #e7e5e4;
+    padding: 3px 5px;
+    text-align: left;
+}
+.table-compare th {
+    background: #f5f5f4;
+    font-weight: 600;
+}
+.text-wrong { color: #dc2626; font-weight: 600; }
+.text-right { color: #16a34a; font-weight: 600; }
+
+</style>
+</head>
+<body>
+<div class="page-container">
+    <div>
+        <div class="header">
+            <div class="header-left">
+                <h1>
+                    <span>八段錦</span> Bát Đoạn Cẩm Toàn Đồ
+                </h1>
+                <div class="sub">Thẻ Dưỡng Sinh 1 Trang · Hình Thức - Hơi Thở - Kinh Lạc - Cơ Chế Y Sinh Học</div>
+            </div>
+            <div class="badge-group">
+                <span class="badge badge-red">Dưỡng Sinh Khí Công</span>
+                <span class="badge badge-gold">12-15 Phút/Ngày</span>
+                <span class="badge badge-green">Mọi Lứa Tuổi</span>
+            </div>
+        </div>
+
+        <div class="info-box" style="display:flex; justify-content:space-between; align-items:center;">
+            <span><strong>Nguyên tắc cốt lõi:</strong> Ý dẫn khí, khí dẫn hình. Hít vào bằng mũi trầm xuống Đan Điền; thở ra nhẹ êm bằng mũi hoặc miệng khép hờ.</span>
+            <span style="font-style:italic; color:#64748b;">(Tập 6-8 lượt mỗi thức)</span>
+        </div>
+
+        <div class="grid-2col">
+            <!-- Thức 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">1</span>
+                    <span class="card-title">Lưỡng Thủ Kình Thiên Lý Tam Tiêu</span>
+                    <span class="card-han">(Hai tay chống trời điều hòa Tam Tiêu)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hít sâu:</strong> Nâng tay đan chưởng đẩy thẳng lên đỉnh đầu, kiễng nhẹ gót; <strong>Thở ra:</strong> Buông tay hạ gót chầm chậm về hai bên hông.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Kinh Tam Tiêu:</strong> Thông suốt Thượng tiêu (Tim/Phổi), Trung tiêu (Tỳ/Vị), Hạ tiêu (Can/Thận/Bàng quang).</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Kéo giãn tối đa chuỗi cơ dựng sống và cơ liên sườn, giải nén đĩa đệm, tăng thông khí đỉnh phổi.</div>
+            </div>
+
+            <!-- Thức 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">2</span>
+                    <span class="card-title">Tả Hữu Khai Cung Tự Như Xạ</span>
+                    <span class="card-han">(Trái phải giương cung như bắn chim điêu)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hít vào:</strong> Hạ Trung Bình Tấn, tay kéo cung căng ngang ngực, mắt nhìn đầu ngón tay đẩy; <strong>Thở ra:</strong> Thu tay, nâng người về vị trí ban đầu.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Phế Kinh & Đại Trường Kinh:</strong> Khai mở huyệt Trung Phủ, Thiếu Thương, thông thoáng khí quản.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Mở rộng thể tích lồng ngực, tăng sức chịu lực cơ tứ đầu đùi, củng cố sự vững chãi khớp háng (Kua).</div>
+            </div>
+
+            <!-- Thức 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">3</span>
+                    <span class="card-title">Điều Lý Tỳ Vị Tu Đơn Cử</span>
+                    <span class="card-han">(Điều hòa Tỳ Vị nâng một tay)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hít vào:</strong> Một tay đẩy trời (chưởng hướng thượng), một tay ấn đất (chưởng áp hạ), căng nhẹ liên sườn; <strong>Thở ra:</strong> Đổi tay tuần tự.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Tỳ Kinh & Vị Kinh:</strong> Xoa bóp nội tạng vùng bụng, hỗ trợ chuyển hóa thức ăn và hấp thu dinh dưỡng.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Tạo áp lực đối kháng cơ học lên dạ dày, gan và lá lách, tăng nhu động ruột, giảm đầy hơi trào ngược.</div>
+            </div>
+
+            <!-- Thức 4 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">4</span>
+                    <span class="card-title">Ngũ Lao Thất Thương Vãng Hậu Khán</span>
+                    <span class="card-han">(Ngoảnh đầu ra sau xua tan mệt mỏi)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hít vào:</strong> Mở ngực, xoay ngoài cánh tay, xoay cổ mắt nhìn gót chân đối diện; <strong>Thở ra:</strong> Thả lỏng xoay đầu về chính diện.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Đốc Mạch & Bàng Quang Kinh:</strong> Kích hoạt các huyệt Đại Chùy, Phong Trì, giải tỏa ứ trệ trục thần kinh.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Giải phóng chèn ép 7 đốt sống cổ C1-C7 và động mạch cảnh, tăng tưới máu lên não, thư giãn hệ thần kinh thực vật.</div>
+            </div>
+
+            <!-- Thức 5 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">5</span>
+                    <span class="card-title">Dao Đầu Bãi Vĩ Khứ Tâm Hỏa</span>
+                    <span class="card-han">(Lắc đầu vẫy đuôi dập tắt lửa Tâm)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hạ Mã Tấn:</strong> Hít vào gập người chếch một bên; <strong>Thở ra:</strong> Xoay tròn thân trên qua bên đối diện hạ trọng tâm xua hỏa độc.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Tâm Kinh & Thận Kinh (Thủy Hỏa Ký Tế):</strong> Nước Thận bốc lên làm mát lửa Tâm hỏa bốc nghịch gây bồn chồn mất ngủ.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Tăng độ linh hoạt khớp háng, mở đĩa đệm thắt lưng, cân bằng trương lực dây thần kinh phế vị.</div>
+            </div>
+
+            <!-- Thức 6 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">6</span>
+                    <span class="card-title">Lưỡng Thủ Phan Túc Cố Thận Yêu</span>
+                    <span class="card-han">(Hai tay ôm chân bổ Thận tráng thắt lưng)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hít vào:</strong> Vươn hai tay lên cao uốn nhẹ lưng; <strong>Thở ra:</strong> Chậm rãi gập người về trước, vuốt dọc mặt sau chân ôm mắt cá/ngón chân.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Thận Kinh & Bàng Quang Kinh:</strong> Kích thích huyệt Mệnh Môn, Thận Du, Dũng Tuyền bồi bổ nguyên khí.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Kéo giãn toàn bộ chuỗi cân mạc mặt sau (Posterior Chain), giảm co thắt gân kheo, phòng ngừa đau thần kinh tọa.</div>
+            </div>
+
+            <!-- Thức 7 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">7</span>
+                    <span class="card-title">Toàn Quyền Nộ Mục Tăng Khí Lực</span>
+                    <span class="card-han">(Nắm chặt quyền trợn mắt tăng khí lực)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Mã Tấn:</strong> Thu quyền về eo; <strong>Thở ra:</strong> Đấm chậm xoắn ốc ra trước, mắt mở to nhìn thẳng tụ khí; <strong>Hít vào:</strong> Xoay cổ tay thu quyền.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Can Kinh & Đởm Kinh:</strong> Can khai khiếu ra mắt, chủ cân cơ màng gân; kích hoạt năng lượng nội sinh.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Rèn luyện khả năng phát lực xoắn ốc (Spiral Torque), tăng sức mạnh gân mạc cổ tay và cơ cẳng tay.</div>
+            </div>
+
+            <!-- Thức 8 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="num-circle">8</span>
+                    <span class="card-title">Bối Hậu Thất Điên Bách Bệnh Tiêu</span>
+                    <span class="card-han">(Nhón gót bảy lần xua tan trăm bệnh)</span>
+                </div>
+                <div class="row-item"><span class="section-tag tag-breath">Hơi Thở</span> <strong>Hít vào:</strong> Kiễng cao hai gót chân, vươn đỉnh đầu (Bách Hội); <strong>Thở ra:</strong> Thả gót rơi tự do chạm sàn tạo rung chấn nhẹ khắp thân người.</div>
+                <div class="row-item"><span class="section-tag tag-meridian">Kinh Lạc</span> <strong>Kỳ Kinh Bát Mạch:</strong> Sóng rung chấn vi thể điều hòa 12 kinh mạch, khai thông các điểm tắc nghẽn kinh khí.</div>
+                <div class="row-item"><span class="section-tag tag-bio">Y Sinh Học</span> Kích thích tạo tế bào tạo xương (Osteoblast) nhờ lực phản hồi, bơm dịch bạch huyết hồi lưu về tim.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><strong>TaichiNOW & TaichiKB:</strong> Kho Tri Thức Y Sinh Học & Thái Cực Dưỡng Sinh Toàn Thư</div>
+        <div>In ra A4 dán tường hoặc lưu điện thoại · Quét QR/truy cập: <strong>taichinow.github.io/vi/health/</strong></div>
+    </div>
+</div>
+</body>
+</html>

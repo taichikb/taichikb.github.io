@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Thẻ Quy Tắc Vàng Giữ Gối & Cột Sống - TaichiNOW</title>
+<style>
+
+@page {
+    size: A4 portrait;
+    margin: 8mm 9mm 8mm 9mm;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1c1917;
+    background: #ffffff;
+    font-size: 8pt;
+    line-height: 1.32;
+}
+.page-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header {
+    border-bottom: 2px solid #8c1d1d;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.header-left h1 {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #8c1d1d;
+    letter-spacing: -0.2px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.header-left .sub {
+    font-size: 8pt;
+    color: #57534e;
+    font-weight: 500;
+}
+.badge-group {
+    text-align: right;
+}
+.badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 7pt;
+    font-weight: 600;
+    margin-left: 3px;
+}
+.badge-red { background: #fee2e2; color: #991b1b; }
+.badge-gold { background: #fef3c7; color: #92400e; }
+.badge-green { background: #d1fae5; color: #065f46; }
+.badge-blue { background: #e0f2fe; color: #0369a1; }
+
+/* Grid styles */
+.grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.card {
+    border: 1px solid #e7e5e4;
+    border-radius: 5px;
+    padding: 5px 7px;
+    background: #fafaf9;
+    page-break-inside: avoid;
+}
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 3px;
+}
+.num-circle {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #8c1d1d;
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+.card-title {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #1c1917;
+}
+.card-han {
+    font-size: 7pt;
+    color: #78716c;
+    margin-left: 4px;
+    font-style: italic;
+}
+.section-tag {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 1px 3px;
+    border-radius: 3px;
+    margin-right: 3px;
+    line-height: 1.1;
+}
+.tag-breath { background: #e0f2fe; color: #0369a1; }
+.tag-meridian { background: #fef3c7; color: #b45309; }
+.tag-bio { background: #ecfdf5; color: #047857; }
+.tag-rule { background: #fdf2f8; color: #9d174d; }
+.tag-time { background: #f3f4f6; color: #374151; }
+
+.row-item {
+    margin-bottom: 2px;
+    font-size: 7.5pt;
+    line-height: 1.28;
+}
+.footer {
+    border-top: 1px solid #d6d3d1;
+    padding-top: 4px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.8pt;
+    color: #78716c;
+}
+.footer strong { color: #8c1d1d; }
+.alert-box {
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.success-box {
+    background: #f0fdf4;
+    border-left: 3px solid #16a34a;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.info-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 7.5pt;
+    line-height: 1.3;
+}
+.table-compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.2pt;
+    margin-top: 3px;
+}
+.table-compare th, .table-compare td {
+    border: 1px solid #e7e5e4;
+    padding: 3px 5px;
+    text-align: left;
+}
+.table-compare th {
+    background: #f5f5f4;
+    font-weight: 600;
+}
+.text-wrong { color: #dc2626; font-weight: 600; }
+.text-right { color: #16a34a; font-weight: 600; }
+
+</style>
+</head>
+<body>
+<div class="page-container">
+    <div>
+        <div class="header">
+            <div class="header-left">
+                <h1>
+                    <span>立身中正</span> Quy Tắc Vàng Giữ Gối & Cột Sống
+                </h1>
+                <div class="sub">Cơ Sinh Học Khớp Gối & Căng Bằng Sinh Học Cột Sống (Biotensegrity) Trong Thái Cực & Khí Công</div>
+            </div>
+            <div class="badge-group">
+                <span class="badge badge-red">Phòng Tránh Chấn Thương</span>
+                <span class="badge badge-gold">Bảo Vệ Đĩa Đệm</span>
+                <span class="badge badge-green">Chuẩn Tư Thế</span>
+            </div>
+        </div>
+
+        <div class="grid-2col">
+            <!-- Cột Trái: Khớp Gối -->
+            <div class="card" style="border-top:3px solid #0284c7;">
+                <div class="card-header">
+                    <span class="num-circle" style="background:#0284c7;">A</span>
+                    <span class="card-title" style="color:#0369a1;">3 QUY TẮC VÀNG BẢO VỆ KHỚP GỐI</span>
+                </div>
+                
+                <div style="margin-bottom:6px;">
+                    <strong style="color:#0f172a; font-size:8pt;">1. Gióng Hàng Gối - Mũi Chân (Knee-Toe Alignment):</strong>
+                    <div class="row-item">Khi chùng tấn, trục xương đùi, bánh chè và ngón chân thứ 2 phải nằm trên một đường thẳng. Tuyệt đối không để gối đổ vẹo vào trong (Knee Valgus) gây rách sụn chêm và đứt dây chằng chéo trước ACL.</div>
+                </div>
+
+                <div style="margin-bottom:6px;">
+                    <strong style="color:#0f172a; font-size:8pt;">2. Gối Không Vượt Quá Mũi Chân (No Knee Over Toe):</strong>
+                    <div class="row-item">Khi bước Cung Tấn (Bow Stance), đầu gối trước chỉ hạ vuông góc với mặt đất, không đổ quá ngón chân cái. Lực nén phải được truyền vào khớp háng (Kua) và gót chân, không dồn lên xương bánh chè.</div>
+                </div>
+
+                <div>
+                    <strong style="color:#0f172a; font-size:8pt;">3. Phân Biệt Hư - Thực Rõ Ràng (Empty/Full Leg):</strong>
+                    <div class="row-item">Chuyển 100% trọng lượng sang chân trụ trước khi xoay bàn chân kia. <strong>Cấm kỵ:</strong> Vừa chịu trọng lượng cơ thể vừa xoay vặn bàn chân, hành động này tạo lực xé cắt (Shear Force) phá hủy sụn khớp gối ngay lập tức.</div>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Cột Sống -->
+            <div class="card" style="border-top:3px solid #16a34a;">
+                <div class="card-header">
+                    <span class="num-circle" style="background:#16a34a;">B</span>
+                    <span class="card-title" style="color:#15803d;">3 NGUYÊN TẮC GIẢI ÁP CỘT SỐNG (C1 - L5)</span>
+                </div>
+
+                <div style="margin-bottom:6px;">
+                    <strong style="color:#0f172a; font-size:8pt;">1. Hư Linh Đỉnh Kình (Đầu Treo Dây Dọi):</strong>
+                    <div class="row-item">Thu nhẹ cằm về cổ, cảm nhận huyệt Bách Hội trên đỉnh đầu được treo nhẹ hướng lên trời. Cơ chế này duỗi dài các đốt sống cổ C1-C7, giải phóng chèn ép rễ thần kinh cánh tay.</div>
+                </div>
+
+                <div style="margin-bottom:6px;">
+                    <strong style="color:#0f172a; font-size:8pt;">2. Trầm Kiên Trụy Trỏ (Hạ Vai, Thả Lỏng Khuỷu):</strong>
+                    <div class="row-item">Không nhấc vai, thả lỏng toàn bộ cơ thang (Trapezius) để xương bả vai trượt êm xuống lưng. Thao tác này giải nén đốt sống ngực T1-T12, kích hoạt nhánh thần kinh phó giao cảm hạ huyết áp.</div>
+                </div>
+
+                <div>
+                    <strong style="color:#0f172a; font-size:8pt;">3. Liễm Đồn Mở Mệnh Môn (Cuộn Nhẹ Xương Cụt):</strong>
+                    <div class="row-item">Xoay nhẹ khung chậu về sau (Posterior Pelvic Tilt), thu nhẹ rốn để làm phẳng đoạn võng thắt lưng quá mức. Mở rộng khoang đĩa đệm L4-L5, S1, ngăn ngừa thoái hóa và thoát vị đĩa đệm.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng So Sánh Sai vs Đúng -->
+        <div style="margin-top:2px;">
+            <div style="font-size:8.5pt; font-weight:700; color:#8c1d1d; margin-bottom:3px;">
+                BẢNG ĐỐI CHIẾU NHANH: LỖI SAI PHỔ BIẾN VS HIỆU CHỈNH CHUẨN SINH LÝ
+            </div>
+            <table class="table-compare">
+                <thead>
+                    <tr>
+                        <th style="width:20%;">Vị Trí Khớp</th>
+                        <th style="width:40%;" class="text-wrong">LỖI THƯỜNG GẶP (GÂY ĐAU & THOÁI HÓA)</th>
+                        <th style="width:40%;" class="text-right">HIỆU CHỈNH CHUẨN (DƯỠNG SINH TRƯỜNG THỌ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Khớp Gối</strong></td>
+                        <td class="text-wrong">Gối sụp vào trong; Gối chồm quá mũi chân; Vặn xoay bàn chân khi chân đang chịu tải nặng.</td>
+                        <td class="text-right">Mở khớp háng (Kua), gối thẳng ngón chân 2; Dồn lực vào gót & Dũng Tuyền; Chỉ xoay khi chân hoàn toàn "Hư" (rỗng).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thắt Lưng (L4-L5)</strong></td>
+                        <td class="text-wrong">Ưỡn mông ra sau cong lưng tôm; Gồng cứng cơ lưng dưới để giữ thăng bằng.</td>
+                        <td class="text-right">Hạ khí xuống Đan Điền, cuộn nhẹ xương cụt làm phẳng lưng dưới, mở huyệt Mệnh Môn đón khí.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Khớp Vai & Cổ</strong></td>
+                        <td class="text-wrong">So vai, ngửa cổ quá đà, nghiến răng nín thở khi phát lực hoặc giữ thế.</td>
+                        <td class="text-right">Trầm vai xuống đất, thu cằm kéo dãn gáy, thả lỏng cơ hàm, đầu lưỡi chạm nhẹ nướu răng trên.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bàn Chân</strong></td>
+                        <td class="text-wrong">Lật nghiêng má ngoài bàn chân, nhấc ngón chân, trọng tâm bồng bềnh không có gốc.</td>
+                        <td class="text-right">Cắm rễ vững như kiềng 3 chân: Gót chân - Khớp ngón cái - Khớp ngón út áp phẳng sàn.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><strong>TaichiNOW & TaichiKB:</strong> Tiêu Chuẩn Cơ Sinh Học An Toàn Tuyệt Đối Cho Người Tập Thái Cực & Khí Công</div>
+        <div>Tải về điện thoại để tra cứu trước buổi tập · Quét QR/truy cập: <strong>taichinow.github.io/vi/health/</strong></div>
+    </div>
+</div>
+</body>
+</html>
