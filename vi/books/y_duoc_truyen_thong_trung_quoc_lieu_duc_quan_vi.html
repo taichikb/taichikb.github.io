@@ -81,7 +81,7 @@ p{margin-bottom:1.35rem;}
   <div class="header-controls">
     <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
     <button class="btn-control" id="pdf-open" title="Cuộn tới phần đọc"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
-    <a href="/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> Tải PDF</a>
+    <a href="https://raw.githubusercontent.com/taichikb/taichikb.github.io/main/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf" class="btn-control" download target="_blank"><i class="fa-solid fa-file-pdf"></i> Tải PDF</a>
     <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
     <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
     <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
@@ -178,9 +178,9 @@ p{margin-bottom:1.35rem;}
           <button class="btn-control" id="pdf-next" title="Trang sau"><i class="fa-solid fa-chevron-down"></i></button>
           <button class="btn-control" id="pdf-zoom-out" title="Thu nhỏ">A-</button>
           <button class="btn-control" id="pdf-zoom-in" title="Phóng to">A+</button>
-          <a class="btn-control" id="pdf-download" href="/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf" download><i class="fa-solid fa-download"></i> Tải về PDF</a>
+          <a class="btn-control" id="pdf-download" href="https://raw.githubusercontent.com/taichikb/taichikb.github.io/main/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf" download target="_blank"><i class="fa-solid fa-download"></i> Tải về PDF</a>
         </div>
-        <div id="pdf-pages" data-pdf="/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf"></div>
+        <div id="pdf-pages" data-pdf="https://raw.githubusercontent.com/taichikb/taichikb.github.io/main/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf"></div>
         <div id="pdf-status">Đang tải tài liệu…</div>
       </div>
     </section>
@@ -202,7 +202,7 @@ p{margin-bottom:1.35rem;}
 
     <nav class="chapter-nav">
       <a href="/vi/books/"><i class="fa-solid fa-arrow-left"></i> Quay lại Thư Viện Sách</a>
-      <a href="/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Mở PDF Toàn Tab</a>
+      <a href="https://raw.githubusercontent.com/taichikb/taichikb.github.io/main/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Mở PDF Toàn Tab</a>
     </nav>
   </main>
 </div>
@@ -337,11 +337,30 @@ if(openBtn)openBtn.addEventListener('click',function(e){e.preventDefault();var r
   window.addEventListener('scroll',function(){if(st)return;st=true;requestAnimationFrame(function(){st=false;updateCurrent();});});
   var rt;
   window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(refit,220);});
+  var fallbacks = [
+    url,
+    'https://raw.githubusercontent.com/taichikb/taichikb.github.io/main/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf',
+    'https://raw.githubusercontent.com/taichinow/taichinow.github.io/main/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf',
+    'https://taichinow.github.io/books/pdfs/y-duoc-truyen-thong-trung-quoc-lieu-duc-quan.pdf'
+  ];
+  fallbacks = fallbacks.filter(function(v, i, a){ return a.indexOf(v) === i; });
+
+  function tryLoadDoc(idx){
+    if(idx >= fallbacks.length){
+      setStatus('Không mở được PDF. Quý độc giả vui lòng dùng nút “Tải về PDF” để đọc.');
+      return;
+    }
+    window.pdfjsLib.getDocument(fallbacks[idx]).promise
+      .then(function(d){ pdfDoc=d; build(); })
+      .catch(function(e){
+        console.warn('PDF load failed for', fallbacks[idx], e);
+        tryLoadDoc(idx + 1);
+      });
+  }
+
   setStatus('Đang tải tài liệu…');
   loadLib(function(){
-    window.pdfjsLib.getDocument(url).promise
-      .then(function(d){pdfDoc=d;build();})
-      .catch(function(e){setStatus('Không mở được PDF: '+(e&&e.message?e.message:e));});
+    tryLoadDoc(0);
   });
 })();
 </script>
