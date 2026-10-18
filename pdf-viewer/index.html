@@ -410,7 +410,12 @@ if (typeof pdfjsLib === 'undefined') {
       backBtn.className = 'tool-btn';
       backBtn.title = 'Quay lại Thư viện sách';
       backBtn.innerHTML = '← <span class="hide-sm">Thư viện</span>';
-      backBtn.href = '/books/';
+      // ?back= lets the embedding page send the reader back to the right section
+      // (e.g. /vi/health/thu-vien-nen-tang/ from the health library) instead of
+      // always falling back to the martial-arts /books/ index.
+      const backParam = new URLSearchParams(window.location.search).get('back');
+      backBtn.href = backParam || '/books/';
+      if (backParam) backBtn.title = 'Quay lại thư viện';
       navActionContainer.prepend(backBtn);
     }
   }
