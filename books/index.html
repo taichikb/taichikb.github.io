@@ -1,13 +1,267 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Books &amp; Manuscripts · 227 PDF Volumes · TaichiNOW</title>
-<meta name="description" content="Interactive reader for 227 classic and modern Tai Chi, Qigong, and martial arts texts. Each book opens in a 100% wide PDF reader with zoom and bookmark navigation.">
+<title>Books &amp; Manuscripts Library · Digital Archive · TaichiNOW</title>
+<meta name="description" content="Digital repository featuring classic and modern Tai Chi, Qigong, Daoist arts, and martial arts texts with continuous online reading, live search, and category discovery.">
 <link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+/* ============================================================
+   LIBRARY UI/UX OVERHAUL: CONTROL CENTER, SEARCH & FILTER
+   ============================================================ */
+.library-control-bar {
+  background: var(--yang, #ffffff);
+  border: 1px solid var(--gray-light, #e2e8f0);
+  border-radius: 16px;
+  padding: 22px 24px 18px;
+  margin: 1.5rem 0 2rem;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 10;
+}
+
+/* Search input */
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 1.15rem;
+  color: var(--accent-gold, #b45309);
+  pointer-events: none;
+}
+#book-search-input {
+  width: 100%;
+  padding: 13px 48px 13px 50px;
+  font-size: 1.02rem;
+  font-family: inherit;
+  border: 2px solid var(--gray-light, #cbd5e1);
+  border-radius: 12px;
+  background: var(--yang, #ffffff);
+  color: var(--yin, #18181b);
+  transition: all 0.25s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+#book-search-input:focus {
+  border-color: var(--accent-gold, #b45309);
+  box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.15);
+}
+#search-clear-btn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--gray-mid, #94a3b8);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.15s, background 0.15s;
+}
+#search-clear-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Stats and dropdown bar */
+.search-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--gray-light, #e2e8f0);
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+.stats-counter {
+  color: var(--gray-dark, #475569);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stats-counter strong {
+  color: #b45309;
+  font-weight: 700;
+}
+.quick-jump-dropdown-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quick-jump-dropdown-wrap label {
+  color: var(--gray-mid, #64748b);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+#category-jump-select {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light, #cbd5e1);
+  background: var(--yang, #ffffff);
+  color: var(--yin, #1e293b);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#category-jump-select:focus {
+  border-color: var(--accent-gold, #b45309);
+}
+
+/* Category filter pills */
+.category-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.cat-pill {
+  background: var(--gray-light, #f1f5f9);
+  border: 1px solid transparent;
+  color: var(--gray-dark, #334155);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  user-select: none;
+  text-decoration: none;
+}
+.cat-pill:hover {
+  background: #e2e8f0;
+  color: var(--yin, #0f172a);
+  transform: translateY(-1px);
+}
+.cat-pill.active {
+  background: var(--yin, #0f172a);
+  color: var(--yang, #ffffff);
+  border-color: var(--yin, #0f172a);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Empty State */
+.no-results-box {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 48px 24px;
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 580px;
+}
+.no-results-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  color: #94a3b8;
+}
+.no-results-box h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+.no-results-box p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+.reset-filter-btn {
+  background: #b45309;
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.reset-filter-btn:hover {
+  background: #92400e;
+  transform: scale(1.03);
+}
+
+/* Floating Navigation Tools */
+.floating-nav-tools {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.floating-nav-tools.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.f-tool-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--yang, #ffffff);
+  border: 1px solid var(--gray-light, #cbd5e1);
+  color: var(--yin, #1e293b);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
+}
+.f-tool-btn:hover {
+  background: var(--yin, #0f172a);
+  color: var(--yang, #ffffff);
+  border-color: var(--yin, #0f172a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* Flash highlight animation for target section */
+@keyframes sectionFlash {
+  0% { outline: 3px solid transparent; }
+  30% { outline: 3px solid var(--accent-gold, #b45309); }
+  100% { outline: 3px solid transparent; }
+}
+.section-flash-highlight {
+  animation: sectionFlash 2s ease-out;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .library-control-bar { padding: 16px 14px; }
+  .search-stats-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .quick-jump-dropdown-wrap { width: 100%; justify-content: space-between; }
+  #category-jump-select { flex: 1; max-width: 200px; }
+  .cat-pill { font-size: 0.78rem; padding: 5px 11px; }
+}
+</style>
 </head>
 <body>
 
@@ -31,17 +285,75 @@
 <main>
 <article class="intranet-content" style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
 
-<section class="hero">
+<section class="hero" style="padding-top: 3rem; padding-bottom: 1.5rem;">
     <span class="taiji-large"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg></span>
-    <h1>Books &amp; Manuscripts</h1>
-    <p class="tagline">227 volumes — Tai Chi, Qigong, Daoist arts, martial arts</p>
-    <p style="color: var(--gray-mid); font-style: italic; max-width: 640px; margin: 0.5rem auto;">
-        Thư viện sách Thái Cực Quyền, Khí Công, Đạo Gia và Võ Thuật
+    <h1>Books &amp; Manuscripts Library</h1>
+    <p class="tagline">Classic Treatises, Internal Martial Arts, Qigong &amp; Daoist Texts</p>
+    <p style="color: var(--gray-mid); font-style: italic; max-width: 680px; margin: 0.5rem auto 1.5rem; line-height: 1.6;">
+        A comprehensive digital repository of martial arts manuals, rare woodblock scans, and bilingual readers. Explore 10 thematic bookshelves, find titles with real-time search, or jump directly to specialized disciplines.
     </p>
 </section>
 
-<section class="section">
-    <div class="section-title"><h2>Browse the library (227 books)</h2></div>
+<!-- CONTROL CENTER: REAL-TIME SEARCH & CATEGORY FILTER -->
+<div class="library-control-bar" id="library-controls">
+  <div class="search-input-wrapper">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    <input type="text" id="book-search-input" placeholder="🔍 Search titles, authors, styles, keywords (e.g., Chen Xin, Sun, Yang, Qigong, Push Hands)..." autocomplete="off" spellcheck="false">
+    <button type="button" id="search-clear-btn" title="Clear search" style="display:none;">✕</button>
+  </div>
+
+  <div class="search-stats-bar">
+    <div class="stats-counter">
+      <span>Showing <strong id="visible-book-count">...</strong> volumes</span>
+      <span style="color:var(--gray-mid);">•</span>
+      <span style="font-size:0.82rem; color:var(--gray-mid);">Real-time Search &amp; Filter</span>
+    </div>
+    <div class="quick-jump-dropdown-wrap">
+      <label for="category-jump-select">Jump to Bookshelf:</label>
+      <select id="category-jump-select">
+        <option value="">-- Select Bookshelf --</option>
+        <option value="featured-classics">📖 Master Classics &amp; Maps</option>
+        <option value="tai-chi-library">🥋 Tai Chi — Bilingual Library</option>
+        <option value="taichi-existing">🥋 Taichi — Core Library</option>
+        <option value="martial-arts">🥋 Martial Arts Library</option>
+        <option value="yoga">🧘 Yoga &amp; Mind-Body Health</option>
+        <option value="aikido">🥋 Aikido &amp; Energy Harmony</option>
+        <option value="health">🌿 Health &amp; Traditional Medicine</option>
+        <option value="english-scans">📖 English-Language Scans</option>
+        <option value="philosophy">☯️ Philosophy &amp; Spirituality</option>
+        <option value="zen">☯️ Zen — English Library</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="category-filter-pills" id="category-pills">
+    <button class="cat-pill active" data-category="all"><span>📚 All Books</span></button>
+    <button class="cat-pill" data-category="featured-classics"><span>📖 Master Classics (190)</span></button>
+    <button class="cat-pill" data-category="tai-chi-library"><span>🥋 Tai Chi Bilingual (445)</span></button>
+    <button class="cat-pill" data-category="taichi-existing"><span>🥋 Taichi Core (53)</span></button>
+    <button class="cat-pill" data-category="martial-arts"><span>🥋 Martial Arts (151)</span></button>
+    <button class="cat-pill" data-category="yoga"><span>🧘 Yoga &amp; Health (13)</span></button>
+    <button class="cat-pill" data-category="aikido"><span>🥋 Aikido (29)</span></button>
+    <button class="cat-pill" data-category="health"><span>🌿 Medicine (5)</span></button>
+    <button class="cat-pill" data-category="english-scans"><span>📖 English Scans (75)</span></button>
+    <button class="cat-pill" data-category="philosophy"><span>☯️ Philosophy (17)</span></button>
+    <button class="cat-pill" data-category="zen"><span>☯️ Zen Library (40)</span></button>
+  </div>
+</div>
+
+<!-- EMPTY STATE MESSAGE (HIDDEN BY DEFAULT) -->
+<div id="no-results-box" class="no-results-box" style="display:none;">
+  <div class="no-results-icon">🔍</div>
+  <h3>No matching books found</h3>
+  <p>Try searching with another keyword or explore our full catalog across all 10 bookshelves.</p>
+  <button type="button" id="reset-filter-btn" class="reset-filter-btn">Show All Books</button>
+</div>
+
+<section class="section" id="featured-classics" style="margin-top: 1.5rem;">
+    <div class="section-title" style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2px solid #b45309; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
+        <h2 style="color: #9a3412; margin:0;">📖 Master Classics &amp; Foundational Works</h2>
+        <span style="font-size:0.9rem; color:var(--text-muted); font-weight:600;">Landmark treatises, concept maps &amp; full translations</span>
+    </div>
     <div class="card-grid">
         <a class="card" href="/books/khi-cong-y-hoc-tap1-deep-map/" style="border-top: 3px solid #92400e; background: linear-gradient(to bottom, #fffdf7, #ffffff);"><span class="card-meta" style="color:#92400e; font-weight:700;">Concept map · 38 concepts</span><h3>Chinese Medical Qigong Vol.1 — Complete Concept Deep Map</h3><p>An interactive mindmap anchoring all 38 major concepts of <em>Energetic Anatomy &amp; Physiology</em> to their chapters, with 230 cross-links into the TaichiNOW library: Qi, Yin–Yang, Five Phases, Three Treasures, Three Dantians, Eight Extraordinary Vessels, meridians, acupoints, chakras…</p><div class="card-footer"><span>Open the Map →</span></div></a>
         <a class="card" href="/books/thu-vien-taichinow-deep-map/" style="border-top: 3px solid #0f766e; background: linear-gradient(to bottom, #f0fdfa, #ffffff);"><span class="card-meta" style="color:#0f766e; font-weight:700;">Library map · 42 books · 8 families · 104 links</span><h3>TaichiNOW Library — Complete Deep Map <span style="font-weight:400;color:#666;">| Thư Viện TaichiNOW — Bản Đồ Tư Duy Toàn Thư</span></h3><p>An interactive mind map of the whole library: 42 flagship works across 8 families — the five Tai Chi families, Tai Chi classics &amp; applications, medical qigong, qigong &amp; neigong, internal martial arts, Japanese martial arts, Daoist arts &amp; yoga, and reference. Every book is cross-linked to the works that deepen the same theme. Bilingual (Tiếng Việt + English).</p><div class="card-footer"><span>Open the Map →</span></div></a>
@@ -4882,13 +5194,195 @@
 
 <nav class="page-nav">
     <a href="/" class="home">⌂ Home</a>
+    <a href="/vi/books/">Vietnamese Library (251 Volumes) ➔</a>
 </nav>
 </main>
+
+<!-- FLOATING NAVIGATION TOOLS -->
+<div class="floating-nav-tools" id="floating-tools">
+  <button class="f-tool-btn" id="f-jump-search" title="Jump to search &amp; filter">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+  <button class="f-tool-btn" id="f-back-top" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+</div>
 
 <footer class="site-footer">
     <p>Built with ❤️ for the Vietnamese Tai Chi community <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
     <p>Trang web này được xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('book-search-input');
+  const clearBtn = document.getElementById('search-clear-btn');
+  const pills = document.querySelectorAll('.cat-pill');
+  const countDisplay = document.getElementById('visible-book-count');
+  const noResultsBox = document.getElementById('no-results-box');
+  const resetBtn = document.getElementById('reset-filter-btn');
+  const jumpSelect = document.getElementById('category-jump-select');
+  const floatingTools = document.getElementById('floating-tools');
+  const floatingTopBtn = document.getElementById('f-back-top');
+  const floatingJumpBtn = document.getElementById('f-jump-search');
+
+  // Select all cards across all section.section elements
+  const allCards = document.querySelectorAll('section.section .card');
+  const sections = document.querySelectorAll('section.section');
+
+  // Pre-annotate cards with search text and section category
+  allCards.forEach(card => {
+    const parentSection = card.closest('section.section');
+    card.dataset.category = parentSection && parentSection.id ? parentSection.id : '';
+    card.dataset.searchText = (card.textContent || '').toLowerCase().replace(/\s+/g, ' ');
+  });
+
+  let currentCategory = 'all';
+
+  function applyFilter() {
+    const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+    const tokens = query ? query.split(/\s+/).filter(Boolean) : [];
+
+    if (clearBtn) {
+      clearBtn.style.display = query.length > 0 ? 'flex' : 'none';
+    }
+
+    let visibleCount = 0;
+
+    allCards.forEach(card => {
+      const cardCategory = card.dataset.category || '';
+      const cardText = card.dataset.searchText || '';
+
+      // Check category match
+      const categoryMatch = (currentCategory === 'all') || (cardCategory === currentCategory);
+
+      // Check search match
+      let searchMatch = true;
+      if (tokens.length > 0) {
+        for (let i = 0; i < tokens.length; i++) {
+          if (!cardText.includes(tokens[i])) {
+            searchMatch = false;
+            break;
+          }
+        }
+      }
+
+      const isVisible = categoryMatch && searchMatch;
+      card.style.display = isVisible ? '' : 'none';
+      if (isVisible) visibleCount++;
+    });
+
+    // Update section visibility
+    sections.forEach(section => {
+      const visibleInSec = section.querySelectorAll('.card:not([style*="display: none"])');
+      section.style.display = visibleInSec.length > 0 ? '' : 'none';
+    });
+
+    // Update count display
+    if (countDisplay) {
+      countDisplay.textContent = visibleCount;
+    }
+
+    // Show empty state if no books match
+    if (noResultsBox) {
+      noResultsBox.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  // Search input event
+  if (searchInput) {
+    searchInput.addEventListener('input', applyFilter);
+  }
+
+  // Clear search button
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      applyFilter();
+      searchInput.focus();
+    });
+  }
+
+  // Category filter pills
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentCategory = pill.dataset.category || 'all';
+      applyFilter();
+    });
+  });
+
+  // Reset button in empty state
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      currentCategory = 'all';
+      pills.forEach(p => p.classList.remove('active'));
+      const allPill = document.querySelector('.cat-pill[data-category="all"]');
+      if (allPill) allPill.classList.add('active');
+      if (jumpSelect) jumpSelect.value = '';
+      applyFilter();
+      window.scrollTo({ top: document.getElementById('library-controls').offsetTop - 80, behavior: 'smooth' });
+    });
+  }
+
+  // Quick jump dropdown
+  if (jumpSelect) {
+    jumpSelect.addEventListener('change', (e) => {
+      const targetId = e.target.value;
+      if (!targetId) return;
+
+      if (currentCategory !== 'all') {
+        currentCategory = 'all';
+        pills.forEach(p => p.classList.remove('active'));
+        const allPill = document.querySelector('.cat-pill[data-category="all"]');
+        if (allPill) allPill.classList.add('active');
+        applyFilter();
+      }
+
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        const top = targetEl.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+        targetEl.classList.add('section-flash-highlight');
+        setTimeout(() => targetEl.classList.remove('section-flash-highlight'), 2000);
+      }
+    });
+  }
+
+  // Floating tools scroll listener
+  window.addEventListener('scroll', () => {
+    if (floatingTools) {
+      if (window.scrollY > 400) {
+        floatingTools.classList.add('visible');
+      } else {
+        floatingTools.classList.remove('visible');
+      }
+    }
+  }, { passive: true });
+
+  if (floatingTopBtn) {
+    floatingTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (floatingJumpBtn) {
+    floatingJumpBtn.addEventListener('click', () => {
+      const controls = document.getElementById('library-controls');
+      if (controls) {
+        const top = controls.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top, behavior: 'smooth' });
+        if (searchInput) searchInput.focus();
+      }
+    });
+  }
+
+  // Initial filter run to set count
+  applyFilter();
+});
+</script>
 
 </body>
 </html>
