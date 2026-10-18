@@ -433,5 +433,51 @@
 })();
 </script>
 
+<!-- COUNTERS: self-heal from the catalogue (do not edit by hand) -->
+<script>
+/* Pull the real counts from the catalogue and rewrite every "N T\u00e1c Ph\u1ea9m" /
+   "N B\u1ea3n D\u1ecbch" / "N Works" text node, so this page cannot drift when new
+   books are published. Runs after load, skipped on save-data connections. */
+(function () {
+  var CAT = '/vi/books/index.html';
+  function rewrite(total, translated) {
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        return /T\u00e1c Ph\u1ea9m|B\u1ea3n D\u1ecbch|Works/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (node) {
+      var t = node.nodeValue
+        .replace(/(\d+)( T\u00e1c Ph\u1ea9m)/g, total + '$2')
+        .replace(/(\d+)( B\u1ea3n D\u1ecbch)/g, translated + '$2')
+        .replace(/(\d+)( Works)/g, total + '$2');
+      if (t !== node.nodeValue) node.nodeValue = t;
+    });
+  }
+  function load() {
+    fetch(CAT, { cache: 'force-cache', credentials: 'same-origin' })
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (html) {
+        if (!html) return;
+        var total = (html.match(/class="interactive-book-card/g) || []).length;
+        var tr = (html.match(/class="interactive-book-card translated/g) || []).length;
+        if (total) rewrite(total, tr);
+      })
+      .catch(function () { /* offline / blocked: keep the static numbers */ });
+  }
+  function start() {
+    if (navigator.connection && navigator.connection.saveData) return;
+    if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 3000 });
+    else setTimeout(load, 1500);
+  }
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start);
+})();
+</script>
+<!-- /COUNTERS -->
 </body>
 </html>
