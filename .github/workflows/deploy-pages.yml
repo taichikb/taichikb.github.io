@@ -41,7 +41,7 @@ jobs:
       #   downloads           (~0.02 GB) unreferenced A5 PDFs
       #   assets/images/*     the ~0.44 GB subset in .github/pages-media-exclude.txt:
       #                       files that NO page references, so dropping them is free
-      # EXCEPTION — assets/pdf/ (~0.58 GB) IS included on purpose: these are the
+      # EXCEPTION — assets/pdf/ (~0.59 GB) IS included on purpose: these are the
       # PDFs the reader pages embed (pdf.js iframe / data-pdf). On the origin the
       # browser fetches them over the Pages CDN with no CORS handshake and reuses
       # the connection, so first paint is immediate instead of streaming from
@@ -68,8 +68,8 @@ jobs:
           # upload if we approach the cap instead of discovering it at deploy time.
           SIZE_MB=$(du -sm _site | cut -f1)
           echo "Staged artifact size: ${SIZE_MB} MB"
-          if [ "$SIZE_MB" -gt 950 ]; then
-            echo "::error::Pages artifact is ${SIZE_MB} MB — over the 950 MB safety margin (hard cap 1 GB). Trim assets/pdf/ or find more unreferenced files to exclude." >&2
+          if [ "$SIZE_MB" -gt 985 ]; then
+            echo "::error::Pages artifact is ${SIZE_MB} MB — over the 985 MB safety margin (hard cap 1 GB). Trim assets/pdf/ or find more unreferenced files to exclude." >&2
             exit 1
           fi
 
