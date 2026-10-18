@@ -517,6 +517,119 @@ p { margin-bottom: 1.4rem; }
     border-bottom: 1px solid var(--border);
   }
 }
+
+/* Custom Table of Contents Styling for Sun Style Taijiquan */
+.book-toc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin: 20px 0 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+.book-toc-section {
+  margin-bottom: 24px;
+}
+.book-toc-section:last-of-type {
+  margin-bottom: 0;
+}
+.book-toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.book-toc-header .section-tag {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--gold-light);
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+[data-theme="dark"] .book-toc-header .section-tag {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+.book-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.book-toc-item {
+  margin-bottom: 8px;
+}
+.book-toc-link {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s ease;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+.book-toc-link:hover {
+  background: rgba(180, 83, 9, 0.06);
+  color: var(--accent-red);
+}
+[data-theme="dark"] .book-toc-link:hover {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+.book-toc-title {
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.book-toc-leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--ink-faint);
+  margin: 0 12px;
+  opacity: 0.6;
+  min-width: 20px;
+}
+.book-toc-pg {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.book-toc-note {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 640px) {
+  .book-toc-card {
+    padding: 20px 16px;
+  }
+  .book-toc-title {
+    white-space: normal;
+    font-size: 0.92rem;
+  }
+  .book-toc-leader {
+    display: none;
+  }
+  .book-toc-link {
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
 </style>
 </head>
 <body>
@@ -542,16 +655,16 @@ p { margin-bottom: 1.4rem; }
     <div class="toc-title">Mục Lục Toàn Thư</div>
     <nav class="toc-nav">
       <ul>
-        <li><a href="#sec00">Phần 1</a></li>
-        <li><a href="#sec01">Phần 2</a></li>
-        <li><a href="#sec02">Phần 3</a></li>
-        <li><a href="#sec03">Phần 4</a></li>
-        <li><a href="#sec04">Phần 5</a></li>
-        <li><a href="#sec05">Phần 6</a></li>
-        <li><a href="#sec06">Phần 7</a></li>
-        <li><a href="#sec07">Phần 8</a></li>
-        <li><a href="#sec08">Phần 9</a></li>
-        <li><a href="#sec09">Phần 10</a></li>
+        <li><a href="#sec00">Phần 1: Lời Tựa</a></li>
+        <li><a href="#sec01">Phần 2: Mục Lục</a></li>
+        <li><a href="#sec02">Phần 3: Giới thiệu vắn tắt</a></li>
+        <li><a href="#sec03">Phần 4: Tổng thuyết (1)</a></li>
+        <li><a href="#sec04">Phần 5: Tổng thuyết (2)</a></li>
+        <li><a href="#sec05">Phần 6: Khẩu quyết</a></li>
+        <li><a href="#sec06">Phần 7: Thượng Biên - Tên thức</a></li>
+        <li><a href="#sec07">Phần 8: Thượng Biên - Thuyết minh</a></li>
+        <li><a href="#sec08">Phần 9: Hạ Biên - Thôi thủ</a></li>
+        <li><a href="#sec09">Phần 10: Kỹ kích & Phụ lục</a></li>
       </ul>
     </nav>
   </aside>
@@ -583,8 +696,158 @@ p { margin-bottom: 1.4rem; }
     <div class="page-marker">Trang sách 目录</div>
     <h2 class="chapter-title">Mục Lục</h2>
   </div>
-<div class="chapter-sub">Mục Lục</div>
-<p>Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền ················· 1 Tổng thuyết Thái Cực Quyền ··································· 2 <strong>THƯỢNG BIÊN (上编)</strong> ········································· 5 Nhất, Tên gọi động tác ······································ 5 Nhị, Thuyết minh động tác ··································· 6 Tam, Đồ thị chỉ phương hướng và lộ tuyến động tác Tôn Thức Thái Cực Quyền <strong>HẠ BIÊN (下编)</strong> ············································· 51 Nhất, Phương pháp thôi thủ Thái Cực Quyền ·················· 51 Nhị, Kỹ kích Thái Cực Quyền ································· 55 <strong>Phụ: Tư liệu tham khảo</strong> ···································· 57 Nhất, Vương Tông Nhạc: Thái Cực Quyền Luận ·················· 57 Nhị, Vũ Vũ Tương: Thái Cực Quyền Luận ······················· 58 Tam, Thập Tam Thế Hành Công Tâm Giải ························ 58 Tứ, Thập Tam Thế Ca Quyết ··································· 59 Ngũ, Thôi Thủ Ca Quyết ······································ 59 Lục, Lý Diệc Dư: Ngũ Tự Quyết ······························· 60 Thất, Tán Phóng Mật Quyết ··································· 61 Bát, Tẩu Giá Đả Thủ Hành Công Yếu Ngôn ······················ 61 <em>Ghi chú: đây là mục lục in trong sách; trang scan là 5.</em></p>
+<div class="chapter-sub">Mục Lục (目录)</div>
+
+<div class="book-toc-card">
+  <!-- PHẦN MỞ ĐẦU -->
+  <div class="book-toc-section">
+    <div class="book-toc-header">
+      <span>Phần Mở Đầu</span>
+    </div>
+    <ul class="book-toc-list">
+      <li class="book-toc-item">
+        <a href="#sec02" class="book-toc-link">
+          <span class="book-toc-title">Giới thiệu vắn tắt về Tôn Thức Thái Cực Quyền</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">1</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#sec03" class="book-toc-link">
+          <span class="book-toc-title">Tổng thuyết Thái Cực Quyền</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- THƯỢNG BIÊN (上编) -->
+  <div class="book-toc-section">
+    <div class="book-toc-header">
+      <span>THƯỢNG BIÊN (上编)</span>
+      <span class="section-tag">Trang 5</span>
+    </div>
+    <ul class="book-toc-list">
+      <li class="book-toc-item">
+        <a href="#sec06" class="book-toc-link">
+          <span class="book-toc-title">Nhất, Tên gọi động tác</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">5</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#sec07" class="book-toc-link">
+          <span class="book-toc-title">Nhị, Thuyết minh động tác</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">6</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#p55" class="book-toc-link">
+          <span class="book-toc-title">Tam, Đồ thị chỉ phương hướng và lộ tuyến động tác Tôn Thức Thái Cực Quyền</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">50</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- HẠ BIÊN (下编) -->
+  <div class="book-toc-section">
+    <div class="book-toc-header">
+      <span>HẠ BIÊN (下编)</span>
+      <span class="section-tag">Trang 51</span>
+    </div>
+    <ul class="book-toc-list">
+      <li class="book-toc-item">
+        <a href="#sec08" class="book-toc-link">
+          <span class="book-toc-title">Nhất, Phương pháp thôi thủ Thái Cực Quyền</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">51</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#sec09" class="book-toc-link">
+          <span class="book-toc-title">Nhị, Kỹ kích Thái Cực Quyền</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">55</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- PHỤ: TƯ LIỆU THAM KHẢO -->
+  <div class="book-toc-section">
+    <div class="book-toc-header">
+      <span>Phụ: Tư liệu tham khảo</span>
+      <span class="section-tag">Trang 57</span>
+    </div>
+    <ul class="book-toc-list">
+      <li class="book-toc-item">
+        <a href="#ref-vuong-tong-nhac" class="book-toc-link">
+          <span class="book-toc-title">Nhất, Vương Tông Nhạc: Thái Cực Quyền Luận</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">57</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-vu-vu-tuong" class="book-toc-link">
+          <span class="book-toc-title">Nhị, Vũ Vũ Tương: Thái Cực Quyền Luận</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">58</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-thap-tam-the-tam-giai" class="book-toc-link">
+          <span class="book-toc-title">Tam, Thập Tam Thế Hành Công Tâm Giải</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">58</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-thap-tam-the-ca-quyet" class="book-toc-link">
+          <span class="book-toc-title">Tứ, Thập Tam Thế Ca Quyết</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">59</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-thoi-thu-ca-quyet" class="book-toc-link">
+          <span class="book-toc-title">Ngũ, Thôi Thủ Ca Quyết</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">59</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-ngu-tu-quyet" class="book-toc-link">
+          <span class="book-toc-title">Lục, Lý Diệc Dư: Ngũ Tự Quyết</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">60</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-tan-phong-mat-quyet" class="book-toc-link">
+          <span class="book-toc-title">Thất, Tán Phóng Mật Quyết</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">61</span>
+        </a>
+      </li>
+      <li class="book-toc-item">
+        <a href="#ref-tau-gia-da-thu" class="book-toc-link">
+          <span class="book-toc-title">Bát, Tẩu Giá Đả Thủ Hành Công Yếu Ngôn</span>
+          <span class="book-toc-leader"></span>
+          <span class="book-toc-pg">61</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="book-toc-note">
+    <i class="fa-solid fa-circle-info"></i>
+    <span>Ghi chú: đây là mục lục in trong sách; trang scan là 5.</span>
+  </div>
+</div>
 </section>
 
 <section id="sec02">
@@ -1464,21 +1727,33 @@ p { margin-bottom: 1.4rem; }
 <p>Thái Cực Quyền nói về luyện thể là công phu tri kỷ (知己功夫, zhī jǐ gōng fu); luyện lâu thuần thục mới có thể khiến toàn thân hư linh, tròn sống không vướng mắc, nặng nề như Thái Sơn, nhẹ nhàng như lông hồng, thần khí hòa lẫn, tự nhiên có thể trừ bệnh kéo dài tuổi thọ. Nói về luyện dụng là công phu tri nhân (知人功夫, zhī rén gōng fu); luyện lâu công phu thuần nhất mới có thể tay chân linh hoạt, dẫn vào rơi vào chỗ không, lay động bốn lạng bạt ngàn cân. Cho nên chỉ có luyện cả thể và dụng mới là tri kỷ tri bỉ; không thể tri kỷ tri bỉ thì không thể so tài cùng người khác. Thường thấy những người tự cho là chỉ học "kỹ kích", dùng để mà dùng, ắt lấy sức vụng mà làm, thì sẽ lạc vào đường tà; mong người học răn lấy điều đó.</p>
 <p>Muốn thuần thục kỹ kích của Thái Cực Quyền, phải lấy việc luyện bài quyền làm chính, cầu công phu nơi eo và chân. Vì kỹ kích trước hết đòi hỏi phản ứng nhanh; muốn phản ứng nhanh thì ắt phải thuần thục từng tay từng thức, eo chân linh hoạt có lực, mới có thể ứng phó đối phương một cách nhẹ nhàng linh hoạt tròn sống. Hơn nữa ắt phải có thể "thính kình", như thế mới có thể dính chặt đối phương, tùy cơ ứng biến, nghe một biết trăm, biến hóa vô cùng.</p>
 <p>Ở Thượng biên đã nói tóm lược cách dùng của một số thức quyền, nhưng người học không được học thuộc lòng một cách cứng nhắc. Nên thuần thục bài quyền, siêng tập thôi thủ. Mới luyện tĩnh bộ thôi thủ, công phu chủ yếu ở eo; eo cực kỳ linh hoạt thì hóa kình của người khác có thừa. Thuần thục rồi, tập động bộ thôi thủ, công phu chủ yếu ở chân; công phu thuần nhất thì tiến lùi và đổi hướng nhanh chóng. Tiếp đó đi tứ ngung, rồi sau là tán thủ. Hai bên có thể không theo quy củ, tùy ý công kích lẫn nhau, hóa giải cũng được.</p>
-<p>Tóm lại, kỹ kích của Thái Cực Quyền — tức tán thủ — không có pháp quy nhất định, mà là tùy thời tùy thế tùy cơ mà biến; cái gọi là tán thủ không có thức chính là ý ấy. Một thức trong quyền có thể dùng mấy cách, mấy thức có thể dùng một cách, song phải lượng thời lượng thế mà hành. Đúng như kinh quyền đã nói: "Bỉ bất động, "Ta bất động, bỉ nhược động, ngã tiên động" — ta không động, đối phương nếu động thì ta động trước — ấy gọi là ý tại địch tiên: ý ở trước đối phương. Nghĩa là động tác của đối phương dù mãnh liệt mau lẹ thế nào, ta đều có thể hóa đi, chuyển thành cái dùng của mình. Không thể đợi chiêu thức của đối phương đã giáng thực xuống thân mình, mà bản thân cũng không thể luôn dùng một chiêu thức, không biến hóa mà bị người khống chế. Mong người học suy một ra ba, biết cách dùng mà không câu nệ vào cách dùng, siêng luyện thôi thủ, thì có thể đạt được chỗ ảo diệu của Thái Cực quyền kỹ kích. Phụ lục: Tài liệu tham khảo Nhất, Vương Tông Nhạc: Thái Cực quyền luận Thái Cực giả, Vô Cực nhi sinh; động tĩnh chi cơ, âm dương chi mẫu dã — Thái Cực do Vô Cực mà sinh ra; là cơ của động tĩnh, là mẹ của âm dương. Động thì phân, tĩnh thì hợp. Không quá không kém, tùy khúc tựu thân — theo chỗ cong mà duỗi ra. Người cương ta nhu gọi là "tẩu" (đi, hóa); ta thuận người nghịch gọi là "niêm" (dính). Động gấp thì ứng gấp, động chậm thì theo chậm. Tuy biến hóa muôn mối mà lý chỉ một mối. Từ chỗ thục chiêu thức mà dần ngộ "đổng kình" (hiểu kình); từ hiểu kình mà lên tới thần minh. Nhưng không dùng công lâu dài thì không thể hoát nhiên quán thông. Hư linh đỉnh kình, khí trầm đan điền. Không lệch không tựa, khi ẩn khi hiện. Bên trái nặng thì bên trái hư, bên phải nặng thì bên phải yểu. Ngẩng lên thì càng cao, cúi xuống thì càng sâu. Tiến vào thì càng dài, thoái ra thì càng gấp. Một lông cũng không thêm được, ruồi muỗi cũng không đậu được. Người không biết ta, ta riêng biết người. Anh hùng đi đến đâu cũng vô địch, ấy đều do đó mà tới. Thuật này có nhiều bàng môn; tuy thế có khác nhau, đại để không ngoài việc mạnh hiếp yếu, chậm nhường nhanh. Có lực đánh không lực, tay chậm nhường tay nhanh — ấy đều là năng lực tự nhiên trời cho, không liên quan tới sức học mà làm nên. Xét câu "bốn lạng bạt ngàn cân", rõ ràng không phải thắng bằng lực. Xem hình người già cả có thể chống lại đám đông, nhanh thì làm được gì? Đứng như cái cân, sống động như bánh xe. Lệch trầm thì theo, song trọng thì trệ. Thường thấy kẻ có công thuần nhiều năm mà không vận hóa được, đều là tự mình bị người khống chế, rốt cuộc không khống chế được người — ấy là chưa ngộ bệnh "song trọng" (nặng đôi). Muốn tránh bệnh ấy phải biết âm dương. Niêm tức là tẩu, tẩu tức là niêm. Âm không rời dương, dương không rời âm; âm dương tương tế mới là đổng kình. Hiểu kình rồi, càng luyện càng tinh, mặc thức suy nghiệm, dần tới chỗ tòng tâm sở dục — muốn gì được nấy. Gốc là xả kỷ tòng nhân — bỏ mình theo người; nhiều người lầm mà bỏ gần cầu xa. Chỗ gọi "sai một ly, lệch ngàn dặm", người học không thể không phân biệt tường tận.</p>
+<p>Tóm lại, kỹ kích của Thái Cực Quyền — tức tán thủ — không có pháp quy nhất định, mà là tùy thời tùy thế tùy cơ mà biến; cái gọi là tán thủ không có thức chính là ý ấy. Một thức trong quyền có thể dùng mấy cách, mấy thức có thể dùng một cách, song phải lượng thời lượng thế mà hành. Đúng như kinh quyền đã nói: "Bỉ bất động, "Ta bất động, bỉ nhược động, ngã tiên động" — ta không động, đối phương nếu động thì ta động trước — ấy gọi là ý tại địch tiên: ý ở trước đối phương. Nghĩa là động tác của đối phương dù mãnh liệt mau lẹ thế nào, ta đều có thể hóa đi, chuyển thành cái dùng của mình. Không thể đợi chiêu thức của đối phương đã giáng thực xuống thân mình, mà bản thân cũng không thể luôn dùng một chiêu thức, không biến hóa mà bị người khống chế. Mong người học suy một ra ba, biết cách dùng mà không câu nệ vào cách dùng, siêng luyện thôi thủ, thì có thể đạt được chỗ ảo diệu của Thái Cực quyền kỹ kích.</p>
+
+<div class="chapter-sub" id="ref-phu-luc">Phụ: Tư liệu tham khảo</div>
+
+<h3 id="ref-vuong-tong-nhac">Nhất, Vương Tông Nhạc: Thái Cực Quyền Luận</h3>
+<p>Thái Cực giả, Vô Cực nhi sinh; động tĩnh chi cơ, âm dương chi mẫu dã — Thái Cực do Vô Cực mà sinh ra; là cơ của động tĩnh, là mẹ của âm dương. Động thì phân, tĩnh thì hợp. Không quá không kém, tùy khúc tựu thân — theo chỗ cong mà duỗi ra. Người cương ta nhu gọi là "tẩu" (đi, hóa); ta thuận người nghịch gọi là "niêm" (dính). Động gấp thì ứng gấp, động chậm thì theo chậm. Tuy biến hóa muôn mối mà lý chỉ một mối. Từ chỗ thục chiêu thức mà dần ngộ "đổng kình" (hiểu kình); từ hiểu kình mà lên tới thần minh. Nhưng không dùng công lâu dài thì không thể hoát nhiên quán thông. Hư linh đỉnh kình, khí trầm đan điền. Không lệch không tựa, khi ẩn khi hiện. Bên trái nặng thì bên trái hư, bên phải nặng thì bên phải yểu. Ngẩng lên thì càng cao, cúi xuống thì càng sâu. Tiến vào thì càng dài, thoái ra thì càng gấp. Một lông cũng không thêm được, ruồi muỗi cũng không đậu được. Người không biết ta, ta riêng biết người. Anh hùng đi đến đâu cũng vô địch, ấy đều do đó mà tới. Thuật này có nhiều bàng môn; tuy thế có khác nhau, đại để không ngoài việc mạnh hiếp yếu, chậm nhường nhanh. Có lực đánh không lực, tay chậm nhường tay nhanh — ấy đều là năng lực tự nhiên trời cho, không liên quan tới sức học mà làm nên. Xét câu "bốn lạng bạt ngàn cân", rõ ràng không phải thắng bằng lực. Xem hình người già cả có thể chống lại đám đông, nhanh thì làm được gì? Đứng như cái cân, sống động như bánh xe. Lệch trầm thì theo, song trọng thì trệ. Thường thấy kẻ có công thuần nhiều năm mà không vận hóa được, đều là tự mình bị người khống chế, rốt cuộc không khống chế được người — ấy là chưa ngộ bệnh "song trọng" (nặng đôi). Muốn tránh bệnh ấy phải biết âm dương. Niêm tức là tẩu, tẩu tức là niêm. Âm không rời dương, dương không rời âm; âm dương tương tế mới là đổng kình. Hiểu kình rồi, càng luyện càng tinh, mặc thức suy nghiệm, dần tới chỗ tòng tâm sở dục — muốn gì được nấy. Gốc là xả kỷ tòng nhân — bỏ mình theo người; nhiều người lầm mà bỏ gần cầu xa. Chỗ gọi "sai một ly, lệch ngàn dặm", người học không thể không phân biệt tường tận.</p>
 <p><span id="p63" class="page-anchor"></span>Trường quyền giả, như Trường Giang đại hà thao thao bất tuyệt dã — Trường quyền như sông Trường Giang, sông lớn cuồn cuộn không dứt. Thập Tam Thế là: bằng, lữ, tễ, án, thái, liệt, trửu, kháo — ấy là bát quái; tiến bộ, thoái bộ, tả cố, hữu phán, trung định — ấy là ngũ hành. Hợp lại mà nói: Thập Tam Thế. Bằng, lữ, tễ, án tức Khảm, Ly, Chấn, Đoài — bốn phương chính; thái, liệt, trửu, kháo tức Càn, Cấn, Tốn, Khôn — bốn góc chéo; tiến, thoái, cố, phán, định tức kim, mộc, thủy, hỏa, thổ.</p>
-<p>Nhị, Vũ Vũ Tương: Thái Cực quyền luận Vị hữu thiên địa dĩ tiền, thái không vô cùng chi trung, hồn nhiên nhất khí — trước khi có trời đất, trong khoảng thái không vô cùng, một khí hỗn độn, ấy là Vô Cực; Vô Cực nhi Thái Cực. Thái Cực giả, thiên địa chi căn cai, vạn vật chi nguyên thủy dã — Thái Cực là gốc rễ của trời đất, là nguyên thủy của muôn vật. Thái Cực quyền giả, nhất cử động, chu thân câu yếu khinh linh, vưu yếu quán xuyến — Thái Cực quyền, hễ động một cái, toàn thân đều phải nhẹ nhàng linh hoạt, càng phải xuyên suốt liền mạch. Khí nên cổ đãng, thần nên nội liễm. Chớ để có chỗ khiếm khuyết, chỗ lồi lõm, chỗ đứt quãng. Gốc ở chân, phát ở đùi, chủ tể ở eo, hiện ra ở ngón tay. Từ chân tới đùi tới eo, tất phải là một khí hoàn chỉnh. Tiến tới thoái lui mới nắm được cơ và thế. Nếu có chỗ không nắm được cơ thế, thân liền tán loạn. Bệnh ấy tất phải tìm ở khoảng eo và đùi. Trên dưới trước sau trái phải đều như vậy. Phàm những điều ấy đều là ở ý, không ở bên ngoài mà ở bên trong. Có trên tất có dưới, có trước tất có sau, có trái tất có phải; như ý muốn hướng lên thì ngụ ý hướng xuống. Như nâng vật lên mà kèm ý dũa nó xuống. Thế thì gốc nó tự đoạn, đẩy nó nhanh nó cũng không ngưng kết. Hư thực nên phân cho rõ. Một chỗ tự có một chỗ hư thực, chỗ nào cũng là một hư thực ấy. Toàn thân tiết tiết quán xuyến, chớ để mảy may đứt quãng. (Nguyên chú rằng: đây là di luận của lão sư Trương Tam Phong ở Võ Đang sơn, muốn cho hào kiệt thiên hạ kéo dài tuổi thọ tăng thêm thọ mệnh, không phải chỉ làm cái ngọn cuối của võ nghệ.)</p>
-<p><span id="p64" class="page-anchor"></span>Tam, Thập Tam Thế hành công tâm giải Dĩ tâm hành khí, vụ lệnh trầm trước — lấy tâm hành khí, tất phải cho nó trầm tĩnh, mới có thể thu liễm vào xương. Dĩ khí vận thân, vụ lệnh thuận toại — lấy khí vận thân, tất phải cho nó thuận lợi, mới có thể tiện lợi theo tâm. Tinh thần nâng lên được thì không lo trì trệ nặng nề, ấy gọi là đỉnh đầu huyền — treo đỉnh đầu. Ý khí phải hoán đổi cho linh, mới có thú viên hoạt, ấy gọi là biến hóa hư thực. Phát kình phải trầm trước tùng tĩnh, chuyên chú một phương. Lập thân phải trung chính an thư, chống đỡ tám hướng; hành khí như châu chín khúc, không chỗ nhỏ nào không tới; vận động như thép trăm luyện, không gì cứng không phá. Hình như chim cắt bắt thỏ, thần như mèo bắt chuột. Tĩnh như núi non, động như sông biển. Súc kình như giương cung, phát kình như buông tên. Khúc trung cầu trực, súc nhi hậu phát — trong cong tìm thẳng, tích rồi mới phát. Lực phát từ tích (xương sống), bộ tùy thân hoán. Thu tức thị phóng, phóng tức thị thu; đoạn nhi phục liên — thu tức là phóng, phóng tức là thu; đứt rồi lại liền. Vãng phục tu hữu chiết điệp, tiến thoái tu hữu chuyển hoán. Cực nhu nhuyễn nhiên hậu cực kiên ngạnh; năng hô hấp nhiên hậu năng linh hoạt — cực mềm mại rồi sau cực cứng rắn; biết hô hấp rồi sau mới linh hoạt. Khí dĩ trực dưỡng nhi vô hại, kình dĩ khúc súc nhi hữu dư. Tâm vi lệnh, khí vi kỳ, yêu vi đạo — tâm là mệnh lệnh, khí là cờ, eo là cờ đại. Tiên cầu khai triển, hậu cầu khẩn thốc, phương trăn vu chẩn mật dã.</p>
+<h3 id="ref-vu-vu-tuong">Nhị, Vũ Vũ Tương: Thái Cực Quyền Luận</h3>
+<p>Vị hữu thiên địa dĩ tiền, thái không vô cùng chi trung, hồn nhiên nhất khí — trước khi có trời đất, trong khoảng thái không vô cùng, một khí hỗn độn, ấy là Vô Cực; Vô Cực nhi Thái Cực. Thái Cực giả, thiên địa chi căn cai, vạn vật chi nguyên thủy dã — Thái Cực là gốc rễ của trời đất, là nguyên thủy của muôn vật. Thái Cực quyền giả, nhất cử động, chu thân câu yếu khinh linh, vưu yếu quán xuyến — Thái Cực quyền, hễ động một cái, toàn thân đều phải nhẹ nhàng linh hoạt, càng phải xuyên suốt liền mạch. Khí nên cổ đãng, thần nên nội liễm. Chớ để có chỗ khiếm khuyết, chỗ lồi lõm, chỗ đứt quãng. Gốc ở chân, phát ở đùi, chủ tể ở eo, hiện ra ở ngón tay. Từ chân tới đùi tới eo, tất phải là một khí hoàn chỉnh. Tiến tới thoái lui mới nắm được cơ và thế. Nếu có chỗ không nắm được cơ thế, thân liền tán loạn. Bệnh ấy tất phải tìm ở khoảng eo và đùi. Trên dưới trước sau trái phải đều như vậy. Phàm những điều ấy đều là ở ý, không ở bên ngoài mà ở bên trong. Có trên tất có dưới, có trước tất có sau, có trái tất có phải; như ý muốn hướng lên thì ngụ ý hướng xuống. Như nâng vật lên mà kèm ý dũa nó xuống. Thế thì gốc nó tự đoạn, đẩy nó nhanh nó cũng không ngưng kết. Hư thực nên phân cho rõ. Một chỗ tự có một chỗ hư thực, chỗ nào cũng là một hư thực ấy. Toàn thân tiết tiết quán xuyến, chớ để mảy may đứt quãng. (Nguyên chú rằng: đây là di luận của lão sư Trương Tam Phong ở Võ Đang sơn, muốn cho hào kiệt thiên hạ kéo dài tuổi thọ tăng thêm thọ mệnh, không phải chỉ làm cái ngọn cuối của võ nghệ.)</p>
+<h3 id="ref-thap-tam-the-tam-giai">Tam, Thập Tam Thế Hành Công Tâm Giải</h3>
+<p><span id="p64" class="page-anchor"></span>Dĩ tâm hành khí, vụ lệnh trầm trước — lấy tâm hành khí, tất phải cho nó trầm tĩnh, mới có thể thu liễm vào xương. Dĩ khí vận thân, vụ lệnh thuận toại — lấy khí vận thân, tất phải cho nó thuận lợi, mới có thể tiện lợi theo tâm. Tinh thần nâng lên được thì không lo trì trệ nặng nề, ấy gọi là đỉnh đầu huyền — treo đỉnh đầu. Ý khí phải hoán đổi cho linh, mới có thú viên hoạt, ấy gọi là biến hóa hư thực. Phát kình phải trầm trước tùng tĩnh, chuyên chú một phương. Lập thân phải trung chính an thư, chống đỡ tám hướng; hành khí như châu chín khúc, không chỗ nhỏ nào không tới; vận động như thép trăm luyện, không gì cứng không phá. Hình như chim cắt bắt thỏ, thần như mèo bắt chuột. Tĩnh như núi non, động như sông biển. Súc kình như giương cung, phát kình như buông tên. Khúc trung cầu trực, súc nhi hậu phát — trong cong tìm thẳng, tích rồi mới phát. Lực phát từ tích (xương sống), bộ tùy thân hoán. Thu tức thị phóng, phóng tức thị thu; đoạn nhi phục liên — thu tức là phóng, phóng tức là thu; đứt rồi lại liền. Vãng phục tu hữu chiết điệp, tiến thoái tu hữu chuyển hoán. Cực nhu nhuyễn nhiên hậu cực kiên ngạnh; năng hô hấp nhiên hậu năng linh hoạt — cực mềm mại rồi sau cực cứng rắn; biết hô hấp rồi sau mới linh hoạt. Khí dĩ trực dưỡng nhi vô hại, kình dĩ khúc súc nhi hữu dư. Tâm vi lệnh, khí vi kỳ, yêu vi đạo — tâm là mệnh lệnh, khí là cờ, eo là cờ đại. Tiên cầu khai triển, hậu cầu khẩn thốc, phương trăn vu chẩn mật dã.</p>
 <p>Hựu viết: tiên tại tâm, hậu tại thân, phúc tùng tịnh, khí liễm nhập cốt tủy — lại nói: trước ở tâm, sau ở thân; bụng tùng tịnh, khí thu vào tủy xương. Thần thư thân tĩnh, khắc khắc tại tâm. Thiết ký: nhất động vô hữu bất động, nhất tĩnh vô hữu bất tĩnh — ghi nhớ kỹ: một động thì không gì không động, một tĩnh thì không gì không tĩnh. Khiên động vãng lai, khí thiếp tích bối, liễm nhập tích cốt. Nội cố tinh thần, ngoại thị an dật. Mại bộ như miêu hành, vận kình như trừu ty — bước như mèo đi, vận kình như kéo tơ. Toàn thân ý tại tinh thần, bất tại khí; tại khí tắc trệ. Hữu khí giả đái lực, vô khí giả thuần cương; khí nhược xa luân, yêu nhược xa trục dã.</p>
-<p>Tứ, Thập Tam Thế ca quyết Thập tam tổng thế mạc khinh thị, mệnh ý nguyên đầu tại yêu khích. Biến chuyển hư thực tu lưu ý, khí biến thân khu bất thiểu trệ. Tĩnh trung xúc động động do tĩnh, nhân địch biến hóa thị thần kỳ. Thế thế tồn tâm quỹ dụng ý, đắc lai bất giác phí công phu. Khắc khắc lưu tâm tại yêu gian, phúc nội tùng tịnh khí đằng nhiên. Vĩ lư trung chính thần quán đỉnh, mãn thân khinh lợi đỉnh đầu huyền. Tử tế lưu tâm hướng thôi cầu, khuất thân khai hợp thính tự do. Nhập môn dẫn lộ tu khẩu thụ, công phu vô tức pháp tự tu. Nhược ngôn thể dụng hà vi chuẩn, ý khí quân lai cốt nhục thần. Tưởng thôi dụng ý chung hà tại, ích thọ diên niên bất lão xuân. Ca hề ca hề bách tứ thập, tự tự chân thiết nghĩa vô di. Nhược bất hướng thử thôi cầu khứ, uổng phí công phu di thán tích.</p>
-<p><span id="p65" class="page-anchor"></span>Ngũ, Thôi thủ ca quyết Bằng lữ tễ án tu nhận chân, thượng hạ tương tùy nhân nan tiến. Nhậm tha cự lực lai đả ngã, khiên động tứ lạng bát thiên cân. Dẫn tiến lạc không hợp tức xuất, niêm liên miên tùy bất đâu đỉnh.</p>
-<p>Lục, Lý Diệc Dư: Ngũ tự quyết Tâm tĩnh Tâm bất tĩnh tắc bất chuyên, nhất cử thủ, tiền hậu tả hữu, toàn vô định hướng, cố yếu tâm tĩnh — tâm không tĩnh thì không chuyên nhất; hễ giơ tay lên, trước sau trái phải đều không có hướng nhất định, cho nên cần tâm tĩnh. Khởi sơ cử động vị năng do kỷ, yếu tức tâm thể nhận, tùy nhân sở động, tùy khúc tựu thân, bất đâu bất đỉnh, vật tự thân súc — lúc đầu cử động chưa thể do mình, phải lắng tâm mà thể nhận, theo người mà động, theo cong mà duỗi, không buông không đỉnh, chớ tự co duỗi. Bỉ hữu lực, ngã diệc hữu lực, ngã lực tại tiên; bỉ vô lực, ngã diệc hữu lực, ngã ý nhưng tại tiên — đối phương có lực, ta cũng có lực, lực ta ở trước; đối phương không lực, ta cũng có lực, ý ta vẫn ở trước. Yếu khắc khắc lưu tâm, ai hà xử, tâm yếu dụng tại hà xử, tu hướng bất đâu bất đỉnh trung thảo tiêu tức. Tòng thử tố khứ, nhật tích nguyệt lũy, tiện năng thi chi vu thân; thử toàn thị dụng ý, bất thị dụng kình, cửu chi tắc nhân vi ngã chế, ngã bất vi nhân chế hĩ.</p>
-<p>Thân linh Thân trệ tắc tiến thoái bất năng tự như, cố yếu thân linh — thân trì trệ thì tiến thoái không được tự như, cho nên cần thân linh. Cử thủ bất khả hữu ngai tượng, bỉ chi lực phương giác xâm ngã bì mao, ngã chi ý dĩ nhập bỉ cốt lý — giơ tay không được có vẻ ngây dại; lực đối phương vừa chạm vào da lông ta, ý ta đã vào tận xương cốt họ. Lưỡng thủ chi trì, nhất khí quán xuyến. Tả trọng tắc tả hư, nhi hữu dĩ khứ; hữu trọng tắc hữu hư, nhi tả dĩ khứ. Khí như xa luân, chu thân câu yếu tương tùy. Hữu bất tương tùy xử, thân tiện tán loạn, tiện bất đắc lực, kỳ bệnh vu yêu thối cầu chi. Tiên dĩ tâm sử thân, tòng nhân bất tòng kỷ; hậu sử thân năng tòng tâm, do kỷ nhưng tòng nhân. Do kỷ tắc trệ, tòng nhân tắc hoạt. Năng tòng nhân, thủ thượng tiện hữu phân thốn. Lượng bỉ kình chi đại tiểu, phân ly bất thác; quyền bỉ lai chi trường đoản, hào phát vô sai. Tiền tiến hậu thoái, xử xử kháp hợp. Công di cửu nhi kỹ di tinh.</p>
-<p>Khí liễm Khí thế tán mạn, tiện vô hàm súc, thân dịch tán loạn, vụ sử khí liễm nhập tích cốt — khí thế tán mạn thì không hàm súc, thân dễ tán loạn, tất phải cho khí thu vào xương sống. Hô hấp thông linh, chu thân võng gian. Hấp vi hợp vi súc, hô vi khai vi phát — hít vào là hợp là súc, thở ra là khai là phát. Cái hấp tắc tự nhiên đề đắc khởi, diệc nã đắc nhân khởi; hô tắc tự nhiên trầm đắc hạ, diệc phóng đắc nhân xuất. Thử thị dĩ ý vận khí, phi dĩ lực vận khí dã.</p>
-<p><span id="p66" class="page-anchor"></span>Kình chỉnh Nhất thân chi kình, luyện thành nhất gia — kình của toàn thân luyện thành một nhà. Phân thanh hư thực, phát kình yếu hữu căn nguyên. Kình khởi cước cân, chủ vu yêu gian, hình vu thủ chỉ, phát vu tích bối — kình khởi từ gót chân, chủ ở nơi yêu (lưng), hiện ra nơi ngón tay, phát ra từ tích (xương sống). Hựu yếu đề khởi toàn phó tinh thần — lại phải nâng lên toàn bộ tinh thần. Vu bỉ kình tương xuất vị phát chi tế, ngã kình dĩ tiếp nhập bỉ kình, kháp hảo bất hậu bất tiên — vào lúc kình của đối phương sắp ra mà chưa phát, kình ta đã tiếp nhập kình họ, vừa khéo không sau không trước. Như bì nhiên hỏa, như tuyền dũng xuất — như da bắt lửa, như suối tuôn ra. Tiền tiến hậu thoái, vô ti hào tán loạn. Khúc trung cầu trực, súc nhi hậu phát, phương năng tùy thủ tấu hiệu, thử vị tá lực đả nhân, tứ lạng bát thiên cân dã — trong cong cầu thẳng, súc rồi mới phát, mới có thể tùy tay mà hiệu nghiệm; ấy gọi là mượn lực đánh người, tứ lạng bát thiên cân.</p>
-<p>Thần tụ Thượng tứ giả câu bị, tổng quy thần tụ — bốn điều trên đều đã đủ, rốt lại quy về thần tụ. Thần tụ tắc nhất khí cổ chú — thần tụ thì một khí đúc nên. Luyện khí quy thần, khí thế đằng na — luyện khí trở về thần, khí thế chuyển dời. Tinh thần quán chú, khai hợp hữu trí, hư thực thanh sở. Tả hư tắc hữu thực, hữu hư tắc tả thực. Hư phi toàn nhiên vô lực, khí thế yếu hữu đằng na — hư không phải hoàn toàn không lực, khí thế phải có chuyển dời. Thực phi toàn nhiên chiếm sát, tinh thần yếu quý quán chú — thực không phải chiếm sát hoàn toàn, tinh thần cốt ở chỗ quán chú. Khẩn yếu toàn tại hung trung yêu gian, vận dụng bất tại ngoại diện — điều cốt yếu hoàn toàn ở trong ngực và nơi yêu, vận dụng không ở bên ngoài. Lực tòng nhân tá, khí do tích phát — lực mượn từ người, khí phát từ tích. Hồ năng khí do tích phát? Khí hướng hạ trầm, do lưỡng kiên thu vu tích cốt, chú vu yêu gian, thử khí chi do thượng nhi hạ dã, vị chi hợp — khí chìm xuống dưới, từ hai vai thu vào xương sống, chú vào nơi yêu; ấy là khí từ trên xuống dưới, gọi là hợp. Do yêu hình vu tích cốt, bố vu lưỡng bác, thi vu thủ chỉ, thử khí chi do hạ nhi thượng dã, vị chi khai — từ yêu hiện ra nơi xương sống, bố ra hai cánh tay, thi hành nơi ngón tay; ấy là khí từ dưới lên trên, gọi là khai. Hợp tiện thị thu, khai tiện thị phóng — hợp tức là thu, khai tức là phóng. Năng đổng đắc khai hợp, tiện tri âm dương. Đáo thử địa vị, công dụng nhất nhật, kỹ tinh nhất nhật, tiệm chí tòng tâm sở dục, võng bất như ý hĩ — đến được địa vị này, công phu một ngày thì kỹ tinh một ngày, dần đến chỗ làm theo lòng muốn, không gì không như ý.</p>
-<p>Thất, Tán phóng mật quyết Kình, dẫn, tùng, phóng tứ tự — bốn chữ: kình, dẫn, tùng, phóng Kình khai bỉ kình tá bỉ lực, trung hữu linh tự. Dẫn đáo thân tiền kình thủy súc, trung hữu liễm tự. Tùng khai ngã kình vật sử khuất, trung hữu tĩnh tự. Phóng thời yêu cước nhận đoan đích, trung hữu chỉnh tự.</p>
+<h3 id="ref-thap-tam-the-ca-quyet">Tứ, Thập Tam Thế Ca Quyết</h3>
+<p>Thập tam tổng thế mạc khinh thị, mệnh ý nguyên đầu tại yêu khích. Biến chuyển hư thực tu lưu ý, khí biến thân khu bất thiểu trệ. Tĩnh trung xúc động động do tĩnh, nhân địch biến hóa thị thần kỳ. Thế thế tồn tâm quỹ dụng ý, đắc lai bất giác phí công phu. Khắc khắc lưu tâm tại yêu gian, phúc nội tùng tịnh khí đằng nhiên. Vĩ lư trung chính thần quán đỉnh, mãn thân khinh lợi đỉnh đầu huyền. Tử tế lưu tâm hướng thôi cầu, khuất thân khai hợp thính tự do. Nhập môn dẫn lộ tu khẩu thụ, công phu vô tức pháp tự tu. Nhược ngôn thể dụng hà vi chuẩn, ý khí quân lai cốt nhục thần. Tưởng thôi dụng ý chung hà tại, ích thọ diên niên bất lão xuân. Ca hề ca hề bách tứ thập, tự tự chân thiết nghĩa vô di. Nhược bất hướng thử thôi cầu khứ, uổng phí công phu di thán tích.</p>
+<h3 id="ref-thoi-thu-ca-quyet">Ngũ, Thôi Thủ Ca Quyết</h3>
+<p><span id="p65" class="page-anchor"></span>Bằng lữ tễ án tu nhận chân, thượng hạ tương tùy nhân nan tiến. Nhậm tha cự lực lai đả ngã, khiên động tứ lạng bát thiên cân. Dẫn tiến lạc không hợp tức xuất, niêm liên miên tùy bất đâu đỉnh.</p>
+<h3 id="ref-ngu-tu-quyet">Lục, Lý Diệc Dư: Ngũ Tự Quyết</h3>
+<p><strong>Tâm tĩnh</strong>: Tâm bất tĩnh tắc bất chuyên, nhất cử thủ, tiền hậu tả hữu, toàn vô định hướng, cố yếu tâm tĩnh — tâm không tĩnh thì không chuyên nhất; hễ giơ tay lên, trước sau trái phải đều không có hướng nhất định, cho nên cần tâm tĩnh. Khởi sơ cử động vị năng do kỷ, yếu tức tâm thể nhận, tùy nhân sở động, tùy khúc tựu thân, bất đâu bất đỉnh, vật tự thân súc — lúc đầu cử động chưa thể do mình, phải lắng tâm mà thể nhận, theo người mà động, theo cong mà duỗi, không buông không đỉnh, chớ tự co duỗi. Bỉ hữu lực, ngã diệc hữu lực, ngã lực tại tiên; bỉ vô lực, ngã diệc hữu lực, ngã ý nhưng tại tiên — đối phương có lực, ta cũng có lực, lực ta ở trước; đối phương không lực, ta cũng có lực, ý ta vẫn ở trước. Yếu khắc khắc lưu tâm, ai hà xử, tâm yếu dụng tại hà xử, tu hướng bất đâu bất đỉnh trung thảo tiêu tức. Tòng thử tố khứ, nhật tích nguyệt lũy, tiện năng thi chi vu thân; thử toàn thị dụng ý, bất thị dụng kình, cửu chi tắc nhân vi ngã chế, ngã bất vi nhân chế hĩ.</p>
+<p><strong>Thân linh</strong>: Thân trệ tắc tiến thoái bất năng tự như, cố yếu thân linh — thân trì trệ thì tiến thoái không được tự như, cho nên cần thân linh. Cử thủ bất khả hữu ngai tượng, bỉ chi lực phương giác xâm ngã bì mao, ngã chi ý dĩ nhập bỉ cốt lý — giơ tay không được có vẻ ngây dại; lực đối phương vừa chạm vào da lông ta, ý ta đã vào tận xương cốt họ. Lưỡng thủ chi trì, nhất khí quán xuyến. Tả trọng tắc tả hư, nhi hữu dĩ khứ; hữu trọng tắc hữu hư, nhi tả dĩ khứ. Khí như xa luân, chu thân câu yếu tương tùy. Hữu bất tương tùy xử, thân tiện tán loạn, tiện bất đắc lực, kỳ bệnh vu yêu thối cầu chi. Tiên dĩ tâm sử thân, tòng nhân bất tòng kỷ; hậu sử thân năng tòng tâm, do kỷ nhưng tòng nhân. Do kỷ tắc trệ, tòng nhân tắc hoạt. Năng tòng nhân, thủ thượng tiện hữu phân thốn. Lượng bỉ kình chi đại tiểu, phân ly bất thác; quyền bỉ lai chi trường đoản, hào phát vô sai. Tiền tiến hậu thoái, xử xử kháp hợp. Công di cửu nhi kỹ di tinh.</p>
+<p><strong>Khí liễm</strong>: Khí thế tán mạn, tiện vô hàm súc, thân dịch tán loạn, vụ sử khí liễm nhập tích cốt — khí thế tán mạn thì không hàm súc, thân dễ tán loạn, tất phải cho khí thu vào xương sống. Hô hấp thông linh, chu thân võng gian. Hấp vi hợp vi súc, hô vi khai vi phát — hít vào là hợp là súc, thở ra là khai là phát. Cái hấp tắc tự nhiên đề đắc khởi, diệc nã đắc nhân khởi; hô tắc tự nhiên trầm đắc hạ, diệc phóng đắc nhân xuất. Thử thị dĩ ý vận khí, phi dĩ lực vận khí dã.</p>
+<p><span id="p66" class="page-anchor"></span><strong>Kình chỉnh</strong>: Nhất thân chi kình, luyện thành nhất gia — kình của toàn thân luyện thành một nhà. Phân thanh hư thực, phát kình yếu hữu căn nguyên. Kình khởi cước cân, chủ vu yêu gian, hình vu thủ chỉ, phát vu tích bối — kình khởi từ gót chân, chủ ở nơi yêu (lưng), hiện ra nơi ngón tay, phát ra từ tích (xương sống). Hựu yếu đề khởi toàn phó tinh thần — lại phải nâng lên toàn bộ tinh thần. Vu bỉ kình tương xuất vị phát chi tế, ngã kình dĩ tiếp nhập bỉ kình, kháp hảo bất hậu bất tiên — vào lúc kình của đối phương sắp ra mà chưa phát, kình ta đã tiếp nhập kình họ, vừa khéo không sau không trước. Như bì nhiên hỏa, như tuyền dũng xuất — như da bắt lửa, như suối tuôn ra. Tiền tiến hậu thoái, vô ti hào tán loạn. Khúc trung cầu trực, súc nhi hậu phát, phương năng tùy thủ tấu hiệu, thử vị tá lực đả nhân, tứ lạng bát thiên cân dã — trong cong cầu thẳng, súc rồi mới phát, mới có thể tùy tay mà hiệu nghiệm; ấy gọi là mượn lực đánh người, tứ lạng bát thiên cân.</p>
+<p><strong>Thần tụ</strong>: Thượng tứ giả câu bị, tổng quy thần tụ — bốn điều trên đều đã đủ, rốt lại quy về thần tụ. Thần tụ tắc nhất khí cổ chú — thần tụ thì một khí đúc nên. Luyện khí quy thần, khí thế đằng na — luyện khí trở về thần, khí thế chuyển dời. Tinh thần quán chú, khai hợp hữu trí, hư thực thanh sở. Tả hư tắc hữu thực, hữu hư tắc tả thực. Hư phi toàn nhiên vô lực, khí thế yếu hữu đằng na — hư không phải hoàn toàn không lực, khí thế phải có chuyển dời. Thực phi toàn nhiên chiếm sát, tinh thần yếu quý quán chú — thực không phải chiếm sát hoàn toàn, tinh thần cốt ở chỗ quán chú. Khẩn yếu toàn tại hung trung yêu gian, vận dụng bất tại ngoại diện — điều cốt yếu hoàn toàn ở trong ngực và nơi yêu, vận dụng không ở bên ngoài. Lực tòng nhân tá, khí do tích phát — lực mượn từ người, khí phát từ tích. Hồ năng khí do tích phát? Khí hướng hạ trầm, do lưỡng kiên thu vu tích cốt, chú vu yêu gian, thử khí chi do thượng nhi hạ dã, vị chi hợp — khí chìm xuống dưới, từ hai vai thu vào xương sống, chú vào nơi yêu; ấy là khí từ trên xuống dưới, gọi là hợp. Do yêu hình vu tích cốt, bố vu lưỡng bác, thi vu thủ chỉ, thử khí chi do hạ nhi thượng dã, vị chi khai — từ yêu hiện ra nơi xương sống, bố ra hai cánh tay, thi hành nơi ngón tay; ấy là khí từ dưới lên trên, gọi là khai. Hợp tiện thị thu, khai tiện thị phóng — hợp tức là thu, khai tức là phóng. Năng đổng đắc khai hợp, tiện tri âm dương. Đáo thử địa vị, công dụng nhất nhật, kỹ tinh nhất nhật, tiệm chí tòng tâm sở dục, võng bất như ý hĩ — đến được địa vị này, công phu một ngày thì kỹ tinh một ngày, dần đến chỗ làm theo lòng muốn, không gì không như ý.</p>
+<h3 id="ref-tan-phong-mat-quyet">Thất, Tán Phóng Mật Quyết</h3>
+<p>Kình, dẫn, tùng, phóng tứ tự — bốn chữ: kình, dẫn, tùng, phóng Kình khai bỉ kình tá bỉ lực, trung hữu linh tự. Dẫn đáo thân tiền kình thủy súc, trung hữu liễm tự. Tùng khai ngã kình vật sử khuất, trung hữu tĩnh tự. Phóng thời yêu cước nhận đoan đích, trung hữu chỉnh tự.</p>
 <p>Kình (nâng) mở kình đối phương, mượn lực đối phương — trong đó có chữ linh (灵). Dẫn đến trước thân, kình mới bắt đầu súc — trong đó có chữ liễm (敛). Tùng mở kình ta, chớ để cong — trong đó có chữ tĩnh (静). Lúc phóng, yêu và cước nhận đúng đích — trong đó có chữ chỉnh (整).</p>
-<p>Bát, Tẩu giá đả thủ hành công yếu ngôn Tích nhân vân: năng dẫn tiến lạc không, tiện năng tứ lạng bát thiên cân; bất năng dẫn tiến lạc không, tiện bất năng tứ lạng bát thiên cân — người xưa nói: có thể dẫn tiến lạc không thì có thể tứ lạng bát thiên cân; không thể dẫn tiến lạc không thì không thể tứ lạng bát thiên cân. Ngữ thậm khái quát, sơ học vị do lĩnh ngộ, dư gia sổ ngữ dĩ giải chi, tỷ hữu chí tư kỹ giả, đắc sở tòng nhập, thứ nhật tiến hữu công hĩ — lời ấy rất khái quát, người mới học chưa thể lĩnh ngộ, ta thêm mấy lời để giải thích, mong kẻ có chí với nghề này được chỗ để vào, hầu ngày ngày tiến bộ có công. Dục yếu dẫn tiến lạc không, tứ lạng bát thiên cân, tiên yếu tri kỷ tri bỉ — rơi vào khoảng không, tứ lạng bát thiên cân, trước phải tri kỷ tri bỉ. Dục yếu tri kỷ tri bỉ, tiên yếu xả kỷ tòng nhân — muốn tri kỷ tri bỉ, trước phải xả kỷ tòng nhân. Dục yếu xả kỷ tòng nhân, tiên yếu đắc cơ đắc thế. Dục yếu đắc cơ đắc thế, tiên yếu chu thân nhất gia. Dục yếu chu thân nhất gia, tiên yếu chu thân vô hữu khuyết hãm — muốn toàn thân một nhà, trước phải toàn thân không có khuyết hãm. Dục yếu chu thân vô hữu khuyết hãm, tiên yếu thần khí cổ đãng. Dục yếu thần khí cổ đãng, tiên yếu đề khởi tinh thần. Dục yếu đề khởi tinh thần, tiên yếu thần bất ngoại tán. Dục yếu thần bất ngoại tán, tiên yếu thần khí thu liễm nhập cốt — thần khí thu liễm vào xương. Dục yếu thần khí thu liễm nhập cốt, tiên yếu lưỡng thối tiền tiết hữu lực — trước phải hai chân mạnh ở đốt trước. Lưỡng kiên tùng khai, khí hướng hạ trầm, kình khởi vu cước cân, giao hoán tại thối, hàm súc tại hung, vận động tại lưỡng kiên, chủ tể tại yêu, thượng dữ lưỡng bác tương hệ, hạ dữ lưỡng thối tương tùy, kình do nội hoán — hai vai tùng mở, khí chìm xuống dưới, kình khởi từ gót chân, trao đổi nơi chân, hàm súc nơi ngực, vận động nơi hai vai, chủ tể nơi yêu; trên liên hệ với hai cánh tay, dưới tùy theo hai chân, kình đổi từ bên trong. Thu tiện thị hợp, phóng tức thị khai — thu tức là hợp, phóng tức là khai. Tĩnh tắc câu tĩnh, tĩnh thị hợp, hợp trung ngụ khai — tĩnh thì đều tĩnh, tĩnh là hợp, trong hợp có chứa khai. Động tắc câu động, động thị khai, khai trung ngụ hợp — động thì đều động, động là khai, trong khai có chứa hợp. Xúc chi tắc toàn chuyển tự như, vô bất đắc lực, tài năng dẫn tiến lạc không, tứ lạng bát thiên cân — chạm đến thì xoay chuyển tự như, không gì không đắc lực, mới có thể dẫn tiến lạc không, tứ lạng bát thiên cân. Bình nhật tẩu giá thị tri kỷ công phu — ngày thường tẩu giá là công phu tri kỷ. Nhất động thế vấn tiên vấn tự kỷ chu thân hợp thượng sổ hạng phủ? Thiểu hữu bất hợp, tức tốc cải hoán — mỗi khi động thế, trước phải hỏi mình toàn thân có hợp với mấy điều ấy không; hơi không hợp thì đổi ngay. Tẩu giá sở dĩ yếu mạn bất yếu khoái — tẩu giá cho nên cần chậm chứ không cần nhanh. Đả thủ thị tri nhân công phu, động tĩnh cố thị tri nhân, nhưng thị vấn kỷ — đả thủ là công phu tri nhân; động tĩnh tuy là tri nhân, vẫn là hỏi mình. Tự kỷ an bài đắc hảo, nhân nhất ai ngã, ngã bất động bỉ ti hào, sấn thế nhi nhập, tiếp định bỉ kình, bỉ tự điệt xuất — mình sắp đặt cho tốt, người vừa chạm đến ta, ta không động đến họ một ly, nhân thế mà vào, tiếp định kình họ, họ tự té ra. Như tự kỷ hữu bất đắc lực xử, tiện thị song trọng vị hóa, yếu vu âm dương khai hợp cầu chi — nếu mình có chỗ không đắc lực, ấy là song trọng chưa hóa, phải cầu ở âm dương khai hợp. Sở vị tri kỷ tri bỉ, bách chiến bách thắng dã — ấy gọi là tri kỷ tri bỉ, bách chiến bách thắng. Thiết kế bìa: Tôn Kim Vinh, Chu Mộng Lân Biên tập: Lý Văn Anh Số hiệu thống nhất: 7015·2260 Định giá: 0,60 nguyên</p>
+<h3 id="ref-tau-gia-da-thu">Bát, Tẩu Giá Đả Thủ Hành Công Yếu Ngôn</h3>
+<p>Tích nhân vân: năng dẫn tiến lạc không, tiện năng tứ lạng bát thiên cân; bất năng dẫn tiến lạc không, tiện bất năng tứ lạng bát thiên cân — người xưa nói: có thể dẫn tiến lạc không thì có thể tứ lạng bát thiên cân; không thể dẫn tiến lạc không thì không thể tứ lạng bát thiên cân. Ngữ thậm khái quát, sơ học vị do lĩnh ngộ, dư gia sổ ngữ dĩ giải chi, tỷ hữu chí tư kỹ giả, đắc sở tòng nhập, thứ nhật tiến hữu công hĩ — lời ấy rất khái quát, người mới học chưa thể lĩnh ngộ, ta thêm mấy lời để giải thích, mong kẻ có chí với nghề này được chỗ để vào, hầu ngày ngày tiến bộ có công. Dục yếu dẫn tiến lạc không, tứ lạng bát thiên cân, tiên yếu tri kỷ tri bỉ — rơi vào khoảng không, tứ lạng bát thiên cân, trước phải tri kỷ tri bỉ. Dục yếu tri kỷ tri bỉ, tiên yếu xả kỷ tòng nhân — muốn tri kỷ tri bỉ, trước phải xả kỷ tòng nhân. Dục yếu xả kỷ tòng nhân, tiên yếu đắc cơ đắc thế. Dục yếu đắc cơ đắc thế, tiên yếu chu thân nhất gia. Dục yếu chu thân nhất gia, tiên yếu chu thân vô hữu khuyết hãm — muốn toàn thân một nhà, trước phải toàn thân không có khuyết hãm. Dục yếu chu thân vô hữu khuyết hãm, tiên yếu thần khí cổ đãng. Dục yếu thần khí cổ đãng, tiên yếu đề khởi tinh thần. Dục yếu đề khởi tinh thần, tiên yếu thần bất ngoại tán. Dục yếu thần bất ngoại tán, tiên yếu thần khí thu liễm nhập cốt — thần khí thu liễm vào xương. Dục yếu thần khí thu liễm nhập cốt, tiên yếu lưỡng thối tiền tiết hữu lực — trước phải hai chân mạnh ở đốt trước. Lưỡng kiên tùng khai, khí hướng hạ trầm, kình khởi vu cước cân, giao hoán tại thối, hàm súc tại hung, vận động tại lưỡng kiên, chủ tể tại yêu, thượng dữ lưỡng bác tương hệ, hạ dữ lưỡng thối tương tùy, kình do nội hoán — hai vai tùng mở, khí chìm xuống dưới, kình khởi từ gót chân, trao đổi nơi chân, hàm súc nơi ngực, vận động nơi hai vai, chủ tể nơi yêu; trên liên hệ với hai cánh tay, dưới tùy theo hai chân, kình đổi từ bên trong. Thu tiện thị hợp, phóng tức thị khai — thu tức là hợp, phóng tức là khai. Tĩnh tắc câu tĩnh, tĩnh thị hợp, hợp trung ngụ khai — tĩnh thì đều tĩnh, tĩnh là hợp, trong hợp có chứa khai. Động tắc câu động, động thị khai, khai trung ngụ hợp — động thì đều động, động là khai, trong khai có chứa hợp. Xúc chi tắc toàn chuyển tự như, vô bất đắc lực, tài năng dẫn tiến lạc không, tứ lạng bát thiên cân — chạm đến thì xoay chuyển tự như, không gì không đắc lực, mới có thể dẫn tiến lạc không, tứ lạng bát thiên cân. Bình nhật tẩu giá thị tri kỷ công phu — ngày thường tẩu giá là công phu tri kỷ. Nhất động thế vấn tiên vấn tự kỷ chu thân hợp thượng sổ hạng phủ? Thiểu hữu bất hợp, tức tốc cải hoán — mỗi khi động thế, trước phải hỏi mình toàn thân có hợp với mấy điều ấy không; hơi không hợp thì đổi ngay. Tẩu giá sở dĩ yếu mạn bất yếu khoái — tẩu giá cho nên cần chậm chứ không cần nhanh. Đả thủ thị tri nhân công phu, động tĩnh cố thị tri nhân, nhưng thị vấn kỷ — đả thủ là công phu tri nhân; động tĩnh tuy là tri nhân, vẫn là hỏi mình. Tự kỷ an bài đắc hảo, nhân nhất ai ngã, ngã bất động bỉ ti hào, sấn thế nhi nhập, tiếp định bỉ kình, bỉ tự điệt xuất — mình sắp đặt cho tốt, người vừa chạm đến ta, ta không động đến họ một ly, nhân thế mà vào, tiếp định kình họ, họ tự té ra. Như tự kỷ hữu bất đắc lực xử, tiện thị song trọng vị hóa, yếu vu âm dương khai hợp cầu chi — nếu mình có chỗ không đắc lực, ấy là song trọng chưa hóa, phải cầu ở âm dương khai hợp. Sở vị tri kỷ tri bỉ, bách chiến bách thắng dã — ấy gọi là tri kỷ tri bỉ, bách chiến bách thắng. Thiết kế bìa: Tôn Kim Vinh, Chu Mộng Lân Biên tập: Lý Văn Anh Số hiệu thống nhất: 7015·2260 Định giá: 0,60 nguyên</p>
 </section>
   </main>
 </div>
