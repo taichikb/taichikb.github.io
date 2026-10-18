@@ -32,16 +32,20 @@ jobs:
 
       # ---------------------------------------------------------------------------
       # GitHub Pages rejects artifacts over 1 GB, and this site is ~8.4 GB on disk.
-      # All bulk binaries have been relocated to the taichikb/taichinow-media repo
-      # and are referenced from the HTML by absolute raw.githubusercontent.com URLs,
-      # so none of them needs to be in the Pages artifact:
+      # Most bulk binaries live in the taichikb/taichinow-media repo and are
+      # referenced from the HTML by absolute raw.githubusercontent.com URLs, so
+      # they do not need to be in the Pages artifact:
       #   books/pdfs          (~5.0 GB) offloaded; links rewritten to absolute URLs
       #   assets/books        (~2.2 GB) offloaded; referenced only by absolute URLs
       #   assets/images/books (~0.9 GB) offloaded; 24.5k img/href refs rewritten
       #   downloads           (~0.02 GB) unreferenced A5 PDFs
       #   assets/images/*     the ~0.44 GB subset in .github/pages-media-exclude.txt:
       #                       files that NO page references, so dropping them is free
-      # Everything else (the HTML, CSS, JS and all *referenced* images) stays.
+      # EXCEPTION — assets/pdf/ (~0.54 GB) IS included on purpose: these are the
+      # PDFs the reader pages embed (pdf.js iframe / data-pdf). On the origin the
+      # browser fetches them over the Pages CDN with no CORS handshake and reuses
+      # the connection, so first paint is immediate instead of streaming from
+      # raw.githubusercontent.com. Everything else stays excluded.
       # NOTE: tar is used rather than rsync, which is not guaranteed on the runner.
       # ---------------------------------------------------------------------------
       - name: Stage site (exclude offloaded media)
@@ -59,8 +63,15 @@ jobs:
           fi
           echo "Exclusion entries: $(wc -l < /tmp/exclude.txt)"
           tar --exclude-from=/tmp/exclude.txt -cf - . | tar -xf - -C _site
-          echo "Staged artifact size:"
-          du -sh _site
+          # GitHub Pages rejects artifacts over 1 GB. assets/pdf/ is deliberately
+          # NOT excluded, so the artifact grows by its size — fail loudly before
+          # upload if we approach the cap instead of discovering it at deploy time.
+          SIZE_MB=$(du -sm _site | cut -f1)
+          echo "Staged artifact size: ${SIZE_MB} MB"
+          if [ "$SIZE_MB" -gt 950 ]; then
+            echo "::error::Pages artifact is ${SIZE_MB} MB — over the 950 MB safety margin (hard cap 1 GB). Trim assets/pdf/ or find more unreferenced files to exclude." >&2
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
