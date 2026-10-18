@@ -526,11 +526,25 @@ if (typeof pdfjsLib === 'undefined') {
     loadingText.textContent = 'Đang kết nối thư viện tài liệu...';
     progressBar.style.width = '20%';
 
+    // Same-origin PDFs (localized in /assets/pdf/): fetch only the chunks that
+    // are actually needed. Aborting the full-file GET pdf.js starts for every
+    // document, plus 4 MB range chunks instead of the 64 KB default, takes first
+    // paint of a 50-90 MB book from ~9 s to ~2 s.
+    // Cross-origin media repos cannot range-fetch at all (their OPTIONS preflight
+    // returns 403 without Access-Control-Allow-Headers), so there the streamed
+    // full download is left as-is -- aborting it would break those readers.
+    const sameOriginPdf = pdfUrl.startsWith('/') ||
+                          pdfUrl.startsWith(window.location.origin + '/');
+
     const loadingTask = pdfjsLib.getDocument({
       url: pdfUrl,
       cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
       cMapPacked: true,
-      enableXfa: true
+      enableXfa: true,
+      ...(sameOriginPdf ? {
+        rangeChunkSize: 4 * 1024 * 1024,
+        disableStream: true,
+      } : {}),
     });
 
     loadingTask.onProgress = function(progress) {
