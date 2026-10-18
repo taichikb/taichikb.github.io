@@ -3,270 +3,398 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TaichiNOW — Tai Chi, Qigong, Health, Daoist Arts &amp; Life Philosophy</title>
-<meta name="description" content="TaichiNOW — bilingual (EN-VI) knowledge base for Tai Chi, Qigong, Health, Daoist Arts &amp; Life Philosophy. Books, articles, deep dives, and practice materials.">
+<title>TaichiNOW — Global Knowledge Base for Tai Chi, Qigong, Health & Daoist Arts</title>
+<meta name="description" content="Comprehensive bilingual knowledge portal for Tai Chi Chuan, Qigong, Traditional Chinese Medicine, and Daoist Philosophy. Housing 251+ classic books, 157+ interactive translations, clinical health research, and practical training vaults.">
 <link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/stylesheets/yin-yang.css">
+<style>
+/* Custom Layout & UI Refinements */
+.hero-badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin: 1.8rem auto 0;
+    max-width: 760px;
+}
+.hero-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.95rem;
+    background: var(--yang);
+    border: 1px solid var(--gray-light);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--yin);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.hero-badge-pill:hover {
+    border-color: var(--yin);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.hero-badge-pill.highlight {
+    background: #0f172a;
+    color: #f8fafc;
+    border-color: #0f172a;
+}
+.hero-badge-pill.highlight:hover {
+    background: #1e293b;
+    color: #ffffff;
+}
+.hero-badge-pill.accent {
+    border-color: var(--accent-gold);
+    color: #92400e;
+    background: #fffdf7;
+}
+.pillar-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 1.35rem;
+    font-family: var(--serif);
+    margin: 2.8rem 0 1.2rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+.pillar-section-title span.badge-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--yin);
+    color: var(--yang);
+    font-size: 0.75rem;
+    font-family: var(--sans);
+    font-weight: 600;
+}
+.library-cta-banner {
+    background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+    color: #f4f4f5;
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    margin: 2.8rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    border-left: 4px solid var(--accent-gold);
+}
+.library-cta-banner h3 {
+    margin: 0 0 0.4rem 0;
+    color: #ffffff;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+}
+.library-cta-banner p {
+    margin: 0;
+    color: #a1a1aa;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+.library-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-gold);
+    color: #18181b !important;
+    font-weight: 600;
+    padding: 0.65rem 1.3rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+.library-cta-btn:hover {
+    opacity: 0.92;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(201, 169, 97, 0.35);
+}
+.floating-back-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--yang);
+    color: var(--yin);
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+.floating-back-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+.floating-back-top:hover {
+    border-color: var(--yin);
+    background: var(--yin);
+    color: var(--yang);
+    transform: translateY(-3px);
+}
+</style>
 </head>
 <body>
 
 <header class="site-header">
     <a href="/" class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg><span>TaichiNOW</span></a>
     <nav class="site-nav">
-<a href="/" class="active">Home</a>
-<a href="/techniques/" class="">Techniques</a>
-<a href="/books/" class="">Books</a>
-<a href="/health/" class="">Health</a>
-<a href="/videos/" class="">Videos</a>
-<a href="/podcast/" class="">Podcast</a>
-<a href="/philosophy/" class="">Philosophy</a>
-<a href="/history/" class="">History</a>
-<a href="/contact/" class="">Contact</a>
-<a href="/all-articles/" class="">All Articles</a>
-<a href="/vi/" class="lang-switch">🇻🇳 Tiếng Việt</a>
+        <a href="/" class="active">Home</a>
+        <a href="/techniques/" class="">Techniques</a>
+        <a href="/books/" class="">Books</a>
+        <a href="/health/" class="">Health</a>
+        <a href="/videos/" class="">Videos</a>
+        <a href="/podcast/" class="">Podcast</a>
+        <a href="/philosophy/" class="">Philosophy</a>
+        <a href="/history/" class="">History</a>
+        <a href="/contact/" class="">Contact</a>
+        <a href="/all-articles/" class="">All Articles</a>
+        <a href="/vi/" class="lang-switch">🇻🇳 Tiếng Việt</a>
     </nav>
 </header>
 
 <main>
 <article class="intranet-content" style="max-width: 880px; margin: 0 auto; padding: 2rem 1rem;">
 
-<section class="hero">
+<!-- HERO SECTION -->
+<section class="hero" style="padding-top: 3rem; padding-bottom: 2rem;">
     <span class="taiji-large"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="taiji-logo"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg></span>
     <h1>TaichiNOW</h1>
-    <p class="tagline">Tai Chi, Qigong, Health, Daoist Arts &amp; Life Philosophy</p>
-    <p style="color: var(--gray-mid); font-style: italic; max-width: 640px; margin: 0.5rem auto;">
-        Thái Cực Quyền, Khí Công, Sức Khỏe, Đạo Gia &amp; Triết Lý Sống
+    <p class="tagline">Tai Chi · Qigong · Health Science · Daoist Arts &amp; Life Philosophy</p>
+    <p style="color: var(--gray-mid); font-style: italic; max-width: 720px; margin: 0.5rem auto 1.5rem; line-height: 1.6;">
+        A bilingual knowledge base uniting classical internal martial arts, longevity traditions, and modern clinical science. Featuring 251+ classic books, 157+ interactive translations, and evidence-based practice materials.
     </p>
-</section>
 
-<section class="mirror-note" style="max-width: 880px; margin: 1rem auto 0; padding: 0 1rem;">
-  <div style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#e2e8f0; border-radius:12px;
-              padding:14px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-              justify-content:center; text-align:center; font-size:0.95rem;">
-    <span>&#128279; Đây là một trong hai máy chủ của TaichiNOW. Nếu trang này chậm hoặc lỗi, hãy dùng máy chủ dự phòng: <a href="https://taichikb.github.io/" style="color:#7dd3fc; font-weight:700; text-decoration:none;">taichikb.github.io</a> hay <a href="https://taichinow.github.io/" style="color:#7dd3fc; font-weight:700; text-decoration:none;">taichinow.github.io</a></span>
-  </div>
-</section>
-
-<section class="section" id="recently-added">
-    <div class="section-title"><h2>🆕 Mới Dịch Toàn Văn · Recently Added</h2></div>
-    <p style="text-align:center; color: var(--gray-mid); font-style: italic; max-width: 72ch; margin: -1.5rem auto 0;">
-        Full book-length Vietnamese translations, published with an interactive bilingual reader — đọc trực tuyến, song ngữ.
-    </p>
-    <div class="card-grid">
-        <a class="card" href="/vi/books/zen_thien_va_suc_khoe_do_hong_ngoc_vi.html" style="border-top: 3px solid #7c3aed;">
-            <span class="card-meta" style="color:#7c3aed; font-weight:600;">🧘 Thiền Tông &middot; BS. Đỗ Hồng Ngọc &middot; 62 trang</span>
-            <h3>Thiền &amp; Sức Khỏe — Tự Trị Liệu</h3>
-            <p>Cơ sở y học chứng cứ của Thiền và Thở: kích hoạt phó giao cảm, hạ huyết áp, giải tỏa stress theo kinh An&agrave;p&agrave;nasati và bài vè thở bụng của BS. Nguyễn Khắc Viện.</p>
-        </a>
-        <a class="card" href="/vi/books/hai_thuong_y_tong_tam_linh_ly_luan_vi.html" style="border-top: 3px solid #b45309;">
-            <span class="card-meta" style="color:#b45309; font-weight:600;">🇻🇳 Y Tông Tâm Lĩnh &middot; Hải Thượng Lãn Ông &middot; Lý Luận &amp; Mệnh Môn</span>
-            <h3>Hải Thượng Y Tông Tâm Lĩnh — Tinh Hoa Lý Luận</h3>
-            <p>Trọn vẹn phần lý luận cốt tủy của Đại danh y Lê Hữu Trác: 9 điều Y Huấn Cách Ngôn, Y Nghiệp Thần Cơ, Nội Kinh Yếu Chỉ, Khôn Hóa Thái Chân và Huyền Tẫn Phát Vi (Mệnh Môn Thủy Hỏa).</p>
-        </a>
-        <a class="card" href="/vi/books/zen_way_of_zen_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Alan Watts · 13 chương</span>
-            <h3>The Way of Zen</h3>
-            <p>Con đường Thiền — bản dịch trọn vẹn tác phẩm kinh điển của Alan Watts: nền tảng Thiền Trung Hoa &amp; Ấn Độ, tọa thiền, công án và nghệ thuật.</p>
-        </a>
-        <a class="card" href="/vi/books/frantzis_power_internal_martial_arts_vi.html" style="border-top: 3px solid #b45309;">
-            <span class="card-meta" style="color:#b45309; font-weight:600;">🇻🇳 Nội Gia · Bruce Frantzis · 21 chương</span>
-            <h3>The Power of Internal Martial Arts</h3>
-            <p>Sức mạnh Nội Gia Quyền — kỹ thuật chiến đấu của Thái Cực, Hình Ý và Bát Quái, hơn 230.000 từ dịch trọn vẹn.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_buddhism_and_zen_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Nyogen Senzaki · 8 phần</span>
-            <h3>Buddhism and Zen</h3>
-            <p>Phật giáo và Thiền — nhập môn súc tích về nền tảng Phật pháp dưới chân Thiền, với Tín Tâm Minh và ghi chú của môn đệ Bồ-đề-đạt-ma.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_classic_koans_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Vô Môn Quan · 48 công án</span>
-            <h3>Classic Zen Koans</h3>
-            <p>Công án Thiền kinh điển — trọn bộ 48 công án của Vô Môn Quan (Gateless Gate) kèm phụ lục.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_flesh_zen_bones_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Paul Reps · 101 câu chuyện</span>
-            <h3>Zen Flesh, Zen Bones</h3>
-            <p>Xương Thiền, Thịt Thiền — tuyển tập 101 câu chuyện Thiền và công án cổ điển của Paul Reps.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_living_zen_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Robert Linssen · 28 phần</span>
-            <h3>Living Zen — Sống Thiền</h3>
-            <p>Sống Thiền — Robert Linssen trình bày Thiền không như một tôn giáo phương Đông mà như một thái độ sống phổ quát, hòa hợp với khoa học hiện đại và triết lý phương Tây.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_teaching_of_huang_po_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Hoàng Bá · 10 phần</span>
-            <h3>The Zen Teaching of Huang Po — Truyền Tâm Pháp Yếu</h3>
-            <p>Truyền Tâm Pháp Yếu — ngữ lục của Thiền sư Hoàng Bá Hi Vận do John Blofeld dịch: chỉ thẳng rằng tâm vốn là Phật, mọi tìm cầu bên ngoài đều là vọng tưởng; giải thoát ngay nơi sự tỉnh giác hiện tiền.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_teaching_of_hui_hai_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Huệ Hải · 13 phần</span>
-            <h3>The Zen Teaching of Hui Hai — Đốn Ngộ Nhập Đạo Yếu Môn</h3>
-            <p>Đốn Ngộ Nhập Đạo Yếu Môn — ngữ lục của Thiền sư Đại Châu Huệ Hải, pháp tự của Mã Tổ Đạo Nhất, do John Blofeld dịch: tri kiến khái niệm che lấp tự tánh; chỉ có sự nhận ra trực tiếp, không qua trung gian ngôn ngữ, mới là cửa vào của Thiền.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_religion_of_the_samurai_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Nukariya · 21 phần</span>
-            <h3>The Religion of the Samurai — Đạo của Samurai</h3>
-            <p>Công trình 1913 của Kaiten Nukariya trình bày Thiền tông như nền triết học và kỷ luật tinh thần của Nhật Bản: nguồn cội ở Ấn Độ và Trung Hoa, Phật tánh, giác ngộ, và phép huấn luyện tâm qua tọa thiền.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_spirit_of_zen_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Watts · 12 phần</span>
-            <h3>The Spirit of Zen — Tinh Thần Thiền</h3>
-            <p>Tác phẩm đầu tay của Alan W. Watts (1936), viết năm 21 tuổi: nguồn cội Thiền, Phật tánh và tánh không, tọa thiền và công án, và dấu ấn của Thiền trên hội họa, trà đạo, haiku và Võ sĩ đạo.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_in_the_art_of_archery_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Herrigel · 13 phần</span>
-            <h3>Zen in the Art of Archery — Thiền Trong Nghệ Thuật Bắn Cung</h3>
-            <p>Hồi ký của triết gia Đức Eugen Herrigel về sáu năm tu tập cung đạo dưới sự dẫn dắt của một bậc thầy Nhật Bản — và sự mở ra của Thiền qua nghệ thuật bắn cung: buông bỏ cái tôi đang cố gắng để hành động tự nó xảy ra từ một tâm thức tĩnh lặng.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_buddhism_humphreys_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Humphreys · 15 phần</span>
-            <h3>Zen Buddhism — Phật Giáo Thiền</h3>
-            <p>Khảo luận rõ ràng và có hệ thống nhất về Thiền tông do một người phương Tây viết — Christmas Humphreys, người sáng lập Hội Phật Giáo (London), trình bày Thiền như một con đường thực nghiệm, có thể kiểm chứng bằng chính trải nghiệm: từ nguồn gốc tại Ấn Độ, sự hình thành ở Trung Hoa, bản chất, kỹ thuật tọa thiền, sự ngộ (satori) cho đến những thành quả cụ thể.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_doctrine_of_no_mind_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Suzuki · 10 phần</span>
-            <h3>The Zen Doctrine of No-Mind — Giáo Lý Vô Niệm của Thiền Tông</h3>
-            <p>Khảo luận của D. T. Suzuki về giáo lý vô niệm (no-mind) của Lục Tổ Huệ Năng — nền tảng tư tưởng của Thiền tông. Dựa trên Kinh Pháp Bảo Đàn và các nguồn Trung Hoa–Nhật Bản, tác giả trình bày bản chất của Tâm, tọa thiền, sự ngộ (satori) và những biểu hiện của Vô Thức trong đời sống Thiền.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_studies_in_zen_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Suzuki · 7 tiểu luận</span>
-            <h3>Studies in Zen — Tiểu Luận về Thiền</h3>
-            <p>Tập bảy bài viết và diễn văn của D. T. Suzuki trải suốt 47 năm (1906–1953): nguồn cội Thiền tông, Bát-nhã và thức, ngôn ngữ và im lặng, bản chất của sự ngộ, cuộc đối thoại giữa Thiền với sử học và tư tưởng phương Tây, cùng vai trò của tự nhiên.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_and_japanese_culture_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Suzuki · 24 phần</span>
-            <h3>Zen and Japanese Culture — Thiền và Văn Hóa Nhật Bản</h3>
-            <p>Khảo luận kinh điển của D. T. Suzuki về ảnh hưởng của Thiền tông lên toàn bộ văn hóa Nhật Bản: mỹ thuật, Nho giáo, võ sĩ đạo, kiếm thuật, haiku, trà đạo và lòng yêu thiên nhiên — kèm năm phụ lục.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_essays_in_zen_buddhism_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Suzuki · 8 tiểu luận</span>
-            <h3>Essays in Zen Buddhism — Thiền Luận (Tập Một)</h3>
-            <p>Tác phẩm mở đường đưa Thiền tông đến với phương Tây: tám tiểu luận về Giáo Lý Giác Ngộ, Giác Ngộ và Vô Minh, lịch sử Thiền từ Bồ-đề-đạt-ma đến Huệ Năng, satori, các phương pháp thực hành và Mười Bức Tranh Chăn Trâu.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_introduction_to_zen_buddhism_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Suzuki · 9 chương</span>
-            <h3>An Introduction to Zen Buddhism — Nhập Môn Thiền Tông</h3>
-            <p>Cuốn nhập môn kinh điển của D. T. Suzuki, kèm Lời Giới Thiệu của C. G. Jung: chín chương cô đọng về Thiền là gì, Thiền có phải là hư vô chủ nghĩa, thiền phi lý, satori, công án, và đời sống trong thiền đường.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_buddhism_and_psychoanalysis_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Fromm / Suzuki / De Martino · 1960</span>
-            <h3>Zen Buddhism and Psychoanalysis — Phân Tâm Học và Thiền Tông</h3>
-            <p>Cuộc đối thoại lịch sử giữa Thiền tông và phân tâm học: Suzuki trình bày Thiền, Fromm đáp lại từ góc nhìn tâm lý học phương Tây, De Martino phân tích tình cảnh con người. Bản dịch toàn vẹn 16 phần, song ngữ Việt–Anh.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_manual_of_zen_buddhism_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · Suzuki · 6 phần</span>
-            <h3>Manual of Zen Buddhism — Sổ Tay Thiền Tông</h3>
-            <p>Kho tư liệu gốc của Thiền tông do D. T. Suzuki biên soạn: kệ và lời cầu nguyện, chú đà-la-ni, năm bộ kinh, tám văn bản của thiền sư Trung Hoa (gồm Thập Mục Ngưu Đồ), sáu văn bản của thiền sư Nhật Bản, và tượng cùng tranh trong thiền viện.</p>
-        </a>
-        <a class="card" href="/vi/books/zen_in_english_literature_vi.html" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9; font-weight:600;">🇻🇳 Thiền Tông · R. H. Blyth · 1948</span>
-            <h3>Zen in English Literature and Oriental Classics — Thiền trong Văn Chương Anh</h3>
-            <p>Tác phẩm đưa Thiền tông đến độc giả phương Tây mạnh mẽ nhất: Blyth đọc Thiền qua văn chương Anh — Shakespeare, Wordsworth, Don Quixote, Emerson, Milton — đặt bên cạnh haiku, tanka, kịch Nô, tranh thiền và kinh điển phương Đông, cho thấy Thiền là cách nhìn trực tiếp vào đời sống hằng ngày. Bản dịch toàn vẹn 29 phần, song ngữ Việt–Anh.</p>
-        </a>
-        <a class="card" href="/vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html" style="border-top: 3px solid #b45309;">
-            <span class="card-meta" style="color:#b45309; font-weight:600;">🇻🇳 Y Kinh · Hoàng Đế Nội Kinh · 2 tập</span>
-            <h3>Hoàng Đế Nội Kinh — Tố Vấn</h3>
-            <p>Nội kinh y học cổ truyền Trung Hoa — bản toàn văn số hoá với trình đọc tương tác (Tập 1 &amp; Tập 2).</p>
-        </a>
+    <!-- QUICK GATEWAY ACTION PILLS -->
+    <div class="hero-badges-container">
+        <a href="/books/" class="hero-badge-pill highlight">📖 Digital Library (251 Books)</a>
+        <a href="/techniques/" class="hero-badge-pill">🥋 Techniques &amp; 8 Energies</a>
+        <a href="/health/" class="hero-badge-pill">🩺 Health &amp; TCM Series 100</a>
+        <a href="/research/" class="hero-badge-pill">🔬 Harvard Clinical Evidence</a>
+        <a href="/practice-vault/" class="hero-badge-pill">🧘 Practice Vault</a>
+        <a href="/vi/" class="hero-badge-pill accent">🇻🇳 Vietnamese Portal</a>
     </div>
 </section>
 
-<section class="section">
-    <div class="section-title"><h2>Knowledge Hub Navigation</h2></div>
-    <div class="card-grid">
-        <a class="card" href="/thai-cuc-quyen/">
-            <span class="card-meta">Vietnamese Portal</span>
-            <h3>🇻🇳 Thái Cực Quyền</h3>
-            <p>Toàn bộ bài viết chuyên sâu &amp; đầu sách, bản thảo PDF Thái Cực Quyền, Bát Quái, Khí Công Tiếng Việt.</p>
-        </a>
+<!-- MIRROR NOTICE -->
+<section class="mirror-note" style="max-width: 880px; margin: 0 auto 2.5rem; padding: 0;">
+    <div style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#e2e8f0; border-radius:12px;
+                padding:12px 18px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+                justify-content:center; text-align:center; font-size:0.9rem;">
+        <span>🔗 Mirror Servers: If this site experiences latency, access our high-speed backup mirrors at <a href="https://taichikb.github.io/" style="color:#7dd3fc; font-weight:700; text-decoration:none;">taichikb.github.io</a> or <a href="https://taichinow.github.io/" style="color:#7dd3fc; font-weight:700; text-decoration:none;">taichinow.github.io</a></span>
+    </div>
+</section>
+
+<!-- SECTION 1: CORE KNOWLEDGE PILLARS -->
+<section class="section" id="pillars">
+    <div class="section-title">
+        <h2>🏛️ Knowledge Pillars · Cột Trụ Tri Thức</h2>
+    </div>
+    <p style="text-align:center; color: var(--gray-mid); font-style: italic; max-width: 72ch; margin: -1.5rem auto 2.5rem;">
+        The knowledge repository is structured into four foundational disciplines for systematic study and practical mastery.
+    </p>
+
+    <!-- CLUSTER 1: TAI CHI & INTERNAL MARTIAL ARTS -->
+    <h3 class="pillar-section-title"><span class="badge-num">1</span> 🥋 Tai Chi Chuan &amp; Internal Martial Arts</h3>
+    <div class="card-grid" style="margin-top: 1rem; margin-bottom: 2.5rem;">
         <a class="card" href="/tai-chi/">
-            <span class="card-meta">English Portal</span>
-            <h3>🇬🇧 Tai Chi Library</h3>
-            <p>All English scanned books (100% continuous view), PDF manuals, video demonstrations, and forms.</p>
+            <span class="card-meta">🇬🇧 English Portal</span>
+            <h3>English Tai Chi Library</h3>
+            <p>Comprehensive English scanned books, forms, posture checklists, and step-by-step video demonstrations.</p>
         </a>
-        <a class="card" href="/podcast/">
-            <span class="card-meta">Podcast Hub</span>
-            <h3>🎙️ TaichiNOW Podcast Channel</h3>
-            <p>Dedicated channel for Tai Chi audio broadcasts, philosophy, biomechanics, and practice discussions.</p>
+        <a class="card" href="/techniques/">
+            <span class="card-meta">⚡ Core Methods</span>
+            <h3>Eight Energies &amp; Body Mechanics</h3>
+            <p>In-depth breakdown of Peng, Lu, Ji, An, Cai, Lie, Zhou, Kao and the Ten Essential Principles of Chen Style Tai Chi.</p>
         </a>
-        <a class="card" href="/articles/">
-            <span class="card-meta">Articles</span>
-            <h3>📚 All Converted Articles</h3>
-            <p>Full collection of markdown documentation and guides sorted by languages (Tiếng Việt / English).</p>
-        </a>
-        <a class="card" href="/daoist/">
-            <span class="card-meta">Daoist Books</span>
-            <h3>☯️ Daoist Canon &amp; Alchemy</h3>
-            <p>Internal alchemy, talismans, weather magic, feng shui, and esoteric cultivation (100% Wide).</p>
-        </a>
-        <a class="card" href="/books/">
-            <span class="card-meta">Library</span>
-            <h3>📖 Books &amp; Manuscripts</h3>
-            <p>Interactive reader for classic and modern Tai Chi, Qigong, and martial arts texts.</p>
-        </a>
-        <a class="card" href="/videos/">
-            <span class="card-meta">Video</span>
-            <h3>🎥 Video Demonstrations</h3>
-            <p>Video gallery featuring 24 Form, Yang Style, fundamentals, and bio-mechanics.</p>
+        <a class="card" href="/history/">
+            <span class="card-meta">📜 Lineage &amp; Evolution</span>
+            <h3>History &amp; Lineage Traditions</h3>
+            <p>Tracing roots from Chen Village (17th c.) through Yang Luchan to the global spread of major Tai Chi families.</p>
         </a>
         <a class="card" href="/deep-dives/">
-            <span class="card-meta">Deep Dives</span>
-            <h3>🌊 Deep Dives &amp; Guides</h3>
-            <p>Comprehensive 3.0 practice guides, 24 Form, 8 Gates, and master lessons.</p>
+            <span class="card-meta">🌊 Roadmap 3.0</span>
+            <h3>Beginner Roadmap &amp; Deep Dives</h3>
+            <p>Comprehensive 3.0 practice guides, the 24 Form, structural fascia integration, and master lesson archives.</p>
         </a>
-        <a class="card" href="/practice-vault/">
-            <span class="card-meta">Practice</span>
-            <h3>🧘 Practice Vault</h3>
-            <p>Printable cheat sheets, daily 5-minute routines, forms, and audio guides.</p>
+    </div>
+
+    <!-- CLUSTER 2: BOOKS, TRANSLATIONS & DAOIST CANON -->
+    <h3 class="pillar-section-title"><span class="badge-num">2</span> 📚 Digital Library, Translations &amp; Daoist Canon</h3>
+    <div class="card-grid" style="margin-top: 1rem; margin-bottom: 2.5rem;">
+        <a class="card" href="/books/" style="border: 2px solid #b45309;">
+            <span class="card-meta" style="color:#b45309; font-weight:700;">📖 251 Works · Digital Library</span>
+            <h3>Books &amp; Manuscripts Library</h3>
+            <p>Extensive catalog of martial classics, rare treatises, and modern monographs with full continuous online reading.</p>
         </a>
-        
+        <a class="card" href="/vi/books/">
+            <span class="card-meta" style="color:#b45309; font-weight:700;">🇻🇳 157 Interactive Translations</span>
+            <h3>Vietnamese Translations Portal</h3>
+            <p>Full-length books translated with bilingual readers, live search, and instantaneous 12-category filtering.</p>
+        </a>
+        <a class="card" href="/vi/books/khi-cong-y-hoc-tap1-deep-map/" style="border: 2px solid #92400e; background: linear-gradient(to bottom, #fffdf7, #ffffff);">
+            <span class="card-meta" style="color:#92400e; font-weight:700;">🗺️ Interactive Knowledge Graph</span>
+            <h3>Medical Qigong Interactive Map</h3>
+            <p>An interactive mind map covering all 38 foundational concepts in Dr. Jerry Alan Johnson's landmark clinical curriculum.</p>
+        </a>
+        <a class="card" href="/daoist/">
+            <span class="card-meta">☯️ Daoist Canon</span>
+            <h3>Daoist Arts &amp; Internal Alchemy</h3>
+            <p>Internal alchemy (Neidan), talismanic traditions, weather phenomena, cosmological models, and longevity cultivation.</p>
+        </a>
+    </div>
+
+    <!-- CLUSTER 3: HEALTH, CLINICAL SCIENCE & PHILOSOPHY -->
+    <h3 class="pillar-section-title"><span class="badge-num">3</span> 🩺 Health Science, Clinical Evidence &amp; Philosophy</h3>
+    <div class="card-grid" style="margin-top: 1rem; margin-bottom: 2.5rem;">
+        <a class="card" href="/health/">
+            <span class="card-meta">🩺 100 Grounded Articles</span>
+            <h3>Health &amp; TCM Series 100</h3>
+            <p>100 deep-dive articles exploring traditional medicine, connective tissue biology, and the Béchamp vs. Pasteur terrain model.</p>
+        </a>
         <a class="card" href="/research/">
-            <span class="card-meta">Science</span>
-            <h3>🔬 Research &amp; Clinical Evidence</h3>
-            <p>Harvard Medical Guide, landmark reviews, and PubMed clinical studies.</p>
+            <span class="card-meta">🔬 Evidence-Based Medicine</span>
+            <h3>Harvard Medical Guide &amp; PubMed</h3>
+            <p>Rigorous clinical reviews and randomized trials examining fall prevention, neuroplasticity, cardiovascular and cognitive health.</p>
+        </a>
+        <a class="card" href="/philosophy/">
+            <span class="card-meta">☯️ Metaphysics</span>
+            <h3>Daoist &amp; Zen Philosophy</h3>
+            <p>Taijitu Shuo, Yin-Yang balance, Wuji, Dao De Jing, and experiential Zen insights applied to modern daily life.</p>
         </a>
         <a class="card" href="/gemini-notebooks/">
-            <span class="card-meta">AI Notebooks</span>
-            <h3>🤖 Gemini Notebooks</h3>
-            <p>Grounded research notebooks on Tai Chi, Qigong, health, and life philosophy.</p>
+            <span class="card-meta">🤖 Grounded AI Notebooks</span>
+            <h3>Gemini Research Notebooks</h3>
+            <p>10 grounded research notes synthesizing over 200 sources across fascial mechanics, meridian channels, and essentialism.</p>
         </a>
-        <a class="card" href="/books/#zen" style="border-top: 3px solid #6d28d9;">
-            <span class="card-meta" style="color:#6d28d9;">☯ Zen &amp; Buddhism</span>
-            <h3>Zen · Thiền Tông Shelf</h3>
-            <p>The 19-volume English Zen library — Suzuki, Watts, Reps — read as an experiential philosophy rather than a creed, with full Vietnamese translations of the newest titles.</p>
+    </div>
+
+    <!-- CLUSTER 4: MEDIA, AUDIO & DAILY PRACTICE -->
+    <h3 class="pillar-section-title"><span class="badge-num">4</span> 🎥 Media, Audio &amp; Daily Practice</h3>
+    <div class="card-grid" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+        <a class="card" href="/videos/">
+            <span class="card-meta">🎥 Video Demonstrations</span>
+            <h3>Video Demonstrations Archive</h3>
+            <p>High-resolution video breakdowns of the 24 Form, Yang Style, joint alignment, and kinetic chain biomechanics.</p>
+        </a>
+        <a class="card" href="/podcast/">
+            <span class="card-meta">🎙️ Audio Broadcasts</span>
+            <h3>TaichiNOW Podcast Channel</h3>
+            <p>Audio broadcasts and discussions on internal martial arts, meditation, breath regulation, and longevity arts.</p>
+        </a>
+        <a class="card" href="/practice-vault/">
+            <span class="card-meta">🧘 Practice Vault</span>
+            <h3>Practice Vault &amp; Morning Routines</h3>
+            <p>Printable cheat sheets, 5-minute daily micro-routines, classical verse mnemonics, and self-evaluation trackers.</p>
+        </a>
+        <a class="card" href="/contact/">
+            <span class="card-meta">📬 Community</span>
+            <h3>Contact &amp; Collaboration</h3>
+            <p>Connect with the editorial team, submit inquiries, collaborate on research, and share community feedback.</p>
         </a>
     </div>
 </section>
 
-<section class="section">
-    <div class="section-title"><h2>Featured Articles &amp; Recent Reads</h2></div>
+<!-- SECTION 2: FEATURED MASTERWORKS & RECENT TRANSLATIONS -->
+<section class="section" id="featured-books">
+    <div class="section-title">
+        <h2>🆕 Featured Masterworks &amp; Translations</h2>
+    </div>
+    <p style="text-align:center; color: var(--gray-mid); font-style: italic; max-width: 72ch; margin: -1.5rem auto 2rem;">
+        Signature works across martial arts, internal alchemy, and medicine — complete with online readers and dual-language navigation.
+    </p>
+
+    <div class="card-grid">
+        <a class="card" href="/vi/books/zen_thien_va_suc_khoe_do_hong_ngoc_vi.html" style="border-top: 3px solid #7c3aed;">
+            <span class="card-meta" style="color:#7c3aed; font-weight:600;">🧘 Zen &amp; Medicine &middot; Dr. Do Hong Ngoc</span>
+            <h3>Zen &amp; Health — Self-Therapy</h3>
+            <p>Evidence-based medicine of meditation and diaphragmatic breathing: parasympathetic activation, stress relief, and mindful longevity.</p>
+        </a>
+        <a class="card" href="/vi/books/hai_thuong_y_tong_tam_linh_ly_luan_vi.html" style="border-top: 3px solid #b45309;">
+            <span class="card-meta" style="color:#b45309; font-weight:600;">🇻🇳 Medical Canon &middot; Hai Thuong Lan Ong</span>
+            <h3>Hai Thuong Medical Canon — Core Theory</h3>
+            <p>The philosophical foundation of Vietnamese traditional medicine: Gate of Vitality (Mingmen Fire and Water) and classical medical ethics.</p>
+        </a>
+        <a class="card" href="/vi/books/frantzis_power_internal_martial_arts_vi.html" style="border-top: 3px solid #b45309;">
+            <span class="card-meta" style="color:#b45309; font-weight:600;">🥋 Internal Arts · Bruce Frantzis · 21 Ch.</span>
+            <h3>The Power of Internal Martial Arts</h3>
+            <p>Combat principles and energetic mechanics of Tai Chi, Xingyi, and Baguazhang — over 230,000 words translated with full commentary.</p>
+        </a>
+        <a class="card" href="/vi/books/hoang_de_noi_kinh_goc_nhin_tap_1_vi.html" style="border-top: 3px solid #b45309;">
+            <span class="card-meta" style="color:#b45309; font-weight:600;">🌿 Classical Medicine · 2 Volumes</span>
+            <h3>Yellow Emperor's Inner Canon (Suwen)</h3>
+            <p>The foundational scripture of Chinese medicine, meridian pathways, and cosmic correspondence in an interactive digitized edition.</p>
+        </a>
+        <a class="card" href="/vi/books/zen_way_of_zen_vi.html" style="border-top: 3px solid #6d28d9;">
+            <span class="card-meta" style="color:#6d28d9; font-weight:600;">☯️ Zen Philosophy · Alan Watts</span>
+            <h3>The Way of Zen</h3>
+            <p>Alan Watts' seminal exploration of Zen origins in Taoism and Buddhism, zazen practice, koans, and aesthetic lifestyle.</p>
+        </a>
+        <a class="card" href="/vi/books/sun_style_taijiquan_sun_jianyun_vi.html" style="border-top: 3px solid #b45309;">
+            <span class="card-meta" style="color:#b45309; font-weight:600;">📖 Classic Manual · Sun Jianyun</span>
+            <h3>Sun Style Taijiquan</h3>
+            <p>Authentic transmission from lineage holder Sun Jianyun: directional footwork diagrams, posture commentary, and push hands mechanics.</p>
+        </a>
+    </div>
+
+    <!-- CALLOUT BANNER TO LIBRARY -->
+    <div class="library-cta-banner">
+        <div>
+            <h3>📖 Explore 251 Books &amp; 157 Interactive Translations</h3>
+            <p>Discover our complete digital collection featuring real-time search, 12 thematic bookshelves, and dual-language reading tools.</p>
+        </div>
+        <a href="/books/" class="library-cta-btn">Browse Full Library ➔</a>
+    </div>
+</section>
+
+<!-- SECTION 3: FEATURED ARTICLES & RESEARCH NOTES -->
+<section class="section" id="featured-articles">
+    <div class="section-title">
+        <h2>💡 Featured Articles &amp; Research Syntheses</h2>
+    </div>
     <div class="card-grid">
         <a class="card" href="/articles/complete-taichi-practice-guide-for-the-30-beginner/">
-            <span class="card-meta">🇻🇳 Deep Dives</span>
-            <h3>The Complete Taichi Practice Guide for the 3.0 Beginner</h3>
-            <p>From the 24 Form to Daily Longevity — your full practice roadmap. Cẩm Nang Tập Thái Cực Quyền Toàn Tập Cho Người Mới Bắt Đầu.</p>
+            <span class="card-meta">🌊 Practice Roadmap</span>
+            <h3>Complete Taichi Practice Guide for the 3.0 Beginner</h3>
+            <p>From the 24 Form to daily longevity routines — a comprehensive practice roadmap for modern practitioners and self-learners.</p>
         </a>
-        
         <a class="card" href="/articles/01_taichi_qigong_10_notes/">
-            <span class="card-meta">🇻🇳 Gemini Notebooks</span>
-            <h3>10 Ghi Chú Cốt Tủy: Thái Cực Quyền, Khí Công &amp; Cơ Sinh Học Cân Mạc</h3>
-            <p>Taichi-ChiGong research notebook — 238 sources, 10 grounded notes.</p>
+            <span class="card-meta">🤖 Gemini Notebooks</span>
+            <h3>10 Grounded Notes: Tai Chi, Qigong &amp; Fascia Biomechanics</h3>
+            <p>Synthesizing 238 grounded sources: connective tissue continuity, rotational mechanics, and spinal decompression techniques.</p>
         </a>
         <a class="card" href="/articles/02_health_tcm_energy_10_notes/">
-            <span class="card-meta">🇻🇳 Gemini Notebooks</span>
-            <h3>10 Ghi Chú Cốt Tủy: Y Học Cổ Truyền, Kinh Lạc &amp; Năng Lượng Tự Chữa Lành</h3>
-            <p>TCM, meridians, and self-healing energy — 299 sources, 10 grounded notes.</p>
+            <span class="card-meta">🤖 Gemini Notebooks</span>
+            <h3>10 Grounded Notes: TCM, Meridians &amp; Self-Healing Energy</h3>
+            <p>Integrating 299 sources: bioelectric meridian networks, dantian breathing, and autonomic regulation mechanisms.</p>
         </a>
         <a class="card" href="/articles/03_tuoi_52_tu_tap_noi_tai_10_notes/">
-            <span class="card-meta">🇻🇳 Gemini Notebooks</span>
-            <h3>10 Ghi Chú Cốt Tủy: Tuổi 52 — Hành Trình Tu Tập Nội Tại &amp; Trí Tuệ Sống</h3>
-            <p>Internal cultivation and life wisdom at age 52 — 298 sources, 10 grounded notes.</p>
+            <span class="card-meta">🤖 Gemini Notebooks</span>
+            <h3>10 Grounded Notes: Age 52 — Internal Cultivation &amp; Life Wisdom</h3>
+            <p>Reflections on midlife self-cultivation, energy conservation, emotional equilibrium, and mindful aging across 298 references.</p>
         </a>
         <a class="card" href="/articles/04_minimalism_essentialism_10_notes/">
-            <span class="card-meta">🇻🇳 Gemini Notebooks</span>
-            <h3>10 Ghi Chú Cốt Tủy: Chủ Nghĩa Thiết Yếu &amp; Tối Giản Tài Chính</h3>
-            <p>Minimalism &amp; Essentialism — the discipline of doing less, better.</p>
+            <span class="card-meta">🤖 Gemini Notebooks</span>
+            <h3>10 Grounded Notes: Essentialism &amp; Financial Minimalism</h3>
+            <p>The disciplined pursuit of less: decluttering mental focus, prioritizing vitality, and eliminating superfluous distractions.</p>
         </a>
     </div>
 </section>
@@ -275,13 +403,35 @@
 
 <nav class="page-nav">
     <a href="/" class="home">⌂ Home</a>
+    <a href="/books/">Full Books Library ➔</a>
 </nav>
 </main>
+
+<!-- FLOATING BACK TO TOP -->
+<button class="floating-back-top" id="back-to-top" title="Back to Top">⬆</button>
 
 <footer class="site-footer">
     <p>Built with ❤️ for the Vietnamese Tai Chi community <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
     <p>Trang web này được xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="20" height="20" style="vertical-align:-3px;display:inline-block;"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg> by Phạm Đức Hải</p>
 </footer>
+
+<script>
+// Floating Back to Top Logic
+(function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
 
 </body>
 </html>
