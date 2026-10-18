@@ -185,7 +185,7 @@
 
     <!-- QUICK GATEWAY ACTION PILLS -->
     <div class="hero-badges-container">
-        <a href="/books/" class="hero-badge-pill highlight">📖 Digital Library (251 Books)</a>
+        <a href="/books/" class="hero-badge-pill highlight">📖 Digital Library (281 Books)</a>
         <a href="/techniques/" class="hero-badge-pill">🥋 Techniques &amp; 8 Energies</a>
         <a href="/health/" class="hero-badge-pill">🩺 Health &amp; TCM Series 100</a>
         <a href="/research/" class="hero-badge-pill">🔬 Harvard Clinical Evidence</a>
@@ -358,7 +358,7 @@
     <!-- CALLOUT BANNER TO LIBRARY -->
     <div class="library-cta-banner">
         <div>
-            <h3>📖 Explore 251 Books &amp; 157 Interactive Translations</h3>
+            <h3>📖 Explore 281 Books &amp; 260 Interactive Translations</h3>
             <p>Discover our complete digital collection featuring real-time search, 12 thematic bookshelves, and dual-language reading tools.</p>
         </div>
         <a href="/books/" class="library-cta-btn">Browse Full Library ➔</a>
@@ -445,7 +445,7 @@
       acceptNode: function (n) {
         var p = n.parentNode;
         if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
-        return /T\u00e1c Ph\u1ea9m|B\u1ea3n D\u1ecbch|Works/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        return /T\u00e1c Ph\u1ea9m|B\u1ea3n D\u1ecbch|Works|Books|Interactive/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
       }
     });
     var nodes = [], n;
@@ -454,7 +454,9 @@
       var t = node.nodeValue
         .replace(/(\d+)( T\u00e1c Ph\u1ea9m)/g, total + '$2')
         .replace(/(\d+)( B\u1ea3n D\u1ecbch)/g, translated + '$2')
-        .replace(/(\d+)( Works)/g, total + '$2');
+        .replace(/(\d+)( Works)/g, total + '$2')
+        .replace(/(\d+)( Books)/g, total + '$2')
+        .replace(/(\d+)( Interactive)/g, translated + '$2');
       if (t !== node.nodeValue) node.nodeValue = t;
     });
   }

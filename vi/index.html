@@ -436,7 +436,7 @@
       acceptNode: function (n) {
         var p = n.parentNode;
         if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
-        return /T\u00e1c Ph\u1ea9m|B\u1ea3n D\u1ecbch|Works/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        return /T\u00e1c Ph\u1ea9m|B\u1ea3n D\u1ecbch|Works|Books|Interactive/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
       }
     });
     var nodes = [], n;
@@ -445,7 +445,9 @@
       var t = node.nodeValue
         .replace(/(\d+)( T\u00e1c Ph\u1ea9m)/g, total + '$2')
         .replace(/(\d+)( B\u1ea3n D\u1ecbch)/g, translated + '$2')
-        .replace(/(\d+)( Works)/g, total + '$2');
+        .replace(/(\d+)( Works)/g, total + '$2')
+        .replace(/(\d+)( Books)/g, total + '$2')
+        .replace(/(\d+)( Interactive)/g, translated + '$2');
       if (t !== node.nodeValue) node.nodeValue = t;
     });
   }
