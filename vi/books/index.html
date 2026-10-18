@@ -187,6 +187,303 @@
   letter-spacing: 0.02em;
   margin-top: 4px;
 }
+
+/* ============================================================
+   LIBRARY UI/UX OVERHAUL: CONTROL CENTER, SEARCH & FILTER
+   ============================================================ */
+.library-control-bar {
+  background: var(--yang, #ffffff);
+  border: 1px solid var(--gray-light, #e2e8f0);
+  border-radius: 16px;
+  padding: 22px 24px 18px;
+  margin: 1.5rem 0 2rem;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 10;
+}
+
+/* Search input */
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 1.15rem;
+  color: var(--accent-gold, #b45309);
+  pointer-events: none;
+}
+#book-search-input {
+  width: 100%;
+  padding: 13px 48px 13px 50px;
+  font-size: 1.02rem;
+  font-family: inherit;
+  border: 2px solid var(--gray-light, #cbd5e1);
+  border-radius: 12px;
+  background: var(--yang, #ffffff);
+  color: var(--yin, #18181b);
+  transition: all 0.25s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+#book-search-input:focus {
+  border-color: var(--accent-gold, #b45309);
+  box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.15);
+}
+#search-clear-btn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--gray-mid, #94a3b8);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.15s, background 0.15s;
+}
+#search-clear-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Stats and dropdown bar */
+.search-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--gray-light, #e2e8f0);
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+.stats-counter {
+  color: var(--gray-dark, #475569);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stats-counter strong {
+  color: #b45309;
+  font-weight: 700;
+}
+.quick-jump-dropdown-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quick-jump-dropdown-wrap label {
+  color: var(--gray-mid, #64748b);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+#category-jump-select {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light, #cbd5e1);
+  background: var(--yang, #ffffff);
+  color: var(--yin, #1e293b);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#category-jump-select:focus {
+  border-color: var(--accent-gold, #b45309);
+}
+
+/* Category filter pills */
+.category-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.cat-pill {
+  background: var(--gray-light, #f1f5f9);
+  border: 1px solid transparent;
+  color: var(--gray-dark, #334155);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  user-select: none;
+  text-decoration: none;
+}
+.cat-pill:hover {
+  background: #e2e8f0;
+  color: var(--yin, #0f172a);
+  transform: translateY(-1px);
+}
+.cat-pill.active {
+  background: var(--yin, #0f172a);
+  color: var(--yang, #ffffff);
+  border-color: var(--yin, #0f172a);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.cat-pill.translated-filter {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+.cat-pill.translated-filter.active {
+  background: linear-gradient(135deg, #b45309, #d4af37);
+  color: #ffffff;
+  border-color: #b45309;
+}
+
+/* Empty state */
+.no-results-box {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: var(--yang, #ffffff);
+  border: 1px dashed var(--gray-light, #cbd5e1);
+  border-radius: 16px;
+  margin: 3rem 0;
+}
+.no-results-box i.fa-regular {
+  font-size: 3.5rem;
+  color: var(--gray-mid, #94a3b8);
+  margin-bottom: 1rem;
+}
+.no-results-box h3 {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--yin, #1e293b);
+  margin-bottom: 0.6rem;
+}
+.no-results-box p {
+  color: var(--gray-mid, #64748b);
+  max-width: 520px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+.reset-search-btn {
+  background: linear-gradient(135deg, #b45309, #d4af37);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.reset-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(180, 83, 9, 0.3);
+}
+
+/* Floating Navigation Tools */
+.floating-nav-tools {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 990;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.floating-nav-tools.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.floating-nav-tools button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--yin, #0f172a);
+  color: var(--yang, #ffffff);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.floating-nav-tools button:hover {
+  background: #b45309;
+  transform: scale(1.08);
+}
+.floating-nav-tools button#floating-jump-btn {
+  width: auto;
+  border-radius: 24px;
+  padding: 0 16px;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Target Section Highlight Flash */
+@keyframes sectionHighlight {
+  0% { background-color: rgba(212, 175, 55, 0.25); }
+  100% { background-color: transparent; }
+}
+.section-flash-highlight {
+  animation: sectionHighlight 2s ease-out;
+  border-radius: 8px;
+}
+
+/* Collapsible drawer styling */
+details.translated-jump-banner summary {
+  list-style: none;
+}
+details.translated-jump-banner summary::-webkit-details-marker {
+  display: none;
+}
+details.translated-jump-banner summary .drawer-icon {
+  transition: transform 0.25s ease;
+  margin-right: 4px;
+}
+details.translated-jump-banner[open] summary .drawer-icon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .library-control-bar {
+    padding: 16px 14px;
+  }
+  .search-stats-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .category-filter-pills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cat-pill {
+    white-space: nowrap;
+  }
+}
 </style>
 </head>
 <body>
@@ -257,13 +554,64 @@
     </div>
 </div>
 
-
-
-<div class="translated-jump-banner">
-  <div class="tjb-head">
-    <span class="tjb-pill">✅ Đã Dịch Hoàn Chỉnh — 157 Tác Phẩm Song Ngữ</span>
-    <span class="tjb-note">Nhảy nhanh đến bản dịch toàn văn · Xếp theo tủ sách</span>
+<!-- ============================================================
+     BỘ ĐIỀU KHIỂN THƯ VIỆN & TÌM KIẾM TRỰC TIẾP
+     ============================================================ -->
+<div class="library-control-bar" id="library-controls">
+  <!-- Ô tìm kiếm trực tiếp -->
+  <div class="search-input-wrapper">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    <input type="text" id="book-search-input" placeholder="🔍 Tìm kiếm sách theo tên, tác giả, võ phái, chủ đề (vd: Tôn Kiếm Vân, Trần Hâm, Harvard, Khí công, Thiền...)..." autocomplete="off" spellcheck="false">
+    <button id="search-clear-btn" title="Xóa tìm kiếm" style="display:none;" aria-label="Xóa tìm kiếm"><i class="fa-solid fa-xmark"></i></button>
   </div>
+
+  <!-- Thống kê và menu nhảy nhanh tủ sách -->
+  <div class="search-stats-bar">
+    <div class="stats-counter" id="stats-counter">
+      <i class="fa-solid fa-book-bookmark"></i> Đang hiển thị <strong id="visible-book-count">251</strong> / <strong>251</strong> tác phẩm
+    </div>
+    <div class="quick-jump-dropdown-wrap">
+      <label for="category-jump-select"><i class="fa-solid fa-compass"></i> Đến Tủ Sách:</label>
+      <select id="category-jump-select">
+        <option value="">-- Chọn Tủ Sách Để Xem --</option>
+        <option value="kinh-dien-thai-cuc">🥋 Kinh Điển Thái Cực Quyền (35)</option>
+        <option value="yoga-vi">🧘 Yoga &amp; Dưỡng Sinh Thân Tâm (6)</option>
+        <option value="martial-arts-vi">🥋 Võ Thuật Cổ Truyền &amp; Tự Vệ (10)</option>
+        <option value="aikido-vi">🥋 Hiệp Khí Đạo — Aikido (15)</option>
+        <option value="noi-kinh">🌿 Hoàng Đế Nội Kinh &amp; Đông Y (8)</option>
+        <option value="noi-canh-do">🗺️ Nội Cảnh Đồ &amp; Đan Đạo (4)</option>
+        <option value="noi-gia-ban-dich-moi">📚 Nội Gia &amp; Vận Động Trị Liệu (7)</option>
+        <option value="ymaa-dr-yang">📘 TS. Dương Tuấn Mẫn — YMAA (15)</option>
+        <option value="taichi-khicong-vi">☸ Thái Cực &amp; Khí Công (26)</option>
+        <option value="frantzis-vi">🦄 Bruce Kumar Frantzis (12)</option>
+        <option value="taijiworld">📚 Erle Montaigue (26)</option>
+        <option value="ton-giao-khac-vi">🪷 Triết Học &amp; Thiền Tông (53)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Các nút lọc danh mục (Category Filter Pills) -->
+  <div class="category-filter-pills" id="category-pills">
+    <button class="cat-pill active" data-category="all"><i class="fa-solid fa-layer-group"></i> Tất Cả (251)</button>
+    <button class="cat-pill" data-category="kinh-dien-thai-cuc">🥋 Kinh Điển Thái Cực (35)</button>
+    <button class="cat-pill" data-category="noi-kinh">🌿 Nội Kinh &amp; Đông Y (8)</button>
+    <button class="cat-pill" data-category="ymaa-dr-yang">📘 Dương Tuấn Mẫn (15)</button>
+    <button class="cat-pill" data-category="aikido-martial">🥋 Võ Thuật &amp; Aikido (25)</button>
+    <button class="cat-pill" data-category="yoga-vi">🧘 Yoga &amp; Thân Tâm (6)</button>
+    <button class="cat-pill" data-category="taichi-khicong-vi">☸ Thái Cực &amp; Khí Công (26)</button>
+    <button class="cat-pill" data-category="noi-canh-do">🗺️ Đan Đạo &amp; Nội Cảnh (4)</button>
+    <button class="cat-pill" data-category="noi-gia-ban-dich-moi">📚 Vận Động Trị Liệu (7)</button>
+    <button class="cat-pill" data-category="frantzis-taijiworld">🦄 Frantzis &amp; Montaigue (38)</button>
+    <button class="cat-pill" data-category="ton-giao-khac-vi">🪷 Thiền &amp; Triết Học (53)</button>
+    <button class="cat-pill translated-filter" data-category="translated-only">⭐ Đã Dịch Toàn Văn</button>
+  </div>
+</div>
+
+<details class="translated-jump-banner" id="all-translations-drawer">
+  <summary class="tjb-head" style="cursor: pointer; outline: none; user-select: none;">
+    <span class="tjb-pill">✅ Đã Dịch Hoàn Chỉnh — 157 Tác Phẩm Song Ngữ</span>
+    <span class="tjb-note"><i class="fa-solid fa-chevron-down drawer-icon"></i> Bấm để mở / đóng danh mục phím tắt 157 tác phẩm toàn văn xếp theo tủ sách</span>
+  </summary>
   <div class="tjb-groups">
     <div class="tjb-group">
       <div class="tjb-group-head">
@@ -529,9 +877,26 @@
       </div>
     </div>
   </div>
+</details>
+
+<!-- THÔNG BÁO KHI KHÔNG TÌM THẤY KẾT QUẢ -->
+<div id="no-results-box" class="no-results-box" style="display:none;">
+  <i class="fa-regular fa-face-meh"></i>
+  <h3>Không tìm thấy tác phẩm phù hợp</h3>
+  <p>Vui lòng thử tìm với từ khóa khác (ví dụ: <em>Dương Gia, Trần Hâm, Harvard, Khí công, Đỗ Hồng Ngọc, Aikido...</em>) hoặc bấm vào nút bên dưới để xem lại toàn bộ thư viện.</p>
+  <button id="reset-search-btn" class="reset-search-btn"><i class="fa-solid fa-rotate-left"></i> Xem Toàn Bộ Thư Viện</button>
 </div>
 
-
+<!-- SECTION 1: KINH ĐIỂN THÁI CỰC QUYỀN & Y HỌC THỂ THAO -->
+<div id="kinh-dien-thai-cuc" class="category-section-wrap" style="margin-top: 2.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #b45309; padding-bottom: 0.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px;">
+        <h2 style="color: #991b1b; margin: 0; font-family: var(--serif); font-size: 1.85rem;">🥋 Tuyển Chọn &amp; Kinh Điển Thái Cực Quyền (35 Tác Phẩm)</h2>
+        <span style="font-size: 0.88rem; color: var(--gray-mid); font-weight: 600;">Ngũ Đại Danh Gia &middot; Y Học Chứng Cứ Harvard &middot; Toàn Văn Song Ngữ</span>
+    </div>
+    <p style="margin: 0.9rem 0 0; color: var(--gray-mid); font-size: 0.92rem; max-width: 78ch;">
+        Tập hợp những tác phẩm trụ cột của Thái Cực Quyền thế giới: từ kinh điển ngũ đại gia phái (Trần Thức — Tôn sư Trần Hâm; Dương Thức — Dương Trừng Phủ, Trịnh Mạn Thanh, Phó Chung Văn; Ngô Thức — Từ Trí Nhất, Ngô Mạnh Hà; Võ Thức — Hách Thiếu Như; Tôn Thức — Tôn Kiếm Vân) đến nghiên cứu y học chứng cứ hàng đầu của Trường Y Harvard, Triền Ty Kình, Bằng Kình và các công trình đối luyện thực chiến.
+    </p>
+</div>
 
 <div class="book-card-grid">
     <!-- Card: Johnson Vol.1 concept deep map -->
@@ -4564,6 +4929,262 @@
     <p>Built with ❤️ for the Vietnamese Tai Chi community by Phạm Đức Hải</p>
     <p>Trang web này được xây dựng với ❤️ cho cộng đồng Thái Cực Quyền Việt Nam by Phạm Đức Hải</p>
 </footer>
+
+<!-- THANH CÔNG CỤ ĐIỀU HƯỚNG NỔI (FLOATING NAV) -->
+<div class="floating-nav-tools" id="floating-tools">
+  <button id="floating-jump-btn" title="Lên Bộ Lọc &amp; Tìm Kiếm" aria-label="Lên Bộ Lọc &amp; Tìm Kiếm"><i class="fa-solid fa-magnifying-glass"></i> <span>Tìm Sách</span></button>
+  <button id="floating-top-btn" title="Lên Đầu Trang" aria-label="Lên Đầu Trang"><i class="fa-solid fa-arrow-up"></i></button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('book-search-input');
+  const clearBtn = document.getElementById('search-clear-btn');
+  const countDisplay = document.getElementById('visible-book-count');
+  const pills = document.querySelectorAll('.cat-pill');
+  const jumpSelect = document.getElementById('category-jump-select');
+  const noResultsBox = document.getElementById('no-results-box');
+  const resetBtn = document.getElementById('reset-search-btn');
+  const floatingTools = document.getElementById('floating-tools');
+  const floatingTopBtn = document.getElementById('floating-top-btn');
+  const floatingJumpBtn = document.getElementById('floating-jump-btn');
+
+  // Hàm loại bỏ dấu tiếng Việt để tìm kiếm không dấu / có dấu linh hoạt
+  function normalizeText(str) {
+    if (!str) return '';
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[đĐ]/g, 'd')
+      .toLowerCase()
+      .trim();
+  }
+
+  // Danh sách ID của 12 tủ sách chính
+  const sectionIds = [
+    'kinh-dien-thai-cuc',
+    'yoga-vi',
+    'martial-arts-vi',
+    'aikido-vi',
+    'noi-kinh',
+    'noi-canh-do',
+    'noi-gia-ban-dich-moi',
+    'ymaa-dr-yang',
+    'taichi-khicong-vi',
+    'frantzis-vi',
+    'taijiworld',
+    'ton-giao-khac-vi'
+  ];
+
+  // Bảng ánh xạ từ nút lọc (Category Pill) sang các Section ID tương ứng
+  const categoryMap = {
+    'all': null,
+    'kinh-dien-thai-cuc': ['kinh-dien-thai-cuc'],
+    'noi-kinh': ['noi-kinh'],
+    'ymaa-dr-yang': ['ymaa-dr-yang'],
+    'aikido-martial': ['martial-arts-vi', 'aikido-vi'],
+    'yoga-vi': ['yoga-vi'],
+    'taichi-khicong-vi': ['taichi-khicong-vi'],
+    'noi-canh-do': ['noi-canh-do'],
+    'noi-gia-ban-dich-moi': ['noi-gia-ban-dich-moi'],
+    'frantzis-taijiworld': ['frantzis-vi', 'taijiworld'],
+    'ton-giao-khac-vi': ['ton-giao-khac-vi'],
+    'translated-only': 'translated'
+  };
+
+  const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  const allCards = Array.from(document.querySelectorAll('.interactive-book-card'));
+
+  // Đánh dấu từng thẻ sách với Tủ Sách tương ứng và lập chỉ mục nội dung tìm kiếm
+  allCards.forEach(card => {
+    let assignedSection = 'kinh-dien-thai-cuc';
+    for (let i = 0; i < sectionElements.length; i++) {
+      const sec = sectionElements[i];
+      if (sec && (sec.compareDocumentPosition(card) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+        assignedSection = sec.id;
+      }
+    }
+    card.dataset.sectionId = assignedSection;
+    card.dataset.isTranslated = card.classList.contains('translated') ? 'true' : 'false';
+
+    const title = card.querySelector('h3')?.textContent || '';
+    const author = card.querySelector('.book-author')?.textContent || '';
+    const summary = card.querySelector('.book-summary')?.textContent || '';
+    const badges = Array.from(card.querySelectorAll('.card-header-badge, .translated-ribbon')).map(b => b.textContent).join(' ');
+    const footer = card.querySelector('.card-footer-meta')?.textContent || '';
+
+    card.dataset.searchText = normalizeText(`${title} ${author} ${summary} ${badges} ${footer}`);
+  });
+
+  let currentCategory = 'all';
+
+  // Hàm lọc và hiển thị sách trực tiếp
+  function applyFilter() {
+    const query = normalizeText(searchInput ? searchInput.value : '');
+    if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
+
+    let visibleCount = 0;
+    const activeSectionCounts = {};
+    sectionIds.forEach(id => activeSectionCounts[id] = 0);
+
+    allCards.forEach(card => {
+      const matchesSearch = !query || card.dataset.searchText.includes(query);
+
+      let matchesCategory = true;
+      if (currentCategory === 'all') {
+        matchesCategory = true;
+      } else if (currentCategory === 'translated-only') {
+        matchesCategory = card.dataset.isTranslated === 'true';
+      } else {
+        const allowedSections = categoryMap[currentCategory] || [];
+        matchesCategory = allowedSections.includes(card.dataset.sectionId);
+      }
+
+      if (matchesSearch && matchesCategory) {
+        card.style.display = '';
+        visibleCount++;
+        activeSectionCounts[card.dataset.sectionId] = (activeSectionCounts[card.dataset.sectionId] || 0) + 1;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Ẩn/hiện tiêu đề từng Tủ Sách và lưới sách tương ứng
+    sectionElements.forEach(sec => {
+      const hasVisible = (activeSectionCounts[sec.id] || 0) > 0;
+      sec.style.display = hasVisible ? '' : 'none';
+
+      let next = sec.nextElementSibling;
+      while (next && !next.id && !next.classList.contains('category-section-wrap') && !next.classList.contains('section')) {
+        if (next.classList.contains('book-card-grid')) {
+          const visibleInGrid = next.querySelectorAll('.interactive-book-card:not([style*="display: none"])');
+          next.style.display = visibleInGrid.length > 0 ? 'grid' : 'none';
+        }
+        next = next.nextElementSibling;
+      }
+    });
+
+    // Xử lý riêng cho phân đoạn Thiền Tông (#thien-tong-zen-vi)
+    const subZen = document.getElementById('thien-tong-zen-vi');
+    if (subZen) {
+      let next = subZen.nextElementSibling;
+      let hasVisibleZen = false;
+      while (next && !next.classList.contains('section') && !next.id) {
+        if (next.classList.contains('book-card-grid')) {
+          const visible = next.querySelectorAll('.interactive-book-card:not([style*="display: none"])');
+          if (visible.length > 0) hasVisibleZen = true;
+        }
+        next = next.nextElementSibling;
+      }
+      subZen.style.display = hasVisibleZen ? 'flex' : 'none';
+    }
+
+    // Cập nhật số lượng sách hiển thị
+    if (countDisplay) {
+      countDisplay.textContent = visibleCount;
+    }
+
+    // Hiển thị thông báo khi không tìm thấy kết quả
+    if (noResultsBox) {
+      noResultsBox.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  // Sự kiện gõ tìm kiếm
+  if (searchInput) {
+    searchInput.addEventListener('input', applyFilter);
+  }
+
+  // Nút xóa từ khóa tìm kiếm
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      applyFilter();
+      searchInput.focus();
+    });
+  }
+
+  // Sự kiện bấm chọn nút lọc danh mục (Pills)
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentCategory = pill.dataset.category || 'all';
+      applyFilter();
+    });
+  });
+
+  // Nút khôi phục bộ lọc khi không thấy kết quả
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      currentCategory = 'all';
+      pills.forEach(p => p.classList.remove('active'));
+      const allPill = document.querySelector('.cat-pill[data-category="all"]');
+      if (allPill) allPill.classList.add('active');
+      if (jumpSelect) jumpSelect.value = '';
+      applyFilter();
+      window.scrollTo({ top: document.getElementById('library-controls').offsetTop - 80, behavior: 'smooth' });
+    });
+  }
+
+  // Menu thả xuống nhảy nhanh đến Tủ Sách
+  if (jumpSelect) {
+    jumpSelect.addEventListener('change', (e) => {
+      const targetId = e.target.value;
+      if (!targetId) return;
+
+      // Đưa về hiển thị tất cả nếu đang lọc danh mục khác
+      if (currentCategory !== 'all') {
+        currentCategory = 'all';
+        pills.forEach(p => p.classList.remove('active'));
+        const allPill = document.querySelector('.cat-pill[data-category="all"]');
+        if (allPill) allPill.classList.add('active');
+        applyFilter();
+      }
+
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        const top = targetEl.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+        targetEl.classList.add('section-flash-highlight');
+        setTimeout(() => targetEl.classList.remove('section-flash-highlight'), 2000);
+      }
+    });
+  }
+
+  // Thanh công cụ nổi (Floating Nav Tools)
+  window.addEventListener('scroll', () => {
+    if (floatingTools) {
+      if (window.scrollY > 400) {
+        floatingTools.classList.add('visible');
+      } else {
+        floatingTools.classList.remove('visible');
+      }
+    }
+  });
+
+  if (floatingTopBtn) {
+    floatingTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (floatingJumpBtn) {
+    floatingJumpBtn.addEventListener('click', () => {
+      const controls = document.getElementById('library-controls');
+      if (controls) {
+        const top = controls.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top, behavior: 'smooth' });
+        if (searchInput) searchInput.focus();
+      }
+    });
+  }
+
+  // Khởi động lọc ban đầu
+  applyFilter();
+});
+</script>
 
 </body>
 </html>
