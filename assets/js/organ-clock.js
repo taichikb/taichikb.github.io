@@ -659,21 +659,6 @@
       });
     });
 
-    var vcol = document.getElementById('vCollapse');
-    if (vcol) {
-      vcol.addEventListener('click', function () {
-        var card = document.getElementById('pVideo');
-        var collapsed = card.classList.toggle('collapsed');
-        vcol.textContent = collapsed ? '+' : '\u2013';
-        vcol.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-        vcol.setAttribute('aria-label', collapsed ? T.showVideo : T.hideVideo);
-        if (collapsed && vid.playing) {
-          vid.playing = false;
-          renderVideo(currentItem());
-        }
-      });
-    }
-
     var fb = document.getElementById('btnFullscreen');
     if (fb) { fb.addEventListener('click', toggleFullscreen); }
     document.addEventListener('fullscreenchange', syncFullscreen);
