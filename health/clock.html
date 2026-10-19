@@ -57,9 +57,24 @@
   </div>
 
   <aside class="panel" id="oc-panel">
-    <div class="p-eyebrow" id="pEyebrow"><span class="p-dot"></span><span id="pEyebrowTxt">NOW · LIVE</span></div>
-    <h1 class="p-organ" id="pOrgan">—</h1>
-    <div class="p-sub" id="pSub"></div>
+    <div class="p-top">
+      <div class="p-top-main">
+        <div class="p-eyebrow" id="pEyebrow"><span class="p-dot"></span><span id="pEyebrowTxt">NOW · LIVE</span></div>
+        <h1 class="p-organ" id="pOrgan">—</h1>
+        <div class="p-sub" id="pSub"></div>
+      </div>
+      <div class="p-video" id="pVideo">
+        <div class="pv-head">
+          <span class="pv-label" id="vLabel">▶ Video</span>
+          <button class="pv-btn" id="vCollapse" type="button" aria-expanded="true" aria-label="Hide video">–</button>
+        </div>
+        <div class="pv-frame" id="vFrame"></div>
+        <div class="pv-note">
+          <span class="pv-title" id="vTitle"></span>
+          <a id="vExternal" href="#" target="_blank" rel="noopener" aria-label="Open on YouTube">↗</a>
+        </div>
+      </div>
+    </div>
     <div class="p-meta">
       <span class="pill" id="pRange">—</span>
       <span class="pill ghost" id="pBranch">—</span>
@@ -67,6 +82,7 @@
       <button class="pill link" id="pBack" type="button" hidden>← Back to now</button>
     </div>
     <div class="p-bar"><i id="pBar"></i></div>
+
 
     <div class="p-blocks">
       <div class="blk">
@@ -147,6 +163,11 @@ window.ORGAN_CLOCK = {
     lblDrill: "🧘 Somatic micro-drill",
     lblLifestyle: "💡 Circadian lifestyle",
     lblNext: "Next",
+    videoLabel: "▶ Video demo",
+    videoFrom: "Demo from the {id} guide",
+    playVideo: "Play video",
+    hideVideo: "Hide video",
+    showVideo: "Show video",
     startDrill: "▶ Start drill timer",
     guideLabel: "Open {id} guide →",
     fullscreen: "Fullscreen",
@@ -167,6 +188,8 @@ window.ORGAN_CLOCK = {
       branch: "Zi Hour", range: "23:00 - 01:00",
       organ: "Gallbladder Meridian", center: "Gallbladder", short: "Gallbladder",
       sub: "Foot Shaoyang Gallbladder · Đởm",
+      video: "9D_f88oL57Q",
+      videoTitle: "Xi Sui Jing — Bone Marrow Cleansing (taster class)",
       science: "Cellular autophagy, spinal cord and myelin sheath repair, growth hormone release during deep NREM slow-wave sleep.",
       classical: "The Gallbladder rules decisiveness and clear judgment. At the Zi hour, the first spark of Yang returns; complete rest preserves foundational vitality.",
       drill: "Supine meditation with Dantian visualization, tongue lightly touching the upper palate (Magpie Bridge), rhythmic slow nasal exhalations.",
@@ -178,6 +201,8 @@ window.ORGAN_CLOCK = {
       branch: "Chou Hour", range: "01:00 - 03:00",
       organ: "Liver Meridian", center: "Liver", short: "Liver",
       sub: "Foot Jueyin Liver · Can",
+      video: "dsTQQcrpoNY",
+      videoTitle: "Qigong Liver Detox — daily practice for stress",
       science: "Hepatic detoxification, glycogen synthesis, muscle and myofascial matrix vascular reperfusion.",
       classical: "The Liver stores blood and governs sinews/tendons. Staying awake during Chou hour causes Liver Fire to surge, triggering tendon rigidity and joint stiffness.",
       drill: "Deep restorative sleep; if awakened, practice gentle side-lying diaphragmatic breathing without checking screens.",
@@ -189,6 +214,8 @@ window.ORGAN_CLOCK = {
       branch: "Yin Hour", range: "03:00 - 05:00",
       organ: "Lung Meridian", center: "Lung", short: "Lung",
       sub: "Hand Taiyin Lung · Phế",
+      video: "Mg2ar-7_HfA",
+      videoTitle: "The Diaphragm as the Primary Breathing Engine",
       science: "Diaphragmatic oxygenation, endogenous Nitric Oxide regulation, circadian cortisol surge preparing the waking metabolism.",
       classical: "The Lungs govern Qi and meet in all blood vessels. At Yin hour, vital energy is distributed from the core to the peripheral extremities.",
       drill: "Tu Na Diaphragmatic Breathing (inhale gently expanding the lower abdomen 4s, exhale smoothing tension 6s). Perform 8-12 rounds.",
@@ -200,6 +227,8 @@ window.ORGAN_CLOCK = {
       branch: "Mao Hour", range: "05:00 - 07:00",
       organ: "Large Intestine Meridian", center: "Large Intestine", short: "Lg. Intestine",
       sub: "Hand Yangming Large Intestine · Đại Trường",
+      video: "AM_lVBx1f6Q",
+      videoTitle: "Morning Joint Wake-Up Routine",
       science: "Gastrocolic reflex, mass peristalsis, elimination of metabolic waste, morning systemic hydration reset.",
       classical: "The Large Intestine is the official of transmission. Expelling turbid waste welcomes clear Yang Qi into the body.",
       drill: "Clockwise abdominal massage around the navel 36 times; gentle Yi Jin Jing arm swinging drills.",
@@ -211,6 +240,8 @@ window.ORGAN_CLOCK = {
       branch: "Chen Hour", range: "07:00 - 09:00",
       organ: "Stomach Meridian", center: "Stomach", short: "Stomach",
       sub: "Foot Yangming Stomach · Vị",
+      video: "aa3N3jh3C0A",
+      videoTitle: "Mindful Eating and Digestive Qi",
       science: "Gastric acid and digestive enzyme secretion peak, optimal assimilation of macro- and micronutrients.",
       classical: "The Stomach is the sea of grain and water. A warm nourishing breakfast ignites the Post-Heaven Qi foundation.",
       drill: "Mindful 100-step Tai Chi walking post-meal, gentle circular rubbing of the epigastric region.",
@@ -222,6 +253,8 @@ window.ORGAN_CLOCK = {
       branch: "Si Hour", range: "09:00 - 11:00",
       organ: "Spleen Meridian", center: "Spleen", short: "Spleen",
       sub: "Foot Taiyin Spleen · Tỳ",
+      video: "kUhmnYHIo2M",
+      videoTitle: "Acupressure at Zusanli (ST-36)",
       science: "Pancreatic enzymatic activity, blood glucose stabilization, peak cognitive alertness and memory retention.",
       classical: "The Spleen governs transformation and transportation, rules the flesh and muscles. Prolonged sitting damages the Spleen.",
       drill: "Stand up, stretch the meridians, massage Zusanli (ST36) and Sanyinjiao (SP6) for 1 minute each.",
@@ -233,6 +266,8 @@ window.ORGAN_CLOCK = {
       branch: "Wu Hour", range: "11:00 - 13:00",
       organ: "Heart Meridian", center: "Heart", short: "Heart",
       sub: "Hand Shaoyin Heart · Tâm",
+      video: "fwjVBNA0yjQ",
+      videoTitle: "Qigong for Better Sleep — evening practice",
       science: "Peak cardiovascular blood circulation; midday autonomic transition toward parasympathetic relaxation.",
       classical: "The Heart is the monarch of all organs. At Wu hour Yang reaches its zenith; quiet sitting nourishes Heart fire.",
       drill: "Seated quiet posture with eyes closed for 15 minutes, sinking the chest lightly (Han Xiong), relaxing the shoulders.",
@@ -244,6 +279,8 @@ window.ORGAN_CLOCK = {
       branch: "Wei Hour", range: "13:00 - 15:00",
       organ: "Small Intestine Meridian", center: "Small Intestine", short: "Sm. Intestine",
       sub: "Hand Taiyang Small Intestine · Tiểu Trường",
+      video: "CdgV28SrV9g",
+      videoTitle: "Gomukhasana and Peng Ward Off",
       science: "Nutrient sorting and absorption in the jejunum/ileum, mesenteric lymphatic transport.",
       classical: "The Small Intestine separates the pure from the turbid (directing nutrients inward and fluids downward).",
       drill: "Shoulder and upper back mobility stretches (Gomukhasana / Ward Off Peng extension drills).",
@@ -255,6 +292,8 @@ window.ORGAN_CLOCK = {
       branch: "Shen Hour", range: "15:00 - 17:00",
       organ: "Bladder Meridian", center: "Bladder", short: "Bladder",
       sub: "Foot Taiyang Bladder · Bàng Quang",
+      video: "GHb1xKvO3NY",
+      videoTitle: "Hamstring Lengthening for Stances",
       science: "Core body temperature peak, maximum muscle and fascial elasticity, efficient fluid clearance.",
       classical: "The Bladder meridian traverses from the head along both sides of the spine to the feet, circulating Wei Qi (defensive energy).",
       drill: "Two Hands Hold the Feet to Strengthen the Kidneys (Ba Duan Jin drill), stretching the Superficial Back Line.",
@@ -266,6 +305,8 @@ window.ORGAN_CLOCK = {
       branch: "You Hour", range: "17:00 - 19:00",
       organ: "Kidney Meridian", center: "Kidney", short: "Kidney",
       sub: "Foot Shaoyin Kidney · Thận",
+      video: "NjoYjYzNfFE",
+      videoTitle: "Qigong Exercise to Boost the Kidney System",
       science: "Adrenal hormone deceleration, blood pressure stabilization, golden window for somatic restorative training.",
       classical: "The Kidneys are the foundation of Pre-Heaven Qi, storing Jing and bone marrow essence. Prime time for Tai Chi practice.",
       drill: "Zhan Zhuang (Standing Pole Posture) for 15-20 minutes, sinking the breath to the Lower Dantian, warming Mingmen.",
@@ -277,6 +318,8 @@ window.ORGAN_CLOCK = {
       branch: "Xu Hour", range: "19:00 - 21:00",
       organ: "Pericardium Meridian", center: "Pericardium", short: "Pericardium",
       sub: "Hand Jueyin Pericardium · Tâm Bào",
+      video: "q2tAXVAP5rA",
+      videoTitle: "Mantak Chia — Inner Smile Meditation",
       science: "Parasympathetic tone escalation, cardiac output deceleration, reduction in vascular resistance and mental stress.",
       classical: "The Pericardium is the protective shield of the Heart. Nourishing it releases pent-up daily emotional tension.",
       drill: "Acupressure on Neiguan (PC6) on the inner wrist for 2-3 minutes with 4-7-8 breathing; practise the Inner Smile.",
@@ -288,6 +331,8 @@ window.ORGAN_CLOCK = {
       branch: "Hai Hour", range: "21:00 - 23:00",
       organ: "Triple Burner Meridian", center: "Triple Burner", short: "Triple Burner",
       sub: "Hand Shaoyang San Jiao · Tam Tiêu",
+      video: "jRKo98CEfSg",
+      videoTitle: "Herbal Foot Baths in TCM",
       science: "Melatonin secretion surge inducing sleepiness, endocrine equilibrium, core body cooling in preparation for sleep.",
       classical: "The San Jiao coordinates fluid metabolism and thermodynamic harmony throughout the upper, middle, and lower cavities.",
       drill: "Warm herbal foot bath (ginger/salt) for 15 minutes, followed by rubbing Yongquan (KI1) on the soles 100 times.",

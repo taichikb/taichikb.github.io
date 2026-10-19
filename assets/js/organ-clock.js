@@ -17,6 +17,8 @@
   var GAP = 1.4;
   var IDLE_MS = 120000;
 
+  var vid = { playing: false, rendered: null };
+
   var state = {
     liveIdx: 0,
     selected: null,
@@ -235,6 +237,7 @@
     setText('drillEyebrow', T.lblDrill);
     setText('saverDrill', '');
     setText('saverHint', T.saverHint);
+    setText('vLabel', T.videoLabel);
     var fsLabel = document.getElementById('fsLabel');
     if (fsLabel) { fsLabel.textContent = T.fullscreen; }
     var saverLabel = document.getElementById('saverLabel');
@@ -310,6 +313,7 @@
     }
 
     setText('saverDrill', item.drill);
+    paintVideo(item);
   }
 
   function paint(i, isNow) {
@@ -352,6 +356,59 @@
   function backToNow() {
     state.selected = null;
     paint(state.liveIdx, true);
+  }
+
+  /* ---------- lesson video ---------- */
+
+  function currentItem() {
+    return DATA[state.selected === null ? state.liveIdx : state.selected];
+  }
+
+  function escAttr(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
+  function renderVideo(item) {
+    var frame = document.getElementById('vFrame');
+    if (!frame || !item.video) { return; }
+
+    var ext = document.getElementById('vExternal');
+    if (ext) { ext.href = 'https://www.youtube.com/watch?v=' + item.video; }
+
+    if (vid.playing) {
+      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + item.video +
+        '?autoplay=1&rel=0&modestbranding=1" title="' + escAttr(item.videoTitle || '') + '"' +
+        ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"' +
+        ' allowfullscreen></iframe>';
+      return;
+    }
+
+    frame.innerHTML = '<img src="https://i.ytimg.com/vi/' + item.video + '/hqdefault.jpg" alt="" loading="lazy">' +
+      '<button class="pv-play" id="vPlay" type="button" aria-label="' + escAttr(T.playVideo || 'Play video') + '">' +
+      '<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>';
+
+    var btn = document.getElementById('vPlay');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        vid.playing = true;
+        renderVideo(currentItem());
+      });
+    }
+  }
+
+  function paintVideo(item) {
+    if (!item.video) { return; }
+
+    var title = document.getElementById('vTitle');
+    if (title) { title.textContent = item.videoTitle || ''; title.title = item.videoTitle || ''; }
+
+    var src = document.getElementById('vSource');
+    if (src) { src.textContent = (T.videoFrom || '{id}').replace('{id}', item.id); }
+
+    if (vid.rendered !== item.video) {
+      vid.rendered = item.video;
+      renderVideo(item);
+    }
   }
 
   /* ---------- ticking ---------- */
@@ -602,6 +659,21 @@
       });
     });
 
+    var vcol = document.getElementById('vCollapse');
+    if (vcol) {
+      vcol.addEventListener('click', function () {
+        var card = document.getElementById('pVideo');
+        var collapsed = card.classList.toggle('collapsed');
+        vcol.textContent = collapsed ? '+' : '\u2013';
+        vcol.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        vcol.setAttribute('aria-label', collapsed ? T.showVideo : T.hideVideo);
+        if (collapsed && vid.playing) {
+          vid.playing = false;
+          renderVideo(currentItem());
+        }
+      });
+    }
+
     var fb = document.getElementById('btnFullscreen');
     if (fb) { fb.addEventListener('click', toggleFullscreen); }
     document.addEventListener('fullscreenchange', syncFullscreen);
@@ -635,6 +707,10 @@
         if (state.saver) { exitSaver(); } else { enterSaver(); }
       }
       if (ev.key === 'n' || ev.key === 'N') { backToNow(); }
+      if (ev.key === 'v' || ev.key === 'V') {
+        vid.playing = !vid.playing;
+        renderVideo(currentItem());
+      }
       if (ev.key === 'ArrowRight') {
         var cur = state.selected === null ? state.liveIdx : state.selected;
         select((cur + 1) % DATA.length);
