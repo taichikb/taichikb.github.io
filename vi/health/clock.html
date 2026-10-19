@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đồng Hồ Cơ Năng 24 Giờ — Bảng Điều Khiển | TaichiNOW</title>
+<meta name="description" content="Bảng điều khiển toàn màn hình 12 khung giờ kinh lạc: tự động làm nổi bật kinh mạch hiện tại, sinh lý học phương Tây, chú giải Hoàng Đế Nội Kinh và bài tập vi mô cần làm ngay.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/stylesheets/organ-clock.css">
+</head>
+<body>
+
+<div id="ambient"></div>
+
+<header class="topbar">
+  <a class="brand" href="/vi/health/">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <span class="top-divider"></span>
+  <span class="top-title">Đồng Hồ Cơ Năng</span>
+  <span class="top-spacer"></span>
+  <span class="top-clock"><span class="pulse-dot"></span><span id="liveClock">--:--:--</span></span>
+  <a class="tbtn lang" href="/health/clock.html">EN · English</a>
+  <button class="tbtn" id="btnFullscreen" type="button" aria-pressed="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V5a1 1 0 0 1 1-1h4M20 9V5a1 1 0 0 0-1-1h-4M4 15v4a1 1 0 0 0 1 1h4M20 15v4a1 1 0 0 1-1 1h-4"/></svg>
+    <span id="fsLabel">Toàn màn hình</span>
+  </button>
+  <button class="tbtn" id="btnSaver" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    <span id="saverLabel">Chế độ chờ</span>
+  </button>
+  <a class="tbtn" href="/vi/health/">← Sức Khỏe</a>
+</header>
+
+<div class="stage">
+  <div class="ring-wrap">
+    <svg id="oc-svg" viewBox="0 0 748 748" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Đồng hồ 24 giờ theo 12 kinh lạc">
+      <defs>
+        <filter id="segGlow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#047857" flood-opacity="0.26"/>
+        </filter>
+      </defs>
+      <g id="oc-segments"></g>
+      <g id="oc-progress"></g>
+      <g id="oc-center" text-anchor="middle">
+        <text class="c-time" id="ocTime" x="374" y="356">--:--</text>
+        <text class="c-branch" id="ocBranch" x="374" y="392">—</text>
+        <text class="c-organ" id="ocOrgan" x="374" y="424">—</text>
+        <text class="c-remain" id="ocRemain" x="374" y="452">—</text>
+      </g>
+    </svg>
+  </div>
+
+  <aside class="panel" id="oc-panel" aria-live="polite">
+    <div class="p-eyebrow" id="pEyebrow"><span class="p-dot"></span><span id="pEyebrowTxt">HIỆN TẠI · TRỰC TIẾP</span></div>
+    <h1 class="p-organ" id="pOrgan">—</h1>
+    <div class="p-sub" id="pSub"></div>
+    <div class="p-meta">
+      <span class="pill" id="pRange">—</span>
+      <span class="pill ghost" id="pBranch">—</span>
+      <span class="pill ghost" id="pLeft"></span>
+      <button class="pill link" id="pBack" type="button" hidden>← Về giờ hiện tại</button>
+    </div>
+    <div class="p-bar"><i id="pBar"></i></div>
+
+    <div class="p-blocks">
+      <div class="blk">
+        <h4 id="hScience">🔬 Sinh lý học phương Tây</h4>
+        <p id="bScience"></p>
+      </div>
+      <div class="blk">
+        <h4 id="hClassical">📜 Hoàng Đế Nội Kinh</h4>
+        <p id="bClassical"></p>
+      </div>
+      <div class="blk drill">
+        <h4 id="hDrill">🧘 Bài tập vi mô</h4>
+        <p id="bDrill"></p>
+      </div>
+      <div class="blk life">
+        <h4 id="hLifestyle">💡 Dưỡng sinh theo giờ</h4>
+        <p id="bLifestyle"></p>
+      </div>
+    </div>
+
+    <div class="p-actions">
+      <button class="btn btn-primary" id="btnDrill" type="button">▶ Bắt đầu bài tập</button>
+      <a class="btn btn-ghost" id="lnkGuide" href="#" target="_blank" rel="noopener">Mở bài viết →</a>
+    </div>
+
+    <div class="p-next">
+      <span class="n-lbl" id="nLbl">Tiếp theo</span>
+      <span id="nItems"></span>
+    </div>
+
+    <div class="p-foot">
+      <span id="pFootMeta"></span>
+      <a href="/vi/health/">Health Series 100 →</a>
+    </div>
+  </aside>
+</div>
+
+<div class="strip" id="oc-strip" role="group" aria-label="12 khung giờ hai tiếng"></div>
+
+<div class="saver-note" aria-hidden="true">
+  <div class="sn-drill" id="saverDrill"></div>
+  <div class="sn-hint" id="saverHint">Di chuyển chuột hoặc nhấn phím để trở lại</div>
+</div>
+
+<div class="overlay" id="drillOverlay" aria-hidden="true">
+  <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="drillTitle">
+    <button class="overlay-x" id="drillClose" type="button" aria-label="Đóng">×</button>
+    <div class="ov-eyebrow" id="drillEyebrow">Bài tập vi mô</div>
+    <h3 class="ov-title" id="drillTitle">—</h3>
+    <p class="ov-body" id="drillBody"></p>
+    <div class="ov-clock" id="drillTime">03:00</div>
+    <div class="ov-presets">
+      <button class="ov-preset" type="button" data-min="1">1 phút</button>
+      <button class="ov-preset active" type="button" data-min="3">3 phút</button>
+      <button class="ov-preset" type="button" data-min="5">5 phút</button>
+      <button class="ov-preset" type="button" data-min="10">10 phút</button>
+    </div>
+    <div class="ov-actions">
+      <button class="btn btn-primary" id="drillToggle" type="button">Bắt đầu</button>
+      <button class="btn btn-ghost" id="drillReset" type="button">Đặt lại</button>
+    </div>
+  </div>
+</div>
+
+<script>
+window.ORGAN_CLOCK = {
+  lang: "vi",
+  t: {
+    live: "Hiện tại · Trực tiếp",
+    preview: "Xem trước",
+    previewSub: "không phải khung giờ hiện tại",
+    leftTpl: "còn {t}",
+    unitH: " giờ",
+    unitM: " phút",
+    backToNow: "← Về giờ hiện tại",
+    lblScience: "🔬 Sinh lý học phương Tây",
+    lblClassical: "📜 Hoàng Đế Nội Kinh",
+    lblDrill: "🧘 Bài tập vi mô",
+    lblLifestyle: "💡 Dưỡng sinh theo giờ",
+    lblNext: "Tiếp theo",
+    startDrill: "▶ Bắt đầu bài tập",
+    guideLabel: "Mở bài {id} →",
+    fullscreen: "Toàn màn hình",
+    exitFullscreen: "Thoát toàn màn hình",
+    saver: "Chế độ chờ",
+    saverHint: "Di chuyển chuột hoặc nhấn phím để trở lại",
+    elementLabel: "Ngũ hành",
+    windowLabel: "Khung {n}/12",
+    elements: { wood: "Mộc", fire: "Hỏa", earth: "Thổ", metal: "Kim", water: "Thủy" },
+    start: "Bắt đầu",
+    pause: "Tạm dừng",
+    resume: "Tiếp tục",
+    reset: "Đặt lại"
+  },
+  data: [
+    {
+      id: "VI-019", element: "wood",
+      branch: "Giờ Tý", range: "23:00 - 01:00",
+      organ: "Kinh Đởm (Túi Mật)", center: "Đởm", short: "Đởm",
+      sub: "Gallbladder Meridian · túi mật",
+      science: "Quá trình tự thực tế bào (Autophagy), tái tạo tủy sống và giải phóng hormone tăng trưởng trong giấc ngủ sâu NREM giai đoạn 3/4.",
+      classical: "Đởm là trung chính chi quan, chủ quyết đoán. Giờ Tý một dương sinh khởi, phải ngủ sâu để dưỡng chân dương.",
+      drill: "Tĩnh tọa buông xả, quán tưởng Đan Điền, đặt lưỡi chạm hàm ếch trên (Thước Kiều) và thở chậm.",
+      lifestyle: "Kiêng ăn đêm sau 20h. Đi ngủ trước 23h để tránh hao tổn tủy não và gan mật.",
+      url: "/vi/articles/tay-tuy-kinh/"
+    },
+    {
+      id: "VI-029", element: "wood",
+      branch: "Giờ Sửu", range: "01:00 - 03:00",
+      organ: "Kinh Can (Gan)", center: "Can", short: "Can",
+      sub: "Liver Meridian · gan",
+      science: "Gan tổng hợp glycogen, lọc độc tố sinh học trong huyết thanh, tưới máu phục hồi cơ bắp và màng cân mạc (Fascial Matrix).",
+      classical: "Can tàng huyết, Can chủ cân (gân cơ). Thức giờ Sửu khiến can hỏa vượng, gân cơ co rút, mắt mờ và cứng khớp.",
+      drill: "Giữ giấc ngủ say hoàn toàn; trước khi ngủ xoa vuốt nhẹ hai mạn sườn (vùng Can kinh).",
+      lifestyle: "Tránh xa rượu bia và màn hình điện tử phát ánh sáng xanh trước khi ngủ.",
+      url: "/vi/articles/khi-cong-giai-doc-gan/"
+    },
+    {
+      id: "VI-061", element: "metal",
+      branch: "Giờ Dần", range: "03:00 - 05:00",
+      organ: "Kinh Phế (Phổi)", center: "Phế", short: "Phế",
+      sub: "Lung Meridian · phổi",
+      science: "Nhịp thở cơ hoành điều tiết nồng độ Nitric Oxide nội sinh, chuẩn bị tăng nhịp tim và cortisol sinh lý buổi sáng.",
+      classical: "Phế triều bách mạch, chủ khí toàn thân. Giờ Dần phân bố khí huyết từ trung tâm ra tứ chi.",
+      drill: "Thở Tu Na cơ hoành (hít vào phình bụng dưới 4s, thở ra xẹp bụng 6s). Thực hiện 8 chu kỳ.",
+      lifestyle: "Thức dậy từ tốn, không bật dậy đột ngột; uống một ly nước ấm giữ ấm lồng ngực.",
+      url: "/vi/articles/co-hoanh-dong-co-ho-hap/"
+    },
+    {
+      id: "VI-085", element: "metal",
+      branch: "Giờ Mão", range: "05:00 - 07:00",
+      organ: "Kinh Đại Trường (Ruột Già)", center: "Đại Trường", short: "Đại Trường",
+      sub: "Large Intestine Meridian · ruột già",
+      science: "Phản xạ dạ dày - ruột (Gastrocolic reflex) đẩy chất cặn bã ra khỏi kết tràng, thanh lọc đường ruột.",
+      classical: "Đại trường là truyền đạo chi quan. Giờ Mão bài tiết độc tố trọc khí ra ngoài để đón sinh khí mới.",
+      drill: "Xoa bụng quanh rốn theo chiều kim đồng hồ 36 vòng; tập bài vung tay Dịch Cân Kinh nhẹ nhàng.",
+      lifestyle: "Uống 300-500ml nước ấm sau khi rời giường; tạo thói quen đại tiện cố định giờ Mão.",
+      url: "/vi/articles/khoi-dong-10-phut/"
+    },
+    {
+      id: "VI-090", element: "earth",
+      branch: "Giờ Thìn", range: "07:00 - 09:00",
+      organ: "Kinh Vị (Dạ Dày)", center: "Vị", short: "Vị",
+      sub: "Stomach Meridian · dạ dày",
+      science: "Nồng độ enzyme tiêu hóa và axit dạ dày đạt đỉnh, khả năng đồng hóa dinh dưỡng cao nhất trong ngày.",
+      classical: "Vị là bể chứa thủy cốc. Giờ Thìn ăn sáng ấm nóng để tạo nguồn hậu thiên chi tinh nuôi dưỡng cơ thể.",
+      drill: "Đi dạo chậm 100 bước (Thối bộ Thái Cực), hai tay xoa nhẹ vùng thượng vị sau khi ăn 15 phút.",
+      lifestyle: "Ăn bữa sáng đầy đủ dinh dưỡng, ấm nóng; tuyệt đối tránh đồ uống đá lạnh làm co thắt mạch máu dạ dày.",
+      url: "/vi/articles/an-uong-tinh-thuc/"
+    },
+    {
+      id: "VI-005", element: "earth",
+      branch: "Giờ Tỵ", range: "09:00 - 11:00",
+      organ: "Kinh Tỳ (Lá Lách / Hệ Chuyển Hóa)", center: "Tỳ", short: "Tỳ",
+      sub: "Spleen Meridian · tạng tỳ",
+      science: "Tụy điều tiết insulin ổn định đường huyết não bộ, lưu lượng tuần hoàn tối ưu cho tư duy chiến lược.",
+      classical: "Tỳ chủ vận hóa, thống nhiếp huyết dịch và chủ cơ nhục. Ngồi lâu làm tổn thương Tỳ và cơ bắp.",
+      drill: "Đứng dậy vươn vai, day ấn huyệt Túc Tam Lý (ST36) và Tam Âm Giao (SP6) mỗi bên 1 phút.",
+      lifestyle: "Khoảng thời gian vàng để làm việc trí óc tập trung cao độ; đứng dậy sau mỗi 45 phút.",
+      url: "/vi/articles/huyet-tu-chua-lanh/"
+    },
+    {
+      id: "VI-030", element: "fire",
+      branch: "Giờ Ngọ", range: "11:00 - 13:00",
+      organ: "Kinh Tâm (Tim)", center: "Tâm", short: "Tâm",
+      sub: "Heart Meridian · tim",
+      science: "Áp lực tâm thất và cung lượng tim cao nhất; thần kinh giao cảm chuyển dịch nhẹ sang phó giao cảm.",
+      classical: "Tâm là quân chủ chi quan. Giờ Ngọ cực dương sinh âm, cần tĩnh dưỡng nhẹ để điều hòa Tâm hỏa.",
+      drill: "Ngồi nhắm mắt thả lỏng 15 phút, ngực hơi thu (Hàm hung), thở tự nhiên buông xả căng thẳng.",
+      lifestyle: "Ăn trưa thanh đạm; chợp mắt ngủ trưa 15-20 phút (không ngủ quá 30 phút gây trì trệ).",
+      url: "/vi/articles/khi-cong-an-than/"
+    },
+    {
+      id: "VI-045", element: "fire",
+      branch: "Giờ Mùi", range: "13:00 - 15:00",
+      organ: "Kinh Tiểu Trường (Ruột Non)", center: "Tiểu Trường", short: "Tiểu Trường",
+      sub: "Small Intestine Meridian · ruột non",
+      science: "Phân tách dưỡng chất tinh hoa vào tĩnh mạch cửa và mao mạch bạch huyết, điều tiết dịch nội bào.",
+      classical: "Tiểu trường chủ thụ thịnh và phân thanh giáng trọc (chất trong hấp thụ, chất đục chuyển xuống bàng quang).",
+      drill: "Bài tập mở khớp vai và ngực (kéo giãn kinh Tiểu Trường vùng bả vai), xoay khớp cổ tay.",
+      lifestyle: "Uống một cốc nước ấm; tránh vận động cường độ quá cao làm gián đoạn hấp thu dinh dưỡng.",
+      url: "/vi/articles/linh-hoat-khop-vai/"
+    },
+    {
+      id: "VI-048", element: "water",
+      branch: "Giờ Thân", range: "15:00 - 17:00",
+      organ: "Kinh Bàng Quang (Hệ Bài Tiết)", center: "Bàng Quang", short: "Bàng Quang",
+      sub: "Bladder Meridian · bàng quang",
+      science: "Thân nhiệt và tính đàn hồi của mạng cơ gân đạt mức linh hoạt nhất; thận và bàng quang lọc chất thải.",
+      classical: "Kinh Bàng Quang chạy dài từ đầu dọc suốt sống lưng xuống gót chân, là hàng rào Vệ khí bảo vệ thân thể.",
+      drill: "Thức “Hai tay ôm chân giữ eo bền thận” trong Bát Đoạn Cẩm, kéo giãn dải cân mạc nông phía sau.",
+      lifestyle: "Uống nước hoặc trà thảo mộc thanh lọc; giờ thích hợp cho các bài tập thể lực nhẹ hoặc đi bộ.",
+      url: "/vi/articles/duoi-co-dui-sau/"
+    },
+    {
+      id: "VI-028", element: "water",
+      branch: "Giờ Dậu", range: "17:00 - 19:00",
+      organ: "Kinh Thận", center: "Thận", short: "Thận",
+      sub: "Kidney Meridian · thận",
+      science: "Tuyến thượng thận điều chỉnh giảm cortisol, nhiệt độ cơ thể hạ dần, chuyển sang trạng thái phục hồi nội mô.",
+      classical: "Thận là gốc của tiên thiên, tàng tinh, chủ cốt tủy. Giờ Dậu là thời điểm vàng luyện Thái Cực và Khí Công.",
+      drill: "Tập Trạm Trang (đứng trụ ôm cầu) 15-20 phút, thở sâu xuống Hạ Đan Điền, xoa nóng vùng Mệnh Môn.",
+      lifestyle: "Tránh làm việc kiệt sức; dùng bữa tối thanh nhẹ, giàu dưỡng chất trước 19h.",
+      url: "/vi/articles/khi-cong-bo-than/"
+    },
+    {
+      id: "VI-016", element: "fire",
+      branch: "Giờ Tuất", range: "19:00 - 21:00",
+      organ: "Kinh Tâm Bào (Màng Tim)", center: "Tâm Bào", short: "Tâm Bào",
+      sub: "Pericardium Meridian · màng tim",
+      science: "Hệ thần kinh phó giao cảm chiếm ưu thế, huyết áp tâm thu giảm, tim và mạch máu ngoại vi thư giãn.",
+      classical: "Tâm bào là áo giáp bảo vệ Tâm quân. Giờ Tuất dưỡng tâm bào giúp giải tỏa uất kết cảm xúc trong ngày.",
+      drill: "Day bấm huyệt Nội Quan (PC6) trên cổ tay 3 phút kết hợp hơi thở 4-7-8; thực hành Nụ Cười Nội Tâm.",
+      lifestyle: "Dành thời gian cho gia đình, đọc sách nhẹ nhàng, ngưng bàn luận công việc áp lực căng thẳng.",
+      url: "/vi/articles/nu-cuoi-noi-tam/"
+    },
+    {
+      id: "VI-089", element: "fire",
+      branch: "Giờ Hợi", range: "21:00 - 23:00",
+      organ: "Kinh Tam Tiêu (Hệ Nội Tiết & Nhiệt Độ)", center: "Tam Tiêu", short: "Tam Tiêu",
+      sub: "Triple Burner Meridian · tam tiêu",
+      science: "Melatonin tăng tiết mạnh kích hoạt cơn buồn ngủ tự nhiên, tuần hoàn dịch não tủy chuẩn bị khởi động.",
+      classical: "Tam Tiêu thông suốt bách mạch, điều hòa toàn bộ nhiệt lượng và tân dịch khắp thượng - trung - hạ tiêu.",
+      drill: "Ngâm chân nước ấm pha gừng/muối 15 phút, xoa huyệt Dũng Tuyền lòng bàn chân 100 lần mỗi bên.",
+      lifestyle: "Tắt thiết bị điện tử, tắt đèn sáng chói; chuẩn bị đi vào giấc ngủ trước 23h.",
+      url: "/vi/articles/ngam-chan-thao-duoc/"
+    }
+  ]
+};
+</script>
+<script src="/assets/js/organ-clock.js"></script>
+</body>
+</html>

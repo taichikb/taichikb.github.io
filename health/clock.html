@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Circadian Organ Clock — Desktop Dashboard | TaichiNOW</title>
+<meta name="description" content="Full-screen desktop dashboard of the 12 two-hour TCM organ windows: live highlight of the current meridian, western physiology, Huangdi Neijing commentary, and the micro-drill to do right now.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/stylesheets/organ-clock.css">
+</head>
+<body>
+
+<div id="ambient"></div>
+
+<header class="topbar">
+  <a class="brand" href="/health/">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <span class="top-divider"></span>
+  <span class="top-title">Circadian Organ Clock</span>
+  <span class="top-spacer"></span>
+  <span class="top-clock"><span class="pulse-dot"></span><span id="liveClock">--:--:--</span></span>
+  <a class="tbtn lang" href="/vi/health/clock.html">VI · Tiếng Việt</a>
+  <button class="tbtn" id="btnFullscreen" type="button" aria-pressed="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V5a1 1 0 0 1 1-1h4M20 9V5a1 1 0 0 0-1-1h-4M4 15v4a1 1 0 0 0 1 1h4M20 15v4a1 1 0 0 1-1 1h-4"/></svg>
+    <span id="fsLabel">Fullscreen</span>
+  </button>
+  <button class="tbtn" id="btnSaver" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    <span id="saverLabel">Screensaver</span>
+  </button>
+  <a class="tbtn" href="/health/">← Health</a>
+</header>
+
+<div class="stage">
+  <div class="ring-wrap">
+    <svg id="oc-svg" viewBox="0 0 748 748" preserveAspectRatio="xMidYMid meet" role="img" aria-label="24-hour Chinese medicine organ clock">
+      <defs>
+        <filter id="segGlow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#047857" flood-opacity="0.26"/>
+        </filter>
+      </defs>
+      <g id="oc-segments"></g>
+      <g id="oc-progress"></g>
+      <g id="oc-center" text-anchor="middle">
+        <text class="c-time" id="ocTime" x="374" y="356">--:--</text>
+        <text class="c-branch" id="ocBranch" x="374" y="392">—</text>
+        <text class="c-organ" id="ocOrgan" x="374" y="424">—</text>
+        <text class="c-remain" id="ocRemain" x="374" y="452">—</text>
+      </g>
+    </svg>
+  </div>
+
+  <aside class="panel" id="oc-panel" aria-live="polite">
+    <div class="p-eyebrow" id="pEyebrow"><span class="p-dot"></span><span id="pEyebrowTxt">NOW · LIVE</span></div>
+    <h1 class="p-organ" id="pOrgan">—</h1>
+    <div class="p-sub" id="pSub"></div>
+    <div class="p-meta">
+      <span class="pill" id="pRange">—</span>
+      <span class="pill ghost" id="pBranch">—</span>
+      <span class="pill ghost" id="pLeft"></span>
+      <button class="pill link" id="pBack" type="button" hidden>← Back to now</button>
+    </div>
+    <div class="p-bar"><i id="pBar"></i></div>
+
+    <div class="p-blocks">
+      <div class="blk">
+        <h4 id="hScience">🔬 Western biomedical science</h4>
+        <p id="bScience"></p>
+      </div>
+      <div class="blk">
+        <h4 id="hClassical">📜 Huangdi Neijing</h4>
+        <p id="bClassical"></p>
+      </div>
+      <div class="blk drill">
+        <h4 id="hDrill">🧘 Somatic micro-drill</h4>
+        <p id="bDrill"></p>
+      </div>
+      <div class="blk life">
+        <h4 id="hLifestyle">💡 Circadian lifestyle</h4>
+        <p id="bLifestyle"></p>
+      </div>
+    </div>
+
+    <div class="p-actions">
+      <button class="btn btn-primary" id="btnDrill" type="button">▶ Start drill timer</button>
+      <a class="btn btn-ghost" id="lnkGuide" href="#" target="_blank" rel="noopener">Open guide →</a>
+    </div>
+
+    <div class="p-next">
+      <span class="n-lbl" id="nLbl">Next</span>
+      <span id="nItems"></span>
+    </div>
+
+    <div class="p-foot">
+      <span id="pFootMeta"></span>
+      <a href="/health/">Health Series 100 →</a>
+    </div>
+  </aside>
+</div>
+
+<div class="strip" id="oc-strip" role="group" aria-label="12 two-hour windows"></div>
+
+<div class="saver-note" aria-hidden="true">
+  <div class="sn-drill" id="saverDrill"></div>
+  <div class="sn-hint" id="saverHint">Move the mouse or press any key to return</div>
+</div>
+
+<div class="overlay" id="drillOverlay" aria-hidden="true">
+  <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="drillTitle">
+    <button class="overlay-x" id="drillClose" type="button" aria-label="Close">×</button>
+    <div class="ov-eyebrow" id="drillEyebrow">Somatic micro-drill</div>
+    <h3 class="ov-title" id="drillTitle">—</h3>
+    <p class="ov-body" id="drillBody"></p>
+    <div class="ov-clock" id="drillTime">03:00</div>
+    <div class="ov-presets">
+      <button class="ov-preset" type="button" data-min="1">1 min</button>
+      <button class="ov-preset active" type="button" data-min="3">3 min</button>
+      <button class="ov-preset" type="button" data-min="5">5 min</button>
+      <button class="ov-preset" type="button" data-min="10">10 min</button>
+    </div>
+    <div class="ov-actions">
+      <button class="btn btn-primary" id="drillToggle" type="button">Start</button>
+      <button class="btn btn-ghost" id="drillReset" type="button">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+window.ORGAN_CLOCK = {
+  lang: "en",
+  t: {
+    live: "Now · Live",
+    preview: "Preview",
+    previewSub: "not the current window",
+    leftTpl: "{t} left",
+    unitH: "h",
+    unitM: "m",
+    backToNow: "← Back to now",
+    lblScience: "🔬 Western biomedical science",
+    lblClassical: "📜 Huangdi Neijing",
+    lblDrill: "🧘 Somatic micro-drill",
+    lblLifestyle: "💡 Circadian lifestyle",
+    lblNext: "Next",
+    startDrill: "▶ Start drill timer",
+    guideLabel: "Open {id} guide →",
+    fullscreen: "Fullscreen",
+    exitFullscreen: "Exit fullscreen",
+    saver: "Screensaver",
+    saverHint: "Move the mouse or press any key to return",
+    elementLabel: "Element",
+    windowLabel: "Window {n} of 12",
+    elements: { wood: "Wood", fire: "Fire", earth: "Earth", metal: "Metal", water: "Water" },
+    start: "Start",
+    pause: "Pause",
+    resume: "Resume",
+    reset: "Reset"
+  },
+  data: [
+    {
+      id: "EN-019", element: "wood",
+      branch: "Zi Hour", range: "23:00 - 01:00",
+      organ: "Gallbladder Meridian", center: "Gallbladder", short: "Gallbladder",
+      sub: "Foot Shaoyang Gallbladder · Đởm",
+      science: "Cellular autophagy, spinal cord and myelin sheath repair, growth hormone release during deep NREM slow-wave sleep.",
+      classical: "The Gallbladder rules decisiveness and clear judgment. At the Zi hour, the first spark of Yang returns; complete rest preserves foundational vitality.",
+      drill: "Supine meditation with Dantian visualization, tongue lightly touching the upper palate (Magpie Bridge), rhythmic slow nasal exhalations.",
+      lifestyle: "Avoid late-night eating past 20:00. Be asleep before 23:00 to prevent depletion of bone marrow and liver blood.",
+      url: "/en/articles/bone-marrow-washing-xi-sui-jing/"
+    },
+    {
+      id: "EN-029", element: "wood",
+      branch: "Chou Hour", range: "01:00 - 03:00",
+      organ: "Liver Meridian", center: "Liver", short: "Liver",
+      sub: "Foot Jueyin Liver · Can",
+      science: "Hepatic detoxification, glycogen synthesis, muscle and myofascial matrix vascular reperfusion.",
+      classical: "The Liver stores blood and governs sinews/tendons. Staying awake during Chou hour causes Liver Fire to surge, triggering tendon rigidity and joint stiffness.",
+      drill: "Deep restorative sleep; if awakened, practice gentle side-lying diaphragmatic breathing without checking screens.",
+      lifestyle: "Avoid late alcohol consumption and high-intensity blue light exposure before sleep.",
+      url: "/en/articles/liver-detox-qigong-stress/"
+    },
+    {
+      id: "EN-061", element: "metal",
+      branch: "Yin Hour", range: "03:00 - 05:00",
+      organ: "Lung Meridian", center: "Lung", short: "Lung",
+      sub: "Hand Taiyin Lung · Phế",
+      science: "Diaphragmatic oxygenation, endogenous Nitric Oxide regulation, circadian cortisol surge preparing the waking metabolism.",
+      classical: "The Lungs govern Qi and meet in all blood vessels. At Yin hour, vital energy is distributed from the core to the peripheral extremities.",
+      drill: "Tu Na Diaphragmatic Breathing (inhale gently expanding the lower abdomen 4s, exhale smoothing tension 6s). Perform 8-12 rounds.",
+      lifestyle: "Rise gently without abrupt jumping; sip warm water to hydrate respiratory mucous membranes.",
+      url: "/en/articles/diaphragm-primary-engine/"
+    },
+    {
+      id: "EN-085", element: "metal",
+      branch: "Mao Hour", range: "05:00 - 07:00",
+      organ: "Large Intestine Meridian", center: "Large Intestine", short: "Lg. Intestine",
+      sub: "Hand Yangming Large Intestine · Đại Trường",
+      science: "Gastrocolic reflex, mass peristalsis, elimination of metabolic waste, morning systemic hydration reset.",
+      classical: "The Large Intestine is the official of transmission. Expelling turbid waste welcomes clear Yang Qi into the body.",
+      drill: "Clockwise abdominal massage around the navel 36 times; gentle Yi Jin Jing arm swinging drills.",
+      lifestyle: "Drink 300-500 ml of warm water immediately upon waking; establish a consistent morning bowel evacuation.",
+      url: "/en/articles/morning-10min-joint-routine/"
+    },
+    {
+      id: "EN-090", element: "earth",
+      branch: "Chen Hour", range: "07:00 - 09:00",
+      organ: "Stomach Meridian", center: "Stomach", short: "Stomach",
+      sub: "Foot Yangming Stomach · Vị",
+      science: "Gastric acid and digestive enzyme secretion peak, optimal assimilation of macro- and micronutrients.",
+      classical: "The Stomach is the sea of grain and water. A warm nourishing breakfast ignites the Post-Heaven Qi foundation.",
+      drill: "Mindful 100-step Tai Chi walking post-meal, gentle circular rubbing of the epigastric region.",
+      lifestyle: "Eat a warm, nutrient-dense breakfast; strictly avoid ice-cold drinks which cause gastric vasoconstriction.",
+      url: "/en/articles/mindful-eating-digestive-qi/"
+    },
+    {
+      id: "EN-005", element: "earth",
+      branch: "Si Hour", range: "09:00 - 11:00",
+      organ: "Spleen Meridian", center: "Spleen", short: "Spleen",
+      sub: "Foot Taiyin Spleen · Tỳ",
+      science: "Pancreatic enzymatic activity, blood glucose stabilization, peak cognitive alertness and memory retention.",
+      classical: "The Spleen governs transformation and transportation, rules the flesh and muscles. Prolonged sitting damages the Spleen.",
+      drill: "Stand up, stretch the meridians, massage Zusanli (ST36) and Sanyinjiao (SP6) for 1 minute each.",
+      lifestyle: "Prime window for high-cognitive creative or analytical work; take a standing posture break every 45 minutes.",
+      url: "/en/articles/acupressure-st36-li4-pc6/"
+    },
+    {
+      id: "EN-030", element: "fire",
+      branch: "Wu Hour", range: "11:00 - 13:00",
+      organ: "Heart Meridian", center: "Heart", short: "Heart",
+      sub: "Hand Shaoyin Heart · Tâm",
+      science: "Peak cardiovascular blood circulation; midday autonomic transition toward parasympathetic relaxation.",
+      classical: "The Heart is the monarch of all organs. At Wu hour Yang reaches its zenith; quiet sitting nourishes Heart fire.",
+      drill: "Seated quiet posture with eyes closed for 15 minutes, sinking the chest lightly (Han Xiong), relaxing the shoulders.",
+      lifestyle: "Enjoy a light, peaceful lunch; take a 15-20 minute power nap (avoid exceeding 30 minutes).",
+      url: "/en/articles/heart-qigong-sleep/"
+    },
+    {
+      id: "EN-045", element: "fire",
+      branch: "Wei Hour", range: "13:00 - 15:00",
+      organ: "Small Intestine Meridian", center: "Small Intestine", short: "Sm. Intestine",
+      sub: "Hand Taiyang Small Intestine · Tiểu Trường",
+      science: "Nutrient sorting and absorption in the jejunum/ileum, mesenteric lymphatic transport.",
+      classical: "The Small Intestine separates the pure from the turbid (directing nutrients inward and fluids downward).",
+      drill: "Shoulder and upper back mobility stretches (Gomukhasana / Ward Off Peng extension drills).",
+      lifestyle: "Hydrate with warm water or herbal tea; avoid heavy exhausting physical labour right after lunch.",
+      url: "/en/articles/shoulder-mobility-gomukhasana-peng/"
+    },
+    {
+      id: "EN-048", element: "water",
+      branch: "Shen Hour", range: "15:00 - 17:00",
+      organ: "Bladder Meridian", center: "Bladder", short: "Bladder",
+      sub: "Foot Taiyang Bladder · Bàng Quang",
+      science: "Core body temperature peak, maximum muscle and fascial elasticity, efficient fluid clearance.",
+      classical: "The Bladder meridian traverses from the head along both sides of the spine to the feet, circulating Wei Qi (defensive energy).",
+      drill: "Two Hands Hold the Feet to Strengthen the Kidneys (Ba Duan Jin drill), stretching the Superficial Back Line.",
+      lifestyle: "Stay well hydrated; ideal afternoon window for moderate cardio, brisk walking, or dynamic form practice.",
+      url: "/en/articles/hamstring-low-stance-health/"
+    },
+    {
+      id: "EN-028", element: "water",
+      branch: "You Hour", range: "17:00 - 19:00",
+      organ: "Kidney Meridian", center: "Kidney", short: "Kidney",
+      sub: "Foot Shaoyin Kidney · Thận",
+      science: "Adrenal hormone deceleration, blood pressure stabilization, golden window for somatic restorative training.",
+      classical: "The Kidneys are the foundation of Pre-Heaven Qi, storing Jing and bone marrow essence. Prime time for Tai Chi practice.",
+      drill: "Zhan Zhuang (Standing Pole Posture) for 15-20 minutes, sinking the breath to the Lower Dantian, warming Mingmen.",
+      lifestyle: "Avoid exhaustion; have an early, light dinner before 19:00 to support restful digestion.",
+      url: "/en/articles/kidney-qigong-lower-back/"
+    },
+    {
+      id: "EN-016", element: "fire",
+      branch: "Xu Hour", range: "19:00 - 21:00",
+      organ: "Pericardium Meridian", center: "Pericardium", short: "Pericardium",
+      sub: "Hand Jueyin Pericardium · Tâm Bào",
+      science: "Parasympathetic tone escalation, cardiac output deceleration, reduction in vascular resistance and mental stress.",
+      classical: "The Pericardium is the protective shield of the Heart. Nourishing it releases pent-up daily emotional tension.",
+      drill: "Acupressure on Neiguan (PC6) on the inner wrist for 2-3 minutes with 4-7-8 breathing; practise the Inner Smile.",
+      lifestyle: "Unwind with peaceful reading or family conversation; disconnect from intense work emails or heated debates.",
+      url: "/en/articles/inner-smile-stress-vitality/"
+    },
+    {
+      id: "EN-089", element: "fire",
+      branch: "Hai Hour", range: "21:00 - 23:00",
+      organ: "Triple Burner Meridian", center: "Triple Burner", short: "Triple Burner",
+      sub: "Hand Shaoyang San Jiao · Tam Tiêu",
+      science: "Melatonin secretion surge inducing sleepiness, endocrine equilibrium, core body cooling in preparation for sleep.",
+      classical: "The San Jiao coordinates fluid metabolism and thermodynamic harmony throughout the upper, middle, and lower cavities.",
+      drill: "Warm herbal foot bath (ginger/salt) for 15 minutes, followed by rubbing Yongquan (KI1) on the soles 100 times.",
+      lifestyle: "Dim the lights, shut down digital devices; retire before 23:00 to synchronise with natural Yang restoration.",
+      url: "/en/articles/hydrotherapy-herbal-foot-baths/"
+    }
+  ]
+};
+</script>
+<script src="/assets/js/organ-clock.js"></script>
+</body>
+</html>
