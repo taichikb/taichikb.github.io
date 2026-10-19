@@ -328,9 +328,10 @@
     });
 
     cells.forEach(function (c, k) {
-      c.btn.classList.toggle('now', isNow && k === i);
+      var live = k === state.liveIdx;
+      c.btn.classList.toggle('now', live);
       c.btn.classList.toggle('is-selected', !isNow && k === i);
-      c.fill.style.width = (isNow && k === i) ? (frac * 100) + '%' : '0%';
+      c.fill.style.width = live ? (Math.max(0, Math.min(1, elapsedMinutes(k, d) / 120)) * 100) + '%' : '0%';
     });
 
     setText('ocTime', isNow ? clockTime(d) : shortRange(item.range));
@@ -419,11 +420,23 @@
 
     var idx = nowIndex(d);
     if (idx !== state.liveIdx) {
+      var was = state.liveIdx;
       state.liveIdx = idx;
       if (state.selected === null) {
         paint(idx, true);
         return;
       }
+      // a preview is open: move the live marker without disturbing it
+      if (cells[was]) {
+        cells[was].btn.classList.remove('now');
+        cells[was].fill.style.width = '0%';
+      }
+      if (cells[idx]) { cells[idx].btn.classList.add('now'); }
+    }
+
+    var liveFill = cells[idx] && cells[idx].fill;
+    if (liveFill) {
+      liveFill.style.width = (Math.max(0, Math.min(1, elapsedMinutes(idx, d) / 120)) * 100) + '%';
     }
 
     if (state.selected === null) {
@@ -435,8 +448,6 @@
       if (bar) { bar.style.width = (Math.round(frac * 1000) / 10) + '%'; }
       var lp = document.getElementById('pLeft');
       if (lp) { lp.textContent = leftText(left); }
-      var cf = cells[idx] && cells[idx].fill;
-      if (cf) { cf.style.width = (frac * 100) + '%'; }
       updateProgressArc(idx, frac);
     }
   }
