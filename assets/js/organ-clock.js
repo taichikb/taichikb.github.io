@@ -614,6 +614,12 @@
     }
 
     document.addEventListener('keydown', function (ev) {
+      if (state.saver) {
+        exitSaver();
+        state.lastArm = Date.now();
+        armIdle();
+        return;
+      }
       if (ev.key === 'Escape') {
         var o = document.getElementById('drillOverlay');
         if (o && o.classList.contains('open')) { closeDrill(); return; }
@@ -642,7 +648,6 @@
     ['pointermove', 'pointerdown', 'wheel', 'touchstart'].forEach(function (evt) {
       document.addEventListener(evt, onActivity, { passive: true });
     });
-    document.addEventListener('keydown', onActivity);
 
     syncFullscreen();
     state.lastArm = Date.now();
