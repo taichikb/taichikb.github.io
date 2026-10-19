@@ -56,12 +56,15 @@ jobs:
           # referenced-by-nothing images enumerated in the checked-in manifest.
           : > /tmp/exclude.txt
           printf '%s\n' "./.git" "./.github" "./assets/books" "./books/pdfs" \
-            "./assets/images/books" "./downloads" >> /tmp/exclude.txt
+            "./assets/images/books" "./downloads" "./_site" >> /tmp/exclude.txt
           if [ -f .github/pages-media-exclude.txt ]; then
             # manifest lines are repo-relative (assets/images/...) -> prefix "./"
             sed -e 's/^/.\//' -e '/^\.\/$/d' .github/pages-media-exclude.txt >> /tmp/exclude.txt
           fi
           echo "Exclusion entries: $(wc -l < /tmp/exclude.txt)"
+          # _site must be excluded: tar writes into it while reading ".",
+          # so without this the staged copy can be read back into itself and
+          # the artifact doubles (590 MB repo -> 1180 MB, over the 1 GB cap).
           tar --exclude-from=/tmp/exclude.txt -cf - . | tar -xf - -C _site
           # GitHub Pages rejects artifacts over 1 GB. assets/pdf/ is deliberately
           # NOT excluded, so the artifact grows by its size — fail loudly before
