@@ -41,11 +41,11 @@ jobs:
       #   downloads           (~0.02 GB) unreferenced A5 PDFs
       #   assets/images/*     the ~0.44 GB subset in .github/pages-media-exclude.txt:
       #                       files that NO page references, so dropping them is free
-      # EXCEPTION — assets/pdf/ (~0.59 GB) IS included on purpose: these are the
-      # PDFs the reader pages embed (pdf.js iframe / data-pdf). On the origin the
-      # browser fetches them over the Pages CDN with no CORS handshake and reuses
-      # the connection, so first paint is immediate instead of streaming from
-      # raw.githubusercontent.com. Everything else stays excluded.
+      # assets/pdf/ (~0.59 GB) is ALSO offloaded: the reader pages now embed the
+      # PDFs from taichikb/taichinow-media via absolute raw.githubusercontent.com
+      # URLs (pdf.js works cross-origin: ACAO:* + 206 Range). So assets/pdf/ is
+      # added to the exclude list below, dropping the artifact to ~0.49 GB and
+      # clearing the 1 GB Pages cap. Everything else stays excluded.
       # NOTE: tar is used rather than rsync, which is not guaranteed on the runner.
       # ---------------------------------------------------------------------------
       - name: Stage site (exclude offloaded media)
@@ -56,23 +56,20 @@ jobs:
           # referenced-by-nothing images enumerated in the checked-in manifest.
           : > /tmp/exclude.txt
           printf '%s\n' "./.git" "./.github" "./assets/books" "./books/pdfs" \
-            "./assets/images/books" "./downloads" "./_site" >> /tmp/exclude.txt
+            "./assets/images/books" "./assets/pdf" "./downloads" "./_site" >> /tmp/exclude.txt
           if [ -f .github/pages-media-exclude.txt ]; then
             # manifest lines are repo-relative (assets/images/...) -> prefix "./"
             sed -e 's/^/.\//' -e '/^\.\/$/d' .github/pages-media-exclude.txt >> /tmp/exclude.txt
           fi
           echo "Exclusion entries: $(wc -l < /tmp/exclude.txt)"
-          # _site must be excluded: tar writes into it while reading ".",
-          # so without this the staged copy can be read back into itself and
-          # the artifact doubles (590 MB repo -> 1180 MB, over the 1 GB cap).
           tar --exclude-from=/tmp/exclude.txt -cf - . | tar -xf - -C _site
-          # GitHub Pages rejects artifacts over 1 GB. assets/pdf/ is deliberately
-          # NOT excluded, so the artifact grows by its size — fail loudly before
-          # upload if we approach the cap instead of discovering it at deploy time.
+          # GitHub Pages rejects artifacts over 1 GB. All large binaries
+          # (assets/pdf/ included) are now excluded, so the artifact should sit
+          # well under the cap. Keep this guard as a hard safety net.
           SIZE_MB=$(du -sm _site | cut -f1)
           echo "Staged artifact size: ${SIZE_MB} MB"
           if [ "$SIZE_MB" -gt 985 ]; then
-            echo "::error::Pages artifact is ${SIZE_MB} MB — over the 985 MB safety margin (hard cap 1 GB). Trim assets/pdf/ or find more unreferenced files to exclude." >&2
+            echo "::error::Pages artifact is ${SIZE_MB} MB — over the 985 MB safety margin (hard cap 1 GB). Find more unreferenced files to exclude." >&2
             exit 1
           fi
 
