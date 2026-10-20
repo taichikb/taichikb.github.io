@@ -1053,6 +1053,22 @@ body.saver .saver-note { opacity: 1; transform: translateX(-50%) translateY(0); 
   .pv-title { display: none; }
 }
 
+/* narrow desktops: the 2x2 panel blocks get cramped, so give the panel
+   more of the column height and tighten its body text. Must come after the
+   max-height rules above, otherwise those override these values. */
+
+@media (max-width: 1180px) {
+  .stage { --row2min: 442px; }
+  .blk p { font-size: 11.6px; line-height: 1.38; }
+}
+
+/* very short windows: the ring would otherwise set the top row and squeeze
+   the panel out of its own row */
+
+@media (max-height: 700px) {
+  #oc-svg { width: min(100%, 30vh); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
