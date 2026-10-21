@@ -187,13 +187,13 @@ body.saver #ambient { opacity: .55; }
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
   grid-template-areas:
     "ring video"
     "panel tabs";
   gap: 14px 22px;
   padding: 8px 22px 14px;
-  --row2min: clamp(320px, 46.5vh, 470px);
+  --row2min: clamp(300px, 42vh, 420px);
   transition: padding .9s cubic-bezier(.4, 0, .2, 1);
 }
 
@@ -343,7 +343,7 @@ body.saver #oc-svg { width: 100%; }
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 14px 18px 10px;
+  padding: 11px 18px 8px;
   overflow-y: auto;
   overscroll-behavior: contain;
   transition: opacity .6s ease, transform .6s ease;
@@ -397,7 +397,7 @@ body.saver .panel { transform: translateY(10px); }
 
 .p-organ {
   font-family: var(--serif);
-  font-size: clamp(25px, 3vh, 34px);
+  font-size: clamp(25px, 2.7vh, 32px);
   line-height: 1.1;
   font-weight: 600;
   color: var(--ink);
@@ -411,7 +411,7 @@ body.saver .panel { transform: translateY(10px); }
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .p-meta {
@@ -466,7 +466,7 @@ body.saver .panel { transform: translateY(10px); }
   border-radius: 999px;
   background: #f0ede5;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .p-bar > i {
@@ -479,17 +479,21 @@ body.saver .panel { transform: translateY(10px); }
 }
 
 .p-top {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 4px;
 }
 
-.p-top-main { min-width: 0; }
+.p-top-main { flex: 1 1 auto; min-width: 0; }
 
 /* ---------- video card (bottom band, right column) ---------- */
 
 .vcard {
-  width: 100%;
-  max-width: calc(var(--vid-h) * 16 / 9 + 22px);
+  flex: 1 1 auto;
+  min-height: 0;
+  width: fit-content;
+  max-width: 100%;
   padding: 8px 8px 7px;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -499,7 +503,8 @@ body.saver .panel { transform: translateY(10px); }
 
 .pv-frame {
   position: relative;
-  width: 100%;
+  width: auto;
+  height: min(var(--vid-h), 100%);
   aspect-ratio: 16 / 9;
   margin: 0;
   border-radius: 10px;
@@ -561,7 +566,7 @@ body.saver .panel { transform: translateY(10px); }
   grid-template-columns: 1fr 1fr;
   align-content: start;
   flex: 1 1 auto;
-  gap: 7px 16px;
+  gap: 5px 16px;
   padding: 0;
 }
 
@@ -587,8 +592,8 @@ body.saver .panel { transform: translateY(10px); }
 
 .blk p {
   margin: 0;
-  font-size: clamp(12.2px, 1.36vh, 14.5px);
-  line-height: 1.46;
+  font-size: clamp(12.2px, 1.3vh, 14px);
+  line-height: 1.42;
   color: var(--ink-2);
 }
 
@@ -602,8 +607,8 @@ body.saver .panel { transform: translateY(10px); }
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 8px;
-  padding-top: 9px;
+  margin-top: 6px;
+  padding-top: 7px;
   border-top: 1px solid var(--line-2);
 }
 
@@ -612,7 +617,7 @@ body.saver .panel { transform: translateY(10px); }
   align-items: center;
   gap: 7px;
   border-radius: 9px;
-  padding: 7px 12px;
+  padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -643,7 +648,7 @@ body.saver .panel { transform: translateY(10px); }
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 4px;
+  margin-top: 3px;
   font-size: 11px;
   color: var(--muted);
   flex-wrap: wrap;
@@ -680,26 +685,20 @@ body.saver .panel { transform: translateY(10px); }
   display: inline-block;
 }
 
-.p-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 4px;
-  border-top: 1px solid var(--line-2);
+/* the old footer row: its meta text now rides in the panel header row,
+   and the "Health Series" link is already the topbar brand link */
+.n-meta {
+  flex: 0 0 auto;
+  max-width: 48%;
+  text-align: right;
   font-size: 10.5px;
+  line-height: 1.4;
   letter-spacing: .04em;
   color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.p-foot a {
-  color: var(--emerald);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.p-foot a:hover { text-decoration: underline; }
 
 .prog-arc {
   stroke: #059669;
@@ -1024,7 +1023,8 @@ body.saver .saver-note { opacity: 1; transform: translateX(-50%) translateY(0); 
   .ring-wrap { width: min(78vw, 420px); margin: 0 auto; }
   #oc-svg { width: 100%; }
   .panel { overflow: visible; }
-  .band-video .vcard { max-width: 520px; margin: 0 auto; }
+  .band-video .vcard { width: 100%; max-width: 520px; margin: 0 auto; }
+  .pv-frame { width: 100%; height: auto; }
   .strip { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: auto; }
   .cell { min-height: 60px; }
   .p-blocks { grid-template-columns: 1fr; }
@@ -1039,7 +1039,7 @@ body.saver .saver-note { opacity: 1; transform: translateX(-50%) translateY(0); 
 }
 
 @media (max-height: 820px) {
-  .stage { --row2min: 390px; }
+  .stage { --row2min: 372px; }
   #oc-svg { width: min(100%, 34vh); }
   .p-organ { font-size: 24px; }
   .p-sub { display: none; }
@@ -1047,9 +1047,8 @@ body.saver .saver-note { opacity: 1; transform: translateX(-50%) translateY(0); 
   .blk { padding: 0 0 0 12px; }
   .blk p { font-size: 11.9px; line-height: 1.4; }
   .blk h4 { margin-bottom: 1px; font-size: 10.5px; }
-  .p-actions { margin-top: 10px; padding-top: 9px; }
-  .p-next { margin-top: 4px; }
-  .p-foot { display: none; }
+  .p-actions { margin-top: 6px; padding-top: 7px; }
+  .p-next { margin-top: 3px; }
   .pv-title { display: none; }
 }
 
@@ -1058,7 +1057,7 @@ body.saver .saver-note { opacity: 1; transform: translateX(-50%) translateY(0); 
    max-height rules above, otherwise those override these values. */
 
 @media (max-width: 1180px) {
-  .stage { --row2min: 442px; }
+  .stage { --row2min: 400px; }
   .blk p { font-size: 11.6px; line-height: 1.38; }
 }
 
