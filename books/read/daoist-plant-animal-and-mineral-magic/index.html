@@ -46,8 +46,41 @@
     <div class="section-title"><h2>What's in it</h2></div>
     <p>Which substances Daoist practitioners used and for what. This is a historical document rather than a manual, and it should be read that way.</p>
     <p>Several of the substances described are toxic, and the book is not written as a guide to using them.</p>
-    <p style="margin-top:1rem;color:var(--gray-mid);font-style:italic;">File PDF gốc vượt giới hạn lưu trữ của GitHub Pages nên chưa có trình đọc trực tuyến.</p>
+    <p style="margin-top:1rem;color:var(--gray-mid);font-style:italic;">The original file is 121 MB — above GitHub's 100 MB per-file limit — so it is hosted in two parts. Both are the same text layer and images as the original; nothing was re-compressed.</p>
 </section>
+
+<section class="section">
+    <div class="section-title"><h2>📖 Read Online</h2></div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <button type="button" id="btn1" onclick="showPart(1)" style="padding:0.6rem 1.2rem;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;font-weight:600;font-family:inherit;">Part 1 · pp. 1–225</button>
+        <button type="button" id="btn2" onclick="showPart(2)" style="padding:0.6rem 1.2rem;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;font-weight:600;font-family:inherit;">Part 2 · pp. 226–450</button>
+    </div>
+    <div style="width:100%;max-width:1100px;margin:0 auto;">
+        <div style="background:#525659;border-radius:4px;overflow:hidden;">
+            <iframe id="reader" src="/pdf-viewer/?file=https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-plant-animal-and-mineral-magic-part1.pdf" style="width:100%;height:88vh;border:none;" title="Daoist Plant, Animal and Mineral Magic PDF Reader" allowfullscreen></iframe>
+        </div>
+        <p style="text-align:center;margin-top:1rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+            <a id="fslink" href="/pdf-viewer/?file=https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-plant-animal-and-mineral-magic-part1.pdf" target="_blank" class="reader-control-btn primary" style="display:inline-block;padding:0.75rem 1.5rem;border:2px solid var(--ink);text-decoration:none;font-weight:600;">Open Full-Screen PDF ↗</a>
+            <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-plant-animal-and-mineral-magic-part1.pdf" download class="reader-control-btn" style="display:inline-block;padding:0.75rem 1.5rem;border:1px solid var(--ink);text-decoration:none;font-weight:600;">Download Part 1 ⬇</a>
+            <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-plant-animal-and-mineral-magic-part2.pdf" download class="reader-control-btn" style="display:inline-block;padding:0.75rem 1.5rem;border:1px solid var(--ink);text-decoration:none;font-weight:600;">Download Part 2 ⬇</a>
+        </p>
+    </div>
+</section>
+
+<script>
+var PARTS = {1: "https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-plant-animal-and-mineral-magic-part1.pdf", 2: "https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-plant-animal-and-mineral-magic-part2.pdf"};
+function showPart(n) {
+    document.getElementById("reader").src = "/pdf-viewer/?file=" + PARTS[n];
+    document.getElementById("fslink").href = "/pdf-viewer/?file=" + PARTS[n];
+    for (var i = 1; i <= 2; i++) {
+        var b = document.getElementById("btn" + i);
+        var on = (i === n);
+        b.style.background = on ? "var(--ink)" : "transparent";
+        b.style.color = on ? "#fff" : "var(--ink)";
+        b.style.border = on ? "2px solid var(--ink)" : "1px solid var(--ink)";
+    }
+}
+</script>
 
 
 
