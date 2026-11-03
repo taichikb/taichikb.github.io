@@ -5900,6 +5900,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Đọc tham số category từ URL nếu có (từ /vi/library/)
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramCat = urlParams.get('category');
+    if (paramCat) {
+      const catMapping = {
+        'TaiChi': 'kinh-dien-thai-cuc',
+        'taichi': 'kinh-dien-thai-cuc',
+        'Medicine': 'noi-kinh',
+        'medicine': 'noi-kinh',
+        'Aikido': 'aikido-martial',
+        'aikido': 'aikido-martial',
+        'Yoga': 'yoga-vi',
+        'yoga': 'yoga-vi',
+        'Qigong': 'taichi-khicong-vi',
+        'qigong': 'taichi-khicong-vi',
+        'MartialArts': 'aikido-martial',
+        'martialarts': 'aikido-martial',
+        'Daoism': 'noi-canh-do',
+        'daoism': 'noi-canh-do'
+      };
+      const targetCat = catMapping[paramCat] || paramCat;
+      const targetPill = document.querySelector(`.cat-pill[data-category="${targetCat}"]`);
+      if (targetPill) {
+        pills.forEach(p => p.classList.remove('active'));
+        targetPill.classList.add('active');
+        currentCategory = targetCat;
+      }
+    }
+  } catch (e) {}
+
   // Khởi động lọc ban đầu
   applyFilter();
 });
