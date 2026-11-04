@@ -280,6 +280,7 @@
 <a href="/" class="">Home</a>
 <a href="/techniques/" class="">Techniques</a>
 <a href="/books/" class="active">Books</a>
+<a href="/library/" class="">Digital Library</a>
 <a href="/health/" class="">Health</a>
 <a href="/videos/" class="">Videos</a>
 <a href="/podcast/" class="">Podcast</a>
@@ -6716,6 +6717,39 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Handle URL category param if present
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramCat = urlParams.get('category');
+    if (paramCat) {
+      const catMapping = {
+        'TaiChi': 'shelf-2',
+        'taichi': 'shelf-2',
+        'Medicine': 'shelf-7',
+        'medicine': 'shelf-7',
+        'Aikido': 'shelf-6',
+        'aikido': 'shelf-6',
+        'Yoga': 'shelf-5',
+        'yoga': 'shelf-5',
+        'MartialArts': 'shelf-4',
+        'martialarts': 'shelf-4',
+        'Zen': 'shelf-10',
+        'zen': 'shelf-10',
+        'Philosophy': 'shelf-9',
+        'philosophy': 'shelf-9',
+        'Scans': 'shelf-8',
+        'scans': 'shelf-8'
+      };
+      const targetCat = catMapping[paramCat] || paramCat;
+      const targetPill = document.querySelector(`.cat-pill[data-category="${targetCat}"]`);
+      if (targetPill) {
+        pills.forEach(p => p.classList.remove('active'));
+        targetPill.classList.add('active');
+        currentCategory = targetCat;
+      }
+    }
+  } catch (e) {}
 
   // Initial filter run to set count
   applyFilter();
