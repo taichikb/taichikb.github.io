@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #059669; }
+body.dark-mode .figure-wrap { background: #1e1e1e; border-color: #333; }
+body.dark-mode .posture-list li { border-color: #333; }
+#reading-progress {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999; width: 0%; transition: width 0.1s;
+}
+.reader-layout {
+  display: block; max-width: 900px; margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.4rem; }
+.toc-link {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.87rem;
+  display: block; padding: 4px 6px; border-radius: 6px; line-height: 1.35;
+}
+.toc-link:hover { background: rgba(197,155,39,0.12); color: var(--accent-crimson); }
+.toc-link .pg { display: block; font-size: 0.72rem; color: #a8a29e; }
+.reader-tools { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tool-btn {
+  flex: 1; background: none; border: 1px solid #e7e5e4; color: var(--text-primary);
+  border-radius: 8px; padding: 6px 4px; cursor: pointer; font-size: 0.8rem;
+  font-family: inherit;
+}
+.tool-btn:hover { border-color: var(--accent-gold); color: var(--accent-crimson); }
+body.dark-mode .tool-btn { border-color: #333; }
+.reader-content { font-size: 17px; line-height: 1.8; }
+.book-hero {
+  background: linear-gradient(135deg, #fef9ef 0%, #fdf3e3 100%);
+  border: 1px solid #f0e0c0; border-radius: 16px;
+  padding: 2.2rem; margin-bottom: 2.5rem;
+}
+body.dark-mode .book-hero { background: #1e1a14; border-color: #4a3f2a; }
+.book-badge {
+  display: inline-block; background: var(--accent-crimson); color: #fff;
+  font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem;
+  margin: 0 0 0.4rem; color: var(--text-primary); line-height: 1.2;
+}
+.book-orig-title { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+.book-tags span {
+  background: rgba(197,155,39,0.14); border: 1px solid rgba(197,155,39,0.4);
+  color: #8a6a12; font-size: 0.78rem; font-weight: 600;
+  padding: 3px 11px; border-radius: 999px;
+}
+body.dark-mode .book-tags span { color: #e5c76b; }
+.book-pdf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  background: var(--accent-crimson); color: #fff !important;
+  font-size: 0.88rem; font-weight: 700; transition: opacity 0.15s;
+}
+.book-pdf-link:hover { opacity: 0.88; }
+.chapter-block { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem; margin-bottom: 1.5rem;
+}
+.chapter-num {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--accent-gold); display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem;
+  color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3;
+}
+.chapter-sub {
+  font-size: 1.08rem; font-weight: 700; color: var(--accent-crimson);
+  margin: 1.6rem 0 0.6rem;
+}
+/* Table of contents. Books whose printed TOC is transcribed as a flat
+   "Title ...... (123)" list emit these rows from build_html.py; without this
+   block the rows lose their leaders and their indentation. Indentation encodes
+   the hierarchy, so it is applied here rather than in the source. */
+.toc-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.4rem;
+  color: var(--accent-crimson); margin: 2rem 0 0.9rem;
+}
+.toc-row {
+  display: flex; align-items: baseline; gap: 0.4em;
+  padding: 0.18rem 0; font-size: 0.94rem; line-height: 1.45;
+}
+.toc-title { flex: 0 1 auto; }
+.toc-dots {
+  flex: 1 1 auto; min-width: 1.2em;
+  border-bottom: 1px dotted #d9d2c6; transform: translateY(-0.32em);
+}
+.toc-page {
+  flex: 0 0 auto; color: #a8a29e; font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
+}
+.toc-lvl0 { margin-top: 1.6rem; }
+.toc-lvl0 > .toc-title { font-weight: 700; font-size: 1.06rem; color: var(--accent-crimson); }
+.toc-lvl1 { margin-left: 1.1rem; }
+.toc-lvl1 > .toc-title { font-weight: 600; }
+.toc-lvl2 { margin-left: 2.3rem; }
+.toc-lvl3 { margin-left: 3.5rem; }
+.toc-lvl3 > .toc-title { color: var(--text-secondary); }
+body.dark-mode .toc-dots { border-bottom-color: #3f3a33; }
+body.dark-mode .toc-page { color: #78716c; }
+@media (max-width: 640px) {
+  .toc-lvl1 { margin-left: 0.7rem; }
+  .toc-lvl2 { margin-left: 1.4rem; }
+  .toc-lvl3 { margin-left: 2.1rem; }
+}
+/* Title page / colophon / copyright page. build_html.py emits one of these per
+   printed line; without the class they collapse into a normal paragraph and the
+   lines run together. */
+.display-line { margin: 0.15rem 0; line-height: 1.6; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled {
+  color: #c7c2bd; pointer-events: none; cursor: default;
+}
+body.dark-mode .page-nav a.disabled { color: #555; }
+.posture-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+.posture-list li {
+  border-left: 3px solid #eadfc8; padding: 4px 0 4px 14px; margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.quote-box {
+  background: #fefce8; border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  font-style: italic; color: #713f12;
+}
+.key-point {
+  background: #f0fdf4; border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+body.dark-mode .key-point { color: #a7f3d0; }
+.figure-wrap {
+  margin: 2rem 0; text-align: center; background: rgba(0,0,0,0.02);
+  padding: 16px; border-radius: 10px; border: 1px solid #e5e5e5;
+}
+.figure-wrap img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption-title {
+  font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson);
+  margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.figure-caption {
+  font-size: 0.88rem; color: #78716c; margin-top: 10px; font-style: italic;
+}
+.figure-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.figure-row .figure-wrap { flex: 1 1 220px; max-width: 260px; margin: 0; }
+.page-marker {
+  font-size: 0.74rem; color: #a8a29e; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 3px;
+}
+
+.printed-page-ref { display:block; margin:.35em 0 1.1em; font-size:.78rem; font-style:italic; color:#a8a29e; letter-spacing:.01em; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 48: — Ngợi khen ba đời họ Đỗ — Toàn Thư Thái Cực Quyền | TaichiNOW</title>
+<meta name="description" content="Chương 48 của Toàn Thư Thái Cực Quyền: — Ngợi khen ba đời họ Đỗ">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-trang-1.html#sec00">Phần 1</a></li>
+        <li><a href="ch02-iii-su-nam-giu-hu-thuc.html#sec01">Phần 2</a></li>
+        <li><a href="ch03-iv-khinh-phu-tram-hu-thuc.html#sec02">Phần 3</a></li>
+        <li><a href="ch04-dac-diem-thu-nam-van-dong-tiet-tiet-quan-xuyen-yeu-tich-dan.html#sec03">Phần 4</a></li>
+        <li><a href="ch05-i-thuc-chat-tiet-tiet-quan-xuyen.html#sec04">Phần 5</a></li>
+        <li><a href="ch06-ii-quan-he-giua-dong-toan-dong-yeu-tich.html#sec05">Phần 6</a></li>
+        <li><a href="ch07-iii-tiet-tiet-quan-xuyen-tang-cuong-khop.html#sec06">Phần 7</a></li>
+        <li><a href="ch08-v-su-nam-giu-tiet-tiet-quan-xuyen.html#sec07">Phần 8</a></li>
+        <li><a href="ch09-dac-diem-thu-sau-van-dong-a-thanh-lien-tuong-bat-doan-thao-t.html#sec08">Phần 9</a></li>
+        <li><a href="ch10-i-su-thuc-hien-a-thanh.html#sec09">Phần 10</a></li>
+        <li><a href="ch11-ii-thuc-le-danh-gia-hanh-quyen.html#sec10">Phần 11</a></li>
+        <li><a href="ch12-iii-than-dong-dang-a-thanh1.html#sec11">Phần 12</a></li>
+        <li><a href="ch13-dac-diem-thu-bay-van-dong-cuong-nhu-tuong-te-nhu-den-cuong-c.html#sec12">Phần 13</a></li>
+        <li><a href="ch14-i-quyen-cuong-nhu-tuong-te.html#sec13">Phần 14</a></li>
+        <li><a href="ch15-ii-thoi-ky-cau-nhuyen-toi-cuong.html#sec14">Phần 15</a></li>
+        <li><a href="ch16-iv-bien-hoan-cuong-nhu.html#sec15">Phần 16</a></li>
+        <li><a href="ch17-v-su-nam-giu-cuong-nhu-tuong-te.html#sec16">Phần 17</a></li>
+        <li><a href="ch18-dac-diem-thu-tam-van-dong-khoai-man-tuong-gian-man-den-khoai.html#sec17">Phần 18</a></li>
+        <li><a href="ch19-i-trinh-phat-trien-khoai-man.html#sec18">Phần 19</a></li>
+        <li><a href="ch20-ii-thoi-gian-dieu-kien-viec-chuyen-man-sang-khoai.html#sec19">Phần 20</a></li>
+        <li><a href="ch21-iii-khoai-man-tuong-gian-cau-thanh-kinh-biet.html#sec20">Phần 21</a></li>
+        <li><a href="ch22-iv-su-nam-giu-khoai-man-tuong-gian.html#sec21">Phần 22</a></li>
+        <li><a href="ch23-ket-ngu.html#sec22">Phần 23</a></li>
+        <li><a href="ch24-thu-ten-quyen-thuc-lo-tran-thuc-thai-cuc-quyen.html#sec23">Phần 24</a></li>
+        <li><a href="ch25-may-diem-noi-ro-ve-do-giai.html#sec24">Phần 25</a></li>
+        <li><a href="ch26-tran-thuc-thai-cuc-quyen-lo.html#sec25">Phần 26</a></li>
+        <li><a href="ch27-thuc-thu-ba-muoi-ba-ta-qua-tien-phao-1.html#sec26">Phần 27</a></li>
+        <li><a href="ch28-thuc-thu-ba-muoi-ta-qua-tien-phao-2-nguc-huong-nam.html#sec27">Phần 28</a></li>
+        <li><a href="ch29-thuc-thu-ba-muoi-lam-huu-qua-tien-phao-1-nguc-nam-chuyen-bac.html#sec28">Phần 29</a></li>
+        <li><a href="ch30-thuc-thu-ba-muoi-tam-phach-gia-nguc-huong-dong-bac.html#sec29">Phần 30</a></li>
+        <li><a href="ch31-thuc-thu-ba-muoi-chin-phien-hoa-vu-nguc-dong-nam-chuyen-dong.html#sec30">Phần 31</a></li>
+        <li><a href="ch32-thuc-thu-bon-muoi-yem-thu-quang-chuy-nguc-dong-bac-chuyen-do.html#sec31">Phần 32</a></li>
+        <li><a href="ch33-thuc-thu-bon-muoi-phuc-ho-nguc-dong-chuyen-dong-nam.html#sec32">Phần 33</a></li>
+        <li><a href="ch34-thuc-thu-61-ngoc-nu-xuyen-thoa-nguc-huong-dong-chuyen-bac-ch.html#sec33">Phần 34</a></li>
+        <li><a href="ch35-thuc-thu-62-quay-dau-phao-duong-mon-nguc-huong-tay.html#sec34">Phần 35</a></li>
+        <li><a href="ch36-thuc-thu-64-nuu-loan-chuu-nguc-huong-nam-chuyen-bac.html#sec35">Phần 36</a></li>
+        <li><a href="ch37-thuc-thu-65-thuan-loan-chuu-nguc-huong-bac.html#sec36">Phần 37</a></li>
+        <li><a href="ch38-thuc-thu-67-oa-ly-phao-nguc-huong-bac.html#sec37">Phần 38</a></li>
+        <li><a href="ch39-thuc-thu-70-kim-cang-dao-chuy-nguc-huong-bac.html#sec38">Phần 39</a></li>
+        <li><a href="ch40-thuc-thu-71-thau-the-nguc-huong-bac.html#sec39">Phần 40</a></li>
+        <li><a href="ch41-1-yeu-nghia-chung-day-tay.html#sec40">Phần 41</a></li>
+        <li><a href="ch42-2-phuong-phap-day-tay-thuc-tran.html#sec41">Phần 42</a></li>
+        <li><a href="ch43-3-hai-su-dien-bien-day-tay-thuc-tran.html#sec42">Phần 43</a></li>
+        <li><a href="ch44-4-thoi-thu-thai-cuc-quyen-kiem-bi-ca-am-duong.html#sec43">Phần 44</a></li>
+        <li><a href="ch45-5-yeu-linh-dong-tac-thoi-thu.html#sec44">Phần 45</a></li>
+        <li><a href="ch46-bon-ngu-luc-tran-ham-ve-thap-tam-muc-quan-hai-1.html#sec45">Phần 46</a></li>
+        <li><a href="ch47-sau-tuyen-doan-van-ngan-ve-quyen-luan-tran-ham-nguoi-khac.html#sec46">Phần 47</a></li>
+        <li><a href="ch48-ngoi-khen-ba-doi-ho-do.html#sec47">Phần 48</a></li>
+        <li><a href="ch49-thuyet-minh-ve-hinh-anh-sach.html#sec48">Phần 49</a></li>
+        <li><a href="ch50-the-thu-hai-khoi-the.html#sec49">Phần 50</a></li>
+        <li><a href="ch51-the-thu-ba-lam-tuoc-vi.html#sec50">Phần 51</a></li>
+        <li><a href="ch52-the-thu-4-don-tien-don.html#sec51">Phần 52</a></li>
+        <li><a href="ch53-the-thu-5-thu-thuong-the-nang-tay-len.html#sec52">Phần 53</a></li>
+        <li><a href="ch54-the-thu-6-bach-hac-luong-si-hac-trang-xoe-canh.html#sec53">Phần 54</a></li>
+        <li><a href="ch55-the-thu-7-ta-lau-tat-ao-bo-tay-trai-vuot-dau-goi-buoc-xoay.html#sec54">Phần 55</a></li>
+        <li><a href="ch56-vii-phan-tich-ky-thuat-the-thu-bay-ta-lau-tat-ao-bo-tiep.html#sec55">Phần 56</a></li>
+        <li><a href="ch57-i-cach-dung.html#sec56">Phần 57</a></li>
+        <li><a href="ch58-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua.html#sec57">Phần 58</a></li>
+        <li><a href="ch59-i-cach-dung-2.html#sec58">Phần 59</a></li>
+        <li><a href="ch60-iii-yeu-linh.html#sec59">Phần 60</a></li>
+        <li><a href="ch61-i-cach-dung-3.html#sec60">Phần 61</a></li>
+        <li><a href="ch62-ii-qua-trinh-dong-tac.html#sec61">Phần 62</a></li>
+        <li><a href="ch63-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-2.html#sec62">Phần 63</a></li>
+        <li><a href="ch64-vii-phan-tich-ky-thuat.html#sec63">Phần 64</a></li>
+        <li><a href="ch65-vi-cach-day-cach-luyen.html#sec64">Phần 65</a></li>
+        <li><a href="ch66-iv-yeu-cau.html#sec65">Phần 66</a></li>
+        <li><a href="ch67-iii-yeu-linh-2.html#sec66">Phần 67</a></li>
+        <li><a href="ch68-vi-cach-day-cach-luyen-2.html#sec67">Phần 68</a></li>
+        <li><a href="ch69-iii-yeu-linh-3.html#sec68">Phần 69</a></li>
+        <li><a href="ch70-v-pham-sai-lam-nguyen-nhan-phat-sinh-cach-sua.html#sec69">Phần 70</a></li>
+        <li><a href="ch71-vii-phan-tich-ky-thuat-2.html#sec70">Phần 71</a></li>
+        <li><a href="ch72-iv-yeu-cau-2.html#sec71">Phần 72</a></li>
+        <li><a href="ch73-vi-phep-day-phep-luyen.html#sec72">Phần 73</a></li>
+        <li><a href="ch74-iii-yeu-linh-4.html#sec73">Phần 74</a></li>
+        <li><a href="ch75-vi-phep-day-phep-luyen-2.html#sec74">Phần 75</a></li>
+        <li><a href="ch76-i-phep-dung.html#sec75">Phần 76</a></li>
+        <li><a href="ch77-vi-cach-day-cach-luyen-3.html#sec76">Phần 77</a></li>
+        <li><a href="ch78-iii-yeu-linh-5.html#sec77">Phần 78</a></li>
+        <li><a href="ch79-i-cach-dung-4.html#sec78">Phần 79</a></li>
+        <li><a href="ch80-iv-yeu-cau-3.html#sec79">Phần 80</a></li>
+        <li><a href="ch81-vii-phan-tich-ky-thuat-3.html#sec80">Phần 81</a></li>
+        <li><a href="ch82-iii-yeu-linh-6.html#sec81">Phần 82</a></li>
+        <li><a href="ch83-i-cach-dung-5.html#sec82">Phần 83</a></li>
+        <li><a href="ch84-iii-yeu-linh-7.html#sec83">Phần 84</a></li>
+        <li><a href="ch85-iv-yeu-cau-4.html#sec84">Phần 85</a></li>
+        <li><a href="ch86-vii-phan-tich-ky-thuat-4.html#sec85">Phần 86</a></li>
+        <li><a href="ch87-i-cach-dung-6.html#sec86">Phần 87</a></li>
+        <li><a href="ch88-vii-phan-tich-ky-thuat-5.html#sec87">Phần 88</a></li>
+        <li><a href="ch89-iii-yeu-linh-8.html#sec88">Phần 89</a></li>
+        <li><a href="ch90-iv-yeu-cau-5.html#sec89">Phần 90</a></li>
+        <li><a href="ch91-vi-cach-day-cach-luyen-tap.html#sec90">Phần 91</a></li>
+        <li><a href="ch92-v-loi-pham-nguyen-nhan-phat-sinh-cach-sua-chua.html#sec91">Phần 92</a></li>
+        <li><a href="ch93-i-cach-dung-7.html#sec92">Phần 93</a></li>
+        <li><a href="ch94-v-loi-thuong-mac-nguyen-nhan-cach-sua.html#sec93">Phần 94</a></li>
+        <li><a href="ch95-i-cach-dung-8.html#sec94">Phần 95</a></li>
+        <li><a href="ch96-vi-cach-day-cach-luyen-tap-2.html#sec95">Phần 96</a></li>
+        <li><a href="ch97-iii-yeu-linh-9.html#sec96">Phần 97</a></li>
+        <li><a href="ch98-i-cach-dung-9.html#sec97">Phần 98</a></li>
+        <li><a href="ch99-iii-yeu-linh-10.html#sec98">Phần 99</a></li>
+        <li><a href="ch100-vi-cach-day-cach-luyen-tap-3.html#sec99">Phần 100</a></li>
+        <li><a href="ch101-i-cach-dung-10.html#sec100">Phần 101</a></li>
+        <li><a href="ch102-i-cach-dung-11.html#sec101">Phần 102</a></li>
+        <li><a href="ch103-vi-cach-day-cach-luyen-4.html#sec102">Phần 103</a></li>
+        <li><a href="ch104-the-thu-51-don-tien.html#sec103">Phần 104</a></li>
+        <li><a href="ch105-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-3.html#sec104">Phần 105</a></li>
+        <li><a href="ch106-vi-cach-day-cach-luyen-5.html#sec105">Phần 106</a></li>
+        <li><a href="ch107-the-thu-53-lam-tuoc-vi.html#sec106">Phần 107</a></li>
+        <li><a href="ch108-the-thu-54-don-tien.html#sec107">Phần 108</a></li>
+        <li><a href="ch109-the-thu-56-don-tien.html#sec108">Phần 109</a></li>
+        <li><a href="ch110-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-4.html#sec109">Phần 110</a></li>
+        <li><a href="ch111-the-thu-58-kim-ke-doc-lap.html#sec110">Phần 111</a></li>
+        <li><a href="ch112-the-thu-59-ta-huu-dao-nien-hau.html#sec111">Phần 112</a></li>
+        <li><a href="ch113-the-thu-60-ta-phi-the.html#sec112">Phần 113</a></li>
+        <li><a href="ch114-the-thu-63-ta-lau-tat-ao-bo.html#sec113">Phần 114</a></li>
+        <li><a href="ch115-the-thu-65-phien-thong-boi.html#sec114">Phần 115</a></li>
+        <li><a href="ch116-the-thu-68-thuong-bo-lam-tuoc-vi.html#sec115">Phần 116</a></li>
+        <li><a href="ch117-the-thu-71-don-tien.html#sec116">Phần 117</a></li>
+        <li><a href="ch118-the-thu-72-cao-tham-dai-xuyen-chuong.html#sec117">Phần 118</a></li>
+        <li><a href="ch119-the-thu-73-thap-thoi.html#sec118">Phần 119</a></li>
+        <li><a href="ch120-the-thu-74-tien-bo-chi-dang-chuy.html#sec119">Phần 120</a></li>
+        <li><a href="ch121-the-thu-75-thuong-bo-lam-tuoc-vi.html#sec120">Phần 121</a></li>
+        <li><a href="ch122-the-thu-76-don-tien.html#sec121">Phần 122</a></li>
+        <li><a href="ch123-the-thu-79-thoai-bo-khoa-ho.html#sec122">Phần 123</a></li>
+        <li><a href="ch124-the-thu-80-chuyen-than-bai-lien.html#sec123">Phần 124</a></li>
+        <li><a href="ch125-the-thu-81-loan-cung-xa-ho.html#sec124">Phần 125</a></li>
+        <li><a href="ch126-the-thu-82-tien-bo-ban-lan-chuy.html#sec125">Phần 126</a></li>
+        <li><a href="ch127-the-thu-83-nhu-phong-be.html#sec126">Phần 127</a></li>
+        <li><a href="ch128-so-do-lo-tuyen-van-dong-duong-thuc-thai-cuc-quyen.html#sec127">Phần 128</a></li>
+        <li><a href="ch129-tiet-thu-dinh-bo-day-tay.html#sec128">Phần 129</a></li>
+        <li><a href="ch130-so-do-bo-phap-hoat-bo-day-tay.html#sec129">Phần 130</a></li>
+        <li><a href="ch131-tiet-thu-dai-lu.html#sec130">Phần 131</a></li>
+        <li><a href="ch132-so-do-phuong-huong-bo-phap-dai-lu.html#sec131">Phần 132</a></li>
+        <li><a href="ch133-i-ban-ve-viec-luyen-tap-thai-cuc-quyen.html#sec132">Phần 133</a></li>
+        <li><a href="ch134-ban-ve-viec-luyen-tap-thai-cuc-quyen-tiep.html#sec133">Phần 134</a></li>
+        <li><a href="ch135-iv-thap-tam-the-ca.html#sec134">Phần 135</a></li>
+        <li><a href="ch136-viii-so-luoc-ban-ve-luyen-thai-cuc-quyen-tiep.html#sec135">Phần 136</a></li>
+        <li><a href="ch137-ix-nghien-cuu-ly-luan-thai-cuc-quyen-tai-quan-tiep.html#sec136">Phần 137</a></li>
+        <li><a href="ch138-xii-ban-ve-phep-luyen-duong-thuc-thai-cuc-quyen.html#sec137">Phần 138</a></li>
+        <li><a href="ch139-bat-loi-bat-thu.html#sec138">Phần 139</a></li>
+        <li><a href="ch140-bat-nhi-loi-bat-thu-hai.html#sec139">Phần 140</a></li>
+        <li><a href="ch141-ngo-thuc-thai-cuc-quyen-quyen-thuc-do-giai.html#sec140">Phần 141</a></li>
+        <li><a href="ch142-thu-don-dap-thu.html#sec141">Phần 142</a></li>
+        <li><a href="ch143-thu-hai-song-dap-thu.html#sec142">Phần 143</a></li>
+        <li><a href="ch144-thu-ba-tam-dong-tac-ban.html#sec143">Phần 144</a></li>
+        <li><a href="ch145-vuong-tong-nhac-luan-thai-cuc-quyen.html#sec144">Phần 145</a></li>
+        <li><a href="ch146-vu-vu-tuong-luan-thai-cuc-quyen.html#sec145">Phần 146</a></li>
+        <li><a href="ch147-thap-tam-the-hanh-cong-tam-giai.html#sec146">Phần 147</a></li>
+        <li><a href="ch148-da-thu-ca.html#sec147">Phần 148</a></li>
+        <li><a href="ch149-so-luoc-ve-vo-thuc-thai-cuc-quyen.html#sec148">Phần 149</a></li>
+        <li><a href="ch150-loi-noi-dau.html#sec149">Phần 150</a></li>
+        <li><a href="ch151-chuong-yeu-linh-thai-cuc-quyen.html#sec150">Phần 151</a></li>
+        <li><a href="ch152-tau-gia-da-thu-thai-cuc-quyen.html#sec151">Phần 152</a></li>
+        <li><a href="ch153-vai-the-hoi-ve-cach-day-cach-luyen.html#sec152">Phần 153</a></li>
+        <li><a href="ch154-thuyet-minh-do-tiet.html#sec153">Phần 154</a></li>
+        <li><a href="ch155-vi-du-ve-do-tiet.html#sec154">Phần 155</a></li>
+        <li><a href="ch156-chuong-hai-do-giai-thai-cuc-quyen-vo-thuc.html#sec155">Phần 156</a></li>
+        <li><a href="ch157-may-diem-giai-thich-ve-do-giai.html#sec156">Phần 157</a></li>
+        <li><a href="ch158-do-giai-vu-thuc-thai-cuc-quyen.html#sec157">Phần 158</a></li>
+        <li><a href="ch159-thai-cuc-quyen-luan.html#sec158">Phần 159</a></li>
+        <li><a href="ch160-da-thu-ca-vuong-tong-nhac-dinh.html#sec159">Phần 160</a></li>
+        <li><a href="ch161-da-thu-tan-phong.html#sec160">Phần 161</a></li>
+        <li><a href="ch162-tan-phong-mat-quyet-ly-dich-du.html#sec161">Phần 162</a></li>
+        <li><a href="ch163-mat-quyet-chua-ro-tac-gia.html#sec162">Phần 163</a></li>
+        <li><a href="ch164-loi-tua.html#sec163">Phần 164</a></li>
+        <li><a href="ch165-muc-luc.html#sec164">Phần 165</a></li>
+        <li><a href="ch166-gioi-thieu-van-tat-ve-ton-thuc-thai-cuc-quyen.html#sec165">Phần 166</a></li>
+        <li><a href="ch167-tong-thuyet-ve-thai-cuc-quyen.html#sec166">Phần 167</a></li>
+        <li><a href="ch168-tong-thuyet-ve-thai-cuc-quyen-tiep.html#sec167">Phần 168</a></li>
+        <li><a href="ch169-tong-thuyet-ve-thai-cuc-quyen-tiep-2.html#sec168">Phần 169</a></li>
+        <li><a href="ch170-thuong-bien-1-ten-thuc.html#sec169">Phần 170</a></li>
+        <li><a href="ch171-1-thoi-thu-phap-thai-cuc-quyen-taijiquan-tuishou-fa.html#sec170">Phần 171</a></li>
+        <li><a href="ch172-2-ky-kich-thai-cuc-quyen-taijiquan-ji-ji.html#sec171">Phần 172</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../quan_shu_chen_shi_1995_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Toàn Thư Thái Cực Quyền · Phần 48</p>
+<h3 class="chapter" id="ch48">— Ngợi khen ba đời họ Đỗ</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Chương Hai Phân tích chi tiết phương pháp dạy và luyện động tác Dương thức Thái Cực Quyền</a></div>
+<div class="partnav"><a href="ch47-sau-tuyen-doan-van-ngan-ve-quyen-luan-tran-ham-nguoi-khac.html"><span class="k">← Chương 47</span>Sáu. Tuyển đoạn văn ngắn về quyền luận của Trần Hâm và những người khác</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch49-thuyet-minh-ve-hinh-anh-sach.html" style="text-align:right"><span class="k">Chương 49 →</span>Thuyết minh về hình ảnh trong sách</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Thẩm Gia Trình.</p>
+<span id="chuong-47"></span>
+
+
+  <div class="chapter-header">
+    
+  </div>
+<div class="chapter-sub">— Ngợi khen ba đời họ Đỗ</div>
+<p>Đại sư Đỗ Thanh Viễn là con trai của Đỗ Trọng Văn, một đại tông sư Thái Cực Quyền Dương Thức. Đỗ Trọng Văn theo học nghệ thuật Thái Cực với Dương Trừng Phủ, cháu nội của Dương Lộc Thiền — người sáng lập Thái Cực Quyền Dương Thức — được Dương sư hết sức coi trọng, cho theo hầu không rời bên cạnh và luôn luôn chỉ dạy. Về sau, đại sư Đỗ Trọng Văn trở thành một cao đồ nổi tiếng của đại tông sư Dương Trừng Phủ.</p>
+<p>Đại sư Đỗ Thanh Viễn khi còn trẻ đã hấp thu tinh túy của Thái Cực Quyền Dương Thức, và dưới sự dạy dỗ trực tiếp của cha mình đã khổ luyện thực hành, nghệ thuật Thái Cực đạt tới cảnh giới thuần thục tinh luyện, trở thành tông sư và truyền nhân đời thứ năm của Thái Cực Quyền Dương Thức. Ông Đỗ Thanh Tuyền từ nhỏ được ông nội và cha huấn luyện nghiêm khắc, thuở thiếu niên đã nhiều lần tham gia thi đấu trong nước và quốc tế với tư cách vận động viên chuyên nghiệp và đoạt chức vô địch, trở thành hậu bối xuất sắc của gia tộc Thái Cực này. Hai cha con họ đã đưa nghệ thuật này phổ biến ra hải ngoại, thu nhận rất nhiều học trò và đồ đệ, truyền bá khối tài sản văn hóa Trung Hoa vĩ đại này ra các nước trên thế giới. Nhờ nỗ lực của Đỗ đại sư, ngày càng nhiều người dần hiểu và yêu thích Thái Cực Quyền, nhiều người khắp nơi trên thế giới lấy làm vui mừng vì có cơ hội trở thành đồ đệ của Đỗ đại sư và học nghệ thuật Thái Cực Quyền từ ông. Tinh thần cống hiến của Đỗ đại sư trong việc truyền bá nghệ thuật kỹ kích Trung Hoa ra thế giới thật đáng được tôn vinh và ca ngợi.</p>
+<p>(tiếp trang sau)</p>
+<p>Thế giới ngày nay đã bước vào thời đại thông tin. Trong xã hội tràn đầy thông tin vô tận và truyền thông phát triển cao độ này, quan niệm của con người đang biến đổi to lớn; theo một ý nghĩa nào đó, thế giới nay đã trở nên ngày càng nhỏ bé, thời gian và khoảng cách không còn là trở ngại cho giao lưu, từ đó thúc đẩy giao lưu văn hóa giữa người dân khắp nơi trên thế giới, và qua đó tiếp tục đẩy mạnh sự truyền bá của Thái Cực Quyền.</p>
+<p>Võ thuật Trung Quốc nay đã trở thành sở thích chung của nhân dân thế giới. Thái Cực, với tư cách là nghệ thuật kỹ kích có nội hàm văn hóa sâu sắc nhất trong võ thuật Trung Quốc, đã trở thành một trong những "món quà" giá trị nhất dâng tặng nhân loại, nhờ chức năng giúp con người cường thân kiện thể. Nó đặc biệt thích hợp với người trung niên, cao tuổi và những người công việc đặc biệt bận rộn, trong đó có rất nhiều người lao động trí óc. Có thể khẳng định chắc chắn rằng, tất cả những người luyện tập Thái Cực Quyền đều có thể thu được lợi ích từ đó.</p>
+<p>Việc xuất bản <em>Phương Pháp Huấn Luyện Thái Cực Quyền Dương Thức Truyền Thừa Chính Tông</em> có thể ở tầng sâu hơn cung cấp cho người yêu thích Thái Cực Quyền kinh nghiệm và phương pháp giảng dạy, luyện tập. Sách này giới thiệu tường tận từng động tác, điều hiếm thấy ngay cả trong các sách thuộc loại Thái Cực Quyền. Nó ắt sẽ trở thành người thầy tốt, người bạn hiền của người yêu thích Thái Cực Quyền.</p>
+<p><span id="p330" class="page-anchor"></span>Đại sư Đỗ Thanh Viễn (Quốc gia võ thuật bát đoạn) cùng con trai Đỗ Thanh Tuyền (Quốc gia võ thuật lục đoạn) đã hữu hiệu (Lời tựa I, tiếp theo)</p>
+<p>truyền bá nghệ thuật Thái Cực Quyền, mong rằng sự nghiệp của họ đạt được thành công to lớn! Và tiếp tục quảng bá Thái Cực — bảo vật văn hóa Trung Hoa — tới nhân dân các nước trên thế giới, để nó phát dương quang đại trên toàn cầu!</p>
+<p class="display-line">Từ Tài</p>
+<p class="display-line">Tháng 9 năm 2000</p>
+<p class="display-line">Tác giả Lời tựa I</p>
+<p class="display-line">Cố vấn Tổng hội Thể dục Thể thao Toàn quốc Trung Hoa</p>
+<p class="display-line">Chủ tịch Danh dự Liên đoàn Võ thuật Châu Á</p>
+<p>(Lời tựa II, do Du Huyền Đức soạn)</p>
+<p>Tinh nghĩa của Thái Cực Công phu Trung Quốc có lịch sử lâu đời, vốn nổi tiếng với câu "Nam tôn Võ Đang, Bắc sùng Thiếu Lâm". Mà nay thịnh hành khắp nơi trên thế giới, được mọi người yêu thích nhất trong võ thuật Trung Hoa không gì hơn phép Thái Cực Quyền. Vào lúc chính quyền trung ương đề xướng toàn dân kiện thân phục vụ xã hội, tôi rất vui mừng được biết sư điệt Thanh Tuyền có một tác phẩm ba đời chân truyền — Phương Pháp Huấn Luyện Thái Cực Quyền Dương Thức Truyền Thừa Chính Tông — sắp ra mắt; nhận sự ủy thác của hiền huynh Thanh Viễn, tôi viết lời tựa cho trước tác mới của sư điệt Thanh Tuyền, để bày tỏ niềm vui và lời chúc mừng.</p>
+<p>Thuật Thái Cực Quyền do Trương Tam Phong chân nhân trên núi Võ Đang tỉnh Hồ Bắc sáng tạo vào đời Tống, đến nay đã vài trăm năm. Núi Võ Đang là thắng địa Đạo giáo và danh thắng phong cảnh nổi tiếng của Trung Quốc. Sự tích lũy văn hóa lâu đời đã hun đúc nên võ công phái Võ Đang nổi tiếng thiên hạ, đặc biệt công phu Thái Cực Quyền được tôn vinh trong và ngoài nước. Võ công Võ Đang qua các đời thu nhận đồ đệ cực kỳ nghiêm khắc; đời Thanh võ công Võ Đang từ trong giáo phái truyền ra dân gian, bèn hình thành hệ thống Thái Cực Quyền nội gia — phái Nam do Trương Tùng Khê đại biểu, phái Bắc do Vương Tông Nhạc đại biểu. Trong quá trình lưu truyền, công phu Thái Cực lại phát triển ra nhiều lưu phái, tạo thành một kho tàng văn hóa nghệ thuật công phu Thái Cực vô cùng phong phú. Và trong việc truyền bá công phu Thái Cực khắp thế giới, người có công lao xuất sắc không ai hơn vị đại tông sư của một đời — lão tiên sinh Đỗ Trọng Văn.</p>
+<p>Đỗ lão và tôi có tình bạn vong niên, cho nên tôi cảm nhận được rất nhiều về phẩm chất cao phong lượng tiết, phong thái hư hoài nhược cốc, kỹ nghệ lô hỏa thuần thanh và hùng phong uy chấn võ lâm của Đỗ lão. Thời Dân Quốc, các môn phái thường giao thủ; vì quyền thuật của Đỗ lão lan truyền rộng rãi từ bắc xuống nam nên kẻ khiêu chiến cũng nhiều. Nhiều quyền gia, danh thủ khi giao đấu vừa chạm tay đã bị quăng ra ngoài vài trượng, vô cùng kinh ngạc trước công phu tùng trầm viên hoạt của Thái Cực, đồng thời cảm động trước võ đức cao thượng của Đỗ lão, không thiếu người bái làm đồ đệ. Sau khi Tân Trung Quốc thành lập, Đỗ lão được Nhà nước quan tâm, khen ngợi và nhận được vinh dự rất cao.</p>
+<p><span id="p331" class="page-anchor"></span>Thanh Tuyền là cháu nội chân truyền của Đỗ lão, được các bậc trưởng bối trong gia tộc dạy dỗ, từ nhỏ theo cha (nhà võ thuật nổi tiếng, Chủ tịch Liên minh Thái Cực Quyền Vĩnh Niên Thế giới — ông Đỗ Thanh Viễn) luyện võ, và từ lâu theo ông nội Đỗ Trọng Văn tham dự các kỳ võ thuật thịnh hội khắp nơi; thuở thiếu niên đã đoạt chức vô địch Thái Cực Quyền toàn quốc, có thể gọi là hổ tử tướng môn. Vì Thanh Tuyền thiên tư thông minh, khổ luyện cần mẫn, nay đã đến tuổi tam thập nhi lập, lại càng thêm khí phách phong phát — thật là "sóng sau sông Trường Giang đẩy sóng trước"! Thanh Tuyền ghi nhớ di nguyện của ông nội, không quản khó nhọc bôn ba trong và ngoài nước truyền thụ công phu Thái Cực, mà nay cũng đã "đào lý mãn thiên hạ". Trong số học trò ông truyền dạy có nhiều người đoạt giải lớn trong các kỳ thi đấu ở nhiều vùng, Đài Truyền hình Trung ương còn quay cho ông phim giảng dạy chuyên đề. (Lời tựa II, tiếp theo)</p>
+<p>Sự ra đời của <em>Phương Pháp Huấn Luyện Thái Cực Quyền Dương Thức Truyền Thừa Chính Tông</em> — dù xét về quyền luận hay quyền giá — đều khiến người ta cảm thấy tai mắt như được đổi mới, không mất phong thái đại gia, đối với người võ thuật chuyên nghiệp cũng như người yêu thích võ thuật nghiệp dư đều có giá trị tham khảo và sưu tầm cao, ắt sẽ trở thành một danh tác vượt thế kỷ. Nếu lão tiên sinh Đỗ Trọng Văn có linh thiêng trên trời, hẳn cũng sẽ vô cùng an ủi và yên nghỉ nơi cửu tuyền. Chúng tôi tưởng nhớ vị đại tông sư của một đời là Đỗ Trọng Văn, và càng mong Thanh Tuyền biên soạn thành bộ trước tác, để nhiều người hơn nữa học được chân công phu Thái Cực Quyền Dương Thức truyền thống. Tôi là truyền nhân của quyền tông trong giáo phái Võ Đang, vì đã lâu sống nơi sơn dã, vài lời vội vàng không thể nói hết tinh nghĩa trong sách, còn mong đồng nhân võ lâm soi xét — ấy là lời tựa.</p>
+<p class="display-line">Tác giả Lời tựa II</p>
+<p class="display-line">Động Thiên Chân Nhân, Du Huyền Đức</p>
+<p class="display-line">Tháng giêng năm 2000</p>
+<p>(Lời nói đầu, do Đỗ Thanh Tuyền soạn)</p>
+<p>Lời nói đầu Vào lúc thế kỷ mới sắp đến, nước ta đang ở trong thời kỳ lịch sử tốt đẹp khi chính trị, kinh tế, văn hóa ngày càng phát triển, nhân dân các dân tộc toàn quốc an cư lạc nghiệp; quần chúng nhân dân rộng rãi, sau khi nhu cầu vật chất cơ bản được thỏa mãn, tha thiết mong nắm được một phương pháp kiện thân khoa học giản tiện để giữ gìn sức khỏe thân tâm. Đồng thời, sự phồn vinh thịnh vượng của một quốc gia không thể tách rời việc nâng cao tố chất quốc dân, bao gồm nâng cao tố chất thể chất và tố chất tâm lý. Mục đích của phong trào toàn dân kiện thân là làm cho số đông quốc dân nhất có được thể phách cường tráng và tâm trí kiện toàn, mà phương pháp kiện thân quần chúng lý tưởng nhất không gì hơn luyện Thái Cực Quyền. Đồng chí Đặng Tiểu Bình từng đánh giá cao Thái Cực Quyền và đề từ "Thái Cực Quyền hảo!" — điều này thể hiện đầy đủ sự coi trọng lâu dài của lãnh đạo Đảng và Nhà nước đối với toàn dân kiện thân và võ thuật truyền thống.</p>
+<p>Thái Cực Quyền, với tư cách một môn khoa học vận động và nghệ thuật hình thể, là đại biểu của văn hóa võ thuật truyền thống ưu tú nước ta, là một cống hiến lớn của dân tộc Trung Hoa cho toàn thế giới. Nó vừa có thể cường thân kiện thể, an thần dưỡng não, vừa có thể tu thân dưỡng tính, đào dã tình thao, lại còn bao hàm nội hàm triết học và nền tảng văn hóa phong phú. Thái Cực Quyền thật sự đã đạt tới mức "nhã tục cộng thưởng, lão ấu giai nghi", từ lâu được quần chúng nhân dân yêu thích sâu sắc, và đã được quảng bá truyền bá ra khắp thế giới. Trong quá trình truyền bá, Thái Cực Quyền phát triển và phái sinh ra nhiều lưu phái; trong đó Thái Cực Quyền Dương Thức luôn là lưu phái lưu truyền rộng rãi nhất, và sau Giải phóng được Ủy ban Thể dục Thể thao Nhà nước lấy làm cơ sở, cải biên thành bài thi đấu nhiều lần nhất.</p>
+<p>Ông nội tôi từ năm 9 tuổi đã theo Dương Trừng Phủ tổ sư — truyền nhân đời thứ ba của Thái Cực Quyền Dương Thức — học quyền, cho đến khi qua đời năm 1994 ở tuổi 91, dốc sức lực cả đời vào sự nghiệp phát triển và truyền bá Thái Cực Quyền Dương Thức, giành được sự tôn trọng và yêu mến rộng rãi của người yêu thích Thái Cực Quyền trong và ngoài nước. Cha tôi cũng từ năm 9 tuổi theo ông nội học quyền, trước Giải phóng đã giúp ông nội quảng bá Thái Cực Quyền Dương Thức. Sau khi Tân Trung Quốc thành lập, ông làm huấn luyện viên võ thuật chuyên nghiệp hơn 30 năm. Sau khi nghỉ hưu, ông lại nhận lời mời đến Úc, châu Âu, châu Mỹ và nhiều nước khác truyền bá Thái Cực Quyền Dương Thức; nay tuy đã tuổi cổ hy, ông vẫn không quản khó nhọc bôn ba khắp thế giới, giới thiệu Thái Cực Quyền Dương Thức chính thống ra nước ngoài, để nhiều bạn bè nước ngoài hiểu và yêu thích công phu Thái Cực của Trung Quốc, góp phần tăng tiến giao lưu hữu hảo giữa nước ta với các nước và xây dựng hình ảnh tốt đẹp của nước ta trên trường quốc tế. Tôi từ năm 6 tuổi theo ông nội và cha luyện quyền, từ nhỏ đã tiếp nhận huấn luyện võ thuật chính quy. Thập niên 1980 tôi trở thành vận động viên võ thuật chuyên nghiệp, từng nhiều lần đại diện Đội Thượng Hải và Đội tuyển Quốc gia tham gia các kỳ thi đấu võ thuật trong và ngoài nước và đạt thành tích tốt. Sau đó tôi cũng dạy quyền trong và ngoài nước nhiều năm, hình thành một hệ thống phương pháp dạy quyền có đặc sắc rõ nét. Ba đời ông cháu chúng tôi rất sẵn lòng không chút giữ lại dâng hiến Thái Cực Quyền Dương Thức chính tông gia truyền — tốt hơn, rõ ràng hơn, chính xác hơn — cho xã hội, không phụ lòng mong mỏi tha thiết của đông đảo người yêu Thái Cực (Lời nói đầu, tiếp theo)</p>
+<p>Thái Cực dành cho chúng tôi. Nguyện vọng này ở mức độ rất lớn đã thúc đẩy việc xuất bản cuốn <em>Phương Pháp Huấn Luyện Thái Cực Quyền Dương Thức Truyền Thừa Chính Tông</em> này.</p>
+<p>Sách này chủ yếu lấy tác phẩm trước của ông nội và cha tôi là <em>Thái Cực Quyền Dương Thức: Phép Dạy và Phép Luyện</em> (Đỗ Trọng Văn, Đỗ Thanh Viễn biên soạn, Diêu Minh Hoa chấp bút. Thượng Hải: Nhà xuất bản Đại học Đồng Tế, bản thứ nhất 1989) làm khuôn mẫu, dung hợp tâm đắc luyện quyền và kinh nghiệm dạy quyền mấy chục năm của ông nội và cha tôi, cùng thể hội thiết thân hơn 20 năm luyện quyền và dạy quyền của bản thân mà viết thành. Đây là sự tổng kết toàn diện về ngộ, luyện và dạy Thái Cực Quyền của ba đời ông cháu chúng tôi, là kết tinh mới nhất của trí tuệ và tâm huyết ba đời. Trong nhiều năm dạy quyền, chúng tôi ý thức rõ ràng rằng chỉ dựa vào nỗ lực của vài người thì còn xa mới thỏa mãn được nguyện vọng học công phu Thái Cực chính tông của đông đảo người yêu thích Thái Cực Quyền; điều này đòi hỏi nhiều người hơn nữa tham gia vào quá trình luyện và dạy Thái Cực Quyền, tham gia vào sự nghiệp phát triển và truyền bá Thái Cực Quyền. Cho nên chúng tôi tinh tâm chỉnh lý và tổng kết phương pháp, kỹ xảo và kinh nghiệm dạy quyền của ba đời, cung cấp sự giúp đỡ thiết thực hữu hiệu cho tất cả những ai có chí với sự nghiệp phát triển và truyền bá Thái Cực Quyền. Ngoài ra, trong quá trình giảng dạy, chúng tôi phát hiện mọi người phổ biến coi nhẹ tác dụng kỹ kích của Thái Cực Quyền, nhiều sai lầm và lệch lạc sinh ra từ đó. Thật ra Thái Cực Quyền vốn dĩ là một môn võ thuật kỹ kích; chỉ khi hiểu được cách dùng đúng đắn của từng chiêu thức Thái Cực Quyền mới có thể hiểu yếu chỉ của Thái Cực Quyền từ gốc rễ, nắm chính xác yếu lĩnh của từng động tác, đạt mục đích kiện thân tốt hơn. Cho nên, một đặc điểm nổi bật khác của sách này là chú trọng giảng giải cách dùng kỹ kích của Thái Cực Quyền, điều này cũng càng dễ khơi gợi hứng thú học tập của người trẻ.</p>
+<p>Thế kỷ 21 là thế kỷ mới của sự phát triển mãnh liệt khoa học kỹ thuật; văn hóa ưu tú truyền thống làm sao thích ứng và bắt kịp sự biến đổi này, và giành được phát triển hơn nữa, là một đề tài nghiêm túc. Sự nghiệp phát triển và truyền bá Thái Cực Quyền cũng đối mặt với thách thức này; mặt khác, khi công nghiệp và văn minh hiện đại mang đến cho con người nhiều tiện lợi hơn và vật chất phong phú hơn, chúng cũng đặt ra yêu cầu cao hơn đối với tố chất thể chất và tâm lý của con người. Làm sao giữ gìn sức khỏe thân tâm trong đời sống xã hội ngày càng nhanh và cạnh tranh sinh tồn khốc liệt, đã trở thành một vấn đề hiện thực mà người hiện đại phải nghiêm túc đối mặt; và Thái Cực Quyền trong phương diện này không nghi ngờ gì có nhiều chức năng độc đáo.</p>
+<p>Là người luyện võ, tôi cảm nhận sâu sắc Thái Cực Quyền bác đại tinh thâm, chỉ có thân thể lực hành mới có thể thể hội. Khoa học không có biên giới, Thái Cực Quyền vẫn đang không ngừng phát triển; sách này tuy đã qua ba đời bổ sung và hoàn thiện, vẫn khó tránh khỏi sơ sót và khiếm khuyết. Vào lúc thế kỷ mới bắt đầu, tôi mong cùng quảng đại quyền hữu và bạn bè các giới đang làm và quan tâm sự nghiệp phát triển, truyền bá Thái Cực Quyền cùng nhau thảo luận, cùng nhau nỗ lực, làm cho Thái Cực Quyền tiến lên một tầng lầu nữa, mang lại nhiều phúc lợi hơn cho nhân loại.</p>
+<p>Cuối cùng, mong rằng việc xuất bản sách này có thể giúp nhiều người hơn nữa thu lợi ích từ Thái Cực Quyền, lĩnh hội sức hấp dẫn vô tận của Thái Cực Quyền. Chúc nhân loại sống khỏe mạnh và hạnh phúc hơn trong thế kỷ 21!</p>
+<p><span id="p332" class="page-anchor"></span>Đỗ Thanh Tuyền Ngày 1 tháng 8 năm 2000</p>
+<span id="p333" class="page-anchor"></span>
+<div class="printed-toc" style="margin:1em 0 1.5em">
+<ul style="list-style:none;margin:0;padding:0">
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Lời tựa I</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Từ Tài Lời tựa II</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Du Huyền Đức Lời nói đầu</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Đỗ Thanh Tuyền Chương 1: Lược sử Thái Cực Quyền Dương Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(1)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Chương 2: Phân tích tường tận phép dạy và phép luyện động tác Thái Cực Quyền Dương Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(7)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 1: Dự Bị Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">8</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 2: Khởi Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">10</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 3: Lãm Tước Vĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">14</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 4: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">33</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 5: Đề Thủ Thượng Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">39</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 6: Bạch Hạc Lượng Sí</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">44</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 7: Tả Lâu Tất Ảo Bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">50</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 8: Thủ Huy Tỳ Bà</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">55</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 9: Tả Hữu Lâu Tất Ảo Bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">60</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 10: Thủ Huy Tỳ Bà</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">65</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 11: Tả Lâu Tất Ảo Bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">66</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 12: Tiến Bộ Ban Lan Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">66</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 13: Như Phong Tự Bế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">72</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 14: Thập Tự Thủ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">76</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 15: Bão Hổ Quy Sơn</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">79</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 16: Trửu Để Khán Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">84</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 17: Tả Hữu Đảo Niển Hầu</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">91</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 18: Tà Phi Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">97</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 19: Đề Thủ Thượng Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">102</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 20: Bạch Hạc Lượng Sí</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">103</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 21: Tả Lâu Tất Ảo Bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">104</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 22: Hải Để Châm</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">105</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 23: Phiến Thông Bối</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">109</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 24: Chuyển Thân Phiết Thân Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">113</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 25: Tiến Bộ Ban Lan Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">119</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 26: Thượng Bộ Lãm Tước Vĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">120</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 27: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">122</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 28: Vân Thủ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">123</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 29: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">132</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 30: Cao Thám Mã</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">133</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 31: Tả Hữu Phân Cước</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">137</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 32: Chuyển Thân Đăng Cước</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">144</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 33: Tả Hữu Lâu Tất Ảo Bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">147</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 34: Tiến Bộ Tài Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">149</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 35: Phiên Thân Phiết Thân Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">151</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 36: Tiến Bộ Ban Lan Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">153</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 37: Hữu Đăng Cước</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">154</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 38: Tả Đả Hổ Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">157</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 39: Hữu Đả Hổ Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">161</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 40: Hồi Thân Hữu Đăng Cước</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">162</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 41: Song Phong Quán Nhĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">164</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 42: Tả Đăng Cước</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">167</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 43: Chuyển Thân Hữu Đăng Cước</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">168</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 44: Tiến Bộ Ban Lan Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">170</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 45: Như Phong Tự Bế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">171</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 46: Thập Tự Thủ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">173</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 47: Bão Hổ Quy Sơn</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">173</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 48: Tà Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">175</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 49: Tả Hữu Dã Mã Phân Tông</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">176</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 50: Lãm Tước Vĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">180</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 51: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">182</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 52: Ngọc Nữ Xuyên Thoa</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">183</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 53: Lãm Tước Vĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">191</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 54: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">194</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 55: Vân Thủ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">195</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 56: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">197</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 57: Hạ Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">198</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 58: Kim Kê Độc Lập</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">201</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 59: Tả Hữu Đảo Niển Hầu</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">205</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 60: Tà Phi Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">207</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 61: Đề Thủ Thượng Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">207</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 62: Bạch Hạc Lượng Sí</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">208</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 63: Tả Lâu Tất Ảo Bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">209</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 64: Hải Để Châm</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">210</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 65: Phiến Thông Bối</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">211</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 66: Chuyển Thân Bạch Xà Thổ Tín</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">211</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 67: Tiến Bộ Ban Lan Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">213</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 68: Thượng Bộ Lãm Tước Vĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">214</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 69: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">215</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 70: Vân Thủ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">216</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 71: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">218</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 72: Cao Thám Mã Đới Xuyên Chưởng</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">219</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 73: Thập Tự Thối</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">222</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 74: Tiến Bộ Chỉ Đang Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">225</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 75: Thượng Bộ Lãm Tước Vĩ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">227</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 76: Đơn Tiên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">229</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 77: Hạ Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">230</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 78: Thượng Bộ Thất Tinh</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">230</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 79: Thoái Bộ Khoa Hổ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">233</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 80: Chuyển Thân Bãi Liên</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">236</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 81: Loan Cung Xạ Hổ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">243</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 82: Tiến Bộ Ban Lan Chùy</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">248</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 83: Như Phong Tự Bế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">250</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 84: Thập Tự Thủ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">251</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Thế thứ 85: Thâu Thế</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">251</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Sơ đồ lộ tuyến động tác quyền giá Thái Cực Quyền Dương Thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(253)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Chương 3: Thôi Thủ (Đẩy tay)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(254)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Tiết 1: Thôi thủ định bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(254)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Tiết 2: Thôi thủ hoạt bộ</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(255)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Tiết 3: Thôi thủ ngũ thức</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(258)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Tiết 4: Đại lý</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(259)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Chương 4: Trứ tác quan trọng của các danh gia Thái Cực Quyền</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(266)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>1. Bàn về luyện tập Thái Cực Quyền (Dương Trừng Phủ)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(266)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>2. Thái Cực Quyền Thuyết Thập Yếu (Dương Trừng Phủ)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(268)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>3. Thái Cực Quyền Luận (Vương Tông Nhạc)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(269)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>4. Thập Tam Thế Ca</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(270)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>5. Thập Tam Thế Hành Công Tâm Giới (Vũ Vũ Tương)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(270)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>6. Thái Cực Quyền Luận (Vũ Vũ Tương)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(271)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>7. Đả Thủ Ca (Vương Tông Nhạc)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(271)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>8. Lược bàn về luyện Thái Cực Quyền (Đỗ Trọng Văn)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(271)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>9. Nghiên cứu lý luận Thái Cực Quyền là một đề tài quan trọng (Đỗ Trọng Văn)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(273)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>10. Yếu lĩnh và kỵ kỵ khi luyện Thái Cực Quyền (Đỗ Trọng Văn)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(275)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>11. Về hiệu quả y liệu của Thái Cực Quyền (Đỗ Trọng Văn)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(276)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>12. Bàn về phép luyện Thái Cực Quyền Dương Thức (Đỗ Thanh Viễn)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(277)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 1.1em;border-bottom:1px dotted #e7e5e4"><span>13. Yếu điểm luyện tập Thái Cực Quyền Dương Thức (Đỗ Thanh Viễn)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(278)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Bạt I (Hề Quế Trung)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(280)</span></li>
+<li style="display:flex;justify-content:space-between;gap:.5em;padding:3px 0 3px 0;border-bottom:1px dotted #e7e5e4"><span>Bạt II (Hoàng Kiến Thành)</span><span style="color:#78716c;white-space:nowrap;padding-left:1em">(282)</span></li>
+</ul></div>
+<p><span class="printed-page-ref">Chương Một — Lược sử Dương thức Thái Cực Quyền, trang sách 1</span></p>
+<p>Chương Một　Lược sử Dương thức Thái Cực Quyền Dương thức Thái Cực Quyền khởi nguồn vào giữa thế kỷ 19 (thời Đạo Quang nhà Thanh), đến nay mới chừng 150 năm, nhưng đã lưu truyền rộng khắp thế giới và trở thành phương pháp rèn luyện thân thể, tăng cường sức khỏe tốt đẹp cho hàng trăm triệu người.</p>
+<p>Người sáng lập Dương thức Thái Cực Quyền là Dương Phúc Khôi (1799–1872), tự Lộc Thiền, xuất thân từ một gia đình nông dân ở Nam Quan huyện thành Vĩnh Niên, phủ Quảng Bình, Hà Bắc. Phong khí học võ ở huyện Vĩnh Niên đã có từ lâu đời; Dương Lộc Thiền từ nhỏ đã học luyện Thiếu Lâm quyền. Lúc nông nhàn, ông thường làm thuê ngắn hạn tại một cửa hàng lương thực ở phố Tây huyện thành. Một hôm, một kẻ ác xông vào hiệu thuốc Thái Hòa Đường bên cạnh cửa hàng lương thực, ức hiếp ông chủ hiệu thuốc Trần Đức Hồ vì ông không phải người bản địa, cứ đòi mua dược liệu quý với giá rẻ; vừa chửi vừa toan vung quyền. Chỉ thấy Trần Đức Hồ giơ tay lên một cái, kẻ ác liền ngã lăn ra ngoài phố. Dương Lộc Thiền vô cùng kinh ngạc, mấy hôm sau đến xin Trần Đức Hồ học quyền. Trần Đức Hồ đầu tiên luôn thoái thác cho qua, về sau thấy Dương Lộc Thiền là người trung hậu, nhiệt thành, mới nói với ông rằng mình là người thôn Trần Gia Câu, huyện Ôn, phủ Hoài Khánh, Hà Nam; ở đó có rất nhiều người học luyện Thái Cực Quyền, còn gọi là Triêm Miên Quyền; thầy của mình là Trần Trường Hưng cùng tộc, quyền thuật của thầy mới là đệ nhất thiên hạ. Nghe được tin này, Dương Lộc Thiền rất mừng, liền nhờ Trần Đức Hồ giới thiệu đến Trần Gia Câu ở Hà Nam bái Trần Trường Hưng làm thầy.</p>
+<p><span id="p334" class="page-anchor"></span>Dưới sự chỉ dẫn của Trần Trường Hưng, Dương Lộc Thiền không quản nóng lạnh, khổ luyện miệt mài. Sáu năm sau, ông mang quyền thuật xuất sắc trở về quê. Lúc ấy ở huyện Vĩnh Niên có rất nhiều người học quyền, trong đó có một người khá nổi danh tuyên bố: "Lộc Thiền học nghệ đã về, ta phải thỉnh giáo một phen." Sau đó hai bên thử so tài, Dương Lộc Thiền bị đối phương đánh bại. Nhưng Dương Lộc Thiền không cam chịu thất bại, phấn chí lại đến Trần Gia Câu học nghệ, lại khổ luyện thêm sáu năm. Khi ông trở về quê lần nữa, đúng dịp Tết, hàng xóm láng giềng nhân dịp chúc Tết mà tỉ thí với Dương Lộc Thiền, đều không ai thắng nổi ông; mọi người nói rằng lần này lão Lộc thật sự học được bản lĩnh rồi. Nhưng ở một nhà quan lại họ Vũ tại địa phương, có một người từng có quan hệ họ hàng với người Trần Gia Câu và cũng học các loại quyền thuật. Nghe tin Dương Lộc Thiền về quê, người ấy đề nghị tỉ thí, kết quả bất phân thắng bại. Dương Lộc Thiền cảm thấy mình vẫn chưa đủ, bèn lần thứ ba vào Trần Gia Câu, theo Trần Trường Hưng học thêm ba năm. Tinh thần học cầu chân truyền Thái Cực Quyền, ba lần vào Trần Gia Câu của Dương Lộc Thiền khiến Trần Trường Hưng vô cùng cảm động. Sau khi âm thầm thử thách và khảo nghiệm ý chí học nghệ cùng phẩm chất làm người của Dương Lộc Thiền, cuối cùng ông đem toàn bộ chân công phu truyền lại cho Dương Lộc Thiền. Hai năm sau, Trần Trường Hưng nói với Dương Lộc Thiền: "Con có thể về được rồi, lần này về sẽ không ai dám chọc con nữa." Dương Lộc Thiền vừa về đến quê, mọi người đều đến xem ông giao thủ với người khác; không hiểu thế nào, chỉ thấy ông phất tay một cái là đã hất đối thủ ra sau lưng. Thế là mọi người đều nói Dương Lộc Thiền thật sự đã "mua được hàng về" (ý nói học được chân công phu). (Chương 1: Lược sử Thái Cực Quyền Dương Thức, trang 2)</p>
+<p>Dương Lộc Thiền ba lần vào Trần Gia Câu học quyền 18 năm, sau khi học được chân công phu của Trần Trường Hưng vẫn không thỏa mãn, tự mình lại không ngừng nghiên cứu và khổ luyện, cuối cùng đạt tới mức xuất thần nhập hóa, trở thành nhân vật nổi tiếng ở địa phương.</p>
+<p>Chẳng bao lâu, Dương Lộc Thiền nhận lời mời của người họ hàng xa Vũ Nhữ Thanh đến Bắc Kinh dạy quyền. Vũ Nhữ Thanh là tiến sĩ đời Đạo Quang nhà Thanh, đương thời giữ chức Viên ngoại lang Bộ Hình. Ở Bắc Kinh, Dương Lộc Thiền trước tiên theo Vũ Nhữ Thanh đến công quán của một người giàu họ Trương làm khách. Trương mở tiệm nhỏ trước, biệt hiệu "Tiểu Phô Trương", sau phát tài. Trương công quán chính là nơi quan lại, thân sĩ, phú hào tìm vui, ở đó còn thuê mấy võ sư, dạy một lớp con em nhà giàu học võ luyện quyền. Trong bữa tiệc lần đầu gặp mặt, Tiểu Phô Trương thấy Dương Lộc Thiền thân hình gầy nhỏ bèn có chút coi thường, xếp Dương Lộc Thiền sau một dãy võ sư to con. Giữa tiệc, Tiểu Phô Trương hỏi: "Dương tiên sinh, miên quyền của ông có đánh được người không?" Dương Lộc Thiền nói: "Miên quyền của tôi trừ người đồng, người sắt, người đá không đánh được, còn do cha mẹ sinh ra có máu có thịt thì đều đánh được." Tiểu Phô Trương lại nói: "Vậy ông có thể cùng các vị tại tòa tỉ thí một phen không?" Dương Lộc Thiền nói: "Được, tôi sẽ thân thiết với các vị sư phụ một phen" — ý là giao đấu vài chiêu. Thế là mọi người tại tòa đều ra vườn. Khi tỉ thí bắt đầu, một quyền sư khí thế hung hăng xông thẳng tới Dương Lộc Thiền, chỉ thấy Dương Lộc Thiền hơi đưa tay ra, quyền sư đó lập tức ngã ra xa mấy trượng. Một quyền sư khác thấy vậy, bèn nói "Ông ta không được, để tôi!" rồi lại đánh tới, cũng chỉ một chiêu đã thấy bay ra; các quyền sư còn lại không dám tỉ thí nữa. Tiểu Phô Trương thấy vậy vô cùng kinh ngạc, lập tức sai bày lại tiệc rượu bằng đồ bạc, mời Dương Lộc Thiền ngồi ghế thượng tọa. Nhưng Dương Lộc Thiền thấy thái độ của gia chủ trước sau khác nhau như hai người, rất không đồng tình, bèn giận dữ rời tiệc, phất áo ra đi.</p>
+<p>Sau khi việc tỉ thí ở nhà họ Trương lan truyền, không ngừng có người nghe danh tới muốn tỉ thí so tài với ông, nhưng đều bại dưới tay ông. Thế là trong thành Bắc Kinh, hễ nhắc đến Dương Lộc Thiền, mọi người đều gọi ông là "Dương Vô Địch". Sau đó, Vũ Nhữ Thanh giới thiệu không ít vương tôn công tử theo Dương Lộc Thiền học Thái Cực Quyền, khiến môn quyền này lan truyền rộng rãi trong thành Bắc Kinh, và các gia đình quan lại đương thời cũng lấy việc mời được Dương Lộc Thiền làm vinh. Cứ như vậy, Dương Lộc Thiền dẫn hai con trai Dương Ban Hầu (1837～1892) và Dương Kiện Hầu (1839～1917) ở lâu dài trong phủ Đoan Vương dạy quyền, đến tận tuổi già mới trở về quê.</p>
+<p>Dương Ban Hầu là con trai thứ hai của Dương Lộc Thiền, từ nhỏ theo cha học võ, luyện thành một thân công phu giỏi. Tuy tính tình nóng nảy nhưng tính cách cương trực bất khuất. Có một lần, Bắc Kinh đến một quyền sư từng đánh võ đài bảy tỉnh, người ta gọi là "Vạn Cân Lực", tuyên bố muốn tỉ thí cao thấp với Dương Lộc Thiền. Cha con nhà họ Dương biết tin, Dương Lộc Thiền cho rằng không cần để ý, nhưng Dương Ban Hầu nói với cha: "Tiệm chúng ta mở có hàng, người ta đến mua, sao cha lại không bán?" (ý là chúng ta có chân công phu, sao không thể tỉ thí với người khác) Thế là Dương Ban Hầu một mình đến hẹn "Vạn Cân Lực" tỉ thí ở Tây Tứ Bài Lâu, và lập tờ cam kết sinh tử. Đến hôm đó, "Vạn Cân Lực" giành được tiếng reo hò của khán giả nhờ cơ bắp phát triển, đồng thời mọi người cũng lo lắng cho Dương Ban Hầu gầy nhỏ như thư sinh. Khi trận đấu bắt đầu, chỉ thấy "Vạn Cân Lực" một quyền lao tới, Dương Ban Hầu né người tránh đi, nhưng khi "Vạn Cân Lực" lại tiến công đánh vào mặt Dương Ban Hầu, chỉ nghe Dương Ban Hầu hét lên một tiếng, mọi người còn chưa nhìn rõ, "Vạn Cân Lực" đã bị đá bay ra ngoài mấy trượng, và bị Dương Ban Hầu một cú phân cước đá trúng hạ bộ, chết ngay tại chỗ. Và khi mọi người còn đang trầm trồ khen ngợi, Dương Ban Hầu đã ung dung tự tại trở về phủ Đoan Vương.</p>
+<p>(Chương 1: Lược sử Thái Cực Quyền Dương Thức, trang 3)</p>
+<p>Con trai thứ ba của Dương Lộc Thiền là Dương Kiện Hầu, quyền thuật cương nhu tương tế, đặc biệt giỏi dùng xảo kình, đối với đao, kiếm và thương cũng cực kỳ nghiên cứu. Ông tính tình ôn hòa, khi thi đấu và luyện võ không coi nhẹ bất cứ ai, cho nên mỗi lần thi đấu ông đều thắng.</p>
+<p>Thế hệ thứ ba của nhà họ Dương học võ có Dương Lăng Tiêu, tự Triệu Bằng, con trai Dương Ban Hầu, theo đồ đệ của Dương Ban Hầu là Trần Tú Phong học nghệ, sau lại theo anh họ Dương Trừng Phủ học quyền, rồi sau dạy quyền ở Thiệu Hưng tỉnh Chiết Giang và Quảng Tây v.v. Con trai trưởng của Dương Kiện Hầu là Dương Triệu Hùng, hiệu Thiếu Hầu, từ nhỏ học quyền, giỏi nhất tán thủ, động tác nhanh nhẹn, quyền giá trầm ổn, cả đời kiên trì rèn luyện. Còn con trai thứ ba của Dương Kiện Hầu là Dương Triệu Thanh, hiệu Trừng Phủ, thông minh hơn người, được cha Dương Kiện Hầu thân truyền, nghệ tinh kỹ cao, cuối cùng trở thành một đại tông sư của Thái Cực Quyền Dương Thức.</p>
+<p>Dương Trừng Phủ (1883～1936) dưới sự dạy bảo của cha, luôn cắm cúi học nghệ ở Bắc Kinh. Mãi đến sau khi Dương Kiện Hầu qua đời, ông mới nhận lời mời đi về phương nam, lần lượt dạy quyền ở Vũ Hán, Nam Kinh v.v. Năm 1928, ông nhận lời mời của Trương Chi Giang dạy tại Trung ương Quốc thuật Quán ở Nam Kinh, sau lại nhận lời mời của Trương Tĩnh Giang đến Hàng Châu làm Giáo vụ trưởng Chiết Giang tỉnh Quốc thuật Quán. Năm 1930 Dương Trừng Phủ định cư ở Thượng Hải, xuất bản <em>Thái Cực Quyền Thể Dụng Toàn Thư</em>; năm 1932 lại nhận lời mời của Trần Tế Đường và Lý Tông Nhân đến Quảng Châu dạy quyền, hai năm sau mới trở về Thượng Hải.</p>
+<p>Khi Dương Trừng Phủ làm Giáo vụ trưởng Chiết Giang tỉnh Quốc thuật Quán ở Hàng Châu, trong quán có một quyền sư luyện Thái Ất Quyền tên Cao Thủ Ngô luôn coi thường Thái Cực Quyền nhà họ Dương, thường nói năng vô lễ với Dương Trừng Phủ. Một hôm, Dương Trừng Phủ nhịn không nổi, cãi vã với Cao Thủ Ngô; Cao Thủ Ngô cầm trường thương muốn tỉ thí với Dương Trừng Phủ, Dương Trừng Phủ cầm trường thương chỉ khẽ khấu một cái, thương của Cao Thủ Ngô liền tuột tay bay ra, rơi xuống đất; Cao Thủ Ngô thấy vậy sững sờ, thoắt cái xấu hổ không còn chỗ dung thân.</p>
+<p>Dương Trừng Phủ tính tình ôn hòa, quyền thuật miên lý tàng châm, cương nhu tương tế, có đặc điểm phóng được ra, thu được vào, thư triển đại phương, cho nên được nhiều người thưởng thức và noi theo. Dương Lộc Thiền tuy là truyền nhân của Trần Trường Hưng, nhưng ông không câu nệ thành quy, lại phát triển trên cơ sở Thái Cực Quyền lão giá Trần Thức, khiến nó hợp lý hóa hơn, đại chúng hóa hơn, và khiến nó thích hợp mọi lứa tuổi, ai cũng luyện được; người đương thời gọi là "Thái Cực Quyền Dương Thức". Thái Cực Quyền nhà họ Dương qua sự không ngừng thảo luận, cải tiến của Dương Lộc Thiền và hai đời sau, mãi đến tay cháu nội Dương Trừng Phủ mới chính thức định phổ, hình thành Thái Cực Quyền Dương Thức với quyền giá thư triển giản khiết, kết cấu nghiêm cẩn, thân pháp trung chính, động tác hòa thuận, kiêm cả khinh linh và trầm trước.</p>
+<p><span id="p335" class="page-anchor"></span>Cũng chính nhờ nỗ lực của ba đời nhà họ Dương mà môn quyền truyền thống này — Thái Cực Quyền — được quảng bá, phát triển và lưu truyền rộng rãi, và khiến Thái Cực Quyền có những lưu phái phong phú đa dạng: như Vũ Vũ Tương, em ruột của Vũ Nhữ Thanh được Dương Lộc Thiền truyền dạy, sáng biên Thái Cực Quyền Vũ Thức; Vũ Vũ Tương truyền cho cháu ngoại Lý Diệc Xa, Lý lại truyền cho Hác Vi Chân, lại sáng Hác Thức Thái Cực Quyền; Hác Vi Chân lại truyền cho Tôn Lộc Đường, sáng Tôn Thức Thái Cực Quyền; Toàn Hữu được Dương Ban Hầu truyền dạy, Toàn Hữu lại truyền cho con trai Ngô Giám Tuyền, sáng Ngô Thức Thái Cực Quyền. Do đó có thể nói rằng, Thái Cực Quyền Dương Thức là gốc của Thái Cực Quyền Vũ Thức, Hác Thức, Tôn Thức và Ngô Thức. Năm 1956 Ủy ban Thể dục Thể thao Nhà nước lại lấy Thái Cực Quyền Dương Thức có mức lưu truyền rộng nhất để sáng biên một bài Thái Cực Quyền giản hóa; quyền phổ, ảnh quyyền và các tư liệu dùng lúc đó chính do Đỗ Trọng Văn cung cấp. Sau đó các bài Thái Cực Quyền tám mươi tám thức, Thái Cực Quyền bốn mươi tám thức v.v., đều do Ủy ban Thể dục Thể thao Nhà nước chỉnh lý sáng biên theo Thái Cực Quyền Dương Thức — đúng như nhà sử học võ thuật Đường Hào tiên sinh nói: "Thái Cực Quyền Dương Thức và thôi thủ có cống hiến nhiều nhất, mức độ khai triển rộng nhất." <span class="printed-page-ref">Chương Một — Lược sử Dương thức Thái Cực Quyền, trang sách 4</span></p>
+<p>Trong 150 năm phát triển của Dương thức Thái Cực Quyền, Dương Lộc Thiền đã truyền dạy cho Dương Ban Hầu, Dương Kiện Hầu, Vương Lan Đình, Vũ Vũ Tương và những người khác. Dương Ban Hầu truyền cho Vạn Xuân, Lăng Sơn, Toàn Hữu, Hầu Đắc Sơn, Trần Tú Phong, Trương Tín Nghĩa, Lý Liên Phương, Trương Ấn Đường, Giáo Liên Đường, Kỷ Lão Phúc và những người khác; Dương Kiện Hầu truyền cho Dương Thiếu Hầu, Dương Trừng Phủ, Hứa Vũ Sinh, Lưu Thắng Khôi, Trương Nghĩa và những người khác; Dương Thiếu Hầu truyền cho Lưu Hy Triết, Từ Đại Sơn, Điền Triệu Lân, Vưu Chí Học và những người khác. Ba đời nhà họ Dương dốc sức vào việc quảng bá và lưu truyền Thái Cực Quyền, học trò khắp thiên hạ, đặc biệt các truyền nhân của Dương Trừng Phủ là nhiều nhất. Ngoài các con trai Dương Chấn Minh, Dương Chấn Cơ, Dương Chấn Đạc, Dương Chấn Quốc, ông còn truyền cho các đệ tử nhập môn Trần Nguyệt Pha, Diêm Trọng Khôi, Vưu Chí Học, Thôi Nghị Sĩ, Vương Húc Đông, Ngưu Xuân Minh, Lý Xuân Niên, Vương Cảnh Tinh, Trương Khánh Lâm, Quách Tử Vinh, Trần Vi Minh, Khương Đình Tuyên, Lưu Đông Hán, Trương Khâm Lâm, Phó Chung Văn, Vũ Hối Xuyên, Điền Triệu Lân, Đổng Anh Kiệt, Chử Quế Đình, Trịnh Mạn Thanh và những người khác.</p>
+<p>Ba đời của một gia đình Phó Chung Văn, Phó Thanh Viễn, Phó Thanh Tuyền đều dốc sức vào sự nghiệp phát triển và truyền bá Thái Cực Quyền. Ông nội Phó Chung Văn tiên sinh (1903–1994) là người huyện Vĩnh Niên, Hà Bắc — quê hương nổi tiếng của Thái Cực Quyền; từ 9 tuổi ông bắt đầu học Dương thức Thái Cực Quyền, đến 14 tuổi theo đến Thượng Hải và lâu dài theo học quyền với Nhất đại Thái Cực tông sư Dương Trừng Phủ. Ông kính trọng sư phụ, siêng năng khổ luyện; thêm nữa vì ông kết hôn với cháu gái bên ngoại của em gái sư phụ Dương, nên ông được sư phụ Dương tin tưởng và truyền chân truyền. Danh gia Thái Cực Quyền Trần Vi Minh tiên sinh gọi ông là "chính tông của Thái Cực Quyền". Khi Dương Trừng Phủ dạy quyền ở Quảng Châu, Nam Kinh, Vu Hồ và những nơi khác, Phó Chung Văn đều biểu diễn tại chỗ, và thay Dương Trừng Phủ ra tỉ thí, liên tiếp giành thắng lợi. Để phát dương quang đại Thái Cực Quyền, cổ xúy võ thuật truyền thống dân gian nhằm chấn hưng dân tâm, cường thân cứu quốc, Phó Chung Văn với sự giúp đỡ to lớn của các tiên sinh Hoàng Diên Phương, Mã Công Ngu, Hoàng Cảnh Ngoan đã sáng lập Thượng Hải Vĩnh Niên Thái Cực Quyền Xã vào ngày 1 tháng 10 năm 1944. Sau khi Tân Trung Quốc thành lập, Phó Chung Văn tích cực tham gia các hoạt động xã hội về Thái Cực Quyền; năm 1956 ở Bắc Kinh giữ chức trọng tài cuộc thi võ thuật toàn quốc mười hai tỉnh thành, trong thời gian công tác được đồng chí Hạ Long, Phó Thủ tướng Quốc vụ viện, tiếp kiến và khích lệ thân tình; năm 1958 ông trở thành một trong những huấn luyện viên đầu tiên của đội võ thuật Thượng Hải, đóng góp to lớn vào việc đào tạo vận động viên võ thuật của Thượng Hải, đồng thời dẫn dắt đội võ thuật đạt thành tích xuất sắc trong mọi cuộc thi võ thuật toàn quốc. Năm 1972, Đại học Đồng Tế mời Phó Chung Văn và Phó Thanh Viễn đến giảng dạy Dương thức Thái Cực Quyền, đồng thời phối hợp với Viện Nghiên cứu Khoa học Thể dục Thượng Hải, Viện Nghiên cứu Cao huyết áp Thượng Hải, Bệnh viện Hoa Sơn và các đơn vị nghiên cứu khoa học khác tiến hành trắc nghiệm khoa học về chức năng bảo vệ sức khỏe và trị bệnh của Dương thức Thái Cực Quyền. Nghiên cứu chứng minh rằng luyện tập Dương thức Thái Cực Quyền kết hợp với điều trị bằng thuốc là phương pháp hiệu quả để rèn luyện sức khỏe, phòng bệnh và trị các bệnh mạn tính như cao huyết áp, bệnh mạch vành, viêm khớp, bệnh dạ dày ruột và suy nhược thần kinh; nó còn cải thiện chức năng tim phổi, tăng cường sức lực, khiến người luyện tập tràn đầy tinh lực, nâng cao hiệu suất học tập và làm việc. Thành quả nghiên cứu này thu hút sự coi trọng của Ủy ban Thể dục Thể thao Nhà nước và sự quan tâm của quốc tế; Nhật Bản, Đức, Thái Lan… đều có người đến tìm hiểu thành quả này. Trong thời kỳ "Cách mạng Văn hóa", Phó Chung Văn tiên sinh bị bức hại; năm 1979 ông được phục hồi danh dự và được bầu làm Phó chủ tịch Hội Võ thuật Thượng Hải. Về những năm cuối đời, ông vẫn thường xuyên tham gia các hoạt động xã hội của Thái Cực Quyền. Năm 1984 ông được bình chọn là "Mười ba danh gia Thái Cực Quyền toàn quốc"; từ 1991 đến 1993 ông giúp tổ chức và dẫn đoàn tham dự Đại hội Giao lưu Hữu nghị Thái Cực Quyền Quốc tế Vĩnh Niên Trung Quốc lần thứ nhất và thứ hai. Năm 1994, ở tuổi 91, ông được mời thăm Hoa Kỳ và được hoan nghênh nhiệt liệt; ông cũng từng lần lượt đến thăm và giảng dạy ở Singapore, Nhật Bản, Úc, Đức, Ý, Thụy Sĩ và các nước khác, mạnh mẽ thúc đẩy việc truyền bá Thái Cực Quyền trên phạm vi thế giới. Ngày 25 tháng 9 năm 1994, <span class="printed-page-ref">Chương Một — Lược sử Dương thức Thái Cực Quyền, trang sách 5</span></p>
+<p>Phó Chung Văn tiên sinh không may bệnh mất tại Thượng Hải, hưởng thọ 91 tuổi.</p>
+<p>Phó Thanh Viễn tiên sinh (1931– ) thấu hiểu chân truyền của cha, là một bậc Thái Cực Quyền đại sư có uy vọng khá cao trong và ngoài nước. Phó Thanh Viễn tiên sinh từ 9 tuổi theo cha học quyền, trước giải phóng đã giúp cha quảng bá Dương thức Thái Cực Quyền. Sau khi Tân Trung Quốc thành lập, ông tham gia lớp tu nghiệp cán bộ thể dục Thượng Hải, trở thành huấn luyện viên võ thuật đầu tiên của Trường Thể thao Thượng Hải, từng được mời đến giảng dạy quyền tại các trường đại học Đồng Tế, Phục Đán. Trong thời kỳ "Cách mạng Văn hóa" ông từng bị đưa xuống lao động ở nhà máy, sau đó trở về trường đại học tiếp tục làm công tác giảng dạy võ thuật thể dục cho đến khi nghỉ hưu. Giữa thập niên 80, theo lời mời của những người yêu thích Thái Cực Quyền và những người hữu quan ở Úc, ông vượt đại dương, truyền dạy Dương thức Thái Cực Quyền ở nhiều nước châu Âu, châu Mỹ, châu Úc, sau đó định cư tại Úc. Hiện nay tuy đã ở tuổi cổ hy, ông vẫn không tiếc sức lực vì sự nghiệp phát triển Thái Cực Quyền. Hiện tại, Phó Thanh Viễn tiên sinh chủ yếu lấy Úc làm nơi đứng chân, hướng tới các nước châu Âu, châu Mỹ quảng bá Dương thức Thái Cực Quyền. Năm 1995, trước sự phát triển nhanh chóng của Thái Cực Quyền trên phạm vi thế giới, Thượng Hải Vĩnh Niên Thái Cực Quyền Xã vừa tròn 50 năm thành lập đã hoàn thành sứ mệnh lịch sử của nó, Phó Thanh Viễn tiên sinh trên cơ sở Thượng Hải Vĩnh Niên Thái Cực Quyền Xã đã sáng lập Thế giới Vĩnh Niên Thái Cực Quyền Liên minh và giữ chức chủ tịch; năm 1998 ông nhận được Bát đoạn võ thuật Trung Quốc, cùng năm do những cống hiến của ông trong việc phổ cập và phát triển võ thuật Trung Quốc trên trường quốc tế, Hiệp hội Võ thuật Trung Quốc trao tặng ông "Giải thưởng Quảng bá Võ thuật".</p>
+<p>Phó Thanh Tuyền tiên sinh (1971– ) từ 6 tuổi theo ông nội và cha luyện quyền, từ nhỏ đã tiếp nhận huấn luyện võ thuật chính quy. Thập niên 80 ông trở thành vận động viên võ thuật chuyên nghiệp, từ 1985 đến 1987 liên tiếp ba khóa giành chức vô địch Dương thức Thái Cực Quyền Thượng Hải; năm 1988 tại cuộc thi Thái Cực Quyền Kiếm toàn quốc giành chức vô địch Thái Cực Kiếm, á quân Dương thức Thái Cực Quyền; năm 1989 đại diện đội tuyển quốc gia tham dự cuộc thi Thái Cực Quyền Trung–Nhật, giành chức vô địch Dương thức Thái Cực Quyền. Cùng năm ông theo cha sang định cư tại Úc, sáng lập Phó Thanh Viễn Quốc tế Thái Cực Quyền Học viện, từ 1995 giữ chức Phó chủ tịch Thế giới Vĩnh Niên Thái Cực Quyền Liên minh. Vì ông nội qua đời, Phó Thanh Tuyền tiên sinh từ năm 1997 đã từ bỏ điều kiện sống ưu việt và thù lao cao ở nước ngoài, về nước tiếp tục sự nghiệp Thái Cực Quyền mà ông nội chưa hoàn thành. Năm 1998 ông nhận được Lục đoạn võ thuật Trung Quốc. Hiện nay ông đứng chân trong nước, hướng tới các nước Đông Nam Á như Singapore, Malaysia, Nhật Bản để quảng bá Dương thức Thái Cực Quyền.</p>
+<p>Động tác Thái Cực Quyền của Phó Thanh Tuyền tiên sinh quy phạm, nhẹ nhàng tự nhiên, hình thần kiêm bị, giàu mỹ cảm, thấu hiểu tinh túy của Thái Cực Quyền, có mỹ danh "Thái Cực thiếu soái". Ông không chỉ quyền nghệ siêu quần mà còn có một bộ phương pháp giảng dạy mang đặc sắc rõ rệt. Trong giảng dạy ông đặc biệt giỏi kết hợp lý luận và thực tiễn của Thái Cực Quyền, mạch lạc rõ ràng, hình tượng sinh động, thú vị dí dỏm, khiến người ta có thể nhập môn Thái Cực Quyền một cách nhẹ nhàng vui vẻ. Ông kế thừa gia huấn, lạc quan khoáng đạt, giải nghi giải hoặc, cơ trí luyện đạt, thể hiện phong phạm của một thế hệ Thái Cực danh gia mới. Ông đã dạy quyền nhiều năm trong nước và ở Úc, Nhật Bản và các nước khác, đều đạt thành công to lớn. Năm 1999 Đài Truyền hình Trung ương phát sóng loạt phim giảng dạy Dương thức Thái Cực Quyền, Kiếm, Đao, Thôi Thủ do ông trình bày, phản hồi nồng nhiệt. Từ con người Phó Thanh Tuyền tiên sinh, chúng ta nhìn thấy tiền cảnh tươi đẹp của sự nghiệp Thái Cực Quyền phát triển mạnh mẽ trong thế kỷ 21.</p>
+<p>Nhìn lại lịch sử phát triển của Dương thức Thái Cực Quyền, tốc độ và phạm vi lưu truyền của nó là chưa từng có. Điều này cho thấy Dương thức Thái Cực Quyền quả thực là một phương pháp tốt để phòng bệnh, tăng cường sức khỏe, là hình thức thể dục được quần chúng nhân dân yêu thích và vô cùng giàu sức sống. Có thể tin rằng, với sự nỗ lực chung và không ngừng giao lưu của đông đảo người yêu thích Thái Cực Quyền, <span class="printed-page-ref">Chương Một — Lược sử Dương thức Thái Cực Quyền, trang sách 6</span></p>
+<p>Dương thức Thái Cực Quyền nhất định sẽ trở thành một môn thể thao mang tính quốc tế, đóng góp to lớn hơn nữa cho văn hóa thể dục của nhân dân các nước trên thế giới.</p>
+<p><span class="printed-page-ref">Chương Hai — Phân tích chi tiết phương pháp dạy và luyện động tác Dương thức Thái Cực Quyền, trang sách 7</span></p>
+<h3 id="s1" class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">Chương Hai　Phân tích chi tiết phương pháp dạy và luyện động tác Dương thức Thái Cực Quyền</h3></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

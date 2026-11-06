@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 4: Chương 3 · Sinh Khí Thông Với Trời — Hoàng Đế Nội Kinh (Minh Hoạ) | TaichiNOW</title>
+<meta name="description" content="Chương 4 của Hoàng Đế Nội Kinh (Minh Hoạ): Chương 3 · Sinh Khí Thông Với Trời">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/illustrated-canon-of-medicine/" class="btn-control lang-switch" title="Bản gốc Tiếng Anh (English Edition)"><i class="fa-solid fa-globe"></i> English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+<aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-mo-dau" class="active">Lời Mở Đầu &amp; Biểu Đồ Tương Quan</a></li>
+        <li><a href="#chuong-01">Chương 1 · Vai Trò Của Tự Nhiên Trong Thời Cổ Đại</a></li>
+        <li><a href="#chuong-02">Chương 2 · Bốn Khí Và Sự Điều Dưỡng Thần</a></li>
+        <li><a href="#chuong-03">Chương 3 · Sinh Khí Thông Với Trời</a></li>
+        <li><a href="#chuong-04-05">Chương 4 &amp; 5 · Kim Quỹ Yếu Lược &amp; Âm Dương Ứng Tượng</a></li>
+        <li><a href="#chuong-07-12">Chương 7 &amp; 12 · Âm Dương Lại Cải &amp; Dị Pháp Phương Y</a></li>
+        <li><a href="#chuong-17-22-23">Chương 17, 22, 23 · Mạch Yếu Tinh Vi &amp; Tạng Khí</a></li>
+        <li><a href="#chuong-25-28-39-40">Chương 25, 28, 39, 40 · Bảo Mệnh &amp; Thống Tất</a></li>
+        <li><a href="#chuong-42-1">Chương 42 · Phong Luận (1)</a></li>
+        <li><a href="#chuong-42-2">Chương 42 · Phong Luận (2)</a></li>
+        <li><a href="#chuong-44-47">Chương 44 &amp; 47 · Tẩu Quyết &amp; Kỳ Bệnh</a></li>
+        <li><a href="#chuong-74">Chương 74 · Chí Chân Yếu Đại</a></li>
+        <li><a href="#chuong-08-18">Chương 8 &amp; 18 · Thần Lung &amp; Hợp Tân</a></li>
+        <li><a href="#chuong-29-30-33-35-37">Chương 29, 30, 33, 35, 37 · Sư Truyền &amp; Tứ Hải</a></li>
+        <li><a href="#chuong-50">Chương 50 · Dũng Tỳ Luận</a></li>
+        <li><a href="#chuong-56-66-72">Chương 56, 66, 72 · Ngũ Vị &amp; Bệnh Khởi &amp; Phân Loại</a></li>
+        <li><a href="#chuong-80">Chương 80 · Tạp Tinh Luận</a></li>
+        <li><a href="#thuoc">Thang Dược &amp; Phương Thuốc Cổ Điển</a></li>
+        <li><a href="#duong-tinh">Dưỡng Tính Chân Nhân · Liệu Pháp Tình Chí</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../illustrated_canon_of_medicine_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Hoàng Đế Nội Kinh (Minh Hoạ) · Hoàng Đế Nội Kinh</p>
+<h3 class="chapter" id="ch04">Chương 3 · Sinh Khí Thông Với Trời</h3>
+
+<div class="partnav"><a href="ch03-chuong-2-bon-su-dieu-duong-than.html"><span class="k">← Chương 3</span>Chương 2 · Bốn Khí Và Sự Điều Dưỡng Thần</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch05-chuong-4-5-kim-quy-yeu-luoc-am-duong-ung-tuong.html" style="text-align:right"><span class="k">Chương 5 →</span>Chương 4 & 5 · Kim Quỹ Yếu Lược & Âm Dương Ứng Tượng</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Hoàng Đế Nội Kinh.</p>
+<h4>Tam âm và tam dương</h4>
+  <p>Tam âm chỉ ba kinh <i>Taiyin</i> (Thái âm), <i>Shaoyin</i> (Thiếu âm) và <i>Jueyin</i> (Quyết âm). Tam dương chỉ ba kinh <i>Taiyang</i> (Thái dương), <i>Yangming</i> (Dương minh) và <i>Shaoyang</i> (Thiếu dương). Chúng có chức năng đối lập nhau. Ba kinh âm chủ quản phần lý (bên trong): tim, gan, tỳ, phổi và thận. Ba kinh dương chủ quản phần biểu (bên ngoài): mật, dạ dày, đại tràng, tiểu tràng, đởm và tam tiêu.</p>
+
+  <p>1. Từ xưa đến nay, con người và tự nhiên luôn có mối quan hệ mật thiết. Cơ sở của sự sống là âm và dương.</p>
+  <p>2. Tất cả những gì ở khoảng giữa đất và trời, chín châu...</p>
+  <p>3. Chín khiếu, năm tạng và mười hai khớp của con người có liên hệ mật thiết với khí hậu.</p>
+  <p>4. Âm dương ở trên trời sinh ra ngũ hành ở đất. Và ngũ hành ở đất tương ứng với tam âm tam dương ở trên trời.</p>
+  <p>5. Nếu con người thường xuyên vi phạm quy luật giữa người, trời và đất, tà khí sẽ làm hại thân thể của họ và sẽ ảnh hưởng đến tuổi thọ.</p>
+
+  <h4>Dương khí</h4>
+  <p>Dương khí là một thuật ngữ trong y học cổ truyền Trung Quốc. Nó có chức năng nuôi dưỡng tất cả các tạng phủ của cơ thể con người, duy trì các chức năng sinh lý và bảo vệ cơ thể. Dương khí có mặt khắp nơi trong cơ thể. Chức năng và tên gọi của nó thay đổi tùy theo vị trí.</p>
+
+  <p>1. Dương khí trong cơ thể con người giống như mặt trời. Khi mặt trời bất thường, không gì có thể tồn tại.</p>
+  <p>2. Khi dương khí trong cơ thể con người ở vào trạng thái bất thường, người đó sẽ chết trẻ.</p>
+  <p>3. Vì vậy, sự vận động của trời được tập trung quanh sự sáng tỏ của mặt trời.</p>
+  <p>4. Dương khí trên cơ thể con người cần vận động hướng lên trên và hướng ra ngoài để bảo vệ cơ thể.</p>
+
+  <h4>Khí hư</h4>
+  <p>Khí hư, trong y học cổ truyền Trung Quốc, chỉ hiện tượng bệnh lý sinh ra từ sự bất túc của chân khí hoặc sự hao kiệt của nguyên khí. Ăn uống không điều độ và lao động nặng nhọc có thể làm tổn thương tỳ và làm hại chân khí. Hậu quả là người đó sẽ thấy tay chân mệt mỏi và không muốn ăn. Khi nguyên khí bị tổn thương, người đó sẽ bị chóng mặt, đau mỏi vùng thắt lưng và hơi thở ngắn. Khí hư ở các tạng phủ khác cũng có thể xảy ra.</p>
+
+  <p>1. Trời lạnh, con người nên ở trong nhà, tựa như cánh cửa vẫn nằm yên trong khuôn của nó, để bảo tồn dương khí.</p>
+  <p>2. Nếu bạn sống một cuộc đời vô độ, năng lượng của bạn sẽ trôi đi và dương khí sẽ không được giữ gìn.</p>
+  <p>3. Vào mùa hè, cái nóng có thể làm hại bạn. Bạn sẽ ra mồ hôi và cảm thấy hơi thở ngắn khi nóng bức bồn chồn. Điều đó cho thấy nhiệt đã xâm nhập vào các tạng phủ bên trong của bạn.</p>
+  <p>4. Tuy bạn có thể không cảm thấy phiền muộn, bạn nói nhiều và cơ thể nóng như than đang cháy. Nó nguội đi sau khi bạn ra mồ hôi. Điều này cho thấy bạn đã bị tổn thương bởi nhiệt mùa hè.</p>
+  <p>5. Nếu bạn bị thấp tà xâm phạm, đầu bạn sẽ có cảm giác nặng nề và căng trướng như thể bị bọc trong một thứ gì đó. Nếu không được chữa trị kịp thời, cơ và gân sẽ bị tổn hại và bạn sẽ sinh bệnh.</p>
+  <p>6. Khí hư cũng có thể gây phù thủng ở tay chân. Đó là vì dương khí đã bị tiêu mất.</p>
+
+  <h4>Jianjue (tiên quyết)</h4>
+  <p><i>Jianjue</i> (tiên quyết), tên gọi cổ của một chứng bệnh, chỉ trạng thái hôn mê khi chân âm bị hỏa đốt cháy. Nó cũng có thể do một chấn thương tinh thần hoặc tâm huyết quá thịnh gây ra. Các triệu chứng bao gồm điếc, mù và đột ngột quỵ ngã.</p>
+
+  <h4>Baojue (bạc quyết)</h4>
+  <p><i>Baojue</i> (bạc quyết), tên gọi cổ của một chứng bệnh, mô tả sự phẫn nộ có thể làm cho khí và huyết vận động ngược lên. Các triệu chứng chính là nhức đầu và hôn mê.</p>
+
+  <p>1. Khi bạn cực kỳ mệt mỏi, dương khí trong cơ thể bạn sẽ trở nên căng thẳng, làm cho âm khí bị hao kiệt.</p>
+  <p>2. Nếu điều này xảy ra rất thường xuyên, vào mùa hè, với thời tiết nóng bức, người đó sẽ mắc chứng tiên quyết.</p>
+  <p>3. Các triệu chứng chính là mắt mờ và điếc tai. Nó rất nguy hiểm.</p>
+  <p>4. Nó tàn phá kinh khủng, tựa như một con đê bị lũ cuồng phá vỡ.</p>
+  <p>5. Sự phẫn nộ có thể làm cho dương khí trong cơ thể trở nên rối loạn. Do đó kinh mạch và lạc mạch sẽ bị tắc nghẽn, còn huyết bị dồn hạn chế ở phần trên của cơ thể, dẫn đến chứng hôn mê gọi là bạc quyết.</p>
+
+  <h4>Pianku (thiên khô)</h4>
+  <p><i>Pianku</i> (thiên khô), cũng được gọi là <i>niuku</i> trong y học cổ truyền Trung Quốc, nghĩa là liệt một bên cơ thể, thường là kết quả của một cơn trúng phong. Vì khí và huyết bị hao tổn, dinh và vệ đều suy, phong và đàm xâm nhập vào kinh lạc và gây bệnh. Bệnh này thường được chữa bằng cách bổ khí và hoạt huyết, thông kinh lạc, và bằng phương pháp châm cứu.</p>
+
+  <p>1. Khi một gân bị tổn thương, nó trở nên lỏng lẻo và hoạt động của nó không thể được ý chí của người bệnh kiểm soát.</p>
+  <p>2. Nếu một bên cơ thể cứ liên tục ra mồ hôi, người đó về sau có thể mắc chứng thiên khô.</p>
+  <p>3. Khi một người bị thấp tà xâm nhập sau khi ra mồ hôi, người đó sẽ mắc chứng mụn nhọt.</p>
+  <p>4. Người ăn quá nhiều thức ăn béo sẽ mắc chứng nhọt ác tính.</p>
+  <p>5. Người ta mắc bệnh dễ dàng như thể nhận lấy một vật gì đó vào trong một cái đồ đựng rỗng.</p>
+  <p>6. Sau khi lao động, nếu bạn ra mồ hôi trong gió, hàn khí sẽ xâm nhập vào da và gây ra mụn trứng cá.</p>
+  <p>7. Nó sẽ lan ra khắp nơi.</p>
+
+  <h4>Dinh khí (Ying qi)</h4>
+  <p><i>Ying qi</i> (dinh khí) là một thuật ngữ trong y học cổ truyền Trung Quốc, chỉ chân khí được sinh ra từ thức ăn và nước mà người ta đã ăn và uống. Nó có chức năng thúc đẩy sự tuần hoàn của huyết và nuôi dưỡng các tạng phủ bên trong.</p>
+
+  <p>1. Dương khí có thể nuôi dưỡng thần hồn và gân cơ.</p>
+  <p>2. Khi việc đóng mở của các lỗ chân lông bị rối loạn, hàn khí sẽ xâm nhập, dương khí sẽ bị tổn hại và gân cơ mất đi sự nuôi dưỡng. Hậu quả là cơ thể bạn sẽ trở nên cứng đờ.</p>
+  <p>3. Khi hàn khí xâm nhập vào kinh mạch, huyết sẽ ứ tắc và dẫn đến chứng trĩ. Nếu hàn khí lưu lại trong cơ, cơn đau sẽ lâu ngày không khỏi.</p>
+  <p>4. Nếu hàn khí từ huyệt du (shuxue) xâm nhập vào các tạng phủ bên trong, người bị ảnh hưởng sẽ hoảng loạn.</p>
+  <p>5. Dinh khí tồn tại trong kinh mạch và lạc mạch. Sự xâm nhập của hàn khí làm tắc nghẽn dinh khí, khiến nó bị dồn ứ trong cơ và gây ra chứng ung nhọt.</p>
+  <p>6. Khi bạn mệt mỏi và ra mồ hôi, hàn khí xâm nhập vào cơ thể. Nếu huyệt du bị tắc, bạn có thể mắc chứng sốt rét.</p>
+
+  <h4>Fengzie (tà phong)</h4>
+  <p><i>Fengzie</i> (phong tà) là một thuật ngữ trong y học cổ truyền Trung Quốc, là một trong sáu yếu tố bên ngoài gây bệnh. Vì phong là một tà thuộc dương, những bộ phận mà nó ảnh hưởng thường là phần nông và có khuynh hướng di động. Tình trạng của người bệnh có xu hướng thay đổi luôn và nhanh chóng. Các triệu chứng bao gồm nhức đầu, sốt, ra mồ hôi, đau nhức khắp người và ngứa.</p>
+
+  <p>1. Phong tà là nguyên nhân của nhiều chứng bệnh.</p>
+  <p>2. Nếu bạn có một tinh thần yên tĩnh và thanh thản, và dương khí được giữ gìn vững chắc, thì cơ và da của bạn sẽ có sức chống cự vững vàng trước một cơn gió mạnh.</p>
+  <p>3. Điều cốt yếu là bạn phải thích ứng với những biến đổi của bốn mùa.</p>
+
+  <h4>Dương khí và âm khí</h4>
+  <p>Dương khí đối lập với âm khí. Nó chỉ hoặc là khí ở sáu tạng phủ (túi mật, dạ dày, đại tràng, tiểu tràng, bàng quang và tam tiêu), hoặc là vệ khí, hoặc là sinh khí hưng phấn vận động hướng lên trên và hướng ra ngoài.</p>
+
+  <p>1. Khi một chứng bệnh kéo dài, nó sẽ đi sâu vào cơ thể và chuyển biến xấu đi. Khi sự giao thông giữa phần trên và phần dưới của cơ thể bị cắt đứt, ngay cả một thầy thuốc giỏi cũng không giúp được gì.</p>
+  <p>2. Sự tích tụ của dương khí có thể gây ra cái chết, vì nó sẽ làm tắc nghẽn sự giao thông. Phép chữa là bài tiết.</p>
+  <p>3. Nếu người bệnh không được chữa trị kịp thời hoặc nếu thầy thuốc kém tài, người đó đang ở trong tình trạng vô cùng nguy hiểm.</p>
+  <p>4. Ban ngày, dương khí chủ yếu bảo vệ phần ngoài của cơ thể con người. Lúc bình minh, dương khí hoạt động quanh cơ thể.</p>
+  <p>5. Dương khí mạnh nhất vào lúc giữa trưa.</p>
+  <p>6. Khi mặt trời lặn về phía tây, dương khí quanh cơ thể con người bắt đầu suy giảm và các lỗ chân lông đang mở bắt đầu khép lại.</p>
+  <p>7. Vì vậy mọi người nên ngủ vào ban đêm để bảo tồn dương khí. Da và lông sẽ khép lại như một cánh cửa, còn gân và xương sẽ không bị xáo trộn. Không nên phơi mình ra sương và móc.</p>
+  <p>8. Nếu bạn hành động trái với các quy luật mà dương khí vận động theo vào những thời điểm ấy, tà khí sẽ xâm phạm cơ thể bạn.</p>
+
+  <h4>Ngũ hành (Wuzing)</h4>
+  <p>Ngũ hành là năm yếu tố: kim, mộc, thủy, hỏa, thổ. Các nhà tư tưởng Trung Quốc cổ đại dùng ngũ hành để giải thích nguồn gốc của vạn vật trong vũ trụ và sự thống nhất của tính đa dạng.</p>
+
+  <p>1. Kỳ Bá nói: âm, cái chứa đựng chân khí ở bên trong, là nguồn của khí trong cơ thể con người. Dương bảo vệ phần bên ngoài của cơ thể và làm cho cơ bắp cùng da thêm vững chắc.</p>
+  <p>2. Nếu dương trở nên quá mạnh, nó sẽ vượt khỏi sự kiểm soát.</p>
+  <p>3. Ngựa mang những đặc tính của dương. Nếu âm không thể thắng được dương, mạch sẽ nhanh.</p>
+  <p>4. Nếu dương khí không thể thắng được âm, khí ở năm tạng bên trong sẽ rối loạn và chín khiếu sẽ bị bế tắc.</p>
+  <p>5. Vì vậy bậc thánh nhân biết cách cân bằng âm và dương và giữ chúng ở đúng vị trí của mình. Bằng cách đó, gân và mạch được điều hòa, xương và tủy vững chắc, khí và huyết lưu thông bình thường.</p>
+  <p>6. Khi cơ thể ở trạng thái cân bằng, tà khí sẽ không thể xâm nhập.</p>
+  <p>7. Bạn sẽ có tai sáng mắt tinh và chân khí sẽ đứng vững, không bị tà khí lay động.</p>
+
+  <h4>Tinh và huyết</h4>
+  <p>Tinh và huyết, cả hai đều thuộc phạm trù âm, thường được nhắc đến cùng với nhau. Cả hai đều đến từ thức ăn được tỳ và dạ dày tiếp nhận. Chúng gắn bó với nhau trong tốt cũng như trong xấu. Vì gan chứa huyết và thận chứa tinh, những bệnh sinh ra từ sự bất túc của tinh và huyết được chữa bằng cách bổ gan và thận.</p>
+
+  <p>1. Khi phong tà xâm nhập cơ thể con người, nó trở thành nhiệt.</p>
+  <p>2. Tà khí đã làm hại gan, và tinh cùng huyết bị ảnh hưởng.</p>
+  <p>3. Khi tinh và huyết bị tổn hại, chúng không còn có thể nuôi dưỡng gan được nữa.</p>
+  <p>4. Nếu bạn ăn quá nhiều, gân của dạ dày và ruột sẽ bị tổn thương vì thức ăn bị nhồi nhét.</p>
+  <p>5. Bạn sẽ bị tiêu chảy và bệnh trĩ.</p>
+  <p>6. Nếu bạn uống quá nhiều, khí sẽ bốc lên trên.</p>
+  <p>7. Nếu bạn lao lực quá độ...</p>
+  <p>8. Thận khí sẽ bị tổn hại và thắt lưng của bạn sẽ đau.</p>
+
+  <h4>Âm và dương</h4>
+  <p>Âm và dương là những khái niệm của triết học Trung Quốc. Nguyên thủy, âm có nghĩa là bóng râm và dương có nghĩa là ánh sáng. Về sau, chúng được dùng để chỉ khí hậu lạnh và ấm. Khi các nhà tư tưởng cổ đại nhận thấy rằng mọi hiện tượng đều có hai mặt đối lập, họ đã dùng âm dương để giải thích bất kỳ hai thực thể nào trong vũ trụ đối lập nhau.</p>
+
+  <p>1. Điểm cốt yếu của âm dương là sự vững chắc ở bên trong và sự bảo vệ ở bên ngoài.</p>
+  <p>2. Khi sự cân bằng giữa âm và dương bị phá vỡ, cũng giống như một năm có mùa xuân mà không có mùa thu, có mùa đông mà không có mùa hạ.</p>
+  <p>3. Vì vậy, giữ âm và dương ở trạng thái cân bằng là cách tốt nhất để bảo tồn sự sống.</p>
+  <p>4. Nếu dương khí quá mạnh không thể kiểm soát, âm khí sẽ bị hao kiệt và mất đi sức mạnh của nó.</p>
+  <p>5. Khi âm khí ở trạng thái yên tĩnh hài hòa và dương khí ở trạng thái vững chắc, tinh thần sẽ ở trạng thái đúng đắn.</p>
+  <p>6. Khi âm và dương bị chia lìa, chân khí cũng sẽ bị hao kiệt.</p>
+
+  <h4>Tỳ khí</h4>
+  <p>Tỳ khí là một thuật ngữ của y học cổ truyền Trung Quốc, thuộc một trong năm tạng. Theo học thuyết tượng tạng và kinh lạc, các chức năng của tỳ khí là: (1) tỳ có thể vận chuyển thức ăn và chất lỏng; (2) nó có chức năng điều hành huyết; (3) nó chủ quản cơ bắp và tay chân; (4) tỳ khí thông với miệng.</p>
+
+  <p>1. Tinh đến từ thức ăn và năm vị. Năm tạng, nơi tinh được chứa đựng, có thể bị tổn thương nếu người ta thái quá ở bất kỳ một trong năm vị thức ăn nào. Những quan hệ tương ứng giữa năm vị là: Tâm – hỏa — Đắng. Tỳ – thổ — Ngọt.</p>
+  <p>2. Khi bạn ăn quá nhiều thức ăn chua, can khí sẽ quá mạnh đến mức tỳ khí bị hao kiệt.</p>
+  <p>3. Khi bạn ăn quá nhiều thức ăn mặn, xương lớn của bạn sẽ bị tổn thương. Bạn sẽ bị teo cơ và tâm khí sẽ bị ức chế do nội nhiệt quá thịnh.</p>
+  <p>4. Khi bạn ăn quá nhiều thức ăn ngọt, tâm khí của bạn sẽ bất an, sắc mặt của bạn sẽ biến đổi, thận khí sẽ không được cân bằng.</p>
+  <p>5. Khi bạn ăn quá nhiều thức ăn đắng, tỳ khí sẽ không được nuôi dưỡng và bạn sẽ bị khó tiêu và trướng vị.</p>
+  <p>6. Khi bạn ăn quá nhiều thức ăn cay nóng, gân và mạch bị tổn thương và bạn trở nên bèo nhèo. Tinh thần cũng bị tổn hại.</p>
+  <p>7. Vì vậy khi bạn có một chế độ ăn cân bằng, xương sẽ vững đứng, gân và mạch sẽ mềm mại, khí và huyết sẽ lưu thông điều hòa, và khoảng giữa da với cơ sẽ được bảo vệ vững chắc. Bằng cách đó, cốt khí của bạn sẽ mạnh mẽ.</p>
+
+  <div class="key-takeaway">
+    <p>Nếu mọi người tuân thủ nghiêm ngặt phương pháp bảo tồn sự sống này, họ sẽ hưởng được tuổi thọ mà Trời đã ban cho mình.</p>
+  </div>
+</section>
+<section id="chuong-04-05">
+      <div class="book-figure">
+        <img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/illustrated-canon-of-medicine/canon_p040.jpeg" alt="Trang đầu chương" loading="lazy">
+        <figcaption>Trang đầu chương từ bản in minh hoạ.</figcaption>
+      </div></main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #059669; }
+body.dark-mode .figure-wrap { background: #1e1e1e; border-color: #333; }
+body.dark-mode .posture-list li { border-color: #333; }
+#reading-progress {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999; width: 0%; transition: width 0.1s;
+}
+.reader-layout {
+  display: block; max-width: 900px; margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.4rem; }
+.toc-link {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.87rem;
+  display: block; padding: 4px 6px; border-radius: 6px; line-height: 1.35;
+}
+.toc-link:hover { background: rgba(197,155,39,0.12); color: var(--accent-crimson); }
+.toc-link .pg { display: block; font-size: 0.72rem; color: #a8a29e; }
+.reader-tools { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tool-btn {
+  flex: 1; background: none; border: 1px solid #e7e5e4; color: var(--text-primary);
+  border-radius: 8px; padding: 6px 4px; cursor: pointer; font-size: 0.8rem;
+  font-family: inherit;
+}
+.tool-btn:hover { border-color: var(--accent-gold); color: var(--accent-crimson); }
+body.dark-mode .tool-btn { border-color: #333; }
+.reader-content { font-size: 17px; line-height: 1.8; }
+.book-hero {
+  background: linear-gradient(135deg, #fef9ef 0%, #fdf3e3 100%);
+  border: 1px solid #f0e0c0; border-radius: 16px;
+  padding: 2.2rem; margin-bottom: 2.5rem;
+}
+body.dark-mode .book-hero { background: #1e1a14; border-color: #4a3f2a; }
+.book-badge {
+  display: inline-block; background: var(--accent-crimson); color: #fff;
+  font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem;
+  margin: 0 0 0.4rem; color: var(--text-primary); line-height: 1.2;
+}
+.book-orig-title { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+.book-tags span {
+  background: rgba(197,155,39,0.14); border: 1px solid rgba(197,155,39,0.4);
+  color: #8a6a12; font-size: 0.78rem; font-weight: 600;
+  padding: 3px 11px; border-radius: 999px;
+}
+body.dark-mode .book-tags span { color: #e5c76b; }
+.book-pdf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  background: var(--accent-crimson); color: #fff !important;
+  font-size: 0.88rem; font-weight: 700; transition: opacity 0.15s;
+}
+.book-pdf-link:hover { opacity: 0.88; }
+.chapter-block { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem; margin-bottom: 1.5rem;
+}
+.chapter-num {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--accent-gold); display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem;
+  color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3;
+}
+.chapter-sub {
+  font-size: 1.08rem; font-weight: 700; color: var(--accent-crimson);
+  margin: 1.6rem 0 0.6rem;
+}
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled {
+  color: #c7c2bd; pointer-events: none; cursor: default;
+}
+body.dark-mode .page-nav a.disabled { color: #555; }
+.posture-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+.posture-list li {
+  border-left: 3px solid #eadfc8; padding: 4px 0 4px 14px; margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.quote-box {
+  background: #fefce8; border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  font-style: italic; color: #713f12;
+}
+.key-point {
+  background: #f0fdf4; border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+body.dark-mode .key-point { color: #a7f3d0; }
+.figure-wrap {
+  margin: 2rem 0; text-align: center; background: rgba(0,0,0,0.02);
+  padding: 16px; border-radius: 10px; border: 1px solid #e5e5e5;
+}
+.figure-wrap img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption-title {
+  font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson);
+  margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.figure-caption {
+  font-size: 0.88rem; color: #78716c; margin-top: 10px; font-style: italic;
+}
+.figure-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.figure-row .figure-wrap { flex: 1 1 220px; max-width: 260px; margin: 0; }
+.page-marker {
+  font-size: 0.74rem; color: #a8a29e; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 3px;
+}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 8: Chương hai Chú giải Cửu Quyết Thái Cực Quyền — Thái Cực Quyền Cửu Quyết Bát Thập Nhất Thức | TaichiNOW</title>
+<meta name="description" content="Chương 8 của Thái Cực Quyền Cửu Quyết Bát Thập Nhất Thức: Chương hai Chú giải Cửu Quyết Thái Cực Quyền">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-trang-bia.html#sec00">Phần 1</a></li>
+        <li><a href="ch02-loi-nha-xuat-ban.html#sec01">Phần 2</a></li>
+        <li><a href="ch03-muc-luc.html#sec02">Phần 3</a></li>
+        <li><a href="ch04-loi-noi-dau.html#sec03">Phần 4</a></li>
+        <li><a href="ch05-yeu-cau-chinh-luyen-thai-cuc-quyen.html#sec04">Phần 5</a></li>
+        <li><a href="ch06-chuong-yeu-quyet-thai-cuc-quyen.html#sec05">Phần 6</a></li>
+        <li><a href="ch07-tiet-2-nguyen-van-nam-yeu-linh-thai-cuc-quyen.html#sec06">Phần 7</a></li>
+        <li><a href="ch08-chuong-hai-chu-giai-cuu-quyet-thai-cuc-quyen.html#sec07">Phần 8</a></li>
+        <li><a href="ch09-tiet-2-thap-tam-hanh-dong-quyet.html#sec08">Phần 9</a></li>
+        <li><a href="ch10-tiet-3-thap-tam-dung-cong-quyet.html#sec09">Phần 10</a></li>
+        <li><a href="ch11-tiet-4-bat-phap-quyet.html#sec10">Phần 11</a></li>
+        <li><a href="ch12-tiet-5-hu-thuc-quyet.html#sec11">Phần 12</a></li>
+        <li><a href="ch13-tiet-6-loan-hoan-quyet.html#sec12">Phần 13</a></li>
+        <li><a href="ch14-tiet-7-am-duong-quyet.html#sec13">Phần 14</a></li>
+        <li><a href="ch15-tiet-8-thap-bat-tai-quyet.html#sec14">Phần 15</a></li>
+        <li><a href="ch16-tiet-9-ngu-kinh-quyet.html#sec15">Phần 16</a></li>
+        <li><a href="ch17-chuong-ba-chu-giai-phuong-phap-luyen-bat-thap-thuc-thai-cuc.html#sec16">Phần 17</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../jiujue_81_wu_mengxia_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Thái Cực Quyền Cửu Quyết Bát Thập Nhất Thức · Phần 8</p>
+<h3 class="chapter" id="ch08">Chương hai Chú giải Cửu Quyết Thái Cực Quyền</h3>
+
+<div class="partnav"><a href="ch07-tiet-2-nguyen-van-nam-yeu-linh-thai-cuc-quyen.html"><span class="k">← Chương 7</span>Tiết 2 Nguyên văn năm yếu lĩnh của Thái Cực Quyền</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch09-tiet-2-thap-tam-hanh-dong-quyet.html" style="text-align:right"><span class="k">Chương 9 →</span>Tiết 2 Thập Tam Tự Hành Động Quyết</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Ngô Mạnh Hiệp.</p>
+<span id="chuong-7"></span>
+
+
+  <div class="chapter-header">
+    
+  </div>
+<div class="chapter-sub">Chương hai  Chú giải Cửu Quyết Thái Cực Quyền</div>
+<div class="chapter-sub">Tiết 1  Toàn Thể Đại Dụng Quyết</div>
+<p>"Toàn Thể Đại Dụng" là nói về phương pháp luyện trọn bộ Đại Công Giá của Thái Cực Quyền, trong đó bao hàm cả thể và dụng. Thể tức là chủ thể trong quyền; dụng tức là sự vận dụng tư thế trong quyền. Chủ thể của nó có mười ba chữ, tức bằng, lãm, tễ, án, thái, liệt, trửu, kháo, tiến, thoái, cố, phán, định; cách dùng là phương pháp kích kỹ của trọn bộ tư thế khi diễn luyện, cùng đạo lý thể dụng tương hòa. Nay chú giải từng câu như sau:</p>
+<p><strong>Thái Cực Quyền pháp diệu vô cùng, bằng lãm tễ án tước vĩ sinh.</strong> Thái Cực Quyền ngoài công năng rèn luyện thân thể, tăng cường thể chất, trên phương pháp luyện và dụng cũng có chỗ diệu đặc biệt riêng. Trong thức mở đầu Lãm Tước Vĩ của nó có bao hàm bốn động tác bằng, lãm, tễ, án, tạo thành tinh hoa trong mười ba chữ chủ thể.</p>
+<p><strong>Tà tẩu đan tiên hung đường chiếm, hồi thân đề thủ bả trước phong.</strong> "Tà tẩu đan tiên hung đường chiếm": giải thích theo phương pháp luyện, về phương diện kích kỹ, nếu đối phương dùng tay trái đánh thẳng vào mặt ta, ta gấp lấy tay phải móc và treo tay đối phương, đồng thời lấy tay trái đánh vào ngực đối phương — đó là cách dùng vừa phòng vừa đánh, lấy thủ làm công. Đồng thời với việc tiến tay trái, chân trái phải xông thẳng vào đũng quần đối phương; tức là tay trái và chân trái phải tiến công cùng lúc, đối phương tự nhiên bị đánh ngã văng ra (cách dùng bên trái và bên phải giống nhau).</p>
+<p>"Hồi thân đề thủ bả trước phong" dùng trong cách đáp thủ khi hai bên tiếp xúc nhau. Ví dụ, khi cánh tay trái làm tư thế đề thủ, phải dùng tay trái giữ chặt phần giữa của khuỷu tay phải và tay phải, để phong bế tay tới và thức tiến của đối phương. <strong>Hải để lao nguyệt lượng dực biến, thiêu đả nhuyễn lặc bất dung tình.</strong> Thức Hải Để Lao Nguyệt lấy kình lực của eo làm trục chính cho toàn thân vận động; tức là khi đối phương đá bằng chân, phải gấp hạ thấp người vốc lên chân tới của đối phương, đồng thời biến thành thức Bạch Hạc Lượng Dực.</p>
+<p>Thiêu đả nhuyễn lặc là cách dùng của Bạch Hạc Lượng Dực. Nếu đối phương dùng tay phải đánh thẳng vào đầu ta, ta dùng tay trái và cánh tay gấp đưa lên trên đón hất lên. Đồng thời với việc hất đỡ, tiến tay phải đánh ngang thẳng vào sườn mềm của đối phương, động tác phải nhanh chóng, khiến đối phương không kịp đỡ lại mà bị đánh văng ra.</p>
+<p><strong>Lâu tất ảo bộ tà trung trảo, thủ huy tỳ bà xuyên hóa tinh.</strong> Nếu đối phương đá bằng chân mà chưa cao quá đầu gối ta, thì gấp khom người lấy tay vốc xuống dưới. Khi vốc bằng thức này phải "vốc lớn". Cái gọi là "vốc lớn" là cách phòng ngự che chở cho mặt chính diện toàn thân và kiêm cả dưới đầu gối. Vì khi vốc, đối phương có thể đồng thời đánh vào ngực bụng ta hoặc thẳng vào mặt, không thể đơn thuần dùng cách phòng chân đá; khi dùng tay trái vốc đón thế tới của đối phương, phải đồng thời phát tay phải đánh thẳng vào vai phải của đối phương; đường đi là tiến công theo hướng chéo, vì "tà trung trảo" có thể khiến đối phương mất trọng tâm, bị đánh ngã văng ra.</p>
+<p>Cách dùng Thủ Huy Tỳ Bà là: nếu đối phương dùng tay phải đánh vào ngực chính của ta, ta liền lấy tay trái gạt sang phải, đồng thời gấp dùng tay phải từ dưới xuyên lên trên, đón giữ tay tới của đối phương, chờ động rồi xem sự chuyển biến của đối phương mà tiến thức.</p>
+<p><span id="p15" class="page-anchor"></span><strong>Thiếp thân kháo cận hoành trửu thượng, hộ trung phản đả hựu xưng hùng.</strong> Tục ngữ nói: "Xa thì quyền, gần thì trửu, sát thân thì kháo", nghĩa là khi tới gần đối phương thì phải dùng cách đánh bằng khuỷu tay. Ví dụ: khi ta dùng hai tay lã giữ tay và cánh tay đối phương để dùng phương pháp lã, đối phương nhân kình lã kéo của ta mà tiến bộ dùng vai thúc thẳng vào ngực ta, lúc này ta gấp khuất trửu đánh ngang ra ngoài, đối phương tự nhiên bị ngã văng ra. Vì đối phương dùng vai thúc, kình tới của hắn là đường thẳng, hay nói là kình dọc; ta dùng khuất trửu đón đánh, là lấy đường ngang, khiến kình tới của đối phương tiết ra ngoài. Cách đánh này chiếm một chữ trửu trong mười ba chữ chủ thể của Thái Cực Quyền.</p>
+<p>Hộ trung phản đả là cách dùng khuỷu tay. Cách này hoàn toàn khác với cách dùng hoành trửu. Ví dụ: khi tay phải ta tiếp xúc với tay phải đối phương, ta lấy tay trái từ dưới cổ tay phải gạt đón tay tới của đối phương, đồng thời tiến một bộ đưa đầu khuỷu tay phải đánh vào ngực đối phương; đối phương ắt dùng tay trái che đỡ, lúc này ta dùng tay trái thuận theo cổ tay phải vốc xuống đón, giữ lấy phần giữa khuỷu tay. Trong khi vốc giữ, lấy đầu khuỷu tay làm tâm vòng, gấp quăng quyền phải theo hình vòng tròn, từ trước ngực ta đánh ngược ra ngoài, tiến công vào mặt đối phương.</p>
+<p><strong>Tiến bộ ban lan hiếp hạ sử, như phong tự bế hộ chính trung.</strong> Nếu đối phương dùng chưởng phải hay quyền đánh thẳng vào chính giữa ngực ta, ta gấp dùng tay trái ban lan khuỷu tay hắn; đồng thời tiến tay phải nhân thế tới đánh vào dưới sườn hắn. Đồng thời với việc tiến tay phải, phải bước chân phải lên cùng hành động với tay; nếu đối phương công bằng tay trái thì dùng tay phải ban lan, bước chân trái lên và dùng tay trái đánh vào dưới sườn đối phương.</p>
+<p>Cách dùng Như Phong Tự Bế là: nếu khuỷu và cổ tay ta bị đối phương chặn giữ, phải gấp đưa tay kia ra, từ khuỷu tay tiếp thẳng tới cổ tay, lấy thức yểm bát. Như thế có thể rút ra khỏi khuỷu hay cổ tay bị chặn giữ, đồng thời tìm cơ hội dùng thức tiến công; ý nghĩa của hộ trung là dùng thức Như Phong Tự Bế để bảo vệ ngực và phần khuất khuỷu tay.</p>
+<p><strong>Thập tự thủ pháp biến bất tận, bão hổ quy sơn thái liệt thành.</strong> Thủ pháp của Thái Cực Quyền đều có thể biến ra từ sự giao chéo của hai tay. Thập tự thủ pháp không ngoài một khai một hợp; khai có phép, hợp cũng có phép, tức là cách một cố một tiến. Tiến và cố phải dùng cùng lúc, không được nhanh chậm, nếu không thì có thể trở tay không kịp.</p>
+<p><span id="p16" class="page-anchor"></span>"Bão Hổ Quy Sơn" chiếm hai chữ thái, liệt trong mười ba chữ chủ thể của Thái Cực Quyền. Thái là ý nắm lấy, tức là cách trảo thủ lã pháp; dùng sức mạnh của mười đầu ngón tay, đơn thủ trảo lã gọi là thái, song thủ trảo lã gọi là liệt. Ví dụ: khi tay phải ta tiếp xúc với tay phải đối phương, ta dùng tay phải lã giữ cổ tay đối phương, đồng thời đưa tay trái đánh vào mặt đối phương; đối phương nhất định dùng tay trái đón đánh tay trái ta phát ra. Lúc này phải nhân cơ hội dùng tay trái lã giữ cổ tay trái của hắn, và gấp đưa tay phải trảo lã khuỷu tay trái của hắn, dùng sức lã kéo ra ngoài, khiến đối phương lảo đảo văng ra.</p>
+<p><strong>Trửu để khán chùy hộ trung thủ, thoái hành tam bả đảo chuyển quăng.</strong> "Trửu Để Khán Chùy" chú trọng giữ lấy phần trung tiết của cánh tay. Về phương diện kích kỹ, điều chủ yếu nhất là hộ trung tiết; tục ngữ nói: "Trung tiết bất minh, toàn thân thị không" (trung tiết không rõ thì toàn thân là rỗng). Ví dụ: khi tay trái ta duỗi ra trước, tay phải phải nắm thành quyền, đặt dưới khuỷu tay trái, để phòng khi đối phương dùng trảo lã thì có thể dùng tay phải trảo lã gỡ tay đối phương ra, đạt tới tác dụng hộ trung tiết.</p>
+<p>Thức đảo chuyển quăng trong Thái Cực Quyền chiếm một chữ thoái trong mười ba chữ chủ thể.</p>
+<p><strong>Trụy thân thoái tẩu ban vãn kình, tà phi trước pháp dụng bất không.</strong> Câu thứ nhất nói rõ ý nghĩa của thoái chuyển lưỡng quăng. Quăng chỉ cánh tay. Nếu cổ tay ta bị đối phương trảo lã giữ, ta lập tức hàm hung trụy trửu, đồng thời đảo ngược cổ tay, lòng bàn tay ngửa lên, khiến tay đối phương mất lực; dùng sức eo và cách trụy thân kéo lùi về sau. Đối phương không tiến thì thôi, nếu muốn tiến, ta liền phát tay kia đón đánh thẳng mặt, tức là cách dẫn dụ đối phương vào sâu rồi tiến thức. Khi trụy thân thoái về sau phải dùng trực bộ.</p>
+<p>"Tà phi trước pháp dụng bất không": khi đáp tay phải với đối phương, phải lã giữ cổ tay đối phương, đồng thời tiến bộ ra sau lưng đối phương, và dùng tay trái liền cánh tay thuận theo phía dưới cánh tay bị ta lã giữ mà xuyên chéo lên trên; tức là phải dùng sức chống chéo của vai và cánh tay, xông chống vào dưới nách vai đối phương, khiến đối phương vì sự chống chéo của ta mà thân hình ngã ngang ra ngoài.</p>
+<p><span id="p17" class="page-anchor"></span><strong>Hải để châm yếu cung thân tựu, phiến thông tý thượng thác giá công.</strong> "Hải để châm yếu cung thân tựu": nếu đối phương tiến công xuống dưới vào chân ta, ta liền dùng kình eo ưỡn người xuống dưới, lấy tay chặn giữ, dùng kình eo ưỡn người xuống giữ phần giữa chân ta; như thế là có thế tích trữ để theo mà phát thức tiến thủ.</p>
+<p>"Phiến thông tý thượng thác giá công": khi đáp tay phải với đối phương, dùng phép tiến công phát trước chế người, tức là đồng thời với việc đáp tay phải phải mau chóng phát tay trái, thuận theo dưới cánh tay phải đối phương xuyên lên trên, và phải dùng khuỷu tay trái phát ra lực thác giá, thác đỡ cánh tay phải đối phương lên; khi sườn phải đối phương đã lộ ra, gấp dùng chưởng phải và chưởng trái, với cách hổ khẩu đối nhau, thẳng tiến vào giữa ngực sườn đối phương mà đánh.</p>
+<p><strong>Phiết thân chùy đả thiểm hóa thức, hoành thân tiền tiến trước pháp thành.</strong> Cách dùng Phiết Thân Chùy là: nếu đối phương dùng thiểm hóa (chuyển động cực nhanh) tiến công vào sườn ta, ta liền dùng thủ pháp hoành thân phiết thân chùy đối phó, để phòng đối phương nắm được cơ mà tiến thủ.</p>
+<p>"Hoành thân tiền tiến trước pháp thành": là nói nếu đối phương thiểm hóa gạt tay ta ra, tiến công vào sườn ta, thì ta tiến bộ hoành thân dùng phiết thân chùy đánh vào ngực đối phương.</p>
+<p><strong>Uyển trung phản hữu bế nã pháp, vân thủ tam tiến tý thượng công.</strong> "Uyển trung phản hữu bế nã pháp": ví dụ: khi cổ tay phải ta bị tay phải đối phương lã giữ, phải gấp dùng tay trái, ấn mạnh tay phải đối phương đang lã giữ tay ta; đồng thời trụy thân kéo tay đối phương xuống, khiến thân đối phương cúi gập về trước; lúc này liền lật ngược cổ tay phải bị lã của ta lên trên, và lập tức xông vào dưới cằm đối phương mà thác đánh. Khi lật ngược cổ tay phải, phải dùng tay trái ấn chặt tay đối phương.</p>
+<p>"Vân thủ tam tiến tý thượng công": khi đáp tay phải với đối phương, liền dùng tay trái từ dưới cánh tay phải đối phương xuyên lên trên, và dùng vai trái chống thẳng vào dưới nách phải đối phương; khi cánh tay phải đối phương được chống hơi lên, gấp dùng lực phản đẩu, tay trái ta gạt ngang ra ngoài. Chú ý thủ pháp này, điểm lực ở phản đẩu, chiếm một chữ tiến trong mười ba chữ của Thái Cực Quyền.</p>
+<p><span id="p18" class="page-anchor"></span><strong>Cao thám mã thượng lan thủ thứ, tả hữu phân cước thủ yếu phong.</strong> "Cao thám mã thượng lan thủ thứ": nếu đối phương dùng hai tay hoặc một tay đánh vào chính giữa ngực ta, ta liền dùng tay trái liền cánh tay gạt ngang từ trên xuống, chặn lấy tay tới, đồng thời dùng chưởng phải (lòng bàn tay ngửa lên) đâm thẳng vào mặt đối phương.</p>
+<p>"Tả hữu phân cước thủ yếu phong": là khi ta muốn dùng chân đá vào sườn đối phương, trước tiên phải dùng tay chặn tay đối phương lại rồi mới sử dụng thức; như thế có thể phòng ngừa nguy hiểm chân ta bị đối phương vớt giữ.</p>
+<p><strong>Chuyển thân đăng thối phúc thượng chiếm, tiến bộ tài chùy nghênh diện xung.</strong> "Chuyển thân đăng thối phúc thượng chiếm": khi giao thủ với đối phương, nếu không có cơ hội dùng thủ pháp, gấp chuyển thân ra chân, thẳng vào bụng đối phương mà đăng đá; cũng là thức dẫn địch vào sâu để chuyển bại thành thắng.</p>
+<p>"Tiến bộ tài chùy nghênh diện xung": cách dùng nói trong câu này hơi giống thủ pháp Cao Thám Mã, chỉ khác là thủ pháp đánh ra khác nhau. Ví dụ: đối phương dùng tay đánh vào chính ngực ta, ta gấp dùng tay và cánh tay gạt ngang từ trên xuống chặn tay tới của đối phương; đồng thời tay kia từ dưới vung ngược lên thành quyền, từ sau khoeo chân xông thẳng vào mặt đối phương mà đánh. Khi vung quyền từ sau khoeo chân đánh ra, phải cúi đầu khom eo để thuận và tăng sức của cánh tay; và phải chú ý khi dùng chùy này phải dùng lúc đối mặt với địch, để phòng bên trái hay bên phải không trúng đích.</p>
+<p><strong>Phản thân bạch xà thổ tín biến, thái trụ địch thủ thủ song đồng.</strong> Trong thức luyện có một thủ pháp phản thân bạch xà thổ tín, tức là khi đáp tay phải với đối phương, thái giữ tay phải hắn rồi lã xuống, gấp đưa tay trái đâm thẳng vào mắt đối phương. Thủ pháp này tức là thái trụ địch thủ, thủ song đồng (giữ tay địch, lấy đôi con ngươi).</p>
+<p><strong>Hữu đăng cước thượng nhuyễn lặc đoan, tả hữu phi thân phục hổ tinh.</strong> "Hữu đăng cước thượng nhuyễn lặc đoan": là sau khi tay ta đã phong bế tay đối phương, mau chóng ra chân, đá thẳng vào sườn đối phương.</p>
+<p><span id="p19" class="page-anchor"></span>"Tả hữu phi thân phục hổ tinh": ví dụ khi đáp tay phải với đối phương, hơi dùng thái lã cổ tay đối phương, gấp thu tay biến thành quyền, chân tiến bộ về phía phải đối phương, dùng quyền đánh vào vú đối phương; trong lúc tiến bộ về phía phải đối phương thì vòng cánh tay trái lên, dùng quyền đánh vào phía dưới bên phải cánh tay sau của đối phương; quyền trái và quyền phải phải chéo nhau đối đánh; cách dùng bên trái và bên phải như nhau, cho nên gọi là "tả hữu phi thân phục hổ tinh".</p>
+<p><strong>Thượng đả chính hung hiếp hạ dụng, song phong quán nhĩ trước pháp linh.</strong> "Thượng đả chính hung hiếp hạ dụng": là nói cách dùng của phi thân phục hổ, tức là đánh lên trên vú ngực đối phương, đánh xuống dưới thì đánh vào sườn mềm.</p>
+<p>"Song phong quán nhĩ trước pháp linh": là khi ta dùng thức án với đối phương, nếu đối phương dùng hai tay từ giữa hai tay ta gạt xuống, ta liền thuận theo kình gạt xuống của đối phương, hai tay lật ngược lên thành quyền, thẳng vào tai đối phương, lấy cách song quyền đối nhau mà đánh mạnh.</p>
+<p><strong>Tả đăng cước thích hữu đăng thức, hồi thân đăng cước tất cốt nghênh.</strong> "Tả đăng cước thích hữu đăng thức": cách đăng đá của chân trái giống với đăng thức của chân phải.</p>
+<p>"Hồi thân đăng cước tất cốt nghênh": nếu khi giao thủ với đối phương, thế công của đối phương áp sát, không kịp đáp thức, ta liền quay thân né tránh, gấp dùng chân theo cách biển cước (đá ngang bằng) đăng đá vào sụn dưới đầu gối đối phương.</p>
+<p><strong>Dã mã phân tông công dịch hạ, ngọc nữ xuyên thoa tứ giác phong.</strong> "Dã mã phân tông công dịch hạ": khi tiếp thủ với đối phương, nếu tay ta bị đối phương lã giữ, thân ta gấp hơi lùi về sau; đồng thời dùng tay kia (lòng bàn tay ngửa lên), theo thế tiến bộ, thuận dưới cánh tay đối phương thác thẳng vào nách mà đánh.</p>
+<p>"Ngọc nữ xuyên thoa tứ giác phong": thủ pháp này dùng khi thôi thủ với đối phương. Nếu thế bằng của đối phương rất nghiêm ngặt, ta không thể đắc cơ hư thực mà tiến thủ, thì phải dùng tay phải ấn khuỷu trái đối phương, thuận hóa kình của hắn, xuyên vào dưới khuỷu, rồi với hổ khẩu hướng lên thác cánh tay trên của đối phương lên, gấp tiến bộ dùng tay trái đẩy đánh vào giữa sườn đối phương. Khi luyện thức thì đi theo bốn hướng góc, cho nên nói Ngọc Nữ Xuyên Thoa tứ giác phong.</p>
+<p><span id="p20" class="page-anchor"></span><strong>Dao hóa đan tý thác thủ thượng, tả hữu dụng pháp nhất bàn đồng.</strong> Câu này nói rõ cách dùng của Ngọc Nữ Xuyên Thoa, phải chú trọng ở việc lấy cánh tay đơn của đối phương, dùng cách xuyên khi thác thái hóa cánh tay đơn của hắn lên trên, rồi tiến công vào giữa sườn; cách dùng bên trái và bên phải như nhau.</p>
+<p><strong>Đan tiên hạ thế thuận phong nhập, kim kê độc lập chiếm thượng phong.</strong> Sự vận dụng của Đan Tiên hạ thế là lấy các khớp của ba phần eo, hông, gối làm chủ lực phát động. Ví dụ: đối phương dùng thức từ trên xuống dưới đánh vào ta, ta gấp thuận thế tới của hắn dán theo xuống dưới, chờ khi đối phương đánh xuống trượt mất, ta liền dùng tay dán theo (đồng thời dùng sức của ba khớp eo, hông, gối xông lên trước) liêu đánh vào hạ bộ hay bụng đối phương.</p>
+<p>Thủ pháp Kim Kê Độc Lập dùng khi đã vặn xoắn với đối phương trong lúc vật lộn. Dùng thức này có thể nói phát tất trúng. Khi dùng chia làm hai mặt: ví dụ khi quấn chặt với đối phương, tay ta ở trên hất tay và cánh tay đối phương, hoặc lâu án eo đối phương, thì có thể gấp nâng một chân lên, dùng đầu gối đánh thẳng vào đũng đối phương; lại như khi quấn chặt không thể tách rời, có thể gấp nâng một chân lên, dùng gót chân nhắm đúng mu bàn chân đối phương mà đạp mạnh xuống, đồng thời nâng chân kia lên, là để tăng sức đạp xuống, khiến toàn thân trọng lực dồn xuống một gót chân (tức là đạp chân phải xuống, gấp nâng chân trái lên, khiến toàn lực thân thể đánh xuống dưới, lại gọi là thiên cân trụy).</p>
+<p><strong>Đề tất thượng đả trí mệnh xứ, hạ thương nhị túc nan lưu tình.</strong> Câu này nói rõ phép Kim Kê Độc Lập khi dùng rất lợi hại: nếu dùng đầu gối nâng lên đánh vào đũng đối phương, đối phương có nguy hiểm đến tính mạng; nếu dùng cách gót chân đạp xuống, đối phương có nguy hiểm bị thương hai chân.</p>
+<p><strong>Thập tự thối pháp nhuyễn cốt đoạn, chỉ đang chùy hạ kháo vi phong.</strong> Cách dùng Thập Tự Thối: khi dùng lấy gót bàn chân ta từ dưới lên trên chặt thẳng vào sụn dưới đầu gối đối phương; độ cao khi chặt không được vượt quá phần đầu gối đối phương.</p>
+<p><span id="p21" class="page-anchor"></span>Nếu ta dùng thủ pháp Chỉ Đang Chùy mà bị đối phương thái lã giữ cánh tay rồi lã kéo xuống, ta liền thuận thế lã của đối phương gấp tiến bộ dùng vai thẳng vào ngực đối phương, dùng sức kháo đánh. Thức này chiếm một chữ kháo trong mười ba chữ chủ thể của Thái Cực Quyền.</p>
+<p><strong>Thượng bộ thất tinh giá thủ thức, thoái bộ khóa hổ thiểm chính trung.</strong> Cách dùng Thượng Bộ Thất Tinh giống cách dùng Thập Tự Thủ, là để lấy thức phòng ngự; thủ pháp dùng đều biến ra từ trong thập tự. Thất tinh chỉ bảy điểm xuất kích: vai, khuỷu, gối, hông, đầu, tay, chân. Khi sử dụng, ngoài đầu ra không được dùng bừa, tay có thể đánh, khuỷu có thể húc, gối có thể chạm, chân có thể đá, vai hông có thể kháo đánh; cho nên khi giao thủ với đối phương phải đề phòng cẩn thận bảy điểm này, để khỏi bị đối phương nhân khe hở tiến công. Giá thủ thức là nói rõ khi đối phương và ta tiếp thủ giao giá, nhất định phải lấy bảy điểm trên làm phần quan trọng nhất của công kích và phòng ngự.</p>
+<p>"Thoái bộ khóa hổ thiểm chính trung": khi tới gần đối phương, thế tiến của đối phương quá mạnh, không kịp đáp tay, ta gấp thoái bộ từ điểm chính trung né ra, rồi nhân thế tới của đối phương mà tiến công vào điểm có thể công kích được.</p>
+<p><strong>Chuyển thân bãi liên hộ thối tiến, loan cung xạ hổ thiêu đả hung.</strong> "Chuyển thân bãi liên hộ thối tiến": là nói rõ điểm cần chú ý khi dùng chân. Ví dụ khi đáp thủ với đối phương, trước tiên phải dùng hai tay đẩy cánh tay trái đối phương hất mở sang phải, rồi gấp dùng chân phải đá vào sườn trái đối phương; nếu không hất mở, thì có nguy hiểm chân ta bị đối phương vớt giữ.</p>
+<p>"Loan cung xạ hổ thiêu đả hung": ví dụ khi đối phương dùng tay phải tiến công, ta dùng cánh tay trái hất cánh tay tới của đối phương lên, đồng thời tiến bộ ra quyền phải đánh thẳng vào ngực đối phương; nếu thế tay của đối phương là từ trên xuống dưới đánh tới, cũng có thể dùng cách này đánh trả.</p>
+<p><span id="p22" class="page-anchor"></span><strong>Như phong tự bế cố phán định, Thái Cực hợp thủ thức hoàn thành.</strong> Khi vận dụng thủ pháp Như Phong Tự Bế, phải cố trụ tam tiền của mình: trước tay, trước chân, trước mắt; phán thất tinh là chú ý bảy điểm xuất kích của đối phương: vai, khuỷu, gối, hông, đầu, tay, chân. Định là trung định, tức là giữ vững tâm thần, trầm tĩnh định đạc. Thái Cực Quyền đến thức Thái Cực Hợp Thủ là đã hoàn thành. Khi luyện quyền, không chỉ biết phép luyện mà còn phải hiểu cách dùng, kết hợp thể và dụng lại mà rèn luyện, mới có thể đạt được thành tựu lớn của Thái Cực Quyền.</p>
+<p><strong>Toàn thể đại dụng ý vi chủ, thể tùng khí cố thần yếu ngưng.</strong> "Toàn thể đại dụng ý vi chủ": câu này nói rõ trọn bộ bài luyện của Thái Cực Quyền đều lấy ý làm chủ thể; ý tức là dùng ý thức để chi phối động tác. Về mặt sinh lý mà nói, tức là vai trò lãnh đạo của hệ thần kinh trung ương; cũng có thể nói: luyện Thái Cực Quyền là tăng cường tác dụng phản xạ mà thần kinh trung ương gây ra trong thân thể và sự vận dụng nhạy bén đối với kích thích bên ngoài. Quyền quyết nói: "Luyện thì trong tình có, dụng thì trong hình hàm"; "trong tình có" và "trong hình hàm" đều là tác dụng của ý. "Trong tình có" là biểu hiện của hoạt động chủ đạo của trung khu thần kinh; "trong hình hàm" là sự vận dụng hoàn thành hoạt động thống nhất, tức là quá trình luyện tập hình thành phản xạ có điều kiện.</p>
+<p>"Thể tùng khí cố thần yếu ngưng": đây là chỉ ra ba yếu điểm và ba giai đoạn của việc luyện Thái Cực Quyền. Thể tùng, tức là khi diễn luyện toàn thân trên dưới không dùng chuyết lực (sức vụng có ý thức), phải hoạt động nhẹ nhàng tự nhiên; mặt khác phải mở lỏng các khớp, khiến tư thế thư triển. Sự hoạt động mở lỏng như vậy có thể tự nhiên sinh ra kình của gân cốt; kình này phát ra thường gọi là kinh lực, đàn lực; và vì khớp xương mở lỏng nên cũng có thể mở rộng độ dài của tứ chi. Khí cố là khi luyện thức thì hô hấp tự nhiên, không được nín thở, động tác và hô hấp phối hợp tự nhiên, đạt tới tác dụng hô hấp đổi hơi theo thức; khí lực tương hợp, ý thủ đan điền, không đến nỗi tán mạn vô biên, như thế mới có thể khí cố.</p>
+<p>Thần yếu ngưng, tức là ý phải chuyên chú, thần có chỗ nhìn, động tác mỗi thức đều phải có chỗ ngưng thị. Đạt tới mức này không thể tách rời khỏi việc vận dụng thủ pháp "toàn thể đại dụng". Nếu không biết cách dùng và ngụ ý động tác của mỗi thức, thì không dễ đạt được ý khí tương hợp, xuất nhập có phép. Luyện Thái Cực Quyền, nếu được truyền thụ ba đại yếu quyết này và rèn luyện bền bỉ, có thể đạt được hiệu quả nhất định.</p></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 1: Lời Nói Đầu · Tiểu Dẫn &amp; Lời Dịch Giả — Hoàng Đế Nội Kinh — Tố Vấn | TaichiNOW</title>
+<meta name="description" content="Chương 1 của Hoàng Đế Nội Kinh — Tố Vấn: Lời Nói Đầu · Tiểu Dẫn &amp; Lời Dịch Giả">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+<aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-noi-dau" class="active">Lời Nói Đầu · Tiểu Dẫn &amp; Lời Dịch Giả</a></li>
+        <li><a href="#thien-01-05">Thiên 1–5 · Thượng Cổ Thiên Chân Luận</a></li>
+        <li><a href="#thien-06-09">Thiên 6–9 · Âm Dương Ly Hợp Luận</a></li>
+        <li><a href="#thien-10-18">Thiên 10–18 · Ngũ Tàng Sinh Thành Thiên</a></li>
+        <li><a href="#thien-19-29">Thiên 19–29 · Ngọc Cơ Chân Tàng Luận</a></li>
+        <li><a href="#thien-30-42">Thiên 30–42 · Dương Minh Mạch Giải Thiên</a></li>
+        <li><a href="#thien-43-53">Thiên 43–53 · Tý Luận Thiên</a></li>
+        <li><a href="#thien-54-62">Thiên 54–62 · Châm Giải Thiên</a></li>
+        <li><a href="#thien-63-67">Thiên 63–67 · Mậu Thích Luận Thiên</a></li>
+        <li><a href="#thien-68-71">Thiên 68–71 · Lục Vị Chỉ Đạ Luận Thiên</a></li>
+        <li><a href="#thien-72-73">Thiên 72–73 · Lục Nguyên Chính Kỷ Đại Luận Thiên</a></li>
+        <li><a href="#thien-74">Thiên 74 · Chí Chân Yếu Đại Luận Thiên</a></li>
+        <li><a href="#thien-75-81">Thiên 75–81 · Trú Chí Giáo Luận Thiên</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../hoang_de_noi_kinh_to_van_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Hoàng Đế Nội Kinh — Tố Vấn · Nguyễn Tử Siêu (dịch)</p>
+<h3 class="chapter" id="ch01">Lời Nói Đầu · Tiểu Dẫn &amp; Lời Dịch Giả</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Lời Đầu Sách</a> · <a href="#s2">Tiểu Dẫn</a> · <a href="#s3">Lời Dịch Giả</a></div>
+<div class="partnav"><span class="disabled"><span class="k">← Đầu sách</span>Bắt đầu cuốn sách</span>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch02-thien-1-5-thuong-thien-chan-luan-am-duong-ung-tuong-dai-luan.html" style="text-align:right"><span class="k">Chương 2 →</span>Thiên 1–5 · Thượng Cổ Thiên Chân Luận → Âm Dương Ứng Tượng Đại Luận</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Nguyễn Tử Siêu (dịch).</p>
+<h3 id="s1">Lời Đầu Sách</h3>
+  <p>Y học ngày càng phát triển đạt đến một trình độ cao; và xu hướng của Y học hiện đại, ở thế giới cũng như ở Việt Nam, là sự kết hợp giữa Tây y và Đông y, trong đó những nền tảng của Đông y với sự phát triển lâu đời càng ngày càng đóng góp vai trò hết sức quan trọng trong đời sống cộng đồng. Trải qua hàng nghìn năm, nền Đông y cổ truyền đã khẳng định được giá trị của mình và để lại những bộ cổ thư vô cùng quý báu mà nền khoa học hiện đại càng ngày càng tiếp thu, khám phá và ứng dụng một cách hiệu quả.</p>
+  <p>Hoàng đế nội kinh tố vấn là một trong những bộ sách quý đó. Cùng với Chu dịch, Mai hoa dịch, Đạo đức kinh, Hoàng đế nội kinh tố vấn (thời gian ra đời của bộ sách này, nếu căn cứ vào niên đại ước tính của Hoàng đế là vị vua huyền thoại trong cổ sử Trung Hoa, thì đã trên 5000 năm) được xếp vào “Tứ đại kỳ thư” của nền văn hoá Đông phương chứa nhiều bí ẩn cho đến nay vẫn chưa được giải mã triệt để. Hoàng đế nội kinh tố vấn là tác phẩm kinh điển được coi là công trình lý luận hàng đầu của nền Y học Đông phương, các danh y xưa nay như Hoa Đà, Biển Thước, Y Doãn, Hải Thượng Lãn Ông, Tuệ Tĩnh... đều coi đây là sách gối đầu giường trong việc nghiên cứu, chẩn trị, bổ, tả, liệu dược bệnh nhân và truyền dạy môn sinh đệ tử; và cho đến ngày nay bộ sách vẫn được sử dụng trong thực tế lâm sàng. Ở nhiều nước, Phương Đông cũng như phương Tây, đã có rất nhiều công trình dịch thuật, nghiên cứu, chú giải bộ sách. Ở Việt Nam cũng đã có nhiều người dịch và giới thiệu tóm lược công trình y học vĩ đại này, nhưng cho tới nay, bản dịch Hoàng đế nội kinh tố vấn của Nguyễn Tử Siêu do nhà xuất bản Hồng Khê xuất bản năm 1953 tại Hà Nội được coi là đầy đủ nhất.</p>
+  <p>Lương y Nguyễn Tử Siêu (1887-1965, còn có các bút danh Nguyễn An Nhân, Liên Tâm lão nhân, Hoa Cương) xuất thân trong một gia đình Nho học, nguyên quán xã Hương Ngải, huyện Thạch Thất, ngoại thành Hà Nội, đã qua Tam trường thời cựu học, sau chuyển sang học quốc ngữ, trải qua các nghề viết văn, dạy học và thầy thuốc Đông y. Về văn học, cụ chuyên về tiểu thuyết lịch sử, đã xuất bản hơn 20 cuốn sách với nội dung cổ vũ lòng yêu nước, chống cường quyền ngoại xâm, tiêu biểu như: Tiếng sấm đêm đông, Hai bà đánh giặc, Vua bà Triệu, Vua Bố Cái, Đinh Tiên Hoàng, Việt Thanh chiến sử, Trần Nguyên chiến kỷ... Về y học, cụ đã viết Y học tùng thư, Sách thuốc trẻ em, Sách thuốc phụ nữ, Châm cứu sơ bộ thực hành và dịch Hoàng Đế nội kinh, Ngoại cảm thông trị, Khôn hoá Thái chân, Tân châm cứu học... tất cả hơn 20 cuốn. Cuốn Tử Siêu Y thoại là tác phẩm cuối cùng của tác giả. Việc chữa bệnh, giảng dạy, viết sách y học của cụ đã góp phần đào tạo nên nhiều lương y có tài năng của thế hệ sau.</p>
+  <p>Ngoài công việc viết văn, dạy học và hành nghề đông y, cụ Nguyễn Tử Siêu còn tham gia hoạt động xã hội. Cụ từng là Chủ tịch mặt trận Liên Việt tỉnh Sơn Tây, Phó chủ tịch Uỷ ban kháng chiến hành chính tỉnh Sơn Tây, uỷ viên Ban Chấp hành Trung ương Hội Đông Y Việt Nam các khoá 1 và 2 (1957-1965).</p>
+  <p>Với sự cho phép của gia đình dịch giả Nguyễn Tử Siêu, Trung tâm Văn hoá Ngôn ngữ Đông Tây tìm tài liệu và tổ chức tái bản bộ sách Hoàng đế nội kinh tố vấn này. Trong dự định, chúng tôi sẽ tiếp tục giới thiệu cuốn Tử Siêu Y thoại và những tác phẩm khác của cụ khi có điều kiện.</p>
+  <p>Đông Tây, ngày 11/11/2009</p>
+  <h3 id="s2">Tiểu Dẫn</h3>
+  <p>Tố vấn là một bộ sách do vua Hoàng Đế cùng với sáu vị bầy tôi là Kỳ Bá, Quy Du Khu, Bá Cao, Thiếu Sư, Thiếu Du, Lôi Công lúc bình nhật cùng vấn đáp mà biên tập nên. Sách Bản kỷ có chép: “Hoàng Đế hỏi Kỳ Bá mà làm thành Nội kinh” chính là bộ này. Nhưng xét trong sách này, phần nhiều là lời nói của Kỳ Bá, cho nên trong Bản kỷ không chép đến tên các bầy tôi khác.</p>
+  <p>Lại xét ngoài 81 thiên của bộ Tố vấn, lại còn 81 thiên của bộ Linh khu... Giờ nhận thấy trong Tố vấn có những câu dẫn “Kinh nói rằng: v.v...” đều là lời ở trong Linh khu thì đủ biết rằng: bộ Linh khu soạn trước, mà Tố vấn thì soạn sau.</p>
+  <p>Trong Tố vấn chỉ lấy danh hiệu Thiên Sư, Phu Tử để tôn xưng Kỳ Bá... Còn Quy Du Khu với các bầy tôi khác thì không thấy gọi ai như vậy. Đến Lôi Công thì lại tự xưng là tiểu tử, đệ tử mà Hoàng Đế cũng có khi ban lời dạy bảo. Có lẽ học lực của Lôi Công chưa bằng các vị kia mà tuổi cũng còn ít hơn cả chăng?</p>
+  <p>Và có những danh từ là Công Bá, là Sư... tựa như là đều lấy tước hiệu để gọi. Tức như ở thiên Bảo mệnh toàn hình luận, có chỗ xưng là Thiên tử, là Quân vương; thiên Di tinh biến khí luận, thiên Ngũ thường chính đại luận, thiên Linh khu quan năng v.v... đều xưng là Thánh vương. Thiên Trứ chí giáo luận, thiên Sơ ngũ quá luận có câu nói: “phong quân Hầu vương” v.v...; thiên Sinh căn kết có những danh từ như vương, công, đại nhân v.v... Vậy thì đó là tước, hiệu không còn ngờ gì nữa. Đến như Quy Du Khu, Thiếu Du, Bá Cao... đều là tên chư thần mà thôi.</p>
+  <p>Đời sau, ông Trình Tử có nói: “Tố vấn do tay các công tử nước Tần soạn ra”. Cũng có người cho là do các Nho gia đời Tiên Tần soạn... Đó đều là nệ về những danh từ tước hiệu, mà không xét kỹ toàn thư, nên ức thuyết như vậy. Giờ xét ở những thiên Lục tiết Tàng tượng luận, thiên Nguyên đại luận, Ngũ vận hành đại luận, Lục vi chỉ đại luận, Lục nguyên chính kỷ đại luận, Khí giao biến đại luận, Ngũ thường chính đại luận, Chí chân yếu đại luận, v.v... bàn về thiên đạo, lịch pháp, vạn tượng, nhân thân, kinh lạc, mạch thể, nhân sự, tri, pháp, lời cổ, ý sâu... Không loại sách Chư Tử nào có thể ví kịp, thật đúng là chỉ bậc thiên thần chí thánh mới có thể soạn nổi.</p>
+  <p>Ngu này thiết nghĩ: Thượng đế lúc nào cũng nhân ái muôn dân; mà làm hại sinh mệnh của muôn dân là bệnh; muốn trị bệnh phải nhờ ở sách... Nhưng im lặng không nói nên giáng sinh bậc thần thánh để nói thay và sớm soạn ra bộ sách này để cứu sinh mệnh cho muôn dân.</p>
+  <p>Phương chỉ, Lục thư chế ra từ đời Phục Hy, y dược bắt đầu từ đời Thần Nông... Mà từ đời Phục Hy đến Hoàng Đế có linh nghìn năm, phàm việc văn tự chế tác chắc đã rõ ràng lắm. Sách Ngoại kỷ, Bản kỷ đều chép: Hoàng Đế đặt quan, cử tướng, xét lịch, làm nhạc, chế ra cổn miện, thuyền, xe; cắt dã, chia châu, xẻ đất ruộng, đặt tỉnh điền, trồng trăm giống lúa, xây đắp thành quách... Phàm tước, hiệu, văn tự, lúc đó đã đều đủ. Lại trải qua các họ Kim Thiên, Cao Dương, Cao Tân, linh ba trăm bốn mươi năm, mới đến nhà Đào Đường (Nghiêu). Vậy bao các chế tác, người đời sau chỉ biết hai họ Đường Ngu (Thuấn) là thịnh hơn cả... Nhưng có biết đâu là gây từ Hy Hoàng dẫn đà cách thời kỳ đó đã lâu lắm rồi. Sao lại riêng đối với Sử thư, Linh khu, Tố vấn mà còn ngờ vực nữa ư?</p>
+  <p>Đến thời Xuân Thu, Tần Việt Nhân soạn ra Nạn kinh nhận nhầm Tam tiêu, Doanh, Vệ và chứng quan cách, đó là một người làm mờ tối mất nghĩa của Nội kinh; Hoàng Phủ Mật đời Tấn, biên làm Giáp Ất kinh, phần nhiều trích ở Linh khu, không phát minh được nghĩa nào. Đời Đường, khoảng niên hiệu Bảo Ứng, Khải Huyền Tử là Vương Băng có chú thích, nhưng cứ theo từng câu để giải nghĩa, gặp chỗ nào ngờ thì bỏ qua; chương tiết không chia, trước sau lẫn lộn. Đời Nguyên, Hoạt Bá Nhân soạn bộ Đọc Tố vấn sao, phần nhiều chỉ theo chú giải của họ Vương, không phát minh được nghĩa gì. Chỉ về khoảng năm Gia Hựu đời Tống, triều đình sắc cho bọn Cao Bảo Hành hiệu chính lại, có nhiều chỗ giúp ích cho Vương thị, duy vẫn cứ theo chia làm 24 quyển, rất sai với cái nghĩa soạn sách của Thánh nhân.</p>
+  <p>Án: Ban Cố soạn thiên Nghệ văn chí có chép rằng: “Hoàng Đế nội kinh 18 quyển, Tố vấn 9 quyển, Linh khu 9 quyển...”.</p>
+  <p>Lại án: Thiên Ly hợp chân tà luận trong Tố vấn có chép: “Hoàng Đế nói: Nghĩ như Cửu Châm chín thiên, Phu Tử lại nhân lên chín lần, 9 lần 9 thành 81 thiên, để theo với số của Hoàng Chung. Đại đề kinh điển của các bậc thần thánh, phần nhiều dùng theo số chín, Chín nhân với chín thành 81 thiên. Giờ đây, ngu này chia làm 9 quyển cũng chỉ là theo cái di ý của thần thánh mà thôi.</p>
+  <p>Trộm nghĩ Thánh, phàm cách bậc, cổ kim khác đời, ngu này sở dĩ không tự lượng mà dám lạm chú thích bộ này, chẳng qua e cho đời sau mờ tối không hiểu nghĩa lý của Thánh nhân, nên mới quan khuy, ly trắc... Mong được giúp ích muôn một mà thôi. Hay khen, hèn chê... Hoặc công, hoặc tội, tôi nào có e ngại gì chỗ đó...</p>
+  <p><strong>MÃ NGUYÊN ĐÀI</strong></p>
+  <h3 id="s3">Lời Dịch Giả</h3>
+  <p>Xem bài Tiểu dẫn trên đây, thì bộ Tố vấn là một bộ sách rất có giá trị của giới Đông y, dù các bậc đại thánh đại hiền ở đời sau như các ông Biển Thước, Hoa Đà, Trọng Cảnh, Tôn Tự Mịch, Đào Hoằng Cảnh v.v... cũng không vị nào có thể phát minh được hơn và vượt được ra ngoài phạm vi lý thuyết và thực nghiệm của Nội kinh.</p>
+  <p>Vậy thì, đối với Nội kinh ta chỉ nên biết nó là hay, nó là có ích, ta cần phải học tập và nghiên cứu...</p>
+  <p>Dịch sách đã là một sự khó; dịch sách thuốc lại càng khó; dịch sách thuốc mà dịch đến Nội kinh, Tố vấn lại càng khó. Dưới đây tôi xin trình bày mấy điểm chính:</p>
+  <p>1. Về các danh từ, cổ nhân rất hay dùng danh từ để: một là hình dung cái công năng của cơ quan hoặc là để ấn định hẳn cái tính cách của nó. Như những danh từ: Nhất dương, Nhị dương... Tam âm, Tam dương; Sơ chi khí, Nhị chi khí, Tam... Tứ... Ngũ chi khí... Tư thiên, Tại toàn, Nam chính, Bắc chính v.v... đều có ý nghĩa riêng, nếu giải rõ nghĩa đen, thì mỗi danh từ phải nói tới một trang hoặc nửa trang mới hết. Mà muốn đặt lấy một danh từ nôm cho gọn, thì chịu không sao tìm được tiếng. Vậy gặp những danh từ đó, xin cứ để vậy nguyên chữ Hán, mà giải nghĩa theo từng trường hợp thuận tiện.</p>
+  <p>2. Ở Nội kinh có những câu đặt rất gọn mà nghĩa rất hay, như: “Âm bình, dương bí; tinh thần nãi trị” v.v... Những câu như thế, nếu muốn giải nghĩa cho rõ, thì một chữ “âm”, một chữ “dương”, rồi thế nào là “bình”, thế nào là “bí”, rồi đến chữ “tinh”, chữ “thần”, rồi mới đến chữ “trị” đều phải phân tích cho hết mới đủ nghĩa. Chớ nếu chỉ dịch đổi thêm ra ba, bốn tiếng mà muốn cho trọn nghĩa thì quyết không sao được. Vậy gặp những câu thế, đành cũng xin dựa theo điệu “cổ” mà dịch thành câu ngắn, cho có vẻ “cổ”, còn nghĩa thì xin giải ở dưới.</p>
+  <p>3. Về các tên thiên, phần nhiều chỉ trích lấy một vài chữ ở trong thiên để nêu tên cho có phân biệt, cũng như ở sách Nho, trong Luận ngữ, ví ở chương đầu có chữ “học nhi...” thì đặt ngay là thiên Học nhi, ở chương đầu có chữ “vi chính” thì đặt ngay là thiên Vi chính chứ thực ra không có nghĩa đặc biệt gì khác cả. Ở Nội kinh, Tố vấn cũng vậy. Nên về các tên thiên, dịch giả miễn không giải nghĩa.</p>
+  <p>4. Như bài Tiểu dẫn ở trên này, thì về Nội kinh, các nhà chú giải có rất nhiều. Bản mà dịch giả dịch đây là theo bản hợp chú của Trương Ấn Am và Mã Nguyên Đài. Vậy những chú giải ở trong bản dịch này, hoàn toàn theo của hai tiên sinh đó.</p>
+  <p>5. Về chú giải bằng Hán văn ở bộ Nội kinh hợp chú này, Trương Ấn Am hoàn toàn giữ về mục chú thích từng câu, còn Mã Nguyên Đài thì chú giải thành một bài tổng quát ở dưới. Nếu dịch cả hai phần chú giải thì e trùng phức và quá dài. Nên bản dịch này, dịch giả phần nhiều chỉ dịch chú giải của Trương Ấn Am... Còn thỉnh thoảng, có một vài chỗ, nhận thấy giải ở trên chưa được thật rõ ràng, thì cũng có dịch cả bài Tổng quát ở dưới. Nhưng đó chỉ là một số ít.</p>
+  <p>6. Về việc dịch bộ Nội kinh này, dịch giả đứng hẳn về phương diện “dịch” chứ không phải “thuật”. Nên đối với nguyên văn Nội kinh đều dịch hết, không dám thêm bớt chỗ nào. Riêng chỉ có về phần chú giải, như trên đã nói... là có thêm, bớt.</p>
+  <p>7. Như lời trên bài Tiểu dẫn của Mã Nguyên Đài thì bộ Linh khu soạn trước rồi mới đến bộ Tố vấn soạn sau. Lại xem trong bài Tựa về Linh khu của Trương Ấn Am tiên sinh thì Tố vấn là một bộ sách nói nhiều về nguyên nhân của các chứng bệnh sở dĩ sinh ra, còn Linh khu thì nói nhiều về phương pháp điều trị. Vậy hai bộ đó, phải coi như cánh tay phải với cánh tay trái. Không thể bỏ sót một bên nào được. Nay đã dịch xong Tố vấn, hãy xin nói về Tố vấn, nếu hoàn cảnh cho phép, khi nào dịch xong được Linh khu, sẽ lại xin trình bày sau.</p>
+  <p>8. Tôi vốn già yếu, lại ở nơi thôn ổ, rất ít văn hữu tụ hội, có thể nhờ đó để chất chính những lẽ phải trái... Vì tấm lòng yêu mến Đông y, yêu mến cổ học, và sợ nếu để chậm sẽ ít người chịu dịch, nên mạo muội phiên dịch ra đây, chắc sự nhầm sót còn thiếu nhiều. Nếu được các vị cao minh chỉ giáo cho để cải chính về sau, thì không những riêng tôi, mà các hậu học về Đông y sau này cũng được cảm tạ vô cùng.</p>
+  <p><strong>2-7-1953</strong><br><strong>NGUYỄN TỬ SIÊU</strong></p>
+</section>
+<section id="thien-01-05">
+  <div class="book-figure">
+    <img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/hoang_de_noi_kinh_to_van/hdetv_p011.jpeg" alt="Hình ảnh" loading="lazy">
+    <figcaption>trang mở đầu phần này trong bản in gốc.</figcaption>
+  </div></main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #059669; }
+body.dark-mode .figure-wrap { background: #1e1e1e; border-color: #333; }
+body.dark-mode .posture-list li { border-color: #333; }
+#reading-progress {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999; width: 0%; transition: width 0.1s;
+}
+.reader-layout {
+  display: block; max-width: 900px; margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.4rem; }
+.toc-link {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.87rem;
+  display: block; padding: 4px 6px; border-radius: 6px; line-height: 1.35;
+}
+.toc-link:hover { background: rgba(197,155,39,0.12); color: var(--accent-crimson); }
+.toc-link .pg { display: block; font-size: 0.72rem; color: #a8a29e; }
+.reader-tools { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tool-btn {
+  flex: 1; background: none; border: 1px solid #e7e5e4; color: var(--text-primary);
+  border-radius: 8px; padding: 6px 4px; cursor: pointer; font-size: 0.8rem;
+  font-family: inherit;
+}
+.tool-btn:hover { border-color: var(--accent-gold); color: var(--accent-crimson); }
+body.dark-mode .tool-btn { border-color: #333; }
+.reader-content { font-size: 17px; line-height: 1.8; }
+.book-hero {
+  background: linear-gradient(135deg, #fef9ef 0%, #fdf3e3 100%);
+  border: 1px solid #f0e0c0; border-radius: 16px;
+  padding: 2.2rem; margin-bottom: 2.5rem;
+}
+body.dark-mode .book-hero { background: #1e1a14; border-color: #4a3f2a; }
+.book-badge {
+  display: inline-block; background: var(--accent-crimson); color: #fff;
+  font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem;
+  margin: 0 0 0.4rem; color: var(--text-primary); line-height: 1.2;
+}
+.book-orig-title { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+.book-tags span {
+  background: rgba(197,155,39,0.14); border: 1px solid rgba(197,155,39,0.4);
+  color: #8a6a12; font-size: 0.78rem; font-weight: 600;
+  padding: 3px 11px; border-radius: 999px;
+}
+body.dark-mode .book-tags span { color: #e5c76b; }
+.book-pdf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  background: var(--accent-crimson); color: #fff !important;
+  font-size: 0.88rem; font-weight: 700; transition: opacity 0.15s;
+}
+.book-pdf-link:hover { opacity: 0.88; }
+.chapter-block { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem; margin-bottom: 1.5rem;
+}
+.chapter-num {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--accent-gold); display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem;
+  color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3;
+}
+.chapter-sub {
+  font-size: 1.08rem; font-weight: 700; color: var(--accent-crimson);
+  margin: 1.6rem 0 0.6rem;
+}
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled {
+  color: #c7c2bd; pointer-events: none; cursor: default;
+}
+body.dark-mode .page-nav a.disabled { color: #555; }
+.posture-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+.posture-list li {
+  border-left: 3px solid #eadfc8; padding: 4px 0 4px 14px; margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.quote-box {
+  background: #fefce8; border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  font-style: italic; color: #713f12;
+}
+.key-point {
+  background: #f0fdf4; border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+body.dark-mode .key-point { color: #a7f3d0; }
+.figure-wrap {
+  margin: 2rem 0; text-align: center; background: rgba(0,0,0,0.02);
+  padding: 16px; border-radius: 10px; border: 1px solid #e5e5e5;
+}
+.figure-wrap img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption-title {
+  font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson);
+  margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.figure-caption {
+  font-size: 0.88rem; color: #78716c; margin-top: 10px; font-style: italic;
+}
+.figure-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.figure-row .figure-wrap { flex: 1 1 220px; max-width: 260px; margin: 0; }
+.page-marker {
+  font-size: 0.74rem; color: #a8a29e; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 3px;
+}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 34: Thức thứ bốn mươi mốt. Phục hổ (ngực từ đông chuyển đông nam) — Trần Thức Thái Cực Quyền | TaichiNOW</title>
+<meta name="description" content="Chương 34 của Trần Thức Thái Cực Quyền: Thức thứ bốn mươi mốt. Phục hổ (ngực từ đông chuyển đông nam)">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-trang-bia.html#sec00">Phần 1</a></li>
+        <li><a href="ch02-iii-su-nam-giu-hu-thuc.html#sec01">Phần 2</a></li>
+        <li><a href="ch03-iv-khinh-phu-tram-hu-thuc.html#sec02">Phần 3</a></li>
+        <li><a href="ch04-dac-diem-thu-nam-van-dong-tiet-tiet-quan-xuyen-yeu-tich-dan.html#sec03">Phần 4</a></li>
+        <li><a href="ch05-i-thuc-chat-tiet-tiet-quan-xuyen.html#sec04">Phần 5</a></li>
+        <li><a href="ch06-ii-quan-he-giua-dong-toan-dong-yeu-tich.html#sec05">Phần 6</a></li>
+        <li><a href="ch07-iii-tiet-tiet-quan-xuyen-tang-cuong-khop.html#sec06">Phần 7</a></li>
+        <li><a href="ch08-v-su-nam-giu-tiet-tiet-quan-xuyen.html#sec07">Phần 8</a></li>
+        <li><a href="ch09-dac-diem-thu-sau-van-dong-a-thanh-lien-tuong-bat-doan-thao-t.html#sec08">Phần 9</a></li>
+        <li><a href="ch10-i-su-thuc-hien-a-thanh.html#sec09">Phần 10</a></li>
+        <li><a href="ch11-ii-thuc-le-danh-gia-hanh-quyen.html#sec10">Phần 11</a></li>
+        <li><a href="ch12-iii-than-dong-dang-a-thanh1.html#sec11">Phần 12</a></li>
+        <li><a href="ch13-dac-diem-thu-bay-van-dong-cuong-nhu-tuong-te-nhu-den-cuong-c.html#sec12">Phần 13</a></li>
+        <li><a href="ch14-i-quyen-cuong-nhu-tuong-te.html#sec13">Phần 14</a></li>
+        <li><a href="ch15-ii-thoi-ky-cau-nhuyen-toi-cuong.html#sec14">Phần 15</a></li>
+        <li><a href="ch16-iv-bien-hoan-cuong-nhu.html#sec15">Phần 16</a></li>
+        <li><a href="ch17-v-su-nam-giu-cuong-nhu-tuong-te.html#sec16">Phần 17</a></li>
+        <li><a href="ch18-dac-diem-thu-tam-van-dong-khoai-man-tuong-gian-man-den-khoai.html#sec17">Phần 18</a></li>
+        <li><a href="ch19-i-trinh-phat-trien-khoai-man.html#sec18">Phần 19</a></li>
+        <li><a href="ch20-ii-thoi-gian-dieu-kien-viec-chuyen-man-sang-khoai.html#sec19">Phần 20</a></li>
+        <li><a href="ch21-iii-khoai-man-tuong-gian-cau-thanh-kinh-biet.html#sec20">Phần 21</a></li>
+        <li><a href="ch22-iv-su-nam-giu-khoai-man-tuong-gian.html#sec21">Phần 22</a></li>
+        <li><a href="ch23-ket-ngu.html#sec22">Phần 23</a></li>
+        <li><a href="ch24-thu-ten-quyen-thuc-lo-tran-thuc-thai-cuc-quyen.html#sec23">Phần 24</a></li>
+        <li><a href="ch25-may-diem-noi-ro-ve-do-giai.html#sec24">Phần 25</a></li>
+        <li><a href="ch26-tran-thuc-thai-cuc-quyen-lo.html#sec25">Phần 26</a></li>
+        <li><a href="ch27-thuc-thu-ba-muoi-ba-ta-qua-tien-phao-1.html#sec26">Phần 27</a></li>
+        <li><a href="ch28-thuc-thu-ba-muoi-ta-qua-tien-phao-2-nguc-huong-nam.html#sec27">Phần 28</a></li>
+        <li><a href="ch29-thuc-thu-ba-muoi-lam-huu-qua-tien-phao-1-nguc-nam-chuyen-bac.html#sec28">Phần 29</a></li>
+        <li><a href="ch30-thuc-thu-ba-muoi-sau-huu-qua-tien-phao-2-nguc-huong-bac.html#sec29">Phần 30</a></li>
+        <li><a href="ch31-thuc-thu-ba-muoi-tam-phach-gia-nguc-huong-dong-bac.html#sec30">Phần 31</a></li>
+        <li><a href="ch32-thuc-thu-ba-muoi-chin-phien-hoa-vu-nguc-dong-nam-chuyen-dong.html#sec31">Phần 32</a></li>
+        <li><a href="ch33-thuc-thu-bon-muoi-yem-thu-quang-chuy-nguc-dong-bac-chuyen-do.html#sec32">Phần 33</a></li>
+        <li><a href="ch34-thuc-thu-bon-muoi-phuc-ho-nguc-dong-chuyen-dong-nam.html#sec33">Phần 34</a></li>
+        <li><a href="ch35-thuc-thu-61-ngoc-nu-xuyen-thoa-nguc-huong-dong-chuyen-bac-ch.html#sec34">Phần 35</a></li>
+        <li><a href="ch36-thuc-thu-62-quay-dau-phao-duong-mon-nguc-huong-tay.html#sec35">Phần 36</a></li>
+        <li><a href="ch37-thuc-thu-64-nuu-loan-chuu-nguc-huong-nam-chuyen-bac.html#sec36">Phần 37</a></li>
+        <li><a href="ch38-thuc-thu-65-thuan-loan-chuu-nguc-huong-bac.html#sec37">Phần 38</a></li>
+        <li><a href="ch39-thuc-thu-67-oa-ly-phao-nguc-huong-bac.html#sec38">Phần 39</a></li>
+        <li><a href="ch40-thuc-thu-68-tinh-lan-truc-nhap-nguc-huong-bac-chuyen-nam.html#sec39">Phần 40</a></li>
+        <li><a href="ch41-thuc-thu-70-kim-cang-dao-chuy-nguc-huong-bac.html#sec40">Phần 41</a></li>
+        <li><a href="ch42-thuc-thu-71-thau-the-nguc-huong-bac.html#sec41">Phần 42</a></li>
+        <li><a href="ch43-1-yeu-nghia-chung-day-tay.html#sec42">Phần 43</a></li>
+        <li><a href="ch44-2-phuong-phap-day-tay-thuc-tran.html#sec43">Phần 44</a></li>
+        <li><a href="ch45-3-hai-su-dien-bien-day-tay-thuc-tran.html#sec44">Phần 45</a></li>
+        <li><a href="ch46-4-thoi-thu-thai-cuc-quyen-kiem-bi-ca-am-duong.html#sec45">Phần 46</a></li>
+        <li><a href="ch47-5-yeu-linh-dong-tac-thoi-thu.html#sec46">Phần 47</a></li>
+        <li><a href="ch48-bon-ngu-luc-tran-ham-ve-thap-tam-muc-quan-hai-1.html#sec47">Phần 48</a></li>
+        <li><a href="ch49-sau-tuyen-doan-van-ngan-ve-quyen-luan-tran-ham-nguoi-khac.html#sec48">Phần 49</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../chen_style_taijiquan_shen_gu_1963_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Trần Thức Thái Cực Quyền · Phần 34</p>
+<h3 class="chapter" id="ch34">Thức thứ bốn mươi mốt. Phục hổ (ngực từ đông chuyển đông nam)</h3>
+
+<div class="partnav"><a href="ch33-thuc-thu-bon-muoi-yem-thu-quang-chuy-nguc-dong-bac-chuyen-do.html"><span class="k">← Chương 33</span>Thức thứ bốn mươi. Yểm thủ quăng chùy (ngực từ đông bắc chuyển đông)</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch35-thuc-thu-61-ngoc-nu-xuyen-thoa-nguc-huong-dong-chuyen-bac-ch.html" style="text-align:right"><span class="k">Chương 35 →</span>Thức thứ 61: Ngọc Nữ Xuyên Thoa (ngực hướng đông, chuyển bắc rồi chuyển tây)</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Thẩm Gia Trình &amp; Cố Lưu Hinh.</p>
+<span id="chuong-33"></span>
+
+
+  <div class="chapter-header">
+    
+  </div>
+<div class="chapter-sub">Thức thứ bốn mươi mốt. Phục hổ (ngực từ đông chuyển đông nam)</div>
+<p>Động tác: sau khi nắm đấm phải phát kình ở thức trên, nghịch triền thu nắm đấm phải về, đồng thời tay trái nghịch triền thành nắm đấm, hướng trái-trước buông ra. Khi nắm đấm phải nghịch triền hướng sau, đưa chân phải ở phía sau lùi thêm nửa bước sang phải-sau thành thực, đến khi nắm đấm phải nghịch triền hướng ngoài phải làm một vòng lớn, lại làm một vòng nhỏ, khiến nắm đấm phải đến góc trán trái, thì hoàn thành thức quyền phục hổ. Đồng thời, nắm đấm trái thu về làm một vòng nhỏ hướng trong trái, khi chuyển đến bên hông trái thì chống ở bên hông trái. Lúc này chân phải thực, chân trái hư. (Hình 69)</p>
+<p><strong>Yếu điểm:</strong> Thức này khi xoay một vòng lớn trái phải trước sau và trên dưới (đại tích lực), phải khiến thân khu trong khi vận chuyển càng vận càng thấp, đồng thời vòng lớn cũng càng xoay càng nhỏ, đây là một ví dụ rõ ràng nhất của việc hình thành thân khu xoáy ốc đi xuống. Thức này khác với các thức quyền thông thường ở chỗ trong tư thế khai mà hình thành súc động; bởi vì thân khu càng vận chuyển về chỗ thấp, tính đàn hồi của súc kình tác dụng lên chân cũng càng lớn. Loại súc kình này, có thể chuẩn bị tốt cho lực đàn hồi nhảy lên nhẹ nhàng linh hoạt của thức sau, đây là thức quyền thấp nhất của bộ khung thứ hai, cũng là thức quyền rõ ràng nhất về triền ti của chân phối hợp với triền ti của tay.</p>
+<div class="chapter-sub">Thức thứ bốn mươi hai. Mạt mi hồng (ngực từ đông nam chuyển bắc, rồi chuyển nam)</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 69</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig224-L2F69.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig224-L2F69.jpg" alt="图 69" loading="lazy"></a>
+  <div class="figure-caption">Nắm đấm phải nghịch triền hướng ngoài phải làm vòng lớn rồi làm vòng nhỏ đến góc trán trái, nắm đấm trái chống ở bên hông trái, chân phải thực chân trái hư</div>
+</div>
+<p><span id="p225" class="page-anchor"></span>Động tác: thức quyền trên là đại súc thân pháp, khi làm thức này, thì là ở thức trên · 215 · Thân pháp phóng đại trong trường hợp thân pháp đã tích súc đầy đủ. Trên cơ sở bên phải của sống lưng đã duỗi dài và đàn hồi đầy đủ, vận dụng quá trình thu súc của tính đàn hồi hồi phục nơi lưng eo, dùng tay phải thuận triền (thuận quấn) vạch cung từ trên xuống rồi chuyển ra trước quật một cái (giả định tay trái của thức trước "Ngọa Hổ Sát Yêu" đã bị thải), quyền trái dùng nghịch triền (nghịch quấn) từ dưới ra sau vạch lên một vòng tròn khép kín, mượn lực ly tâm của quyền phải quật ra trước để lĩnh thân mình lên, chân phải cũng theo đó nhảy tới trước một bước lớn, chân trái theo sau bước tới. Lúc này hai chân rời khỏi mặt đất. (Hình 70) Nhảy tới bên đối diện, khi chân phải chạm đất làm thực điểm, khiến thân mình xoay trái 180° giữa không trung, đặt chân trái về phía đông của chân phải. Lúc này, quyền trái cũng từ trên nghịch triền xuống đặt nơi lưng eo. (Hình 71) Trong quá trình nhảy tới xoay thân, một kình "bối chiết kháo" (kình tựa gãy lưng) biểu hiện rất tự nhiên, để gỡ bỏ bàn tay trái bị thải, và thu tay trái về đặt nơi lưng eo.</p>
+<p>Yếu điểm: Thức này chủ yếu dựa trên súc kình của thức trên. Trước khi nhảy tới, phải ngồi lùi eo chân một chút để tăng cường đàn kình. Sau đó mượn tính đàn hồi của súc kình, khiến thân nhảy vọt lên về trước, đây là mấu chốt để đạt được khinh linh và dễ xoay chuyển. Khi xoay thân nhất định phải giữ thân trung chính, đây là bảo đảm để kình "bối chiết kháo" được phát phóng an toàn, cũng là cách tự nhiên thoát ra mà không phải cầu thoát ra.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 70</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig225-L2F70.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig225-L2F70.jpg" alt="图 70" loading="lazy"></a>
+  <div class="figure-caption">Tay phải thuận triền quật xuống, quyền trái nghịch triền vạch lên một vòng tròn khép kín, thân mình lĩnh lên, chân phải nhảy tới trước, hai chân rời đất</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 71</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig225-L2F71.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig225-L2F71.jpg" alt="图 71" loading="lazy"></a>
+  <div class="figure-caption">Nhảy tới bên đối diện, chân phải chạm đất, thân mình xoay trái 180° giữa không trung, quyền trái hạ xuống đặt nơi lưng eo</div>
+</div>
+<p><span id="p226" class="page-anchor"></span>cơ sở.</p>
+<p>Thức thứ bốn mươi ba: Hữu Hoàng Long Tam Giảo Thủy (ngực hướng nam)</p>
+<p>Động tác: Sau khi thức này nhảy lên xoay thân, quyền trái chống lưng eo, tiếp đó tay phải vạch vòng trước ngực bằng thuận triền. Khi tay phải vạch vòng xuống dưới, chân phải lập tức nhấc lên làm hư. (Hình 72) Khi tay phải vạch vòng lên trên, chân phải lại hạ xuống làm thực, hoàn thành một lần "giảo thủy" (khuấy nước). (Hình 73) Tiếp đó tiếp tục làm thêm hai lần động tác "giảo thủy". (Hình 74, 73, rồi tiếp 74, 73, 74)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 72</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig226-L2F72.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig226-L2F72.jpg" alt="图 72" loading="lazy"></a>
+  <div class="figure-caption">Tay phải vạch vòng xuống bằng thuận triền trước ngực, chân phải nhấc lên làm hư</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 73</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig226-L2F73.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig226-L2F73.jpg" alt="图 73" loading="lazy"></a>
+  <div class="figure-caption">Tay phải vạch vòng lên, chân phải hạ xuống làm thực</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 74</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig226-L2F74.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig226-L2F74.jpg" alt="图 74" loading="lazy"></a>
+  <div class="figure-caption">Tay phải tiếp tục vạch vòng khuấy nước, quyền trái chống lưng eo, chân phải chuyển đổi hư thực</div>
+</div>
+<p>Yếu điểm: Theo yêu cầu của kỹ năng vận động mà nói, thức quyền càng đơn giản thì càng khó làm tốt yêu cầu "nhất động toàn động" (một động tác khiến toàn thân động). Thức này chỉ có một tay phải vạch vòng, chân phải phối hợp lên xuống phân hư thực để tiến hành vận động, động tác như vậy khá đơn giản, cho nên đây là công phu cơ bản để luyện triền ty kình (kình quấn tơ) đạt tới tiết tiết quán xuyến. Muốn đạt tới "nhất động toàn động", yếu điểm vẫn nằm ở sự dẫn dắt của lưng eo và sự buông lỏng của kình nơi cánh tay, vạch vòng như chiếc roi — đây là mấu chốt để làm tốt thức quyền này.</p>
+<p>Nơi đây chính là phân đoạn thứ hai của giá thứ hai, có thể tùy nhu cầu mà lặp lại làm vài lần. Bởi vì trước khi "giảo thủy", đã liên tục tiến hành một loạt vận động khá kịch liệt, nên ở đây có thể khiến người ta được hưu chỉnh nhất định.</p>
+<p><span id="p227" class="page-anchor"></span>· 217 · Thức thứ bốn mươi bốn: Tả Hoàng Long Tam Giảo Thủy (ngực hướng nam, chuyển bắc)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 75</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig227-L2F75.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig227-L2F75.jpg" alt="图 75" loading="lazy"></a>
+  <div class="figure-caption">Sau khi xoay thân, quyền trái buông ra đón lên phải, tay trái nghịch triền vạch vòng sang trái, tay phải sau tiểu thuận triền đặt nơi eo phải</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 76</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig227-L2F76.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig227-L2F76.jpg" alt="图 76" loading="lazy"></a>
+  <div class="figure-caption">Tay trái vạch vòng khuấy nước trước thân, chân trái nhấc lên làm hư</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 77</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig227-L2F77.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig227-L2F77.jpg" alt="图 77" loading="lazy"></a>
+  <div class="figure-caption">Tay trái vạch vòng lên, chân trái hạ xuống làm thực</div>
+</div>
+<p><span id="p228" class="page-anchor"></span>Động tác: Tiếp thức trên, xoay thân lại, đổi thành tay trái "giảo thủy" vạch vòng. Cách làm của nó cơ bản giống với động tác "giảo thủy" của tay phải, điểm khác là phải làm được việc khi tay trái tay phải thay phiên và xoay thân thì phải giữ nội kình không đứt. Thức trên khi tay phải vạch vòng đến lúc từ dưới chuyển sang trái, quyền trái đang chống nơi eo trái buông ra và nghịch triền hướng lên phải để đón, hình thành sự tương hợp trái hơi dưới, phải hơi trên. Lúc này chân phải nhấc lên làm hư, vừa khi giao nhau xong, hai tay lập tức biến thành song nghịch triền, do lưng eo dẫn đầu và tay phải kéo dắt, xoay thân mang chuyển 180° sang phải. Đồng thời, chân phải chạm đất làm thực, và làm trục giữa của sự xoay chuyển. Theo đó, chân trái cũng lập tức cùng thân làm cung chuyển, đặt về phía tây của chân phải, hoàn thành quá trình xoay thân. Đồng thời, tay trái từ nghịch triền chuyển thuận vạch vòng sang phía trái, tay phải thì sau một tiểu thuận triền đặt nơi bên phải lưng eo. (Hình 75) Đây là điểm khởi đầu sau khi "Tả Hoàng Long Tam Giảo Thủy" xoay thân. Về sau cũng như "Hữu Hoàng Long Tam Giảo Thủy", khi tay trái vạch xuống, chân trái phải nhấc lên làm hư. (Hình 76) Khi tay trái vạch lên, chân trái lại hạ xuống làm thực. (Hình 77), hoàn thành một lần "giảo thủy". Tiếp đó làm thêm hai lần động tác "giảo thủy". (Hình 78, 77, rồi theo hình 78, 77, 78)</p>
+<p>Yếu điểm: Yêu cầu của bản thân thức này giống với "Hữu Hoàng Long Tam Giảo Thủy", nhưng phải đặc biệt chú ý là khi xoay thân đổi tay, không những phải xoay với đường cong hòa hoãn, đồng thời còn yêu cầu quán xuyến một hơi, không để xảy ra đứt đoạn và lồi lõm. Mấu chốt của nó nằm ở chỗ khi tay trái buông ra và tay phải tương hợp, hình thành hai cánh tay tương hệ, có thể làm được khi tách ra xoay một vòng nữa thì kình liền từ tay phải đổi sang tay trái.</p>
+<p>Tuy yếu điểm và động tác của thức này giống với thức trước, nhưng để khiến tay trái có được mức linh hoạt như tay phải, thức này có thể làm nhiều lần hoặc hơn mười lần; khi vận động thức này vị trí chân phải không đổi, cho nên làm nhiều lần tại chỗ cũng không tổn hại đến kết cấu của toàn bộ bài quyền.</p>
+<p>Thức thứ bốn mươi lăm: Tả Đăng Nhất Căn (ngực hướng bắc)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 78</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig228-L2F78.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig228-L2F78.jpg" alt="图 78" loading="lazy"></a>
+  <div class="figure-caption">Tay trái thuận triền vạch cung từ trong ra ngoài, tay trái chống eo khai hợp, chân trái chuyển đổi hư thực</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 79</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig228-L2F79.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig228-L2F79.jpg" alt="图 79" loading="lazy"></a>
+  <div class="figure-caption">Hai tay thu hợp trước bụng đối với trung tâm thân, hai chân đứng</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 80</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig228-L2F80.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig228-L2F80.jpg" alt="图 80" loading="lazy"></a>
+  <div class="figure-caption">Cánh tay trái thuận triền vạch cung ra ngoài, tay phải buông ra vạch vòng tương đối, chân trái nhấc lên — tư thế khởi đầu của cước đăng</div>
+</div>
+<p><span id="p229" class="page-anchor"></span>Động tác: Sau "giảo thủy" của thức trên, khi cánh tay trái thuận triền vạch cung từ trong ra ngoài, tay phải đang chống eo buông ra, và thừa thế gia nhập vòng vạch tương đối lại tương phân; khi chuyển đi qua một vòng rồi chuyển xuống dưới, liền trở thành song hợp kình. Lúc này lòng bàn tay đối lòng bàn tay, hai tay tương đối hơi hẹp hơn vai, đặt trước bụng. Khi tay phải gia nhập đến cuối cùng thành hợp, chân trái từ thực chuyển hư. (Hình 79) Dưới hai tay không ngừng vạch vòng, tiếp tục lấy song thuận triền siết chặt một hợp, khiến hai chưởng biến thành quyền giao nhau trước ngực. Lúc này, tay trái ở ngoài, tay phải ở trong, đồng thời, nhấc chân trái lên. (Hình 80) Sau khi đạt tới điểm cuối của giao nhau, phát kình hai tay và chân trái ra hết sức về hai bên trái phải cùng một lượt. Đây là đá chân trái phát kình trong tư thế đứng độc lập trên chân phải. Lúc này tay trái làm chủ, tay phải làm khách. (Hình 81)</p>
+<p>Yếu điểm: Đàn kình của thức này là song khai kình sinh ra trong song hợp, bởi vì khi hai tay làm song hợp, cùi chỏ và cánh tay trên có song khai kình. Đồng thời, khi hai chân hơi cong mà song hợp, do viên đang (háng tròn) khiến chân cũng có song khai kình. Điều này chứng tỏ hai cánh tay và hai chân đều có kình ngoại nả tương hệ, đây là mấu chốt để phát kình được tùng thúy. Đợi khi hai tay và chân trái cùng phân phát về hai bên trái phải, do tác dụng ổn định của hai tay phân phát, khiến thân mình khi phát ra được tính ổn định nhất định. Cách phát kình này là biện pháp tốt để luyện dây chằng khớp và tăng cường tính đàn hồi của nó.</p>
+<p>Thức thứ bốn mươi sáu: Hữu Đăng Nhất Căn (ngực hướng bắc chuyển nam)</p>
+<p>Động tác: Sau "Tả Đăng Nhất Căn" của thức trên, hai tay từ nghịch triền hợp về phía trái một cái, kéo dắt thân mình xoay sang trái; đồng thời chân trái chạm đất dậm chân một cái, và nhấc chân phải lên, hình thành chân trái đứng độc lập, hai tay hợp kình tại hai bên đầu gối phải. (Hình 82) Tiếp đó phát kình hai tay và chân phải ra hết sức về hai bên trái phải cùng một lượt, đây là đá chân phải phát kình trong tư thế đứng độc lập trên chân trái. Lúc này tay phải làm chủ, tay trái làm khách. (Hình 83)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 81</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig229-L2F81.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig229-L2F81.jpg" alt="图 81" loading="lazy"></a>
+  <div class="figure-caption">Sau khi hai tay giao nhau đến điểm cuối, hai tay và chân trái cùng phát kình sang hai bên; trong tư thế đứng trên chân phải, chân trái đá ra, tay trái làm chủ, tay phải làm khách.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 82</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig230-L2F82.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig230-L2F82.jpg" alt="图 82" loading="lazy"></a>
+  <div class="figure-caption">Chân trái đứng độc lập, hai tay hợp kình tại hai bên đầu gối phải, chân phải đá ra phân phát về hai bên</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 83</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig230-L2F83.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig230-L2F83.jpg" alt="图 83" loading="lazy"></a>
+  <div class="figure-caption">Chân trái đứng độc lập, hai tay và chân phải cùng phát kình ra hai bên trái phải</div>
+</div>
+<p>· 220 · Yếu điểm: Thức này là nhấc chân trái xoay ngang sang trái, khi xoay ngang không dễ đạt được xoay chuyển ổn định, cho nên, yếu điểm của nó nằm ở việc nhấc đỉnh kình lên và hai tay nghịch triền hợp kình lẫn nhau, khiến sống lưng căng chặt, mũi chân trái hướng xuống, để giảm nhẹ trọng lượng chìm xuống của chân trái treo giữa không. Đây là tư thế súc kình cần nắm vững khi xoay thân trước cước đăng phải. Sau khi chân trái chạm đất dậm chân một cái, lập tức nhấc chân phải, phát chân phải và hai tay trái phải cùng một lượt ra hai bên.</p>
+<p>Thức thứ bốn mươi bảy: Hải Để Phiên Hoa (ngực hướng tây)</p>
+<p>Động tác: Giống thức thứ ba mươi "Hải Để Phiên Hoa", chỉ có mức xoay thân nhỏ hơn, còn lại đều giống nhau. (Hình 84)</p>
+<p>Thức thứ bốn mươi tám: Yểm Thủ Quăng Chủy (ngực hướng tây)</p>
+<p>Động tác: Chân phải hạ xuống dậm chân làm thực; lúc này tay phải là thuận triền, tay trái là nghịch triền. Khi tay trái chuyển về phía trước trái, chân trái tiến thêm một bước về phía trước trái; đồng thời chưởng phải biến thành quyền chuyển nghịch triền phát kình ra, quyền trái sau khi nghịch triền chuyển, phát kình ra phía sau trái làm khách. (Hình 85)</p>
+<p>Yếu điểm: Giống thức thứ mười bảy.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 84</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F84.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F84.jpg" alt="图 84" loading="lazy"></a>
+  <div class="figure-caption">Hải Để Phiên Hoa, xoay thân với biên độ nhỏ hơn để lật hoa</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 85</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F85.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F85.jpg" alt="图 85" loading="lazy"></a>
+  <div class="figure-caption">Yểm Thủ Quăng Chủy phát kình, quyền phải nghịch triền phát ra trước, quyền trái nghịch triền phóng ra sau</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 86</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F86.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F86.jpg" alt="图 86" loading="lazy"></a>
+  <div class="figure-caption">Tay phải ở trước nghịch triền thu về rồi vạch vòng ra trước, tay trái ở sau nghịch triền vạch vòng ra trước rồi ra sau</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 87</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F87.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig231-L2F87.jpg" alt="图 87" loading="lazy"></a>
+  <div class="figure-caption">Tay phải nghịch triền thu về đến trước eo phải, chân phải dậm chân, quyền trái nghịch triền nâng lên trước trên</div>
+</div>
+<p>· 221 · Thức thứ bốn mươi chín: Tảo Thảng Thối (chuyển eo đập, ngực hướng đông, chuyển bắc, sau chuyển nam rồi chuyển bắc)</p>
+<p><span id="p232" class="page-anchor"></span>Động tác: Sau khi "Yểm Thủ Quăng Chủy" phát kình, tay phải ở trước nghịch triền thu về rồi vạch một vòng ra trước, tay trái ở sau nghịch triền vạch một vòng ra trước rồi ra sau. (Hình 86) Khi tay phải lại nghịch triền từ trước thu về đến trước eo phải, chân phải dậm đất dậm chân một cái; lúc này quyền trái nghịch triền nâng lên trước trên. (Hình 87) Ngay sau khi dậm chân, mũi chân phải hơi hất ra ngoài, bước ra nửa bước nhỏ về phía sau phải, hình thành quán tính xoay chuyển, mang thân xoay về phía sau phải · 222 · khoảng 280°, chân phải ngồi xổm xuống, chân trái cũng theo đó duỗi chân vạch cung quét ngang 280°, quét đến phía tây bắc của chân phải. (Hình 88)</p>
+<p>Yếu điểm: Thức này là luyện kình đập mắt cá chân khi chân quét ngang. Để xoay chuyển chân trái một cách ổn định, quét ngang một vòng tròn khép kín, tất phải khiến ý khí biểu hiện như thể chân phải đã mọc rễ trên mặt đất. Thứ hai, để tăng cường kình quét ngang của chân, phải lợi dụng việc chân phải bước nửa bước nhỏ về phía sau phải, mũi chân hất ra, để dẫn dắt sự xoay chuyển của thân mình, hình thành quán tính xoay chuyển. Thứ ba, phải làm tốt trên dưới phối hợp nhất trí, mới có thể khiến thân mình xoay chuyển khinh linh mà trầm ổn; điều này chủ yếu ở nửa vòng đầu của vận động là như vậy, biến thế là từ cao chuyển xuống thấp, mà ở vòng sau của vận động, thì nội kình lại phải từ thấp chuyển lên cao rồi sau đó hạ xuống. Đây cũng là một động tác có độ khó khá cao, là vận động luyện chân lĩnh thân, có thể khiến cơ bắp chân duỗi dài và tăng cường. Để tăng cường kình quét ngang của chân, có thể tách ra làm chuyên luyện tán thủ, cũng có thể làm hai lần 360° tảo thảng thối.</p>
+<p>Thức thứ năm mươi: Yểm Thủ Quăng Chủy (ngực hướng bắc chuyển đông)</p>
+<p>Động tác: Sau khi thức trên xoay qua 280°, hai tay giao nhau hợp trước ngực (Hình 89A); tiếp đó hai chưởng biến chưởng, phân biệt vạch cung lên trên mở ra về hai bên trái phải; đồng thời, chân phải rời đất nhấc lên, chân trái liền đạp đất nhảy vọt lên. (Hình 89B) Tiếp đó chân phải hạ xuống phía tây nam, chân trái theo đó hạ xuống phía đông bắc. Hai tay từ trên song nghịch triền hợp trước ngực, rồi thuận triền mà khai, nghịch triền mà hợp, sau đó quyền phải đánh ra, quyền trái thu về dưới sườn trái. (Hình 90) Điểm khác của thức này với thức thứ mười bảy trước chỉ có động tác nhảy bước, đợi sau khi hai chân chạm đất, liền giống với các thức "Yểm Thủ Quăng Chủy" khác.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 88</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig232-L2F88.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig232-L2F88.jpg" alt="图 88" loading="lazy"></a>
+  <div class="figure-caption">Chân trái duỗi chân vạch cung quét ngang, quét đến phía tây bắc của chân phải, chân phải ngồi xổm xuống</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 89甲</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig233-L2F89%E7%94%B2.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig233-L2F89%E7%94%B2.jpg" alt="图 89甲" loading="lazy"></a>
+  <div class="figure-caption">Hai tay giao nhau hợp trước ngực</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 89乙</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig233-L2F89%E4%B9%99.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig233-L2F89%E4%B9%99.jpg" alt="图 89乙" loading="lazy"></a>
+  <div class="figure-caption">Hai chưởng vạch cung mở ra hai bên, chân phải rời đất, chân trái đạp đất nhảy vọt lên</div>
+</div>
+<p>· 223 · Yếu điểm: Đây là một động tác ổn định khi giá thức xoay tròn bay lên đạt tới điểm cuối, là bài luyện bay lên theo đường xoắn ốc sau khi thân mình lật lớn xoay chuyển, cũng là một sự rèn luyện tốt về mặt thể dục đối với cơ quan phân tích tiền đình; muốn đạt được tác dụng ổn định này, khi tảo thảng thối kết thúc lập thân tất phải trung chính. Yếu điểm: Giống thức thứ ba mươi mốt.</p>
+<p>Thức thứ năm mươi mốt: Tả Xung (ngực hướng đông)</p>
+<p><span id="p234" class="page-anchor"></span>Động tác: Vì động tác là do chân trái ở trước bắt đầu, nên gọi là "Tả Xung". Nó sau khi thức trên "Yểm Thủ Quăng Chủy" phát kình, quyền phải thuận triền thu về, quyền trái nghịch triền duỗi ra trước, hai quyền hợp kình, hình thành hai quyền tương đối. (Hình 91) Tiếp đó mượn tay trái duỗi ra trước cùng tay phải cùng chìm xuống vạch một vòng về phía sườn phải, khi vạch đến sau trên thì thu chân trái về, và nhấc lên làm hư. (Hình 92) Khi hai quyền lại từ trên chuyển đến bên eo trái, chân trái chạm đất dậm chân một cái. Khi vạch đến trước dưới, bước chân phải ra; hai quyền chuyển đến trái · 224 · Ép sườn ra sau, trầm kình xuống (Hình 93), đây là tư thế tích lực của Xung chùy. Tiếp đó dùng hai cẳng tay phát kình rung về phía trước và lên trên. Khi vạch vòng rồi trầm xuống, bàn chân trái ở phía sau là thực; khi hai nắm đấm rung kình ra trước, bàn chân phải là thực. (Hình 94)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 91</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F91.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F91.jpg" alt="图 91" loading="lazy"></a>
+  <div class="figure-caption">Cung bộ bên phải, hai nắm đấm xung ra trước, tư thế tích lực</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 92</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F92.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F92.jpg" alt="图 92" loading="lazy"></a>
+  <div class="figure-caption">Nâng gối đứng một chân, hai nắm đấm giơ lên vạch vòng</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 93</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F93.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F93.jpg" alt="图 93" loading="lazy"></a>
+  <div class="figure-caption">Chân trái là thực, trầm kình tích lực</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 94</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F94.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig234-L2F94.jpg" alt="图 94" loading="lazy"></a>
+  <div class="figure-caption">Chân phải là thực, hai nắm đấm rung ra trước</div>
+</div>
+<p><span id="p235" class="page-anchor"></span>Yếu điểm: Động tác của thức này là hai nắm đấm từ bên phải chuyển sang bên trái, vạch trọn hai vòng lớn trước sau trên dưới. Động tác phải liên tục không ngừng, hoàn thành trong một hơi, cho nên tất phải lợi dụng quán tính xoay, có như vậy mới khiến kình xuyên suốt đến cái rung cuối cùng. Nếu ở giữa có ngắt đoạn, sẽ mất tác dụng tăng cường kình lực. Đồng thời, đây là một thức quyền cần thiết để luyện kình rung. Khi mới học, sau khi vung hai vòng lớn mới phát kình rung, về sau có thể dần · 225 · —vung dần nhỏ lại, từng bước giảm xuống còn một vòng; cuối cùng, chỉ cần ý niệm vừa phát động là có thể phát kình rung như vậy. Đây là công phu sâu nhất của việc phát kình rung.</p>
+<p>Thức thứ năm mươi hai — Hữu xung (ngực hướng đông)</p>
+<p>Động tác: Vì động tác bắt đầu từ chân phải ở phía trước, nên gọi là "Hữu xung" (xung bên phải). Thức này trước tiên chân phải ở trước, cuối cùng đổi thành chân trái ở trước; hai nắm đấm trước tiên từ bên sườn trái chuyển sang bên sườn phải, vạch hai vòng lớn rồi rung kình ra ngoài; ở hai điểm này, thức này hoàn toàn ngược với thức trên, cho nên đường đi động tác của nó đối xứng với thức trên. (Hình 95, 96, 97)</p>
+<p>Yếu điểm: Giống "Tả xung".</p>
+<p>Thức thứ năm mươi ba — Đảo suất (ngực hướng đông, chuyển đông bắc)</p>
+<p>Động tác: Sau khi thức trên phát ra song kình rung, giả định tay phải bị thái (loại thái kình này thường có thể khiến người bị thái quỳ xuống), để làm được triêm niêm liên tùy, khiến nó không chống đối, tay phải liền dùng nghịch triền hạ tùy, khiến tay phải hợp với tay trái. Khi hợp, tay trái lót phía dưới tay thái, và dùng tay phải đè xuống, làm giải thoát bước đầu. Lúc này tay phải hướng xuống là thực, chân phải bước lên là hư, đứng song song với chân trái, mũi chân chấm đất, như vậy hai tay gần sát phần trên dưới của thân mình, đây là "giải thoát trong hợp", lại là một ví dụ nữa của việc dùng nhẹ chế nặng. (Hình 98)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 95</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig235-L2F95.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig235-L2F95.jpg" alt="图 95" loading="lazy"></a>
+  <div class="figure-caption">Nâng gối ôm quyền, tích thế chuyển động</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 96</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig235-L2F96.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig235-L2F96.jpg" alt="图 96" loading="lazy"></a>
+  <div class="figure-caption">Cung bộ tiến thân, hai nắm đấm vạch vòng trầm xuống</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 97</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig235-L2F97.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig235-L2F97.jpg" alt="图 97" loading="lazy"></a>
+  <div class="figure-caption">Chân phải cung ra trước, hai nắm đấm rung ra trước</div>
+</div>
+<p><span id="p236" class="page-anchor"></span>· 226 · Thức thứ năm mươi tư — Hải để phiên hoa (ngực hướng đông)</p>
+<p>Động tác: Nếu như thức trên đảo sáp không thể "giải thoát trong hợp", thì lại trầm xuống thêm rồi đột nhiên xoay một cái, kéo dài thân thể, chuyển thành hai tay khai trên dưới. Đây là dưới tình trạng khí dán vào sống lưng, do đỉnh kình dẫn thân thể lên, là lần giải thoát thứ hai, là phương pháp "giải thoát trong khai" sau "giải thoát trong hợp". Đồng thời với "khai giải", tay phải thuận triền chuyển sang phải trên rồi chuyển phải dưới, tay trái nghịch triền chuyển sang trái dưới rồi chuyển trái trên, toàn thân kéo dài, chân trái đứng độc lập, chân phải nâng lên (làm chuẩn bị để đá); nắm đấm trái phóng kình lên trên về phía trái, tâm quyền hướng phải; nắm đấm phải phóng kình xuống dưới về phía sườn lưng phải, tâm quyền hướng trước; động tác của nó giống mấy thức "Hải để phiên hoa" trước, chỉ có thức này chỉ hơi chuyển thân, mấy thức trước biên độ chuyển thân lớn hơn. (Hình 99)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 98</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig236-L2F98.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig236-L2F98.jpg" alt="图 98" loading="lazy"></a>
+  <div class="figure-caption">Hai chân đứng song song, hai tay hợp bên thân</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 99</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig236-L2F99.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig236-L2F99.jpg" alt="图 99" loading="lazy"></a>
+  <div class="figure-caption">Chân trái đứng độc lập, hai tay khai trên dưới, hải để phiên hoa</div>
+</div>
+<p><span id="p237" class="page-anchor"></span>Yếu điểm: Thái cực quyền phần nhiều dùng thái kình hướng xuống, khiến đối phương khó dùng liên tùy để được giải thoát; vì thế, tay phải nghịch triền hướng xuống, chân phải bước tới trước; tay trái lót vào phía dưới tay thái. Do chân phải của "Đảo sáp" bước lên, tức khiến hai tay mình gần sát tâm vòng của mình, từ đó tăng mô-men tác dụng lên đối phương, đồng thời giảm mô-men tác dụng của mình; một lớn một nhỏ, lại là một điển phạm dùng nhẹ chế nặng, có thể khiến mình · 227 · —"đắc thế". Cách giải thoát đè trên lót dưới này là hình thức bước đầu để cầu giải thoát. Nếu vẫn không thoát được, đã sinh ra chống đối với đối phương, thì nên thuận theo kình chống đối của hắn mà đi ngược lại đường đi của nó, chuyển tay trái lên trên tay thái của đối phương, khiến tay trái chém xuống và tay phải nâng lên, làm cho giống như "Trảm thủ". Đồng thời chấn một cái ở chân trái, khiến toàn thân kéo dài mà đứng dậy, hai tay khai kình ra hai bên. Đây là hình thức giải thoát biến hoán, nói rõ ở vùng hải để có sự phiên chuyển và biến hoán của song khai, song hợp, cũng là thủ pháp đánh phát và giải thoát dùng chung một chiêu.</p>
+<p>Thức thứ năm mươi lăm — Yểm thủ quăng chùy (ngực hướng đông)</p>
+<p>Động tác: Dưới tình trạng chân phải của thức trên đã nâng lên, tiếp làm phát kình, động tác của nó giống thức thứ năm mươi mốt. (Hình 100)</p>
+<p>Yếu điểm: Giống thức thứ ba mươi mốt.</p>
+<p>Thức thứ năm mươi sáu — Đoạt nhị quăng (một) (ngực hướng đông, chuyển nam)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 100</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig237-L2F100.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig237-L2F100.jpg" alt="图 100" loading="lazy"></a>
+  <div class="figure-caption">Cung bộ yểm thủ quăng chùy, nắm đấm phải phát kình ra trước</div>
+</div>
+<p><span id="p238" class="page-anchor"></span>Động tác: Sau khi thức trên "Yểm thủ quăng chùy" phát kình, trước hơi khai hai tay ra, tức thì nắm đấm trái nghịch triền, nắm đấm phải thuận triền, từ bên phải chuyển về hợp thành một hợp kình. Lúc này nắm đấm phải ở dưới ngoài, nắm đấm trái ở trên trong, đồng thời chân phải bước theo nửa bước, khiến sát với chân trái. Sau đó hai nắm đấm chuyển thành song thuận, khiến nắm đấm phải thu lên trên về tới ngực, nắm đấm trái trầm xuống tới trước gối trái, đồng thời chân trái bước ra trước nửa bước (Hình 101). Tiếp đó, trọng tâm chuyển về trước, khiến chân trái là thực; đồng thời do hợp kình, lấy chân trái làm trục thân xoay sang phải 180°. Chân phải ở phía sau đồng thời nâng lên lùi bước về phía sau trái (dịch ngang nửa bước). Trong quá trình xoay thân, hai nắm đấm tiếp tục ở trước ngực trong ngoài song phiên hợp trụ kình mà thuận triền. Khi xoay thân đến thân mình hướng đông, nắm đấm phải vừa ở trong trước trên, nắm đấm trái thì ở ngoài trước dưới. Khi nắm đấm phải từ trong chuyển xuống ngoài rồi chuyển lên trong, chân phải theo đó nâng lên, men theo mặt đất thu · 228 · —về, hai cánh tay hợp trụ kình. Lúc này nắm đấm phải cong ở ngoài, nắm đấm trái cong ở trong. (Hình 102) Động tác nói trên là tích kình, động tác sau đó tức là phát kình sau khi tích. Nó dưới sự ôm vòng của hai nắm đấm căng kình đầy đủ, nắm đấm phải hơi nâng lên, khi chuyển đến phía trong nắm đấm trái, liền trầm kình xuống. Đồng thời chân phải chấn một cái, men theo mặt đất lách ra ngoài, trên dưới tương tùy lách đến tâm vòng của đối phương, cánh tay phải nằm ngang phát kình ra từ cẳng tay, đồng thời nắm đấm trái nghịch triền phóng kình về phía sau trái. Đây là động tác đặc biệt tay phải và chân phải cùng tiến, cũng là trên dưới tương tùy trong tư thế. Khi phát kình chân trái là thực. (Hình 103)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 101</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig238-L2F101.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig238-L2F101.jpg" alt="图 101" loading="lazy"></a>
+  <div class="figure-caption">Hai nắm đấm hợp kình thu ôm, chân trái bước tới</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 102</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig238-L2F102.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig238-L2F102.jpg" alt="图 102" loading="lazy"></a>
+  <div class="figure-caption">Nắm đấm phải cong ngoài, nắm đấm trái cong trong, hợp kình tích thế</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 103</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig238-L2F103.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig238-L2F103.jpg" alt="图 103" loading="lazy"></a>
+  <div class="figure-caption">Chân phải lách tới trước phát kình, cánh tay phải đưa ngang, nắm đấm trái phóng kình ra sau</div>
+</div>
+<p><span id="p239" class="page-anchor"></span>Yếu điểm: Yếu điểm của thức quyền này là xoay thân trong hợp kình, khác với các thức trước xoay thân trong khai kình, cho nên đây là nội dung chủ yếu luyện tập của thức này. Thức này giả định phía sau gặp tập kích, thì dùng xoay thân để hóa giải tập kích ấy, và lợi dụng xoay thân để tăng cường tích kình, khiến thức quyền sau có thể phát ra giòn hơn, đây là tác dụng đặc biệt của thức này. Trong khi xoay · 229 · —thân, phải giữ vĩ lư ở giữa và thần quán đỉnh, tức là đỉnh kình không mất, vĩ lư không đổ.</p>
+<p>Sau khi xoay thân, khi cánh tay phải nằm ngang hợp trụ kình, giả định khớp cổ tay phải ở trước bị thái, thì lúc này không cần tìm phương pháp giải thoát khác, có thể nắm đấm phải và chân phải đồng thời chấn một cái, lách ra trước theo mặt đất, và do cẳng tay phải nằm ngang băng kình ra ngoài (băng kình là kình lò xo, đứng đầu trong bát kình của Thái cực quyền, là một loại kình phòng ngự. Nếu có thể dùng trong băng phát kình, thì bằng một chiêu hai dụng; loại chiêu kích này chỉ cần tay run một cái là phát ra được, cho nên khoảng cách ngắn mà hiệu dụng lớn, là cách phát kình đơn giản nhất). Đây cũng là tác dụng liên hợp của giải thoát và kích phát trong một chiêu hai dụng. Yếu điểm của nó là phải tìm được giải thoát dưới "trung thổ bất ly vị" và "dĩ thân tiến thoái"①, cũng là thủ pháp kích phát để tiến vào vòng của người, đặc biệt là dùng băng vào kích phát, là thủ pháp đơn giản nhất của một chiêu hai dụng.</p>
+<p>Thức thứ năm mươi bảy — Đoạt nhị quăng (hai) (ngực hướng nam, chuyển tây rồi chuyển nam)</p>
+<p>Động tác: Sau khi thức trên băng phát kình, giả định vẫn chưa được giải thoát, thì phải tiếp tục làm "Đoạt nhị quăng" thứ hai; cho nên, nên có nhân tự thượng bộ. Đây là động tác theo người băng tỏa tiến lên hai bước, trong khung quyền là ít thấy, cho nên phải luyện tập như một động tác. Động tác này, khi bắt đầu là nắm đấm phải thuận triền thu lên trên vào trong, đồng thời nắm đấm trái từ dưới ngoài lên trên, chân trái theo đó bước theo một bước. (Hình 104) Khi nắm đấm trái tới phía ngoài cánh tay phải rồi dùng kình hướng lên trên và cánh tay phải ở phía trong nắm đấm trái triền hướng xuống dùng kình, và áp sát thân mình trên dưới đối kình, thì cánh tay phải bị thái đã được giải thoát. Đồng thời với giải thoát, lại bước chân phải lên, đây cũng là chuẩn bị cho động tác băng phát của cánh tay phải—</p>
+<ul class="posture-list">
+<li>① "Trung thổ bất ly vị" và "dĩ thân tiến thoái" là thuật ngữ Thái cực quyền, ý nói khi tay và chân lần lượt liên hệ tiến lên, phải di động như lá cờ lớn dựng đứng không đổ.</li>
+</ul>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 104</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig239-L2F104.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig239-L2F104.jpg" alt="图 104" loading="lazy"></a>
+  <div class="figure-caption">Cung bộ tiến thân, hai nắm đấm trên dưới đối kình triền chuyển</div>
+</div>
+<p><span id="p240" class="page-anchor"></span>· 230 · Chuẩn bị tích kình. (Hình 105)</p>
+<p>Sau khi thức trên đã bước chân trái, liên tiếp bước chân phải thứ hai, đây là bước cuối cùng của nhân tự thượng bộ. Hai nắm đấm như cánh quạt gió ở trước ngực trong ngoài lần lượt phiên triền một vòng lớn. Động tác trên, khi nắm đấm phải thuận triền hướng trước lên trong, chân phải thu về nửa bước, mũi chân chấm đất. Tiếp đó nắm đấm phải trước ngực trầm kình xuống phối hợp với nắm đấm trái hướng lên, để lần thứ hai giải thoát tay phải bị thái. Đồng thời chân phải chấn chân xuống, và thừa thế lách tới trước theo mặt đất. Đồng thời, nắm đấm phải đưa ngang cánh tay ra trước, băng kình ra ngoài. (Hình 106)</p>
+<p>Yếu điểm: Nếu băng phát kình của thức trên vẫn chưa đủ để giải thoát tay phải bị thái, để tránh chống đối, thì phải vận dụng liên tùy mà kéo theo bước lên liên tiếp. Cho nên, nội dung luyện tập chủ yếu của thức này là liên tục tiến lên hai bước mà vẫn không xảy ra đoạn kình, và phải luôn có cơ thế có thể thoát và có thể kích. Muốn đạt yêu cầu này, yếu điểm của nó là hai cánh tay liên hệ với nhau khiến hai nắm đấm phiên động lên xuống trong khi hành tiến, lấy việc lắc động sống lưng để thoát khỏi việc tay phải bị thái.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 105</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig240-L2F105.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig240-L2F105.jpg" alt="图 105" loading="lazy"></a>
+  <div class="figure-caption">Nghiêng thân hai nắm đấm triền chuyển, tích kình chờ phát</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 106</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig240-L2F106.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig240-L2F106.jpg" alt="图 106" loading="lazy"></a>
+  <div class="figure-caption">Cung bộ đưa ngang cánh tay băng ra trước, nắm đấm phải phát kình ra trước phải</div>
+</div>
+<p><span id="p241" class="page-anchor"></span>Do "Đoạt nhị quăng" thứ nhất vẫn chưa tìm được giải thoát, thì phải thuận theo yếu kình, trong quá trình đẩy đối phương lui ra sau, vừa thoát vừa kích mà băng kình ra ngoài. Đây là tác dụng thống nhất của thôi động và giải thoát. Cho nên, nó bất luận là bước chân trái hay bước chân phải, đều phải · 231 · Xoay động sống lưng mà tiến. Đây là mấu chốt của việc khi phát băng kình có thể khiến tích kình của sống lưng phóng kình ra như dây cung bật khỏi lẫy hay không.</p>
+<p>Thức thứ năm mươi tám — Liên châu pháo (ngực hướng tây)</p>
+<p>Động tác (một): Sau khi tay phải của thức trên băng phát kình, nắm đấm trái tích ở sau bên trái như dây cung bật khỏi lẫy kích mà rung ra, đồng thời nắm đấm phải thuận triền thu về đặt ở bên sườn phải. Khi kích ra chân trái là thực. (Hình 107)</p>
+<p>Động tác (hai): Động tác (một) là kình rung của nắm đấm trái, động tác (hai) là kình rung của nắm đấm phải, hai cái cơ bản giống nhau, chỗ khác nhau là sống lưng lắc động. Khi nắm đấm trái thuận triền thu về đặt trước ngực, thì nắm đấm phải như liên châu phát ra ngoài. Khi nắm đấm phải phát ra chân phải là hư. (Hình 108)</p>
+<p>Động tác (ba): Giống động tác một. (Hình 109)</p>
+<p>Yếu điểm: "Xung chùy" là kình rung do hai nắm đấm phát ra, thức này là kình rung do từng nắm đấm phát riêng. Yếu điểm của nó ở chỗ buông lỏng thân chi, rồi đột nhiên rung ra ngoài, là cương kình khoảng cách ngắn. Sau khi phát ra vẫn phải cong tích cánh tay; độ cong tích lấy việc có thể phát lại làm chuẩn.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 107</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig241-L2F107.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig241-L2F107.jpg" alt="图 107" loading="lazy"></a>
+  <div class="figure-caption">Nắm đấm trái như dây cung bật lẫy rung ra, nắm đấm phải thu về sườn phải</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 108</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig241-L2F108.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig241-L2F108.jpg" alt="图 108" loading="lazy"></a>
+  <div class="figure-caption">Nắm đấm trái thu về trước ngực, nắm đấm phải phát ra như liên châu</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 109</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig241-L2F109.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig241-L2F109.jpg" alt="图 109" loading="lazy"></a>
+  <div class="figure-caption">Nắm đấm phải rung ra trước, chân trái là thực</div>
+</div>
+<p><span id="p242" class="page-anchor"></span>· 232 · Việc dùng kình của động tác (hai), giống như thợ mộc dùng khoan tay khoan lỗ, có tác dụng kích ra liên hoàn, đây là thức quyền đặc biệt để rèn luyện eo lưng và tính đàn hồi của hai cánh tay.</p>
+<p>Thức thứ năm mươi chín — Ngọc nữ xuyên thoa (ngực hướng tây, chuyển bắc rồi chuyển đông)</p>
+<p>Động tác: Sau khi thức trên phát kình, giả định nắm đấm trái bị thái, tức thì nắm đấm trái hơi thu vào trong rồi duỗi ra, đồng thời bước chân trái phi bộ nhảy tới. (Hình 110) Đồng thời chân phải theo đó tiến lên, đưa thân mình xoay sang phải 180°, đặt chân phải ở phía tây chân trái, để giải thoát việc nắm đấm trái bị thái; và do đó xoay thân dùng bối chiết kháo kình kích phát đối phương. Đồng thời, hai nắm đấm ở trước ngực song nghịch hạ tỏa hợp trụ kình. (Hình 111)</p>
+<p>Thức thứ sáu mươi — Hồi đầu đương môn pháo (ngực hướng đông)</p>
+<p>Từ khi xoay thân của thức trên chân trái thực, qua giai đoạn khuỷu chân phải thực; tiếp đó hai quyền song thuận triền rung kình ra trước lên, lúc này chân trái là thực. (Hình 112)</p>
+<p>Yếu điểm: Bối chiết kháo kình của Thái cực quyền đều là vì liên tùy, là kình bất đắc dĩ mới dùng, là không dễ dàng dùng thân pháp để kích phát. Bởi vì trong quá trình phi thân liên tùy của "Ngọc nữ xuyên thoa"</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 110</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig242-L2F110.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig242-L2F110.jpg" alt="图 110" loading="lazy"></a>
+  <div class="figure-caption">Chân trái phi bộ nhảy tới, chân phải theo lên, thân hình tung lên</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 111</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig242-L2F111.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig242-L2F111.jpg" alt="图 111" loading="lazy"></a>
+  <div class="figure-caption">Xoay thân dùng bối chiết kháo kình, hai nắm đấm trước ngực hạ tỏa hợp kình</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 112</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig242-L2F112.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/chen-style-taijiquan-shen-gu-1963-reader/fig242-L2F112.jpg" alt="图 112" loading="lazy"></a>
+  <div class="figure-caption">Quay đầu hai nắm đấm song thuận triền rung kình ra trước lên</div>
+</div>
+<p>· 233 · Trong động tác này, vận dụng cú tựa (kháo) của thân xoay, không những có thể thoát được tay bị thái (bắt), mà còn có thể lập tức dùng thức "quay đầu pháo đương môn" (hồi đầu đương môn pháo) để công kích đối phương. Đây là cách đơn giản nhất dùng để vừa thoát vừa phát kình, cho nên trong quá trình xoay thân thường dùng cú tựa gấp sau lưng để cầu thoát. Bước bay xoay thân của "Ngọc Nữ Xuyên Thoa," cùng lấy kháo kình công kích đối phương, cũng là một ví dụ khác của việc vận dụng nguyên tắc trên. Yếu điểm của nó là trước khi nhảy bật ra phải trầm kình ở chân phải trước, sau đó mới bước chân trái bật tới trước. Trong quá trình "hạ cánh," còn phải chú ý giữ thân trung chính, đây là điều kiện tất yếu để vận dụng kháo kình. Tiếp đó, hai quyền lại thuận triền mà đẩu kình ra.</p></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #059669; }
+body.dark-mode .figure-wrap { background: #1e1e1e; border-color: #333; }
+body.dark-mode .posture-list li { border-color: #333; }
+#reading-progress {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999; width: 0%; transition: width 0.1s;
+}
+.reader-layout {
+  display: block; max-width: 900px; margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.4rem; }
+.toc-link {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.87rem;
+  display: block; padding: 4px 6px; border-radius: 6px; line-height: 1.35;
+}
+.toc-link:hover { background: rgba(197,155,39,0.12); color: var(--accent-crimson); }
+.toc-link .pg { display: block; font-size: 0.72rem; color: #a8a29e; }
+.reader-tools { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tool-btn {
+  flex: 1; background: none; border: 1px solid #e7e5e4; color: var(--text-primary);
+  border-radius: 8px; padding: 6px 4px; cursor: pointer; font-size: 0.8rem;
+  font-family: inherit;
+}
+.tool-btn:hover { border-color: var(--accent-gold); color: var(--accent-crimson); }
+body.dark-mode .tool-btn { border-color: #333; }
+.reader-content { font-size: 17px; line-height: 1.8; }
+.book-hero {
+  background: linear-gradient(135deg, #fef9ef 0%, #fdf3e3 100%);
+  border: 1px solid #f0e0c0; border-radius: 16px;
+  padding: 2.2rem; margin-bottom: 2.5rem;
+}
+body.dark-mode .book-hero { background: #1e1a14; border-color: #4a3f2a; }
+.book-badge {
+  display: inline-block; background: var(--accent-crimson); color: #fff;
+  font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem;
+  margin: 0 0 0.4rem; color: var(--text-primary); line-height: 1.2;
+}
+.book-orig-title { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+.book-tags span {
+  background: rgba(197,155,39,0.14); border: 1px solid rgba(197,155,39,0.4);
+  color: #8a6a12; font-size: 0.78rem; font-weight: 600;
+  padding: 3px 11px; border-radius: 999px;
+}
+body.dark-mode .book-tags span { color: #e5c76b; }
+.book-pdf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  background: var(--accent-crimson); color: #fff !important;
+  font-size: 0.88rem; font-weight: 700; transition: opacity 0.15s;
+}
+.book-pdf-link:hover { opacity: 0.88; }
+.chapter-block { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem; margin-bottom: 1.5rem;
+}
+.chapter-num {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--accent-gold); display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem;
+  color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3;
+}
+.chapter-sub {
+  font-size: 1.08rem; font-weight: 700; color: var(--accent-crimson);
+  margin: 1.6rem 0 0.6rem;
+}
+/* Table of contents. Books whose printed TOC is transcribed as a flat
+   "Title ...... (123)" list emit these rows from build_html.py; without this
+   block the rows lose their leaders and their indentation. Indentation encodes
+   the hierarchy, so it is applied here rather than in the source. */
+.toc-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.4rem;
+  color: var(--accent-crimson); margin: 2rem 0 0.9rem;
+}
+.toc-row {
+  display: flex; align-items: baseline; gap: 0.4em;
+  padding: 0.18rem 0; font-size: 0.94rem; line-height: 1.45;
+}
+.toc-title { flex: 0 1 auto; }
+.toc-dots {
+  flex: 1 1 auto; min-width: 1.2em;
+  border-bottom: 1px dotted #d9d2c6; transform: translateY(-0.32em);
+}
+.toc-page {
+  flex: 0 0 auto; color: #a8a29e; font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
+}
+.toc-lvl0 { margin-top: 1.6rem; }
+.toc-lvl0 > .toc-title { font-weight: 700; font-size: 1.06rem; color: var(--accent-crimson); }
+.toc-lvl1 { margin-left: 1.1rem; }
+.toc-lvl1 > .toc-title { font-weight: 600; }
+.toc-lvl2 { margin-left: 2.3rem; }
+.toc-lvl3 { margin-left: 3.5rem; }
+.toc-lvl3 > .toc-title { color: var(--text-secondary); }
+body.dark-mode .toc-dots { border-bottom-color: #3f3a33; }
+body.dark-mode .toc-page { color: #78716c; }
+@media (max-width: 640px) {
+  .toc-lvl1 { margin-left: 0.7rem; }
+  .toc-lvl2 { margin-left: 1.4rem; }
+  .toc-lvl3 { margin-left: 2.1rem; }
+}
+/* Title page / colophon / copyright page. build_html.py emits one of these per
+   printed line; without the class they collapse into a normal paragraph and the
+   lines run together. */
+.display-line { margin: 0.15rem 0; line-height: 1.6; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled {
+  color: #c7c2bd; pointer-events: none; cursor: default;
+}
+body.dark-mode .page-nav a.disabled { color: #555; }
+.posture-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+.posture-list li {
+  border-left: 3px solid #eadfc8; padding: 4px 0 4px 14px; margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.quote-box {
+  background: #fefce8; border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  font-style: italic; color: #713f12;
+}
+.key-point {
+  background: #f0fdf4; border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+body.dark-mode .key-point { color: #a7f3d0; }
+.figure-wrap {
+  margin: 2rem 0; text-align: center; background: rgba(0,0,0,0.02);
+  padding: 16px; border-radius: 10px; border: 1px solid #e5e5e5;
+}
+.figure-wrap img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption-title {
+  font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson);
+  margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.figure-caption {
+  font-size: 0.88rem; color: #78716c; margin-top: 10px; font-style: italic;
+}
+.figure-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.figure-row .figure-wrap { flex: 1 1 220px; max-width: 260px; margin: 0; }
+.page-marker {
+  font-size: 0.74rem; color: #a8a29e; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 3px;
+}
+
+.printed-page-ref { display:block; margin:.35em 0 1.1em; font-size:.78rem; font-style:italic; color:#a8a29e; letter-spacing:.01em; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 45: 5. Yếu lĩnh động tác thôi thủ — Toàn Thư Thái Cực Quyền | TaichiNOW</title>
+<meta name="description" content="Chương 45 của Toàn Thư Thái Cực Quyền: 5. Yếu lĩnh động tác thôi thủ">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-trang-1.html#sec00">Phần 1</a></li>
+        <li><a href="ch02-iii-su-nam-giu-hu-thuc.html#sec01">Phần 2</a></li>
+        <li><a href="ch03-iv-khinh-phu-tram-hu-thuc.html#sec02">Phần 3</a></li>
+        <li><a href="ch04-dac-diem-thu-nam-van-dong-tiet-tiet-quan-xuyen-yeu-tich-dan.html#sec03">Phần 4</a></li>
+        <li><a href="ch05-i-thuc-chat-tiet-tiet-quan-xuyen.html#sec04">Phần 5</a></li>
+        <li><a href="ch06-ii-quan-he-giua-dong-toan-dong-yeu-tich.html#sec05">Phần 6</a></li>
+        <li><a href="ch07-iii-tiet-tiet-quan-xuyen-tang-cuong-khop.html#sec06">Phần 7</a></li>
+        <li><a href="ch08-v-su-nam-giu-tiet-tiet-quan-xuyen.html#sec07">Phần 8</a></li>
+        <li><a href="ch09-dac-diem-thu-sau-van-dong-a-thanh-lien-tuong-bat-doan-thao-t.html#sec08">Phần 9</a></li>
+        <li><a href="ch10-i-su-thuc-hien-a-thanh.html#sec09">Phần 10</a></li>
+        <li><a href="ch11-ii-thuc-le-danh-gia-hanh-quyen.html#sec10">Phần 11</a></li>
+        <li><a href="ch12-iii-than-dong-dang-a-thanh1.html#sec11">Phần 12</a></li>
+        <li><a href="ch13-dac-diem-thu-bay-van-dong-cuong-nhu-tuong-te-nhu-den-cuong-c.html#sec12">Phần 13</a></li>
+        <li><a href="ch14-i-quyen-cuong-nhu-tuong-te.html#sec13">Phần 14</a></li>
+        <li><a href="ch15-ii-thoi-ky-cau-nhuyen-toi-cuong.html#sec14">Phần 15</a></li>
+        <li><a href="ch16-iv-bien-hoan-cuong-nhu.html#sec15">Phần 16</a></li>
+        <li><a href="ch17-v-su-nam-giu-cuong-nhu-tuong-te.html#sec16">Phần 17</a></li>
+        <li><a href="ch18-dac-diem-thu-tam-van-dong-khoai-man-tuong-gian-man-den-khoai.html#sec17">Phần 18</a></li>
+        <li><a href="ch19-i-trinh-phat-trien-khoai-man.html#sec18">Phần 19</a></li>
+        <li><a href="ch20-ii-thoi-gian-dieu-kien-viec-chuyen-man-sang-khoai.html#sec19">Phần 20</a></li>
+        <li><a href="ch21-iii-khoai-man-tuong-gian-cau-thanh-kinh-biet.html#sec20">Phần 21</a></li>
+        <li><a href="ch22-iv-su-nam-giu-khoai-man-tuong-gian.html#sec21">Phần 22</a></li>
+        <li><a href="ch23-ket-ngu.html#sec22">Phần 23</a></li>
+        <li><a href="ch24-thu-ten-quyen-thuc-lo-tran-thuc-thai-cuc-quyen.html#sec23">Phần 24</a></li>
+        <li><a href="ch25-may-diem-noi-ro-ve-do-giai.html#sec24">Phần 25</a></li>
+        <li><a href="ch26-tran-thuc-thai-cuc-quyen-lo.html#sec25">Phần 26</a></li>
+        <li><a href="ch27-thuc-thu-ba-muoi-ba-ta-qua-tien-phao-1.html#sec26">Phần 27</a></li>
+        <li><a href="ch28-thuc-thu-ba-muoi-ta-qua-tien-phao-2-nguc-huong-nam.html#sec27">Phần 28</a></li>
+        <li><a href="ch29-thuc-thu-ba-muoi-lam-huu-qua-tien-phao-1-nguc-nam-chuyen-bac.html#sec28">Phần 29</a></li>
+        <li><a href="ch30-thuc-thu-ba-muoi-tam-phach-gia-nguc-huong-dong-bac.html#sec29">Phần 30</a></li>
+        <li><a href="ch31-thuc-thu-ba-muoi-chin-phien-hoa-vu-nguc-dong-nam-chuyen-dong.html#sec30">Phần 31</a></li>
+        <li><a href="ch32-thuc-thu-bon-muoi-yem-thu-quang-chuy-nguc-dong-bac-chuyen-do.html#sec31">Phần 32</a></li>
+        <li><a href="ch33-thuc-thu-bon-muoi-phuc-ho-nguc-dong-chuyen-dong-nam.html#sec32">Phần 33</a></li>
+        <li><a href="ch34-thuc-thu-61-ngoc-nu-xuyen-thoa-nguc-huong-dong-chuyen-bac-ch.html#sec33">Phần 34</a></li>
+        <li><a href="ch35-thuc-thu-62-quay-dau-phao-duong-mon-nguc-huong-tay.html#sec34">Phần 35</a></li>
+        <li><a href="ch36-thuc-thu-64-nuu-loan-chuu-nguc-huong-nam-chuyen-bac.html#sec35">Phần 36</a></li>
+        <li><a href="ch37-thuc-thu-65-thuan-loan-chuu-nguc-huong-bac.html#sec36">Phần 37</a></li>
+        <li><a href="ch38-thuc-thu-67-oa-ly-phao-nguc-huong-bac.html#sec37">Phần 38</a></li>
+        <li><a href="ch39-thuc-thu-70-kim-cang-dao-chuy-nguc-huong-bac.html#sec38">Phần 39</a></li>
+        <li><a href="ch40-thuc-thu-71-thau-the-nguc-huong-bac.html#sec39">Phần 40</a></li>
+        <li><a href="ch41-1-yeu-nghia-chung-day-tay.html#sec40">Phần 41</a></li>
+        <li><a href="ch42-2-phuong-phap-day-tay-thuc-tran.html#sec41">Phần 42</a></li>
+        <li><a href="ch43-3-hai-su-dien-bien-day-tay-thuc-tran.html#sec42">Phần 43</a></li>
+        <li><a href="ch44-4-thoi-thu-thai-cuc-quyen-kiem-bi-ca-am-duong.html#sec43">Phần 44</a></li>
+        <li><a href="ch45-5-yeu-linh-dong-tac-thoi-thu.html#sec44">Phần 45</a></li>
+        <li><a href="ch46-bon-ngu-luc-tran-ham-ve-thap-tam-muc-quan-hai-1.html#sec45">Phần 46</a></li>
+        <li><a href="ch47-sau-tuyen-doan-van-ngan-ve-quyen-luan-tran-ham-nguoi-khac.html#sec46">Phần 47</a></li>
+        <li><a href="ch48-ngoi-khen-ba-doi-ho-do.html#sec47">Phần 48</a></li>
+        <li><a href="ch49-thuyet-minh-ve-hinh-anh-sach.html#sec48">Phần 49</a></li>
+        <li><a href="ch50-the-thu-hai-khoi-the.html#sec49">Phần 50</a></li>
+        <li><a href="ch51-the-thu-ba-lam-tuoc-vi.html#sec50">Phần 51</a></li>
+        <li><a href="ch52-the-thu-4-don-tien-don.html#sec51">Phần 52</a></li>
+        <li><a href="ch53-the-thu-5-thu-thuong-the-nang-tay-len.html#sec52">Phần 53</a></li>
+        <li><a href="ch54-the-thu-6-bach-hac-luong-si-hac-trang-xoe-canh.html#sec53">Phần 54</a></li>
+        <li><a href="ch55-the-thu-7-ta-lau-tat-ao-bo-tay-trai-vuot-dau-goi-buoc-xoay.html#sec54">Phần 55</a></li>
+        <li><a href="ch56-vii-phan-tich-ky-thuat-the-thu-bay-ta-lau-tat-ao-bo-tiep.html#sec55">Phần 56</a></li>
+        <li><a href="ch57-i-cach-dung.html#sec56">Phần 57</a></li>
+        <li><a href="ch58-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua.html#sec57">Phần 58</a></li>
+        <li><a href="ch59-i-cach-dung-2.html#sec58">Phần 59</a></li>
+        <li><a href="ch60-iii-yeu-linh.html#sec59">Phần 60</a></li>
+        <li><a href="ch61-i-cach-dung-3.html#sec60">Phần 61</a></li>
+        <li><a href="ch62-ii-qua-trinh-dong-tac.html#sec61">Phần 62</a></li>
+        <li><a href="ch63-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-2.html#sec62">Phần 63</a></li>
+        <li><a href="ch64-vii-phan-tich-ky-thuat.html#sec63">Phần 64</a></li>
+        <li><a href="ch65-vi-cach-day-cach-luyen.html#sec64">Phần 65</a></li>
+        <li><a href="ch66-iv-yeu-cau.html#sec65">Phần 66</a></li>
+        <li><a href="ch67-iii-yeu-linh-2.html#sec66">Phần 67</a></li>
+        <li><a href="ch68-vi-cach-day-cach-luyen-2.html#sec67">Phần 68</a></li>
+        <li><a href="ch69-iii-yeu-linh-3.html#sec68">Phần 69</a></li>
+        <li><a href="ch70-v-pham-sai-lam-nguyen-nhan-phat-sinh-cach-sua.html#sec69">Phần 70</a></li>
+        <li><a href="ch71-vii-phan-tich-ky-thuat-2.html#sec70">Phần 71</a></li>
+        <li><a href="ch72-iv-yeu-cau-2.html#sec71">Phần 72</a></li>
+        <li><a href="ch73-vi-phep-day-phep-luyen.html#sec72">Phần 73</a></li>
+        <li><a href="ch74-iii-yeu-linh-4.html#sec73">Phần 74</a></li>
+        <li><a href="ch75-vi-phep-day-phep-luyen-2.html#sec74">Phần 75</a></li>
+        <li><a href="ch76-i-phep-dung.html#sec75">Phần 76</a></li>
+        <li><a href="ch77-vi-cach-day-cach-luyen-3.html#sec76">Phần 77</a></li>
+        <li><a href="ch78-iii-yeu-linh-5.html#sec77">Phần 78</a></li>
+        <li><a href="ch79-i-cach-dung-4.html#sec78">Phần 79</a></li>
+        <li><a href="ch80-iv-yeu-cau-3.html#sec79">Phần 80</a></li>
+        <li><a href="ch81-vii-phan-tich-ky-thuat-3.html#sec80">Phần 81</a></li>
+        <li><a href="ch82-iii-yeu-linh-6.html#sec81">Phần 82</a></li>
+        <li><a href="ch83-i-cach-dung-5.html#sec82">Phần 83</a></li>
+        <li><a href="ch84-iii-yeu-linh-7.html#sec83">Phần 84</a></li>
+        <li><a href="ch85-iv-yeu-cau-4.html#sec84">Phần 85</a></li>
+        <li><a href="ch86-vii-phan-tich-ky-thuat-4.html#sec85">Phần 86</a></li>
+        <li><a href="ch87-i-cach-dung-6.html#sec86">Phần 87</a></li>
+        <li><a href="ch88-vii-phan-tich-ky-thuat-5.html#sec87">Phần 88</a></li>
+        <li><a href="ch89-iii-yeu-linh-8.html#sec88">Phần 89</a></li>
+        <li><a href="ch90-iv-yeu-cau-5.html#sec89">Phần 90</a></li>
+        <li><a href="ch91-vi-cach-day-cach-luyen-tap.html#sec90">Phần 91</a></li>
+        <li><a href="ch92-v-loi-pham-nguyen-nhan-phat-sinh-cach-sua-chua.html#sec91">Phần 92</a></li>
+        <li><a href="ch93-i-cach-dung-7.html#sec92">Phần 93</a></li>
+        <li><a href="ch94-v-loi-thuong-mac-nguyen-nhan-cach-sua.html#sec93">Phần 94</a></li>
+        <li><a href="ch95-i-cach-dung-8.html#sec94">Phần 95</a></li>
+        <li><a href="ch96-vi-cach-day-cach-luyen-tap-2.html#sec95">Phần 96</a></li>
+        <li><a href="ch97-iii-yeu-linh-9.html#sec96">Phần 97</a></li>
+        <li><a href="ch98-i-cach-dung-9.html#sec97">Phần 98</a></li>
+        <li><a href="ch99-iii-yeu-linh-10.html#sec98">Phần 99</a></li>
+        <li><a href="ch100-vi-cach-day-cach-luyen-tap-3.html#sec99">Phần 100</a></li>
+        <li><a href="ch101-i-cach-dung-10.html#sec100">Phần 101</a></li>
+        <li><a href="ch102-i-cach-dung-11.html#sec101">Phần 102</a></li>
+        <li><a href="ch103-vi-cach-day-cach-luyen-4.html#sec102">Phần 103</a></li>
+        <li><a href="ch104-the-thu-51-don-tien.html#sec103">Phần 104</a></li>
+        <li><a href="ch105-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-3.html#sec104">Phần 105</a></li>
+        <li><a href="ch106-vi-cach-day-cach-luyen-5.html#sec105">Phần 106</a></li>
+        <li><a href="ch107-the-thu-53-lam-tuoc-vi.html#sec106">Phần 107</a></li>
+        <li><a href="ch108-the-thu-54-don-tien.html#sec107">Phần 108</a></li>
+        <li><a href="ch109-the-thu-56-don-tien.html#sec108">Phần 109</a></li>
+        <li><a href="ch110-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-4.html#sec109">Phần 110</a></li>
+        <li><a href="ch111-the-thu-58-kim-ke-doc-lap.html#sec110">Phần 111</a></li>
+        <li><a href="ch112-the-thu-59-ta-huu-dao-nien-hau.html#sec111">Phần 112</a></li>
+        <li><a href="ch113-the-thu-60-ta-phi-the.html#sec112">Phần 113</a></li>
+        <li><a href="ch114-the-thu-63-ta-lau-tat-ao-bo.html#sec113">Phần 114</a></li>
+        <li><a href="ch115-the-thu-65-phien-thong-boi.html#sec114">Phần 115</a></li>
+        <li><a href="ch116-the-thu-68-thuong-bo-lam-tuoc-vi.html#sec115">Phần 116</a></li>
+        <li><a href="ch117-the-thu-71-don-tien.html#sec116">Phần 117</a></li>
+        <li><a href="ch118-the-thu-72-cao-tham-dai-xuyen-chuong.html#sec117">Phần 118</a></li>
+        <li><a href="ch119-the-thu-73-thap-thoi.html#sec118">Phần 119</a></li>
+        <li><a href="ch120-the-thu-74-tien-bo-chi-dang-chuy.html#sec119">Phần 120</a></li>
+        <li><a href="ch121-the-thu-75-thuong-bo-lam-tuoc-vi.html#sec120">Phần 121</a></li>
+        <li><a href="ch122-the-thu-76-don-tien.html#sec121">Phần 122</a></li>
+        <li><a href="ch123-the-thu-79-thoai-bo-khoa-ho.html#sec122">Phần 123</a></li>
+        <li><a href="ch124-the-thu-80-chuyen-than-bai-lien.html#sec123">Phần 124</a></li>
+        <li><a href="ch125-the-thu-81-loan-cung-xa-ho.html#sec124">Phần 125</a></li>
+        <li><a href="ch126-the-thu-82-tien-bo-ban-lan-chuy.html#sec125">Phần 126</a></li>
+        <li><a href="ch127-the-thu-83-nhu-phong-be.html#sec126">Phần 127</a></li>
+        <li><a href="ch128-so-do-lo-tuyen-van-dong-duong-thuc-thai-cuc-quyen.html#sec127">Phần 128</a></li>
+        <li><a href="ch129-tiet-thu-dinh-bo-day-tay.html#sec128">Phần 129</a></li>
+        <li><a href="ch130-so-do-bo-phap-hoat-bo-day-tay.html#sec129">Phần 130</a></li>
+        <li><a href="ch131-tiet-thu-dai-lu.html#sec130">Phần 131</a></li>
+        <li><a href="ch132-so-do-phuong-huong-bo-phap-dai-lu.html#sec131">Phần 132</a></li>
+        <li><a href="ch133-i-ban-ve-viec-luyen-tap-thai-cuc-quyen.html#sec132">Phần 133</a></li>
+        <li><a href="ch134-ban-ve-viec-luyen-tap-thai-cuc-quyen-tiep.html#sec133">Phần 134</a></li>
+        <li><a href="ch135-iv-thap-tam-the-ca.html#sec134">Phần 135</a></li>
+        <li><a href="ch136-viii-so-luoc-ban-ve-luyen-thai-cuc-quyen-tiep.html#sec135">Phần 136</a></li>
+        <li><a href="ch137-ix-nghien-cuu-ly-luan-thai-cuc-quyen-tai-quan-tiep.html#sec136">Phần 137</a></li>
+        <li><a href="ch138-xii-ban-ve-phep-luyen-duong-thuc-thai-cuc-quyen.html#sec137">Phần 138</a></li>
+        <li><a href="ch139-bat-loi-bat-thu.html#sec138">Phần 139</a></li>
+        <li><a href="ch140-bat-nhi-loi-bat-thu-hai.html#sec139">Phần 140</a></li>
+        <li><a href="ch141-ngo-thuc-thai-cuc-quyen-quyen-thuc-do-giai.html#sec140">Phần 141</a></li>
+        <li><a href="ch142-thu-don-dap-thu.html#sec141">Phần 142</a></li>
+        <li><a href="ch143-thu-hai-song-dap-thu.html#sec142">Phần 143</a></li>
+        <li><a href="ch144-thu-ba-tam-dong-tac-ban.html#sec143">Phần 144</a></li>
+        <li><a href="ch145-vuong-tong-nhac-luan-thai-cuc-quyen.html#sec144">Phần 145</a></li>
+        <li><a href="ch146-vu-vu-tuong-luan-thai-cuc-quyen.html#sec145">Phần 146</a></li>
+        <li><a href="ch147-thap-tam-the-hanh-cong-tam-giai.html#sec146">Phần 147</a></li>
+        <li><a href="ch148-da-thu-ca.html#sec147">Phần 148</a></li>
+        <li><a href="ch149-so-luoc-ve-vo-thuc-thai-cuc-quyen.html#sec148">Phần 149</a></li>
+        <li><a href="ch150-loi-noi-dau.html#sec149">Phần 150</a></li>
+        <li><a href="ch151-chuong-yeu-linh-thai-cuc-quyen.html#sec150">Phần 151</a></li>
+        <li><a href="ch152-tau-gia-da-thu-thai-cuc-quyen.html#sec151">Phần 152</a></li>
+        <li><a href="ch153-vai-the-hoi-ve-cach-day-cach-luyen.html#sec152">Phần 153</a></li>
+        <li><a href="ch154-thuyet-minh-do-tiet.html#sec153">Phần 154</a></li>
+        <li><a href="ch155-vi-du-ve-do-tiet.html#sec154">Phần 155</a></li>
+        <li><a href="ch156-chuong-hai-do-giai-thai-cuc-quyen-vo-thuc.html#sec155">Phần 156</a></li>
+        <li><a href="ch157-may-diem-giai-thich-ve-do-giai.html#sec156">Phần 157</a></li>
+        <li><a href="ch158-do-giai-vu-thuc-thai-cuc-quyen.html#sec157">Phần 158</a></li>
+        <li><a href="ch159-thai-cuc-quyen-luan.html#sec158">Phần 159</a></li>
+        <li><a href="ch160-da-thu-ca-vuong-tong-nhac-dinh.html#sec159">Phần 160</a></li>
+        <li><a href="ch161-da-thu-tan-phong.html#sec160">Phần 161</a></li>
+        <li><a href="ch162-tan-phong-mat-quyet-ly-dich-du.html#sec161">Phần 162</a></li>
+        <li><a href="ch163-mat-quyet-chua-ro-tac-gia.html#sec162">Phần 163</a></li>
+        <li><a href="ch164-loi-tua.html#sec163">Phần 164</a></li>
+        <li><a href="ch165-muc-luc.html#sec164">Phần 165</a></li>
+        <li><a href="ch166-gioi-thieu-van-tat-ve-ton-thuc-thai-cuc-quyen.html#sec165">Phần 166</a></li>
+        <li><a href="ch167-tong-thuyet-ve-thai-cuc-quyen.html#sec166">Phần 167</a></li>
+        <li><a href="ch168-tong-thuyet-ve-thai-cuc-quyen-tiep.html#sec167">Phần 168</a></li>
+        <li><a href="ch169-tong-thuyet-ve-thai-cuc-quyen-tiep-2.html#sec168">Phần 169</a></li>
+        <li><a href="ch170-thuong-bien-1-ten-thuc.html#sec169">Phần 170</a></li>
+        <li><a href="ch171-1-thoi-thu-phap-thai-cuc-quyen-taijiquan-tuishou-fa.html#sec170">Phần 171</a></li>
+        <li><a href="ch172-2-ky-kich-thai-cuc-quyen-taijiquan-ji-ji.html#sec171">Phần 172</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../quan_shu_chen_shi_1995_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Toàn Thư Thái Cực Quyền · Phần 45</p>
+<h3 class="chapter" id="ch45">5. Yếu lĩnh động tác thôi thủ</h3>
+
+<div class="partnav"><a href="ch44-4-thoi-thu-thai-cuc-quyen-kiem-bi-ca-am-duong.html"><span class="k">← Chương 44</span>4. Thôi thủ Thái Cực Quyền là kiêm bị cả âm và dương</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch46-bon-ngu-luc-tran-ham-ve-thap-tam-muc-quan-hai-1.html" style="text-align:right"><span class="k">Chương 46 →</span>Bốn. Ngữ lục của Trần Hâm về thập tam mục của quan hài ①</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Thẩm Gia Trình.</p>
+<span id="chuong-44"></span>
+
+
+  <div class="chapter-header">
+    
+  </div>
+<div class="chapter-sub">5. Yếu lĩnh động tác thôi thủ</div>
+<div class="chapter-sub">(1) Thân pháp</div>
+<p>Khi thôi thủ ắt phải lập thân trung chính, bất thiên bất ỷ, hư lĩnh đỉnh kình, khí trầm đan điền, vĩ lư trung chính, thảng kình mãn túc, trầm kiên đọa trửu, hàm hung bạt bối, thượng hạ tương tùy, huyệt bách hội trên đỉnh đầu và huyệt hội âm trong đũng luôn giữ được đường thẳng đứng ("thượng hạ nhất điều tuyến", trên dưới một đường); cột sống phải từng đốt từng đốt tùng trầm mà lại hư hư đối chuẩn, phần eo phải tùng trầm trực thụ, phải hơi chuyển động, không thể mềm nhũn sụp đổ, không thể lắc lư; khiến thân pháp khi bất kỳ biến hóa nào đều giữ được trung chính, có thể tám mặt chống đỡ; các đốt xương cột sống và các xương sườn ngực lưng từng đốt từng đốt tùng trầm, mà ý hướng lên trên (nội kình từ trong đũng hướng lên trên tới lưng sống, gọi là "khí thiếp bối", "lực do tích phát", "chủ tể tại yêu"), kỵ cúi về trước, lệch trái nghiêng phải, càng kỵ ngửa ra sau; khi tay chân tiến tới, huyệt mệnh môn của eo lưng chống ra sau, thảng kình phải chìm xuống, điều này nhất trí với yêu cầu luyện quyền. Lấy huyệt mệnh môn của eo lưng (hậu đan điền) làm trục tâm điều tiết sự thăng bằng của toàn thân, và làm nguồn gốc của sức bộc phát lấy eo làm chủ tể, chúng tôi đã chứng minh trong thực tiễn rằng nó là then chốt để luyện tốt kỹ xảo thôi thủ.</p>
+<p>Sự biến hóa hư thực của thân pháp, then chốt ở chỗ lấy huyệt mệnh môn của eo lưng làm trục tâm mà rút đổi hai khe eo trái phải (hai thận); khe eo rút về trái thì trái thực mà phải hư, khe eo rút về phải thì phải thực mà trái hư; lấy huyệt mệnh môn của eo lưng làm trục mà hai thận trái phải rút đổi (hình dạng bên ngoài là sự rút đổi hai bên eo) biến hóa hư thực, là nơi tổng hư thực của toàn thân, cũng là nơi có quyết khiếu "nguyên động yêu tích", "nội động bất lệnh nhân tri" (nguồn động ở eo lưng, động bên trong không để người biết).</p>
+<p><span id="p248" class="page-anchor"></span>· 253 · Thái Cực Quyền dưới yêu cầu thân pháp nói trên, vận dụng "triêm, liên, niêm, tùy" (dính, liền, dính chặt, theo), lấy bất đâu bất đỉnh, bất biển bất kháng làm nguyên tắc, đối phương ấn thì ta bằng (peng), đối phương tề thì ta lũm (lu), chỉ bốn chữ bằng lũm tề ấn này, tuần hoàn vô cùng, lại càng phải phân biệt rõ ràng kình biệt, luyện tập lâu dài, theo quy theo củ, đánh tốt nền tảng vững chắc viên mãn nhu thuận.</p>
+<p>Thái Cực Quyền và thôi thủ đều trước tiên chú trọng thân pháp, thân pháp đoan chính mới có thể chế người mà không bị người chế, thân pháp sai lệch thì khắp nơi dâng sơ hở cho người, sao có thể chế người? Cái gọi là "kỳ thân chính, bất lệnh nhi tòng; kỳ thân bất chính, tuy lệnh bất tòng" (thân mình chính thì không ra lệnh mà người theo; thân mình không chính thì dù ra lệnh người không theo), chính là đạo lý này. Thái Cực Quyền và thôi thủ, lấy hư tĩnh làm cực trí, lấy trung chính thân pháp làm cơ sở, hư thì không gì không bao dung, tĩnh thì không gì không ứng, thân pháp trung chính thì đã có thể tám mặt chống đỡ, cũng có thể tám mặt chuyển hoán, trên dưới bốn bên, chuyển tiếp linh mẫn, cho nên lý luận truyền thống của Thái Cực Quyền và thôi thủ đều nhấn mạnh thời thời trung chính. Danh quyền sư nổi tiếng Trần Gia Câu là Trần Trường Hưng (1771—1853) nổi tiếng vì lập thân trung chính, người đương thời gọi ông là "Bài vị đại vương". Trần thức quyền gia lấy lập thân trung chính làm đệ nhất yếu nghĩa, các quyền gia Dương, Vũ nhị thức phát triển trực tiếp từ Trần thức cũng nghiêm khắc tuân thủ quy định này, đáng để chúng ta nghiên cứu nguyên lý ở đâu.</p>
+<div class="chapter-sub">(2) Thủ pháp</div>
+<p>Khi mới học thôi thủ, triền ti chuyển vòng phải rộng lớn, cầu cho viên mãn nhu thuận, không có chỗ lồi lõm, khuyết hãm, gián đoạn và đỉnh kháng (tham kiến đặc điểm thứ ba của chương thứ nhất), động tác phải chậm không nên nhanh, nhanh thì khắp nơi dễ trượt qua; sau khi công phu tăng sâu thì dần dần thu vòng nhỏ lại, có thể chậm có thể nhanh, thích hợp với yêu cầu "động cấp tắc cấp ứng, động hoãn tắc hoãn tùy" (động gấp thì ứng gấp, động chậm thì theo chậm).</p>
+<p>Khớp vai luôn phải tùng nhu viên hoạt mà hạ trầm, khớp khuỷu luôn phải rơi xuống, dùng ý rót vào. Tiến công dẫn hóa luôn phải thủ cánh tay tùng nhu, dụng ý bất dụng lực, mới có thể linh hoạt vô trệ, khiến đối phương không dễ phát giác động hướng của ta. Cột sống tùng trầm, xương cùng hữu lực, thảng kình chìm tốt, tự nhiên ổn trọng mà lại linh hoạt. Phàm những điều này, luôn luôn quý ở sự nghiêm cẩn.</p>
+<p><span id="p249" class="page-anchor"></span>Quyết khiếu của dẫn hóa tiến kích là ở chỗ nội kình không để người biết, ý ở trước người, lấy điểm dính làm trục tâm xoay chuyển, từng bước cầu được "tiên dẫn hậu tiến", "bán dẫn bán tiến", "tức— · 254 · —tức dẫn tiến". Trần Hâm gọi là: "Lưỡng thủ chuyển lai tự loa văn" (Hai tay xoay lại như vân ốc), "Cách bạc lệnh kỳ cốt chuyển, phương năng dĩ chân kình dẫn động" (Khiến xương cánh tay chuyển động, mới có thể lấy chân kình dẫn động), khiến đối phương "dục tiến bất đắc thế, dục thoái bất cảm, thử dẫn tiến chi diệu cảnh dã" (muốn tiến không được thế, muốn thoái không dám, ấy là diệu cảnh của dẫn tiến). "Tiên dẫn hậu tiến" là dẫn hóa kình tới khiến nó rơi vào khoảng không rồi mới tiến kích; "bán dẫn bán tiến" là phần cánh tay trên khuỷu hơi lùi về sau, hạ đan điền (tiểu phúc) hơi tiến tới, từ khuỷu xuống đến cổ tay bàn tay tiến theo, thành thế súc hấp mà phát hô; "tức dẫn tức tiến" là tiểu quyển chuyển quan, gọn gàng bắn thẳng, Trần Hâm gọi là "hư lung trá dụ, chỉ vị nhất chuyển" (vây hư lừa dẫn, chỉ vì một chuyển), cũng tức là pháp tiệt kình tới của đối phương. Một mặt luyện quyền, một mặt thôi thủ, sửa chữa thủ pháp, thân pháp, bộ pháp và nhãn pháp; tiến công thoái hóa, thượng hạ tương tùy, khiến từng cái hợp với yếu lĩnh rèn luyện Thái Cực Quyền; minh quy củ nhi thủ quy củ, thoát quy củ nhi hợp quy củ (rõ quy củ mà giữ quy củ, thoát quy củ mà hợp quy củ); kiên trì nguyên tắc, không lấy thắng bại làm niệm, không vọng dụng chuyết lực, mới có thể phát triển kỹ xảo.</p>
+<p>Bắt đầu từ tùng tĩnh, khinh nhu, cùng một bước với luyện quyền; công phu lâu ngày, toàn thân hợp nhất, từ tùng tĩnh, khinh nhu mà dần vào trầm trước, hai vai tùng nhu linh hoạt, hai đầu khuỷu chìm xuống, tay trước đi, tay sau theo; một tay về, tay khác theo, "lưỡng thủ chuyển lai tự loa văn". Hai cánh tay khống chế hai tay đối phương, khống chế các khớp của họ (khớp cổ tay là sao tiết, khớp khuỷu là trung tiết, khớp vai là căn tiết), khiến khó biến hóa linh hoạt. Trong đó còn có cái khéo của cầm nã, triêm tùy không rời, trong tay dường như nhu mà không nhu, dường như cương mà không cương, ngoài như bông, trong như thanh thép, có thể vận dụng phương pháp dẫn tiến lạc không, sau đó mới giảng cầu phóng kình; tiểu quyển chuyển quan, gọn gàng bắn thẳng (Trần Hâm nói "hư lung trá dụ, chỉ vị nhất chuyển"), như điện quang lóe mạnh, nhanh vô cùng. Phàm những điều này đều là ý, không ở ngoại hình, kình của đối phương vừa chạm vào da lông ta, ý của ta đã vào trong xương đối phương, khắp nơi ý ở trước người, thì không đến nỗi đâu đỉnh cứng đụng, không đến nỗi chỉ cậy dũng của huyết khí, cũng không đến nỗi cứng gắng chỉ cầu khinh linh mà không cầu nội kình sung mãn (đúng như Trần Hâm nói "tức cầm tức túng triền ti kình, tu vu thử nội hội thiên cơ" — vừa bắt vừa thả kình triền ti, phải ở trong đó mà hội được thiên cơ). Sau đó càng luyện càng tinh mật, linh xảo, tùy cơ ứng biến, toàn thân khinh linh, chạm vào đâu thì đó động, khắp nơi có thể khúc tuyến nhu hóa, khắp nơi có thể trực tuyến cương phát, khúc trung cầu trực, súc nhi hậu phát, súc phát tòng tâm sở dục.</p>
+<div class="chapter-sub">(3) Bộ pháp</div>
+<p><span id="p250" class="page-anchor"></span>· 255 · Bước động phải khinh linh, hai chân phải phân hư thực, lại phải trong hư có thực, trong thực có hư, hư thực thẩm thấu lẫn nhau, khiến biến hóa được linh hoạt. Hai chân phân rõ hư thực, then chốt ở sự rút đổi của hai khớp háng, sự rút đổi của hai khớp háng nhất trí với sự rút đổi của khe eo, cũng tức là bộ pháp phải biến đổi theo sự biến đổi của thân pháp; sắp muốn bước chân trái, khe eo trước hết rút phải và lạc thực, khí chìm xuống bên phải bụng, khớp háng phải theo đó thu vào mà chìm xuống, chân phải là thực, sau đó chân trái bước ra, ngược lại cũng vậy.</p>
+<p>Bộ pháp lại phải hô ứng với thủ pháp, khiến thượng hạ tương tùy. Cái gọi là "thượng ư lưỡng bạc tương hệ, hạ ư lưỡng thối tương tùy" (trên thì hai cánh tay liên hệ nhau, dưới thì hai chân theo nhau), lại phải khiến tay chân có ý tương hấp tương hệ. Tay với chân hợp, khuỷu với gối hợp, vai với háng hợp — ngoại tam hợp ắt phải chú ý, khiến thượng hạ hoàn chỉnh không loạn. Động ắt tiến bước, tiến ắt "sáo sáp" (bao khớp). Sáo là chân trước khống chế bên ngoài chân trước đối phương, sáp là chân trước chen vào giữa chân bước của đối phương. Sáo phong sáp bức, túc tiến kiên tùy, pháp đại la đại kháo (vận dụng bốn kình thái liệt trửu kháo) chính ở trong đó.</p>
+<p>Sáo phong sáp bức là phương pháp khống chế chân và chiếm thế của hạ thể khi sử dụng pháp vật ngã trong thôi thủ; sự nội khấu và ngoại phiết của khớp gối có tác dụng lấy kình đàn hồi đánh động bước của đối phương, cũng có tác dụng tiêu hóa việc đối phương dùng khớp gối đánh động bước của ta. Trần Hâm nói "quyền trung thôi thị yếu vật pháp, bất minh vật pháp thân đồ lao" (trong quyền thôi là cần pháp vật ngã, không rõ pháp vật ngã thì thân uổng công). Pháp vật ngã trong Trần thức thôi thủ nay vẫn tiếp tục giữ gìn. Hư thực của hai chân phải linh hoạt biến hoán, lại phải tháp yêu lạc khố, kình của chân thực triền nhiễu chìm xuống như cắm sâu vào đất, khiến có thể vững bước khi vận hóa, không vì bị bức, bị dẫn mà phá hoại thân pháp; khi triêm hóa hoàn kích, háng trước chìm xuống, hình cung hơi hướng lên trên mà tiến về trước bức tới, nhất trí với động tác hình xoáy ốc của thủ pháp, mới có thể khi phóng kình lợi dụng tốt hơn phản tác dụng lực của mặt đất, khiến kình khởi từ gót chân, rót vào eo lưng, thông qua xương sống, hình thành ở ngón tay.</p>
+<p><span id="p251" class="page-anchor"></span>Khi thôi thủ, ý phải liền, hình phải liền, sắp muốn phóng kình, bước phải ám tiến, thắng ở tiến bước, không bại ở thoái bước; thân thủ bộ ắt phải thượng hạ tương tùy; tiến tay mà không tiến thân, thân tay tiến mà không tiến bước, không những triêm phong bất thành, phóng kình phù mà bất trầm, không thể liên hoàn phóng kình, mà cũng dễ bị đối phương khiên động. Khi phóng kình, thân, thủ, bộ và nhãn thần phải · 256 · —nhất tề câu đáo, đỉnh gối, đỉnh chân, đỉnh mũi, đỉnh tay và nhãn thần phải nhắm cùng một phương hướng, khiến điểm lực tập trung.</p>
+<div class="chapter-sub">(4) Nhãn pháp</div>
+<p>Các nhà quyền pháp, lấy nhãn thần làm tôn, người phát lệnh là não, người truyền lệnh là nhãn thần, chỗ tinh xảo hoàn toàn dựa vào nhãn pháp. Ý của ta có thể vào trong xương đối phương, hoàn toàn dựa vào nhãn lực có thể "địch tình dự hiểu" (biết trước tình địch), cái gọi là "nhất nhãn khán thấu" (một mắt nhìn thấu). Cổ quyền gia còn coi trọng "tiên dĩ nhãn pháp nhiếp phục đối phương" (trước tiên dùng nhãn pháp khuất phục đối phương); biến hóa của dẫn kình phát kình, ý ở dẫn đầu, ánh mắt cũng theo đó biến hoán, thân thủ bộ theo sự động của ánh mắt mà chuyển hoán. Sắp muốn đánh lên trên, ắt trước phải ngụ ý hướng xuống, ánh mắt cũng phải trước hơi nhìn xuống rồi sau hướng về trước hướng lên bắn thẳng, thì phương hướng phát kình đúng mà ý xa kình dài. Khống chế kình lộ của đối phương lấy tay nào làm chủ, thì ánh mắt phải nhìn vào chỗ đó. Ánh mắt quyết không được có sai lệch với phương hướng động.</p>
+<p>Phóng được người ra, ánh mắt vẫn phải chú về trước, mới có tác dụng "nhất khắc như thủy chiến" (một khắc như trận đầu), "kình đoạn ý bất đoạn" (kình đứt ý không đứt), "thần khí bất lệnh cát đoạn" (thần khí không để bị cắt đứt), "phóng kình như nhập mộc tam phần" (phóng kình như vào gỗ ba phần). Nhãn thần thì phải kiêm cố chu thân thượng hạ, cho nên ánh mắt nên có chuyên chú, mà nhãn thần quyết không được nhìn đờ, ắt phải như nhãn thần của mèo bắt chuột. Có người cho rằng chỗ tinh xảo của Thái Cực Quyền ở xúc giác linh mẫn, không coi trọng vận dụng nhãn pháp, có người thậm chí nghiêng đầu nhìn bên, biểu thị chuyên ở tay nghe kình, đây là hiểu lầm. Phải biết rằng, thị giác, thính giác và xúc giác là hữu cơ phối hợp với nhau, không phải ly tán.</p>
+<div class="chapter-sub">(5) Triêm liên niêm tùy</div>
+<p><span id="p252" class="page-anchor"></span>Khi thôi thủ không những hai tay phải triêm liên niêm tùy, mà thân pháp, bộ pháp cũng phải có ý triêm liên niêm tùy, không trước không sau, phối hợp động tác. Đây là biểu hiện của việc làm được thượng hạ tương tùy, chu thân nhất gia trong động tác. Hình phải liên, ý phải liên, theo sự động của người mà co duỗi tiến thoái, có thể bất đâu, bất đỉnh, bất biển, bất kháng, đây gọi là công phu "đổng kình". Đổng kình là do "xả kỷ tòng nhân" (bỏ mình theo người) mà đến, khắp nơi có thể phát giác và thuận theo quy luật biến hóa khách quan. Có thể làm được thượng hạ tương tùy trên hư thực, thì tiến công thoái hóa có thể xả kỷ tòng nhân và · 257 · —viên chuyển tự như; từ người mà vẫn chủ tể ở ta, không mất trung chính bất thiên của ta, thì có thể chế người mà không bị người chế. Đây là công dụng của thủ pháp, thân pháp và bộ pháp đạt tới triêm liên niêm tùy.</p>
+<p>Vận hóa trước tiên ở eo chân, kế ở ngực, lại kế ở tay. Cho nên nói: "Khẩn yếu toàn tại hung trung yêu gian vận hóa" (điều cốt yếu hoàn toàn ở vận hóa trong ngực và nơi eo), "hữu bất đắc cơ đắc thế xứ, thân tiện tán loạn, tất chí thiên ỷ, kỳ bệnh tất ư yêu thối cầu chi, thượng hạ tiền hậu tả hữu giai nhiên" (có chỗ không được cơ được thế, thân liền tán loạn, ắt đến thiên ỷ, bệnh của nó ắt phải tìm ở eo chân, trên dưới trước sau trái phải đều vậy). Trong đó khúc duỗi vãng lai hình xoáy ốc triền ti, là tác dụng chính của "dẫn tiến lạc không hợp tức xuất" (dẫn vào khoảng không, hợp là phát ra). Tay ở điểm dính không rời mặt chống đỡ, làm sự xoay chuyển động tác trục tâm, có thể viên chuyển tự như, từ triêm hóa mà biết trước hư thực của đối phương. Tác dụng kình của điểm dính thân thủ, tức là diệu dụng "triền trung bất triền" (xoay mà không xoay), trong triêm hóa không mất cơ thế của ta. Khi phóng kình tay không vượt quá đầu ngón chân, kình lực có thể chìm thấu, thân mình cũng không mất trọng tâm, có thể giữ thế súc của "bát diện chi trì" (tám mặt chống đỡ), sau đó có thể "thao thao bất tuyệt", kình không đứt, và có thể liên hoàn phóng kình.</p>
+<p>Trần thức thôi thủ đã yêu cầu làm được không để đối thủ chạm tới thân mình, mà mình có thể khống chế trọng tâm đối phương, lại yêu cầu làm được dám để đối thủ áp sát thân mình, đạt tới đáp tay tức có biện pháp, cận thân cũng có biện pháp. Công phu triêm liên niêm tùy, ở trên tay, cũng ở trên thân. Đáp tay hơi dẫn tức phát kình là một pháp, đáp tay dẫn khiến cận thân, thụ nhi chế chi, chế nhi tồi chi; dĩ thân thụ thủ, khiến một tay hoặc hai tay đối phương đặt vào chỗ vô dụng, mà tay ta vẫn có thể hoạt biến: đây lại là một pháp. Xa không sợ, gần không sợ, có thể xa có thể gần, có thể súc có thể phát, có thể nhu có thể cương, thì đã làm hết được khả năng của thôi thủ.</p>
+<p>Thôi thủ tới giai đoạn đổng kình, vận kình phải hốt ẩn hốt hiện, tự hữu thực vô, tự vô thực hữu; công phu thuần túy giả, theo động hướng kình lực của người, có thể triêm tẩu không chút sai. Nội kình tiềm di mặc hóa, ý ở trước người; nhân bất tri ngã, ngã độc tri nhân (người không biết ta, ta riêng biết người); nhưng y theo chỗ nào, tức y hướng chỗ đó phóng kình (Trần Hâm nói: "Y trước hà xứ hà xứ kích, vô tâm thành hóa như châu viên, thử thị bản địa phong quang, tối nan tối nan" — y theo chỗ nào thì chỗ đó kích, vô tâm thành hóa như châu viên, đây là phong quang bản địa, khó nhất khó nhất). Tùy cảm nhi ứng, tự nhiên có thể không nê (không câu nệ) ở bát pháp, bát kình như bằng tễ ấn thái liệt trửu kháo; đây là từ triêm liên niêm tùy đạt tới đổng— · 258 · —kình giai đoạn, tiến thêm mà đạt tới công phu "giai cập thần minh" là chạm đâu thành viên, có thể hóa có thể phát. Nguyên tắc chung là đối phương lấy cương tới, ta lấy nhu ứng, trong nhu ngụ cương, khiến người khó phòng, thời thời tồn một mảnh linh cơ, khắp nơi mật dính với đối thủ, triêm tẩu tương sinh, ý ở trước người.</p>
+<div class="chapter-sub">(6) Nhất thân bị ngũ cung</div>
+<p>Trần Trọng Sân nói: "Hồn hạo lưu hành, tự nhiên nhất khí. Khinh như dương hoa, kiên như kim thạch. Hổ uy tỉ mãnh, ưng dương tỉ tật. Hành đồng hồ thủy lưu, chỉ mâu hồ sơn trĩ. Tiêu tức tại bất tức bất ly chi gian, tinh thần tại dẫn nhi vị phát chi tế" (Mênh mông chảy khắp, tự nhiên một khí. Nhẹ như hoa dương, cứng như vàng đá. Oai hổ sánh mạnh, tung ưng sánh nhanh. Đi như nước chảy, dừng như núi đứng. Tin tức ở giữa không gần không xa, tinh thần ở lúc dẫn mà chưa phát). Vũ Vũ Tương trong 《Thái Cực Quyền Luận》 cũng nói: "Tĩnh như sơn nhạc, động nhược giang hà" (Tĩnh như núi cao, động như sông lớn). "Tĩnh như sơn nhạc" là biểu thị sự ổn định trầm trọng khi định thế, nghiêm chỉnh hữu lực; mà trong tĩnh có thế dự động, gọi là "thị tĩnh do động" (xem tĩnh như động), cũng tức là "tinh thần tại dẫn nhi vị phát chi tế"; "động nhược giang hà" là biểu thị khi động tác thì sóng nhấp nhô, thao thao bất tuyệt, hình thành sự biến hoán linh động của hư thực, không ngừng tẩu hóa hình cung, không ngừng trực tiến triêm bức, mà khi biến chuyển vẫn chu thân quy củ hợp nhất, gọi là "thị động do tĩnh" (xem động như tĩnh), cũng tức là "tiêu tức tại bất tức bất ly chi gian". 《Thập Tam Thế Hành Công Ca Quyết》 của Dật Danh thị nói "tĩnh trung xúc động động do tĩnh, nhân địch biến hóa thị thần kỳ" (trong tĩnh chạm động, động vẫn như tĩnh, nhân địch biến hóa là thần kỳ), đều là khai triển thôi thủ khi phải "tĩnh như sơn nhạc, động nhược giang hà" chu thân nhất gia, hoàn thành yêu cầu "súc kình như trương cung, phát kình như phóng tiễn" (súc kình như giương cung, phát kình như bắn tên). Trong khẩu thụ quyết khiếu của Trần Vũ hai nhà, sự tương biến súc phát của toàn thân chỉnh thể kình là cần "nhất thân bị ngũ cung". Nay thử tổng hợp phương pháp thao tác cụ thể "nhất thân bị ngũ cung" của Trần Vũ hai nhà, thuật tóm tắt như sau.</p>
+<p>Nhất thân bị ngũ cung chỉ thân khu như một cây cung, hai tay là hai cây cung, hai chân là hai cây cung. Ngũ cung hợp nhất, tức là chỉnh thể kình của toàn thân, "tĩnh như sơn nhạc, động nhược giang hà", có thể súc có thể phát, thao thao bất tuyệt.</p>
+<p><span id="p253" class="page-anchor"></span>Thân cung lấy eo làm cung bả (cán cung), huyệt mệnh môn của eo lưng sau rốn luôn lấy ý rót vào, trung định mà không thiên ỷ dao động; khi phóng kình huyệt mệnh môn phải chống ra sau, "hạp môn" (đốt thứ bảy xương cổ · 259 · —tiết) và xương vĩ lư làm cung sao (đầu cung), trên dưới đối xứng, điều tiết cường độ kình, tăng cường thế súc hấp của nó (thân cung của Vũ thức, lấy đại chùy làm một trong các cung sao, cường độ điều tiết kình nhỏ hơn "hạp môn"). Thân cung bị, thì phần eo nhu nhận trung định mà chìm xuống, trên ở "hạp môn" hư thụ, đại chùy hơi phồng lên có ý thượng đề (tức tác dụng bạt bối, khí thiếp bối); dưới ở xương vĩ lư tiền tống mà nội kình có ý thượng phiên. Xương vĩ lư phải tiền tống, thì không có bệnh đột đồn (đít nhô); đồn lại phải có ý thượng phiếm, thì nội kình từ trong bàng thượng phiên, qua lưng sống tới đỉnh đầu mà xuống, khí lạc đan điền, lâu ngày nhâm đốc nhị mạch tự nhiên tiếp thông.</p>
+<p>Thủ cung lấy khuỷu làm cung bả, lấy ý rót vào tiết khuỷu, khiến trầm trước tùng tĩnh mà có định hướng. Cổ tay và xương quai xanh dưới cổ làm cung sao, cung sao ắt phải cố định, trước sau đối xứng. Tay trong tùng nhu linh hoạt dùng "tọa uyển" (ngồi cổ tay) để cố định (gốc bàn tay hơi trước lực mà chìm xuống, tiết cổ tay nhu mà bất nhuyễn gọi là "tọa uyển"). Xương quai xanh dùng ý để cố định, không để thiên ỷ dao động, xương quai xanh quản động hướng của hai tay, cố định xương quai xanh là tiền đề cố định hai tay.</p>
+<p>Túc cung lấy gối làm cung bả, xương háng và gót chân làm cung sao. Túc cung bị, thì khớp gối hữu lực mà hơi tiền đĩnh, xương háng tùng trầm mà hậu xanh, gót chân chìm xuống mà kình hướng lên trên, kình của eo chân tự nhiên tương thuận tương tùy, gọi là "hữu thượng tất hữu hạ, hữu tiền tất hữu hậu, hữu tả tất hữu hữu" (có trên ắt có dưới, có trước ắt có sau, có trái ắt có phải), tương phản tương thành, đối lạp quân xứng, tự nhiên có thể kình khởi từ gót chân, chủ tể ở eo, thông qua lưng sống, hình thành ở ngón tay.</p>
+<p>Ngũ cung lấy thân cung làm chủ, thủ cung túc cung làm phụ, thế là lấy eo làm trục, trên ở hai bạc tương hệ, dưới ở hai chân tương tùy, thượng hạ tương tùy, trung gian tự nhiên tương tùy. Mỗi khi đứng một thế, ngũ cung câu bị, hình thành thế súc bát diện chi trì. Nguyên động yêu tích, chu thân kình chỉnh, thì có thể "cơ do kỷ phát, lực tòng nhân tá" (cơ do mình phát, lực từ người mượn), hình cung tẩu hóa, trực tuyến phát động, súc phát tương biến, thao thao bất tuyệt. Người công phu cực sâu, chạm đâu thành viên, nhưng y theo chỗ nào tức từ chỗ đó phóng kình.</p>
+<p><span id="p254" class="page-anchor"></span>Ngũ cung hợp nhất là quy định cụ thể của nội ngoại chỉnh thể kình. Luyện quyền và thôi thủ đều nên vừa động thế tức ngũ cung câu bị. Ngũ cung hợp nhất thì "tĩnh như sơn nhạc, động nhược giang hà", · 260 · "Lập thân cần trung chính an thư, năng bát diện chi trì" (đứng thân phải trung chính thoải mái, có thể chống đỡ tám mặt), "kình dĩ khúc súc nhi hữu dư" (kình nhờ cong mà tích lại nên có dư), và thế "khúc trung cầu trực, súc nhi hậu phát" (trong cong tìm thẳng, tích rồi mới phát) liền có thể hiện ra.</p>
+<p class="display-line">(VII) Sự đề hợp súc và phóng khai phát của phát kình</p>
+<p>Luyện tập đẩy tay, nên trước hết thuần thục bốn tay bằng, lũ, tễ, án, ra sức mềm mại thuận hòa tròn đầy, toàn thân một nhà, trước học nhu hóa, sau cầu phát kình. Phát kình nên ra sức khiến hai chân đối phương rời đất, hướng sau (cũng có thể hướng trái hoặc hướng phải) hướng lên lượn qua không trung ném ra là tốt nhất. Giai đoạn luyện tập phát kình, cần nghiên cứu phương pháp đề phóng kết hợp với hô hấp, khiến hít súc đủ, thở phát thấu; hít đủ để thấy cái khéo của mình, phát thấu để thấy cái diệu của mình; súc được khéo, mới có thể phát được diệu.</p>
+<p>Hít là đề, là hợp, là súc; thở là phóng, là khai, là phát. Bình thường, cần luyện đơn và luyện đôi phương pháp đề phóng. Luyện đơn là rút ra mấy thức quyền chính diện, phản diện mà liên tục chuyên tập súc phát; lực chấn đạn của ngực, vai, lưng, háng, mông v.v. đều cần luyện đơn thuần thục, phải có [điểm]. Luyện đôi là phương pháp "cho ăn" để nghiên cứu mức độ chính xác của súc phát kình. Phát kình cần tập trung mà mãnh thấu, càng cần trầm trầm, khiến phát kình cực kỳ khắc nhập mà sắc bén; động quý ở ngắn, ý quý ở xa, kình quý ở dài, tập trung thì chuyên chú... phương mà lực thấu, nhanh thì thừa thế mà không đến nỗi mất thế, muốn đi là đi, không phạm bệnh do dự, thì đối phương không dễ biến hóa; trầm thì chế trụ lực của hắn, khiến không thể biến hóa linh hoạt; động ngắn thì một chạm là phát, hắn không kịp tẩu hóa, mà mình đã nhảy ra. Bậc công phu cao diệu, có thể khiến đối phương không thấy mình động, mà mình đã lượn qua không trung ném ra. Ý xa kình dài, thì phóng người càng xa. Bậc công phu thuần túy, động đến cực vi, dẫn đến cực dài, phát đến cực chợt, hít thì tự nhiên có thể nhấc được gót chân của người, lợi dụng phản lực của hắn, động trọng tâm của hắn; thở thì tự nhiên có thể trầm xuống, phóng người ra mà gọn gàng dứt khoát. Khi hít đề thì khí trầm xuống tiểu phúc (hạ đan điền, huyệt Trung Cực), khi hô hấp thì một phần khí thở ra, một phần khí hạ trầm xuống tiểu phúc, một phần khí chuyển hành đến vùng đản (trung đan điền, huyệt Đản Trung), khi thở ra thì nửa thổ nửa trầm, mới có dư không hết, cuồn cuộn không tuyệt. Thượng đan điền ở huyệt Bách Hội, từ đầu đến cuối hư linh đỉnh kình (đỉnh đầu như treo hư không), để giữ cho thân đứng trung chính khi hít đề, thở phóng.</p>
+<p><span id="p255" class="page-anchor"></span>Các cao thủ Thái Cực quyền cận đại như Trần Phát Khoa, Dương Trừng Phủ v.v., khi vận hóa thì nhẹ mềm · 261 · tròn hoạt, hoàn toàn không chịu lực, khiến đối phương mất thăng bằng, có cảm giác lơ lửng mất trọng lượng; khi phóng kình do tốc độ nhanh, điểm rơi chính xác, nội kình đủ, tại điểm dính bỗng nhiên phóng kình, đối phương không kịp cảm giác, không cách nào vận hóa, đã bị ném qua không trung, đạt đến kỹ xảo cao cấp của súc phát tương biến.</p>
+<p class="display-line">(VIII) Hô hấp và phương viên cương nhu</p>
+<p><span id="p256" class="page-anchor"></span>Sự vận dụng qua lại của hô hấp, không ra ngoài sự hỗ biến của phương viên và hỗ hoán của cương nhu. Dính liền mật thiếp, tiếp chuyển nhu hóa thành viên (tròn); được thời được vị, cương kình thôi bách thành phương (vuông); sự xoay chuyển của kình là viên, phóng phát là phương. Kình dính tùy như keo như sơn, chính là từ sự ma sát do gia tốc hướng tâm, ly tâm của triền toàn mà sinh ra. Điểm hạch tâm của mặt dính tùy, chính là một điểm trên trục hướng tâm của triền toàn. Thuận xoay là tác dụng của ly tâm lực, nghịch xoay là tác dụng của hướng tâm lực. Sự biến hóa chằng chịt của thuận xoay nghịch xoay, càng vi tế linh xảo, "khúc trung cầu trực", "súc nhi hậu phát", thì sự vận dụng viên trung hữu phương, phương trung hữu viên càng hiển thị sự tinh diệu của nó. "Đả Thủ Ca" rằng: "Dẫn tiến lạc không hợp tức xuất, chiêm liên niêm tùy bất đâu đỉnh" (dẫn vào làm không, hợp là ra; chiêm liên niêm tùy, không mất không chống), rất hoàn mỹ mà thuyết minh tác dụng của hô hấp với phương viên cương nhu. Khi phát kình, "khúc trung cầu trực", ngoài phương mà trong viên, khúc súc hữu dư, cuồn cuộn không tuyệt; thở thì thân chi khai triển thành phương, hít thì thân chi khẩn thấu thành viên, tùy lực tựu viên mà vãng lai; hít thì đề kình thành nhu, thở thì phóng kình thành cương. Yêu cầu cao nhất là tốc chiến tốc quyết, cho nên cũng phải dưỡng thành kỹ thuật một hít một thở mà thắng phụ lập phán (phân định ngay), Dương Ban Hầu được truyền của họ Trần liền chủ trương "nhất hanh nhất ha, thắng phụ lập phán" (một tiếng hanh một tiếng ha, thắng phụ phân định ngay). Do đó bởi vì hô hấp liền ảnh hưởng đến sự hỗ tương biến hóa của phương viên cương nhu, dần dần đến khi hô hấp luyện được cực kỳ tự nhiên, tuyệt nhiên không dụng lực, mà lại có thể đề khiến hắn đến không thể không đến, phóng khiến hắn đi không thể không đi; xả kỷ tòng nhân (bỏ mình theo người) mà cầm túng tại ngã (giữ buông ở mình), xả kỷ tòng nhân mà vẫn do kỷ; cầm túng tại ngã là do kỷ, do kỷ mà vẫn tòng nhân. Vận động như thế, liền có thể biểu hiện thành không ngừng phương nhi viên, viên nhi phương, khiến cho cái viên của nó để ứng vô cùng. Trong đó chất lượng là cương nhi nhu, nhu nhi cương, chợt nhu chợt cương, diệc nhu diệc cương, đợi đến khi cương nhu không vết tích có thể tìm, phương viên không hình dạng có thể thấy, đó là trong đẩy tay đạt đến diệu · 262 · cảnh giới của tay.</p>
+<p>Tuyệt cú "Vịnh Thái Cực Quyền" của Trần Trọng Sân rằng: "Động tĩnh vô đoan tùy thế chuyển, dẫn tiến lạc không nhậm nhân lai, nhược phi Thái Cực đồ trung đắc, na hữu thần cơ bão phụ hoài" (động tĩnh không đầu mối, theo thế mà chuyển; dẫn vào làm không, mặc người đến; nếu không phải được trong đồ Thái Cực, thì đâu có thần cơ ôm ấp trong lòng). Công phu đạt đến giai đoạn "giai cập thần minh" này, hô hấp tự nhiên hợp nhịp, cương nhu phương viên không những kiêm bị, mà cũng không vết tích có thể tìm, hỗn nhiên mà thành một hình tròn của đồ Thái Cực.</p>
+<p class="display-line">(IX) Tác dụng của nội kình trong đẩy tay</p>
+<p>Nội kình là một loại kình ẩn chứa bên trong (tham kiến Chương Một), là một danh từ chuyên dụng của phái Thái Cực quyền. Nó là một loại "đàn kình" (kình đàn hồi) và "nhận kình" (kình dai bền) được rèn luyện ra từ sự tùng nhu của "thần thư thể tĩnh" (thần thoải mái thân yên tĩnh) bằng ý quán chú. Nhu trung hữu cương là đàn kình, cương trung hữu nhu là nhận kình. Cái gọi là "nhu lý hữu cương công bất phá, cương trung vô nhu bất vi kiên" (trong nhu có cương thì công không phá; trong cương không nhu thì không bền vững), biện chứng mà thuyết minh đặc tính của đàn kình và nhận kình cùng tính thống nhất của đối lập. Nội kình có đặc điểm "thần dĩ tri lai, trí dĩ tàng vãng" (thần để biết điều sắp đến, trí để chứa điều đã qua), ẩn bên trong mà không hiển lộ ra ngoài, theo động của người mà không ngừng thay đổi phương hướng, bất đâu bất đỉnh (không mất không chống), không một ly sai, nội động không khiến người ta biết, nên gọi là "nội kình". Nội kình sung mãn, thì tính đàn hồi và tính dai bền liền đủ. Đây là một loại kình độc đáo sinh ra từ sự kết hợp của bài quyền Thái Cực và đẩy tay. Về thực chất và vận hành của nội kình Thái Cực quyền, Trần Hâm cho rằng là dĩ ý hành khí (dùng ý dẫn khí), khinh khinh vận động, phát ư đan điền, vận ư cốt phùng chi nội (vận trong khe xương), lại từ trong khe xương vận đến cơ phu (da thịt), quán chú vào tứ sao (bốn đầu ngón: hai ngón tay, hai đầu ngón chân), phục quy ư đan điền, triền nhiễu vãng lai, khinh linh viên chuyển, dần dần sinh ra một loại nội kình miên nhuyễn mà lại trầm trọng, ngoài tựa bông gòn, trong như thanh thép. Công phu càng sâu, chất lượng của nội kình càng cao; Vũ Vũ Tương, người được truyền lão giá và tân giá của họ Trần, hình dung loại kình này là "tự tùng phi tùng, tương triển vị triển" (tựa lỏng mà không lỏng, sắp mở mà chưa mở), "hành khí như cửu khúc châu, vô vi bất đáo" (hành khí như chuỗi châu chín khúc, không chỗ nào không đến), "vận kình như bách luyện cương, vô kiên bất thôi" (vận kình như thép luyện trăm lần, không gì cứng mà không phá).</p>
+<p><span id="p257" class="page-anchor"></span>Nội kình là tiềm di mặc hóa (âm thầm chuyển hóa) mà xoay theo kiểu triền toàn, nó chảy cực kỳ nhanh như thủy ngân; nhìn ở ngoại hình, nó khinh linh mà không rơi vào phiêu phù, trầm trước mà không dính vào ngưng trệ, giàu ý thú triền ti quanh co. Nội kình chủ yếu là từ khi luyện quyền giá · 263 · rèn luyện ra, nó là một loại kình hồn hậu linh hoạt, cực kỳ trầm trọng mà lại cực kỳ hư linh. Khi đẩy tay nếu không có nội kình, dù đã làm được "nhất thân bị ngũ cung" (toàn thân có đủ năm cái cung), nắm được liên hệ hữu cơ của hô hấp súc phát, vẫn là không thể khiến đối phương "dẫn chi sử lai, bất đắc bất lai, phóng chi sử khứ, bất đắc bất khứ" (dẫn hắn đến, không thể không đến; phóng hắn đi, không thể không đi). Trần Hâm nói: "Đãn dẫn nhi bất kích, hữu thuận thế khiên chi sử tiến, dĩ đẩu tha nhân chi kình; đẩu túc tắc kỳ kình tự tán, toàn thể vô lực, dục tiến bất đắc thế, dục thoái bất cảm, thử dẫn tiến chi diệu cảnh dã" (chỉ dẫn mà không đánh, có thuận thế kéo hắn tiến lên, để đẩu kình của người; đẩu đủ thì kình của hắn tự tán, toàn thân không lực, muốn tiến không được thế, muốn lùi không dám, đây là diệu cảnh của dẫn tiến). Loại đẩu kình này chính là bắt nguồn từ nội kình sung mãn, cũng thuyết minh lúc Thái Cực quyền triền nhiễu vận chuyển cần nội kình, là có quan hệ với thực tiễn của đẩy tay.</p>
+<p>Đẩy tay nếu chỉ dựa vào xúc giác nhạy bén, mà thiếu một loại nội kình hồn hậu khinh linh "cực nhu nhuyễn, nhiên hậu năng cực kiên cương" (cực mềm mại, rồi sau mới có thể cực cứng rắn), "vận kình như bách luyện cương, vô kiên bất thôi", thì ngang với có bị động mà không có chủ động, có vũ khí nhẹ mà không có vũ khí nặng, rất khó dẫn động đối phương, phóng kình gọn gàng; ngược lại, dễ bị đối phương dẫn động.</p>
+<p><span id="p258" class="page-anchor"></span>Mặt âm nhu khinh linh của Thái Cực quyền, ví như gió hòa mưa nhỏ; mặt dương cương trầm trước của Thái Cực quyền, ví như sấm sét muôn quân, cả hai cùng đủ mà hỗ dụng, mới được cái toàn vẹn của "Thái Cực lưỡng nghi, hữu nhu hữu cương" (Thái Cực hai nghi, có nhu có cương). Dương cương và âm nhu cả hai hòa hợp không kẽ hở, tức là hai nghi vẫn trở về Thái Cực. Phàm lệch về cương mà không nhu thì phải đề phòng té ngã; lệch về nhu mà không cương, khó đương đầu với địch mạnh. Một khi cử động, khinh nhu và trọng cương cùng phát, thì khắp nơi có thể khống chế trọng tâm của đối phương, khiến mất thăng bằng, khắp nơi có thể vượt qua điểm phòng thủ của đối phương mà tiến thoái khinh linh, khiến đối phương không biết tay ta từ đâu mà đến, đạt đến cảnh giới "xuất thủ bất kiến thủ, thủ đáo bất năng tẩu" (ra tay không thấy tay, tay đến thì không thể đi). Đó mới là diệu thủ của Thái Cực quyền. Nội kình tức là bao hàm đại dụng toàn thể của âm dương hỗn luân nhu hóa cương phát. Trần Hâm nói: "Nhược thị công phu thuần thục, do kỳ đại vô ngoại chi viên, tạo đáo kỳ tiểu vô nội chi cảnh, bất ngộ địch tắc dĩ, như ngộ kình địch, tắc nội kình tốt phát, như tấn lôi liệt phong chi tồi khô lạp hủ, thục năng đương chi" (nếu công phu thuần thục, từ cái vòng lớn không ngoài của nó, tạo đến cảnh nhỏ không trong của nó, không gặp địch thì thôi, nếu gặp kình địch, thì nội kình phát đột ngột, như sấm chớp gió dữ phá cây khô đập vật mục, ai có thể đương nổi). Nếu kình triền nhiễu chiêm liên niêm tùy không có nội kình sung túc, thì ra tay không có uy lực, hóa cũng hóa không tốt, phát cũng phát không tốt; muốn dẫn động đối phương thì không có tác dụng, liền không thể đắc cơ đắc thế mà chế người; muốn hóa động đối · 264 · phương đến kình, lại dễ bị ép bẹp mà thân pháp bị phá hoại, do đó ở vào cục diện bị động mất cơ mất thế mà bị chế ngự bởi người. Trần Hâm chỉ ra: "Khí bất do trung tâm đan điền nhi phát, tắc khí vô sở bản nhi thất ư cuồng vọng, tất chí thất bại. Thử nội kình chi bất khả bất nghiên luyện dã; quả năng nghiên luyện chí thử, tắc thần hồ kỳ kỹ hĩ" (khí không phát từ trung tâm đan điền, thì khí không có gốc mà mất vào cuồng vọng, ắt dẫn đến thất bại. Nội kình này không thể không nghiên cứu rèn luyện; nếu có thể nghiên cứu rèn luyện đến đây, thì kỹ thuật thần diệu vậy).</p>
+<p>Nội kình là vô định hướng, mà cũng hữu định hướng, "vô định hướng" là "viên", "hữu định hướng" là "phương", hai giả hỗ biến, hỗ vi kỳ căn (làm gốc cho nhau), nó là "cương nhu kiêm chí nhi hỗn ư vô tích" (cương nhu đều đến mà hòa lẫn không vết tích), là linh hoạt thiện biến. Nhưng tất phải phương pháp đúng, cương nhu hư thực của Thái Cực lưỡng nghi tất phải kiêm bị, cộng thêm không ngừng khổ luyện, mới có thể công phu thượng thân (công phu lên thân), dần dần đạt tinh diệu. Nói suông "dẫn tiến lạc không", "tứ lạng bạt thiên cân" mà công phu không thượng thân, cương nhu không kiêm bị, cái gọi là "quyền vô công, nhất tràng không" (quyền không công phu, chỉ là một màn không), là không chịu nổi khảo nghiệm của thi đấu đẩy tay. Trần Hâm nói: "Súc biến vô hình tịnh vô cùng, vô cùng công phu tại bách luyện; bất tật nhi tốc đắc chân tể, như thử phương xưng Thái Cực quyền" (súc biến vô hình và vô cùng, công phu vô cùng ở trăm lần luyện; không nhanh mà nhanh, đắc được chân chủ, như thế mới gọi là Thái Cực quyền). Khi đẩy tay lấy chiêm liên niêm tùy của kình triền ti làm linh hồn, nhưng lại cần lấy nội kình cương nhu kiêm bị làm thống soái, đây là nguyên tắc huấn luyện của các bậc tiền bối Thái Cực quyền, cực kỳ biện chứng mà quán triệt hàm nghĩa của Thái Cực. Trong kình triền ti có sự quán chú của nội kình, mới có thể phát huy tác dụng "năng hối vạn pháp vi nhất, năng diễn nhất pháp vi vạn" (có thể hội muôn pháp thành một, có thể triển khai một pháp thành muôn). Trước (chiêu thức) là pháp, pháp có muôn ngàn; lấy một pháp chế một pháp, ngang với một chìa khóa mở một ổ khóa. Kình quán triệt ở trung tâm, kình là một loại nội kình cương nhu kiêm bị, lấy một quán muôn, lấy giản ngự phồn, ngang với nắm được chìa khóa tổng. Cho nên Vương Tông Nhạc nói: "Tuy biến hóa vạn thù, nhi duy lý nhất quán" (tuy biến hóa muôn ngàn khác nhau, mà chỉ một lý xuyên suốt). "Biến hóa vạn thù" là trước pháp, "duy lý nhất quán" là nội kình "chiêm liên niêm tùy bất đâu đỉnh" cương nhu, hư thực đều đủ, "tự tùng phi tùng", "tựu khúc tựu thân" (thì co thì duỗi). Thái Cực quyền coi trọng nội kình, được cái một thì muôn sự xong. Đẩy tay mang tính y liệu, giải trí không cần cầu nội kình, nhưng đẩy tay mang tính thi đấu thì tất phải cầu nội kình.</p>
+<p><span id="p259" class="page-anchor"></span>· 265 · Sáu. Tác dụng chỉ đạo về nguyên tắc của "Thái Cực Quyền Luận" đối với đẩy tay "Thái Cực Quyền Luận" là tác phẩm kinh điển về mặt lý luận của Thái Cực quyền, đối với đẩy tay cũng là một sự chỉ đạo lý luận rất tốt, tế tâm nghiên cứu nội dung của nó và dùng nó để chỉ đạo luyện tập đẩy tay, thì có thể được hiệu quả sự bán công bội (nửa công gấp đôi).</p>
+<p>(I) Bốn nguyên tắc cơ bản của công phu đẩy tay Thái Cực quyền (1) "Thái Cực Quyền Luận" nói: "Thái Cực giả vô cực nhi sinh, động tĩnh chi cơ, âm dương chi mẫu dã; động chi tắc phân, tĩnh chi tắc hợp" (Thái Cực là do Vô Cực mà sinh, là cơ của động tĩnh, là mẹ của âm dương; động thì phân, tĩnh thì hợp). Cái mà cổ nhân gọi là "Thái Cực", là tượng trưng của đối lập thống nhất, là cơ khu của mọi động tĩnh; do Thái Cực sinh âm dương, như thuận nghịch, nhu cương, khinh trầm, viên phương, hư thực, khai hợp v.v. đều thuộc về đó. Khi vận động thì tận dụng ly tâm lực và hướng tâm lực, cho nên động thì phân, tĩnh thì hợp; phân là dương, hợp là âm. Trần Hâm nói: "Thái Cực lưỡng nghi, thiên địa âm dương, hạp tịch động tĩnh, nhu chi dữ cương" (Thái Cực hai nghi, trời đất âm dương, khép mở động tĩnh, nhu với cương), chính là chỉ quy luật này. Loại mâu thuẫn này tồn tại trong toàn bộ quá trình đẩy tay, và xuyên suốt từ đầu đến cuối của mỗi quá trình động tác. Cho nên nguyên tắc cơ bản thứ nhất của đẩy tay, tức là nó phải phù hợp với pháp tắc mâu thuẫn của sự vận động sự vật, tức "mâu thuẫn và khai hợp".</p>
+<p>(2) Quá trình hai bên dựng tay đối luyện khi đẩy tay, cũng là quá trình không ngừng sinh ra mâu thuẫn và giải quyết mâu thuẫn. Cái mà "Thái Cực Quyền Luận" nói "vô quá bất cập, tùy khúc tựu thân" (không quá không thiếu, tùy cong mà duỗi), chính là chỉ động tác phải phù hợp với bốn điểm sau:</p>
+<ul class="posture-list">
+<li>① Tất phải "vô quá" (không quá); vô quá gọi là "chiêm kình", quá thì gọi là "đỉnh bệnh" (bệnh chống);</li>
+<li>② Tất phải "năng cập" (có thể đến); năng cập gọi là "niêm kình" (kình dính), bất cập gọi là "biển bệnh" (bệnh bẹp);</li>
+</ul>
+<p><span id="p260" class="page-anchor"></span>· 266 ·</p>
+<ul class="posture-list">
+<li>③ Tất phải "tùy khúc" (theo cong); tùy khúc gọi là "liên kình" (kình liền), không theo mà cong gọi là "đâu bệnh" (bệnh mất);</li>
+<li>④ Tất phải "tựu thân" (theo duỗi); tựu thân gọi là "tùy kình" (kình theo), duỗi quá sớm, gọi là "kháng bệnh" (bệnh chống).</li>
+</ul>
+<p>Mọi quá trình của đẩy tay đều yêu cầu có đủ bốn công "chiêm niêm liên tùy" (dính dính liền theo), không sinh ra bốn bệnh "đỉnh biển đâu kháng" (chống bẹp mất kháng). Trần Hâm nói: "Chiêm liên niêm tùy, hội thần tụ tinh, vận ngã hư linh, di gia chỉnh trọng" (chiêm liên niêm tùy, hội thần tụ tinh, vận cái hư linh của ta, càng thêm chỉnh trọng). Cho nên nguyên tắc cơ bản thứ hai là "chiêm liên niêm tùy".</p>
+<p>(3) "Thái Cực Quyền Luận" nói: "Nhân cương ngã nhu vị chi tẩu, ngã thuận nhân bối vị chi niêm; động cấp tắc cấp ứng, động hoãn tắc hoãn tùy; tuy biến hóa vạn đoan, nhi lý vi nhất quán" (người cương ta nhu gọi là tẩu (đi); ta thuận người bối gọi là niêm (dính); động gấp thì ứng gấp, động chậm thì theo chậm; tuy biến hóa muôn mối, mà lý là một xuyên suốt). Đây là biện pháp để làm được bốn công, tránh bốn bệnh. Điều đó nói rằng, người cương thì ta nhu, dùng "tẩu" để dẫn hắn. Đây là sự vận dụng "quyển hợp" trong cục diện bị động. Đồng thời, để gián kình (thử kình), vận dụng thế và kình thuận toại, bức bách đối phương thành "bối", chuyển hóa thành ta cương người nhu, dùng "niêm" để bức hắn. Khi niêm tẩu, đối phương động gấp thì ứng gấp, động chậm thì theo chậm, như thế thì có thể có bốn công mà không có bốn bệnh. Trần Hâm nói: "Tiền hậu tả hữu, thượng hạ tứ bàng, chuyển tiếp linh mẫn, hoãn cấp tương tương" (trước sau trái phải, trên dưới bốn bên, chuyển tiếp linh mẫn, chậm gấp cùng đưa nhau). Cho nên nguyên tắc cơ bản thứ ba là "cấp hoãn niêm tẩu" (niêm tẩu gấp chậm).</p>
+<p>(4) "Thái Cực Quyền Luận" nói: "Do trước thục nhi tiệm ngộ đổng kình, do đổng kình nhi giai cập thần minh, nhiên phi dụng lực chi cửu, bất năng khoát nhiên quán thông yên" (từ quen chiêu thức mà dần ngộ hiểu kình, từ hiểu kình mà lên đến thần minh, nhưng không phải dùng sức lâu dài, thì không thể bỗng nhiên thông suốt vậy). Khi đẩy tay, sau khi thuần thục nắm được ba nguyên tắc cơ bản trước, thì có thể lĩnh ngộ kình của người, thăm dò động hướng của đối phương, cái gọi là hiểu được kình của người. Đến lúc này, có thể tín thủ nhi ứng (tùy tay mà ứng), đạt đến cảnh giới "thần minh" tự động. Đây là kết quả của nhiều năm nhiều lần suy ngẫm, thực tiễn và nghiên cứu lý luận cuối cùng đạt được sự khoát nhiên quán thông. Cho nên nguyên tắc cơ bản thứ tư là "thực tiễn và lý luận nhất trí".</p>
+<p><span id="p261" class="page-anchor"></span>· 267 · Bốn nguyên tắc cơ bản của công phu đẩy tay</p>
+<table class="posture-table"><tr><th>Số thứ tự</th><th>Nguyên tắc cơ bản</th><th>Cách làm cụ thể</th></tr><tr><td>1.</td><td>Mâu thuẫn khai hợp</td><td>Động tác phải trong khai ngụ hợp, trong hợp ngụ khai để đạt đến thống nhất của mâu thuẫn đối lập.</td></tr><tr><td>2.</td><td>Chiêm niêm liên tùy</td><td>Phải làm được đề thượng bạt cao (nhấc lên kéo cao), lưu luyến triền nhiễu, xả kỷ vô ly (bỏ mình không lìa), hắn đi thì ta ứng.</td></tr><tr><td>3.</td><td>Cấp hoãn niêm tẩu</td><td>Khiến hành động niêm tức là tẩu, tẩu tức là niêm, và động gấp thì ứng gấp, động chậm thì theo chậm.</td></tr><tr><td>4.</td><td>Thực tiễn và lý luận nhất trí</td><td>Kết hợp nghiên cứu sâu kinh nghiệm của người trước với việc mình dụng công nhiều.</td></tr></table>
+<p class="display-line">(II) Cách sắp xếp bản thân để vận dụng bốn nguyên tắc cơ bản</p>
+<p>"Thái Cực Quyền Luận" nói: "Hư linh đỉnh kình, khí trầm đan điền; bất thiên bất ỷ, hốt ẩn hốt hiển; tả trọng tắc tả hư, hữu trọng tắc hữu đạp, ngưỡng chi tắc di cao, phủ chi tắc di thâm; tiến chi tắc dũ trường, thoái chi tắc dũ xúc; nhất vũ bất năng gia, dăng trùng bất năng lạc; nhân bất tri ngã, ngã độc tri nhân; anh hùng sở hướng vô địch, cái giai do thử nhi cập dã" (đỉnh đầu hư linh, khí trầm xuống đan điền; không lệch không nghiêng, chợt ẩn chợt hiện; bên trái nặng thì bên trái hư, bên phải nặng thì bên phải tối; ngẩng lên thì càng cao, cúi xuống thì càng sâu; tiến thì càng dài, lùi thì càng gấp; một lông cũng không thêm được, con ruồi cũng không đậu được; người không biết ta, ta một mình biết người; anh hùng đi đến đâu cũng vô địch, đều do đó mà đạt tới). Cho nên, để vận dụng bốn nguyên tắc cơ bản, tất phải theo quyền luận trên đây làm tốt sáu điểm sau:</p>
+<p>(1) Đỉnh kình phải hư hư lĩnh khởi (nhẹ nhàng dẫn lên), thì tinh thần tự nhiên nâng lên. Đồng thời khí trầm xuống đan điền. Do thượng lĩnh hạ trầm, khiến thân khu dài ra mà sinh tính đàn hồi thành băng kình (kình căng). Trần Hâm nói: "Diên lộ triền nhiễu, tĩnh vận vô hoảng, cơ phu cốt tiết, xứ xứ khai trương" (dọc đường triền nhiễu, tĩnh vận không hoảng, da thịt khớp xương, chỗ chỗ khai trương). Nếu là kình cứng đờ (ngạnh bang bang), thì sẽ mất băng kình, cũng liền không thể lại thông qua chiêm niêm để cầu hiểu kình.</p>
+<p>(2) Lập thân cần trung chính an thư, có thế chống đỡ tám mặt, khiến thân khu khi đẩy tay không đến nỗi lệch về một bên hoặc dựa vào thân tay của đối phương, để tránh kình của mình bị người hiểu. Nếu lệch về một bên, thì không dễ thuận toại mà vận dụng công phu niêm tẩu.</p>
+<p>(3) Trên tiền đề thần khí nội ẩn thì nhu, ngoại hiển thì cương, khi đẩy tay phải có · 268 · có tác dụng biến đổi cương nhu khi ẩn khi hiển, đây chính là biểu hiện của việc không ngừng gián kình trong quá trình cầu hiểu kình.</p>
+<p>(4) Khi đẩy tay yêu cầu làm được hai tay có hư thực, hai chân có hư thực, một tay một chân trên dưới cũng phải phân hư thực, hình thành chỗ chỗ đều có một hư một thực này. Trần Hâm nói: "Hư thực kiêm đáo, hốt kiến hốt tàng" (hư thực cùng đến, chợt thấy chợt tàng); "thực trung hữu hư, nhân kỷ tương tham; hư trung hữu thực, thục trắc cơ quan" (trong thực có hư, người mình cùng xen; trong hư có thực, ai đoán được cơ quan). Đợi sau khi chuyển đổi hư thực thuần thục, chỉ cần chú ý một tay, tay kia và hai chân do trên dưới tương tùy, tự nhiên cũng liền theo đó linh hoạt chuyển đổi. Cho nên Trần Hâm lại nói: "Thiên cổ nhất nhật, chí lý tuần hoàn, thượng hạ tương tùy, bất khả không đàm" (nghìn xưa như một ngày, chí lý tuần hoàn, trên dưới tương tùy, không thể nói suông). Đây là cơ sở của gián kình, hóa kình và công phu đắc được hiểu kình.</p>
+<p>(5) Đối phương ngẩng lên đến thì cao mà dẫn hắn, khiến có cảm giác cao không thể với mà mất trọng tâm; đối phương cúi xuống đến thì càng dẫn xuống dưới, khiến có cảm giác như đến bờ vực sâu, lay lắt muốn rơi; đối phương tiến bức thì càng dẫn càng hư, khiến có cảm giác dài không thể tới; đối phương lùi chạy thì niêm bức khiến có cảm giác bị truy bức. Đây là phù hợp với yêu cầu của hóa kình và phát kình của chiêm, niêm, liên, tùy, như thế thì có thể tránh phát sinh bốn bệnh đỉnh biển đâu kháng.</p>
+<p>(6) Khi đẩy tay tinh thần phải nâng lên, như thế toàn thân mới có thể khinh linh quán xuyến, và phải khinh linh đến mức có sự nhạy cảm "nhất vũ bất năng gia" (một lông cũng không thêm được). Đồng thời phải triền ti theo kiểu xoáy ốc mà không ngừng biến động, phải xoay chuyển đến mức hình thành khí thế "dăng trùng bất năng lạc" (ruồi không thể đậu). Nếu động tác biểu hiện trì trọng bất linh, thì không dễ hiểu kình; nếu vận động mà không có triền ti, thì mất hóa kình, cũng mất kỹ xảo kình triền ti của bán hóa bán tiến, minh hóa ám tiến, tức hóa tức tiến. Không có hóa kình, thì biến thành so sức, liền không thành đẩy tay kiểu Thái Cực nữa. Có thể hóa mà không thể phát, có thể nhu mà không thể cương, cương nhu không thể tương tế, đều không phải cái toàn vẹn của Thái Cực lưỡng nghi.</p>
+<p>Có được sáu công năng liệt kê trên, thì có thể quán triệt bốn nguyên tắc cơ bản của đẩy tay, đạt đến công phu hiểu được kình của người mà không bị người hiểu kình của mình, khiến thi đấu có thể ở vào thế bất bại.</p>
+<p><span id="p262" class="page-anchor"></span>· 269 · Sự vận dụng cụ thể của bốn nguyên tắc cơ bản</p>
+<table class="posture-table"><tr><th>STT</th><th>Mục chính</th><th>Giải thích</th></tr><tr><td>1</td><td>Hư linh đỉnh kình, khí trầm đan điền</td><td>Phải được thực hiện trong điều kiện tinh thần được nâng lên, khí đi xuống và toàn thân được kéo dài ra.</td></tr><tr><td>2</td><td>Bất thiên bất ỷ (không lệch không nghiêng)</td><td>Phải đứng cho thân mình ngay ngắn, chống đỡ tám hướng, xương cùng ngay giữa và thần xuyên lên đỉnh đầu.</td></tr><tr><td>3</td><td>Ẩn hiện bất thường</td><td>Khi ẩn thì mềm, khi hiện thì cứng; khi ẩn khi hiện, cứng mềm tương trợ.</td></tr><tr><td>4</td><td>Trái nặng thì phải yếu, trái nặng thì phải hư</td><td>Hai tay phân hư thực, hai chân phân hư thực; một tay một chân trên dưới đi theo nhau, đất phân hư thực.</td></tr><tr><td>5</td><td>Ngước lên càng cao, cúi xuống càng sâu; tiến vào càng dài, lùi ra càng gấp</td><td>Bốn mục liệt kê trên phải tuân theo mà thực hiện, tuyệt đối không được đi ngược lại; nó mô tả phương hướng của dính, liền, dán, theo.</td></tr><tr><td>6</td><td>Một lông cũng không thêm được, một con ruồi cũng không đậu được</td><td>Nhẹ nhàng linh hoạt đến mức một lông cũng không thêm được; xoay chuyển đến mức một con ruồi cũng không đậu được.</td></tr><tr><td>7</td><td>Không cho người biết, nhưng khéo biết người</td><td>Dính tức là chạy, chạy tức là dính; người khác không biết là đang dính hay đang chạy; bằng sự dẫn vào của dính và sự buông rỗng của chạy, thông qua dính chạy mà biết được người.</td></tr></table>
+<p><span id="p263" class="page-anchor"></span>(3) Đẩy tay trong Thái Cực quyền đòi hỏi dùng sức người để khắc chế tự nhiên "Thái Cực Quyền Luận" nói: "Thuật này có rất nhiều môn phái bên cạnh; tuy thế thức có khác nhau, nhưng đại khái đều không ngoài việc mạnh hiếp yếu, chậm nhường nhanh. Có sức đánh không sức, tay chậm nhường tay nhanh — ấy đều là khả năng tự nhiên bẩm sinh, không liên quan đến những gì đạt được do học lực. Xét câu 'bốn lạng gạt ngàn cân', rõ ràng không phải thắng bằng sức; xem hình ảnh một cụ già có thể chống đỡ cả đám đông, thì nhanh nhẹn làm được gì?" Do đó có thể thấy rằng đẩy tay trong Thái Cực quyền không phải so sức mạnh mà là so kỹ xảo. "Mạnh hiếp yếu, chậm nhường nhanh" là bản năng tự nhiên, không phải chức năng của kỹ xảo. Cái gọi là kỹ xảo, chính là thuận theo tự nhiên để khắc chế tự nhiên, đạt tới "yếu thắng mạnh, chậm thắng nhanh". Nguyên lý điểm tựa của đòn bẩy và sự chuyển hóa xoắn ốc trong thế giới tự nhiên chính là có chức năng "bốn lạng gạt ngàn cân". Đẩy tay vận dụng nguyên lý này thì có thể hóa giải mọi trọng lực, gọi là hóa kình. Có công phu hóa kình này thì có thể dùng nhẹ khắc chế nặng. Đồng thời, vận động của Thái Cực quyền là vận dụng lực ly tâm, và lấy eo · 270 · lấy sống lưng làm trục giữa, khiến mọi động tác đều đi theo vòng trong; đi vòng trong, và "tốc độ đường thẳng" tương đối chậm, mà vẫn có thể thắng được cái nhanh đi vòng ngoài. Đó là nguyên do của "người đến sau mà ta đến trước", cũng là then chốt của việc chậm thắng nhanh.</p>
+<p>(4) Làm thế nào để phòng ngừa "bệnh song trùng"</p>
+<p>"Thái Cực Quyền Luận" nói: "Đứng như cái cân bằng, động như bánh xe; lệch chìm thì đi theo, song trùng thì trì trệ. Thường thấy những kẻ nhiều năm công phu thuần thục mà không thể vận hóa, đều là tự để người khác chế phục; ấy là chưa ngộ ra bệnh song trùng vậy." Cái gọi là bệnh song trùng chính là hiện tượng bệnh lý khi hai bên trong đẩy tay giằng co bất động. Điều này hình thành do sự kháng đỉnh phát sinh trên tư thế và trên kình biệt. Để giải trừ bệnh này, trên thân thể phải "đứng như cái cân bằng", trên bộ pháp phải "động như bánh xe". Cái gọi là cân bằng, chính là đầu như kim chỉ, eo như gốc cây, hai cánh tay liên kết với nhau mà chuyển động như hai đĩa, khiến mình hình thành thân pháp giống như một chiếc thủy bình. Dùng thân pháp như vậy để thăm dò đối phương, thì nhẹ nặng phù trầm của đối phương không gì là không thể phân biệt rõ ràng. Nếu lệch chìm về phía mình, thì chạy để dẫn nó; nếu lệch chìm về phía đối phương, thì dính để theo nó; đây là công dụng "đứng như cái cân bằng" trong thân pháp. Sự xoay chuyển của hai cánh tay liên kết ở phần trên, sự biến đổi của hai chân đi theo nhau ở phần dưới, giống như một chiếc thủy bình lắp trên bánh xe hình cầu, có thể xoay chuyển trái phải, trước sau, trên dưới. Bộ theo thân xoay chuyển, thân theo mắt mà động, mắt và thân đi theo nhau, thì xoay chuyển tiến lui đều tự nhiên, đây là thành quả của "động như bánh xe" trong bộ pháp. Bởi vậy, nếu có thể dẫn vào theo ra, thì thân pháp và bộ pháp đều có thể tránh được hiện tượng bệnh song trùng.</p>
+<p>Biện pháp phòng ngừa "hiện tượng bệnh song trùng"</p>
+<table class="posture-table"><tr><th>STT</th><th>Mục chính</th><th>Giải thích</th></tr><tr><td>1</td><td>Đứng như cái cân bằng</td><td>Toàn thân có một sức bồng nhất định; chỉ dưới điều kiện thân đứng ngay giữa mới có thể đạt được sự cân bằng như thủy bình.</td><td>Dùng thân pháp như vậy để thăm dò đối phương, nhẹ nặng phù trầm không gì là không thể phân biệt rõ ràng.</td></tr><tr><td>2</td><td>Động như bánh xe</td><td>Dưới điều kiện lấy eo lưng làm trục giữa và hai cánh tay liên kết nhau, then chốt của hoạt động nằm ở chỗ trên dưới hư thực đi theo nhau.</td><td>Một tác dụng khác của động như bánh xe là khi đối phương sắp động thì chiếu theo mà cho, nếu đối phương cho kình thì xoay mà nhận lấy.</td></tr></table>
+<p><span id="p264" class="page-anchor"></span>· 271 · (5) Yêu cầu đạt tới hiểu kình trong khi tránh "bệnh song trùng"</p>
+<p>"Thái Cực Quyền Luận" nói: "Muốn tránh bệnh này, phải biết âm dương; dính tức là chạy, chạy tức là dính; âm không rời dương, dương không rời âm; âm dương tương trợ, mới gọi là hiểu kình." Muốn phòng ngừa bệnh song trùng, về phương diện kình biệt, trước tiên phải hiểu đạo lý dính tức là chạy và chạy tức là dính, để đạt tới sự thống nhất của dính và chạy. Sự thống nhất của dính và chạy là do xoắn ốc mà có; đã thống nhất dính chạy, thì có thể tùy thời chuyển đổi lẫn nhau, và linh hoạt thay đổi phương hướng của dính và chạy. Trong khoảnh khắc thay đổi này, gọi là "thính kình①". Thính kình là dùng xúc giác và cảm giác trong cơ thể để thăm dò động hướng của kình nơi đối phương: nếu đối phương hơi xoay về phía sau trái hoặc sau phải, thì lập tức dùng dính theo thuận triền; nếu đối phương hơi xoay sang trái hoặc phải, thì lập tức dùng chạy theo nghịch triền. Đây là yêu cầu "đối phương không động, mình không động; đối phương hơi động, mình động trước". Do dính chạy thống nhất, nên hình thành âm dương tương trợ; do dính liền dán theo, nên đạt được công phu hiểu kình. Đó là diệu dụng của việc chuyển từ tránh song trùng mà có được hiểu kình.</p>
+<p>Công phu đạt tới hiểu kình trong quá trình phòng ngừa bệnh song trùng</p>
+<table class="posture-table"><tr><th>STT</th><th>Cách tránh song trùng</th><th>Cách đạt được công phu hiểu kình</th></tr><tr><td>1</td><td>Phải biết âm dương</td><td>Phải biết đầu đuôi ngọn ngành động tác của đối phương và độ lớn của kình, phải làm được sự thống nhất của dính chạy, như chậm nhanh, nhẹ nặng, cứng mềm v.v., đây là cách thức cơ bản của hiểu kình</td></tr><tr><td>2</td><td>Dính tức là chạy, chạy tức là dính</td><td>Đây là khâu trung tâm của đẩy tay, nó thể hiện nguyên tắc thu tức là phóng, phóng tức là thu. Yêu cầu trong dính chạy phải như vòng tròn không có đầu mối. Nếu không thể dính chạy tương sinh, thì đẩy tay không có gì gọi là hiểu kình.</td></tr><tr><td>3</td><td>Âm không rời dương, dương không rời âm</td><td>Dính chạy là đường lối, âm dương là chất lượng. Biểu hiện cụ thể của nó là nhanh chậm xen nhau, mềm cứng tương trợ, tròn vuông tương sinh, nhẹ nặng đổi nhau, hư thực tương ứng, khai hợp tiếp nối. Bao nhiêu thứ ấy đều nằm trong động tác cụ thể của dính tức là chạy, chạy tức là dính.</td></tr></table>
+<p>(6) Giai đoạn "thần minh" sau khi hiểu kình và ranh giới của xả kỷ tòng nhân "Thái Cực Quyền Luận" nói: "Sau khi hiểu kình, càng luyện càng tinh, ngầm nhận mà suy ngẫm,</p>
+<ul class="posture-list">
+<li>① Cái gọi là thính kình, là dùng xúc giác của da và cảm giác trong cơ thể để thăm dò độ lớn, dài ngắn và động hướng của kình nơi đối phương.</li>
+</ul>
+<p><span id="p265" class="page-anchor"></span>· 272 · dần dần đạt tới mức tùy tâm sở dục. Điều này vốn là xả kỷ tòng nhân, nhưng nhiều người lầm mà bỏ gần cầu xa. Cái gọi là 'sai một ly, đi một dặm', người học không thể không phân biệt rõ". Trên cơ sở thuần thục, phải tiến thêm một bước nghiên cứu về lý luận, thông qua sự sờ mó khách quan và sự suy ngẫm chủ quan, khiến chủ quan và khách quan đạt tới thống nhất. Định hình động lực luyện được từ thực tiễn dần dần đạt tới mức tùy tâm sở dục, đạt tới giai đoạn "thần minh" tự động hóa. Đây là công phu cao nhất của đẩy tay. Tới giai đoạn này, vẫn phải phân biệt rõ ranh giới của xả kỷ tòng nhân, để cầu đạt sự vận dụng chính xác. Đẩy tay yêu cầu xả kỷ tòng nhân, đây là yêu cầu cơ bản để sinh ra dính liền dán theo. Nhưng tòng nhân phải có chừng mực, không thể mù quáng theo mãi; nguyên tắc của nó là: "theo gần chứ không theo xa". Xa thì cô quân thâm nhập, khiến mình ra khỏi vuông tròn. Đây là để người ta lợi dụng mà chế mình, là trao cán cho người. Trần Hâm nói: "Địch nếu trá dụ, không thể đuổi sát; nếu vượt qua giới hạn, tình thế khó xoay lại, huống chi một khi mất thế, dù hối cũng sao kịp". Điều này nói rằng, về phương diện này tuy khác biệt nhỏ, nhưng đối với được mất cuối cùng lại quan hệ rất lớn.</p>
+<p><span id="p266" class="page-anchor"></span>· 273 · Chương Năm: Quyền luận Thái Cực quyền thức Trần Trần Hâm để lại nhiều trước tác về lý luận Thái Cực quyền thức Trần; ông từng giảng giải tỉ mỉ từng thế về lý pháp và vận động, trở thành môn học chuyên môn của dòng họ Trần qua nhiều đời. Nhưng lý luận mà Trần Hâm trình bày tản mác trong các thiên, không đủ hệ thống, cũng không đủ tập trung. Tác giả (Cố Lưu Hinh) vốn yêu thích Thái Cực quyền và nghiên cứu tận cùng đạo lý của nó, nên đã phân loại trích lục quyền luận của Trần Hâm từ mấy cuốn sách, để tiện tham khảo và suy ngẫm khi luyện quyền.</p>
+<p>Các quyền luận trích lục theo phân loại dưới đây chủ yếu căn cứ vào "Trần Thị Thái Cực Quyền Đồ Thuyết" do Trần Hâm soạn và phần trước tác của Trần Hâm trong cuốn "Trần Thị Thái Cực Quyền Hối Tông" do Trần Tích Phủ soạn. Cuốn sau hiệu đính sơ sài, sai chữ thiếu chữ khá nhiều; may được cụ Lý Kiếm Hoa dựa theo bản chép tay của nguyên cảo (nguyên tên là "Thái Cực Chân Kinh") để hiệu chính văn tự, nên gần như không còn sai sót.</p>
+<p>Một hai trăm năm trước, Thái Cực quyền cũng là một loại quyền thuật mang tính kỹ kích, cho nên trong cổ quyền luận có nhiều phần lấy động tác của thức Trần lão giá làm ví dụ, xuất phát từ góc độ kỹ kích để luận thuật. Cuốn sách này để tiện nghiên cứu và chỉnh lý lý luận Thái Cực quyền, đặc biệt là để phổ biến đẩy tay Thái Cực quyền, nên cũng chọn dùng những quyền luận ấy cho thích hợp; mong độc giả phê phán mà tiếp nhận, làm được việc cổ vi kim dụng.</p>
+<p><span id="p267" class="page-anchor"></span>· 274 · Lược truyện Trần Hâm Trần Hâm, tự Phẩm Tam (1849–1929), người làng Trần Gia Câu, huyện Ôn, tỉnh Hà Nam. Ông nội là Trần Hữu Hằng, thúc tổ là Trần Hữu Bản, đều nổi tiếng về Thái Cực quyền gia truyền. Hữu Bản còn sáng tạo ra tân giá thức Trần. Cha là Trần Trọng Sinh (1809–1871), chú là Trần Quý Sinh (1809–1865); Hữu Hằng trung niên chết đuối ở hồ Động Đình, nên Trọng Sinh và Quý Sinh bèn đổi sang học quyền với thúc phụ là Hữu Bản.</p>
+<p><span id="p268" class="page-anchor"></span>Trọng Sinh có lưng vượn cổ hổ, vóc vạc hơn người thường; ba tuổi đã tập võ, khi lớn lên cùng em là Quý Sinh đều vào võ trường. Thời Hàm Phong, các bậc quyền gia ở Trần Gia Câu lấy Trọng Sinh, Quý Sinh và con của Trần Trường Hưng (1771–1853) là Canh Vân làm công phu tốt nhất; Trọng Sinh có thể vận dụng cây thiết thương nặng ba mươi cân để tác chiến, lại càng nổi tiếng vũ dũng. Trần Hâm cùng anh là Nghiêu theo cha học quyền. Nghiêu mười chín tuổi vào võ trường, · 275 · Ông hẹn Trần Tử Minh đến Trần Gia Câu sưu tầm sử liệu Thái Cực quyền, thấy di cảo của ông mà khen hay. Đầu xuân năm 1931, ông đề nghị với Quan Bách Ích, quán trưởng Quốc thuật quán Hà Nam, mua sách của ông; họ Quan bèn góp bảy trăm đồng mua được một bản từ Xuân Nguyên, giao cho Khai Phong Khai Minh thư cục xuất bản năm 1933, đóng chỉ bốn tập. Sau khi Trần Hâm mất, vì nhà nghèo nên quan tài để nhiều năm chưa chôn; Xuân Nguyên nhận được tiền nhuận bút mới lo việc mai táng. Năm 1935, Trần Tích Phủ (Chiếu Phi) biên soạn "Trần Thị Thái Cực Quyền Hối Tông" (bản Nam Kinh, hai tập) cũng thu vào đồ thuyết của ông, chỉ có điều bản được dùng là một bản thảo khác, nội dung hơi ít hơn sách trước, văn tự cũng đôi chỗ khác nhau. "Thái Cực Quyền Dẫn Mông Nhập Lộ" là bản giản minh của "Trần Thị Thái Cực Quyền Đồ Thuyết"; "Tam Tam Quyền Phổ" là bản tu đính quyền phổ Hình Ý theo lý pháp Thái Cực quyền — Đường Hào từng đọc qua sách ấy tại chỗ Xuân Nguyên, chỉ được phép sao chép mục lục, phần tu đính của ông ước chừng ba phần mười của nguyên phổ Hình Ý. Xuân Nguyên qua đời năm 1949, di cảo của Trần Hâm không biết lưu lạc nơi ai. Từ khi Trần Vương Đình đời thứ chín họ Trần ở Trần Gia Câu sáng tạo Thái Cực quyền, họ Trần đời đời tập quyền ấy, danh thủ xuất hiện liên tục, mà trước tác lại rất ít. Trải bảy lần truyền đến Trần Hâm mới bắt đầu coi trọng ghi chép văn tự.</p>
+<p>(Tư liệu truyện này được biên soạn căn cứ vào "Trần Thị Thế Truyện Thái Cực Quyền Thuật" của Trần Tử Minh, "Ôn Huyện Trần Quân Mộ Minh" của Trương Gia Mưu, "Trần Thị Gia Thừa" của Trần Hâm và những điều Đường Hào thuật lại lúc sinh thời)</p>
+<p class="display-line">Một. Thái Cực Quyền Kinh Phổ　　Trần Hâm</p>
+<p><span id="p269" class="page-anchor"></span>Thái Cực lưỡng nghi, trời đất âm dương, khép mở động tĩnh, mềm với cứng. Co duỗi qua lại, tiến lui tồn vong, một khai một hợp, có biến có thường. Hư thực đều tới, chợt hiện chợt tàng, cương nhu mỗi thứ một nửa, dẫn vào tiến tới tinh tường. Hoặc thu hoặc phóng, chợt căng chợt duỗi, đan xen biến hóa, muốn đè trước nâng. Trước phải có việc, chớ giúp chớ quên, thật tích lực lâu, mộc mạc mà càng tiến. Doanh hư có hình, ra vào không phương, thần để biết tới, trí để giấu lui. Khách chủ phân minh, trung đạo rực rỡ, kinh quyền dùng lẫn, bù ngắn cắt dài. Thần long biến hóa, ai đo được mênh mông? Dọc đường dằng dai, tĩnh vận không hoảng. Cơ phu cốt tiết, khắp chốn khai trương, không trước không sau, đón tiễn tương xứng. Trước · 276 · sau trái phải, trên dưới bốn bên, chuyển tiếp nhanh nhạy, chậm gấp cùng nhau. Nâng cao lấy thấp, như nguyện được đền, không trệ nơi dấu vết, không sa vào hư không, chí thành vận động, bắt thả tùy ý, thiên cơ hoạt bát, hạo khí lưu hành. Giả thua trá bại, quyền hành chế thắng, thuận tới nghịch lui, khiến người khó lường. Tùy thời chế nghi, giấu diệu quyết bên trong, trên đi dưới đánh, tuyệt không thiên lệch. Đánh đông kích tây, trái phải đều nên, lạnh đi nóng tới, ai biết mối manh? Ngàn xưa một ngày, chí lý tuần hoàn, trên dưới đi theo, không thể nói suông. Tuần tự tiến tới, nghiên cứu kỹ càng, người chịu khổ được, cuối cùng tới vững chắc. Tới nhanh tới chớp, quấn quanh hồi xoay, lìa hình được giống, sao chẳng trăng tròn. Tinh luyện đã cùng cực, nhỏ nhất cũng là vòng; mặt trời đứng bóng thì xế, mặt trăng tròn thì khuyết. Cho nên như trá dụ, không thể đuổi sát, nếu vượt giới hạn, thế khó xoay về. Huống chi mất thế, dù hối sao kịp? Ta giữ cõi ta, không hèn không ngạo, chín khúc ruột dê, không thể nhường chút nào; nếu nhường người khác, người đứng ta ngã, gấp tranh phong, lên được chớ xuống; chiếm thêm một phần, ta giữ thế thắng, một người giữ ải, muôn người mất dũng. Dính liền dán theo, hội thần tụ tinh, vận cái hư linh của ta, càng thêm chỉnh trọng. Tỉ mỉ êm ái, trung quyền hậu kình, hư lung trá dụ, chỉ vì một chuyển; được thế nơi mạch tới, chuyển quan có khó gì? Trong thực có hư, người ta tham chiếu; trong hư có thực, ai đo được cơ quan? Không che không đỡ, không đỉnh không dây dưa (trì), không mềm không cứng, không thoát không dính, đột nhiên mà tới, người không biết vì sao, chỉ thấy như gió thổi đổ, ngã nhào tuyệt diệu, cõi linh khó nói thành lời. Thử hình dung một phen: trong tay có quyền, nên nhẹ thì nhẹ, châm chước không lệch; nên nặng thì nặng, như hổ xuống núi. Dẫn xem người tới, tiến do ta đi; tới nên nghe thật, đi quý thần tốc. Một lần dòm thế nó, một lần nhìn khe nó, có khe để thừa, không dám không vào, mất cơ hội này, e khó có lại; một điểm cõi linh, vì người chỉ ra. Về thân pháp, vốn không nhất định, không định mà có định, ở người tự dụng. Ngang dọc điên đảo, đứng ngồi nằm núp, trước cúi sau ngửa, kỳ chính tương sinh. Hồi xoay tựa nghiêng, tụ nhảy đều trúng (đều có trung khí thu phóng, chủ tể ở trong.) Ngàn biến muôn hóa, khó vẽ hình nó. Khí không lìa lý, một lời khả tận, khai hợp hư thực, tức là quyền kinh. Dùng sức lâu ngày, hoát nhiên thông suốt, ngày ngày đổi mới không ngừng, tự đạt thần thánh. Hỗn nhiên không dấu, diệu thủ không không, nếu có quỷ thần, giúp hư linh ta, há biết lòng ta, chỉ giữ một kính.</p>
+<p>· 277 · Hai. Quyền phổ Thái Cực quyền　　Trần Hâm Trung khí (tức nguyên khí thái hòa, không lệch không nghiêng, không thái quá không bất cập) quán túc, tinh thần gấp trăm lần (mười năm dụng công, mười năm dưỡng khí). Lâm trận giao chiến, tuyệt kỵ tiến trước; nếu bất đắc dĩ, nếm nhẹ mang dẫn, tĩnh để chờ động, củng cố lũy lệ của ta. Trận đường hoàng, cờ chỉnh tề, có phòng bị thì không lo, để nó lén doanh; một dẫn một tiến, kỳ chính tương sinh, giả thua trá bại, biến bại thành công. Một dẫn tức tiến, chuyển (chuyển là từ dẫn mà chợt xoay) tiến như gió, tiến tới bảy phần, nhanh chóng đình lại. Binh hành quỷ kế, nghiêm phòng phía sau xâm nhập (trước sau đều là địch), trước sau trái phải, đều phải để tâm. Tiến bộ chớ chậm, không thẳng không theo hết, chân theo tay vận, vòng xoay như thần. Chợt lên (tay chân lên) chợt xuống (tay chân xuống), hoặc thuận (dùng thuận triền pháp, kình nó thuận) hoặc nghịch (dùng đảo chuyển pháp, kình nó nghịch); ánh mặt trời chiếu khắp, không rơi biên tế (trên đây là địch xâm ta). Ta tiến đánh người, khiến nó không phòng; nó nếu phòng được, ắt không phải diệu phương (bốn câu là ta xâm người). Đại tướng lâm địch, không đâu không cẩn thận; mặc nó vây quanh, cùng nhau tiến vào; chém tướng đoạt cờ, cái chân của bá vương. Chí lý Thái Cực, một lời khó hết; âm dương biến hóa, tồn tại ở người. Hơi dính hư ngụy (học và nghĩ dùng chung, phải hạ công phu thật) thì diệu lý khó tìm. (Quyền pháp có kinh có quyền, sinh cơ vô cùng, biến hóa do ta, không đợi suy nghĩ.)</p>
+<p class="display-line">Ba. Trần Hâm Thái Cực Quyền Luận Phân Loại Ngữ Lục①</p>
+<p class="display-line">1. Tâm tĩnh thân chính, dĩ ý vận động</p>
+<p>"Người học lên sân đánh quyền, đoan nhiên cung kính đứng, khép mắt nghỉ khí, hai tay buông xuống, thân trụ đoan chính, hai chân song song, trong tâm không có gì cả, một niệm không nghĩ gì, mục mục hoàng hoàng,</p>
+<ul class="posture-list">
+<li>① Tất cả những gì tập lục đều căn cứ theo cách thức phương pháp luyện tập của thức Trần lão giá mà ghi ra, nhưng có thể dùng để tham khảo khi luyện tân giá, và có thể chứng minh lão giá nói chung là khó luyện, phức tạp.</li>
+</ul>
+<p><span id="p270" class="page-anchor"></span>· 278 · hỗn nhiên như cảnh tượng vô cực của đại hỗn độn, nên hình nó không thể gọi tên, gọi nó là Vô Cực, là tượng hình vậy."</p>
+<p>"Thái Cực là sinh từ Vô Cực. Âm dương từ vi tế tới hiển trước, tuần hoàn không mối, tức là cơ sinh sinh của nó vậy. ... Lên sân đánh quyền, tay chân tuy chưa vận động, mà trong cái đoan nhiên cung kính ấy, cái cơ khai hợp âm dương của nó, cái số tiêu tức doanh hư của nó, đã đều gửi trong tâm phúc. Lúc này chuyên nhất chí, ngưng tụ thần, chuyên chủ ở kính, mà âm dương khai hợp, tiêu tức doanh hư, chỉ là chưa hiện hình thôi. Thời không thể gọi tên, cũng gọi nó là Thái Cực. Nói điều này để chỉ cho người học khi mới lên sân, trước hết rửa lòng gột nghĩ, bỏ đi vọng niệm, bình tâm tĩnh khí, để chờ nó động. Như vậy rồi sau mới có thể học quyền."</p>
+<p>"Quyền gọi là Thái Cực, thật là sự vận hành tự nhiên của thiên cơ, sự khai hợp tự nhiên của âm dương, một chút cũng không giả gắng gượng; kẻ gắng gượng đều không phải lý tự nhiên của Thái Cực, không được gọi là Thái Cực quyền." "Tinh thần quý ở chỗ uẩn súc, không thể lộ ra góc cạnh."</p>
+<p>"Tĩnh để chờ động." "Thái hòa nguyên khí tới lúc tĩnh, không tĩnh thì không thấy cái lạ của động."</p>
+<p>"Không khoe không trương, độ lượng ung dung, tuy nói là tập võ, văn ở trong đó vậy."</p>
+<p>"Thân phải lấy đoan chính làm gốc."</p>
+<p>"Thân pháp đoan ngưng chớ nghiêng, thu liễm tinh thần, không có quyết khiếu nào khác; tâm bình khí hòa thì được."</p>
+<p>"Người thân pháp chính, thân trụ đoan chính, không chỗ thiên lệch, hư linh hàm chứa bên trong, nên không sợ người khác đẩy ngã."</p>
+<p>"Không lệch không nghiêng, không thái quá không bất cập."</p>
+<p>"Không lệch không nghiêng, không phải nói về dấu vết hình tích, mà là nói thần tự nhiên được trung vậy." "Nếu kiêm mang pháp phủ ngưỡng co duỗi, thì quy củ mới hoàn toàn hợp nhất. Luyện lâu thuần thục thì khởi lạc tiến lui, xoay chuyển tự do, mà nhẹ nặng, hư thực, cương nhu đều phát cùng lúc."</p>
+<p>"Đánh quyền vốn là để bị thân pháp; thân pháp có chính có tà, có thẳng có cong, có thuận có nghịch; có thiên về trước, có thiên về sau; có thiên về trái, có thiên về phải; có thiên về trên, có thiên về dưới;</p>
+<p><span id="p271" class="page-anchor"></span>· 279 · có ngồi trên đất, có bay trên không; có bó lại, có tản ra; các thứ thân pháp không thể kể hết, đều có trung khí để xuyên suốt. Điều này tùy lúc lấy ý hội mà tự biết."</p>
+<p>"Thân tuy có khi nghiêng lệch, mà trong nghiêng lệch tự gửi trung chính, không thể chấp nê."</p>
+<p>"Giá thức tức là khi thân pháp có khi nghiêng lệch, ấy cũng là cái thiên của trung chính; trong thiên có chính, có chân ý; có chân ý thì cả một mảng ý vị dằng dai của nó không giống với cứng đờ ưỡn ngực bá đạo, chảy vào phái cứng."</p>
+<p>"Lấy hào nhiên chi khí trong tâm, vận khắp toàn thân; tuy có khi hình thể nghiêng tựa, mà trong nghiêng tựa tự có trung chính chi khí để chủ tể."</p>
+<p>"Về thân pháp, vốn không nhất định, không định mà có định, ở người tự dụng: ngang dọc điên đảo, đứng ngồi nằm núp, trước cúi sau ngửa, kỳ chính tương sinh, hồi xoay tựa nghiêng, tụ nhảy đều trúng (đều có trung khí thu phóng, chủ tể ở trong), ngàn biến muôn hóa, khó vẽ hình nó."</p>
+<p>"Thân pháp bất luận là đại thân pháp chuyển quan hay tiểu thân pháp quá giác, lấy linh động mẫn tiệp làm quý."</p>
+<p>"Ai hiểu được pháp chuyển thân này, thì thần cơ biến hóa ở trong đó."</p>
+<p>"Đánh quyền tâm là chủ."</p>
+<p>"Lấy tâm làm chủ, mà ngũ quan bách hài không gì không nghe theo."</p>
+<p>"Thiên quân có chủ tể, bách hài nghe theo."</p>
+<p>"Vận dụng ở tâm, đây là chân quyết." "Trung hòa nguyên khí, tùy ý sở chi; ý chi sở hướng, toàn thần quán chú."</p>
+<p>"Động tĩnh hoãn cấp, vận chuyển tùy tâm."</p>
+<p>"Vận hóa toàn ở một tâm."</p>
+<p>"Tứ thể theo tâm mà vận, quan hài đều vui mà thuận theo, mà cốt yếu đều lấy càn khôn chính khí mà hành vậy."</p>
+<p><span id="p272" class="page-anchor"></span>"Trong tâm không một vật gì, cực kỳ hư linh; một khi có chỗ chấp trước, thì không hư không linh, · 280 · Chỉ lấy tĩnh mà giữ gìn, nuôi dưỡng lòng thành cho đến khi động và tĩnh đều thích hợp, biến hóa khôn lường."</p>
+<p>"Diệu cơ vốn phát ra từ tâm."</p>
+<p>"Hỏi: chủ tể của sự vận hành là gì? Đáp: chủ tể ở tại tâm. Tâm muốn trái phải thay nhau vận hành, thì tay chân trái phải liền thay nhau vận hành; tâm muốn dùng kình triền ti để chuyển vòng thuận, thì hai tay trái phải liền dùng kình triền ti chuyển vòng thuận; tâm muốn trầm khuỷu áp vai, khuỷu liền trầm, vai liền áp; tâm muốn ngực bụng khép phía trước, kình lưng xoay xuống, khung ngực mở tròn, thì ngực hướng về trước mà khép, kình lưng xoay xuống, khung ngực liền mở tròn — không gì là không như ý. Tâm muốn khuất hai gối, hai gối liền khuất; chân phải chạy theo tay phải, chân trái chạy theo tay trái, mà gối cùng chân trái phải đều theo đó — bằng không thì sinh ra nhiều tì vết rối ren. Đó là lý do vì sao thân thể và tay chân không thể không theo tâm. Cho nên ta nói: tâm là chủ tể vận hành của một thân."</p>
+<p>"Có người hỏi: đại khái của quyền đã được nghe rõ, song khi đánh không ra được thần tình, vì sao? Đáp: điều đó ở chỗ bình nhật phải bỏ lòng ham nhanh, như Mạnh Tử nói, tất phải có việc ở đó mà chớ cưỡng cho đúng, tâm chớ quên, chớ giúp cho lớn. Lúc lâm trận trước tiên phải bỏ cái khí khinh phù hoảng trương, thanh tâm quả dục, bình tâm tĩnh khí, mỗi thế đều theo khuôn phép, tích lâu công chín, rồi sau cái tầng tầng quanh co trong đó, trải hết cảnh khó, khổ qua ngọt tới, cơ thú tràn đầy, không thể ngăn được, trong tâm có tình có cảnh, tự nhiên đánh ra thần tình. Tóm lại, đó đều là việc sức người làm được; còn đến cái vô tâm thành hóa, là ở sự hàm dưỡng, ngày tháng ung dung, để chờ nó tự đến thì được vậy."</p>
+<p>"Một mảnh linh cơ vẽ Thái Hòa, hoàn toàn nhờ tấc vuông [tấm lòng] mà biến ra nhiều, hữu tâm vận đến chỗ vô tâm, nước thu trong lắng hiện ra Thái A [bảo kiếm]."</p>
+<p>"Quyền tuy là tiểu kỹ, đều gốc ở chính lý Thái Cực."</p>
+<p>"Quyền tuy là võ nghệ, được chính đạo của nó (đạo Trung Dung — không lệch không nghiêng, không thừa không thiếu), thì không đâu là không thích hợp."</p>
+<p><strong>2. Khai hợp hư thực, hô hấp tự nhiên</strong></p>
+<p>"Khai hợp hư thực, tức là quyền kinh."</p>
+<p><span id="p273" class="page-anchor"></span>"Lấy nguyên khí vốn có trong thân ta, vận hành trong thân ta, cái co duỗi qua lại, thu phóng cầm phóng, cũng chỉ là một khai một hợp với một hư một thực mà thôi."</p>
+<p>"Một khai một hợp, thuật quyền hết ở đó vậy."</p>
+<p>"Động tĩnh tuần hoàn, há có lúc gián đoạn! Điều ta nói là: một động một tĩnh, một khai một hợp, đủ hết cái diệu trong quyền."</p>
+<p>"Một khai một hợp diệu nhập vi, trên dưới bốn bên tan vào cơ hóa, dẫu cho sáu đứa con [sáu căn] đều khéo miệng, cũng khó tả được bông tuyết bay."</p>
+<p>"Khai hợp vốn không định, khuất duỗi thế liền nhau. Thái Cực phân âm dương, thần long biến vô phương."</p>
+<p>"Khép mở cương nhu theo tự nhiên, một dương một ức lý tuần hoàn."</p>
+<p>"Một khai một hợp, có biến có thường, hư thực cùng đến, chợt hiện chợt ẩn."</p>
+<p>"Trong khai có hợp, trong hợp có khai; trong hư có thực, trong thực có hư."</p>
+<p>"Trong thực có hư, trong hư có thực — cái diệu dụng tự nhiên của Thái Cực; đến lúc kết quả, mới ngộ ra cái tinh diệu của lý ấy."</p>
+<p>"Cả thân cùng hợp thành một khối, thần khí không tán, mới có thể nhất khí lưu thông, hộ vệ khắp thân."</p>
+<p>"Đánh quyền để điều dưỡng huyết khí, hô hấp theo tự nhiên. ... Điều tức miên miên, thao cố nội thủ, chú ý huyền quan. ... Nhẹ nhàng vận hành, lặng lẽ dừng lại, chỉ lấy ý tứ mà vận hành."</p>
+<p>"Đầu thẳng, mắt nhìn ngang; vai hợp với vai, khuỷu hợp với khuỷu, tay hợp với tay, gốc đùi hợp với gốc đùi, gối hợp với gối, chân hợp với chân. Bình tâm tĩnh khí; khi hợp thì trên dưới cùng hợp lại một chỗ, khí quy về đan điền, các pháp hợp đều dùng pháp triền nghịch (đảo)."</p>
+<p>"Khai thì đều khai, hợp thì đều hợp." "Đến lúc hợp, khí ắt phải quy về đan điền."</p>
+<p>"Một khai một hợp, không gì là không tự nhiên."</p>
+<p>"Không chỉ lấy thế mà hợp, nên trước hết lấy thần mà hợp."</p>
+<p><span id="p274" class="page-anchor"></span>· 282 · "Hợp là hợp cái thần của toàn thân, không chỉ hợp bốn chi."</p>
+<p>"Một khai một hợp âm dương đủ, bốn chi (hai tay hai chân) ân cần căng khớp xương."</p>
+<p>"Mỗi ngày tinh tường ngắm đồ Thái Cực, một khai một hợp ở trong thân ta."</p>
+<p>"Tâm phải hư; tâm hư thì bốn chi đều hư. Đan điền và kình lưng, gót chân phải thực; ba chỗ một khi thực, thì cái hư của bốn chi đều thành thực — đó gọi là hư mà thực."</p>
+<p>"Lý âm dương của trời đất, không qua tiêu tức doanh hư mà thôi, cho nên Khổng Tử chuộng tiêu tức doanh hư. Đánh Thái Cực quyền cũng là tiêu tức doanh hư. Tức là thở, là khí hô hấp, là sinh trưởng; cho nên con của người ta gọi là tức [con], vì nó do mình sinh ra; nhân khí vi, nên gọi là tức. Tiêu là giảm, là lùi. Doanh là ở giữa đầy tràn. Hư là ở giữa trống không."</p>
+<p><strong>3. Khinh linh viên chuyển, trung khí quán túc</strong></p>
+<p>"Có thể kính, có thể tĩnh, tự giữ được hư linh."</p>
+<p>"Tâm thân không được sử khí, nhẹ nhàng vận động."</p>
+<p>"Lấy linh động nhanh nhẹn làm chuộng."</p>
+<p>"Hơn nữa tâm một khi hư, thì toàn thân đều hư; chỉ hư mới linh, linh đủ để ứng địch."</p>
+<p>"Người đánh quyền, tay cực hư cực linh, vật có chạm vào liền biết, liền có thể tùy cơ mà ứng; không chỉ tay, mà sau lưng cả thân đều là hư linh."</p>
+<p>"Qua lại khuất duỗi, như gió thổi cành dương; thiên cơ động đậy, sống động hồn nhiên, không chút trệ cơ."</p>
+<p>"Lấy tấm lòng hư linh, nuôi cái khí cương trung."</p>
+<p>"Còn như tay chân vận động, không ngoài một vòng, tuyệt không đi thẳng lại thẳng." "Vòng được vẽ có chính có nghiêng, không gì ngoài một vòng một Thái Cực." "Dọc đường triền ti, tĩnh vận không hoảng."</p>
+<p>"Chân theo tay vận, xoay tròn như thần."</p>
+<p>"Lìa hình mà được tựa — nào phải trăng tròn, tinh luyện đã tột, nhỏ mấy cũng là vòng." "Vòng là toàn thân chuyển, không chỉ tay chân; mà tay chân ở ngoài dễ thấy, nên lấy tay chuyển mà nói."</p>
+<p><span id="p275" class="page-anchor"></span>· 283 · "Càng nhỏ càng nhỏ đến khi không còn vòng, mới về cái chân thần diệu của Thái Cực."</p>
+<p>"Trung khí của đánh quyền đi tới đâu, ai có thể cấm ngăn!"</p>
+<p>"Lấy hào nhiên chi khí mà hành, không đâu là không thích hợp."</p>
+<p>"Tâm kình một khi phát, mà gân mạch khớp xương khắp thân không gì không theo; cái hình thành ở ngoài đều do cái phát từ trong — cho nên gọi là nội kình."</p>
+<p>"Nội kình phát thế nào, hành thế nào? Phát từ tâm, hành nơi tủy xương của tứ chi, sung khắp cơ phu của tứ chi."</p>
+<p>"Không trệ, không tức, không trái, không lìa, không lệch, không nghiêng — tức là trung khí."</p>
+<p>"Trung khí được mười phần đầy đủ, khí thế thịnh túc."</p>
+<p>"Quyền lấy trung khí vận hành, người ta mới tâm phục, thế là giáo hóa thành thiên hạ."</p>
+<p>"Lấy dẫn chân làm chỉ; người học phần nhiều tính táo, chưa hạ công phu, trước đã thích đánh người, không biết xâm đến đâu, liền lấy nơi đó dẫn kích, không câu nệ định cách."</p>
+<p>"Trung khí quán túc, vật đến thuận ứng, vật không thể trái."</p>
+<p>"Quyền gia tay thành, có thể bình được chí mình, tự nhiên không có khí ngang."</p>
+<p>"Trung khí vận đến tay mới là vận đủ."</p>
+<p>"Ngón chân cái chờ khí của tay đi đủ rồi, mới cùng tay hợp lại một chỗ; lúc đó mới có thể đạp thực."</p>
+<p>"Kình của nó đều phát từ trong tâm, nhập vào tủy xương, đạt ra ngoài tới cơ phu; là một luồng kình, không phải mấy luồng kình, tức là khí phát ra từ trong tâm. Được cái trung chính của nó tức là trung khí, nuôi nó tức là hào nhiên chi khí."</p>
+<p>"Trung khí quán nơi giữa lưng."</p>
+<p>"Nếu hỏi cái tin thật ở trong đó, phải tìm nơi khớp xương sống lưng."</p>
+<p>"Trung khí từ trên huyệt Bách Hội, xuống quán huyệt Trường Cường, như một sợi chỉ xâu thành."</p>
+<p><span id="p276" class="page-anchor"></span>"Trung khí quán nơi giữa tâm thận, thông lên đỉnh đầu, xuống tới hội âm, ... trung khí sung thực ở trong, rồi sau khai hợp cầm tung, tự nhiên không trở ngại." "Trung khí ắt từ giữa cánh tay chậm rãi vận hành, không được hoảng trương sơ lược, thuận theo lẽ đương nhiên của nó, vận cái tự nhiên, chớ để lệch nghiêng, mà lấy tâm khí hành nơi giữa hai cánh tay — ấy là trung khí."</p>
+<p>"Hình của nó như dừng, ý của nó không dừng, dần dần sung mãn nội kình của nó; ắt khiến kình từ trong tủy xương sung tới cơ phu, cho đến đầu ngón tay. Chờ nội kình mười phần sung túc, thì cơ trí của thế sau tự động."</p>
+<p>"Nhất khí vận hành, tuyệt không dừng lại, thuần là hào khí lưu chuyển khắp thân, thế không thể ngăn."</p>
+<p>"Chỉ nhờ toàn thân không linh, một luồng trung khí theo thế mà dương lên."</p>
+<p>"Hai người đối địch, là quan hệ tính mạng; ngoài quán sát người, trong quán sát mình, biết mình biết người, trăm trận trăm thắng; mà một mực lấy trung khí ngự trị, không mất đạo đại trung chí chính."</p>
+<p>"Lấy trung khí trong tâm vận nơi giữa tứ chi; đó là chỗ người ta không thấy mình, chỉ mình ta biết; phải luôn luôn lấy thần mà hội, lâu rồi tự tỏ."</p>
+<p>"Dẫn đỉnh kình lên (đỉnh kình: trung khí của tâm. Dẫn, như nâng lên). Đỉnh kình ở đâu? Ở huyệt Bách Hội; ý chỉ cần dẫn giữ một chút (dẫn là dẫn cái tinh thần toàn thân của nó, khiến nó không lệch không nghiêng) là đủ, không được quá, quá thì cằm dưới treo lên, đứng không vững vàng. Đây là mấu chốt của một thân, nơi trung khí đi qua — không thể không biết. Trung khí lên thông Bách Hội, xuống thông hai mươi đốt sống; chỗ này một khi thông thì trên dưới đều thông, khí mạch toàn thân đều thông, tự nhiên không có tệ nạn nghiêng đổ. Hai gân sau ót là vật phò trợ trung khí; chỗ không có gân giữa hai gân là đường lưu thông lên xuống của trung khí, xuống giữa xương sống đến đốt thứ hai mươi mốt thì dừng. Tức là hai mạch Nhâm Đốc trước sau cũng đều phò trợ trung khí của ta.</p>
+<p><span id="p277" class="page-anchor"></span>Trung khí khó gọi tên nhất, mà đường trung khí đi cũng khó gọi tên nhất — không hình không tiếng; không hao công phu lâu dài thì không thể biết. Cho nên 'không lệch không nghiêng' không phải nói về dấu vết hình tướng, mà là nói cái tên của thần tự nhiên được trung. Tức là trung khí vận trong tứ chi cũng chính là dòng bên của trung khí này, không phải có một trung khí riêng khác. Chỗ này không lệch, rồi sau trung khí trong tứ chi đều không lệch; dẫu hình tích tứ chi biểu hiện nhiều thế lệch, mà trung khí lưu trong tứ chi tự nhiên không lệch. Ý này có · 285 · thể lấy thần mà minh vậy."</p>
+<p>"Khí không phải có hai; cái mềm mà kình là trung khí, cái thuần cứng là hoành khí. Công dụng của nó: không lệch không nghiêng, không thừa không thiếu, là công dụng của trung khí, không phải thể của trung khí. Thể của trung khí tức là chính khí âm dương trong tâm ta, tức là cái 'hào nhiên chi khí phối đạo nghĩa' mà Mạnh Tử nói."</p>
+<p><strong>4. Triền ti vận động, thư sướng kinh lạc</strong></p>
+<p>"Mọi kinh lạc đều có lợi cho quyền."</p>
+<p>"Đánh Thái Cực quyền phải rõ kình triền ti; triền ti là pháp môn vận trung khí; không rõ điều này tức là không rõ quyền."</p>
+<p>"Thái Cực quyền là pháp triền ti. Tiến triền, thoái triền, tả hữu triền, thượng hạ triền, lý ngoại triền, đại tiểu triền, thuận nghịch triền — mà phải không gì là vừa dẫn vừa triền, vừa tiến vừa triền, không thể mỗi thứ là một chiêu riêng; nếu mỗi thứ là một chiêu riêng, thì không phải âm dương lấy nhau làm gốc."</p>
+<p>"Toàn thân đều là triền kình; đại lược lý triền ngoại triền đều là tùy động mà phát. Có tay trái trước, tay phải sau; tay phải trước, tay phải sau, mà hợp lại một cách thuận; cũng có khi tả lý hợp, hữu bối hợp; cũng có khi dùng phản bối kình mà hợp về phía sau lưng — mỗi thứ tùy theo thế của nó mà vận hành theo cách tự nhiên. Kình của nó đều phát từ trong tâm, nhập vào tủy xương, đạt ra ngoài tới cơ phu; là một luồng kình, không phải mấy luồng kình. Tức là khí phát từ trong tâm; được cái trung chính của nó thì là trung khí, nuôi nó tức là hào nhiên chi khí."</p>
+<p>"Ý thú trong đó, chớ cắt đứt thần khí; thần khí không đứt thì huyết mạch tự nhiên lưu thông."</p>
+<p>"Trong khoảng trời đất chưa từng có cái đi mãi mà không trở lại; cũng chưa từng có cái thẳng mà không cong."</p>
+<p>"Vì vật có đối đãi, thế có hồi hoàn — lý không đổi của xưa nay." "Cái gốc của vệ sinh là diệu quyết hoàn khí. Có thể khéo vận khí, mới có thể vệ được sinh mệnh của mình."</p>
+<p>"Tự nhiên phải theo thầy giỏi, lại nên tìm bạn cao; mỗi nơi theo khuôn phép; một sợi chỉ khai linh minh; một tầng sâu một tầng, tầng tầng ý vô cùng; một khai liền một hợp, khai hợp chuyền nhau kế tục."</p>
+<p>"Ngũ vận lục khí tư biến hóa, võ thuật được đó tự thông thần."</p>
+<p><span id="p278" class="page-anchor"></span>· 286 · "Mạch Nhâm khởi ở Hội Âm, lên theo trong bụng đến Thiên Đột, Liêm Tuyền thì dừng. Mạch Đốc cũng từ Hội Âm khởi, qua Trường Cường, thuận sống lưng nghịch hành lên đến Bách Hội, xuống đến Nhân Trung thì dừng. ... Nhâm Đốc của thân người, nói theo bụng lưng, ... đều ở nơi trung, có thể chia, có thể hợp. Chia để thấy âm dương không lìa nhau; hợp để thấy hỗn luân không khe hở. ... Người ta có thể rõ Nhâm Đốc để vận khí giữ thân, ... hành thuật đạo dẫn, lấy đó làm cái gốc (khước bệnh diên niên). Đánh quyền để điều dưỡng huyết khí, hô hấp theo tự nhiên, quét trừ vọng niệm, trút hết trọc khí, trước định căn cơ, thu thị phản thính, hàm quang mặc mặc, điều tức miên miên, thao cố nội thủ, chú ý huyền quan (tức đan điền); công lâu thì trong chớp mắt nước trung phát hỏa, trong tuyết hoa nở, hai thận nóng như nước sôi, bàng quang như lửa cháy, chân khí tự đủ. Nhâm Đốc như bánh xe, tứ chi như đá núi. Không niệm mà phát, thiên cơ tự động. Mỗi lần đánh một thế, nhẹ nhàng vận hành, lặng lẽ dừng lại, chỉ lấy ý tứ vận hành, thì thủy hỏa tự nhiên hỗn dung. ... Luyện hơn mười năm về sau, toàn thân hỗn độn, cực kỳ hư linh, không biết thân là ta, ta là thân, cũng không biết thần do khí sinh, khí tự có thần; vòng thì trúng quy, gấp thì trúng củ, không nghĩ mà được, không gắng mà trúng, ... không biết vì sao mà như vậy; cũng không biết Nhâm là Đốc, Đốc là Nhâm, trung khí là trung khí vậy. Lúc thời đều thích hợp, tự nhiên hợp nhịp. Đây nói sự lên xuống thuận nghịch của Nhâm Đốc, phò trợ trung khí để thành công. Khí động do thận mà sinh, tĩnh rồi vẫn quy túc nơi thận. Mỗi một hô một hấp, sự ra vào của chân khí đều ở đó. ... Tóm lại, dẫu nói ngàn lời vạn ngữ, không gì bằng thanh tâm quả dục, bồi cái bản nguyên, để dưỡng nguyên khí. Thân vốn cường tráng, đánh quyền tự hơn người một bậc."</p>
+<p>"Kình này đều do trong tâm phát; mặt ngoài đùi cánh tay tựa như tơ quấn. Triền xiên thuận nghịch vốn có định; rất đáng nông sâu suy xét kỹ. Suy xét công phu thật lâu ngày, một khi khoát nhiên Thái Cực quyền; thân người mọi chỗ đều Thái Cực, một động một tĩnh đều hỗn nhiên."</p>
+<p>"Kình cánh tay do tâm phát, hành nơi vai, qua khuỷu, đến ngón tay — đó là pháp thuận triền. Từ xương đến cơ phu, từ vai đến ngón tay, là xuất kình vậy. Từ ngón tay đến vai là pháp đảo (nghịch) triền; cái gọi là nhập kình là dẫn nó mà đến, khiến địch gần lại ta vậy."</p>
+<p>· 287 · "Kình của hai chân đều do ngón cái chân dẫn khởi, qua Dũng Tuyền, lên qua mắt cá ngoài, triền vào trong, xiên lên, qua Tam Lý, vượt gối, qua Huyết Hải, đến gốc đùi; chỗ giữa hai gốc đùi gọi là đương, tức huyệt Hội Âm vậy (vì hai kình đối đầu nhau, đó là chỗ kết huyệt; chỗ này là nơi quy túc của kình chân, kình lưng hơi hạ xuống, hạ đến gốc đùi này mà chống mở, thì kình đương tự tròn). Vận động sau gót chân đạp đất, dần đến ngón chân thông qua Thông Cốc, Đại Chung, Ngoại Phì cũng như Ẩn Bạch, Đại Đôn, Lệ Đoài, thật sự đạp trên đất (ngón chân bàn chân phải bấu chặt đất, Dũng Tuyền phải hư, không hư thì ngón chân không dính lực, dùng không ra lực — ấy là trước sau thực, giữa hư).</p>
+<p>Kình của quan thể, mỗi thứ theo kinh lạc của mình mà vận hành, không chút nào sai lệch."</p>
+<p>"Một đi một lại vận một vòng, khí cơ trên dưới không dừng lại; từ xưa Thái Cực đều như vậy, cớ sao phải ngoài thân vọng mưu cầu."</p>
+<p><strong>5. Thượng hạ tương tùy, nội ngoại tương hợp</strong></p>
+<p>"Một thân ắt khiến trên dưới theo nhau, nhất khí quán thông."</p>
+<p>"Nội ngoại thượng hạ ắt theo, kình của nó không thể trái ngược."</p>
+<p>"Người phát lệnh là tâm, người truyền lệnh là tay, người xem sắc là mắt. Đó là thuyết tam đáo của tâm, thủ, nhãn — thiếu một không thể."</p>
+<p>"Trên dưới tay chân đều theo nhau; sau tiến về trước chuyển chớ chậm trễ."</p>
+<p>"Không trước không sau, đón tiễn tương xứng; trước sau trái phải, trên dưới bốn bên, chuyển tiếp linh mẫn, hoãn cấp cùng đưa."</p>
+<p>"Tay trên vận thế nào, chân dưới vận thế ấy; trên dưới theo nhau, tự nhiên hợp nhịp."</p>
+<p>"Cốt yếu của tay hoàn toàn ở bàn tay; ngón tay dẫn khởi sự vận động toàn thân, chân theo tay lại càng trọng yếu." "Chân theo tay vận, xoay tròn như thần."</p>
+<p>"Giữa ngực bụng theo tay chân mà vận; trên dưới nhất khí quán thông; nói động thì cùng động, nói dừng thì cùng dừng."</p>
+<p><span id="p279" class="page-anchor"></span>· 288 · "Đánh đầu thì đuôi động, tinh thần quán xuyến; đánh đuôi thì đầu động, mạch lạc khai thông; đánh vào giữa thì đầu đuôi đều động, trên dưới bốn bên khấu lại như cây cung."</p>
+<p>"Nội ngoại nhất khí lưu chuyển."</p>
+<p>"Tám thể (đỉnh, đương, tâm, nhãn, nhĩ, thủ, túc, yêu) then chốt ngài phải nhớ; sức người vận thành đoạt thiên công."</p>
+<p>"Thái Cực quyền ngàn biến vạn hóa, không đâu là không kình; thế tuy không đồng, mà kình quy về một. Cái gọi là một: từ đỉnh đến chân, trong có tạng phủ gân xương, ngoài có cơ phu bì nhục; tứ chi bách hài liên kết mà thành một. Đập nó mà không nứt, đâm nó mà không tán. Trên muốn động thì dưới tự theo; dưới muốn động thì trên tự dẫn; trên dưới động thì phần giữa ứng; phần giữa động thì trên dưới hòa. Nội ngoại liên nhau, trước sau nương cần — cái gọi là 'nhất dĩ quán chi' [một sợi xâu suốt], há phải là nói cái ấy ư!"</p>
+<p>"Tâm và thân không được sử khí, nhẹ nhàng tuân giữ quy củ, theo thế tự nhiên của nó mà vận. Lấy tay dẫn khuỷu, lấy khuỷu dẫn vai; dưới thì lấy chân dẫn gối, lấy gối dẫn đùi. Chỗ yếu của nó hoàn toàn ở lấy ngón tay ngón chân dẫn mà vận hành. Có người hỏi: tay chân hoàn toàn không dùng khí, thì vận động thế nào? Đáp: khí trong tay chẳng qua chỉ dẫn giữ vai cánh tay mà thôi, không được quá, quá thì không linh. Còn như chân, so với tay chỉ nặng hơn một chút."</p>
+<p><strong>6. Triêm trước quán xuyến, thế thế tương thừa</strong></p>
+<p><span id="p280" class="page-anchor"></span>"Một đạo của quyền là tiến thoái không ngừng, thần khí quán xuyến, tuyệt không gián đoạn." "Người mới học dùng công, trước cầu phục ứng, lai mạch chuyển quan, nhất khí tương sinh." "Thế trên thế dưới, nhất khí thừa tiếp, chớ để thần khí gián đoạn." "Đánh quyền hoàn toàn ở thế khởi; một khi khởi được thế, về sau không gì không được thế. Dẫu không có địch, tay không vận, cũng cảm thấy thừa tiếp được thế, cơ thế linh hoạt. Cho nên ta nói mỗi một thế hoàn toàn ở chỗ khởi; ở chỗ tiếp xương đưa mộng, thế kia hạ xuống thế nào, thế này dâng lên thế nào, phải cẩn thận suy xét. Lại hoàn toàn ở chỗ mỗi lần hạ xuống phải nghĩ thế nào mới tính là đi đến mười phần đầy đủ, không chút khiếm khuyết. Thần khí đã đủ, thế này tựa có thể dừng, mà cơ của thế sau đã động, muốn dừng mà lại không thể dừng; vì cái cơ muốn dừng sắp dừng của nó lại đã gọi dậy · 289 · thế dưới vậy. Cho nên ta nói: cảnh lúc này, tựa dừng mà không dừng (không dừng là vì thần chưa đủ), không dừng mà dừng (cái dừng chỉ một đường, thế dưới liền khởi)."</p>
+<p>"Học Thái Cực quyền mỗi chiêu đều phải cẩn thận suy xét; một chiêu không suy xét, thì cơ trí tình lý của thế này rốt cuộc mờ tối. Tức là chỗ kế trên khởi dưới lại càng phải lưu tâm; chỗ này không lưu tâm, thì lai mạch không chân, chuyển quan cũng không linh động; một chiêu tự thành một chiêu riêng, không thể từ đầu đến cuối nhất khí quán thông. Không thể nhất khí quán thông, thì với Thái Hòa nguyên khí rốt cuộc khó hỏi bến."</p>
+<p>"Bình thường đánh quyền, hoàn toàn ở một khởi một chuyển — cái gọi là 'đắc thế tranh lai mạch, xuất kỳ tại chuyển quan'. Lúc tay của thế này sắp khởi, ắt trước phải khiến tay thừa tiếp thế trên thế nào, không để cắt đứt thần khí huyết mạch; sau khi đã thừa tiếp, ắt nghĩ tay làm sao đắc cơ đắc thế. Lai mạch chân, cơ thế được, chuyển quan tự nhiên linh động. Có thể như vậy, ngày khác cùng người giao thủ, tự nhiên thân đứng trước ở đất không bại, chỉ huy như ý."</p>
+<p>Mỗi thế sắp thành, "dấu như dừng, khí lại không dừng; ắt chờ nội kình chậm rãi vận đến mười phần sung túc, cơ của thế sau nhảy nhót muốn động, mới có thể đánh thông thế trên với thế dưới, giữa không cách ngại, nhất khí lưu hành. Không chỉ một thế như vậy; quyền từ đầu đến cuối, cuối mỗi thế đều như vậy."</p>
+<p>"Tiếp xương đấu mộng, cẩn thận suy xét."</p>
+<p>"Lý tinh pháp mật, điều lý lũ tích."</p>
+<p>"Tầng lũy khúc chiết, đều đến chỗ tột cùng của nó."</p>
+<p><strong>7. Hư lĩnh đỉnh kình, khí trầm đan điền</strong></p>
+<p>"Hỏi: mấu chốt của đánh quyền ở đâu? Đáp: ở dưới huyệt Bách Hội, từ Đại Chùy sau ót thông đến Trường Cường; chỗ động của nó ở hai mạch Nhâm Đốc."</p>
+<p>"Huyệt Bách Hội dẫn cả thân."</p>
+<p><span id="p281" class="page-anchor"></span>"Đỉnh kình là trung khí xung lên đỉnh đầu vậy. Không dẫn thì khí sụp; dẫn quá thì không những khí toàn thân đều ở trên, gót chân không vững, bệnh treo ngược lên, mà đỉnh cũng mất cứng, Xoay trở không linh hoạt, cũng lộ ra vẻ vụng về, là ở chỗ giữ được mức giữa của "dường như có, dường như không" mà thôi."</p>
+<p>"Đánh quyền hoàn toàn là đỉnh kình, đỉnh kình dẫn dắt tốt, thì tinh thần toàn thân được chấn hưng làm một."</p>
+<p>"Cương lĩnh hoàn toàn ở đỉnh kình, cho nên đỉnh kình vừa dẫn lên thì tinh thần toàn thân đều chấn hưng." "Đỉnh kình, trung khí là một luồng chính khí; ý trong tâm vừa dấy lên là đi đến đỉnh đầu, trung khí tự nhiên dẫn lên, không phải có vật gì nâng nó lên, mà là ý như thế."</p>
+<p>"Quyền từ đầu đến cuối, đỉnh kình quyết không thể mất; một khi mất đỉnh kình, tứ chi dường như không có chỗ nương tựa, hơn nữa không có tinh thần, cho nên tất phải dẫn lên, để làm cương lĩnh của toàn thân."</p>
+<p>"Đỉnh kình dẫn lên, ý như trên đỉnh đầu phá tan trời, không được dùng khí quá mức."</p>
+<p>"Đỉnh kình dẫn lên, nghiêng mà ngụ chính, khoeo chân mở ra (đầu gối mở ra) hợp lại (kình hợp giữ), như nửa vầng trăng."</p>
+<p>"Trung khí ở trên từ huyệt Bách hội, ở dưới xuyên qua huyệt Trường cường, như một sợi chỉ xâu thành."</p>
+<p>"Dẫn đỉnh kình lên — dẫn đỉnh kình không phải là nói cứng đạp vào hai gân lớn sau gáy và giữa hai tai, mà là trung khí nâng lên. Dường như hữu ý, dường như vô ý; không nhẹ không nặng; dường như có dường như không. Một chút linh kình chợt bùng trong tâm, chảy xuống đỉnh sau, không được nâng quá, cũng không được không tới; nâng quá thì treo lơ lửng ở trên, không tới thì khí lưu lại trong ngực, khó hạ xuống. Đây là kiểu đỉnh kình."</p>
+<p>"Trung khí xuyên suốt giữa tâm và thận; ở trên thông với đỉnh đầu, ở dưới đạt tới hội âm."</p>
+<p>"Đỉnh kình dẫn lên, trọc khí hạ xuống, trung khí tụ lại vào đan điền."</p>
+<p>"Thân người lấy eo làm giới hạn giữa, khí đi lên đi xuống, ở giữa lấy eo làm ranh giới."</p>
+<p>"Mạnh Tử nói: Chí là tướng soái của khí, khí là cái làm đầy thân thể. Tâm như tướng quân, khí như binh lính; tướng quân vừa ra lệnh thì binh lính đều nghe theo. Thanh khí thăng lên đi đến tay, trọc khí giáng xuống đi đến chân; khí đều đi đến đầu ngón tay mới dừng. Đan điền là chỗ quy túc của toàn bộ khí trong thân, như chỗ đóng quân của binh mã. Khí đi lên đi xuống dường như hai đọan, thực ra là một khí thông suốt."</p>
+<p><span id="p282" class="page-anchor"></span>"Huyệt Bách hội dẫn dắt toàn thân, phải khiến thanh khí thăng lên, trọc khí giáng xuống. Thanh khí làm sao thăng lên? Không bình tâm tĩnh khí thì không thể; trọc khí tất phải giáng xuống đến chân. Một thế đã xong, lên · 291 · [...] thể thanh khí đều khiến quy về đan điền, vì tâm khí vừa hạ xuống thì toàn bộ khí của toàn thân không có cái nào là không cùng hạ xuống."</p>
+<p>"Kình của toàn thân phát ra ngoài, đều phát từ đan điền; thu vào trong, đều thu về đan điền; nhưng đều do tâm chủ tể, khắp nơi đều thấy khí tượng của thái hòa nguyên khí." "Khí quy về đan điền, trên hư dưới thực, trung khí tồn tại ở giữa, hư linh hàm chứa ở trong."</p>
+<p>"Thế đã thành, tâm bình khí hòa, trung khí quy về đan điền."</p>
+<p>"Khí của đan điền chia làm năm chỗ, thực ra là một khí thông suốt, trên dưới không được sụp đổ, ấy là một. Tâm khí vừa dẫn, khí đan điền thăng lên: sáu phần đến tim, lại một phần chia hai nhánh, ba phần thăng lên đến vai trái, ba phần thăng lên đến vai phải, đều từ trong khe xương vai xuyên đến các đầu ngón tay trái phải; cái ở trong khe xương gọi là trung khí, cái hiện nơi cơ phu gọi là triền ti kình (kình quấn tơ). Bốn phần còn lại cũng chia hai nhánh: hai phần hành nơi đùi trái, hai phần hành nơi đùi phải, đều từ trong tủy xương xuyên đến các ngón chân trái phải.</p>
+<p><span id="p283" class="page-anchor"></span>"Còn như thuyết trung khí quy về đan điền, không cần câu nệ, chỉ cần khiến khí giáng xuống bụng dưới dưới rốn mà thôi. Nếu xét kỹ, đan điền không phải là nguồn của khí, cớ sao riêng nói quy về đây? Đây bất quá chỉ nói đại ý mà thôi. Nếu truy đến nguồn, nguyên khí toàn thân đều xuất từ thận; thận thủy đủ thì khí tự nhiên mạnh; dưỡng ở vị, vị được dưỡng thì khí cũng mạnh; tàng ở can, can khí vừa động thì nghịch khí sinh ngang, khí không được bình; ngâm dưỡng ở tâm, tâm không vọng niệm thì tâm bình mà khí tự nhiên hòa; phế chủ thanh, thực ra là lấy tâm mà kêu lên, cơ của tâm đi đến đâu, không cần tiếng ra khỏi miệng mà tâm đã hiểu trước; mạnh ở đởm, đởm thì không sợ gì phía trước, khí cũng theo đó; vận ở tỳ, kinh này nhiều khí ít huyết, nghe tiếng thì động, động thì vận hóa không ngừng, tâm vừa động thì tỳ liền động ngay. Phụ thêm đại trường, đại trường nhiều khí ít huyết, lại là quan truyền đạo; lại bổ trợ bằng tiểu trường, tiểu trường ở trước trên rốn, sau bám vào sống lưng, cặn bã uế tạp không lưu, trọc khí đi mà thanh khí đến. Các kinh lạc trên đây đều có ích cho quyền, cho nên nói đến. Nếu chuyên nói về thận, thận là quan tác cường, kỹ xảo xuất ra từ đó, kinh này ít huyết nhiều khí, tàng tinh nơi chí, là chỗ ở của tinh thần, là gốc của tính mệnh. Thận có hai quả, mỗi quả hai [nhánh], một buộc vào tâm, một thông lên trên đến não; nơi khí sinh ra, thực bắt đầu từ đây, chỗ quy túc tất quy về đây. Còn như mệnh môn, thực là cửa ra vào của khí giữa hai quả thận, cho nên gọi là mệnh [...] · 292 · [...] môn."</p>
+<p>"Mệnh mạch là thận, là nơi trung khí từ đó mà ra. Động thì ra, tĩnh thì vào. Có định mà không định — ý nói thế biến đổi không ngừng theo thời, cho nên hai khí âm dương biến đổi cũng không định." "Ra từ thận, vào từ thận, ấy là chân quyết."</p>
+<p>"Thế Khoá Hổ định thức: trên lưng phía trên eo, huyệt Phách hộ và Cao hoang hướng về phía trước sườn mà hợp; phía trước ngực, hàng thứ nhất hai bên sườn — Uyên dịch, Đại bao — thuộc tam tiêu; hàng thứ hai — Triếp cân, Nhật nguyệt — cũng thuộc thiếu dương tam tiêu; hàng thứ ba — Vân môn, Trung phủ, Thực đậu, Hung hương — thuộc phế và tỳ; hàng thứ tư — Quyết âm, Kỳ môn, Thiên trì — thuộc can đởm; hàng thứ năm — dương minh đại trường: Khuyết bồn, Khí hộ, Lương môn, Quan môn — thuộc vị tràng; hàng thứ sáu — thiếu âm: Cách phủ, Thần tàng, U môn, Thông cốc — thuộc tâm thận; hàng giữa — Hoa cái, Tử cung, Ngọc đường, Đản trung, Trung đình, Cưu vĩ.</p>
+<p>Hai bên sườn trái phải, từ Uyên dịch, Đại bao cho đến U môn, Thông cốc hai bên, đều hướng về Ngọc đường, Đản trung mà hợp lại; sườn trái phải đều ứng hô lẫn nhau — đây là thức của hai bên sườn trái phải phía trên eo.</p>
+<p>Phía dưới eo, hai bên Khí xung, Duy đạo đều hướng về Khí hải, Quan nguyên, Trung cực mà hợp lại — đây là thức phía dưới hai bên sườn mềm."</p>
+<p><span id="p284" class="page-anchor"></span>"Thế nào gọi là thiểm thông bối (chớp xuyên qua lưng)? Lấy trung khí từ tâm giáng xuống qua rốn đến đan điền, lại từ đan điền cùng nhâm mạch nghịch hành mà vượt lên rốn, vượt Thượng quản, Hoa cái, Thiên đột, Liêm tuyền đến Thừa tương (môi dưới); đốc mạch tiếp lấy, nghịch hành Thủy câu, Nhân trung, Tố liêu (đầu mũi), vượt Thần đình, Thượng tinh, Tín hội, Tiền đỉnh cho đến Bách hội, giáng xuống vượt Hậu đỉnh, Cường môn, Não hộ, Phong phủ, Á môn, Đại chùy, Đào đạo, Thân trụ, Thần đạo, Linh đài, Chí dương, Cân súc, Tích trung, Huyền xu, Mệnh môn, Dương quan, Yêu du, cho đến Trường cường (đều là các du huyệt trên lưng sống), lại đến Hội âm thì cùng tận (ấy là nhâm mạch phía trước, đốc mạch phía sau, chỗ khởi đầu của hai mạch ở dưới). Trung khí từ Bách hội xuống thông Trường cường, Hội âm, ấy gọi là thông bối. Thiểm (chớp) là như người ôm giữ sau lưng eo, phía trước eo ưỡn mạnh về trước một cái, đầu và vai hạ xuống một cái, phía sau Trường cường và Hoàn khiêu (tức xương ngoài đùi) dùng sức bẩy mạnh phần bụng dưới của hắn, lật lên một cái, cho nên tay tự tan mở, chớp qua trước mặt từ trên đầu lưỡi, ngã ngửa trước ta. Ấy gọi là thiểm thông [...] · 293 · [...] bối."</p>
+<p>"Thông bối là thế nào? Khi đầu và vai cắm xuống, mông vểnh lên một cái, thì đốc mạch từ huyệt Trường cường nghịch hành mà lên thông Bách hội, cho đến Nhân trung, nhâm mạch tiếp lấy giáng xuống cho đến đan điền — ấy là dẫn dương vào âm một vòng. Tay phải từ cánh tay trên nhấc lên, nhâm mạch liền từ đan điền nghịch hành mà lên cho đến huyệt Thừa tương; tay phải theo thân chuyển ngược, tay xuống dưới, đốc mạch từ Nhân trung nghịch hành qua đỉnh đầu, qua đỉnh sau, từ Đại chùy thuận hành mà xuống, lại đến Trường cường — ấy là từ âm phụ vào dương lại một vòng nữa. Đợi khi chân phải lui về sau chân trái, tay phải từ dưới nhấc lên đến trên, thì đốc mạch lại từ Trường cường nghịch hành mà lên, đã đến đỉnh đầu Bách hội rồi. Thế là đốc mạch vận lên đã hơn nửa vòng; đợi thế sau lấy Diễn thủ chùy hợp giữ lại, thì đốc mạch từ Bách hội xuống đến huyệt Nhân trung, nhâm mạch từ Thừa tương giáng xuống cho đến đan điền — ấy là ba vòng. Với một thế thông bối, mà đốc mạch lên xuống ba lần qua lưng nó, ấy gọi là thông bối.</p>
+<p>Tay phải từ đầu đến cánh tay trên là thuận triền pháp (pháp quấn xuôi); từ cánh tay trên nhấc lên, chuyển qua thân, tay xuống dưới, lại từ dưới nhấc lên đến sau trên, cho đến thế sau Diễn thủ chùy, đều là nghịch triền pháp."</p>
+<p>"Thế Diễn thủ chùy: thế này chân phải đạp sau dùng kình, kình từ đạp sau nghịch hành mà lên, đến trong đũng, lại thượng hành qua Ý xá, Hồn môn, Thần đường, Cao hoang, Phách hộ, đến Kiên ngu, lại từ Kiên ngu hạ hành vào Tiểu hải, chia vào Thủ tam lý, hạ hành Hợp cốc (ngón hai), Trung chử (ngón bốn), Uyển cốc (ngón út), cho đến đốt thứ ba của ngón thứ tư. Kình của chân phải dùng nghịch triền pháp, từ dưới nghịch triền mà lên, đến Hội âm, chéo vào Ý xá, cho đến Kiên ngu, lại dùng nghịch triền pháp quấn đến đầu chùy, mu bàn tay hướng lên, là hợp kình. Đốc mạch nghịch hành mà lên, từ Trường cường lên qua Bách hội, xuống đến Nhân trung; nhâm mạch từ Thừa tương tiếp giữ, hạ hành vào đan điền, trước sau chuyển một vòng, để trợ kình của quyền phải. Và việc dẫn đỉnh kình cũng hoàn toàn nhờ vào đốc mạch này. Đầu gối phải bên phải hướng vào trong hợp giữ kình. Trong ngực phải hư, chỉ hư thì mới linh, kình hướng về trước mà hợp. Kình chân hạ xuống, mông lật lên trên, thì phía trước Khí hải, đan điền và trong đũng tự nhiên hướng về trước hợp giữ kình; đũng không hợp thì hạ thể và bàn chân đều không vững, không hư thì xoay trở trái phải không linh, cho nên tất phải hướng về trước hợp giữ kình, đồng thời lấy hư viên.</p>
+<p><span id="p285" class="page-anchor"></span>· 294 · Diễn thủ chùy: kình của ngũ quan bách hài đều tụ vào nắm đấm.</p>
+<p>Người diễn thủ dễ tham về phía trước; không biết rằng tham về phía trước quá mức, không những trái phải dễ bị hất lên, mà xoay trở trái phải không linh, dễ thất bại. Cho nên thà thiếu một hai phần, quyết không được vượt ranh giới một ly — ấy gọi là "nỏ mạnh đến cuối, không thể xuyên thủng lụa mỏng của nước Lỗ", là lỗi của việc quá mức. Người diễn chùy nên răn."</p>
+<p>8. Hàm hung bạt bối, trầm kiên trụy trửu (ngậm ngực nhổng lưng, chìm vai rũ cùi chỏ)</p>
+<p>"Ngực phải hợp giữ kình, lại phải hư."</p>
+<p>"Ngực phải hư hàm như cái khánh."</p>
+<p>"Ngực như khom lạy hướng về trước hơi cong, bọc giữ bốn phía."</p>
+<p>"Giữa ngực bụng từ huyệt Thiên đột đến dưới rốn ở Âm giao, Khí hải, Thạch môn, Quan nguyên, như cái khánh gập lại như hình khom lạy — ấy gọi là ngậm giữ ngực, ấy là hợp giữ kình, phải hư."</p>
+<p>"Bình tâm tĩnh khí, chớ để hoạnh khí lấp đầy trong ngực."</p>
+<p>"Ngực phải hàm súc, khí giáng xuống đan điền, không để hoạnh khí lưu lại ở trên."</p>
+<p>"Hoạnh khí nơi ngực cách dỡ xuống đáy chân; nếu không thể thì cũng nên dỡ xuống đến đan điền."</p>
+<p>"Giữa ngực mở ra lỏng lẻo: ngực vừa lỏng thì toàn thân thư sướng. Không được hữu tâm, cũng không được vô tâm. Từ Hoa cái đến Thạch môn phải hư hư hàm giữ, chớ để hoạnh khí hoành hành trong ngực."</p>
+<p>"Ngực cũng theo tay chuyển vòng."</p>
+<p>"(Thế Bạch nga lượng sí) Kình trong ngực cũng như theo giữ tay phải và tay trái, trước từ phải xuống dưới, rồi trái lên trên đến phải, vòng một vòng lớn."</p>
+<p>"Kình nội trong ngực như thái hòa nguyên khí chuyển vòng."</p>
+<p>"Thái hòa nguyên khí vận hành trong ngực, một động một tĩnh hợp với nhẹ nặng."</p>
+<p>"Đánh quyền, vận động hoàn toàn ở tay dẫn dắt, chuyển quan hoàn toàn ở lỏng vai; công phu lâu thì khe xương vai tự mở, không thể miễn cưỡng. Vai trái phải lỏng không xuống thì chuyển quan không linh. Và lỏng vai không phải là rũ vai; khớp xương mở thì vai tự lỏng xuống."</p>
+<p>"Vai sụp xuống, không được đưa lên."</p>
+<p>"Cơ quan chuyển vòng hoàn toàn ở vai, cho nên khe xương trong vai nên khiến cho mở rộng."</p>
+<p><span id="p286" class="page-anchor"></span>· 295 · "Cánh tay như thể treo trên vai vậy."</p>
+<p>"Các huyệt Kiên ngu, Kiên tỉnh, Phù đột đều lỏng xuống."</p>
+<p>"Khe xương ở đầu vai cánh tay phải mở; ban đầu chưa mở, không được khiến nó mở cưỡng. Khi công phu chưa tới mà tự mở, trong tâm nói đã mở, rốt cuộc vẫn chưa mở; tất phải khổ công lâu ngày, tự nhiên mới mở được, mới tính là mở. Chỗ này vừa mở, thì cánh tay toàn bộ qua lại co duỗi, như gió thổi cành liễu, thiên cơ lay động, sống động không chút trệ, đều buộc vào đây. Đây là chốt xoay của cánh tay, là chỗ liên quan tới linh động, không thể không biết."</p>
+<p>"Hai vai phải thường xuyên lỏng xuống; thấy có nổi lên, liền lỏng xuống ngay; nhưng nếu bất đắc dĩ nổi lên, cứ để nó nổi, nổi xong liền lỏng. Không lỏng thì toàn bộ cánh tay chuyển đổi không linh. Cho nên nên nổi thì nổi, nên lỏng thì lỏng. Mỗi thế xong, ngực hướng về trước hợp lại, hai vai ứng hô lẫn nhau. Đây là thức của hai vai."</p>
+<p>"Cúi vai một cái tựa, phá tường đồng."</p>
+<p>"Hai cùi chỏ phải chìm xuống; không chìm thì vai nổi lên, không thích dụng cho việc dùng."</p>
+<p>"Đầu cùi chỏ hướng xuống... đầu gối và đầu cùi chỏ trên dưới chiếu nhau."</p>
+<p>"Cùi chỏ ở trước sau, trái phải, trên dưới, đều phải ứng hô hợp giữ kình."</p>
+<p>9. Vận nhu thành cương, cương nhu tương tế (vận mềm thành cứng, cứng mềm trợ giúp nhau)</p>
+<p>"Đánh quyền lấy mũi làm ranh giới giữa; tay trái quản nửa thân trái, tay phải quản nửa thân phải, mỗi chân theo mỗi tay mà động. Tâm thân không được dụng khí, nhẹ nhàng vận động, lấy tay dẫn cùi chỏ, lấy cùi chỏ dẫn cánh tay; khí trong tay chỉ đủ dẫn lên tay và cánh tay mà thôi, không được quá, quá thì sai vào cứng. Thượng thể tay vận động thế nào, hạ thể cũng theo đó, trên dưới tương tùy, ở giữa tự nhiên đều theo — ấy là một khí thông suốt. Kình đũng phải mở phải hư; đũng mở rồi thì tâm khí mới phát động."</p>
+<p>"Cơ phu cốt tiết, khắp nơi khai trương."</p>
+<p>"Muốn cứng trước phải mềm, muốn nâng trước phải nhấn."</p>
+<p><span id="p287" class="page-anchor"></span>"Người đời không biết, đều cho (thái cực quyền) là thuật mềm; nào ngờ từ khi ra công đến nay, ngàn lần đập trăm lần luyện (luyện thân này trăm lần thành hán sắt), cứng mà quy về mềm, mềm mà đạt đến · 296 · [...] nơi cương, cương nhu không dấu vết có thể thấy. Nhưng xét từ bên ngoài mà nhìn, dường như mềm, cho nên lấy mềm mà đặt tên, nào phải vậy sao? Và "mềm" là nói đối với "cứng" mà thôi. Thuật này không thể gọi là mềm, cũng không thể gọi là cứng, chỉ có thể đặt tên là thái cực. Thái cực là cứng mềm cùng tới, mà hòa lẫn không dấu vết. Công phu của nó nhiều, cho nên thành tựu của nó khó."</p>
+<p>"Âm dương lấy nhau làm gốc, không thể chia làm hai đoạn."</p>
+<p>"Thắng cứng thì dễ, thắng mềm thì khó."</p>
+<p>"Mềm có thể thắng cứng; lấy lui làm tiến, ấy là đạo của Khôn. Khôn phối với Càn; Càn là cứng. Khôn cực mềm mà động thì cứng. Quyền này bề ngoài dường như mềm, thực ra cực cứng."</p>
+<p>"Cho nên quyền thuật lấy mềm thắng cứng, nhân đó mà trúng."</p>
+<p>"Đánh quyền há chẳng dùng khí? Không dùng khí thì toàn thân do đâu mà vận động? Nhưng vốn lấy cái khí cực đại cực cương của nó, để trực dưỡng không hại mà thôi."</p>
+<p>"Một âm một dương, tất phải lấy trung quyền vận hành chúng. Trung quyền là không lệch không nghiêng, tức là trung khí trong tâm ta (không trệ không ngừng, không trái không lìa, không lệch không nghiêng, ấy là trung khí), cái gọi là hạo nhiên chi khí vậy."</p>
+<p>"Khí này hành trong tay chân, không cứng không mềm tự ung dung."</p>
+<p>"Hồn hạo lưu hành, tự nhiên một khí, nhẹ như hoa dương liễu, vững như vàng đá, oai hổ sánh mãnh, cánh ưng sánh nhanh; đi như nước chảy, dừng như núi đứng." "Lấy cái tâm hư linh, dưỡng cái khí cương trung."</p>
+<p>"Một đoàn thái hòa nguyên khí trong ngực, tràn đầy bốn chi, cực mềm cực cứng, thực đủ đức cương kiện của Càn và thuận của Khôn. Khi nó tĩnh, âm dương sở tồn, không dấu vết có thể tìm; khi nó động, xem dường như cực mềm, thực ra cực cứng; cương nhu đều đủ — ấy gọi là: âm dương hợp đức."</p>
+<p>"Vận động dường như mềm mà thực cứng, tinh thần tàng ẩn bên trong mà không lộ, ấy là thượng thừa."</p>
+<p>"Khôn cực mềm, mà động thì cứng." "Nhu thuận tế dĩ cương trực."</p>
+<p>"Càn cương Khôn nhu, âm dương cùng dùng, không lệch không nghiêng, không quá không tới."</p>
+<p>· 297 · "Âm dương hỗ dụng, đạo trời sở tàng, động tĩnh không lệch, ấy là mạnh của ngươi."</p>
+<p>"Luyện lâu thuần thục, thì lên xuống tiến lui, xoay trở tự do, mà nhẹ nặng, hư thực, cương nhu cùng phát."</p>
+<p>"Mặc người bốn phía đến khinh, thân này toàn nhờ hư linh, quan hài không đâu không để ý,... mặc ngươi gian xảo nảy sinh, tự nhiên cương nhu đều đủ."</p>
+<p>"Quyền lấy thái cực mà đặt tên, người xưa tất có cái thâm hiểu lẽ thái cực, rồi nơi toàn thân trên dưới, trái phải, trước sau, lấy tay chân xoay trở vận động, phát minh cái uẩn súc của thái cực, lập tên ấy để định thành phép; nghĩa cực tinh, phép cực nghiêm,... Tuy nói quyền là đạo nhỏ, mà đạo lớn thái cực tồn tại ở đó.... Người đời sau, việc không bắt chước cổ, không chảy vào cuồng vọng thì rơi vào lệch nghiêng; mà cầu một kẻ không cứng không mềm, đúng mực vừa khéo, để hợp với lẽ thái cực — e cũng gồ ghề khó lắm thay."</p>
+<p>"Triều đình vua Ngu giữ trung, Khổng môn một lẽ xuyên suốt, ngoài ra không còn uẩn súc gì.... Thần diệu mà hiểu rõ, còn ở người."</p>
+<p>"Nhưng cương nhu đã phân, mà phát dụng có khác. Tứ chi phát động, khí hiện ra ngoài, mà trong giữ tĩnh trọng — ấy là thế cương; khí đồn ở trong mà ngoài hiện nhẹ hòa — ấy là thế nhu. Dùng cương không được thiếu nhu, thiếu nhu thì vây quanh không nhanh; dùng nhu không được thiếu cương, thiếu cương thì thúc bách không mau. Cương nhu tương tế, thì niêm, du, liên, tùy, đằng, thiểm, đẩu, không, lôi, quán, tễ, nại, không đâu không được tự nhiên. Cương nhu không được dùng lệch, dùng võ há có thể xem nhẹ!"</p>
+<p>10. Tiên mạn hậu khoái, khoái nhi phục mạn (chậm trước, nhanh sau; nhanh rồi lại chậm)</p>
+<p>"Từ đầu đến cuối, phải chậm rãi vận hành; chậm được bao nhiêu cứ chậm, chậm đến mười phần công phu, thì có thể linh đến mười phần. Chỉ khi linh đến mười phần hỏa hầu, thì địch nhân theo không kịp ta, trở lại cho thuật của ta là kỳ dị — ấy là tình thường của người; nào ngờ đó là hiệu quả của công phu khó trước."</p>
+<p><span id="p288" class="page-anchor"></span>"Mỗi chiêu trong, ngũ quan bách hài thuận theo thế tự nhiên, mà khí âm dương ngũ hành · 298 · [...] vận hành ở trong đó, như có nói: 'Động thì sinh dương, tĩnh thì sinh âm; một động một tĩnh, lấy nhau làm gốc'. Ấy gọi là: 'Trong dương có âm, trong âm có dương'. Đây chính là bản nhiên của thái cực quyền."</p>
+<p>"Luyện thái cực quyền có ba tầng công phu theo bước: bước thứ nhất, khi học nên chậm, chậm không nên ngây ngô; bước thứ hai, học rồi mà nhanh, nhanh không được rối loạn; bước thứ ba, nhanh rồi lại chậm, ấy là nhu; nhu lâu thì cương tự tại trong đó, ấy là cương nhu tương tế." (Một mục này là lời của Trần Phục Nguyên.)</p>
+<p>11. Xuyên bôn khiêu dược, hốt thượng hốt hạ (luồn chạy nhảy nhót, bỗng lên bỗng xuống)</p>
+<p>"Thanh long xuất thủy là pháp tiến thẳng bằng phẳng mà tung; chân trái theo chân phải tung về trước, trong đũng Hội âm, Trường cường kình theo đỉnh kình mà nâng lên; tung về trước như mèo linh vồ chuột, toàn là tinh thần, vừa hư vừa linh."</p>
+<p>"Dẫn mông: chỉ đỗ ninh hạ (bấm vặn đầu ngón tay xuống) tiếp liền Thanh long xuất thủy; trong khe hai thế, trước tiên lỏng vai phải xuống, nửa thân phải theo đó cùng xuống, chân dưới lại dâng lên để tung về trước. Khi chưa tung, tay phải nắm như đầu roi da muốn đánh về trước, trước thu về sau, rồi từ sau lật lên hướng trước vòng một vòng lớn mà đánh tới, thân cũng theo đó tung về trước. Quyết của việc tung: tay phải phía trước dẫn về trước, các huyệt Ẩn bạch, Đại đôn, Lệ đoài, Khiếu âm, Hiệp khê của chân phải phía sau đều dùng kình. Kình từ đáy chân qua Dũng tuyền đến gót chân lật lên, nghịch hành mà lên: Nạo ủy trung, Điện môn, Thừa phù, Hoàn khiêu, chéo vào Phù biên, thượng hành vượt Hồn môn, Phách hộ, đến Phụ phân, lại chéo lên, từ Khúc viên qua Tiểu hải, chéo vào Chi câu, Dương trì, dọc đường lật chuyển. Mở tay ra, bó giữ năm ngón, tay phải dẫn thân tung về trước, chân trái dùng sức đạp xuống, theo tay phải đều đến trước; tay trái cũng theo thân đến trước. Sau khi chân rơi xuống đất, tay trái rơi xuống trước vú phải dừng lại.</p>
+<p><span id="p289" class="page-anchor"></span>Nội kình: nửa thân phải đều dùng hữu chuyển kình (hữu chuyển tức thuận chuyển, từ trong xoay ra ngoài), tay phải dùng triền ti kình từ nách thượng hành, từ trong xoay ra ngoài chéo quấn đến đầu ngón; chân phải cũng dùng triền ti kình thuận triền đến gốc đùi, thượng hành gặp Phù biên, cùng nhau thượng hành đến Phụ phân, phân hành đến nách, chéo quấn đến đầu ngón; tay trái chân trái phải dùng đảo chuyển kình, rồi sau mới có thể theo · 299 · Tay phải chân phải chuyển vòng rồi tung về trước, vốn hoàn toàn do tâm; tâm kình vừa nâng, phía trên đỉnh kình dẫn giữ, ở giữa đan điền kình phát, thượng hành lệch về nửa thân phải; phía dưới hai chân, chân phải dùng pháp nhảy, gót chân phải dùng sức đạp về sau. Trước khi tung, toàn là súc kình, tụ tinh hội thần, đoàn kết khí của nó. Khi vừa tung, thuần là kình vồ về trước, một mạch tiến thẳng. Tay phải dẫn chuyển dẫn tiến, như diều hâu vồ chim cút, chim ưng già bắt thỏ khôn — chí nó chuyên, thần nó ngưng, tiến nó nhanh, khí nó (khí tức phách lực) vững. Ngọc nữ xuyên toa bình tung thân pháp — đây cũng là bình tung pháp, càng xa càng tốt; đều phải tùy sức mình mà làm, tất được khí tượng ung dung, chớ lộ khí nỗ lực căng mới tốt."</p>
+<p>"Nội kình của nó phát nguyên xa nhất: từ Bộc tham nghịch hành mà lên, vượt qua lưng vai sau đến Phụ phân, cho đến ngón tay phải."</p>
+<p>"Ngọc nữ xuyên toa là thuận triền bình tung pháp.... Tiến như gió,... thủ pháp, bộ pháp, chuyển pháp, càng nhanh càng tốt,... Trên tuy nhờ tay, dưới càng nhờ chân; chân nhanh càng thể hiện năng lực nhanh tay,... Từ thế khởi đến thế chung, tay phải chân phải tuy là thuận triền pháp, mà pháp toàn thân đều là đảo chuyển kình, liền ba lần đuổi tiến, đều là tiến bộ. Về nội kình, từ đỉnh kình cho đến năm ngón chân, pháp đều như trước; từ đầu đến cuối lấy tay phải chân phải làm chủ, mà lấy tay trái chân trái phụ trợ. Tay phải thuận chuyển, tay trái tất là đảo chuyển — triền ti kình là cái đạo mà không thể rời trong khoảnh khắc vậy. Tay phải lấy chuyển vòng lớn làm thức; công lâu tự nhiên nhỏ mới tốt.</p>
+<p>Thế này là đại chuyển thân pháp; trên tiếp Dã mã phân tông xuống, tay phải nhân thế nó ở dưới, không cho phép dừng một chút, liền lấy tay phải dùng triền ti kình từ dưới nắm lên, dọc đường hình chéo bay như gió về đông, ngón như dùi sắt; cũng hoàn toàn nhờ chân phải ở sau theo giữ tay phải, cũng dùng thuận triền ti kình giữ lấy thượng thế, đại phô thân pháp, tận lực về đông liền tiến ba bước lớn, mới đủ một vòng lớn khoảng tám chín thước. Nhất là phải nâng đỉnh kình cho tốt; đũng kình không được đầy đủ, thân theo tay phải như chim loan bay nhanh mà tiến, không thể ngăn cản; bước rơi dính đất liền nhấc lên.</p>
+<p><span id="p290" class="page-anchor"></span>Ngọc nữ xuyên toa đã thành thức, dường như cùng Lãm sát y đại đồng tiểu dị, nhưng thực ra rất khác nhau: kia thì thân không chuyển động, chuyên tâm vận tay phải chân phải, khí nó điềm, thần nó · 300 · …tĩnh; ở đây thì xoay thân, đưa tay chân để phòng thân chống địch, và lấy nhanh làm việc, cho nên khí mãnh liệt, thần bận rộn. Nếu bình thường không thực có công phu, lâm sự lấy khí quán xuyên toàn thân trên dưới, thì không thể được vẹn toàn. Vì sao? Bởi vì ra vào giữa đám đông, lấy ít địch nhiều, như chốn không người; chỉ kẻ trời sinh thần dũng, gan chính, khí cương, luyện tập thuần thục, mới có thể quét sạch mọi thứ dễ dàng vậy."</p>
+<p>"Chuyển dẫn chuyển kích phá vòng vây, tựa như Chức Nữ giật khung cửi; thân này tiến thẳng, ai sánh kịp tốc độ, một mảnh thần hành xưa nay hiếm."</p>
+<p>"Hai cất chân (nhị khởi thối) là pháp nhảy lên… Thế nào gọi là nhị khởi? Hai chân trái phải kế tiếp nhau cùng lìa đất bốn, năm thước mà nhảy lên, nên gọi là đá hai khởi. …Nhưng ắt chân trái trước dùng sức đá mạnh lên, rồi sau ngón chân phải đá cao, mu bàn chân phải phẳng. Nhị khởi thuần là pháp toàn thân thăng đề; thân pháp và tâm kình nâng lên trên, toàn thân tinh thần chấn phấn, đều nhảy lên giữa không trung, chân phải cao hơn đỉnh đầu mới hợp thức. Thân theo đỉnh kình dùng sức tung lên, càng cao càng tốt, có kẻ tung quá đỉnh đầu—không phải thân nhẹ lực lớn thì không thể. …Thân trên tung lên trên, thân dưới càng phải dùng sức theo mà tung lên; pháp tung ấy ắt hai chân dùng sức trước đạp xuống một cái, đạp càng nặng thì thân cất càng cao."</p>
+<p>"Tâm kình vừa dẫn khởi lên, thì ngũ quan bách hài đều theo đó mà khởi."</p>
+<p>"Hai chân liên hoàn cất lên, toàn thân nhảy giữa không trung."</p>
+<p>"Trung khí đề lên, lực sống lưng cương mãnh; liên hoàn nhị khởi bay lên trên."</p>
+<p>"Thế nào gọi là điệt xóa: thân từ giữa không trung rơi xuống, hai chân xoạc ra, mới là điệt xóa. Đồ này chân trái mở ra, chân phải co lại, đây là đơn điệt xóa; còn song điệt xóa, không dùng pháp tung thì không đứng lên được, không như đơn điệt xóa chỉ cần gót chân trái đưa tới trước một cái khép, đầu gối phải mở ra ngoài, gót chân phải dùng sức lật một cái, thì vừa cất vừa rơi ngay, so ra hơi dễ hơn, cho nên dùng nó cũng có thể thắng; và nay các nhà quyền đều như vậy, tạm theo đó."</p>
+<p>"Điệt xóa và nhị khởi hồi chiếu ứng nhau: nhị khởi từ dưới lên trên, bay vào giữa không trung; còn thế này thì từ giữa không trung xuống dưới, hai chân chạm đất. Tự nhiên chiếu ứng, không làm gượng gạo—luật tạo quyền của người xưa nghiêm như thế."</p>
+<p>"Trên kinh dưới thủ, ngươi phải nhớ; chân trái sát đất đá xuống tự lợi."</p>
+<p>"Không phải vai khuỷu có thể phá địch; một chân đá đổ lầu Phượng Hoàng."</p>
+<p>"Nếu thân này không thành hán sắt, thì ném xuống đất sao có tiếng kim thạch."</p>
+<p>"Phá vây chính ở trong một cái đá; không có công phu lớn, không thể lấy một chân thắng người."</p>
+<p>"Đá một gót (đặng nhất căn): ta dùng chân trái đá địch, địch dùng tay phải vuốt giữ chân ta, muốn vặn chân ta, khiến ta đau đớn ngã nhào, hoặc nâng chân ta lên muốn toàn thân ta lìa đất rồi lộn lên đánh. Ta bèn thuận thế xoay hai tay úp giữ đất, rồi lấy chân phải theo chân trái đi ngược lên, đạp vào tay phải đang giữ chân trái ta của địch, khó liền giải. Hoặc lại có địch giữ chân trái ta, ta liền lấy chân phải đá đỉnh khuỷu tay phải địch, hoặc đá vào khớp cổ tay chúng, đều có thể giải. Đây là đại lược của đá một gót.</p>
+<p>Người ta đến đá ta, ta liền lấy chân trái lui về sau một bước, để phòng chúng đá vào cựu vĩ (jiuwei) và dưới thừa tương (chengjiang) đến yết hầu.</p>
+<p>Nhưng cẩn thận vào lúc đá thì đã muộn; không bằng cẩn thận vào lúc thế trên sắp đá—thấy đá được thì đá, không đá được thì thôi, không được vọng dụng cái đá của mình.</p>
+<p>Dẫu có khe hở để thừa, đá quý ở thần tốc, không quý ở chậm trễ; quý ở đá các huyệt quan khẩn, không quý đá vào bắp đùi rộng và thịt dày nơi không chạm đến chỗ đau ngứa. Đây là yếu quyết; kẻ đá phải biết."</p>
+<p>"Thế Dã mã phân tông: hai tay nắm đất xoay như bay, một tuyến giữa xuyên thẳng không nghiêng. Hai tay sát đất mà lên, toàn thân trên dưới đều giữ được; trung khí từ huyệt Bách hội ở trên thấm xuống huyệt Trường cường, như một tuyến xuyên thành. Hai tay như hai vòng tròn, trên dưới lẫn nhau, thay phiên mà múa; cương của nó không gãy, nhuệ của nó vô song, chuyển của nó không ngừng—cho nên có thể chống địch."</p>
+<p><span id="p291" class="page-anchor"></span>"Thế Phô địa cẩm ứng với điệt xóa: điệt xóa từ không trung thả thẳng xuống, chân phải giậm đất như tiếng kim thạch, để giậm chân địch; chân trái đá vào xương ống chân địch, có thể phá dũng khí của chúng. Tay phải mở cánh tay sát đất mà lên, tay trái xông tới trước để đẩy ngực địch; đây thì lấy mông đùi ngồi về sau mà ngồi lên đầu gối người ta, nắm tay phải cong có ý muốn đánh tới trước, chân trái mở ra—nếu không được thắng, hai tay · 301 · …luật quyền nghiêm như thế."</p>
+<p>"Trên kinh dưới thủ, ngươi phải nhớ; chân trái sát đất đá xuống tự lợi."</p>
+<p>"Không phải vai khuỷu có thể phá địch; một chân đá đổ lầu Phượng Hoàng."</p>
+<p>"Nếu thân này không thành hán sắt, thì ném xuống đất sao có tiếng kim thạch."</p>
+<p>"Phá vây chính ở trong một cái đá; không có công phu lớn, không thể lấy một chân thắng người."</p>
+<p>"Đá một gót (đặng nhất căn): ta dùng chân trái đá địch, địch dùng tay phải vuốt giữ chân ta, muốn vặn chân ta, khiến ta đau đớn ngã nhào, hoặc nâng chân ta lên muốn toàn thân ta lìa đất rồi lộn lên đánh. Ta bèn thuận thế xoay hai tay úp giữ đất, rồi lấy chân phải theo chân trái đi ngược lên, đạp vào tay phải đang giữ chân trái ta của địch, khó liền giải. Hoặc lại có địch giữ chân trái ta, ta liền lấy chân phải đá đỉnh khuỷu tay phải địch, hoặc đá vào khớp cổ tay chúng, đều có thể giải. Đây là đại lược của đá một gót.</p>
+<p>Người ta đến đá ta, ta liền lấy chân trái lui về sau một bước, để phòng chúng đá vào cựu vĩ (jiuwei) và dưới thừa tương (chengjiang) đến yết hầu.</p>
+<p>Nhưng cẩn thận vào lúc đá thì đã muộn; không bằng cẩn thận vào lúc thế trên sắp đá—thấy đá được thì đá, không đá được thì thôi, không được vọng dụng cái đá của mình.</p>
+<p>Dẫu có khe hở để thừa, đá quý ở thần tốc, không quý ở chậm trễ; quý ở đá các huyệt quan khẩn, không quý đá vào bắp đùi rộng và thịt dày nơi không chạm đến chỗ đau ngứa. Đây là yếu quyết; kẻ đá phải biết."</p>
+<p>"Thế Dã mã phân tông: hai tay nắm đất xoay như bay, một tuyến giữa xuyên thẳng không nghiêng. Hai tay sát đất mà lên, toàn thân trên dưới đều giữ được; trung khí từ huyệt Bách hội ở trên thấm xuống huyệt Trường cường, như một tuyến xuyên thành. Hai tay như hai vòng tròn, trên dưới lẫn nhau, thay phiên mà múa; cương của nó không gãy, nhuệ của nó vô song, chuyển của nó không ngừng—cho nên có thể chống địch."</p>
+<p><span id="p292" class="page-anchor"></span>"Thế Phô địa cẩm ứng với điệt xóa: điệt xóa từ không trung thả thẳng xuống, chân phải giậm đất như tiếng kim thạch, để giậm chân địch; chân trái đá vào xương ống chân địch, có thể phá dũng khí của chúng. Tay phải mở cánh tay sát đất mà lên, tay trái xông tới trước để đẩy ngực địch; đây thì lấy mông đùi ngồi về sau mà ngồi lên đầu gối người ta, nắm tay phải cong có ý muốn đánh tới trước, chân trái mở ra—nếu không được thắng, hai tay · 302 · …bên phải ấn xuống đất, dùng quét đường tiên (tảo đường tiên) để quét ống chân dưới của quần địch, thì khó tự giải. Đây là lấy đồng loại ứng hô nhau như thế. Lại ứng với Kim kê độc lập: Kim kê độc lập dựng chân trái lên, còn đây thì chân trái nằm ngang; Kim kê lấy đầu gối phải húc người, đây cũng lấy đầu gối phải co lại; Kim kê độc lập buông tay trái xuống, cánh tay phải duỗi lên trên, còn đây thì tay phải co lại, tay trái duỗi lên trên—cho nên trên dưới ứng hô nhau. Lại ứng với nhị khởi: nhị khởi thân bay giữa không trung, còn đây thì thân rơi xuống đất—cho nên cũng lấy trên dưới mà ứng hô."</p>
+<p>"Trước sau trái phải, trên dưới bốn bên, chuyển tiếp linh mẫn, chậm gấp cùng đi; nâng cao lấy thấp, như nguyện được thỏa. …Lên đánh xuống đánh, quyết không thể lệch; thanh đông kích tây, trái phải đều thích hợp. …Ngang dọc nghiêng đổ, ngồi đứng nghiêng thẳng, trước cúi sau ngửa, kỳ chính sinh ra nhau, hồi toàn tựa nghiêng, tích dược đều trúng (đều có trung khí phóng thu, dẫn trong đó)."</p>
+<p>"Chân theo tay vận, tròn chuyển như thần, bỗng lên (tay chân hướng lên) bỗng xuống (tay chân hướng xuống), hoặc thuận (dùng pháp thuận triền, kình của nó thuận), hoặc nghịch (dùng pháp đảo chuyển, kình của nó nghịch)."</p>
+<p><span id="p293" class="page-anchor"></span>"Đảo quyển hồng là lui hành để tránh trái phải; Bạch nga lượng sí là hữu dẫn tả kích, kiêm thượng dẫn hạ kích pháp; Lâu tất ảo bộ là lục phong (trên dưới, trước sau, trái phải đều phong kín cửa), tứ tị (tứ tị là đông tây nam bắc bốn phương khiến người không có kẽ hở để công); Thiểm thông bối là tiền thiểm (từ sau thiểm tới trước), hậu hoạt (là phía sau không ấn được, mạnh ấn thì trượt mà ngã) tiến kích pháp; Lãm sát y cùng Đan tiên đều là nhất dẫn nhất tiến (chữ "tiến" này là tiến mà kích) pháp; Vận thủ là tả hữu nhất dẫn nhất tiến kích pháp; Cao thám mã là tả quăng bối chiết khuỷu pháp; Tả hữu sáp cước là hạ thể tiền công đặng pháp; Trung đan tiên là tả hữu thượng hạ thủ túc tịnh kích pháp; Kích địa chùy là công hạ pháp, sau thân kiêm hoạt điệt pháp. Khiếu khiếu lấy mệnh môn giữa hai thận trong hai lưng làm quản kiện khu nữu của thượng hạ thể; quản kiện trên dưới đều là đảo chuyển kình; thân mang trắc thiên trú, hữu hậu hiếp hướng lên, tả hậu hiếp hướng xuống, kình đảo hạ tốt, chân đặng vững, người gặp phải sau lưng, thân liền xoay chuyển, càng nhanh càng tốt, nếu theo được túc pháp, thì người tự trượt mà ngã. Đá nhị khởi cùng đá một chân, đặng nhất căn là đảo chuyển đại chuyển thân pháp, kiêm lấy hai chân · 303 · …công pháp (tay đương chân dụng, chân đương tay dụng vậy); Diễn thủ chùy, Tiểu cầm đả là tiền công thượng hạ pháp; Bão đầu thôi sơn là nghịch chuyển (nói về thân) tiến thôi pháp; Đan tiên là thuận chuyển (thuận chuyển cũng là nói về thân pháp) tả hữu dẫn kích pháp.</p>
+<p>Trên đây vài chục thế là lấy một người địch vài chục người trong đại chiến; còn phương pháp tránh địch, không vượt quá trên dưới hai bên—bên nào căng thì trước giải vây bên ấy; khi chúng đến cùng một lượt, trung khí vừa động, liền khiến tất cả cùng lượt tản ra. Không có công phu thì không thể làm được."</p>
+<p>(Phụ chú: Các thức quyền nêu trên đều là thức của Trần thức lão giá; ghi lại để tham khảo.)</p>
+<p><strong>12. Cương nhu câu mẫn, nhất phiến thần hành</strong></p>
+<p>"Công phu của vận động, thì biến cương thành nhu, luyện nhu thành cương; cương nhu đắc trung, mới thấy âm dương. Cho nên quyền này không thể lấy cương mà gọi, cũng không thể lấy nhu mà gọi, chỉ lấy cái danh vô danh của Thái cực mà gọi."</p>
+<p>"Khi nó tĩnh, âm dương sở tồn, không dấu vết có thể thấy; khi nó động, trông như chí nhu, kỳ thực chí cương; trông như chí cương, kỳ thực chí nhu. Cương nhu hỗ vận, không đầu mối có thể tìm."</p>
+<p>"Thái cực lý tuần hoàn, tương truyền bất kế niên; trong đó có tinh nghĩa, động tĩnh đều vô thiên… Khai hợp nguyên vô định (hoạt bát bát địa), khuất thân thế tương liên (khước hữu nhất định). Thái cực phân âm dương, thần long biến vô phương; thiên địa vi phụ mẫu, ma đãng nhu dữ cương; sinh sinh nguyên bất dĩ, kỳ chính bất tầm thường. Càn khôn như nang dược, thái cực nhất đại nang; doanh hư tiêu tức cố, giai tại thử trung tàng. Chí chung phục tự thủy, nhất khí vận trì trương; hữu hình quy vô tích, vật ngã lưỡng tương vong."</p>
+<p>"Hạp tịch cương nhu thuận tự nhiên, nhất dương nhất ức lý tuần hoàn."</p>
+<p>"Chung nhi phục thủy, thủy nhi phục chung; duy thủy dữ chung, tuần hoàn bất cùng."</p>
+<p>"Thái cực bất quá âm dương chi hỗn luân nhĩ. …Mẫn nhiên thanh xú chi câu vô, tiêm xảo tất bị giả, hóa công dã. Hồn hồ điêu khắc chi bất tác."</p>
+<p><span id="p294" class="page-anchor"></span>· 304 · "Một đến một đi vận một vòng, khí cơ trên dưới không dừng lại."</p>
+<p>"Thiên cơ hoạt bát, hạo khí lưu hành; động tĩnh hoãn cấp, vận chuyển tùy tâm. …Chí tật chí tấn, triền nhiễu hồi toàn; ly hình đắc tự, hà phi nguyệt viên. Tinh luyện dĩ cực, cực tiểu diệc quyển."</p>
+<p>"Thuần hồ thiên tắc đả quyền giai tùy thiên cơ động đãng, mạc phi tự nhiên nhi nhiên, hoạt bát bát địa; Thái cực nguyên tượng, giai tòng ngô thân lưu lộ."</p>
+<p>"Nhân thân xứ xứ giai Thái cực, nhất động nhất tĩnh câu hồn nhiên."</p>
+<p>"Chí hư chí linh, nhất cử nhất động, câu thị Thái cực viên tượng."</p>
+<p>"Viên chuyển tự như, hồn hạo lưu hành, tuyệt vô trệ cơ; mỗi thế hoàn nhưng quy đáo hồn nhiên nhất Thái cực khí tượng, tuyệt vô tích tượng khả tầm, đoan tự khả chỉ."</p>
+<p>"Đả quyền thục nhi hựu thục, vô hình tích khả nghĩ, như thần long biến hóa, tróc mạc bất trụ; tùy ý cử động, tự thành pháp độ, mạc khả trắc độ. Kỹ chí thử, chân thần phẩm hĩ. Thái cực chi lý, phát ư vô đoan, thành ư vô tích, vô thủy vô chung, hoạt bàn thác xuất—y! Quan chỉ hĩ! Quyền tuy tiểu đạo, sở vị tức tiểu dĩ kiến đại giả, cái dĩ thử quyền khởi dị ngôn tai!"</p>
+<p>"Cố ngô thân chi vận hành hoặc cao hoặc đê, hoặc phản hoặc chính, thả hốt trì hốt tốc, hốt ẩn hốt hiện, hoặc đại khai nhi đại hợp, hốt thời hành nhi thời chỉ, mạc phi nhất phiến linh khí, trình ư sắc tượng, chân như diên phi ngư dược, hóa cơ hoạt bát. Thiện quan quyền giả tất bất ư nhĩ mục thủ túc chi cổ vũ ư tích tượng gian giả thâm gia thưởng dã. Cố học giả tất tiên nghiên kỳ lý; lý minh tắc khí tự sinh động linh hoạt, phi khí chi tự năng sinh động linh hoạt, thực lý sử chi sinh động linh hoạt dã. Tri thử nhi hậu khả dữ ngôn nội kình. Như đệ dĩ do nội phát ngoại giả vi nội kình, thử kỳ luận do thiển yên giả dã."</p>
+<p>"Thành ư trung, hình ư ngoại, thiên biến vạn hóa tự vô cùng; hỏa hậu đáo thuần thanh, pháp mật lý tinh, hồn thân khinh linh; tả hữu nã xuất ứng ứng ứng."</p>
+<p><span id="p295" class="page-anchor"></span>"Thần mục mục, mạo hoàng hoàng, khí tượng hồn luân; hư linh cụ nhất tâm, vạn tượng tàng ngũ · 305 · …uẩn. Tịch nhiên bất động nhược ngu nhân, thùy tri đạo, âm dương kết hợp tại thử thân. Nhiệm bằng tha tứ diện bát phương nhân nan cận, túng hữu na dũng mãnh quá nhân, đột nhiên lai xâm, khuynh giả khuynh, điệt giả điệt, mạc trắc kỳ thần; thả cánh hữu khứ nan khứ, tiến nan tiến, như trạm tại viên thạch đầu thượng lập bất ổn, thực tại hiểm tuấn, hậu hối nan miễn đồi. Khởi hữu biệt pháp môn, chỉ yếu công phu thuần; toàn bằng giả, nhất khai nhất hợp, nhất bút hoành tảo thiên nhân quân."</p>
+<p>"Thái cực âm dương tạo hóa, diên phi ngư dược tòng quân khán."</p>
+<p>"Cước thích quyền đả hạ thừa quyền, diệu thủ vô xứ bất hồn nhiên; nhiệm tha tứ vi đô thị địch, thử thân nhất động tất điên liên. Ngã thân vô xứ phi Thái cực, vô tâm thành hóa thành châu viên; tao trước hà xứ hà xứ kích, ngã diệc bất tri huyền hựu huyền."</p>
+<p>"Nhất khí toàn chuyển tự vô đình, càn khôn chính khí vận hồng mông; học đáo hữu hình quy vô tích, phương tri huyền diệu tại thiên công."</p>
+<p><strong>13. Bồi dưỡng bản nguyên, cần học khổ luyện</strong></p>
+<p>"Tâm là chủ của một thân, thận là nguyên của tính mệnh; ắt phải thanh tâm quả dục, bồi đắp mảnh đất căn bản ấy, không để nó tổn thương. Căn bản vững rồi thì cành lá vinh, muôn việc có thể làm—đấy là điều tối yếu."</p>
+<p>"Dẫu nói ngàn lời vạn chữ, đều không bằng thanh tâm quả dục, bồi dưỡng bản nguyên, để dưỡng nguyên khí; thân vốn cường tráng, đánh quyền tự nhiên hơn người một bậc."</p>
+<p>"Dụng công, mỗi người tùy theo sức mình mà vận động; số lần một lần cũng được, mười lần cũng được, không câu nệ số lần. Có sức thì cứ vận động, không có sức thì thôi; không cần gượng mà vận động đến nỗi vượt ra ngoài quy củ, chỉ thuận theo tự nhiên thì được."</p>
+<p>"Mỗi một thế quyền, thường ngàn lời không thể hết được cái diệu của nó; một khi đã thân hiện thuyết pháp, thì cảm thấy rất dễ. Cái khó là công phu, cái càng khó là công phu lâu dài. Tục ngữ có câu: 'Quyền đả vạn biến, thần lý tự hiện'—đúng thật."</p>
+<p>"Không sái quyền thế, nguyên vô định cách. …Bình cư sái quyền, không thể không giữ thành quy, cũng không thể câu nệ thành quy; điều ấy ở chỗ học giả khéo dùng nội kình của mình. Còn về hình tích, hoặc bị địa thế hạn chế, cứ tùy theo địa thế mà châm chước vận dụng cũng được."</p>
+<p>· 306 · "Từ thế đầu đến thế cuối, những gì được vẽ ra đều là quyền có hình; chỉ khi từ hữu hình tạo đến vô hình, mà tâm cơ nhập diệu, cuối cùng quy về vô tâm, rồi sau mới có thể nói đến quyền. Có thể thấy quyền ở nơi tâm ta; trong tâm ta thiên cơ lưu động, hoạt bát bát địa, chạm đâu cũng là quyền—không thể so với kẻ ở đời lấy quyền làm quyền. Đây là nghệ thuật cả đời không hết, không phải biết thì khó, mà hành mới khó. Những thế được vẽ ra đều là cơ tự nhiên trong Thái cực. …Ngàn biến vạn hóa, đan xen vô cùng, cho nên cả đời hành mà không thể hết. Học giả gắng lên."</p>
+<p>"Khi quyền đã thuần công lực, thì đoan chính cung túc, kính trọng việc mình làm, không dám tự mãn. …Không khoe không căng, độ lượng ung dung; tuy nói là tập võ, mà văn ở trong đó vậy."</p>
+<p>"Mạnh Tử nói: 'Đại tượng hối nhân, tất dĩ quy củ.' Quy củ là cái tột của vuông tròn. Lấy đó mà dạy người là điều đại tượng có thể làm; còn đến chỗ khéo, đại tượng không thể khiến được, chỉ ở nơi học giả. Nếu đến được chỗ khéo, thì là theo quy củ mà không nệ quy củ, thoát quy củ mà tự trúng quy củ. Nhưng chí không được đầy. Tục ngữ có câu: 'Ngoài trời còn có trời, một khi đầy liền chuốc tổn.'"</p>
+<p>"Hoặc có người nói: 'Quyền này không đánh được người.' Không đánh được người chỉ là công phu chưa đến; nếu công phu thuần thục, từ vòng 'lớn không có gì ở ngoài' tạo đến cảnh 'nhỏ không có gì ở trong', không gặp địch thì thôi, nếu gặp kình địch, thì nội kình đột phát, như sấm nhanh gió mạnh bẻ cành khô đập gỗ mục, ai có thể đương nổi."</p>
+<p>"Học giả ngày nay chưa dụng công mà trước đã mong hiệu quả, vừa dùng sức mà đã mong thành; sao bằng Khổng Tử nói 'tiên nan hậu hoạch'? Hỏi: Dụng công thế nào? Ắt phải như Mạnh Tử nói 'tất hữu sự yên nhi vật chính, tâm vật vong, vật trợ trưởng' rồi sau mới được. Lý không minh thì mời minh sư; đường không rõ thì tìm lương hữu. Lý đã minh, đường đã rõ mà vẫn chưa được, thì thêm công phu càn càn ngày ngày, tiến mà không dừng, lâu ngày tự đến. Hỏi: Mất bao lâu? Tiểu thành thì ba năm, đại thành thì chín năm; đến lúc chín năm, có thể xem xét vậy. Hơn nữa đến sau chín năm, tự nhiên muốn nghỉ cũng không được, mỗi ngày hưng thịnh, cả đời không có chỗ dừng chân. Thần thủ dù có dậy lại, cũng không đổi lời ta. Kẻ nóng nảy hãy gắng lên."</p>
+<p>· 307 · "Người nói nghệ này có quyết riêng, thường không chịu tỏ cho người khác. Ta nói nghệ này không có gì lạ, chỉ từ nhỏ khó đánh đến già. Đánh đến già tự nhiên ngộ, hoát nhiên nhất quán thần lý diệu. Quay đầu thử nghĩ lúc lười biếng—không phải tiên tri chưa nói đến, mà nói đến chưa vào tâm ta, tâm ta trái lại thấy nhiều phiền não. Ngày ngày nói ra ngày ngày quên, có tâm không dụng thì bao giờ hiểu? Có thể một ngày dùng sức tìm, âm dương tiêu trưởng tự có chân. Mỗi ngày chơi kỹ Thái cực đồ, một khai một hợp ở nơi thân ta; tuần tự tiệm tiến, công phu dài lâu, lâu ngày tự có thể ngửi thấy chân hương. Chỉ cần công lâu không gián đoạn, Thái cực tùy xứ thấy viên quang. Đây là chân quyết trong quyền; xin ngài bình tâm suy nghĩ kỹ."</p>
+<p>"Người người đều có một Thái cực, chỉ xem dụng công hay không dụng công; chỉ cần lâu ngày không lơi lỏng, diệu lý tuần hoàn tự nhiên thông."</p></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

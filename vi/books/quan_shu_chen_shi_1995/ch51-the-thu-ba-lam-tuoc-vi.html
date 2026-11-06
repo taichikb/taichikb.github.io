@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #059669; }
+body.dark-mode .figure-wrap { background: #1e1e1e; border-color: #333; }
+body.dark-mode .posture-list li { border-color: #333; }
+#reading-progress {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999; width: 0%; transition: width 0.1s;
+}
+.reader-layout {
+  display: block; max-width: 900px; margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.4rem; }
+.toc-link {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.87rem;
+  display: block; padding: 4px 6px; border-radius: 6px; line-height: 1.35;
+}
+.toc-link:hover { background: rgba(197,155,39,0.12); color: var(--accent-crimson); }
+.toc-link .pg { display: block; font-size: 0.72rem; color: #a8a29e; }
+.reader-tools { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tool-btn {
+  flex: 1; background: none; border: 1px solid #e7e5e4; color: var(--text-primary);
+  border-radius: 8px; padding: 6px 4px; cursor: pointer; font-size: 0.8rem;
+  font-family: inherit;
+}
+.tool-btn:hover { border-color: var(--accent-gold); color: var(--accent-crimson); }
+body.dark-mode .tool-btn { border-color: #333; }
+.reader-content { font-size: 17px; line-height: 1.8; }
+.book-hero {
+  background: linear-gradient(135deg, #fef9ef 0%, #fdf3e3 100%);
+  border: 1px solid #f0e0c0; border-radius: 16px;
+  padding: 2.2rem; margin-bottom: 2.5rem;
+}
+body.dark-mode .book-hero { background: #1e1a14; border-color: #4a3f2a; }
+.book-badge {
+  display: inline-block; background: var(--accent-crimson); color: #fff;
+  font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem;
+  margin: 0 0 0.4rem; color: var(--text-primary); line-height: 1.2;
+}
+.book-orig-title { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+.book-tags span {
+  background: rgba(197,155,39,0.14); border: 1px solid rgba(197,155,39,0.4);
+  color: #8a6a12; font-size: 0.78rem; font-weight: 600;
+  padding: 3px 11px; border-radius: 999px;
+}
+body.dark-mode .book-tags span { color: #e5c76b; }
+.book-pdf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  background: var(--accent-crimson); color: #fff !important;
+  font-size: 0.88rem; font-weight: 700; transition: opacity 0.15s;
+}
+.book-pdf-link:hover { opacity: 0.88; }
+.chapter-block { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem; margin-bottom: 1.5rem;
+}
+.chapter-num {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--accent-gold); display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem;
+  color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3;
+}
+.chapter-sub {
+  font-size: 1.08rem; font-weight: 700; color: var(--accent-crimson);
+  margin: 1.6rem 0 0.6rem;
+}
+/* Table of contents. Books whose printed TOC is transcribed as a flat
+   "Title ...... (123)" list emit these rows from build_html.py; without this
+   block the rows lose their leaders and their indentation. Indentation encodes
+   the hierarchy, so it is applied here rather than in the source. */
+.toc-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.4rem;
+  color: var(--accent-crimson); margin: 2rem 0 0.9rem;
+}
+.toc-row {
+  display: flex; align-items: baseline; gap: 0.4em;
+  padding: 0.18rem 0; font-size: 0.94rem; line-height: 1.45;
+}
+.toc-title { flex: 0 1 auto; }
+.toc-dots {
+  flex: 1 1 auto; min-width: 1.2em;
+  border-bottom: 1px dotted #d9d2c6; transform: translateY(-0.32em);
+}
+.toc-page {
+  flex: 0 0 auto; color: #a8a29e; font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
+}
+.toc-lvl0 { margin-top: 1.6rem; }
+.toc-lvl0 > .toc-title { font-weight: 700; font-size: 1.06rem; color: var(--accent-crimson); }
+.toc-lvl1 { margin-left: 1.1rem; }
+.toc-lvl1 > .toc-title { font-weight: 600; }
+.toc-lvl2 { margin-left: 2.3rem; }
+.toc-lvl3 { margin-left: 3.5rem; }
+.toc-lvl3 > .toc-title { color: var(--text-secondary); }
+body.dark-mode .toc-dots { border-bottom-color: #3f3a33; }
+body.dark-mode .toc-page { color: #78716c; }
+@media (max-width: 640px) {
+  .toc-lvl1 { margin-left: 0.7rem; }
+  .toc-lvl2 { margin-left: 1.4rem; }
+  .toc-lvl3 { margin-left: 2.1rem; }
+}
+/* Title page / colophon / copyright page. build_html.py emits one of these per
+   printed line; without the class they collapse into a normal paragraph and the
+   lines run together. */
+.display-line { margin: 0.15rem 0; line-height: 1.6; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled {
+  color: #c7c2bd; pointer-events: none; cursor: default;
+}
+body.dark-mode .page-nav a.disabled { color: #555; }
+.posture-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+.posture-list li {
+  border-left: 3px solid #eadfc8; padding: 4px 0 4px 14px; margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.quote-box {
+  background: #fefce8; border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  font-style: italic; color: #713f12;
+}
+.key-point {
+  background: #f0fdf4; border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+body.dark-mode .key-point { color: #a7f3d0; }
+.figure-wrap {
+  margin: 2rem 0; text-align: center; background: rgba(0,0,0,0.02);
+  padding: 16px; border-radius: 10px; border: 1px solid #e5e5e5;
+}
+.figure-wrap img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption-title {
+  font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson);
+  margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.figure-caption {
+  font-size: 0.88rem; color: #78716c; margin-top: 10px; font-style: italic;
+}
+.figure-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.figure-row .figure-wrap { flex: 1 1 220px; max-width: 260px; margin: 0; }
+.page-marker {
+  font-size: 0.74rem; color: #a8a29e; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 3px;
+}
+
+.printed-page-ref { display:block; margin:.35em 0 1.1em; font-size:.78rem; font-style:italic; color:#a8a29e; letter-spacing:.01em; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 51: Thế thứ ba Lãm Tước Vĩ — Toàn Thư Thái Cực Quyền | TaichiNOW</title>
+<meta name="description" content="Chương 51 của Toàn Thư Thái Cực Quyền: Thế thứ ba Lãm Tước Vĩ">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-trang-1.html#sec00">Phần 1</a></li>
+        <li><a href="ch02-iii-su-nam-giu-hu-thuc.html#sec01">Phần 2</a></li>
+        <li><a href="ch03-iv-khinh-phu-tram-hu-thuc.html#sec02">Phần 3</a></li>
+        <li><a href="ch04-dac-diem-thu-nam-van-dong-tiet-tiet-quan-xuyen-yeu-tich-dan.html#sec03">Phần 4</a></li>
+        <li><a href="ch05-i-thuc-chat-tiet-tiet-quan-xuyen.html#sec04">Phần 5</a></li>
+        <li><a href="ch06-ii-quan-he-giua-dong-toan-dong-yeu-tich.html#sec05">Phần 6</a></li>
+        <li><a href="ch07-iii-tiet-tiet-quan-xuyen-tang-cuong-khop.html#sec06">Phần 7</a></li>
+        <li><a href="ch08-v-su-nam-giu-tiet-tiet-quan-xuyen.html#sec07">Phần 8</a></li>
+        <li><a href="ch09-dac-diem-thu-sau-van-dong-a-thanh-lien-tuong-bat-doan-thao-t.html#sec08">Phần 9</a></li>
+        <li><a href="ch10-i-su-thuc-hien-a-thanh.html#sec09">Phần 10</a></li>
+        <li><a href="ch11-ii-thuc-le-danh-gia-hanh-quyen.html#sec10">Phần 11</a></li>
+        <li><a href="ch12-iii-than-dong-dang-a-thanh1.html#sec11">Phần 12</a></li>
+        <li><a href="ch13-dac-diem-thu-bay-van-dong-cuong-nhu-tuong-te-nhu-den-cuong-c.html#sec12">Phần 13</a></li>
+        <li><a href="ch14-i-quyen-cuong-nhu-tuong-te.html#sec13">Phần 14</a></li>
+        <li><a href="ch15-ii-thoi-ky-cau-nhuyen-toi-cuong.html#sec14">Phần 15</a></li>
+        <li><a href="ch16-iv-bien-hoan-cuong-nhu.html#sec15">Phần 16</a></li>
+        <li><a href="ch17-v-su-nam-giu-cuong-nhu-tuong-te.html#sec16">Phần 17</a></li>
+        <li><a href="ch18-dac-diem-thu-tam-van-dong-khoai-man-tuong-gian-man-den-khoai.html#sec17">Phần 18</a></li>
+        <li><a href="ch19-i-trinh-phat-trien-khoai-man.html#sec18">Phần 19</a></li>
+        <li><a href="ch20-ii-thoi-gian-dieu-kien-viec-chuyen-man-sang-khoai.html#sec19">Phần 20</a></li>
+        <li><a href="ch21-iii-khoai-man-tuong-gian-cau-thanh-kinh-biet.html#sec20">Phần 21</a></li>
+        <li><a href="ch22-iv-su-nam-giu-khoai-man-tuong-gian.html#sec21">Phần 22</a></li>
+        <li><a href="ch23-ket-ngu.html#sec22">Phần 23</a></li>
+        <li><a href="ch24-thu-ten-quyen-thuc-lo-tran-thuc-thai-cuc-quyen.html#sec23">Phần 24</a></li>
+        <li><a href="ch25-may-diem-noi-ro-ve-do-giai.html#sec24">Phần 25</a></li>
+        <li><a href="ch26-tran-thuc-thai-cuc-quyen-lo.html#sec25">Phần 26</a></li>
+        <li><a href="ch27-thuc-thu-ba-muoi-ba-ta-qua-tien-phao-1.html#sec26">Phần 27</a></li>
+        <li><a href="ch28-thuc-thu-ba-muoi-ta-qua-tien-phao-2-nguc-huong-nam.html#sec27">Phần 28</a></li>
+        <li><a href="ch29-thuc-thu-ba-muoi-lam-huu-qua-tien-phao-1-nguc-nam-chuyen-bac.html#sec28">Phần 29</a></li>
+        <li><a href="ch30-thuc-thu-ba-muoi-tam-phach-gia-nguc-huong-dong-bac.html#sec29">Phần 30</a></li>
+        <li><a href="ch31-thuc-thu-ba-muoi-chin-phien-hoa-vu-nguc-dong-nam-chuyen-dong.html#sec30">Phần 31</a></li>
+        <li><a href="ch32-thuc-thu-bon-muoi-yem-thu-quang-chuy-nguc-dong-bac-chuyen-do.html#sec31">Phần 32</a></li>
+        <li><a href="ch33-thuc-thu-bon-muoi-phuc-ho-nguc-dong-chuyen-dong-nam.html#sec32">Phần 33</a></li>
+        <li><a href="ch34-thuc-thu-61-ngoc-nu-xuyen-thoa-nguc-huong-dong-chuyen-bac-ch.html#sec33">Phần 34</a></li>
+        <li><a href="ch35-thuc-thu-62-quay-dau-phao-duong-mon-nguc-huong-tay.html#sec34">Phần 35</a></li>
+        <li><a href="ch36-thuc-thu-64-nuu-loan-chuu-nguc-huong-nam-chuyen-bac.html#sec35">Phần 36</a></li>
+        <li><a href="ch37-thuc-thu-65-thuan-loan-chuu-nguc-huong-bac.html#sec36">Phần 37</a></li>
+        <li><a href="ch38-thuc-thu-67-oa-ly-phao-nguc-huong-bac.html#sec37">Phần 38</a></li>
+        <li><a href="ch39-thuc-thu-70-kim-cang-dao-chuy-nguc-huong-bac.html#sec38">Phần 39</a></li>
+        <li><a href="ch40-thuc-thu-71-thau-the-nguc-huong-bac.html#sec39">Phần 40</a></li>
+        <li><a href="ch41-1-yeu-nghia-chung-day-tay.html#sec40">Phần 41</a></li>
+        <li><a href="ch42-2-phuong-phap-day-tay-thuc-tran.html#sec41">Phần 42</a></li>
+        <li><a href="ch43-3-hai-su-dien-bien-day-tay-thuc-tran.html#sec42">Phần 43</a></li>
+        <li><a href="ch44-4-thoi-thu-thai-cuc-quyen-kiem-bi-ca-am-duong.html#sec43">Phần 44</a></li>
+        <li><a href="ch45-5-yeu-linh-dong-tac-thoi-thu.html#sec44">Phần 45</a></li>
+        <li><a href="ch46-bon-ngu-luc-tran-ham-ve-thap-tam-muc-quan-hai-1.html#sec45">Phần 46</a></li>
+        <li><a href="ch47-sau-tuyen-doan-van-ngan-ve-quyen-luan-tran-ham-nguoi-khac.html#sec46">Phần 47</a></li>
+        <li><a href="ch48-ngoi-khen-ba-doi-ho-do.html#sec47">Phần 48</a></li>
+        <li><a href="ch49-thuyet-minh-ve-hinh-anh-sach.html#sec48">Phần 49</a></li>
+        <li><a href="ch50-the-thu-hai-khoi-the.html#sec49">Phần 50</a></li>
+        <li><a href="ch51-the-thu-ba-lam-tuoc-vi.html#sec50">Phần 51</a></li>
+        <li><a href="ch52-the-thu-4-don-tien-don.html#sec51">Phần 52</a></li>
+        <li><a href="ch53-the-thu-5-thu-thuong-the-nang-tay-len.html#sec52">Phần 53</a></li>
+        <li><a href="ch54-the-thu-6-bach-hac-luong-si-hac-trang-xoe-canh.html#sec53">Phần 54</a></li>
+        <li><a href="ch55-the-thu-7-ta-lau-tat-ao-bo-tay-trai-vuot-dau-goi-buoc-xoay.html#sec54">Phần 55</a></li>
+        <li><a href="ch56-vii-phan-tich-ky-thuat-the-thu-bay-ta-lau-tat-ao-bo-tiep.html#sec55">Phần 56</a></li>
+        <li><a href="ch57-i-cach-dung.html#sec56">Phần 57</a></li>
+        <li><a href="ch58-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua.html#sec57">Phần 58</a></li>
+        <li><a href="ch59-i-cach-dung-2.html#sec58">Phần 59</a></li>
+        <li><a href="ch60-iii-yeu-linh.html#sec59">Phần 60</a></li>
+        <li><a href="ch61-i-cach-dung-3.html#sec60">Phần 61</a></li>
+        <li><a href="ch62-ii-qua-trinh-dong-tac.html#sec61">Phần 62</a></li>
+        <li><a href="ch63-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-2.html#sec62">Phần 63</a></li>
+        <li><a href="ch64-vii-phan-tich-ky-thuat.html#sec63">Phần 64</a></li>
+        <li><a href="ch65-vi-cach-day-cach-luyen.html#sec64">Phần 65</a></li>
+        <li><a href="ch66-iv-yeu-cau.html#sec65">Phần 66</a></li>
+        <li><a href="ch67-iii-yeu-linh-2.html#sec66">Phần 67</a></li>
+        <li><a href="ch68-vi-cach-day-cach-luyen-2.html#sec67">Phần 68</a></li>
+        <li><a href="ch69-iii-yeu-linh-3.html#sec68">Phần 69</a></li>
+        <li><a href="ch70-v-pham-sai-lam-nguyen-nhan-phat-sinh-cach-sua.html#sec69">Phần 70</a></li>
+        <li><a href="ch71-vii-phan-tich-ky-thuat-2.html#sec70">Phần 71</a></li>
+        <li><a href="ch72-iv-yeu-cau-2.html#sec71">Phần 72</a></li>
+        <li><a href="ch73-vi-phep-day-phep-luyen.html#sec72">Phần 73</a></li>
+        <li><a href="ch74-iii-yeu-linh-4.html#sec73">Phần 74</a></li>
+        <li><a href="ch75-vi-phep-day-phep-luyen-2.html#sec74">Phần 75</a></li>
+        <li><a href="ch76-i-phep-dung.html#sec75">Phần 76</a></li>
+        <li><a href="ch77-vi-cach-day-cach-luyen-3.html#sec76">Phần 77</a></li>
+        <li><a href="ch78-iii-yeu-linh-5.html#sec77">Phần 78</a></li>
+        <li><a href="ch79-i-cach-dung-4.html#sec78">Phần 79</a></li>
+        <li><a href="ch80-iv-yeu-cau-3.html#sec79">Phần 80</a></li>
+        <li><a href="ch81-vii-phan-tich-ky-thuat-3.html#sec80">Phần 81</a></li>
+        <li><a href="ch82-iii-yeu-linh-6.html#sec81">Phần 82</a></li>
+        <li><a href="ch83-i-cach-dung-5.html#sec82">Phần 83</a></li>
+        <li><a href="ch84-iii-yeu-linh-7.html#sec83">Phần 84</a></li>
+        <li><a href="ch85-iv-yeu-cau-4.html#sec84">Phần 85</a></li>
+        <li><a href="ch86-vii-phan-tich-ky-thuat-4.html#sec85">Phần 86</a></li>
+        <li><a href="ch87-i-cach-dung-6.html#sec86">Phần 87</a></li>
+        <li><a href="ch88-vii-phan-tich-ky-thuat-5.html#sec87">Phần 88</a></li>
+        <li><a href="ch89-iii-yeu-linh-8.html#sec88">Phần 89</a></li>
+        <li><a href="ch90-iv-yeu-cau-5.html#sec89">Phần 90</a></li>
+        <li><a href="ch91-vi-cach-day-cach-luyen-tap.html#sec90">Phần 91</a></li>
+        <li><a href="ch92-v-loi-pham-nguyen-nhan-phat-sinh-cach-sua-chua.html#sec91">Phần 92</a></li>
+        <li><a href="ch93-i-cach-dung-7.html#sec92">Phần 93</a></li>
+        <li><a href="ch94-v-loi-thuong-mac-nguyen-nhan-cach-sua.html#sec93">Phần 94</a></li>
+        <li><a href="ch95-i-cach-dung-8.html#sec94">Phần 95</a></li>
+        <li><a href="ch96-vi-cach-day-cach-luyen-tap-2.html#sec95">Phần 96</a></li>
+        <li><a href="ch97-iii-yeu-linh-9.html#sec96">Phần 97</a></li>
+        <li><a href="ch98-i-cach-dung-9.html#sec97">Phần 98</a></li>
+        <li><a href="ch99-iii-yeu-linh-10.html#sec98">Phần 99</a></li>
+        <li><a href="ch100-vi-cach-day-cach-luyen-tap-3.html#sec99">Phần 100</a></li>
+        <li><a href="ch101-i-cach-dung-10.html#sec100">Phần 101</a></li>
+        <li><a href="ch102-i-cach-dung-11.html#sec101">Phần 102</a></li>
+        <li><a href="ch103-vi-cach-day-cach-luyen-4.html#sec102">Phần 103</a></li>
+        <li><a href="ch104-the-thu-51-don-tien.html#sec103">Phần 104</a></li>
+        <li><a href="ch105-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-3.html#sec104">Phần 105</a></li>
+        <li><a href="ch106-vi-cach-day-cach-luyen-5.html#sec105">Phần 106</a></li>
+        <li><a href="ch107-the-thu-53-lam-tuoc-vi.html#sec106">Phần 107</a></li>
+        <li><a href="ch108-the-thu-54-don-tien.html#sec107">Phần 108</a></li>
+        <li><a href="ch109-the-thu-56-don-tien.html#sec108">Phần 109</a></li>
+        <li><a href="ch110-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-4.html#sec109">Phần 110</a></li>
+        <li><a href="ch111-the-thu-58-kim-ke-doc-lap.html#sec110">Phần 111</a></li>
+        <li><a href="ch112-the-thu-59-ta-huu-dao-nien-hau.html#sec111">Phần 112</a></li>
+        <li><a href="ch113-the-thu-60-ta-phi-the.html#sec112">Phần 113</a></li>
+        <li><a href="ch114-the-thu-63-ta-lau-tat-ao-bo.html#sec113">Phần 114</a></li>
+        <li><a href="ch115-the-thu-65-phien-thong-boi.html#sec114">Phần 115</a></li>
+        <li><a href="ch116-the-thu-68-thuong-bo-lam-tuoc-vi.html#sec115">Phần 116</a></li>
+        <li><a href="ch117-the-thu-71-don-tien.html#sec116">Phần 117</a></li>
+        <li><a href="ch118-the-thu-72-cao-tham-dai-xuyen-chuong.html#sec117">Phần 118</a></li>
+        <li><a href="ch119-the-thu-73-thap-thoi.html#sec118">Phần 119</a></li>
+        <li><a href="ch120-the-thu-74-tien-bo-chi-dang-chuy.html#sec119">Phần 120</a></li>
+        <li><a href="ch121-the-thu-75-thuong-bo-lam-tuoc-vi.html#sec120">Phần 121</a></li>
+        <li><a href="ch122-the-thu-76-don-tien.html#sec121">Phần 122</a></li>
+        <li><a href="ch123-the-thu-79-thoai-bo-khoa-ho.html#sec122">Phần 123</a></li>
+        <li><a href="ch124-the-thu-80-chuyen-than-bai-lien.html#sec123">Phần 124</a></li>
+        <li><a href="ch125-the-thu-81-loan-cung-xa-ho.html#sec124">Phần 125</a></li>
+        <li><a href="ch126-the-thu-82-tien-bo-ban-lan-chuy.html#sec125">Phần 126</a></li>
+        <li><a href="ch127-the-thu-83-nhu-phong-be.html#sec126">Phần 127</a></li>
+        <li><a href="ch128-so-do-lo-tuyen-van-dong-duong-thuc-thai-cuc-quyen.html#sec127">Phần 128</a></li>
+        <li><a href="ch129-tiet-thu-dinh-bo-day-tay.html#sec128">Phần 129</a></li>
+        <li><a href="ch130-so-do-bo-phap-hoat-bo-day-tay.html#sec129">Phần 130</a></li>
+        <li><a href="ch131-tiet-thu-dai-lu.html#sec130">Phần 131</a></li>
+        <li><a href="ch132-so-do-phuong-huong-bo-phap-dai-lu.html#sec131">Phần 132</a></li>
+        <li><a href="ch133-i-ban-ve-viec-luyen-tap-thai-cuc-quyen.html#sec132">Phần 133</a></li>
+        <li><a href="ch134-ban-ve-viec-luyen-tap-thai-cuc-quyen-tiep.html#sec133">Phần 134</a></li>
+        <li><a href="ch135-iv-thap-tam-the-ca.html#sec134">Phần 135</a></li>
+        <li><a href="ch136-viii-so-luoc-ban-ve-luyen-thai-cuc-quyen-tiep.html#sec135">Phần 136</a></li>
+        <li><a href="ch137-ix-nghien-cuu-ly-luan-thai-cuc-quyen-tai-quan-tiep.html#sec136">Phần 137</a></li>
+        <li><a href="ch138-xii-ban-ve-phep-luyen-duong-thuc-thai-cuc-quyen.html#sec137">Phần 138</a></li>
+        <li><a href="ch139-bat-loi-bat-thu.html#sec138">Phần 139</a></li>
+        <li><a href="ch140-bat-nhi-loi-bat-thu-hai.html#sec139">Phần 140</a></li>
+        <li><a href="ch141-ngo-thuc-thai-cuc-quyen-quyen-thuc-do-giai.html#sec140">Phần 141</a></li>
+        <li><a href="ch142-thu-don-dap-thu.html#sec141">Phần 142</a></li>
+        <li><a href="ch143-thu-hai-song-dap-thu.html#sec142">Phần 143</a></li>
+        <li><a href="ch144-thu-ba-tam-dong-tac-ban.html#sec143">Phần 144</a></li>
+        <li><a href="ch145-vuong-tong-nhac-luan-thai-cuc-quyen.html#sec144">Phần 145</a></li>
+        <li><a href="ch146-vu-vu-tuong-luan-thai-cuc-quyen.html#sec145">Phần 146</a></li>
+        <li><a href="ch147-thap-tam-the-hanh-cong-tam-giai.html#sec146">Phần 147</a></li>
+        <li><a href="ch148-da-thu-ca.html#sec147">Phần 148</a></li>
+        <li><a href="ch149-so-luoc-ve-vo-thuc-thai-cuc-quyen.html#sec148">Phần 149</a></li>
+        <li><a href="ch150-loi-noi-dau.html#sec149">Phần 150</a></li>
+        <li><a href="ch151-chuong-yeu-linh-thai-cuc-quyen.html#sec150">Phần 151</a></li>
+        <li><a href="ch152-tau-gia-da-thu-thai-cuc-quyen.html#sec151">Phần 152</a></li>
+        <li><a href="ch153-vai-the-hoi-ve-cach-day-cach-luyen.html#sec152">Phần 153</a></li>
+        <li><a href="ch154-thuyet-minh-do-tiet.html#sec153">Phần 154</a></li>
+        <li><a href="ch155-vi-du-ve-do-tiet.html#sec154">Phần 155</a></li>
+        <li><a href="ch156-chuong-hai-do-giai-thai-cuc-quyen-vo-thuc.html#sec155">Phần 156</a></li>
+        <li><a href="ch157-may-diem-giai-thich-ve-do-giai.html#sec156">Phần 157</a></li>
+        <li><a href="ch158-do-giai-vu-thuc-thai-cuc-quyen.html#sec157">Phần 158</a></li>
+        <li><a href="ch159-thai-cuc-quyen-luan.html#sec158">Phần 159</a></li>
+        <li><a href="ch160-da-thu-ca-vuong-tong-nhac-dinh.html#sec159">Phần 160</a></li>
+        <li><a href="ch161-da-thu-tan-phong.html#sec160">Phần 161</a></li>
+        <li><a href="ch162-tan-phong-mat-quyet-ly-dich-du.html#sec161">Phần 162</a></li>
+        <li><a href="ch163-mat-quyet-chua-ro-tac-gia.html#sec162">Phần 163</a></li>
+        <li><a href="ch164-loi-tua.html#sec163">Phần 164</a></li>
+        <li><a href="ch165-muc-luc.html#sec164">Phần 165</a></li>
+        <li><a href="ch166-gioi-thieu-van-tat-ve-ton-thuc-thai-cuc-quyen.html#sec165">Phần 166</a></li>
+        <li><a href="ch167-tong-thuyet-ve-thai-cuc-quyen.html#sec166">Phần 167</a></li>
+        <li><a href="ch168-tong-thuyet-ve-thai-cuc-quyen-tiep.html#sec167">Phần 168</a></li>
+        <li><a href="ch169-tong-thuyet-ve-thai-cuc-quyen-tiep-2.html#sec168">Phần 169</a></li>
+        <li><a href="ch170-thuong-bien-1-ten-thuc.html#sec169">Phần 170</a></li>
+        <li><a href="ch171-1-thoi-thu-phap-thai-cuc-quyen-taijiquan-tuishou-fa.html#sec170">Phần 171</a></li>
+        <li><a href="ch172-2-ky-kich-thai-cuc-quyen-taijiquan-ji-ji.html#sec171">Phần 172</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../quan_shu_chen_shi_1995_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Toàn Thư Thái Cực Quyền · Phần 51</p>
+<h3 class="chapter" id="ch51">Thế thứ ba Lãm Tước Vĩ</h3>
+
+<div class="partnav"><a href="ch50-the-thu-hai-khoi-the.html"><span class="k">← Chương 50</span>Thế thứ hai Khởi Thế</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch52-the-thu-4-don-tien-don.html" style="text-align:right"><span class="k">Chương 52 →</span>Thế thứ 4 Đơn Tiên (Roi Đơn)</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Thẩm Gia Trình.</p>
+<span id="chuong-50"></span>
+
+
+  <div class="chapter-header">
+    
+  </div>
+<div class="chapter-sub">Thế thứ ba　Lãm Tước Vĩ</div>
+<p>Lãm Tước Vĩ là tổng thủ của Thái Cực Quyền, thể dụng kiêm toàn. Khi thôi thủ yêu cầu triêm liên niêm tùy, vãng phục bất ly bất đoạn; dùng đuôi chim sẻ để ví cánh tay, và lấy nó làm tên gọi chung là Lãm Tước Vĩ. Phương pháp của nó có bốn loại, gọi là bằng, lữ, tễ, án (bồng, lữ, tễ, án), cũng gọi là tứ chính thủ.</p>
+<div class="chapter-sub">(Giáp) Tả Bằng (Bồng trái)</div>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">1. Cách dùng Từ Khởi Thế.</h4><p>Nếu đối phương từ đối diện dùng tay trái đánh vào ngực ta, ta mở chân phải sang bên phải và tọa thực, theo đó nâng chân trái bước tới một bước, gập gối tọa thực, chân phải duỗi thẳng, thành tả cung bộ trái thực phải hư. Đồng thời, nâng tay trái lên trước ngực, lòng bàn tay hướng vào trong, đầu cùi chỏ hơi buông, dùng cổ tay trái của ta dán vào giữa cùi chỏ và cổ tay của đối phương, dùng hoành kình bồng lên phía trước trên (không được cứng nhắc phẳng thẳng). Như vậy, lực của đối phương đã bị ta dẫn động, vị trí của hắn cũng tự nhiên không vững nữa.</p>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">2. Quá trình động tác</h4><p>1. Mũi chân phải xoay ra ngoài khoảng 45°, đồng thời trọng tâm chuyển sang chân phải; chân phải gập gối hơi ngồi xuống, thân thể xoay sang phải khoảng 45°; chân trái gập gối nâng lên, hai tay phủ chưởng theo eo xoay đưa sang phải, tay phải nâng lên theo hình cung (tay phải cao tay trái thấp), tay phải qua trước bụng trên, sang phải, ra ngoài, rồi hướng về trước ngực mài một vòng nhỏ trở về, lòng bàn tay vẫn hướng xuống. Tay trái qua trước bụng di chuyển hình cung sang phải, dần dần lật thành lập chưởng hơi ngửa, lòng bàn tay hướng vào trong, đến trước tay phải thì hợp lại, hai cánh tay thành hình cung, cùi chỏ hơi buông thấp hơn cổ tay một chút, mắt theo thân dịch chuyển nhìn chéo về phía trước (xem Hình 5A, Hình 5B).</p>
+<p>2. Chân phải tiếp tục hơi ngồi xuống tọa thực, chân trái bước ra phía bên trái (về hướng nam) một bước, gót chân chạm đất trước, mũi chân nghiêng vào trong khoảng 45° (mũi chân hướng tây nam, mũi chân trái và gót chân phải trên một đường thẳng), trọng tâm chuyển sang trái, thành tả cung bộ tọa thực. Khi chân trái bước ra thân trên hơi hướng (Thế thứ ba — Lãm Tước Vĩ, trang sách 15)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 6</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig054-6.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig054-6.jpg" alt="图 6" loading="lazy"></a>
+  <div class="figure-caption">Cẳng tay trái theo thân thể bồng ra hình cung lên trên sang trái; lòng bàn tay phải theo hình cung xuống dưới sang phải, thái đến hơi cao hơn hông; mặt hướng tây, mắt nhìn thẳng về phía trước (tây).</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 7</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig054-7.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig054-7.jpg" alt="图 7" loading="lazy"></a>
+  <div class="figure-caption">Trọng tâm toàn bộ chuyển sang chân trái, chân phải gập gối nâng lên; cùi chỏ trái lui về phía sau dưới một chút, lòng bàn tay trái chuyển xuống bên trái trước ngực; cánh tay phải theo hình cung móc sang trái đến trước bụng, cánh tay phải xoay ra ngoài khiến lòng bàn tay lật hướng vào trong nghiêng lên trên.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 8</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig054-8.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig054-8.jpg" alt="图 8" loading="lazy"></a>
+  <div class="figure-caption">Thân thể hơi xoay sang phải, chân phải bước tới, gót chân chạm đất trước, cung chân phải đạp chân trái thành hữu cung bộ, cánh tay phải đẩy ra trước lên trên, điểm lực đặt ở mu cổ tay.</div>
+</div>
+<p>sang trái; sau khi chân trái chạm đất, thân trên dần dần xoay sang phải. Đồng thời, cẳng tay trái theo thân pháp bồng ra hình cung lên trên sang trái trước, lòng bàn tay trái cao ngang vai, cổ tay hơi gập vào trong, điểm lực đặt ở mu cổ tay, lòng bàn tay hơi nghiêng lên trên. Lòng bàn tay phải theo hình cung xuống dưới sang phải thái đến hơi cao hơn hông, lòng bàn tay hướng xuống, các ngón tay hướng về trước, tọa uyển, điểm lực đặt ở phía ngoài gốc bàn tay. Lúc này, mặt hướng tây, mắt nhìn thẳng về phía trước (tây), nhưng phải quan tâm đến hai tay (xem Hình 6).</p>
+<div class="chapter-sub">(Ất) Hữu Bằng (Bồng phải)</div>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">1. Quá trình động tác</h4><p>1. Trọng tâm dần dần toàn bộ chuyển sang chân trái, lấy eo dẫn thân thể hơi xoay sang trái, chân phải gập gối nâng lên; cùng lúc với chuyển thân, cùi chỏ trái lui về phía sau dưới một chút, tự nhiên dẫn lòng bàn tay trái chuyển xuống bên trái trước ngực; theo đà chuyển xuống, cánh tay trái xoay vào trong, dựng chưởng, lòng bàn tay hướng về trước, ánh mắt hơi để ý cánh tay trái lui về sau. Đồng thời, cánh tay phải theo hình cung móc sang trái đến trước bụng; theo động tác móc, cánh tay phải xoay ra ngoài khiến lòng bàn tay lật hướng vào trong nghiêng lên trên; hai cánh tay đều thành hình cung, ánh mắt dần dần chuyển về cánh tay phải, rồi nhìn thẳng về phía trước (tây nam) (xem Hình 7).</p>
+<p>2. Thân thể hơi xoay sang phải (mặt hướng tây), chân phải bước tới (tây), gót chân chạm đất trước, tiếp đó trọng tâm dần dần chuyển sang chân phải cho đến khi toàn bộ đặt vững, cung chân phải đạp chân trái thành hữu cung bộ. Cùng với chuyển thân, cánh tay phải hướng về trước (tây) lên trên, mu bàn tay phải hướng ra ngoài (lòng bàn tay hơi hướng lên trên), cao ngang vai, cùi chỏ hơi thấp hơn bàn tay; lòng bàn tay trái đặt hơi dưới khớp cổ tay, cánh tay phải đẩy ra trước, điểm lực đặt ở mu cổ tay. Mắt nhìn thẳng về phía trước, ánh mắt phải quan tâm đến cẳng tay phải bồng ra phía trước (xem Hình 8, Hình 9).</p>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">2. Yếu lĩnh</h4><p>1. Hai chân phân hư thực, lên xuống như mèo đi. Khi trọng lượng chuyển sang chân trái thì trái thực phải hư; khi chuyển sang chân phải thì phải thực trái hư. Nhưng "hư" không phải "không"; động thế vẫn không nên đứt đoạn, phải để dư địa co duỗi biến hóa bất cứ lúc nào; cái gọi là "thực" không phải dùng sức quá mức. Khi cung bộ, độ cong của chân lấy mức không vượt quá đầu ngón chân làm giới hạn; vượt quá là quá kình. Người mới luyện trước tiên cầu khai triển, sau cầu khẩn thấu.</p>
+<p>2. Khi tay trái tả bằng phải vận dụng lực lượng của eo, không được chỉ động tay mà không động eo chân: "chưởng uyển trửu hòa kiên, bối yêu khóa tất cước, thượng hạ (Thế thứ ba — Lãm Tước Vĩ, trang sách 16)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 9A</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig055-9A.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig055-9A.jpg" alt="图 9A" loading="lazy"></a>
+  <div class="figure-caption">Cánh tay phải đẩy ra trước (tây) lên trên, mu bàn tay phải hướng ra ngoài, cao ngang vai, cùi chỏ hơi thấp hơn bàn tay; lòng bàn tay trái đặt hơi dưới khớp cổ tay.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 9B</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig055-9B.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig055-9B.jpg" alt="图 9B" loading="lazy"></a>
+  <div class="figure-caption">Chính diện tư thế định của hữu cung bộ: hai cánh tay thành hình cung, lòng bàn tay phải bồng ra trước, lòng bàn tay trái đặt hơi dưới khớp cổ tay phải.</div>
+</div>
+<p>chín tiết kình, tiết tiết từ trong eo mà phát". Sự vận chuyển của nội kình là thông qua eo lưng dẫn động tứ chi vận chuyển, cho nên quyền luận nói "chủ tể tại yêu" (chủ tể ở eo).</p>
+<p>3. Hữu bằng hướng về trước, lòng bàn tay trái là sấn kình (kình hỗ trợ).</p>
+<p>4. Động tác phải thành hình cung, không được thẳng tới thẳng lui, nhưng không được làm bộ, không được cố ý làm thành vòng tròn lớn. Phải "kình dĩ khúc súc nhi hữu dư" (kình lấy cong mà tích trữ nên có dư).</p>
+<p>5. Phải "nhất động vô hữu bất động" (một động thì không có gì không động): eo, chân, tay phải cùng động, không được chân động mà tay không động, tay động mà eo không động; cái gọi là trên dưới tương tùy.</p>
+<p>6. Bằng kình của Thái Cực Quyền vô cùng quan trọng; khớp vai phải tùng trầm, phải trụy trửu trầm kiên; cánh tay phải vô cùng nhẹ nhàng linh hoạt tròn đầy, nhưng lại vô cùng mềm mại nặng chìm; hai cánh tay phải "tự tùng phi tùng" (như tùng mà phi tùng), "cương nhu nội hàm", giàu bằng kình đàn hồi và dai bền. Luyện lâu ngày sẽ dần hiểu chuyển đổi hư thực, lĩnh hội triêm niêm liên tùy, chất lượng bằng kình cũng dần nâng cao.</p>
+<p>7. Phải coi trọng "tọa uyển". Cổ tay không được mềm nhũn vô lực; cổ tay vừa tùng thì mu bàn tay tất nhiên không có bằng kình, dễ bị đối phương bắt lấy cổ tay mà khống chế; nhưng cũng không được dùng chuyết kình (kình vụng).</p>
+<div class="chapter-sub">3. Yêu cầu</div>
+<p>1. Mắt chuyển động tới đâu, cổ cũng chuyển động tới đó.</p>
+<p>2. Muốn phải trước trái, muốn trái trước phải. Khi bắt đầu làm tả bằng thân thể xoay sang phải, hai tay không nên nâng thẳng sang phải, phải chuyển tròn sang trái trước, nhưng không được cố ý vòng quanh.</p>
+<p>3. Hư thực phải rõ. Khi tả bằng bắt đầu, gót chân phải xoay một cái, chân phải liền ngồi xuống làm thực, chân trái nâng lên làm hư. Khi biến đổi phải lưu ý eo chân hông là tiệm biến chứ không phải đột biến; xuất chân phải chậm, thu chân cũng phải chậm. Tả bằng là tả cung bộ, là chân trái thực; khi tiếp hữu bằng thì nâng chân phải lên, rồi từ từ bước ra trước; trước khi gót chân phải chạm đất, trọng tâm không được chuyển ra trước, lúc này chân trái vẫn là chân thực, mới tỏ ra hư thực rõ ràng.</p>
+<p>4. Phải coi trọng eo làm chủ tể. Phải lấy eo dẫn động tứ chi, không được cánh tay dịch chuyển mà eo không động; ví dụ khi tả bằng tiếp hữu bằng, phải lấy eo dẫn động tay trái lui về sau.</p>
+<p><span id="p340" class="page-anchor"></span>5. Phải "nhất động vô hữu bất động". Khi tả bằng bắt đầu cánh tay phải hướng (Thế thứ ba — Lãm Tước Vĩ, trang sách 17)</p>
+<p>trước, sang phải, theo hình cung bên trong vòng đến trước bụng, thì đúng lúc tay trái từ bên trái chuyển đến trước bụng, hai tay vừa khéo hợp lại; không được một tay dừng ở đó mà tay kia vẫn đang di chuyển.</p>
+<p>6. Tả bằng và hữu bằng khi định thế đều phải tay đến chân đến, không được chân đã cung mà tay chưa đến vị trí; phải trên dưới tương tùy.</p>
+<p>7. Phải "vĩ lư trung chính". Khi tả bằng, thân trên không được ngả sang trái; khi hữu bằng, thân trên không được ngả về trước quá mức.</p>
+<p>8. Hữu bằng: khi gót chân phải chạm đất, lòng bàn tay trái liền theo cánh tay phải đẩy ra trước, không được quá muộn quá nhanh, hơn nữa phải khiến gối, chân, eo của chân trái dần dần dùng sức, tiết tiết quán xuyên.</p>
+<p>9. Phải khai đang (mở háng); hai chân không được kẹp vào trong tạo thành "tiêm đang" hình chữ nhân.</p>
+<p>10. Phải "kiên dữ khóa hợp" (vai và hông hợp), trên dưới nhất trí, hai hông phải đối ứng với hai vai, hướng động nhất trí. Ví dụ tả bằng định thế, vai hướng tây, khớp hông cũng phải hướng tây. Hữu bằng bắt đầu, eo dẫn động tay trái lui về phía sau dưới một chút, lúc đó eo hông xoay về tây nam, vai cũng phải xoay về tây nam, phải (Thế thứ ba — Lãm Tước Vĩ, trang sách 18)</p>
+<p>Khi bằng hoàn thành, eo hông xoay về hướng tây, vai cũng phải xoay về hướng tây.</p>
+<p>11. Hai cánh tay phải viên mãn. Khi bắt đầu tả bằng, hai tay hợp lại phải viên mãn, không được xẹp, và lấy hai cổ tay cơ bản đối nhau làm tốt; cánh tay phải thùy trửu (cùi chỏ thấp hơn cổ tay).</p>
+<p>12. Khi cung bộ, gối của chân trước cung nên hơi vượt ra trước đường thẳng đứng, nhưng không được vượt quá đầu ngón chân. Đầu gối và đầu ngón chân phải hướng cùng một phương; lòng bàn chân và gót chân của chân sau đạp phải toàn bộ chạm đất, chân không nên duỗi quá thẳng.</p>
+<div class="chapter-sub">4. Lỗi dễ mắc, nguyên nhân phát sinh, cách sửa</div>
+<p>1. Lỗi: khi dịch chuyển cánh tay thì cánh tay trên kẹp chặt, sát thân mà di chuyển. Nguyên nhân chính là tùng kiên chưa đủ. Sửa: ngay từ đầu khi vung tay phải mở lỏng hai vai, để khoảng trống dưới nách. Điều này có lợi cho kinh lạc, khí huyết lưu thông.</p>
+<p>2. Lỗi: khi bắt đầu tả bằng hai tay hợp lại, cánh tay trái vận hành nhanh, đến vị trí trước và chờ cánh tay phải vòng quanh. Nguyên nhân chính là sự chú ý quá tập trung vào chuyển động của cánh tay phải, bỏ qua việc cánh tay trái chuyển động quá nhanh. Sửa: hai cánh tay di chuyển đều nhau.</p>
+<p>3. Lỗi: khi bắt đầu tả bằng hai tay hợp lại, hai tay quá gần thân hoặc hai tay xa rời ngực bụng; quá gần thì hình thành hai cánh tay kẹp chặt chèn ép ngực, quá xa thì khiến động tác "tán". Nguyên nhân chính là hai cánh tay trên dưới không tương tùy, vai và tay không tùy nhau. Sửa: tư thế phải viên mãn, không tản mạn, không teo rút; cổ tay trái phải ở dưới cổ tay phải.</p>
+<p>4. Lỗi: khi hai tay hợp lại thì tay động mà eo không động. Nguyên nhân chính là tay không được eo dẫn động. Sửa: tay theo eo xoay.</p>
+<p>5. Lỗi: khi tả bằng bước chân trái ra, gót chân chạm đất rất nặng, trọng tâm chuyển ra quá sớm. Nguyên nhân chính là hư thực không rõ, chân phải chưa tọa thực. Sửa: chân phải tọa thực, chân trái khi duỗi ra thì treo lơ lửng, phải lấy chân phải ngồi xuống "tiễn" chân trái chạm đất, làm được bước đi như mèo đi.</p>
+<p><span id="p341" class="page-anchor"></span>6. Lỗi: khi tả bằng, tả cung bộ đã cung ra trước nhưng hai tay vẫn còn di chuyển. Nguyên nhân chính là chưa hiểu sâu yếu lĩnh "nhất động vô hữu bất động". Sửa: phải tay đến chân đến; cùng lúc chân trái cung đến thì cánh tay trái phải bồng ra đến vị trí, như vậy mới hợp yêu cầu. (Thế thứ ba — Lãm Tước Vĩ, trang sách 19)</p>
+<p>7. Lỗi: khi cung bộ hai chân đặt ngang ngược. Nguyên nhân chính là hai chân đứng trên một đường ngang. Sửa: như tả bằng, chân trái bước ra, phải hơi rơi xuống theo hướng ra sau thân, khiến mũi chân trái và mu bàn chân phải khoảng trên một đường thẳng; khi hữu bằng, chân phải bước ra, phải hơi dịch sang phải rồi rơi xuống, khiến hai chân có khoảng cách ngang nhất định, không đứng trên một đường thẳng.</p>
+<p>8. Lỗi: khi tả bằng định thế vị trí hai cánh tay không đúng — tay trái quá cao hoặc quá thấp, tay phải quá sát thân. Nguyên nhân chính là dụng ý không rõ. Sửa: đối phương đánh vào ngực ta. Cổ tay ta dán giữa cổ tay và cùi chỏ của hắn, dùng hoành kình bồng lên trước trên. Vì vậy, độ cao của nó đến khoảng ngang vai là được; cao hơn nữa thì "cửa ngõ" của mình mở ra, bất tiện phòng thủ đòn tấn công tiếp theo của đối phương. Tay phải là phân, là thái; tay quá sát thân thì không có sấn kình; do đó tay phải ở khoảng 30 cm trước hông là tốt.</p>
+<p>9. Lỗi: khi bắt đầu hữu bằng, cánh tay trái chưa lui về sau, thân trên chưa hơi xoay sang trái. Nguyên nhân chính là không lấy eo dẫn tay, cổ tay và eo thoát khớp. Sửa: tay động thì trước tiên phải xoay eo, do xoay eo dẫn động tay trái lui về sau; cùi chỏ trái buông xuống, lòng bàn tay trái vừa gạt vừa lật thành dựng chưởng.</p>
+<p>10. Lỗi: khi bắt đầu làm hữu bằng, chân trái chưa tọa thực, hình thành trọng tâm chuyển ra trước quá sớm (chân phải chạm đất nặng và nhanh). Nguyên nhân chính là khái niệm hư thực không rõ. Sửa: phải giữ hơi cong ngồi xuống "tiễn" ra, khiến gót chân phải nhẹ nhàng chạm đất, mới tỏ ra nhẹ nhàng linh hoạt.</p>
+<p>11. Lỗi: phương hướng lệch chéo — tả bằng không phải hướng đông nam thì cũng là hướng tây nam, hữu bằng không chính hướng tây. Nguyên nhân chính là phương hướng bước chân không chính. Sửa: ta vốn đứng hướng nam, đối phương mặt hướng bắc dùng tay trái đánh vào ngực ta, tả bằng của ta đương nhiên phải hướng nam, chứ không phải đông nam hay tây nam. Tiếp đó đối phương ở phía tây dùng tay trái đánh vào sườn ngực ta, ta bước về phía tây, bồng ra, lâu án; vì vậy phương hướng của hữu bằng phải là chính tây.</p>
+<p>12. Lỗi: khi hữu bằng thì nâng cùi chỏ. Nguyên nhân chính là chưa hiểu kình hạ trụy của cùi chỏ. Sửa: nếu cùi chỏ xa rời thân thể, nâng lên chĩa ra ngoài, thì hai sườn lộ ra quá nhiều, trong kỹ kích có hại không lợi. Nhưng lại phải chú ý "trửu bất thiếp lặc" (cùi chỏ không dán sườn).</p>
+<p>(Thế thứ ba — Lãm Tước Vĩ, trang sách 20)</p>
+<p>13. Lỗi: khi hữu bằng thân trên ngả về trước quá nhiều, đầu đã vượt quá đầu gối. Nguyên nhân chính là không chú ý yêu cầu vĩ lư trung chính. Sửa: phải trên dưới cơ bản một đường thẳng, vai và hông hợp, cùng lúc cùng lui; từ đỉnh đầu, thân mình đến xương cụt, luôn phải cơ bản giữ một đường thẳng; ngả trước ngửa sau đều là khuyết điểm của thân pháp.</p>
+<div class="chapter-sub">5. Cách dạy và cách luyện tập</div>
+<p>1. Giảng giải yếu lĩnh để xây dựng khái niệm, biểu diễn động tác hoàn chỉnh. Chú trọng giảng giải trên cơ sở thư giãn mà làm động tác và phân rõ hư thực.</p>
+<p>2. Luyện khéo trước luyện kình, luyện kình trước luyện thuận. Vì vậy, nên dạy trước quá trình động tác, yêu cầu, trước cầu động tác chính xác, sau đó mới luyện phát kình.</p>
+<p>3. Khi người luyện tập thử làm, giáo viên quan sát tính chính xác của động tác họ từ mọi phía.</p>
+<p>4. Ở chỗ then chốt, giáo viên phải nhắc bằng lời; ví dụ khi một chân bước ra nhưng chưa hạ xuống đất, giáo viên phải nói: chậm — nhẹ — gót hạ xuống đất. Khi thu chân cũng phải nhắc "chậm".</p>
+<p>5. Trong giảng dạy bộ pháp, yêu cầu trước tiên xoay chân rồi mới dẫn động hông và bàn chân, sau đó đi theo hình cung tiến lên. Bộ pháp mại hồ (bước hình cung) không được cố ý làm bộ; phải quan sát và cải tiến từng động tác; không được thẳng tới thẳng lui, thẳng lên thẳng xuống.</p>
+<p>6. Có thể vận dụng phương pháp so sánh. Mấy chục người cùng luyện, mọi người đều ngồi thực một chân, chân kia bước tới; từ thu chân đến duỗi chân chạm đất, xem ai chậm nhất, nhưng lấy không ngừng trệ làm tốt; cũng có thể 2～3 người quây thành vòng cùng so sánh.</p>
+<p>7. Vận dụng phương pháp phân giải để giảng dạy: ① hai tay vung sang phải đồng thời chuyển thân nghiền gót chân phải, chú ý định phương hướng. ② chân phải ngồi xuống nâng chân trái, chuẩn bị bước ra trước trái, chú ý vị trí rơi xuống của chân trái. ③ tay phải vòng vòng lớn, tay trái vòng tròn nhỏ hợp lại, chú ý vị trí tay và đường di chuyển. ④ chân trái bước ngang chạm đất, chú ý phương hướng mũi chân trái. ⑤ tay trái bồng lên, tay phải thái xuống, đồng thời cung chân trái. Dùng trình tự như vậy luyện từng động tác một, khiến người luyện tập dễ hiểu chi tiết động tác; nhưng chỉ luyện phân giải dễ tạo thành không liên tục, cho nên phải dùng phương pháp tăng dần (đệ tăng pháp), tiếp nối từng cái, cho đến hoàn chỉnh.</p>
+<p>(Thế thứ ba — Lãm Tước Vĩ, trang sách 21)</p>
+<p>8. Phương pháp tăng dần (đệ tăng pháp): các bước như sau: (1) trước tiên làm động tác ①, rồi làm động tác ①②, sau làm động tác ①②③; (2) ở vị trí động tác ③ làm động tác ④, rồi làm động tác ④⑤; (3) cuối cùng làm hoàn chỉnh một động tác "tả bằng".</p>
+<p>9. Kết hợp luyện đối với cách dùng: hai người đứng đối mặt (người luyện tập là Giáp, đối thủ là Ất). Giáp — đứng hướng nam; Ất — dùng quyền trái đánh vào ngực Giáp (động tác phải chậm và không dùng sức, để phòng ngừa tai nạn thương tích). Giáp — liền xoay sang phải khoảng 45°, chân phải ngồi xuống, xuất chân trái sang trái, dùng phần cổ tay tay trái dán vào giữa cùi chỏ và cổ tay của tay Ất, dùng hoành kình bồng ra trước trên, tay phải thái xuống (tay Giáp phải dán vào bồng trên, cũng không được đánh mạnh), cảm nhận ý nghĩa kỹ kích của tả bằng. Như vậy, có thể hiểu đúng dụng ý của động tác, và tăng thêm hứng thú của người luyện tập.</p>
+<p>10. Luyện tập bổ trợ: ① chân phải gập gối ngồi thực, đầu gối trái từ phía sau trái từ từ đều đặn nâng lên, rồi từ từ bước sang trái, và cung chân trái. Sau đó lui về chỗ cũ, làm luyện tập lặp lại. Để cảm nhận hư thực, tăng cường lực chân. ② chân trái ngồi thực, yêu cầu như trên, chân phải bước tới, cũng làm luyện tập lặp lại.</p>
+<p>Các bài luyện tập trên tùy nhu cầu có thể dùng làm bài luyện tăng lượng vận động; số lần lặp lại phải do thể chất của người luyện tập quyết định.</p>
+<p>11. Phương pháp trọng điểm: khi mới học, mỗi lần luyện tập theo kế hoạch phải nêu trọng điểm rõ ràng; ví dụ lấy hư thực làm chính, thì phải giảng nhiều nội dung liên quan đến hư thực và luyện nhiều bài tập liên quan đến hư thực. Các yêu cầu khác có thể tạm lướt qua, dần dần làm sâu. Sau khi nắm cơ bản động tác, thì lấy những vấn đề chung nổi cộm hơn làm trọng điểm để giảng và luyện tiếp; tuyệt đối không được vừa giảng cái này vừa làm cái kia; một buổi luyện xong, người luyện tập phần lớn không hiểu, cũng làm không tốt, ảnh hưởng tâm trạng học tập.</p>
+<p>12. Người luyện tập phải lặp lại làm động tác xoay thân sang phải khi bắt đầu tả bằng, chân phải ngồi xuống, chân phải thực xoay ra ngoài khoảng 45° (không đến 90°); cho nên cũng phải kiểm tra góc xoay ra ngoài.</p>
+<p>13. Lặp lại làm động tác xoay thân sang phải ngồi xuống, hai tay hợp lại, kiểm tra hai tay đến vị trí cùng lúc, vị trí hai tay, thùy trửu v.v.</p>
+<p><span id="p342" class="page-anchor"></span>14. Động tác tả bằng hữu bằng phải chú trọng luyện phân rõ hư thực. Ví dụ khi luyện tả bằng, ngồi thực chân phải, chân trái duỗi ra sang trái, không (Thế thứ ba — Lãm Tước Vĩ, trang sách 22)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 10</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig061-10.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig061-10.jpg" alt="图 10" loading="lazy"></a>
+  <div class="figure-caption">Trọng tâm dần dần chuyển sang chân trái, thân thể thẳng đứng dần dần xoay sang trái, cánh tay trái xoay vào trong khiến lòng bàn tay lật thành nghiêng hướng vào trong, hướng lên trên; cổ tay cánh tay phải hơi duỗi ra trước.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 11</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig061-11.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig061-11.jpg" alt="图 11" loading="lazy"></a>
+  <div class="figure-caption">Lòng bàn tay phải theo đà lật mà lữ ngang sang trái; hai cùi chỏ từ từ buông xuống, hai lòng bàn tay theo đà lật mà lữ ngang sang trái.</div>
+</div>
+<p>chạm đất rồi lại thu về, lại duỗi ra, luyện tập lặp lại, cảm nhận hư thực (khi hữu bằng cũng vậy). Kết quả của luyện tập như vậy tất nhiên tăng cường lực chân, từ đó thúc đẩy sức khỏe.</p>
+<p>15. Lặp lại làm động tác gót chân trái hạ xuống đất, xoay vào trong khoảng 45°, kiểm tra phương hướng chân trái.</p>
+<p>16. Lặp lại luyện xuất bộ, chú ý trước tiên thu vào trong một chút gốc hông của bên đang ngồi thực, khiến bụng bên đó sung thực, trọng tâm ổn định. Sau đó, chân kia từ từ bước ra theo hình cung. Nhưng khớp gối phải hơi cong, giữ súc thế và tính linh hoạt.</p>
+<div class="chapter-sub">(Bính) Lữ (Lữ)</div>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">1. Cách dùng Ta ở vị trí tả bằng (mặt hướng tây).</h4><p>Đối phương dùng tay trái đánh vào sườn ngực ta. Ta lập tức thu chân phải bước ra phía trước bên phải (tây), gập gối đặt vững, chân trái chuyển hư, thân thể đồng thời xoay sang phải, mắt theo nhìn thẳng về phía trước; tay trái tay phải đồng thời xoay tròn, xuất động về phía trước bên phải; tay phải ở trước, lòng bàn tay nghiêng hướng vào trong; tay trái ở sau, lòng bàn tay nghiêng hướng vào trong; khi chuyển đến lòng bàn tay phải nghiêng hướng xuống, lòng bàn tay trái hướng lên, nhanh chóng lấy giữa cùi chỏ và cổ tay của cánh tay phải ta, mặt bên (bên trụ) dán vào cánh tay trên bên phải của đối phương, cổ tay trái nghiêng phủ xuống, dùng cổ tay bàn tay niêm dính vào mu cổ tay đối phương, hướng ra ngoài bên trái. Toàn thân ngồi trên chân trái, chân trái thực, chân phải hư. Nếu đối phương tấn công, ta liền hướng về trước ngực, lữ sang bên trái; như vậy, lực gốc của hắn bị nhổ lên, thân thể cũng theo đó mà nghiêng đi.</p>
+<p>Biến chiêu: ① nếu đối phương muốn rút tay về, ta liền thừa thế ấn tới trước. ② nếu đối phương dùng kháo (kháo công), ta liền đệm chân trái, chân phải hư bộ (mũi chân chấm đất), hàm hung, dùng tay phải đánh vào vai trái đối phương, khiến hắn ngã ra bên trái.</p>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">2. Quá trình động tác</h4><p>1. Trọng tâm thân thể dần dần chuyển sang chân trái, đồng thời thân thể thẳng đứng dần dần xoay sang trái; cánh tay trái xoay vào trong khiến lòng bàn tay lật thành nghiêng hướng vào trong, hướng lên trên; cổ tay cánh tay phải hơi duỗi ra trước, tức thì xoay ra ngoài, khiến lòng bàn tay phải lật thành nghiêng hướng ra ngoài, hướng xuống; hai cùi chỏ từ từ buông xuống, hai lòng bàn tay theo đà lật mà lữ ngang sang trái (xem Hình 10).</p>
+<p>2. Eo tiếp tục hơi xoay sang trái, trọng tâm tiếp tục chuyển sang chân trái, (Thế thứ ba — Lãm Tước Vĩ, trang sách 23)</p>
+<p>chân trái ngồi thực, thành hữu hư bộ; nhưng hai cánh tay hơi trầm trửu, theo chuyển thân tiếp tục lữ sang trái; lòng bàn tay trái dừng ở trước bụng trên bên trái, lòng bàn tay phải dừng ở trước ngực phải, tay phải hơi cao, tay trái hơi thấp. Ánh mắt khi bắt đầu lữ trái trước tiên quan tâm đến cánh tay phải lữ sang trái; khi sắp kết thúc, ánh mắt hơi quan tâm đến tay trái, rồi dần chuyển nhìn thẳng ra trước (tây lệch nam) (xem Hình 11).</p>
+<div class="chapter-sub">3. Yếu lĩnh</div>
+<p>1. Khi lữ, khoảng cách giữa hai tay phải giống như thức lữ trong thôi thủ, tức là tay phải đặt lên cánh tay trên gần cùi chỏ của đối phương, tay trái đặt ở cổ tay đối phương để dẫn vào. Khi lữ hóa, khoảng cách hai tay không đổi, và phối hợp với động tác của chân; cái này gọi là "thượng ư lưỡng bác tương hệ" (trên hai cánh tay liên hệ nhau).</p>
+<p>2. Khi lữ trái, thân thể luôn phải chính chính chuyển thân, không được ngả trước ngửa sau hoặc lắc lư; mấu chốt là trên dưới tương tùy, "bất tiên bất hậu" (không trước không sau). Nếu ngồi lui quá nhanh hoặc quá chậm đều tạo thành thoát khớp eo chân.</p>
+<p>3. Trong tiến trước lùi sau, xoay trái chuyển phải, phải làm được "kiên dữ khóa hợp" (vai và hông hợp); vai và hông phải giữ trên dưới thẳng đứng tự nhiên, hợp yêu cầu "trên dưới cơ bản một đường thẳng".</p>
+<p>4. Hai cánh tay phải theo xoay eo lữ sang trái; hai lòng bàn tay không được lệch ra quá rộng, nhưng hai cánh tay trên cũng không được kẹp chặt dán sườn. Trầm trửu có tác dụng hộ lặc (bảo vệ sườn); hai nách phải để khoảng trống rộng khoảng một nắm tay. Cùi chỏ không dán sườn, khiến cánh tay có dư địa hồi xoay, để tránh tự vây khốn thân thể mình. Về sau toàn bộ các động tác đều phải như vậy.</p>
+<p>5. Phương hướng của lữ, nhìn từ hình dáng bên ngoài, do ngồi thực chân trái, trông hai lòng bàn tay hình như hơi có xu hướng xuống dưới; thực ra là do quan hệ ngồi chân trái, động tác đúng phải là lữ ngang sang trái; cho nên, động tác lữ xuống dưới trái hoặc lữ xuống dưới đều là sai.</p>
+<p>6. Phải phát huy tác dụng triêm liên niêm tùy bất đâu đỉnh, dẫn tiến lạc không (dẫn vào cho rơi vào chỗ không), dùng cổ tay và lòng bàn tay để dẫn động trọng tâm của đối phương.</p>
+<p><span id="p343" class="page-anchor"></span>7. Phải coi trọng tọa uyển; nói chung phải chú ý tùng nhu linh hoạt. Khi luyện quyền, nếu cổ tay mềm yếu vô lực, nội kình sẽ không dễ quán chú đến các ngón tay, ảnh hưởng đến sự tích lũy tăng trưởng bằng kình của cánh tay, và tất nhiên ảnh hưởng đến việc vận dụng hiệu quả "lữ", "bằng", "tễ", "án", "nã" và hiệu quả khi thoát khỏi thủ pháp "thái", "nã" mà đối phương thi triển. (Thế thứ ba — Lãm Tước Vĩ, trang sách 24)</p>
+<div class="chapter-sub">4. Yêu cầu</div>
+<p>1. Hư thực phải phân rõ, hơn nữa phải trong hư có thực, trong thực có hư. "Hư" không phải hoàn toàn trống không, không phải hoàn toàn vô lực; "thực" không phải hoàn toàn đứng chết; phải "âm dương hỗ vi kỳ căn" (âm dương lấy nhau làm gốc), tức là hư thực phải thẩm thấu lẫn nhau; phải biết rằng "song trọng tắc trệ, thiên trọng tắc hoạt" (hai bên đều nặng thì trệ, lệch về một bên thì hoạt).</p>
+<p>2. Khi lữ không được ưỡn ngực, phải hàm hung bạt bối, nhưng cũng không được "miêu yêu" (lõm ngực).</p>
+<p>3. Phải tùng yêu khóa, phải lấy eo dẫn cánh tay, không được chỉ động tay mà không động eo.</p>
+<p>4. Phải trên dưới tương tùy; chân trái ngồi lui và hai cánh tay lữ trái phải cùng động tác, không được trước sau thoát khớp.</p>
+<p>5. Khi từ hữu bằng tiếp làm lữ, sự biến đổi hình tay không được lật lòng bàn tay thẳng lên thẳng xuống; mà hai tay phải vạch một hình cung nhỏ hơi ra phía ngoài bên phải rồi trở về. Phải ý thức rằng sau khi hai tay xoay tròn thì vừa khéo dùng giữa cùi chỏ và cổ tay của cánh tay phải ta niêm dính vào cánh tay trên bên trái của đối phương, cổ tay bàn tay trái ta niêm dính vào mu cổ tay đối phương.</p>
+<p>6. Khi ngồi chân trái, hai cánh tay bắt đầu theo hình cung lữ về phía trước thân, sau đó dần dần xoay eo lữ ngang ra ngoài bên trái, chứ không được lữ thẳng về phía trước thân mình cho đến hết, nếu không thì là "dẫn tiến lạc thực" (dẫn vào cho rơi vào chỗ thực). Nhưng cũng không được ngay từ đầu đã khiến hai cánh tay lữ ra ngoài bên trái, nếu không thì mình không thể đắc lực.</p>
+<p>7. Trong quá trình lữ, hình tay và khoảng cách hai tay không được biến đổi; ví dụ không được biến đổi trên dưới (tay trái cao hơn tay phải), biến đổi trước sau (khoảng cách hai tay rút ngắn hoặc kéo rộng) và di chuyển trái phải (tay trái hoặc tay phải sát lại hoặc kéo ra); mà phải giữ khoảng cách hai tay lữ và hình tay cho đến khi động tác kết thúc.</p>
+<div class="chapter-sub">5. Lỗi dễ mắc, nguyên nhân phát sinh, cách sửa</div>
+<p>1. Lỗi: khi bắt đầu từ hữu bằng chuyển sang lữ, hai tay lật thẳng lên thẳng xuống. Nguyên nhân chính là không rõ vị trí hai tay niêm dính vào cánh tay đối phương. Sửa: phải lấy eo dẫn động sự xoay tròn của tay. Tay phải từ mu bàn tay hướng về trước, chuyển thành lòng bàn tay hướng trái, rồi chuyển thành phủ chưởng nghiêng, đồng thời tay duỗi ra trước phải rồi trở về; tay trái từ lòng bàn tay hướng xuống chuyển thành lòng bàn tay hướng lên, đồng thời lòng bàn tay từ trước sang phải rồi thu về.</p>
+<p>(Thế thứ ba — Lãm Tước Vĩ, trang sách 25)</p>
+<p>2. Lỗi: trong quá trình lữ hai tay biến hình. Nguyên nhân chính là không hiểu cách dùng của lữ. Sửa: thông qua cách "đối luyện" để cảm nhận lý do vì sao vị trí hai tay không nên thay đổi. Vì ta lữ là cánh tay trái của đối phương, một tay ở phía ngoài khớp cùi chỏ hơi lên trên, một tay ở phía ngoài khớp cổ tay; như vậy quyết định vị trí hai tay của ta.</p>
+<p>3. Lỗi: tay chân thoát khớp. Có khi chân trái đã ngồi thực mà hai tay vẫn đang di chuyển; có khi hai tay đã động mà chân chưa động. Nguyên nhân chính là trên dưới không tương tùy, tay chân mỗi bên tự lo. Sửa: tay động chân động, tay đến chân đến.</p>
+<p>4. Lỗi: thân thể không chuyển động, mặt vẫn hướng tây. Nguyên nhân chính là không hiểu cách dùng. Sửa: ta dùng hai tay lữ tay trái của đối phương sang trái. Nếu chỉ dùng lực lượng hai tay, thân thể không động, mất sự phối hợp của eo, kết quả sẽ là dẫn tiến lạc thực, quyền trái của đối phương đánh thẳng vào ngực ta; mà nếu lấy eo dẫn tay, ta có thể nã (bắt giữ) đối phương.</p>
+<p>5. Lỗi: động tác làm không hoàn chỉnh — lữ chưa đến vị trí đã làm lữ, lữ chưa lữ xong đã làm tễ. Nguyên nhân chính là không hiểu cách dùng. Sửa: khi đối phương tấn công, ta phải lữ đến khi nhổ được căn cơ của đối phương, khiến thân thể hắn nghiêng đi; đương nhiên ta phải lữ đến vị trí; quá và bất cập đều không tốt.</p>
+<div class="chapter-sub">6. Cách dạy và cách luyện tập</div>
+<p>1. Giảng giải và biểu diễn cách dùng của lữ, khiến người luyện tập hiểu khái niệm động tác.</p>
+<p>2. Làm rõ sự tiếp nối: từ hữu bằng làm tốt xoay tròn, khiến động tác chuẩn bị của lữ chính xác.</p>
+<p>3. Giáo viên từ phía bên kiểm tra đầu gối trái chính hướng mũi chân, đầu gối phải hơi cong; rồi từ chính diện kiểm tra sự biến đổi của tay khi lữ.</p>
+<p>4. Lặp lại luyện động tác hai tay xoay tròn, thuần thục động tác duỗi ra trước, xoay tròn, lật lòng bàn tay.</p>
+<div class="chapter-sub">(Đinh) Tễ (Tễ)</div>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">1. Cách dùng Tiếp thế trước.</h4><p>Nếu đối phương rút cánh tay về, ta lập tức cung chân gập đầu gối phải đặt vững chân phải, chân trái duỗi thẳng, vai duỗi ra trước, duỗi eo dài tới, theo hắn tiến ra trước, ánh mắt cũng nhìn về phía trước. Đồng thời nhanh chóng lật cổ tay phải (Thế thứ ba — Lãm Tước Vĩ, trang sách 26)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 12</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig065-12.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig065-12.jpg" alt="图 12" loading="lazy"></a>
+  <div class="figure-caption">Tư thế định của hữu cung bộ: cánh tay phải thành hình cung ngang trước ngực, lòng bàn tay trái đặt ở phía trong cẳng tay phải đẩy ra trước.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 13</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig065-13.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig065-13.jpg" alt="图 13" loading="lazy"></a>
+  <div class="figure-caption">Mặt bên của thức tễ: cánh tay phải xoay ra ngoài khiến lòng bàn tay phải lật hướng vào trong, cánh tay trái xoay vào trong khiến lòng bàn tay trái lật hướng ra ngoài, các ngón tay hơi nghiêng lên trên.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 14</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig065-14.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig065-14.jpg" alt="图 14" loading="lazy"></a>
+  <div class="figure-caption">Một mặt bên khác của thức tễ: trầm trửu, cùi chỏ phải hơi thấp hơn cổ tay phải, gốc bàn tay trái theo đà tễ dần dần sát vào phía trong mạch môn của cổ tay phải.</div>
+</div>
+<p>ra, gốc bàn tay trái dán ở phía trong khớp cổ tay của cẳng tay phải; thừa lúc hắn rút tay, lập tức theo sát đẩy tễ ra trước, ánh mắt nhìn về phía trước.</p>
+<p>2. Quá trình động tác Thân thể hơi xoay sang phải, đồng thời trọng tâm dần dần chuyển sang chân phải; cung đầu gối phải và chân, đạp chân trái, thành hữu cung bộ (mặt hướng tây). Theo chuyển thân, cánh tay phải xoay ra ngoài khiến lòng bàn tay phải lật hướng vào trong, cánh tay trái xoay vào trong khiến lòng bàn tay trái lật hướng ra ngoài, các ngón tay hơi nghiêng lên trên; cánh tay phải thành hình cung ngang trước ngực, thùy trửu (cùi chỏ phải hơi thấp hơn cổ tay phải); lòng bàn tay trái đặt ở phía trong cẳng tay phải đẩy tễ ra trước (tây), gốc bàn tay trái theo đà tễ dần dần sát vào phía trong mạch môn của cổ tay phải. Mắt nhìn thẳng về phía trước, ánh mắt phải quan tâm đến cánh tay phải (xem Hình 12, Hình 13, Hình 14).</p>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">3. Yếu lĩnh</h4><p>1. Khi tễ ra trước, thân trên phải xoay sang phải, mà eo là mấu chốt của sự xoay chuyển thân trên. "Chủ tể tại yêu, hình ư thủ chỉ" (chủ tể ở eo, hình thành ở ngón tay); cho nên, động tay phải động eo trước.</p>
+<p>2. Khi tễ ra trước, thân trên không được ngả trước ngửa sau; vai và hông phải trên dưới đối nhau.</p>
+<p>3. Vai không được nhô lên, phải mở lỏng chìm xuống; cánh tay có thể tùng nhu linh hoạt hay không, mấu chốt là ở chỗ khớp vai có thể mở lỏng hay không.</p>
+<p>4. Cùi chỏ không được nâng lên, đầu cùi chỏ phải hơi thấp hơn cổ tay; nâng cùi chỏ là lộ sườn, không hợp yêu cầu kỹ kích.</p>
+<p><span id="p344" class="page-anchor"></span>5. Mông không được nhô ra, phải chú ý thu vĩ lư; nhô ra quá mức tất nhiên sẽ cúi đầu gù lưng, thì không thể làm được vĩ lư chính trung thần quán đỉnh. (Thế thứ ba — Lãm Tước Vĩ, trang sách 27)</p>
+<p>6. Sau khi tễ ra, giữa lòng bàn tay trái và cổ tay phải phải "tự ai phi ai, tự tùng phi tùng" (như dính mà không dính, như tùng mà không tùng), cương nhu nội hàm.</p>
+<div class="chapter-sub">4. Yêu cầu</div>
+<p>1. Khi từ lữ sang tễ, tay phải không được vòng vòng lớn.</p>
+<p>2. Khi tễ hai tay không được quá sát ngực, nếu không thì xẹp; "xẹp" rồi thì dễ "lạc thực", tạo thành bị động.</p>
+<p>3. Tay đến chân đến, không được chân đã cung đến vị trí mà tay vẫn đang "tễ".</p>
+<p>4. Khi chân trước cung ra, đầu gối không được vượt quá đầu ngón chân; vượt quá thì dễ mất thăng bằng, cũng gọi là "quá kình".</p>
+<p>5. Tễ ra phải để dư địa; hai cánh tay không được duỗi thẳng cứng, yêu cầu cong mà không thẳng, "kình dĩ khúc súc nhi hữu dư" (kình lấy cong mà tích trữ nên có dư).</p>
+<p>6. Tễ phải hai tay dán vào rồi đẩy ra trước (như dán mà không dán); hai tay không được xa rời, cũng không được dán chặt.</p>
+<p>7. Phương hướng tễ ra phải chính.</p>
+<div class="chapter-sub">5. Lỗi dễ mắc, nguyên nhân phát sinh, cách sửa</div>
+<p>1. Lỗi: eo hông không tùng, động tác không linh hoạt. Nguyên nhân chính là chưa hiểu sâu "mệnh ý nguyên đầu tại yêu khích" (nguồn của mệnh ý ở khe eo). Cho nên động tác tỏ ra chậm chạp, cánh tay phù phiêu vô lực. Sửa: phải "khắc khắc lưu tâm tại yêu gian" (khắc khắc để tâm ở trong eo); eo hông phải tùng trầm trực thụ, phải hơi chuyển động. Eo hông không linh hoạt thì eo chân rất khó tương thuận tương toại.</p>
+<p>2. Lỗi: tay động chân không động — chân đã cung đến mà tay vẫn đang tễ. Nguyên nhân chính là chưa hiểu sâu "nhất động vô hữu bất động"; phải do chân mà cẳng chân mà eo hình thành ở các ngón tay, mới có tễ kình. Tiến ra trong đó tất phải có hậu xanh (đỡ phía sau), nếu không thì không thể tăng cường lực phản xạ. Sửa: tay động chân động, tay đến chân đến.</p>
+<p>3. Lỗi: nâng cùi chỏ. Nguyên nhân chính là không chú ý trầm kiên thùy trửu và hai cẳng tay đặt ngang dùng sức. Sửa: hai vai phải chìm xuống, cùi chỏ phải thấp hơn cổ tay, các ngón tay trái nghiêng lên trên; như vậy hai cùi chỏ mới tự nhiên buông xuống. Nếu không thì hai vai cứng ngắc, sẽ mất khinh linh kình; khinh linh cũng không phải phù phiêu, khinh linh phải kết hợp với trầm trước, phải nội hàm trầm trước.</p>
+<p>4. Lỗi: khi tễ hai tay quá cao quá thấp. Nguyên nhân chính là không hiểu cách dùng của "tễ". Quá cao thì sẽ hình thành tễ lực hướng lên trên, (Thế thứ ba — Lãm Tước Vĩ, trang sách 28)</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 15</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig067-15.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig067-15.jpg" alt="图 15" loading="lazy"></a>
+  <div class="figure-caption">Hai lòng bàn tay mạt (mài) về, theo hai cùi chỏ chìm xuống mà mài ngang về, hơi tọa uyển, hai lòng bàn tay đều hướng xuống; đồng thời trọng tâm dần dần lui về sau, ngồi thực chân trái.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 16</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig067-16.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig067-16.jpg" alt="图 16" loading="lazy"></a>
+  <div class="figure-caption">Khi mạt về sắp hết, hai lòng bàn tay dần dần dựng chưởng tọa uyển hướng về trước.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 17</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig067-17.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig067-17.jpg" alt="图 17" loading="lazy"></a>
+  <div class="figure-caption">Hai lòng bàn tay ấn ra trước, ấn ra ngang thẳng, độ rộng dần dần hẹp lại; đồng thời cung chân phải, đạp chân trái, thành hữu cung bộ.</div>
+</div>
+<p>dễ bị đối phương hóa mất, không đạt được mục đích của tễ, hơn nữa trước ngực trống rỗng dễ bị đối phương tấn công; quá thấp cũng dễ bị đối phương hóa mất. Sửa: từ trước ngực tễ ra, ngang thẳng hướng về trước.</p>
+<p>5. Lỗi: khi động tác từ lữ chuyển sang tễ, vạch cung quá lớn. Nguyên nhân chính là không hiểu cách dùng. Hai tay đã niêm dính không nên thoát tay phân tán. Sửa: cổ tay phải hơi xuống rồi lên, tay trái theo lên, tễ ra trước. Phải cấp lai cấp ứng, mạn khởi mạn tùy (gấp đến gấp ứng, chậm đến chậm theo).</p>
+<div class="chapter-sub">6. Cách dạy và cách luyện tập</div>
+<p>1. Giáo viên biểu diễn.</p>
+<p>2. Giảng giải tác dụng của tễ và quá trình động tác.</p>
+<p>3. Chỗ tiếp nối không dễ làm rõ; phải lặp lại luyện động tác lật lòng bàn tay của hai bàn tay, làm tốt động tác chuẩn bị của tễ.</p>
+<p>4. Luyện hoàn chỉnh.</p>
+<p>5. Lặp lại luyện sự biến đổi hình tay từ lữ sang tễ. Làm cánh tay phải xoay ra ngoài lòng bàn tay lật vào trong, lòng bàn tay trái lật hướng ra ngoài, sát vào chỗ mạch môn của tay phải, khiến sự tiếp nối rõ ràng.</p>
+<p>6. Xoay eo, dần dần cung chân, lật lòng bàn tay phải cùng làm một lượt, cảm nhận "nhất động vô hữu bất động", cũng khiến trên dưới tương tùy.</p>
+<p>7. Kết hợp cách dùng luyện đối. Giáp — làm lữ, Ất — cánh tay trái ở giữa hai tay của Giáp; Ất — rút cánh tay về, Giáp gập đầu gối phải duỗi chân trái, đồng thời cổ tay phải lật ra ngoài, gốc bàn tay trái dán giữa mạch môn cổ tay phải ta, thừa thế tễ thẳng ra trước.</p>
+<div class="chapter-sub">(Mậu) Án (Ấn)</div>
+<h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">1. Cách dùng Tiếp thế trước.</h4><p>Nếu đối phương thừa thế tễ tới ta, ta liền dùng hai cổ tay từ phía trái niêm dính cánh tay đối phương, trước tiên dùng trầm kình, sau đó hơi nâng lên trên, khiến tễ lực của đối phương rơi vào chỗ không. Tức thì ta liền dựng uyển, trầm kiên thùy trửu, hàm hung, trọng tâm ở chân trái, nhanh chóng dùng lòng bàn tay hai tay tiếp lấy cùi chỏ và cổ tay của hắn, bức ấn ra trước, gập chân phải ngồi thực, duỗi chân trái, eo cũng đồng thời phối hợp tiến công về phía trước, ánh mắt cũng theo đó hướng về trước.</p>
+<span id="p345" class="page-anchor"></span><h4 class="section-heading" style="margin:1.5em 0 .5em;font-size:1.06em;font-weight:700;line-height:1.45;border-left:3px solid currentColor;padding-left:.6em">2. Quá trình động tác</h4><p>1. Cánh tay phải hơi xoay vào trong, lòng bàn tay lật hướng xuống; cánh tay trái hơi xoay ra ngoài, lòng bàn tay trái thành phủ chưởng, qua mu bàn tay phải giao nhau xát qua, tức thì hai lòng bàn tay tách ra, （Thế thứ 3　Lãm Tước Vĩ (Nắm Đuôi Chim), trang 29） Khoảng cách hơi hẹp hơn vai. Hơi ngồi cổ tay, hai lòng bàn tay đều hướng xuống, hai khuỷu tay dần chìm xuống, dẫn hai bàn tay miết trở về; đồng thời trọng tâm dần dịch về sau, ngồi vững trên chân trái. Mắt nhìn thẳng phía trước, ánh mắt phải chú ý đến hai bàn tay khi miết về (xem Hình 15, Hình 16).</p>
+<p>2. Hai bàn tay dần dựng bàn tay ngồi cổ tay hướng về trước, đến trước ngực dần ấn ra phía trước, ấn ra bằng phẳng ngay ngắn, bề rộng dần hẹp lại; đồng thời cong chân phải, đạp chân trái, thành tấn cung phải. Mắt nhìn thẳng phía trước, ánh mắt phải chú ý đến hai bàn tay ấn ra phía trước (xem Hình 17).</p>
+<div class="chapter-sub">3. Yếu lĩnh</div>
+<p>1. Khi trọng tâm dần dịch về sau, gốc hông phải hơi rút về sau, để thân thể hướng thẳng về phía trước (không được nghiêng về bên trái).</p>
+<p>2. Hai bàn tay miết về cùng lúc với khi ngồi về sau trên chân trái.</p>
+<p>3. Đồng thời hai bàn tay cũng phải miết về bằng phẳng theo hai khuỷu tay chìm xuống, phải buông lỏng vai chìm khuỷu, không được co cánh tay nhấc khuỷu.</p>
+<p>4. Khi miết về hai bàn tay vừa thu vừa dịch về trước ngực (bàn tay trái hơi nghiêng về phải, bàn tay phải hơi nghiêng về trái); khi sắp ấn mà chưa ấn ra, hai tay dựng bàn tay, làm cho lòng bàn tay trái hơi nghiêng về phía trước bên phải, lòng bàn tay phải hơi nghiêng về phía trước bên trái. Khi hai bàn tay ấn ra, hai lòng bàn tay theo đà ấn hơi xoay về trước, nhưng không được xoay đến mức lòng bàn tay hướng thẳng chính diện.</p>
+<p>5. Hai bàn tay phải theo trọng tâm dịch về trước mà ấn ra phía trước; khi ấn ra không được nhấc vai, không được dùng quá sức, nếu không dễ mất trọng tâm; cánh tay phải chỗ nào cũng cong mà không thẳng, giữ thế tích lực. Hai khuỷu tay không được lồi ra ngoài.</p>
+<p>6. Hai tay miết về và ấn ra, nhìn từ hình dáng bên ngoài dường như có hình cung lên trên, xuống dưới; điều này là do quan hệ giữa ngồi về sau và cong chân về trước, kỳ thực hai tay cơ bản là đi ngang bằng, hình cung không lớn.</p>
+<p>7. Phải "thu liễm mông", tức là phải buông lỏng eo hạ hông; điều này có lợi cho "khí trầm đan điền" và "đề đang" (nâng hội âm).</p>
+<div class="chapter-sub">4. Yêu cầu</div>
+<p>1. Phải buông lỏng vùng eo, phải chú ý thẳng và chìm, phải giữ vững trung thổ, trung thổ không rời khỏi vị trí; cho nên, trước hết là buông lỏng. Yêu cầu thân trên không được ngả về trước, phải đuôi lư (xương cụt) trung chính, đề đang quán đỉnh.</p>
+<p>2. Bất luận tiến hay lui đều như quyền luận nói rằng "bách hội, trung cực, nhất khí quán thông", phàm là ngả trước sau đều không phù hợp （Thế thứ 3　Lãm Tước Vĩ, trang 30） Yêu cầu (tiếp theo).</p>
+<p>3. Tiến và lùi, hai hông phải ngay ngắn, cùng tiến cùng lui, toàn thân nhất trí. Khớp hông phải cùng hướng với vai, phải phù hợp yêu cầu "hông hợp với vai". Đồng thời, chân phải cong về trước và đạp về sau, hư thực phân minh.</p>
+<p>4. Phải chìm vai buông khuỷu. Trước hết là buông lỏng vai, buông lỏng vai mới buông được khuỷu, vai buông chìm rồi mới có thể làm cánh tay buông mềm, nhanh nhẹn. Cho nên, khi hai tay miết về và ấn ra không nên nhấc vai, không nhấc khuỷu; dưới nách phải để chỗ dư, không được để hai cánh tay trên áp sát sườn.</p>
+<p>5. Khi miết về và ấn ra, hai tay không được lên xuống quá lớn, làm cho đường đi của tay có hình cung quá lớn, như thế không hợp yêu cầu ấn ra thẳng về trước. Lên xuống quá lớn sẽ gây tán loạn, cũng không nắm được đối phương, phát kình không thể chuyên chú một hướng. Khi ấn ra, khoảng cách ngang giữa hai tay không được mở quá lớn, khoảng cách chừng một nắm tay.</p>
+<div class="chapter-sub">5. Dễ phạm sai lầm, nguyên nhân phát sinh, phương pháp uốn nắn</div>
+<p>1. Sai lầm: hai tay chưa thành bàn tay úp, chưa giao nhau đã tách ra. Nguyên nhân chính là hiểu chưa đủ về động tác đi hình cung, làm cho khớp xoay tròn tự nhiên. Uốn nắn: thế động phải lấy tay dẫn khuỷu, lấy khuỷu dẫn vai; cho nên, khi cánh tay phải xoay vào trong thì tay phải phải thành bàn tay úp, hai tay giao nhau rồi mới tách ra. Như thế trên mặt tiếp xúc không mất không chống, tránh thực lấy hư hơi xoay một chút, tức là đã có thể phát kình, dùng kình nâng để làm rỗng lực của đối phương.</p>
+<p>2. Sai lầm: khi ấn ra thì ngả về trước, khi miết về thì ngửa về sau. Nguyên nhân chính là hiểu "đuôi lư trung chính" chưa sâu. Ngả về trước sẽ mất trọng tâm, ngửa về sau mất linh hoạt dễ bị đánh đổ. Uốn nắn: phải trên dưới cơ bản thành một đường, vai và hông phải cùng tiến cùng lui.</p>
+<p>3. Sai lầm: khi ấn ra lòng bàn tay phẳng thẳng đối diện chính diện phía trước. Nguyên nhân chính là các ngón tay buông duỗi chưa đủ. Uốn nắn: người mới học các ngón tay nên duỗi tự nhiên, không dùng sức khép chặt hay mở rộng, lòng bàn tay nên hơi nghiêng. Kình lấy cong mà tích, giữ chỗ dư, nếu không dễ cứng đờ, không dẫn được kình.</p>
+<p>4. Sai lầm: khi hai tay miết về và ấn ra, đường cong tay di chuyển quá lớn (khi miết về tay chìm quá thấp). Nguyên nhân chính là hiểu chưa đủ về cách dùng. Uốn nắn: lấy đối luyện làm mẫu. Đối phương từ phía trước bên trái chen tới, ta dùng kình nâng làm rỗng chân lực của họ rồi, hai lòng bàn tay áp vào khuỷu và cổ tay của họ, （Thế thứ 3　Lãm Tước Vĩ, trang 31） Giai đoạn bức ấn về phía trước này không cho phép vạch cung lớn lên xuống; cánh tay chìm quá mức thì toàn bộ lồng ngực sẽ lộ ra trước đối phương. Cho nên, khi miết về gốc bàn tay phải cao hơn khuỷu, theo thế chen của đối phương mà dịch về sau bằng phẳng ngay ngắn; khi ấn về trước độ cao phải tương đương ngực sườn của đối phương, cho nên hai tay cơ bản giữ đi về bằng phẳng.</p>
+<p>5. Sai lầm: khi miết về hoặc ấn về trước khoảng cách hai tay quá lớn hoặc quá nhỏ. Nguyên nhân chính là không hiểu cách dùng. Uốn nắn: lấy khoảng cách hai lòng bàn tay ta ấn vào khuỷu, cổ tay đối phương làm chuẩn (khi ấn ra hai ngón cái cách nhau một nắm tay); cho nên, quá lớn sẽ làm động tác của mình thành vô ích, điểm kình không tập trung.</p>
+<div class="chapter-sub">6. Cách dạy và cách luyện</div>
+<p>1. Giảng giải cách dùng, quá trình động tác v.v., và làm mẫu.</p>
+<p>2. Luyện theo. (Giáo viên luyện quyền ở phía trước, người luyện tập ở phía sau luyện theo.)</p>
+<p>3. Phương pháp tăng dần: ① Trước hết luyện hai tay giao nhau tách ra. ② Sau khi hai tay tách ra lại thêm ngồi về sau miết về. ③ Sau khi hai tay tách ra thêm ngồi về sau miết về, lại thêm cong về trước ấn ra.</p>
+<p>Học được một phần thêm một phần, và nối liền một phần, cho đến khi học được toàn bộ động tác.</p>
+<p>4. Giáo viên dùng khẩu lệnh gợi ý: ① Hai tay giao nhau, lòng bàn tay hướng xuống tách ra. ② Một chỗ động thì không chỗ nào không động, tay động eo chân động. ③ Trọng tâm dịch về sau, hai tay miết về, buông lỏng vai chìm khuỷu. ④ Chân trái ngồi vững, hai bàn tay đối nhau, ở trước ngực không ở trước bụng. ⑤ Trên dưới cơ bản một đường, không ngả trước ngửa sau. ⑥ Ý ở gốc bàn tay ấn ra phía trước. ⑦ Lặp lại làm động tác chỗ chen tiếp hai tay giao nhau, tách ra. ⑧ Lặp lại làm hai tay miết về. Sau đó làm bài luyện chìm vai buông khuỷu, cải tiến buông vai chìm khuỷu, ấn rồi ấn ra, sửa chữa đường di chuyển của tay và sự thay đổi hình dạng của tay. ⑨ Làm bài luyện hoàn chỉnh, cải tiến tay đến chân đến, kình phát từ chân. ⑩ Hai người một nhóm uốn nắn lẫn nhau. Giáo viên đề ra một yêu cầu, mọi người luyện theo yêu cầu chỉ định, sau khi đạt yêu cầu cơ bản lại đổi yêu cầu khác.... ⑪ Giáo viên từ các góc độ khác nhau kiểm tra ưu khuyết điểm của người luyện tập. Từ chính diện nhìn độ rộng hai tay, từ mặt bên nhìn đường di chuyển của tay khi miết về, ấn ra, xem tay động eo chân động, tay đến （Thế thứ 3　Lãm Tước Vĩ — Phân tích kỹ thuật, trang 32） ...chân đến.</p>
+<div class="chapter-sub">7. Phân tích kỹ thuật</div>
+<p>Lãm Tước Vĩ là tổng thủ của Thái Cực Quyền, gồm cả thể và dụng. Bài "Đả Thủ Ca" do tiên sư Vương Tông Nhạc tu đính nói rất rõ: "Bằng lữ tễ án phải nghiêm túc, trên dưới tương tùy người khó vào; mặc cho cự lực tới đánh ta, dắt động tứ lượng bát thiên cân; dẫn tiến lạc không hợp tức xuất, triêm liên niêm tùy bất đâu đỉnh." Sáu câu này phải xuyên suốt toàn bộ bài Thái Cực Quyền, mà trong phân tích kỹ thuật của Lãm Tước Vĩ lấy làm căn cứ lại càng thích dụng.</p>
+<p>Trong toàn bộ bài Dương thức Thái Cực Quyền, Lãm Tước Vĩ xuất hiện tổng cộng sáu lần. Động tác của nó là cơ bản, tiêu biểu. Đẩy tay cũng lấy bằng (đỡ), lữ (vuốt), tễ (chen), án (ấn) làm động tác cơ bản; cho nên động tác Lãm Tước Vĩ này nhất định phải luyện cho tốt.</p>
+<p>1. Trong Lãm Tước Vĩ có rất nhiều biến hóa về tấn cung, tấn hư, dựng bàn tay, ngửa bàn tay, úp bàn tay, tay chân.</p>
+<p>2. Bộ pháp biến hóa nhiều, không chỉ có biến hóa hư thực khi di chuyển trước sau, mà còn có biến hóa hư thực khi trụ trên một chân, như thức khởi thế tiếp tả bằng, tả bằng tiếp hữu bằng, một chân ngồi vững, một chân từ từ thu về, một chân từ từ duỗi ra.</p>
+<p>3. Có yêu cầu trong thân pháp, trong biến hóa hư thực phải đuôi lư trung chính.</p>
+<p>4. Có sự vận dụng sức eo "khắc khắc lưu tâm tại yêu gian". Trong Lãm Tước Vĩ người mới học rất dễ ngả trước ngửa sau, làm không tốt buông, chìm, thẳng; nếu sức eo thích đáng thì có thể tăng cường phát lực.</p>
+<p>5. Đã có bằng lữ tễ án lại phải có triêm liên niêm tùy, đã có đánh lại có hóa, vừa không được chống, vừa không được mất. Cho nên, yêu cầu về dụng ý là rất cao.</p>
+<p>6. Điểm kình: ① Khi tả bằng, ở chỗ gần cổ tay phía xuyên (radial) của cẳng tay trái và phía ngoài cổ tay phải (tay phải là khai kình). ② Hữu bằng ở chỗ cổ tay phía xuyên của cánh tay phải. ③ Lữ ở chỗ gần cổ tay của cẳng tay phải, tay trái là bằng kình, điểm kình ở phía ngoài cẳng tay (phía xích/ulnar). ④ Tễ chủ yếu ở gốc bàn tay trái, tay phải là lót đệm. ⑤ Án ở gốc bàn tay.</p>
+<p>7. Vấn đề hư thực ở eo chân: bất luận trước hư sau thực, trước thực sau hư, trái hư phải thực, trái thực phải hư đều phải trong hư có thực, trong （Thế thứ 3　Lãm Tước Vĩ — Phân tích kỹ thuật / Thế thứ 4　Đơn Tiên (Roi Đơn), trang 33） ...trong thực có hư. Hư không phải là hoàn toàn trống rỗng, mềm yếu vô lực; thực cũng không được đứng quá chết. Hư thực phải thấm nhập lẫn nhau, chuyển biến âm thầm. Hư thực được linh hoạt tự nhiên mới có thể tiến lui tự như; cho nên, yêu cầu khi ẩn khi hiện. Chân phải "ý khí tu hoán đắc linh, nãi hữu viên hoạt chi thú" (ý và khí phải đổi cho linh, mới có thú vị tròn sống), "hữu bất đắc cơ bất đắc thế xứ, kỳ bệnh tất ư yêu thối cầu chi" (chỗ nào không được cơ không được thế, bệnh ắt phải tìm ở eo chân).</p>
+<p>Chân gánh phần lớn trọng lượng cơ thể gọi là thực, chân kia gọi là hư. Sự chuyển đổi hư thực ở eo chân gần với bài tập đẳng trường (tĩnh lực). Một chân chống đỡ dùng sức rất lớn, cho nên người luyện Thái Cực Quyền lâu năm cơ bắp chân rất khỏe, đi bộ lên lầu nhẹ nhàng, có thể tăng cường sức khỏe rất nhiều. Người mới luyện, người già yếu khi bắt đầu học, tư thế có thể cao một chút để giảm lượng vận động, sau đó theo thể chất tăng cường, có thể dần hạ thấp để tăng lượng vận động.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 18</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig072-18.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig072-18.jpg" alt="图 18" loading="lazy"></a>
+  <div class="figure-caption">Chuẩn bị xoay người: trọng tâm ở chân phải, thân thể xoay trái, hai bàn tay theo thân miết sang trái nửa hình bầu dục phẳng.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 19</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig072-19.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig072-19.jpg" alt="图 19" loading="lazy"></a>
+  <div class="figure-caption">Sau khi thân thể xoay đến khoảng 135° (hướng đông nam), hai bàn tay theo thân qua trước ngực miết sang phía chéo phải thêm nửa hình bầu dục phẳng, hai bàn tay cao ngang vai.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 20</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig072-20.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig072-20.jpg" alt="图 20" loading="lazy"></a>
+  <div class="figure-caption">Xoay phải khoảng 70° (hướng tây nam), hai bàn tay tiếp tục miết, mắt theo thân nhìn ngang chuyển dịch, chú ý bàn tay phải.</div>
+</div></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

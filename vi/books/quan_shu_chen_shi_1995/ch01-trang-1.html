@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #c59b27;
+  --accent-crimson: #991b1b;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --sidebar-w: 290px;
+}
+body.dark-mode {
+  --bg-primary: #121212;
+  --text-primary: #f5f5f4;
+  --text-secondary: #a8a29e;
+  background-color: #121212 !important;
+  color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #142e20; color: #a7f3d0; border-color: #059669; }
+body.dark-mode .figure-wrap { background: #1e1e1e; border-color: #333; }
+body.dark-mode .posture-list li { border-color: #333; }
+#reading-progress {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #991b1b, #c59b27);
+  z-index: 9999; width: 0%; transition: width 0.1s;
+}
+.reader-layout {
+  display: block; max-width: 900px; margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--text-secondary);
+  padding: 0 0 1.1rem; margin-bottom: 1.6rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: var(--accent-crimson); text-decoration: none; font-weight: 600; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer {
+  border: 1px solid #e7e5e4; border-radius: 10px;
+  background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem;
+}
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary {
+  cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent-crimson); padding: 0.9rem 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+body.dark-mode .toc-drawer[open] summary { border-color: #333; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.4rem; }
+.toc-link {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.87rem;
+  display: block; padding: 4px 6px; border-radius: 6px; line-height: 1.35;
+}
+.toc-link:hover { background: rgba(197,155,39,0.12); color: var(--accent-crimson); }
+.toc-link .pg { display: block; font-size: 0.72rem; color: #a8a29e; }
+.reader-tools { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tool-btn {
+  flex: 1; background: none; border: 1px solid #e7e5e4; color: var(--text-primary);
+  border-radius: 8px; padding: 6px 4px; cursor: pointer; font-size: 0.8rem;
+  font-family: inherit;
+}
+.tool-btn:hover { border-color: var(--accent-gold); color: var(--accent-crimson); }
+body.dark-mode .tool-btn { border-color: #333; }
+.reader-content { font-size: 17px; line-height: 1.8; }
+.book-hero {
+  background: linear-gradient(135deg, #fef9ef 0%, #fdf3e3 100%);
+  border: 1px solid #f0e0c0; border-radius: 16px;
+  padding: 2.2rem; margin-bottom: 2.5rem;
+}
+body.dark-mode .book-hero { background: #1e1a14; border-color: #4a3f2a; }
+.book-badge {
+  display: inline-block; background: var(--accent-crimson); color: #fff;
+  font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.book-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem;
+  margin: 0 0 0.4rem; color: var(--text-primary); line-height: 1.2;
+}
+.book-orig-title { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+.book-tags span {
+  background: rgba(197,155,39,0.14); border: 1px solid rgba(197,155,39,0.4);
+  color: #8a6a12; font-size: 0.78rem; font-weight: 600;
+  padding: 3px 11px; border-radius: 999px;
+}
+body.dark-mode .book-tags span { color: #e5c76b; }
+.book-pdf-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  background: var(--accent-crimson); color: #fff !important;
+  font-size: 0.88rem; font-weight: 700; transition: opacity 0.15s;
+}
+.book-pdf-link:hover { opacity: 0.88; }
+.chapter-block { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.chapter-header {
+  border-left: 4px solid var(--accent-crimson);
+  padding-left: 1.2rem; margin-bottom: 1.5rem;
+}
+.chapter-num {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; color: var(--accent-gold); display: block;
+}
+.chapter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem;
+  color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3;
+}
+.chapter-sub {
+  font-size: 1.08rem; font-weight: 700; color: var(--accent-crimson);
+  margin: 1.6rem 0 0.6rem;
+}
+/* Table of contents. Books whose printed TOC is transcribed as a flat
+   "Title ...... (123)" list emit these rows from build_html.py; without this
+   block the rows lose their leaders and their indentation. Indentation encodes
+   the hierarchy, so it is applied here rather than in the source. */
+.toc-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.4rem;
+  color: var(--accent-crimson); margin: 2rem 0 0.9rem;
+}
+.toc-row {
+  display: flex; align-items: baseline; gap: 0.4em;
+  padding: 0.18rem 0; font-size: 0.94rem; line-height: 1.45;
+}
+.toc-title { flex: 0 1 auto; }
+.toc-dots {
+  flex: 1 1 auto; min-width: 1.2em;
+  border-bottom: 1px dotted #d9d2c6; transform: translateY(-0.32em);
+}
+.toc-page {
+  flex: 0 0 auto; color: #a8a29e; font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
+}
+.toc-lvl0 { margin-top: 1.6rem; }
+.toc-lvl0 > .toc-title { font-weight: 700; font-size: 1.06rem; color: var(--accent-crimson); }
+.toc-lvl1 { margin-left: 1.1rem; }
+.toc-lvl1 > .toc-title { font-weight: 600; }
+.toc-lvl2 { margin-left: 2.3rem; }
+.toc-lvl3 { margin-left: 3.5rem; }
+.toc-lvl3 > .toc-title { color: var(--text-secondary); }
+body.dark-mode .toc-dots { border-bottom-color: #3f3a33; }
+body.dark-mode .toc-page { color: #78716c; }
+@media (max-width: 640px) {
+  .toc-lvl1 { margin-left: 0.7rem; }
+  .toc-lvl2 { margin-left: 1.4rem; }
+  .toc-lvl3 { margin-left: 2.1rem; }
+}
+/* Title page / colophon / copyright page. build_html.py emits one of these per
+   printed line; without the class they collapse into a normal paragraph and the
+   lines run together. */
+.display-line { margin: 0.15rem 0; line-height: 1.6; }
+.page-nav {
+  margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+body.dark-mode .page-nav { border-color: #333; }
+.page-nav a {
+  color: var(--accent-crimson); text-decoration: none; font-weight: 600;
+  font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; transition: background 0.15s;
+}
+.page-nav a:hover { background: rgba(197,155,39,0.12); }
+.page-nav a.home { color: var(--accent-gold); }
+.page-nav a.disabled {
+  color: #c7c2bd; pointer-events: none; cursor: default;
+}
+body.dark-mode .page-nav a.disabled { color: #555; }
+.posture-list { list-style: none; padding: 0; margin: 0.8rem 0; }
+.posture-list li {
+  border-left: 3px solid #eadfc8; padding: 4px 0 4px 14px; margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.quote-box {
+  background: #fefce8; border-left: 4px solid #eab308;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  font-style: italic; color: #713f12;
+}
+.key-point {
+  background: #f0fdf4; border-left: 4px solid #22c55e;
+  padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  color: #14532d;
+}
+body.dark-mode .key-point { color: #a7f3d0; }
+.figure-wrap {
+  margin: 2rem 0; text-align: center; background: rgba(0,0,0,0.02);
+  padding: 16px; border-radius: 10px; border: 1px solid #e5e5e5;
+}
+.figure-wrap img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.figure-caption-title {
+  font-size: 0.82rem; font-weight: 700; color: var(--accent-crimson);
+  margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.figure-caption {
+  font-size: 0.88rem; color: #78716c; margin-top: 10px; font-style: italic;
+}
+.figure-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.figure-row .figure-wrap { flex: 1 1 220px; max-width: 260px; margin: 0; }
+.page-marker {
+  font-size: 0.74rem; color: #a8a29e; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 3px;
+}
+
+.printed-page-ref { display:block; margin:.35em 0 1.1em; font-size:.78rem; font-style:italic; color:#a8a29e; letter-spacing:.01em; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 1: Trang 1 — Toàn Thư Thái Cực Quyền | TaichiNOW</title>
+<meta name="description" content="Chương 1 của Toàn Thư Thái Cực Quyền: Trang 1">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-trang-1.html#sec00">Phần 1</a></li>
+        <li><a href="ch02-iii-su-nam-giu-hu-thuc.html#sec01">Phần 2</a></li>
+        <li><a href="ch03-iv-khinh-phu-tram-hu-thuc.html#sec02">Phần 3</a></li>
+        <li><a href="ch04-dac-diem-thu-nam-van-dong-tiet-tiet-quan-xuyen-yeu-tich-dan.html#sec03">Phần 4</a></li>
+        <li><a href="ch05-i-thuc-chat-tiet-tiet-quan-xuyen.html#sec04">Phần 5</a></li>
+        <li><a href="ch06-ii-quan-he-giua-dong-toan-dong-yeu-tich.html#sec05">Phần 6</a></li>
+        <li><a href="ch07-iii-tiet-tiet-quan-xuyen-tang-cuong-khop.html#sec06">Phần 7</a></li>
+        <li><a href="ch08-v-su-nam-giu-tiet-tiet-quan-xuyen.html#sec07">Phần 8</a></li>
+        <li><a href="ch09-dac-diem-thu-sau-van-dong-a-thanh-lien-tuong-bat-doan-thao-t.html#sec08">Phần 9</a></li>
+        <li><a href="ch10-i-su-thuc-hien-a-thanh.html#sec09">Phần 10</a></li>
+        <li><a href="ch11-ii-thuc-le-danh-gia-hanh-quyen.html#sec10">Phần 11</a></li>
+        <li><a href="ch12-iii-than-dong-dang-a-thanh1.html#sec11">Phần 12</a></li>
+        <li><a href="ch13-dac-diem-thu-bay-van-dong-cuong-nhu-tuong-te-nhu-den-cuong-c.html#sec12">Phần 13</a></li>
+        <li><a href="ch14-i-quyen-cuong-nhu-tuong-te.html#sec13">Phần 14</a></li>
+        <li><a href="ch15-ii-thoi-ky-cau-nhuyen-toi-cuong.html#sec14">Phần 15</a></li>
+        <li><a href="ch16-iv-bien-hoan-cuong-nhu.html#sec15">Phần 16</a></li>
+        <li><a href="ch17-v-su-nam-giu-cuong-nhu-tuong-te.html#sec16">Phần 17</a></li>
+        <li><a href="ch18-dac-diem-thu-tam-van-dong-khoai-man-tuong-gian-man-den-khoai.html#sec17">Phần 18</a></li>
+        <li><a href="ch19-i-trinh-phat-trien-khoai-man.html#sec18">Phần 19</a></li>
+        <li><a href="ch20-ii-thoi-gian-dieu-kien-viec-chuyen-man-sang-khoai.html#sec19">Phần 20</a></li>
+        <li><a href="ch21-iii-khoai-man-tuong-gian-cau-thanh-kinh-biet.html#sec20">Phần 21</a></li>
+        <li><a href="ch22-iv-su-nam-giu-khoai-man-tuong-gian.html#sec21">Phần 22</a></li>
+        <li><a href="ch23-ket-ngu.html#sec22">Phần 23</a></li>
+        <li><a href="ch24-thu-ten-quyen-thuc-lo-tran-thuc-thai-cuc-quyen.html#sec23">Phần 24</a></li>
+        <li><a href="ch25-may-diem-noi-ro-ve-do-giai.html#sec24">Phần 25</a></li>
+        <li><a href="ch26-tran-thuc-thai-cuc-quyen-lo.html#sec25">Phần 26</a></li>
+        <li><a href="ch27-thuc-thu-ba-muoi-ba-ta-qua-tien-phao-1.html#sec26">Phần 27</a></li>
+        <li><a href="ch28-thuc-thu-ba-muoi-ta-qua-tien-phao-2-nguc-huong-nam.html#sec27">Phần 28</a></li>
+        <li><a href="ch29-thuc-thu-ba-muoi-lam-huu-qua-tien-phao-1-nguc-nam-chuyen-bac.html#sec28">Phần 29</a></li>
+        <li><a href="ch30-thuc-thu-ba-muoi-tam-phach-gia-nguc-huong-dong-bac.html#sec29">Phần 30</a></li>
+        <li><a href="ch31-thuc-thu-ba-muoi-chin-phien-hoa-vu-nguc-dong-nam-chuyen-dong.html#sec30">Phần 31</a></li>
+        <li><a href="ch32-thuc-thu-bon-muoi-yem-thu-quang-chuy-nguc-dong-bac-chuyen-do.html#sec31">Phần 32</a></li>
+        <li><a href="ch33-thuc-thu-bon-muoi-phuc-ho-nguc-dong-chuyen-dong-nam.html#sec32">Phần 33</a></li>
+        <li><a href="ch34-thuc-thu-61-ngoc-nu-xuyen-thoa-nguc-huong-dong-chuyen-bac-ch.html#sec33">Phần 34</a></li>
+        <li><a href="ch35-thuc-thu-62-quay-dau-phao-duong-mon-nguc-huong-tay.html#sec34">Phần 35</a></li>
+        <li><a href="ch36-thuc-thu-64-nuu-loan-chuu-nguc-huong-nam-chuyen-bac.html#sec35">Phần 36</a></li>
+        <li><a href="ch37-thuc-thu-65-thuan-loan-chuu-nguc-huong-bac.html#sec36">Phần 37</a></li>
+        <li><a href="ch38-thuc-thu-67-oa-ly-phao-nguc-huong-bac.html#sec37">Phần 38</a></li>
+        <li><a href="ch39-thuc-thu-70-kim-cang-dao-chuy-nguc-huong-bac.html#sec38">Phần 39</a></li>
+        <li><a href="ch40-thuc-thu-71-thau-the-nguc-huong-bac.html#sec39">Phần 40</a></li>
+        <li><a href="ch41-1-yeu-nghia-chung-day-tay.html#sec40">Phần 41</a></li>
+        <li><a href="ch42-2-phuong-phap-day-tay-thuc-tran.html#sec41">Phần 42</a></li>
+        <li><a href="ch43-3-hai-su-dien-bien-day-tay-thuc-tran.html#sec42">Phần 43</a></li>
+        <li><a href="ch44-4-thoi-thu-thai-cuc-quyen-kiem-bi-ca-am-duong.html#sec43">Phần 44</a></li>
+        <li><a href="ch45-5-yeu-linh-dong-tac-thoi-thu.html#sec44">Phần 45</a></li>
+        <li><a href="ch46-bon-ngu-luc-tran-ham-ve-thap-tam-muc-quan-hai-1.html#sec45">Phần 46</a></li>
+        <li><a href="ch47-sau-tuyen-doan-van-ngan-ve-quyen-luan-tran-ham-nguoi-khac.html#sec46">Phần 47</a></li>
+        <li><a href="ch48-ngoi-khen-ba-doi-ho-do.html#sec47">Phần 48</a></li>
+        <li><a href="ch49-thuyet-minh-ve-hinh-anh-sach.html#sec48">Phần 49</a></li>
+        <li><a href="ch50-the-thu-hai-khoi-the.html#sec49">Phần 50</a></li>
+        <li><a href="ch51-the-thu-ba-lam-tuoc-vi.html#sec50">Phần 51</a></li>
+        <li><a href="ch52-the-thu-4-don-tien-don.html#sec51">Phần 52</a></li>
+        <li><a href="ch53-the-thu-5-thu-thuong-the-nang-tay-len.html#sec52">Phần 53</a></li>
+        <li><a href="ch54-the-thu-6-bach-hac-luong-si-hac-trang-xoe-canh.html#sec53">Phần 54</a></li>
+        <li><a href="ch55-the-thu-7-ta-lau-tat-ao-bo-tay-trai-vuot-dau-goi-buoc-xoay.html#sec54">Phần 55</a></li>
+        <li><a href="ch56-vii-phan-tich-ky-thuat-the-thu-bay-ta-lau-tat-ao-bo-tiep.html#sec55">Phần 56</a></li>
+        <li><a href="ch57-i-cach-dung.html#sec56">Phần 57</a></li>
+        <li><a href="ch58-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua.html#sec57">Phần 58</a></li>
+        <li><a href="ch59-i-cach-dung-2.html#sec58">Phần 59</a></li>
+        <li><a href="ch60-iii-yeu-linh.html#sec59">Phần 60</a></li>
+        <li><a href="ch61-i-cach-dung-3.html#sec60">Phần 61</a></li>
+        <li><a href="ch62-ii-qua-trinh-dong-tac.html#sec61">Phần 62</a></li>
+        <li><a href="ch63-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-2.html#sec62">Phần 63</a></li>
+        <li><a href="ch64-vii-phan-tich-ky-thuat.html#sec63">Phần 64</a></li>
+        <li><a href="ch65-vi-cach-day-cach-luyen.html#sec64">Phần 65</a></li>
+        <li><a href="ch66-iv-yeu-cau.html#sec65">Phần 66</a></li>
+        <li><a href="ch67-iii-yeu-linh-2.html#sec66">Phần 67</a></li>
+        <li><a href="ch68-vi-cach-day-cach-luyen-2.html#sec67">Phần 68</a></li>
+        <li><a href="ch69-iii-yeu-linh-3.html#sec68">Phần 69</a></li>
+        <li><a href="ch70-v-pham-sai-lam-nguyen-nhan-phat-sinh-cach-sua.html#sec69">Phần 70</a></li>
+        <li><a href="ch71-vii-phan-tich-ky-thuat-2.html#sec70">Phần 71</a></li>
+        <li><a href="ch72-iv-yeu-cau-2.html#sec71">Phần 72</a></li>
+        <li><a href="ch73-vi-phep-day-phep-luyen.html#sec72">Phần 73</a></li>
+        <li><a href="ch74-iii-yeu-linh-4.html#sec73">Phần 74</a></li>
+        <li><a href="ch75-vi-phep-day-phep-luyen-2.html#sec74">Phần 75</a></li>
+        <li><a href="ch76-i-phep-dung.html#sec75">Phần 76</a></li>
+        <li><a href="ch77-vi-cach-day-cach-luyen-3.html#sec76">Phần 77</a></li>
+        <li><a href="ch78-iii-yeu-linh-5.html#sec77">Phần 78</a></li>
+        <li><a href="ch79-i-cach-dung-4.html#sec78">Phần 79</a></li>
+        <li><a href="ch80-iv-yeu-cau-3.html#sec79">Phần 80</a></li>
+        <li><a href="ch81-vii-phan-tich-ky-thuat-3.html#sec80">Phần 81</a></li>
+        <li><a href="ch82-iii-yeu-linh-6.html#sec81">Phần 82</a></li>
+        <li><a href="ch83-i-cach-dung-5.html#sec82">Phần 83</a></li>
+        <li><a href="ch84-iii-yeu-linh-7.html#sec83">Phần 84</a></li>
+        <li><a href="ch85-iv-yeu-cau-4.html#sec84">Phần 85</a></li>
+        <li><a href="ch86-vii-phan-tich-ky-thuat-4.html#sec85">Phần 86</a></li>
+        <li><a href="ch87-i-cach-dung-6.html#sec86">Phần 87</a></li>
+        <li><a href="ch88-vii-phan-tich-ky-thuat-5.html#sec87">Phần 88</a></li>
+        <li><a href="ch89-iii-yeu-linh-8.html#sec88">Phần 89</a></li>
+        <li><a href="ch90-iv-yeu-cau-5.html#sec89">Phần 90</a></li>
+        <li><a href="ch91-vi-cach-day-cach-luyen-tap.html#sec90">Phần 91</a></li>
+        <li><a href="ch92-v-loi-pham-nguyen-nhan-phat-sinh-cach-sua-chua.html#sec91">Phần 92</a></li>
+        <li><a href="ch93-i-cach-dung-7.html#sec92">Phần 93</a></li>
+        <li><a href="ch94-v-loi-thuong-mac-nguyen-nhan-cach-sua.html#sec93">Phần 94</a></li>
+        <li><a href="ch95-i-cach-dung-8.html#sec94">Phần 95</a></li>
+        <li><a href="ch96-vi-cach-day-cach-luyen-tap-2.html#sec95">Phần 96</a></li>
+        <li><a href="ch97-iii-yeu-linh-9.html#sec96">Phần 97</a></li>
+        <li><a href="ch98-i-cach-dung-9.html#sec97">Phần 98</a></li>
+        <li><a href="ch99-iii-yeu-linh-10.html#sec98">Phần 99</a></li>
+        <li><a href="ch100-vi-cach-day-cach-luyen-tap-3.html#sec99">Phần 100</a></li>
+        <li><a href="ch101-i-cach-dung-10.html#sec100">Phần 101</a></li>
+        <li><a href="ch102-i-cach-dung-11.html#sec101">Phần 102</a></li>
+        <li><a href="ch103-vi-cach-day-cach-luyen-4.html#sec102">Phần 103</a></li>
+        <li><a href="ch104-the-thu-51-don-tien.html#sec103">Phần 104</a></li>
+        <li><a href="ch105-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-3.html#sec104">Phần 105</a></li>
+        <li><a href="ch106-vi-cach-day-cach-luyen-5.html#sec105">Phần 106</a></li>
+        <li><a href="ch107-the-thu-53-lam-tuoc-vi.html#sec106">Phần 107</a></li>
+        <li><a href="ch108-the-thu-54-don-tien.html#sec107">Phần 108</a></li>
+        <li><a href="ch109-the-thu-56-don-tien.html#sec108">Phần 109</a></li>
+        <li><a href="ch110-v-loi-mac-nguyen-nhan-phat-sinh-cach-sua-4.html#sec109">Phần 110</a></li>
+        <li><a href="ch111-the-thu-58-kim-ke-doc-lap.html#sec110">Phần 111</a></li>
+        <li><a href="ch112-the-thu-59-ta-huu-dao-nien-hau.html#sec111">Phần 112</a></li>
+        <li><a href="ch113-the-thu-60-ta-phi-the.html#sec112">Phần 113</a></li>
+        <li><a href="ch114-the-thu-63-ta-lau-tat-ao-bo.html#sec113">Phần 114</a></li>
+        <li><a href="ch115-the-thu-65-phien-thong-boi.html#sec114">Phần 115</a></li>
+        <li><a href="ch116-the-thu-68-thuong-bo-lam-tuoc-vi.html#sec115">Phần 116</a></li>
+        <li><a href="ch117-the-thu-71-don-tien.html#sec116">Phần 117</a></li>
+        <li><a href="ch118-the-thu-72-cao-tham-dai-xuyen-chuong.html#sec117">Phần 118</a></li>
+        <li><a href="ch119-the-thu-73-thap-thoi.html#sec118">Phần 119</a></li>
+        <li><a href="ch120-the-thu-74-tien-bo-chi-dang-chuy.html#sec119">Phần 120</a></li>
+        <li><a href="ch121-the-thu-75-thuong-bo-lam-tuoc-vi.html#sec120">Phần 121</a></li>
+        <li><a href="ch122-the-thu-76-don-tien.html#sec121">Phần 122</a></li>
+        <li><a href="ch123-the-thu-79-thoai-bo-khoa-ho.html#sec122">Phần 123</a></li>
+        <li><a href="ch124-the-thu-80-chuyen-than-bai-lien.html#sec123">Phần 124</a></li>
+        <li><a href="ch125-the-thu-81-loan-cung-xa-ho.html#sec124">Phần 125</a></li>
+        <li><a href="ch126-the-thu-82-tien-bo-ban-lan-chuy.html#sec125">Phần 126</a></li>
+        <li><a href="ch127-the-thu-83-nhu-phong-be.html#sec126">Phần 127</a></li>
+        <li><a href="ch128-so-do-lo-tuyen-van-dong-duong-thuc-thai-cuc-quyen.html#sec127">Phần 128</a></li>
+        <li><a href="ch129-tiet-thu-dinh-bo-day-tay.html#sec128">Phần 129</a></li>
+        <li><a href="ch130-so-do-bo-phap-hoat-bo-day-tay.html#sec129">Phần 130</a></li>
+        <li><a href="ch131-tiet-thu-dai-lu.html#sec130">Phần 131</a></li>
+        <li><a href="ch132-so-do-phuong-huong-bo-phap-dai-lu.html#sec131">Phần 132</a></li>
+        <li><a href="ch133-i-ban-ve-viec-luyen-tap-thai-cuc-quyen.html#sec132">Phần 133</a></li>
+        <li><a href="ch134-ban-ve-viec-luyen-tap-thai-cuc-quyen-tiep.html#sec133">Phần 134</a></li>
+        <li><a href="ch135-iv-thap-tam-the-ca.html#sec134">Phần 135</a></li>
+        <li><a href="ch136-viii-so-luoc-ban-ve-luyen-thai-cuc-quyen-tiep.html#sec135">Phần 136</a></li>
+        <li><a href="ch137-ix-nghien-cuu-ly-luan-thai-cuc-quyen-tai-quan-tiep.html#sec136">Phần 137</a></li>
+        <li><a href="ch138-xii-ban-ve-phep-luyen-duong-thuc-thai-cuc-quyen.html#sec137">Phần 138</a></li>
+        <li><a href="ch139-bat-loi-bat-thu.html#sec138">Phần 139</a></li>
+        <li><a href="ch140-bat-nhi-loi-bat-thu-hai.html#sec139">Phần 140</a></li>
+        <li><a href="ch141-ngo-thuc-thai-cuc-quyen-quyen-thuc-do-giai.html#sec140">Phần 141</a></li>
+        <li><a href="ch142-thu-don-dap-thu.html#sec141">Phần 142</a></li>
+        <li><a href="ch143-thu-hai-song-dap-thu.html#sec142">Phần 143</a></li>
+        <li><a href="ch144-thu-ba-tam-dong-tac-ban.html#sec143">Phần 144</a></li>
+        <li><a href="ch145-vuong-tong-nhac-luan-thai-cuc-quyen.html#sec144">Phần 145</a></li>
+        <li><a href="ch146-vu-vu-tuong-luan-thai-cuc-quyen.html#sec145">Phần 146</a></li>
+        <li><a href="ch147-thap-tam-the-hanh-cong-tam-giai.html#sec146">Phần 147</a></li>
+        <li><a href="ch148-da-thu-ca.html#sec147">Phần 148</a></li>
+        <li><a href="ch149-so-luoc-ve-vo-thuc-thai-cuc-quyen.html#sec148">Phần 149</a></li>
+        <li><a href="ch150-loi-noi-dau.html#sec149">Phần 150</a></li>
+        <li><a href="ch151-chuong-yeu-linh-thai-cuc-quyen.html#sec150">Phần 151</a></li>
+        <li><a href="ch152-tau-gia-da-thu-thai-cuc-quyen.html#sec151">Phần 152</a></li>
+        <li><a href="ch153-vai-the-hoi-ve-cach-day-cach-luyen.html#sec152">Phần 153</a></li>
+        <li><a href="ch154-thuyet-minh-do-tiet.html#sec153">Phần 154</a></li>
+        <li><a href="ch155-vi-du-ve-do-tiet.html#sec154">Phần 155</a></li>
+        <li><a href="ch156-chuong-hai-do-giai-thai-cuc-quyen-vo-thuc.html#sec155">Phần 156</a></li>
+        <li><a href="ch157-may-diem-giai-thich-ve-do-giai.html#sec156">Phần 157</a></li>
+        <li><a href="ch158-do-giai-vu-thuc-thai-cuc-quyen.html#sec157">Phần 158</a></li>
+        <li><a href="ch159-thai-cuc-quyen-luan.html#sec158">Phần 159</a></li>
+        <li><a href="ch160-da-thu-ca-vuong-tong-nhac-dinh.html#sec159">Phần 160</a></li>
+        <li><a href="ch161-da-thu-tan-phong.html#sec160">Phần 161</a></li>
+        <li><a href="ch162-tan-phong-mat-quyet-ly-dich-du.html#sec161">Phần 162</a></li>
+        <li><a href="ch163-mat-quyet-chua-ro-tac-gia.html#sec162">Phần 163</a></li>
+        <li><a href="ch164-loi-tua.html#sec163">Phần 164</a></li>
+        <li><a href="ch165-muc-luc.html#sec164">Phần 165</a></li>
+        <li><a href="ch166-gioi-thieu-van-tat-ve-ton-thuc-thai-cuc-quyen.html#sec165">Phần 166</a></li>
+        <li><a href="ch167-tong-thuyet-ve-thai-cuc-quyen.html#sec166">Phần 167</a></li>
+        <li><a href="ch168-tong-thuyet-ve-thai-cuc-quyen-tiep.html#sec167">Phần 168</a></li>
+        <li><a href="ch169-tong-thuyet-ve-thai-cuc-quyen-tiep-2.html#sec168">Phần 169</a></li>
+        <li><a href="ch170-thuong-bien-1-ten-thuc.html#sec169">Phần 170</a></li>
+        <li><a href="ch171-1-thoi-thu-phap-thai-cuc-quyen-taijiquan-tuishou-fa.html#sec170">Phần 171</a></li>
+        <li><a href="ch172-2-ky-kich-thai-cuc-quyen-taijiquan-ji-ji.html#sec171">Phần 172</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../quan_shu_chen_shi_1995_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Toàn Thư Thái Cực Quyền · Phần 1</p>
+<h3 class="chapter" id="ch01">Trang 1</h3>
+
+<div class="partnav"><span class="disabled"><span class="k">← Đầu sách</span>Bắt đầu cuốn sách</span>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch02-iii-su-nam-giu-hu-thuc.html" style="text-align:right"><span class="k">Chương 2 →</span>III. Sự nắm giữ hư thực</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Thẩm Gia Trình.</p>
+<span id="chuong-0"></span>
+
+
+  <div class="chapter-header">
+    
+  </div>
+<p><strong>《Toàn Thư Thái Cực Quyền》</strong></p>
+<p class="display-line"><span id="p2" class="page-anchor"></span>Trần Thức Thái Cực Quyền</p>
+<p class="display-line">Dương Thức Thái Cực Quyền</p>
+<p class="display-line">Ngô Thức Thái Cực Quyền</p>
+<p class="display-line">Vũ Thức Thái Cực Quyền</p>
+<p class="display-line">Tôn Thức Thái Cực Quyền</p>
+<p class="display-line"><strong>Lời Giới Thiệu Về Bản Sửa Đổi "Sách Quý"</strong></p>
+<p>Nhà xuất bản chúng tôi đã thành lập hơn bốn mươi năm. Trong khoảng thời gian ấy, chúng tôi đã xuất bản nhiều cuốn sách được bạn đọc nồng nhiệt hoan nghênh. Những cuốn sách này được tái bản nhiều lần, thể hiện sức sống tràn đầy. Sách là người thầy, người bạn tốt của loài người, mà sách thể dục thể thao lại càng là người bạn thân thiết của những người yêu thích và làm công tác thể dục thể thao. Để đông đảo bạn đọc luôn có những cuốn sách mà mình yêu mến đồng hành, nhà xuất bản chúng tôi đã tuyển chọn kỹ lưỡng một loạt sách hay, căn cứ vào ý kiến phản hồi của bạn đọc, sửa đổi và thay đổi nội dung và tên sách của một số cuốn trong đó, đồng thời thiết kế lại bìa và bố cục, trân trọng dâng tặng bạn đọc như những "bảo vật" (珍品). Tin rằng những bảo vật này tất sẽ vào đến thư phòng của mọi người, khiến bạn đọc mới cũng như bạn đọc lâu năm đều thu hoạch được điều bổ ích khi mở sách ra.</p>
+<p><span id="p3" class="page-anchor"></span>Nhân Dân Thể Tục Xuất Bản Xã (人民体育出版社) <strong>Lời Giới Thiệu Về Cuốn Sách</strong> Thái Cực Quyền có cơ sở quần chúng rất rộng rãi trong nước ta. Các thức Dương, Ngô, Vũ, Tôn — sớm nhất được biến hóa dẫn sinh từ Trần Thức Thái Cực Quyền — đã trở nên quen thuộc và được nắm vững với đông đảo người yêu thích Thái Cực Quyền.</p>
+<p><span id="p4" class="page-anchor"></span><span id="p5" class="page-anchor"></span>Để giới thiệu một cách có hệ thống và đầy đủ hơn đến đông đảo bạn đọc về đặc điểm vận động cùng phương pháp luyện tập của các thức Thái Cực Quyền, chúng tôi đã hợp biên thành cuốn <strong>Toàn Thư Thái Cực Quyền</strong> này từ những tác phẩm đã xuất bản: <em>Trần Thức Thái Cực Quyền</em> (Thẩm Gia Trinh, Cố Lưu Hinh biên soạn), <em>Dương Thức Thái Cực Quyền</em> (Phó Trung Văn diễn thuyết, Chu Nguyên Long bút lục, Cố Lưu Hinh chỉnh lý), <em>Ngô Thức Thái Cực Quyền</em> (Từ Trí Nhất biên soạn), <em>Vũ Thức Thái Cực Quyền</em> (Hao Thiếu Như biên soạn, Cố Lưu Hinh chỉnh lý), và <em>Tôn Thức Thái Cực Quyền (Sửa Định Bản)</em> (Tôn Kiếm Vân biên). Trong biên tập cuốn sách này, chúng tôi thống nhất bố cục mục lục và số trang, sửa chữa những chỗ sai sót và không thỏa đáng rõ ràng, đối với nội dung nguyên thư không sửa đổi. Ngoài ra, để đồ hình được rõ ràng, tiện cho việc đọc, chúng tôi đã vẽ lại đồ hình của Vũ Thức Thái Cực Quyền, và dùng hình vẽ đường nét vẽ lại thay thế cho đồ hình chụp ảnh trước đây của Tôn Thức Thái Cực Quyền. <strong>Trang Bản Quyền</strong> Chịu trách nhiệm biên tập: Vương Khiết (王洁) Thiết kế bìa: Kim Vinh (今荣)</p>
+<div class="toc-heading">Mục Lục</div>
+<div class="toc-row toc-lvl0"><span class="toc-title"><strong>Trần Thức Thái Cực Quyền</strong></span><span class="toc-dots"></span><span class="toc-page">1</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Lời Giới Thiệu Về Tái Bản</span><span class="toc-dots"></span><span class="toc-page">2</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Sơ Lược Về Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Một · Tám Đặc Điểm Của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">5</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Nhất · Vận Động Ý - Khí Dưới Sự Chi Phối Của Đại Não</span><span class="toc-dots"></span><span class="toc-page">6</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Nội Khí Và Dụng Ý</span><span class="toc-dots"></span><span class="toc-page">7</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Sự Thực Hiện Vận Động Ý - Khí</span><span class="toc-dots"></span><span class="toc-page">9</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Hai · Vận Động Đàn Hồi Của Thân Chi Phóng Dài</span><span class="toc-dots"></span><span class="toc-page">12</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Thân Chi Phóng Dài</span><span class="toc-dots"></span><span class="toc-page">12</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Tác Dụng Sinh Lý Của Thân Chi Phóng Dài</span><span class="toc-dots"></span><span class="toc-page">14</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Bát Môn Kình Biệt Và Bồng Kình Đàn Hồi</span><span class="toc-dots"></span><span class="toc-page">15</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Nắm Vững Vận Động Đàn Hồi (Bồng Kình)</span><span class="toc-dots"></span><span class="toc-page">16</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Ba · Vận Động Xoắn Ốc Thuận Nghịch Triền Tơ</span><span class="toc-dots"></span><span class="toc-page">17</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Bản Chất Của Vận Động Như Triền Tơ</span><span class="toc-dots"></span><span class="toc-page">18</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Tác Dụng Của Vận Động Xoắn Ốc Triền Tơ</span><span class="toc-dots"></span><span class="toc-page">20</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Các Loại Triền Tơ Kình Và Yếu Lĩnh Của Nó</span><span class="toc-dots"></span><span class="toc-page">21</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Nắm Vững Vận Động Xoắn Ốc</span><span class="toc-dots"></span><span class="toc-page">23</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Tư · Vận Động Hư Thực Của Lập Thân Trung Chính, Thượng Hạ Tương Tùy</span><span class="toc-dots"></span><span class="toc-page">26</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Tỉ Lệ Hư Thực</span><span class="toc-dots"></span><span class="toc-page">27</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Ba Loại Hư Thực Cơ Bản</span><span class="toc-dots"></span><span class="toc-page">29</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Nắm Vững Hư Thực</span><span class="toc-dots"></span><span class="toc-page">31</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Khinh Trầm Phù Trầm Và Hư Thực</span><span class="toc-dots"></span><span class="toc-page">31</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Năm · Vận Động Tiết Tiết Quán Xuyến Lấy Eo Tủy Dẫn Đầu, Nội Ngoại Tương Hợp</span><span class="toc-dots"></span><span class="toc-page">35</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Bản Chất Của Tiết Tiết Quán Xuyến</span><span class="toc-dots"></span><span class="toc-page">36</span></div>
+<div class="toc-heading">Mục Lục (tiếp theo)</div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Toàn Thân Động Và Các Khớp Eo Tủy</span><span class="toc-dots"></span><span class="toc-page">37</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Tiết Tiết Quán Xuyến Và Tăng Cường Các Khớp</span><span class="toc-dots"></span><span class="toc-page">37</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Điều Chỉnh Phạm Vi Cử Động Khớp</span><span class="toc-dots"></span><span class="toc-page">38</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Năm. Nắm Vững Tiết Tiết Quán Xuyến</span><span class="toc-dots"></span><span class="toc-page">39</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Sáu · Vận Động Nhất Khí Hô Hợp Liên Tục Không Đứt, Tuôn Tuôn Không Cạn</span><span class="toc-dots"></span><span class="toc-page">40</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Sự Thực Hiện Nhất Khí Hô Hợp</span><span class="toc-dots"></span><span class="toc-page">42</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Thí Dụ Các Bậc Danh Nhân Hành Quyền</span><span class="toc-dots"></span><span class="toc-page">44</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Thần Khí Động Đãng Và Nhất Khí Hô Hợp</span><span class="toc-dots"></span><span class="toc-page">45</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Kình Biệt Và Nhất Khí Hô Hợp</span><span class="toc-dots"></span><span class="toc-page">45</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Bảy · Vận Động Cương Nhu Tương Tế Từ Nhu Đến Cương, Từ Cương Đến Nhu</span><span class="toc-dots"></span><span class="toc-page">47</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Quyền Cương Nhu Tương Tế</span><span class="toc-dots"></span><span class="toc-page">48</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Thời Kỳ Nhu Nhuyễn Đẩy Lùi Sưng Cứng</span><span class="toc-dots"></span><span class="toc-page">49</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Thời Kỳ Luyện Nhu Thành Cương</span><span class="toc-dots"></span><span class="toc-page">49</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Sự Biến Đổi Của Cương Nhu</span><span class="toc-dots"></span><span class="toc-page">50</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Năm. Nắm Vững Cương Nhu Tương Tế</span><span class="toc-dots"></span><span class="toc-page">51</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc Điểm Thứ Tám · Vận Động Mau Chậm Xen Kẽ Từ Chậm Đến Mau, Từ Mau Đến Chậm</span><span class="toc-dots"></span><span class="toc-page">53</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Một. Trình Tự Phát Triển Của Mau Chậm</span><span class="toc-dots"></span><span class="toc-page">54</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Hai. Thời Gian Và Điều Kiện Chuyển Từ Chậm Sang Mau</span><span class="toc-dots"></span><span class="toc-page">55</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Ba. Mau Chậm Xen Kẽ Và Đều Thanh, Kình Biệt</span><span class="toc-dots"></span><span class="toc-page">56</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">Bốn. Nắm Vững Mau Chậm Xen Kẽ</span><span class="toc-dots"></span><span class="toc-page">58</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Kết Ngôn</span><span class="toc-dots"></span><span class="toc-page">59</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Hai · Giải Thích Đồ Hình Trần Thức Thái Cực Quyền Nhất Lộ</span><span class="toc-dots"></span><span class="toc-page">61</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Trình Tự Tên Thức Của Trần Thức Thái Cực Quyền Nhất Lộ</span><span class="toc-dots"></span><span class="toc-page">61</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Mấy Điều Giảng Giải Về Đồ Hình</span><span class="toc-dots"></span><span class="toc-page">63</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Trần Thức Thái Cực Quyền Nhất Lộ</span><span class="toc-dots"></span><span class="toc-page">64</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Ba · Giải Thích Đồ Hình Trần Thức Thái Cực Quyền Nhị Lộ</span><span class="toc-dots"></span><span class="toc-page">169</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Trình Tự Tên Thức Của Trần Thức Thái Cực Quyền Nhị Lộ</span><span class="toc-dots"></span><span class="toc-page">169</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Trần Thức Thái Cực Quyền Nhị Lộ</span><span class="toc-dots"></span><span class="toc-page">171</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Bốn · Thôi Thủ Trần Thức</span><span class="toc-dots"></span><span class="toc-page">227</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Một. Đại Yếu Chung Của Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">228</span></div>
+<div class="toc-heading">Mục Lục (tiếp theo)</div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Hai. Phương Pháp Trần Thức Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">229</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Giáp. Thôi Thủ Cơ Bản Tứ Chính: Bồng, Lý, Tỷ, Án</span><span class="toc-dots"></span><span class="toc-page">229</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Ất. Thôi Thủ Bổ Trợ Tứ Duyên: Thái, Liệt, Thủu, Kháo</span><span class="toc-dots"></span><span class="toc-page">233</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Ba. Hai Sự Tiến Hóa Của Trần Thức Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">235</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Bốn. Thái Cực Quyền Thôi Thủ Là Âm Dương Kiêm Bị</span><span class="toc-dots"></span><span class="toc-page">236</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Năm. Yếu Lĩnh Động Tác Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">237</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Một) Pháp Thân</span><span class="toc-dots"></span><span class="toc-page">237</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Hai) Pháp Thủ</span><span class="toc-dots"></span><span class="toc-page">238</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Ba) Pháp Bộ</span><span class="toc-dots"></span><span class="toc-page">239</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Bốn) Pháp Nhãn</span><span class="toc-dots"></span><span class="toc-page">240</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Năm) Dính Liên Dính Tùy</span><span class="toc-dots"></span><span class="toc-page">241</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Sáu) Nhất Thân Bị Ngũ Cung</span><span class="toc-dots"></span><span class="toc-page">242</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Bảy) Đề Hợp Tích Và Phóng Khai Phát Kình</span><span class="toc-dots"></span><span class="toc-page">244</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Tám) Hô Hấp Và Lực Viên Yeo Đương</span><span class="toc-dots"></span><span class="toc-page">245</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(Chín) Tác Dụng Của Nội Kình Trong Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">246</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Sáu. Tác Dụng Chỉ Đạo Của Thái Cực Quyền Luận Đối Với Thôi Thủ Về Mặt Nguyên Lý</span><span class="toc-dots"></span><span class="toc-page">248</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Năm · Trần Thức Thái Cực Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">256</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Trần Hâm Truyện Lược</span><span class="toc-dots"></span><span class="toc-page">256</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Một. Thái Cực Quyền Kinh Phổ</span><span class="toc-dots"></span><span class="toc-page">258</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Hai. Thái Cực Quyền Quyền Phổ</span><span class="toc-dots"></span><span class="toc-page">259</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Ba. Trần Hâm Thái Cực Quyền Luận Phân Loại Ngữ Lục</span><span class="toc-dots"></span><span class="toc-page">260</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Tâm Tĩnh Thân Chính, Dĩ Ý Vận Động</span><span class="toc-dots"></span><span class="toc-page">260</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Khai Quan Thông Khí, Hô Hấp Tự Nhiên</span><span class="toc-dots"></span><span class="toc-page">262</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Khinh Linh Viên Chuyển, Trung Khí Quán Túc</span><span class="toc-dots"></span><span class="toc-page">264</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Triền Quấn Vận Kình, Thư Sướng Kinh Lạc</span><span class="toc-dots"></span><span class="toc-page">266</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">5. Thượng Hạ Tương Tùy, Nội Ngoại Tương Hợp</span><span class="toc-dots"></span><span class="toc-page">268</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">6. Tích Trước Quán Xuyến, Thế Lực Tương Thừa</span><span class="toc-dots"></span><span class="toc-page">269</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">7. Hư Lĩnh Đỉnh Kình, Khí Trầm Đan Điền</span><span class="toc-dots"></span><span class="toc-page">270</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">8. Hàm Hông Bối Bối, Trầm Kiên Trụy Thủu</span><span class="toc-dots"></span><span class="toc-page">274</span></div>
+<div class="toc-heading">Mục Lục (tiếp theo)</div>
+<div class="toc-row toc-lvl3"><span class="toc-title">9. Vận Nhu Thành Cương, Cương Nhu Tương Tế</span><span class="toc-dots"></span><span class="toc-page">272</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">10. Tiên Chậm Hậu Mau, Mau Nhi Phục Chậm</span><span class="toc-dots"></span><span class="toc-page">277</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">11. Trú Tĩnh Ư Động, Nộ Thượng Hốt Hạ</span><span class="toc-dots"></span><span class="toc-page">277</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">12. Cương Nhu Tự Tung, Nhất Phiến Thần Hành</span><span class="toc-dots"></span><span class="toc-page">282</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">13. Bồi Dưỡng Bản Nguyên, Cần Học Khổ Luyện</span><span class="toc-dots"></span><span class="toc-page">284</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Bốn. Trần Hâm Quan Hành Quan Hài Thập Tam Mục Ngữ Lục</span><span class="toc-dots"></span><span class="toc-page">285</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Đầu</span><span class="toc-dots"></span><span class="toc-page">285</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Mắt</span><span class="toc-dots"></span><span class="toc-page">286</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Tai</span><span class="toc-dots"></span><span class="toc-page">286</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Mũi, Miệng</span><span class="toc-dots"></span><span class="toc-page">287</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">5. Hạng</span><span class="toc-dots"></span><span class="toc-page">287</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">6. Tay</span><span class="toc-dots"></span><span class="toc-page">287</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">7. Quyền</span><span class="toc-dots"></span><span class="toc-page">288</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">8. Phúc</span><span class="toc-dots"></span><span class="toc-page">288</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">9. Eo</span><span class="toc-dots"></span><span class="toc-page">288</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">10. Tủy, Bối</span><span class="toc-dots"></span><span class="toc-page">289</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">11. Đương Và Đỏn</span><span class="toc-dots"></span><span class="toc-page">289</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">12. Túc</span><span class="toc-dots"></span><span class="toc-page">290</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">13. Cốt Tiết</span><span class="toc-dots"></span><span class="toc-page">292</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Năm. Kỹ Thuật Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">292</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Kỹ Thuật Luận Tập Lục</span><span class="toc-dots"></span><span class="toc-page">292</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Kỹ Thuật Thập Lục Mục</span><span class="toc-dots"></span><span class="toc-page">296</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Kỹ Thuật Tam Thập Lục Bệnh</span><span class="toc-dots"></span><span class="toc-page">296</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Nhiếp Toàn Ca Nhất Đầu</span><span class="toc-dots"></span><span class="toc-page">298</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Sáu. Trần Hâm Đẳng Quyền Luận Đoản Văn Tuyển</span><span class="toc-dots"></span><span class="toc-page">299</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Ngâm Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">299</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Thái Cực Quyền Kinh Tri Pháp Thi</span><span class="toc-dots"></span><span class="toc-page">298</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Thái Cực Quyền Phát Mông Triền Tơ Kình Luận</span><span class="toc-dots"></span><span class="toc-page">300</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Thái Cực Quyền Thái Nguyên Giải</span><span class="toc-dots"></span><span class="toc-page">301</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">5. Thái Cực Quyền Quyền Dụng</span><span class="toc-dots"></span><span class="toc-page">301</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">6. Thái Cực Quyền Tổng Luận Và Quyền Kinh</span><span class="toc-dots"></span><span class="toc-page">301</span></div>
+<div class="toc-heading">Mục Lục (tiếp theo)</div>
+<div class="toc-row toc-lvl3"><span class="toc-title">7. Trần Phục Tâm Thái Cực Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">302</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">8. Thái Cực Quyền Chi Yếu Điểm</span><span class="toc-dots"></span><span class="toc-page">305</span></div>
+<div class="toc-row toc-lvl0"><span class="toc-title"><strong>Dương Thức Thái Cực Quyền</strong></span><span class="toc-dots"></span><span class="toc-page">307</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Lời Giới Thiệu Về Tái Bản</span><span class="toc-dots"></span><span class="toc-page">308</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Sơ Lược Về Dương Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">309</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Lời Nói Đầu</span><span class="toc-dots"></span><span class="toc-page">310</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Một · Yếu Lĩnh Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">311</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Thái Cực Quyền Chi Luyện Tập Đàm</span><span class="toc-dots"></span><span class="toc-page">311</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Thái Cực Quyền Thuyết Thập Tứ Yếu</span><span class="toc-dots"></span><span class="toc-page">314</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Hai · Giải Thích Đồ Hình Dương Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">316</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Ba · Dương Thức Thái Cực Quyền Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">420</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Phụ Lục</span><span class="toc-dots"></span><span class="toc-page">431</span></div>
+<div class="toc-row toc-lvl0"><span class="toc-title"><strong>Ngô Thức Thái Cực Quyền</strong></span><span class="toc-dots"></span><span class="toc-page">435</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Lời Giới Thiệu Về Tái Bản</span><span class="toc-dots"></span><span class="toc-page">436</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Sơ Lược Về Ngô Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">437</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Một · Ưu Điểm Của Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">438</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Hai · Tác Dụng Tâm Lý Của Thái Cực Quyền Khi Hành Công</span><span class="toc-dots"></span><span class="toc-page">445</span></div>
+<div class="toc-heading">Mục Lục (tiếp theo)</div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Ba · Tác Dụng Sinh Lý Của Thái Cực Quyền Trên Đặc Điểm Động Tác</span><span class="toc-dots"></span><span class="toc-page">450</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Bốn · Cơ Sở Cơ Học Của Thái Cực Quyền Trong Kỹ Thuật</span><span class="toc-dots"></span><span class="toc-page">457</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Năm · Pháp Tắc Cần Chú Ý Khi Bàn Giá</span><span class="toc-dots"></span><span class="toc-page">466</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Sáu · Giải Thích Đồ Hình Ngô Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">478</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Bảy · Pháp Tắc Cần Chú Ý Khi Luyện Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">550</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Tám · Giải Thích Đồ Hình Thôi Thủ Ngô Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">556</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Phụ Lục</span><span class="toc-dots"></span><span class="toc-page">566</span></div>
+<div class="toc-row toc-lvl0"><span class="toc-title"><strong>Vũ Thức Thái Cực Quyền</strong></span><span class="toc-dots"></span><span class="toc-page">569</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Sơ Lược Về Vũ Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">570</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Lời Nói Đầu</span><span class="toc-dots"></span><span class="toc-page">572</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Một · Yếu Lĩnh Vũ Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">574</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương Hai · Giải Thích Đồ Hình Vũ Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">586</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Phụ Lục · Cổ Điển Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">646</span></div>
+<div class="toc-row toc-lvl0"><span class="toc-title"><strong>Tôn Thức Thái Cực Quyền</strong></span><span class="toc-dots"></span><span class="toc-page">655</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Lời Nói Đầu</span><span class="toc-dots"></span><span class="toc-page">656</span></div>
+<div class="toc-heading">Mục Lục (tiếp theo)</div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Sơ Lược Về Tôn Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">657</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Tổng Thuyết Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">658</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Thượng Biên</span><span class="toc-dots"></span><span class="toc-page">661</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Một. Tên Động Tác</span><span class="toc-dots"></span><span class="toc-page">661</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Hai. Giảng Giải Động Tác</span><span class="toc-dots"></span><span class="toc-page">663</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Hạ Biên</span><span class="toc-dots"></span><span class="toc-page">704</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Một. Phương Pháp Thôi Thủ Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">704</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Hai. Kỹ Thuật Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">708</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Phụ Lục · Tài Liệu Tham Khảo</span><span class="toc-dots"></span><span class="toc-page">710</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Một. Vương Tông Nguyên · Thái Cực Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">710</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Hai. Vũ Vũ Tương · Thái Cực Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">711</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Ba. Thập Tam Thế Hành Công Tâm Giải</span><span class="toc-dots"></span><span class="toc-page">711</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Bốn. Thập Tam Thế Ca Quyết</span><span class="toc-dots"></span><span class="toc-page">712</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Năm. Thôi Thủ Ca Quyết</span><span class="toc-dots"></span><span class="toc-page">712</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Sáu. Lý Diệc Dụ · Ngũ Tự Quyết</span><span class="toc-dots"></span><span class="toc-page">713</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Bảy. Tản Phóng Mật Quyết</span><span class="toc-dots"></span><span class="toc-page">714</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Tám. Thái Cực Quyền Đả Thủ Hành Công Yếu Ngôn</span><span class="toc-dots"></span><span class="toc-page">714</span></div>
+<p><span id="p6" class="page-anchor"></span><span id="p7" class="page-anchor"></span><span id="p8" class="page-anchor"></span><span id="p9" class="page-anchor"></span><span id="p10" class="page-anchor"></span><span id="p11" class="page-anchor"></span><span id="p12" class="page-anchor"></span><strong>Trần Thức Thái Cực Quyền</strong></p>
+<p><span id="p13" class="page-anchor"></span>· 1 · (Bìa sách)</p>
+<p><strong>Trần Thức Thái Cực Quyền</strong></p>
+<p><span id="p14" class="page-anchor"></span>Nhà xuất bản Thể dục Nhân dân (Trang tên sách)</p>
+<p><strong>Trần Thức Thái Cực Quyền</strong></p>
+<p class="display-line"><span id="p15" class="page-anchor"></span>Thẩm Gia Trinh, Cố Lưu Hinh — biên soạn</p>
+<p>Nhà xuất bản Thể dục Nhân dân (Trang bản quyền)</p>
+<p><strong>Trần Thức Thái Cực Quyền</strong></p>
+<p class="display-line">Thẩm Gia Trinh, Cố Lưu Hinh — biên soạn</p>
+<p class="display-line">Nhà xuất bản Thể dục Nhân dân xuất bản</p>
+<p class="display-line">Nhà in số 1 Bắc Kinh in · Nhà phát hành sách Tân Hoa Bắc Kinh phát hành</p>
+<p class="display-line">787 × 1092 mm · khổ 32 · 182 nghìn chữ · 10 25/32 tờ in</p>
+<p class="display-line">Bản thứ 1 tháng 12 năm 1963 · In lần thứ 4 tháng 4 năm 1982</p>
+<p class="display-line">Số lượng in: 43.201–175.200 cuốn</p>
+<p class="display-line">Số sách thống nhất: 7015·1209 · Giá: 1,10 nguyên</p>
+<p class="display-line"><span id="p16" class="page-anchor"></span>Biên tập: Diêm Hải, Vương Khiết</p>
+<p class="display-line">Thiết kế bìa: Chu Mộng Lân, Tôn Kim Vinh</p>
+<p class="display-line"><strong>Lời Nói Đầu Bản In Lại</strong></p>
+<p>Sách này đã được in hai lần vào các năm 1963 và 1964, sau đó không tái bản nữa.</p>
+<p>Trần Thức Thái Cực Quyền được giới thiệu trong sách là một phái Thái Cực Quyền cổ xưa nhất. Quyền thức chia làm Lộ thứ nhất và Lộ thứ hai, đều là những bài quyền do cố danh quyền sư Trần Phát Khoa truyền dạy. Chương một, hai, ba của sách do Thẩm Gia Trinh chấp bút; chương bốn, năm do Cố Lưu Hinh chấp bút. Hình vẽ động tác được phác họa theo ảnh di vật của Trần Phát Khoa, những phần còn thiếu thì lấy ảnh của con trai Trần Phát Khoa là Trần Chiếu Khuê chụp bổ sung.</p>
+<p>Trong quá trình biên soạn, sách đã nhận được sự giúp đỡ của Chu Nguyên Long, Thiệu Bá Chu, Dương Cảnh Huyên, Sào Chấn Dân, Lôi Mộ Ni và những người khác, và do Trần Chiếu Khuê hiệu đính.</p>
+<p>Lần in lại này chỉ viết lại mục "Giới thiệu Trần Thức Thái Cực Quyền", lược bỏ phần "Lời tựa", nội dung nguyên bản không thay đổi. Chỗ nào trong sách còn chưa thỏa đáng, mong bạn đọc góp ý để sửa chữa.</p>
+<p class="display-line"><span id="p17" class="page-anchor"></span>Ban Biên tập Nhà xuất bản Thể dục Nhân dân</p>
+<p>Tháng 4 năm 1980</p>
+<div class="toc-heading">MỤC LỤC</div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Giới thiệu Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">1</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương một · Tám đặc điểm của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ nhất · Vận động ý - khí dưới sự chi phối của đại não</span><span class="toc-dots"></span><span class="toc-page">5</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Nội khí và dụng ý</span><span class="toc-dots"></span><span class="toc-page">5</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Sự thực hiện vận động ý - khí</span><span class="toc-dots"></span><span class="toc-page">8</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ hai · Vận động đàn hồi của thân chi duỗi dài</span><span class="toc-dots"></span><span class="toc-page">11</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Thân chi duỗi dài</span><span class="toc-dots"></span><span class="toc-page">11</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Tác dụng sinh lý của thân chi duỗi dài</span><span class="toc-dots"></span><span class="toc-page">13</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Tám môn kình biệt và kình bằng (bồng) đàn hồi</span><span class="toc-dots"></span><span class="toc-page">14</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Nắm vững vận động đàn hồi (kình bồng)</span><span class="toc-dots"></span><span class="toc-page">15</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ ba · Vận động xoắn ốc triền ty thuận nghịch</span><span class="toc-dots"></span><span class="toc-page">17</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Thực chất của vận động như triền ty</span><span class="toc-dots"></span><span class="toc-page">18</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Tác dụng của vận động xoắn ốc kiểu triền ty</span><span class="toc-dots"></span><span class="toc-page">20</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Các loại kình triền ty và yếu lĩnh của chúng</span><span class="toc-dots"></span><span class="toc-page">21</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Nắm vững vận động xoắn ốc</span><span class="toc-dots"></span><span class="toc-page">23</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ tư · Vận động hư thực lập thân trung chính, thượng hạ tương tùy</span><span class="toc-dots"></span><span class="toc-page">27</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Tỷ lệ hư thực</span><span class="toc-dots"></span><span class="toc-page">28</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Ba loại hư thực cơ bản</span><span class="toc-dots"></span><span class="toc-page">30</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Nắm vững hư thực</span><span class="toc-dots"></span><span class="toc-page">32</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Khinh trọng phù trầm và hư thực</span><span class="toc-dots"></span><span class="toc-page">33</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ năm · Vận động tiết tiết quán xuyến do yêu tích dẫn đầu, nội ngoại tương hợp</span><span class="toc-dots"></span><span class="toc-page">37</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Thực chất của tiết tiết quán xuyến</span><span class="toc-dots"></span><span class="toc-page">38</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Quan hệ giữa "nhất động toàn động" và yêu tích</span><span class="toc-dots"></span><span class="toc-page">39</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Tiết tiết quán xuyến và tăng cường các khớp</span><span class="toc-dots"></span><span class="toc-page">40</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Điều tiết độ động của các khớp</span><span class="toc-dots"></span><span class="toc-page">40</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">v. Nắm vững tiết tiết quán xuyến</span><span class="toc-dots"></span><span class="toc-page">42</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ sáu · Vận động nhất khí a thành liên miên bất đoạn, thao thao bất tuyệt</span><span class="toc-dots"></span><span class="toc-page">44</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Sự thực hiện nhất khí a thành</span><span class="toc-dots"></span><span class="toc-page">45</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Thực lệ hành quyền của danh gia</span><span class="toc-dots"></span><span class="toc-page">47</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Thần khí động đãng và nhất khí a thành ①</span><span class="toc-dots"></span><span class="toc-page">48</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Kình biệt và nhất khí a thành</span><span class="toc-dots"></span><span class="toc-page">48</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ bảy · Vận động cương nhu tương tế từ nhu đến cương, từ cương đến nhu</span><span class="toc-dots"></span><span class="toc-page">50</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Quyền cương nhu tương tế</span><span class="toc-dots"></span><span class="toc-page">51</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Thời kỳ cầu nhuyễn tồi cương</span><span class="toc-dots"></span><span class="toc-page">52</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Thời kỳ luyện nhu thành cương</span><span class="toc-dots"></span><span class="toc-page">52</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Sự biến hoán cương nhu</span><span class="toc-dots"></span><span class="toc-page">53</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">v. Nắm vững cương nhu tương tế</span><span class="toc-dots"></span><span class="toc-page">54</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Đặc điểm thứ tám · Vận động khoái mạn tương gian từ mạn đến khoái, từ khoái đến mạn</span><span class="toc-dots"></span><span class="toc-page">57</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Trình tự phát triển của khoái mạn</span><span class="toc-dots"></span><span class="toc-page">58</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Thời gian và điều kiện chuyển từ mạn sang khoái</span><span class="toc-dots"></span><span class="toc-page">59</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Khoái mạn tương gian và quân thanh, kình biệt</span><span class="toc-dots"></span><span class="toc-page">60</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Nắm vững khoái mạn tương gian</span><span class="toc-dots"></span><span class="toc-page">62</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Kết ngữ</span><span class="toc-dots"></span><span class="toc-page">63</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương hai · Đồ giải Lộ thứ nhất của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">65</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Thứ tự tên thức quyền Lộ thứ nhất</span><span class="toc-dots"></span><span class="toc-page">65</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Mấy điểm nói rõ về đồ giải</span><span class="toc-dots"></span><span class="toc-page">67</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Lộ thứ nhất của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">68</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương ba · Đồ giải Lộ thứ hai của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">179</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Thứ tự tên thức quyền Lộ thứ hai của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">179</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Lộ thứ hai của Trần Thức Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">181</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương bốn · Trần Thức Thái Cực Quyền Thôi Thủ</span><span class="toc-dots"></span><span class="toc-page">242</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Yếu nghĩa chung của thôi thủ</span><span class="toc-dots"></span><span class="toc-page">243</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Phương pháp thôi thủ Trần Thức</span><span class="toc-dots"></span><span class="toc-page">244</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Giáp. Bốn chính cơ bản thôi thủ: bằng, lãm, tễ, án</span><span class="toc-dots"></span><span class="toc-page">244</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Ất. Bốn ngung bổ trợ thôi thủ: thái, liệt, trửu, kháo</span><span class="toc-dots"></span><span class="toc-page">248</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Hai loại diễn biến của thôi thủ Trần Thức</span><span class="toc-dots"></span><span class="toc-page">251</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Thôi thủ Thái Cực Quyền kiêm bị âm dương</span><span class="toc-dots"></span><span class="toc-page">252</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">v. Yếu lĩnh động tác thôi thủ</span><span class="toc-dots"></span><span class="toc-page">253</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(1) Thân pháp</span><span class="toc-dots"></span><span class="toc-page">253</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(2) Thủ pháp</span><span class="toc-dots"></span><span class="toc-page">254</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(3) Bộ pháp</span><span class="toc-dots"></span><span class="toc-page">255</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(4) Nhãn pháp</span><span class="toc-dots"></span><span class="toc-page">257</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(5) Triêm liên niêm tùy</span><span class="toc-dots"></span><span class="toc-page">257</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(6) Nhất thân bị ngũ cung</span><span class="toc-dots"></span><span class="toc-page">259</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(7) Đề hợp súc và phóng khai phát của phát kình</span><span class="toc-dots"></span><span class="toc-page">261</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(8) Hô hấp và phương viên cương nhu</span><span class="toc-dots"></span><span class="toc-page">262</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">(9) Tác dụng của nội kình trong thôi thủ</span><span class="toc-dots"></span><span class="toc-page">263</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">vi. Tác dụng chỉ đạo về nguyên tắc của "Thái Cực Quyền Luận" đối với thôi thủ</span><span class="toc-dots"></span><span class="toc-page">266</span></div>
+<div class="toc-row toc-lvl1"><span class="toc-title">Chương năm · Trần Thức Thái Cực Quyền Quyền Luận</span><span class="toc-dots"></span><span class="toc-page">274</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">Trần Hâm truyện lược</span><span class="toc-dots"></span><span class="toc-page">275</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">i. Thái Cực Quyền Kinh Phổ</span><span class="toc-dots"></span><span class="toc-page">276</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">ii. Thái Cực Quyền Quyền Phổ</span><span class="toc-dots"></span><span class="toc-page">278</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iii. Trần Hâm Thái Cực Quyền Luận phân loại ngữ lục ①</span><span class="toc-dots"></span><span class="toc-page">278</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Tâm tĩnh thân chính, dĩ ý vận động</span><span class="toc-dots"></span><span class="toc-page">278</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Khai hợp hư thực, hô hấp tự nhiên</span><span class="toc-dots"></span><span class="toc-page">281</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Khinh linh viên chuyển, trung khí quán túc</span><span class="toc-dots"></span><span class="toc-page">283</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Triền nhiễu vận động, thư sướng kinh lạc</span><span class="toc-dots"></span><span class="toc-page">286</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">5. Thượng hạ tương tùy, nội ngoại tương hợp</span><span class="toc-dots"></span><span class="toc-page">288</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">6. Trước trước quán xuyến, thế thế tương thừa</span><span class="toc-dots"></span><span class="toc-page">289</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">7. Hư lĩnh đính kình, khí trầm đan điền</span><span class="toc-dots"></span><span class="toc-page">290</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">8. Hàm hung bạt bối, trầm kiên trụy trửu</span><span class="toc-dots"></span><span class="toc-page">295</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">9. Vận nhu thành cương, cương nhu tương tế</span><span class="toc-dots"></span><span class="toc-page">295</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">10. Tiên mạn hậu khoái, khoái nhi phục mạn</span><span class="toc-dots"></span><span class="toc-page">298</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">11. Xuyến bôn khiêu dược, hốt thượng hốt hạ</span><span class="toc-dots"></span><span class="toc-page">299</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">12. Cương nhu câu mẫn, nhất phiến thần hành</span><span class="toc-dots"></span><span class="toc-page">304</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">13. Bồi dưỡng bản nguyên, cần học khổ luyện</span><span class="toc-dots"></span><span class="toc-page">306</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">iv. Trần Hâm ngữ lục về quan hài thập tam mục ①</span><span class="toc-dots"></span><span class="toc-page">308</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Đầu</span><span class="toc-dots"></span><span class="toc-page">308</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Nhãn</span><span class="toc-dots"></span><span class="toc-page">308</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Nhĩ</span><span class="toc-dots"></span><span class="toc-page">309</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Tỵ, khẩu</span><span class="toc-dots"></span><span class="toc-page">309</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">5. Hạng</span><span class="toc-dots"></span><span class="toc-page">310</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">6. Thủ</span><span class="toc-dots"></span><span class="toc-page">310</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">7. Quyền</span><span class="toc-dots"></span><span class="toc-page">310</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">8. Phúc</span><span class="toc-dots"></span><span class="toc-page">311</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">9. Yêu</span><span class="toc-dots"></span><span class="toc-page">311</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">10. Tích, bối</span><span class="toc-dots"></span><span class="toc-page">312</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">11. Khóa dữ đồn</span><span class="toc-dots"></span><span class="toc-page">313</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">12. Túc</span><span class="toc-dots"></span><span class="toc-page">314</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">13. Cốt tiết</span><span class="toc-dots"></span><span class="toc-page">315</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">v. Giao thủ quyền luận</span><span class="toc-dots"></span><span class="toc-page">316</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Cách thủ quyền luận tập lục</span><span class="toc-dots"></span><span class="toc-page">316</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Cách thủ thập lục mục</span><span class="toc-dots"></span><span class="toc-page">320</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Cách thủ tam thập lục bệnh</span><span class="toc-dots"></span><span class="toc-page">320</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Cách thủ ca nhị thủ</span><span class="toc-dots"></span><span class="toc-page">323</span></div>
+<div class="toc-row toc-lvl2"><span class="toc-title">vi. Trần Hâm đẳng quyền luận đoản văn tuyển</span><span class="toc-dots"></span><span class="toc-page">323</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">1. Vịnh Thái Cực Quyền</span><span class="toc-dots"></span><span class="toc-page">323</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">2. Thái Cực Quyền triền ty pháp thi</span><span class="toc-dots"></span><span class="toc-page">324</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">3. Thái Cực Quyền phát mông triền ty kình luận</span><span class="toc-dots"></span><span class="toc-page">324</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">4. Thái Cực Quyền thôi nguyên giải</span><span class="toc-dots"></span><span class="toc-page">325</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">5. Thái Cực Quyền thể dụng</span><span class="toc-dots"></span><span class="toc-page">325</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">6. Thái Cực Quyền tổng luận hòa quyền kinh</span><span class="toc-dots"></span><span class="toc-page">326</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">7. Trần Phục Nguyên Thái Cực Quyền luận</span><span class="toc-dots"></span><span class="toc-page">326</span></div>
+<div class="toc-row toc-lvl3"><span class="toc-title">8. Thái Cực Quyền chi yếu điểm</span><span class="toc-dots"></span><span class="toc-page">330</span></div>
+<p><span id="p18" class="page-anchor"></span><span id="p19" class="page-anchor"></span><span id="p20" class="page-anchor"></span><span id="p21" class="page-anchor"></span><strong>Giới thiệu Trần Thức Thái Cực Quyền</strong></p>
+<p>Trần Thức Thái Cực Quyền do danh quyền sư Trần Vương Đình khởi tạo vào cuối đời Minh đầu đời Thanh. Trần Vương Đình là người Trần Gia Câu, huyện Ôn, tỉnh Hà Nam. Từ Trần Vương Đình trở đi, họ Trần đời đời truyền tập Thái Cực Quyền, không ngừng gia công tinh luyện bài quyền sẵn có, dần dần hình thành hai bài quyền Lộ một và Lộ hai lưu truyền đến cận đại. Động tác liên hoàn của hai bài quyền này đều đã được biên bài kỹ lưỡng; tốc độ và cường độ động tác khác nhau, thân pháp, lượng vận động và độ khó cũng khác nhau, nhưng đều hợp với nguyên tắc tuần tự tiến dần và cương nhu tương tế.</p>
+<p>Động tác của Lộ thứ nhất tương đối đơn giản, nhu nhiều cương ít, chủ yếu là vận dụng bốn chính kình bằng - lãm - tễ - án, lấy vận dụng bốn ngung thủ thái - liệt - trửu - kháo làm phụ trợ; phương pháp dùng sức lấy kình triền ty làm chính, phát kình làm phụ; động tác cầu nhu thuận, lấy hóa kình làm cơ sở, dùng nhu đón cương và hóa cương, về ngoại hình có đặc sắc hoãn, nhu, ổn. Khi mới luyện, động tác cầu từ từ chậm rãi, và chú trọng rèn luyện kình triền ty. Khi động tác nổi lên, lấy thân pháp dẫn dắt thủ pháp, cầu đạt hiệu quả động phân (lực ly tâm), tĩnh hợp (lực hướng tâm) biến hóa không ngừng. Do tốc độ động tác khá chậm, khung quyền chia cao, trung, thấp, lượng vận động có thể điều tiết, cho nên vừa thích hợp với người thân thể khá tốt dùng để tăng cường thể chất, lại cũng thích hợp với người yếu và một số người mắc bệnh mạn tính để chữa bệnh giữ gìn sức khỏe.</p>
+<p>Lộ thứ hai (Pháo Chùy) động tác khá phức tạp, đòi hỏi nhanh gọn, chặt chẽ, cương nhiều nhu ít, dụng kình lấy thái - liệt - trửu - kháo làm chính, lấy bằng - lãm - tễ - án làm phụ; động tác cầu kiên cương, mau lẹ, chú trọng rèn luyện kình đàn hồi. Trong bài quyền có động tác "xuyến băng khiêu dược, đằng nặc thiểm chiến", mang đặc sắc khoái, cương, dược. Nhìn bề ngoài, khoái, cương, dược của nó tuy không khác các phái quyền khác, nhưng về bản chất vẫn có đặc điểm riêng: khi vận động nó không ngừng xoay lưng chuyển tích, xoay cổ tay chuyển vai và xoay cổ chân chuyển gối, hình thành một loạt động tác xoắn ốc nhất động toàn động, xuyên suốt chỉnh thể, từ đó có thể thu được công dụng thống nhất giữa khai và phóng, hợp và thu, và trong khai ngụ hợp, trong hợp ly khai. Do bài quyền này tốc độ nhanh, bộc phát lực mạnh, tương đối thích hợp cho người thanh tráng niên hoặc người thể lực khá tốt luyện tập.</p>
+<p><span id="p22" class="page-anchor"></span>· 1 · Thông qua sự rèn luyện bài quyền, có thể dần dần suy ngẫm nội dung và yếu lĩnh của các kỹ pháp như cương nhu tương tế của Thái Cực Quyền, tức cái gọi là "công phu tri kỷ". Để vận dụng phương pháp triêm, liên, niêm, tùy nhằm cầu hiểu kình, Trần Thức Thái Cực Quyền còn sáng tạo ra thôi thủ mang tính đối kháng, tức "công phu tri bỉ". Thôi thủ Trần Thức Thái Cực Quyền nhấn mạnh xả kỷ tòng nhân, căn cứ vào ngoại lực của đối phương để phát huy kỹ pháp của mình. Đối phương động gấp thì ứng gấp, đối phương động chậm thì tùy chậm. Vì thế đi khung và thôi thủ phải thay nhau luyện tập, mới có thể nắm vững công phu hiểu kình, đạt mức thuần thục.</p>
+<p>Trần Thức Thái Cực Quyền là một phái quyền cổ xưa; các phái Thái Cực Quyền khác (như Dương Thức, Ngô Thức, Vũ Thức, Tôn Thức) đều phát triển và sáng tạo trên cơ sở Trần Thức Thái Cực Quyền. Trần Thức Thái Cực Quyền bảo lưu khá nhiều đặc điểm kỹ kích "nhu hóa cương phát" trong động tác; học tập và nghiên cứu phái Thái Cực Quyền này có giá trị tham khảo rất lớn đối với việc kế thừa và sáng tạo võ thuật.</p>
+<p>Hai lộ Thái Cực Quyền Lộ một và Lộ hai được giới thiệu trong sách là những quyền thức do cố Thái Cực Quyền sư Trần Phát Khoa (hậu duệ của Trần Vương Đình, 1887–1957) định ra vào những năm cuối đời.</p>
+<p><span id="p23" class="page-anchor"></span>· 2 · <strong>Chương một · Tám đặc điểm của Trần Thức Thái Cực Quyền</strong> Thái Cực Quyền là một loại quyền thuật ưu tú do tổ tiên chúng ta sáng tạo và dần dần phát triển trong thực tiễn sinh hoạt lâu dài. Trải qua mấy trăm năm thực hành lặp đi lặp lại và không ngừng tổng kết kinh nghiệm, con người mới dần dần nhận ra mối liên hệ nội tại và quy luật vận động của nó. Những quyền phổ Thái Cực Quyền do tiền nhân để lại chính là sự tổng kết của thực tiễn ấy. Nó cung cấp cho chúng ta những manh mối quý báu để nghiên cứu Thái Cực Quyền, giúp chúng ta học tập Thái Cực Quyền tốt hơn. Nhưng do hạn chế của thời đại, trong lý luận của tiền nhân cũng không ít cặn bã, cho nên trong thực tiễn chúng ta nên kết hợp với nhận thức mới của mình để kiểm nghiệm, loại bỏ cặn bã, hấp thu tinh hoa, nắm vững hơn nữa lý luận đúng đắn của nó, khiến loại quyền thuật này phục vụ tốt hơn cho sự nghiệp bảo vệ sức khỏe của nhân dân. Vì vậy, khi học Thái Cực Quyền, ngay từ đầu đã phải nắm chắc những lý luận đúng đắn trong các quyền phổ Thái Cực Quyền ấy, và thông hiểu then chốt của nó, dung hội quán thông, rồi từ trên cơ sở đó phát triển tiến lên, dần dần đi sâu.</p>
+<p>Thái Cực Quyền trong toàn bộ quá trình vận động từ đầu đến cuối đều xuyên suốt "âm dương" và "hư thực"; điều này trên động tác Thái Cực Quyền biểu hiện thành việc mỗi thức quyền đều có "khai và hợp", "viên và phương", "quyển và phóng", "hư và thực", "khinh và trầm", "nhu và cương" và "mạn và khoái", đồng thời trong động tác có những hình thức độc đáo thống nhất của các mặt đối lập như tả hữu, thượng hạ, lý ngoại, đại tiểu và tiến thoái. Đây là nguyên tắc cơ bản cấu thành Thái Cực Quyền.</p>
+<p><span id="p24" class="page-anchor"></span>· 3 · Thái Cực Quyền không chỉ độc đáo về ngoại hình, mà về nội công cũng có yêu cầu đặc thù. Khi luyện Thái Cực Quyền, trước hết phải dụng ý bất dụng chuyết lực, cho nên Thái Cực Quyền ở bên trong là vận động ý - khí, ở bên ngoài là vận động thần khí cổ đãng, cũng có nghĩa là vừa phải luyện ý, vừa phải luyện khí. Đặc điểm của vận động ý - khí này chính là tinh hoa của Thái Cực Quyền, và thống lĩnh các đặc điểm khác của Thái Cực Quyền. Ngoài ra, khi luyện Thái Cực Quyền, dưới sự chuyển hoán lẫn nhau giữa toàn thân duỗi dài và triền ty thuận nghịch, động tác phải biểu hiện được năng nhu năng cương, và giàu tính đàn hồi. Tính động thái của nó đòi hỏi nhất động toàn động, tiết tiết quán xuyến, tương liên bất đoạn, nhất khí a thành. Tốc độ của nó đòi hỏi có mạn có khoái, khoái mạn tương gian. Lực lượng của nó đòi hỏi có nhu có cương, cương nhu tương tế. Lập thân và động tác của nó đòi hỏi trung chính bất thiên, trong hư có thực, trong thực có hư và trong khai ngụ hợp, trong hợp ly khai. Có đủ những điều kiện này, Thái Cực Quyền mới có thể phát huy đầy đủ tác dụng đặc thù của nó. Về thể dục bảo vệ sức khỏe, nó không chỉ tăng cường khí quan vận động và khí quan nội tạng, mà còn rèn luyện và tăng cường năng lực chỉ huy của ý thức, tức năng lực "dụng ý bất dụng lực", có thể thuận lợi chỉ huy khí hoạt dược khắp toàn thân. Như vậy vừa luyện được khí, vừa luyện được ý, ý khí tương hỗ tăng trưởng và cường tráng, thân thể tự nhiên cường tráng. Tương tự, về kỹ kích nó cũng có tác dụng độc đáo: có thể dĩ khinh chế trọng, dĩ mạn chế khoái, khắc chế tự nhiên và nắm vững tự nhiên, khi động tác nổi lên có thể nhất động toàn động, "chu thân nhất gia", đạt công phu hiểu kình tri kỷ tri bỉ và tri cơ tri thế ①.</p>
+<p>Lý luận của Trần Thức Thái Cực Quyền có chỗ giống với lý luận các phái Thái Cực Quyền khác, cũng có chỗ khác. Nay xin lần lượt trình bày từng đặc điểm của Trần Thức Thái Cực Quyền như sau.</p>
+<ul class="posture-list">
+<li>① Tri cơ là biết thời gian, nắm vững thời gian; tri thế là biết không gian, nắm vững không gian.</li>
+</ul>
+<p><span id="p25" class="page-anchor"></span>· 4 · <strong>Đặc điểm thứ nhất · Vận động ý - khí dưới sự chi phối của đại não</strong> Quyền phổ quy định:</p>
+<p>(1) "Dĩ tâm hành khí, vụ lệnh trầm trước, nãi năng thu liễm nhập cốt";</p>
+<p>(2) "Dĩ khí vận thân, vụ lệnh thuận toại, nãi năng tiện lợi tòng tâm";</p>
+<p>(3) "Tâm vi lệnh, khí vi kỳ", "khí dĩ trực dưỡng nhi vô hại";</p>
+<p>(4) "Toàn thân ý tại thần, bất tại khí, tại khí tắc trệ".</p>
+<p>Từ bốn điều quy định trên có thể thấy, Thái Cực Quyền là quyền luyện ý bằng ý, cũng là quyền hành khí luyện khí. Nhưng khi luyện quyền phải "dĩ tâm hành khí"; tâm là người ra lệnh, khí là "truyền kỳ" phụng lệnh mà hành; mỗi cử mỗi động đều phải dụng ý bất dụng lực, ý động trước rồi hình động sau, như vậy mới làm được "ý đáo khí đáo", khí đáo kình đáo, động tác mới có thể trầm trước, luyện lâu ngày khí mới có thể thu liễm nhập cốt, đạt công phu thâm nhập nhất của "hành khí". Vì thế có thể nói Thái Cực Quyền là một loại vận động ý - khí. "Dĩ tâm hành khí", "dĩ khí vận thân" và dụng ý bất dụng chuyết lực, là đặc điểm thứ nhất của Thái Cực Quyền.</p>
+<p><strong>i. Nội khí và dụng ý</strong></p>
+<p>Như trên đã nói, khí chịu sự chỉ huy của ý, mà khí này không phải là không khí hô hấp phổi như người ta thường nói, mà là một loại "nội khí". Loại khí này trong lý luận y học của tổ quốc được gọi là "nguyên khí", "chính khí", khí thông hành trong kinh lạc, "tiên thiên khí" v.v., cho rằng được thừa hưởng từ trong thai mẹ; trong châm cứu và liệu pháp khí công, đến nay vẫn còn dùng thuyết này. Các nhà võ thuật thì gọi loại khí này là "trung khí", "nội khí", "nội kình" v.v., cho rằng luyện đến khi có khí này xuất hiện và nắm vững được khí này, công phu mới kể là "đáo gia", v.v.</p>
+<p><span id="p26" class="page-anchor"></span>· 5 · Tóm lại, từ xưa đến nay, bất luận là lý luận y học của tổ quốc, hay giới võ thuật, giới tôn giáo đều cho rằng có loại khí này tồn tại, các kinh nghiệm thực tiễn cũng chứng minh đúng là có một loại khí như vậy tồn tại. Nhưng khoa học cận đại vẫn chưa tra rõ đến cùng thực chất của loại khí này là gì; các học giả trong và ngoài nước nghiên cứu học thuyết kinh lạc của y học tổ quốc cũng không nhất trí về cách nói đối với khí này, không biết theo ai. Ví dụ, có người nói khí này chính là thần kinh, có người nói là điện sinh học, có người nói là một loại dịch tiết đặc thù trong cơ thể người, có người nói là một loại hệ thống công năng đặc thù trong cơ thể người, v.v., mỗi người một ý, còn chờ khám phá thêm. Nhưng hiện tượng sinh lý của cơ thể người mang tính chỉnh thể, không thể nói ý động mà thần kinh, điện sinh học v.v. không động; vì thế, khi làm rõ khí được nói trong quyền luận, chúng tôi tạm giả định là một loại tổng hợp vật do thần kinh, điện sinh học, ô-xy trong máu v.v. cấu thành, tạm giả định là một loại công năng còn chờ làm rõ của cơ thể người; mục đích là trước tiên kế thừa lý luận của tiền bối, để chúng ta khai quật thêm.</p>
+<p>Khi luyện Thái Cực Quyền, dường như đang làm "thể thao ý thức", phải luôn luôn chú trọng dụng ý, động tác thân thể chỉ là biểu hiện bên ngoài của ý. Trong "thể thao ý thức" này, cái ẩn bên trong là quá trình hoạt động của nội khí, cái hiển bên ngoài là biểu hiện động đãng của thần thái và ngoại khí; vì thế nội khí có thể do bên trong phát ra bên ngoài, cũng có thể do bên ngoài thu vào bên trong.</p>
+<p>Tuy luyện Thái Cực Quyền phải "dĩ khí vận thân", nhưng khi luyện quyền không được chỉ lo nghĩ khí vận hành trong cơ thể như thế nào, mà phải chú ý vào động tác, nếu không thần thái sẽ đờ đẫn, khí không những không thể thông suốt, mà còn gây ra chứng bệnh khí thế tán mạn, khiến cả ý lẫn khí đều bị hại. Cho nên quyền phổ nói "ý tại thần, bất tại khí, tại khí tắc trệ". Chính vì thế, khi luyện quyền phải đặc biệt coi trọng biểu hiện thần thái bên ngoài, vì thần thái bên ngoài chính là biểu hiện của nội tâm lộ ra bên ngoài. Nội ý và ngoại thần không được lìa nhau trong khoảnh khắc; nội ý hơi lỏng lẻo một chút thì ngoại thần sẽ tán mạn. Điểm này khi luyện quyền không thể không biết.</p>
+<p>Trần Thức Thái Cực Quyền chủ trương động tác phải có nhu có cương, có viên có phương, có mạn có khoái, · 6 · có khai có hợp. Chúng tôi cho rằng điều này hợp với quy luật sinh lý của cơ thể người. Mọi người đều biết, cơ thể người động thì điện vị sinh học tăng lên; cơ thể người tĩnh thì điện vị giảm xuống. Mà cương nhu, khai hợp, khoái mạn v.v. của động tác Thái Cực Quyền lại đúng lúc thúc đẩy điện vị lên xuống theo đó. Điện vị tăng lên thì tuần hoàn máu tăng nhanh, phân áp giảm xuống, ô-xy và huyết sắc tố cũng liền phân ly nhanh chóng, con người sẽ cảm thấy có khí. Trong điều kiện bình thường, thần kinh không thể giữ hưng phấn ở mức như nhau trong thời gian dài; vì thế điện sinh học thường mang hình dạng nhấp nhô, mà những nhấp nhô thao thao bất tuyệt của cương nhu, khoái mạn, phương viên v.v. trong động tác Thái Cực Quyền cũng đúng lúc hợp với quy luật này.</p>
+<p>Xét về ý khí thì cũng hợp với quy luật trên. Như trên đã nói, thần thái bên ngoài và hoạt động của ngoại khí là biểu hiện của ý khí hiển ra bên ngoài, đại biểu cho ý khí bên trong. Khâu trung tâm của sự ngoại hiển thần khí này chủ yếu là đem ý thức bên trong quán chú vào động tác bên ngoài, và thúc đẩy trong động tác biểu hiện ra sự chuyên nhất, kiên cường và hoạt bát vô trệ của lực chú ý. Nhưng cường độ của lực chú ý, giống như hoạt động thần kinh bên trong, cũng có đặc điểm nâng cao và hạ thấp của tính động đãng ấy. Vì thế, luyện quyền phải thích ứng với đặc điểm này mới khiến lực chú ý ổn định được. Đồng thời, cũng chỉ có ổn định lực chú ý mới không khiến tư tưởng phân tán. Nhưng muốn duy trì lực chú ý ở cường độ như nhau trong thời gian dài khi luyện quyền, đây là điều khó làm được. Trên thực tế, cho dù trong khoảnh khắc, độ động đãng của lực chú ý cũng có phân biệt cao thấp. Vì thế, trong quá trình vận động, nếu áp dụng cách vận động không động đãng kiểu gió yên sóng lặng, không những trái với quy luật sinh lý trên, mà đồng thời cũng phá hoại tính ổn định của lực chú ý. Cho nên, để ổn định lực chú ý, Thái Cực Quyền đã áp dụng một loạt quy định (ví dụ khoái mạn tương gian, khai hợp tương ngụ, phương viên tương sinh và cương nhu tương tế v.v.), và khiến chúng thống nhất trong một vận động.</p>
+<p>Những quy định này thúc đẩy vận động ý khí rất tự nhiên sinh ra động đãng, và khiến thần khí cổ đãng bên ngoài và ý khí động đãng bên trong được điều hòa, từ đó nâng cao vận động ý khí bên trong, ngược lại thúc đẩy động tác bên ngoài.</p>
+<p><span id="p27" class="page-anchor"></span>· 7 · Do Thái Cực Quyền là vận động ý khí, cho nên người luyện Thái Cực Quyền lâu năm, chỉ cần trong tư tưởng nghĩ đến một bộ vị nào đó, là có thể sinh ra hoạt động của khí. Vì thế, không ít người không tiếc năm tháng sớm tối đi khung, và thường xuyên chỉnh sửa khung, chính là để làm được điều này. Sau khi động tác Thái Cực Quyền đã luyện thành định hình, quá trình hưng phấn và ức chế trong vỏ đại não có thể chuẩn xác thay nhau hoạt động theo trình tự nhất định; đồng thời, cơ bắp cũng có thể co giãn một cách phối hợp, cho dù ngẫu nhiên bị kích thích đột ngột, cũng không khiến động tác phối hợp ấy bị tổn hại. Làm được điều này, chứng tỏ giữa hoạt động của cơ bắp và khí quan nội tạng đã thiết lập được quan hệ phối hợp vô cùng bền vững, chỉ cần ý đáo khí tựu đáo, khí đáo kình dã đáo.</p>
+<p><strong>ii. Sự thực hiện vận động ý khí</strong></p>
+<p>Còn phải chỉ ra rằng, về dụng ý khí, Thái Cực Quyền và tĩnh công (tọa công, trạm công và ngọa công) là giống nhau, đều chú trọng luyện ý và luyện khí. Nhưng Thái Cực Quyền là luyện trong hành động (động trung cầu tĩnh), cho nên gọi là vận động ý khí; mà tĩnh công thì không có hành động, đơn độc cầu tĩnh, vì thế hai cái không thể lẫn lộn.</p>
+<p>Chính vì Thái Cực Quyền là nội ngoại câu luyện, động trung cầu tĩnh, cho nên muốn làm tốt vận động ý khí bên trong, ắt phải thể hiện tốt thần khí cổ đãng bên ngoài. Như trong "Hành Công Tâm Giải" nói: "Hình như cốt bắt thố, thần tự bộ thử chi miêu". Mà muốn làm được công phu nội ngoại tương hợp và giao tương đoán luyện này, thì phải làm được yêu cầu của bảy đặc điểm dưới đây trong chương này, cũng có nghĩa là chỉ có thực hiện bảy đặc điểm dưới đây, đặc điểm Thái Cực Quyền là vận động ý khí này mới có thể thực hiện. Nói cách khác, đặc điểm tuy chia làm tám, nhưng trên thực tế cùng ở trong một chỉnh thể thống nhất, có liên hệ nội tại, tách ra nói chỉ là để cho tiện mà thôi.</p>
+<p>Trước khi trình bày kỹ bảy đặc điểm còn lại, xin nói vắn tắt vai trò của bảy đặc điểm này đối với việc quán triệt đặc điểm vận động ý khí.</p>
+<p><span id="p28" class="page-anchor"></span>Đặc điểm hai — vận động đàn hồi, tức là thân chi duỗi dài, cũng có thể nói là do duỗi dài · 8 · mà sinh ra kết quả đàn hồi. Tính đàn hồi mềm mại là nhân tố nội tại thúc đẩy cổ đãng thân chi. Nếu không có tính đàn hồi, sẽ khiến động tác cứng nhắc, cũng không thể lại hình thành thần khí cổ đãng ngoại hiển, đương nhiên cũng không thể điều hòa với ý khí động đãng bên trong.</p>
+<p>Đặc điểm ba — vận động xoắn ốc, có thể tăng cường tính khởi phục động đãng của động tác. Nếu động tác thẳng tới thẳng lui, không có phiên chuyển cao thấp, lý ngoại, sẽ không thể dẫn đến khởi phục động đãng của tinh thần, ý khí và thân pháp. Vì thế, phải kết hợp xoay cổ tay chuyển vai, xoay cổ chân chuyển gối và xoay lưng chuyển tích của vận động xoắn ốc thuận nghịch, để làm được Thái Cực kình xoắn ốc liên quán như nhất quán chú vào tất cả động tác. Như vậy, bất động tắc dĩ, động tắc tự nhiên hình thành thế cổ đãng, trở thành hạch tâm động tác để làm tốt vận động ý khí.</p>
+<p>Đặc điểm bốn — điều chỉnh hư thực, là cái gốc của ý khí linh hoán, khiến người ta sinh cảm giác viên hoạt như châu, cũng là nguồn động lực của cổ đãng. Sự biến hoán hư thực thượng tùy hạ và hạ tùy thượng có thể thúc đẩy thần khí và thân pháp hoạt bát vô trệ, thần khí cổ đãng cũng do đó mà sinh. Nếu thượng hạ không thể tương tùy, hư thực không biết điều chỉnh, sẽ không thể đạt trung chính vô thiên của nội kình. Nội kình thiên thì khiến nội kình và thân pháp nghiêng về một bên, mất yêu cầu chi trì bát diện. Muốn khiến thần khí được cổ đãng trong tư thế nội kình nghiêng về một bên là điều không dễ đạt được.</p>
+<p>Đặc điểm năm (tiết tiết quán xuyến) và đặc điểm sáu (nhất khí a thành), thực chất là hai giai đoạn của một đặc điểm; cái trước chỉ trong một thức quyền yêu cầu các khớp chính của toàn thân hình thành một con rồng quán xuyến, khiến từng tiết từng tiết lần lượt đi qua; cái sau là khi luyện toàn bộ khung phải quyền giá nhất thức tương liên bất đoạn nhất khí a thành, để mở rộng lượng vận động, đạt yêu cầu cụ thể tiết tiết cổ đãng. Nếu không thể tiết tiết quán xuyến, sẽ sinh đoạn kình, kình đoạn thì không có cổ đãng để nói. Nếu không thể nhất khí a thành, thì đoạn nhi bất liên, bất liên thì các thức quyền hình thành cô lập mà không thể nhất khí cổ đãng. Vì thế, hai đặc điểm này làm không tốt thì không thể khiến thần khí cổ đãng làm tốt, cho nên chúng tương quan thiết yếu.</p>
+<p><span id="p29" class="page-anchor"></span>· 9 · Đặc điểm bảy (cương nhu tương tế) và đặc điểm tám (khoái mạn tương gian) là hai đặc điểm thống nhất mâu thuẫn của hai mặt đối lập, cũng là đặc điểm về kỹ thuật nhất định phải có để làm được thần khí cổ đãng. Không có sự giao triền nhất thể của khoái mạn và cương nhu này, thì không dễ khiến mấy đặc điểm trước phối hợp chặt chẽ, khởi phục động đãng. Do hai đặc điểm này yêu cầu làm được "nhu nhi mạn", "cương nhi tốc", yêu cầu cương tốc nổi lên như đầu sóng đẩy tới, nhu mạn nổi lên như đuôi sóng rút lui, cho nên giao triền lẫn nhau như vậy sẽ hình thành tác dụng đẩy tiến thao thao bất tuyệt. Tác dụng của cương nhu tương tế và khoái mạn tương gian này, về thể dục có thể làm được hành khí nhu mạn và động tác điểm rơi cương khoái, khiến khí hành khắp thân khu, không đến nỗi có chút thái độ si ngốc; về kỹ kích có thể "động cấp tắc cấp ứng, động hoãn tắc hoãn tùy", có thể làm được tẩu của "nhân cương ngã nhu" và niêm của "nhân nhu ngã cương". Hai đặc điểm này có thể thúc đẩy vận động ý khí bên trong và thần khí cổ đãng ngoại hiển tiến đến đỉnh cao động đãng.</p>
+<p>Từ đây có thể biết, đặc điểm một là đặc điểm thống hạt các đặc điểm khác, nhưng đồng thời nó lại phải dựa vào sự giúp đỡ của bảy đặc điểm khác mới có thể thực hiện. Quan hệ giữa chúng, như mẫu đơn và lá xanh, tương phụ tương thành, lại tương hỗ chế ước, tương hỗ thúc đẩy. Đây là điều khi mới học quyền nhất định phải biết.</p>
+<p>Để tiện nắm vững đặc điểm thứ nhất, khái quát yếu lĩnh thành mấy điểm dưới đây.</p>
+<p>(1) Khi luyện quyền, ý phải luôn quán chú vào động tác, dĩ ý hành khí, không được chỉ lo mặc tưởng nội khí vận hành như thế nào.</p>
+<p>(2) Khi luyện quyền, động tác phải thuận toại, trầm trước, khi kình vận đến điểm cuối phải biểu hiện ra kình biệt, đây là ba biện pháp khiến ý khí được cổ đãng.</p>
+<p>(3) Nắm chắc thần khí cổ đãng ngoại hiển, để làm được bất si bất ngốc, và ngược lại thúc đẩy vận động ý khí bên trong.</p>
+<p>(4) Khéo vận dụng bảy đặc điểm khác, để phối hợp nâng cao vận động ý khí.</p>
+<p><span id="p30" class="page-anchor"></span>· 10 · <strong>Đặc điểm thứ hai · Vận động đàn hồi của thân chi duỗi dài</strong> Quyền phổ quy định:</p>
+<p>(1) "Hư lĩnh đính kình, khí trầm đan điền";</p>
+<p>(2) "Hàm hung bạt bối, trầm kiên trụy trửu";</p>
+<p>(3) "Tùng yêu viên đang, khai khóa khuất tất";</p>
+<p>(4) "Thần tụ khí liễm, thân thủ phóng trường".</p>
+<p>Từ bốn điều quy định trên có thể thấy, hư lĩnh đính kình và khí trầm đan điền là thân khu phóng trường, hàm hung bạt bối là lấy tiền hung làm trụ cột để phóng trường hậu bối; trầm kiên trụy trửu là thủ tý phóng trường; tùng yêu viên đang và khai khóa khuất tất, đồng thời khiến thối bộ được viên hoạt xoay chuyển, là kết quả của thối bộ phóng trường trong tư thế đặc định này. Cho nên bộ pháp của Thái Cực Quyền phải trong tư thế viên đang tùng yêu và khai khóa khuất tất mà dùng xoay cổ chân chuyển thối để đảo hoán hư thực. Nhìn bề ngoài, là biểu hiện của kình triền ty ở thối, kỳ thực bên trong thúc đẩy thối phóng trường. Một loạt phóng trường này lại thúc thành toàn thân phóng trường; khiến thân chi không những sinh ra tính đàn hồi, hình thành bồng kình, mà còn do toàn thân phóng trường, thúc đẩy tinh thần cũng có thể tự nhiên đề khởi. Vì thế, chỉ cần có tư thế phóng trường, sẽ không dễ phát sinh tật bệnh nỗ trách cổ kình (chuyết lực), cung cấp điều kiện cho tùng khai tự nhiên và thân thủ phóng trường. Cho nên vận động đàn hồi của thân chi duỗi dài trở thành đặc điểm thứ hai của Thái Cực Quyền.</p>
+<p><strong>i. Thân chi phóng trường</strong></p>
+<p>Như trên đã nói, luyện Thái Cực Quyền thân chi phải phóng trường, để tăng cường tính đàn hồi của toàn thân; có tính đàn hồi rồi, mới có thể tiến thêm thành bồng kình. Điều này có nghĩa là, bồng kình sinh từ tính đàn hồi, tính đàn hồi sinh từ thân chi phóng trường. Còn thân thể các bộ phóng trường như thế nào, nay theo quyền phổ trình bày như sau.</p>
+<p><span id="p31" class="page-anchor"></span>· 11 · (1) Hư lĩnh đính kình và khí trầm đan điền — cái gọi là đính kình hư lĩnh là đem đính kình hư hư lĩnh khởi lên trên, khí trầm đan điền là đem khí trầm xuống nhập đan điền; hai cái tổng hợp lại, về ý thức có ý đồ kéo ra theo hướng tương phản, điều này khiến thân khu có cảm giác phóng trường.</p>
+<p>(2) Hàm hung bạt bối — hàm hung yêu cầu hung bộ vừa không ưỡn ra, cũng không lõm vào, khiến hung thành trụ cột cho tích bối bạt trường, vì trong lực học thanh chịu nén không cho phép bị uốn cong. Tích bối dựa vào trụ cột này để bạt trường, đây chính là bạt trường của tích bối. Về điểm này, khi mới học không được nhầm ưỡn hung là bạt bối, vì lưng còng sẽ khiến tiền hung lõm vào, như vậy sẽ khiến tiền hung mất tác dụng trụ cột, không những khiến bối mất tính đàn hồi bạt trường, đồng thời cũng có hại sức khỏe.</p>
+<p>(3) Trầm kiên trụy trửu — tác dụng chính của trầm kiên là làm tí bộ và kiên bộ do hạ tháp mà tiếp chắc. Tí và kiên tiếp chắc, mới khiến tí sinh căn. Đồng thời, do trụy trửu, khiến giữa trửu và kiên bộ đạt phóng trường. Khi thủ tí tiến hành vận động triền ty kiểu xoắn ốc, chính là lấy trụy trửu làm trung tâm. Đồng thời, trụy trửu và tọa oản lại có thể khiến giữa trửu và oản phóng trường. Vì thế, trầm kiên trụy trửu và tọa oản là phóng trường của cả thủ tí.</p>
+<p>(4) Khai khóa khuất tất chi xoay chuyển — đây là phóng trường của thối bộ. Thối đứng trên mặt đất, muốn phóng trường thì tương đối khó khăn. Vì thế, đối với thối bộ nêu ra yêu cầu khai khóa khuất tất, yêu cầu trong tư thế đặc định này (viên đang) dùng vận động kiểu xoắn ốc để biến hoán hư thực, điều này chủ yếu biểu hiện ở xoay chuyển của đầu gối. Như vậy, khi thối bộ xoay ra ngoài, khiến bên ngoài ở trạng thái phóng trường còn bên trong thì thu súc. Xoay chuyển của thối này phối hợp với xoay chuyển của thủ, tí, thân, trở thành xoay chuyển của toàn thân, dần dần tăng lên, có thể đạt kình chỉnh thể nhất thể "kỳ căn tại cước, phát ư thối, chủ tể ư yêu nhi hình ư thủ chỉ".</p>
+<p><span id="p32" class="page-anchor"></span>Tổng xét bốn điều quy định trên, có thể thấy Thái Cực Quyền đối với thân khu, thủ, túc đều có yêu cầu phóng trường. Như vậy, không những do phóng trường mà sinh tính đàn hồi, trở thành cơ · 12 · sở của bồng kình của Thái Cực Quyền, mà còn có thể khiến tinh thần con người tự nhiên đề khởi, không đến nỗi phát sinh cổ kình mà thành bệnh tượng chuyết lực ①.</p>
+<p><strong>ii. Tác dụng sinh lý của thân chi phóng trường</strong></p>
+<p>Cơ bắp khi chịu lực có thể duỗi dài đến mức độ nhất định, nhưng khi ngoại nhân gây ra duỗi dài bị bỏ đi, nó liền lập tức khôi phục nguyên trạng, đây là tính đàn hồi cố hữu của cơ bắp. Vận động thường thấy nói chung chính là rèn luyện và nâng cao tính đàn hồi này. Theo sinh lý học cơ thể người, sự thu súc và phóng trường đàn hồi này của cơ bắp có thể có bốn tác dụng sau:</p>
+<p>(1) Có thể khiến năng lực thu phóng của bản thân cơ bắp được rèn luyện tốt, có thể khiến mạng lưới mao mạch huyết dày đặc trong cơ bắp thông suốt.</p>
+<p>(2) Có thể tăng cường tân trần đại tạ của tế bào tổ chức, kích thích mọi quá trình sinh mệnh trong cơ thể.</p>
+<p>(3) Có thể tăng cường tác dụng trao đổi khí của cơ bắp và mọi khí quan tổ chức khác.</p>
+<p>(4) Có thể khiến trong cơ thể được nhiều ô-xy hơn, đồng thời còn có thể nâng cao tỷ lệ lợi dụng ô-xy của các khí quan tổ chức.</p>
+<p>Thái Cực Quyền không phải là một loại vận động thân chi đơn thuần; cái nó biểu hiện ra bên ngoài là thần thái cổ đãng, tư thế vô cùng phức tạp đa biến, cái ẩn bên trong là thần tụ khí liễm, "dĩ tâm hành khí", điều này đã nói rõ kỹ trong đặc điểm thứ nhất. Ngoài ra, Thái Cực Quyền không những nội ngoại câu luyện, mà còn trong tình huống toàn thân chi phóng trường tiến hành vận động triền ty thuận nghịch hình xoắn ốc giảo lai giảo khứ. Như vậy không những khiến tính đàn hồi của bản thân cơ bắp được</p>
+<ul class="posture-list">
+<li>① Phóng trường là khiến trong thân thủ có cảm giác nhỏ mà dài, còn bồng lực sinh ra là do cổ kình khiến trong thân thủ có cảm giác thô mà ngắn. Cho nên thân chi phóng trường tự nhiên không đến nỗi phát sinh cổ kình mà thành bệnh tượng chuyết lực.</li>
+</ul>
+<p><span id="p33" class="page-anchor"></span>· 13 · rèn luyện tốt, mà còn nâng cao tốc độ tuần hoàn máu, do đó có thể tiêu trừ chứng bệnh do huyết hành bị trệ mà sinh ra. Đây là một trong những tác dụng quan trọng do Thái Cực Quyền phóng trường thân chi và đề khởi tinh thần mà có.</p>
+<p>Ngoài ra, vận động đàn hồi của Thái Cực Quyền đối với việc hạ huyết áp cũng có ảnh hưởng rõ rệt, vì trong quá trình thu súc phóng trường của cơ bắp có thể sinh ra tam lân toan và tuyến cam toan v.v. là những sản vật có tác dụng khuếch trương huyết quản. Đồng thời, trong khi tiến hành hoạt động tiết tiết quán xuyến, số lượng mao mạch huyết mở ra trong cơ bắp tăng lên gấp nhiều lần, như vậy cũng mở rộng tiết diện ngang của huyết quản câu thông, do đó có thể khiến huyết áp hạ xuống. Ngoài ra, khi luyện quyền do cơ bắp lặp đi lặp lại phóng trường và khôi phục, cho nên huyết quản không dễ xơ cứng. Đặc biệt là dưới sự phối hợp của vận động xoắn ốc giảo lai giảo khứ, càng có thể phòng ngừa huyết quản xơ cứng. Người luyện Thái Cực Quyền lâu năm nhiều năm khi luyện quyền sẽ cảm thấy huyết quản trên lưng và trong tứ chi dường như đã mở rộng, khi động tác nổi lên khiến người ta cảm thấy nhẹ nhàng thoải mái; nếu cách một thời gian không luyện, sẽ có một cảm giác bế tắc. Sự sinh ra hiện tượng này chính là do số lượng mao mạch huyết mở ra tăng giảm mà có.</p>
+<p><strong>iii. Tám môn kình biệt và kình bồng đàn hồi</strong></p>
+<p>Thái Cực Quyền yêu cầu dụng ý bất dụng chuyết lực, nhưng không phải nói dụng ý bất dụng kình, vì Thái Cực Quyền chính là do tám môn kình cấu thành. Tám môn kình đều có tính đàn hồi phóng trường, cho nên gọi là "kình" mà không gọi là "lực". Tên gọi tám môn kình tuy có khác nhau, nhưng thực chất chỉ là một bồng kình, bảy kình còn lại chỉ là do phương vị và tác dụng khác nhau mà có tên gọi khác mà thôi. Cho nên Thái Cực Quyền cũng có thể gọi là quyền bồng kình. Nay phân tích nội dung tám môn kình như sau, để nắm vững hơn đặc điểm thứ hai.</p>
+<p>(1) Dưới toàn động, lòng bàn tay do trong hướng ra ngoài triền ty, gọi là bồng kình;</p>
+<p>(2) Dưới toàn động, lòng bàn tay do ngoài hướng vào trong triền ty, gọi là lãm kình;</p>
+<p>(3) Hai tay đồng thời đem bồng kình giao xoa hướng ra ngoài bồng ra, gọi là tễ kình;</p>
+<p><span id="p34" class="page-anchor"></span>· 14 · (4) Bồng kình hạ xuống khi lòng bàn tay hướng xuống vòng triêm một điểm mà không lìa, gọi là án kình;</p>
+<p>(5) Bồng kình hai tay giao xoa phân đôi ra tả hữu, tiền hậu, gọi là thái kình;</p>
+<p>(6) Kình quyển súc bồng kình lại, trong khoảng cách ngắn bỗng nhiên run lên mà bắn ra, gọi là liệt kình;</p>
+<p>(7) Khi cổ tay đã ra khỏi vòng phương viên, dùng bồng kình của tuyến phòng thủ thứ hai bồng ra, gọi là trửu kình;</p>
+<p>(8) Khi trửu đã ra ngoài vòng phương viên, dùng bồng kình của thân bộ là tuyến phòng thủ thứ ba bồng ra, gọi là kháo kình.</p>
+<p>Tổng hợp những điều đã nói trên, rốt cuộc quy căn, trong đó chủ yếu luyện là bồng kình. Bồng kình là một loại "kình lò xo" mềm mại không dứt. Đây là vấn đề trước tiên cần làm cho rõ.</p>
+<p><strong>iv. Nắm vững vận động đàn hồi (bồng kình)</strong></p>
+<p>(1) Muốn luyện bồng kình, trước tiên phải tồi hủy tính cứng cương sẵn có trên thân người — phàm là động tác, ví dụ cầm một vật nặng lên, đều phải dùng lực, lâu ngày dài tháng sẽ khiến con người từ thuở ấu niên đã hình thành thói quen cổ kình cầm nặng và nâng nặng. Cổ kình chính là nỗ trách, lại gọi là chuyết kình, mà cái Thái Cực Quyền cần lại là kình lò xo toàn thân phóng trường. Vì thế, luyện Thái Cực Quyền nên chia làm hai giai đoạn: trước tiên là giai đoạn tiêu trừ cổ kình; sau đó là giai đoạn sinh trưởng kình lò xo mới. Cựu kình bất khứ, tân kình bất sinh, cho nên quyền luận nói: "Vận động như bách luyện cương, hà kiên bất tồi ①". Điều này có nghĩa là phải trải qua ngàn chùy trăm luyện hoàn toàn không dùng chuyết lực, và trong đủ loại tư thế phóng trường và tùng khai khác nhau tiến hành nhu động giảo lai giảo khứ, mới có thể đạt đến mức vô cùng nhu nhuyễn, mới có thể tồi khứ nhân thân</p>
+<ul class="posture-list">
+<li>① "Hành Công Tâm Giải" là một văn kiện lý luận chỉ đạo đi khung, không phải là chuẩn tắc chỉ đạo hai người thôi thủ.</li>
+</ul>
+<p><span id="p35" class="page-anchor"></span>· 15 · cựu hữu đích cương kình, cũng có nghĩa là chỉ cần vận động như bách luyện cương, thì bất cứ cương kình nào cũng có thể tồi khứ vô di. Đây là tổng kết kinh nghiệm của tiền bối quyền sư, cho nên hóa ngạnh vi nhu như vậy là giai đoạn tất bất khả thiểu, khi mới học chớ nên coi nhẹ. Thời gian của giai đoạn này càng dài càng tốt, vì chỉ có như vậy mới có thể nhu nhuyễn thấu triệt hơn. Nếu không, nhu nhuyễn không thấu, tương lai khó tránh khiến người luyện tập dừng lại trong khuyết điểm nhu thiểu cương đa không dễ đạt cân bằng.</p>
+<p>(2) Bồng kình không phải là kình cố hữu của nhân thân — ở trên đã nói, trong tám môn kình thì bồng kình là cơ bản. Bồng kình sinh từ tính đàn hồi; loại kình đàn hồi này không chỉ là tính đàn hồi của bản thân cơ bắp, mà là trên cơ sở tính đàn hồi của cơ bắp, đem cốt cách nhận đới v.v. liên hợp phóng trường với cơ bắp mà luyện ra. Cho nên nói nó không phải kình cố hữu của nhân thân, mà là kình phải trải qua luyện lâu mới có thể sinh ra. Sự phát triển của nó là từ vô đến hữu, từ hữu đến cường. Muốn luyện tập bồng kình đàn hồi này, nên theo bốn điều quy định trên của quyền phổ mà cố gắng làm. Yếu lĩnh then chốt của nó vẫn là trước tiên bắt đầu từ dụng ý, khiến trên tư tưởng có ý tứ phóng trường. Vận dụng như vậy đã lâu, lại phối hợp với phóng trường cụ thể trên thân chi, may ra không đến nỗi phát sinh lệch lạc.</p>
+<p>(3) Thần tụ khí liễm là cơ sở tăng cường tính đàn hồi và nâng cao bồng kình — trong tình huống thân chi phóng trường, khiến tinh thần con người đề khởi mà tập trung, khí trầm mà nội liễm, đây là một hiện tượng tự nhiên sinh ra. Ngược lại, cũng có nghĩa là, chỉ cần thần tụ khí liễm, là có thể dẫn đạo trên ý thức có thần thái phóng trường, thúc đẩy thân chi phóng trường, từ đó nâng cao tính đàn hồi và tăng cường bồng kình. Trong khoảnh khắc thần tụ khí liễm, quần cơ bắp sẽ càng thu súc đầy đủ hơn, đồng thời quần cơ phản kháng thì càng tùng khai đầy đủ hơn; do đó trải qua rèn luyện tùng khai và thu súc lâu dài, cũng tự nhiên tăng cường tính đàn hồi của các bộ phận thân chi, đồng thời cũng nâng cao tố chất thân thể.</p>
+<p>Để tiện nắm vững đặc điểm thứ hai, khái quát yếu lĩnh thành năm điểm dưới đây.</p>
+<p>(1) Thái Cực Quyền chủ yếu là luyện tập bồng kình, bồng kình sinh từ tính đàn hồi, tính đàn hồi tắc sinh · 16 · do thân chi phóng trường, cho nên phải chú ý phóng trường của thân chi.</p>
+<p>(2) Phóng trường của thân khu và thượng bộ, nhất định phải là hư lĩnh đính kình, khí trầm đan điền và hàm hung bạt bối.</p>
+<p>(3) Phóng trường của thủ túc, nhất định phải là trầm kiên trụy trửu, tùng yêu viên đang và xoay chuyển khai khóa khuất tất.</p>
+<p>(4) Khi luyện tập bồng kình, trước cầu miên nhuyễn để khử cựu lực (chuyết lực), đồng thời phóng trường để sinh trưởng tân kình đàn hồi.</p>
+<p>(5) Chỉ có thần tụ khí liễm mà luyện quyền, mới là nhân tố nội tại tăng cường bồng kình.</p>
+<p><strong>Đặc điểm thứ ba · Vận động xoắn ốc triền ty thuận nghịch</strong></p>
+<p>Quyền phổ quy định:</p>
+<p>(1) "Vận động như trừu ty";</p>
+<p>(2) "Vận động như triền ty";</p>
+<p>(3) "Nhậm quân khai triển dữ thu liễm, thiên vạn bất khả ly Thái Cực";</p>
+<p>(4) "Diệu thủ nhất vận nhất Thái Cực, tích tượng hóa hoàn quy ô hữu".</p>
+<p><span id="p36" class="page-anchor"></span>Từ bốn điều quy định trên có thể thấy, vận động Thái Cực Quyền nhất định phải có hình dạng như trừu ty. Trừu ty là xoay chuyển mà trừu ra, vì trực trừu trong xoay chuyển, tự nhiên hình thành một hình dạng xoắn ốc, đây là sự thống nhất của mặt đối lập khúc trực. Còn triền ty kình hay trừu ty kình đều chỉ ý tứ này. Vì trong quá trình triền, thân súc kỳ tứ chi đồng dạng sẽ sinh ra một hình tượng xoắn ốc, cho nên quyền luận nói, bất luận động tác lớn khai triển hay động tác nhỏ khẩn thấu, ngàn vạn lần không được lìa khỏi Thái Cực kình thống nhất của mặt đối lập này. Luyện thuần thục rồi, vòng triền ty này càng luyện càng nhỏ, đạt đến hữu viên bất kiến viên · 17 · đích cảnh giới, đến lúc đó thì thuần dĩ ý tri ①, cho nên vận động xoắn ốc thống nhất của mặt đối lập triền ty thuận nghịch trở thành đặc điểm thứ ba của Thái Cực Quyền.</p>
+<p><strong>i. Thực chất của vận động như triền ty</strong></p>
+<p>Thái Cực Quyền nhất định phải vận động như triền ty, hoặc nói vận động như trừu ty. Hai loại ví von hình tượng này đều nói rằng, hình tượng của vận động như xoắn ốc. Đồng thời, xoắn ốc này lại phải đi đường hồ tuyến, giống như viên đạn sau khi qua đường rãnh xoắn trong nòng súng, khi nó vận động trong không gian, vừa có xoay chuyển tự thân hình xoắn ốc, vừa có đường vận động hình pa-ra-bôn. Kình triền ty của Thái Cực Quyền phải có hình tượng này.</p>
+<p>Ở trên đã nói rõ ý nghĩa vận động phải như triền ty, vậy trong vận động thực tế nên vận hành như thế nào? Nói ra vô cùng tầm thường mà đơn giản, chính là dưới yêu cầu nhất động toàn động, khi động tác lòng bàn tay do trong hướng ra ngoài phiên hoặc do ngoài hướng vào trong phiên ②, khiến nó hình thành hình tượng thái cực đồ (như hình 1). Đồng thời, do lòng bàn tay phiên trong phiên ngoài, biểu hiện ở thượng chi là xoay oản chuyển bàng, biểu hiện ở hạ chi là xoay cổ chân chuyển thối ③, biểu hiện ở thân khu là xoay lưng chuyển tích. Ba giả kết hợp lại, hình thành một đường cong xoay chuyển không gian căn tại cước, chủ tể ư yêu nhi hình ư thủ chỉ. Đây là yêu cầu Thái Cực Quyền nhất định phải làm được. Vì thế quyền phổ đặc biệt nêu ra rằng khi luyện quyền bất luận là khai triển phóng khai hay khẩn thấu</p>
+<ul class="posture-list">
+<li>① Tiểu giá tử mà Dương Thiếu Hầu tiên sinh phóng chế những năm cuối đời, chỉ thấy phát kình, không thấy vận động. Đây là biểu hiện cụ thể của vòng vận động nhỏ đến không nhìn thấy, chỉ hiển lộ phát kình ra, là công phu thuần thục khẩn thấu bất kiến viên.</li>
+</ul>
+<ul class="posture-list">
+<li>② Cái gọi là do trong phiên ra ngoài hoặc do ngoài phiên vào trong, đều lấy sự phiên chuyển của ngón trỏ làm chuẩn. Như trong hình 1, tay từ điểm 1 đến điểm 2, lúc này vận động của ngón trỏ là do trong phiên ra ngoài, nên là thuận triền; tay từ điểm 2 đến điểm 3, vận động của ngón trỏ là do ngoài phiên vào trong, nên là nghịch triền.</li>
+</ul>
+<ul class="posture-list">
+<li>③ Sự phân chia triền ty thuận nghịch của thối bộ lấy hướng xoay chuyển của đầu gối làm chuẩn, tức là khi đầu gối do tất nội đảo vãng tiền chuyển do ngoại hướng hạ tà triền, hoặc do tất ngoại vãng hậu chuyển do nội hướng thượng tà triền, đều là thuận triền. Khi đầu gối do tất ngoại vãng tiền chuyển do nội hướng thượng tà triền, hoặc do tất nội vãng hậu chuyển do ngoại hướng hạ tà triền, đều là nghịch triền.</li>
+</ul>
+<p><span id="p37" class="page-anchor"></span>· 18 · (Giáp) Đồ thị triền ty tay trái　　(Ất) Đồ thị triền ty tay phải Thuyết minh: 1. Đoạn đường liền nét là thuận triền ty, đoạn đường đứt nét là nghịch triền ty. 2. Các điểm được ghi trong hình đều là điểm chuyển hoán của triền ty.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F1</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig037-L0F1.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig037-L0F1.jpg" alt="图 L0F1" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị triền ty thuận nghịch: (Giáp) đồ thị triền ty tay trái; (Ất) đồ thị triền ty tay phải. Đoạn đường liền nét là thuận triền ty, đoạn đường đứt nét là nghịch triền ty, các điểm được ghi trong hình đều là điểm chuyển hoán của triền ty.</div>
+</div>
+<p><span id="p38" class="page-anchor"></span>· 19 · thu liễm, đều không được trong khoảnh khắc lìa khỏi Thái Cực kình của "phiên chuyển lòng bàn tay" và "xoay oản chuyển bàng", điều này giống như trái đất vòng quanh mặt trời vận chuyển theo đường hồ tuyến, đồng thời bản thân trái đất còn tự chuyển xoay chuyển. Cho nên, Thái Cực kình không phải là một vòng tròn trên mặt phẳng, mà là xoắn ốc lập thể tăng lên.</p>
+<p><strong>ii. Tác dụng của vận động xoắn ốc kiểu triền ty</strong></p>
+<p>Khi luyện quyền nếu tay là duỗi thẳng tùy triền mà không phiên chuyển lòng bàn tay, thối là tiền cung hậu tọa mà không có tả hữu xoay chuyển phối hợp, sẽ phát sinh khuyết điểm "đính kháng" tỷ lực (như hình 2). Để sửa chính khuyết điểm này, ắt phải dùng kình xoắn ốc. Vì bán kính độ cong của xoắn ốc là biến hóa; bất cứ áp lực nào đè trên thanh xoắn ốc này, đều có thể rất tự nhiên đem áp lực do xoay chuyển lạc không mà bị hóa khứ. Đây là phương pháp hóa kình khoa học. Từ hình 3 có thể thấy tác dụng của nó.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F2</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig038-L0F2.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig038-L0F2.jpg" alt="图 L0F2" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị vận động cung tuyến một chiều: vận động hình cung thẳng tới thẳng lui, áp lực đối lập với hướng đẩy ra, do đó sinh ra đính kháng (chữ nhỏ trong hình ghi "áp lực" và "sản sinh đính kháng").</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F3</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig038-L0F3.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig038-L0F3.jpg" alt="图 L0F3" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị vận động trừu ty xoắn ốc: vận động trừu ty trên thanh xoắn ốc, áp lực có thể do xoay chuyển mà lạc không.</div>
+</div>
+<p class="display-line">Hình 2 · Đồ thị vận động cung tuyến một chiều　　Hình 3 · Đồ thị vận động trừu ty xoắn ốc</p>
+<p><span id="p39" class="page-anchor"></span>Triền ty kiểu xoắn ốc của Thái Cực Quyền là do lai của tên gọi quyền "Thái Cực". Loại vận động kiểu xoắn ốc này là phương thức vận động kiểu Trung Quốc độc đáo, hiếm thấy trên thế giới. Về thể dục · 20 · phương diện đoán luyện, nó có thể thúc đẩy toàn thân tiết tiết quán xuyến ① địa thôi kình, và do đó tiến đến cảnh giới nhất động vô hữu bất động của nội ngoại tương hợp. Điều này đối với khí quan nội tạng có thể khởi một tác dụng mát-xa. Đồng thời, khiến thần khí hiển ra bên ngoài phát sinh cổ đãng, do đó kiện cường vỏ đại não, từ đó có thể tiến thêm một bước tăng cường toàn thân nhất thiết tổ chức khí quan.</p>
+<p>Thứ đến, về phương diện kỹ kích, tác dụng của triền ty kình cũng lớn. Hạch tâm kỹ kích của Thái Cực Quyền là công phu hiểu kình "tri kỷ tri bỉ" và "tri cơ tri thế". Hiểu kình có thể chia làm hai phương diện: một là vì mình hiểu kình, tức hiểu kình của động tác mình, phải từ đi khung mà có được; hai là vì người hiểu kình, tức hiểu kình của người khác, phải từ thôi thủ mà có được. Muốn cầu tri nhân, tất tiên tri kỷ, đây là quá trình nhận thức sự vật. Muốn khiến "tri kỷ" của đi khung đạt cảnh giới cao độ thuần thục, thì phải luyện thành công phu chu thân nhất gia. Công phu chu thân nhất gia là do nội ngoại tương hợp và tiết tiết quán xuyến mà luyện thành, mà hai giả này đều sinh từ động tác triền ty kiểu xoắn ốc. Vì thế về phương diện kỹ kích, triền ty kình cũng vô cùng trọng yếu.</p>
+<p><strong>iii. Các loại kình triền ty và yếu lĩnh của chúng</strong></p>
+<p>Kình triền ty của Thái Cực Quyền theo tính năng có thể chia làm hai loại triền ty cơ bản: một loại là thuận triền ty khi lòng bàn tay do trong phiên ra ngoài, phần lớn trong thuận triền ty là bồng kình (như đoạn đường liền nét trong hình 1); một loại khác là nghịch triền ty khi lòng bàn tay do ngoài phiên vào trong, phần lớn trong nghịch triền ty là lãm kình (như đoạn đường đứt nét trong hình 1). Hai loại triền ty này tồn tại trong mọi quá trình vận động của Thái Cực Quyền, và quán xuyến thủy chung. Vì thế, trong mọi động tác cũng đều bao hàm sự biến hóa tương hỗ của hai kình bồng lãm; chúng là mâu thuẫn cơ bản trong vận động, đồng thời lại tương hỗ chuyển hóa trong nhất nguyên. Dưới hai triền ty cơ bản này, do phương vị bất đồng và biến hoán các dị, lại phân ra năm đôi triền ty phương vị bất đồng</p>
+<ul class="posture-list">
+<li>① Tiết tiết quán xuyến là đặc điểm thứ năm của Thái Cực Quyền.</li>
+</ul>
+<p><span id="p40" class="page-anchor"></span>· 21 · (như hình 4). Phương vị triền ty của tả hữu và thượng hạ hợp thành một vòng tròn chỉnh, đồng thời kết hợp lý ngoại, khiến vòng tròn mặt phẳng biến thành vòng tròn lập thể, đây chính là đặc sắc tất cụ của vận động xoắn ốc kiểu Thái Cực. Thứ đến, để khi luyện quyền có tả hữu phùng nguyên, liên tùy ư nhân Hình 4 · Đồ thị mười hai triền ty kình biệt — đây là đồ cấu trúc: thuận triền ty / cơ bản triền ty / nghịch triền ty → phương vị triền ty → tả hữu triền ty · thượng hạ triền ty · lý ngoại triền ty · đại tiểu triền ty · tiến thoái triền ty.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F4</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig040-L0F4.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig040-L0F4.jpg" alt="图 L0F4" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị mười hai triền ty kình biệt: lấy "cơ bản triền ty" chia thành "thuận triền ty" và "nghịch triền ty", dưới quyền thống hạt "phương vị triền ty", lại chia thành năm đôi triền ty phương vị: tả hữu triền ty, thượng hạ triền ty, lý ngoại triền ty, đại tiểu triền ty, tiến thoái triền ty.</div>
+</div>
+<p>và tiết tiết quán xuyến như chu thân nhất gia, lại có sự phối hợp của hai đôi triền ty phương vị đại tiểu, tiến thoái, để thỏa mãn nhu cầu đặc thù trên kiện thân và kỹ kích. Vì thế, mỗi một thức quyền của Thái Cực Quyền, trên cơ sở thuận nghịch cơ bản triền ty, ít nhất phải có ba đôi triền ty phương vị kết hợp lại để tiến hành vận động. Chỉ cần nắm vững quy luật này, là có thể khiến động tác khi vạch đường hồ tiến hành vận động có nhất định y cứ, bất luận là học tập hay sửa chính quyền thức, cũng liền dễ dàng hơn nhiều. Khi luyện quyền nếu cảm thấy một động tác nào đó có chỗ bất đắc thế và bất đắc kình, có thể căn cứ chỗ bất thuận toại của triền ty mà dịch chuyển một chút yêu thối, để cầu được thuận toại, liền có thể khiến tư thế được sửa chính. Cho nên nắm vững triền ty, chính là nắm vững công cụ tự sửa chính. Nay cử ví dụ để nói rõ tác dụng của nó.</p>
+<p><span id="p41" class="page-anchor"></span>(1) "Vân thủ" — thức quyền này, trong thập tam thế là thức duy nhất bao hàm song thuận chuyển song nghịch tả hữu đại triền ty. Khi vận động, cơ bản triền ty của hai tay là thuận triền ty khi lòng bàn tay do trong hướng ra ngoài, chuyển thành nghịch triền ty do ngoài hướng vào trong; phương vị triền ty của nó là tả hữu, thượng hạ và hơi hướng lý ngoại. Tả hữu, thượng hạ là một vòng tròn mặt phẳng, nếu · 22 · lại khiến vạch vòng hơi hướng lý ngoại, liền có thể thành một vòng tròn lập thể của đường cong không gian, có thể đạt công dụng khí thiếp tích bối.</p>
+<p>(2) "Bạch hạc lượng sí" — cơ bản triền ty của nó là nhất thuận nhất nghịch, là một loại triền ty tương đối nhiều trong giá tử; phương vị triền ty của nó là tả hữu, thượng hạ và lý ngoại. Vì nhất thuận nhất nghịch, ở tay trái là nghịch triền ty hướng vào trong, hướng xuống, ở tay phải là thuận triền ty hướng ra ngoài, hướng lên, hai giả hợp lại, dưới yêu cầu lưỡng bác tương hệ ① trở thành một "hữu thuận tả nghịch phân bồng viên" của hữu thượng, tả hạ.</p>
+<p>Các ví dụ trên nói rõ, các thức quyền của Thái Cực Quyền tuy hoa dạng phồn đa, chuyển hoán các biệt, nhưng phân tích từ cơ bản triền ty của nó thì vô cùng đơn giản. Tất cả quyền thức đều không ngoài ba loại tổ hợp "song thuận triền ty", "song nghịch triền ty" và "nhất thuận nhất nghịch triền ty". Nếu theo cách này thường xuyên phân tích và suy ngẫm giá tử mình thường đi, và liệt biểu thành ra, liền có thể trở thành y cứ luyện tập của mình. Có y cứ này rồi, thì có thể phân thanh kình biệt, làm được nội ngoại tương hợp và tiết tiết quán xuyến, trên cơ sở nâng cao tính đàn hồi đạt yêu cầu tư thế chính xác.</p>
+<p><strong>iv. Nắm vững vận động xoắn ốc</strong></p>
+<p>Đặc điểm ba là do lai của tên quyền Thái Cực, tác dụng của nó đã như trên. Cho nên tiền nhân để khiến hậu học giả làm tốt vận động như triền ty, đã làm chuyên luận trong "Thái Cực Quyền Luận", đây là một thiên tổng kết thực tiễn của vận động. Trong đó, phần thứ nhất luận thuật kình triền ty. Muốn nắm vững đặc điểm ba, chỉ cần theo phần này mà tỷ chiếu luyện tập, và làm y cứ kiểm tra giá tử mình thường ngày, liền có thể có được tư thế và động tác chính xác. Nay đem</p>
+<ul class="posture-list">
+<li>① Lưỡng bác tương hệ là khi vận động, hai cánh tay dường như có một sợi dây ràng buộc lẫn nhau, khi một cánh tay động, cánh tay kia cũng có thể trong điều kiện khiến sợi dây cơ bản duy trì căng chặt, đi theo vận động; cũng có nghĩa là, phải khiến hai cánh tay bên trong thủy chung hàm hữu bồng kình căng mở.</li>
+</ul>
+<p><span id="p42" class="page-anchor"></span>· 23 · phần này khái quát giải thích như sau.</p>
+<p>(1) Do tinh thần thực chất nắm vững đặc điểm ba.</p>
+<p>(Giáp) "Nhất cử nhất động, chu thân câu yếu khinh linh" — tinh thần nếu có thể đề khởi, liền có thể không có nỗi lo trì trọng, đây là phương pháp cầu khinh; ý khí nếu có thể linh hoán, thì ý khí sẽ không đến nỗi đãi trệ trên một điểm nào, đây là phương pháp cầu linh. Điểm thứ nhất để nắm vững triền ty kình, chính là trong quá trình vận động chu thân nhất định phải khinh phải linh, như vậy mới có thể cung cấp điều kiện có lợi cho việc làm tốt động tác triền ty.</p>
+<p>(Ất) "Động tác tu tiết tiết quán xuyến" — trong vận động như triền ty, phải khinh linh, càng phải quán xuyến, đây cũng là một khâu trọng yếu trong vận động, khi học tập không được coi nhẹ. Nội dung tường tận của nó, có thể tham khảo đặc điểm thứ năm của chương này.</p>
+<p>(Bính) "Thần nghi cổ đãng, khí nghi nội liễm" ① — nếu tâm ý không thể quán triệt vào trong động tác mà có nghĩ khác, biểu hiện ý si thần ngai, thì thần sẽ không dễ cổ đãng, đồng thời khí cũng không thể nội liễm dĩ tòng tâm, kết quả tạo thành khí thế tán mạn, kình vô hàm súc, thân pháp tán loạn. Vì thế, trước tiên phải đem tâm ý quán triệt vào trong động tác thao thao bất tuyệt và khởi phục bất dĩ, thì thần tự cổ đãng. Thứ đến, phải khiến hô hấp phổi phối hợp vận động. Do thần cổ đãng, khí tự thu liễm mà không đến nỗi tán mạn; khí bất tán mạn, liền có thể do thần đới đầu mà đồng thời động đãng khởi lên.</p>
+<p>Tổng xét ba yêu cầu trên, có thể nói "vận động khinh linh dữ quán xuyến, thần khí cổ đãng dữ nội liễm" chính là tinh thần thực chất tất phải nắm vững khi nắm vững triền ty kình.</p>
+<p>(2) Do kình biệt nắm vững đặc điểm ba.</p>
+<p>(Giáp) "Vô sử hữu khuyết hãm xứ" — khi vận dụng triền ty kình, bất luận là thuận hay nghịch, đều cốt khiến tám môn kình vận đến trên cung bối của xoắn ốc, tức là trên mặt tiếp xúc của xoắn ốc, tuyệt không được khi thì ở cung bối, khi lại hãm ở trong cung, đây là chỗ triền ty dễ đụng</p>
+<ul class="posture-list">
+<li>① Thần dữ khí khả cổ đãng, diệc khả nội liễm. Cho nên quyền luận nói, "Dục yếu thần khí cổ đãng, tiên yếu đề khởi tinh thần, thần bất ngoại tán".</li>
+</ul>
+<p><span id="p43" class="page-anchor"></span>· 24 · đáo đích khuyết điểm. Nếu nhất kinh hãm tại lý diện, không những tước nhược liễu bồng kình, đồng thời dã hội thất khứ triền ty trung đích ma sát đặc tính. Vì thế, nếu nhất hữu khuyết hãm, kình tựu bất năng đạt đáo xoắn ốc đích tiếp xúc diện thượng, dã tựu thất khứ triền ty kình đích khiên động tác dụng (như hình 5).</p>
+<p>(Ất) "Vô sử hữu a đột xứ" — lộ tuyến vận dụng của triền ty kình, tại sở hữu quá trình trung đô yếu tố đáo khúc tuyến hoãn hòa, hình thành thuận toại đích tư thế; đồng thời, hựu yếu cầu miên nhuyễn nhi phú ư đàn tính, giá thị tiêu diệt a đột đích nhất chủng phương pháp. Tức sử tại phát kình thời, diệc yếu như nhuyễn bì tiên nhất dạng đích suất xuất khứ. Giá dạng, do ư thân thủ phóng trường, thân chi hựu Hình 5 · Đồ thị khuyết hãm triền ty — một chỗ trong thái cực đồ lõm vào trong, bên cạnh ghi "khuyết hãm".</p>
+<p>Hình 6 · Đồ thị a đột trừu ty — đường triền ty xuất hiện nhiều chỗ gấp khúc a đột sắc nhọn và khuyết khẩu.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F5</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig043-L0F5.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig043-L0F5.jpg" alt="图 L0F5" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị khuyết hãm triền ty: một chỗ lõm vào trong của "khuyết hãm" xuất hiện trên đường triền ty.</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F6</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig043-L0F6.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig043-L0F6.jpg" alt="图 L0F6" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị a đột trừu ty: nhiều chỗ gấp khúc a đột sắc nhọn và khuyết khẩu xuất hiện trên đường triền ty.</div>
+</div>
+<p>tượng đả liễu khí đích luân thai, dữ vật tiếp xúc tựu cụ hữu tùy cao trục đê đích niêm tẩu tác dụng. Nhược vận động nhất hữu a đột, tựu sản sinh lăng giác, phát sinh đính kháng đích mao bệnh, tòng nhi sử vận động thất khứ xoắn ốc xoay chuyển đích tác dụng (như hình 6).</p>
+<p>(Bính) "Vô sử hữu đoạn tục xứ" — triền ty đích nhất thiết quá trình, vô luận thị thuận triền hoặc thị nghịch triền, vụ tu nhất triền đáo để. Sở vị "để", nãi thị đáo đạt liễu giá nhất quyền thức biểu hiện kình biệt đích lạc điểm xứ, dã tựu thị tiếp tố hạ nhất thức đích chuyển quan xứ. Đáo liễu thử xứ, do triệp điệt chuyển hoán ① tiếp tố hạ nhất triền ty, tương kình tiếp đáo hạ nhất quyền thức trung. Kình ký bất đoạn, dã tựu vô tu tục. Như triền chí bán đồ tương kình đoạn liễu, nhiên hậu hựu</p>
+<ul class="posture-list">
+<li>① Ý nghĩa triệp điệt khả tường kiến đặc điểm thứ sáu.</li>
+</ul>
+<p>· 25 · tương tha tiếp tục thượng khứ, giá thị yếu bất đắc đích. Nhân vi triền ty hữu liễu đoạn tục, tựu thị nhất cá không khích, giá nhất không khích bất đãn thất khứ ứng hữu đích khiên động tác dụng, thả vi đối phương tạo thành đắc cơ đích cơ hội. Nhân thử, tại vận động triền ty thượng thuyết thị bất duẫn hứa đích (như hình 7). Kỳ thứ, tức sử tại phát kình thời, tuy nhiên khả dĩ hữu đoạn tục, đãn nhưng tu hữu "kình đoạn ý bất đoạn, ý đoạn thần khả tiếp" đích yếu cầu, tức sở vị đoạn nhi phục liên.</p>
+<p>Hình 7 · Đồ thị triền ty bất khả hữu đoạn tục — một vòng đường triền ty, phía trên ghi "đoạn này bất khả hữu đoạn tục", phía dưới ghi "đoạn này bất khả hữu đoạn tục", hai bên ghi "tương quan bộ vị".</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F7</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig043-L0F7.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig043-L0F7.jpg" alt="图 L0F7" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị triền ty bất khả hữu đoạn tục: trên một vòng đường triền ty, đoạn trên và đoạn dưới ghi "đoạn này không được có đoạn tục", hai bên ghi "bộ vị tương quan".</div>
+</div>
+<p>Tổng xét ba mục trên, nói rõ trong quá trình triền ty, cũng có nghĩa là trong quá trình vận động, vạn bất khả phát sinh khuyết điểm khuyết hãm, a đột hoặc đoạn tục. Trong ba khuyết điểm, cho dù phạm một cái, cũng không thể lại phát huy tác dụng ứng hữu của triền ty kình. Đây là vấn đề bất khả hốt thị khi học tập.</p>
+<p>Để tiện nắm vững, nay đem yếu lĩnh khái quát như sau.</p>
+<p>(1) Triền ty kình là do lai mệnh danh của Thái Cực Quyền, không có triền ty kình sẽ không thể khiến kình vòng quanh thân chi tiết tiết thượng thăng, đạt chỉnh chỉnh nhất khí.</p>
+<p>(2) Tu tri "quán xuyến" đích yếu cầu, bất cận thị vận động tu thông quá quan tiết bộ phận, nhi thả hoàn tu sử tha thông quá chỉnh cá quan tiết thượng hạ đích cơ nhục bộ phận, giá thị xoắn ốc triền ty đích tác dụng.</p>
+<p><span id="p44" class="page-anchor"></span>(3) Thái Cực Quyền hữu nhất đối cơ bản triền ty hòa ngũ đối phương vị triền ty thị giáo hòa học Thái · 26 · Thái Cực Quyền đích tối hảo đích công cụ.</p>
+<p>(4) Vận động như triền ty, chỉ hữu tại khinh linh quán xuyến điều kiện hạ tài năng thực hiện; đồng thời, thần khí phương diện tất tu cổ đãng hòa nội liễm.</p>
+<p>(5) Triền ty kình đích vận dụng bất khả sản sinh khuyết hãm, a đột hòa đoạn tục đẳng tam cá khuyết điểm.</p>
+<p><strong>Đặc điểm thứ tư · Vận động hư thực lập thân trung chính, thượng hạ tương tùy</strong></p>
+<p>Quyền phổ quy định:</p>
+<p>(1) "Ý khí tu hoán đắc linh, nãi hữu viên hoạt chi thú, sở vị biến chuyển hư thực tu lưu ý dã."</p>
+<p>(2) "Hư thực nghi phân thanh sở, nhất xứ hữu nhất xứ hư thực, xứ xứ tổng thử nhất hư nhất thực".</p>
+<p>(3) "Lập thân tu trung chính an thư, chi trì bát diện"; "thượng hạ tương tùy nhân nan xâm".</p>
+<p>(4) "Vĩ lư trung chính thần quán đính", "thượng hạ nhất điều tuyến".</p>
+<p><span id="p45" class="page-anchor"></span>Bốn điều quy định trên có thể nói rõ, sở hữu động tác của Thái Cực Quyền đô tất tu phân thanh hư thực. Động tác năng phân thanh hư thực địa chuyển hoán, tựu khả nại cửu bất bì, giá thị tối kinh tế đích nhất chủng động lực hoạt động. Nhân thử, luyện Thái Cực Quyền thời song thủ yếu hữu hư thực, song túc dã yếu hữu hư thực, vưu kỳ trọng yếu đích thị tả thủ hòa tả túc, hữu thủ hòa hữu túc yếu thượng hạ tương tùy địa phân thanh hư thực, dã tựu thị thuyết, tả thủ thực tắc tả túc ứng hư, hữu thủ hư tắc hữu túc ứng thực. Giá thị điều tiết nội kình sử chi bảo trì trung chính đích trung tâm hoàn tiết. Thử ngoại, hình thành lạc điểm đích hư trung yếu hữu thực, thực trung yếu hữu hư, tòng nhi xứ xứ tổng hữu thử nhất hư nhất thực, sử nội kình xứ xứ đạt đáo trung chính bất thiên. Sơ học thời, động tác khả dĩ đại hư đại · 27 · thực, dĩ hậu trục bộ luyện thành tiểu hư tiểu thực, tối hậu đạt đáo nội hữu hư thực nhi ngoại diện bất kiến hữu hư thực đích cảnh giới, giá thị điều chỉnh hư thực đích tối thâm công phu.</p>
+<p>Hư thực linh hoán đích hạch tâm, tại ư ý khí đích linh hoán, đồng thời yếu tại "trung thổ bất ly vị" ① cập nội kình trung chính tình huống hạ lai hoàn thành. Vi thử, luyện quyền thời tất tu "vĩ lư trung chính", "an thư chi trì bát diện", "hư lĩnh đính kình", "thượng hạ nhất điều tuyến" địa tùy thời điều chỉnh hư thực. Sở dĩ lập thân trung chính, thượng hạ tương tùy địa điều chỉnh hư thực tựu thành vi Thái Cực Quyền đích đệ tứ cá đặc điểm.</p>
+<p><strong>i. Hư thực bỉ lệ</strong></p>
+<p>Căn cứ Thái Cực Quyền lý luận, tại nhất thiết động tác nội đô tất tu phân thanh hư thực, sở dĩ luyện quyền thời yếu chú ý sử động tác xứ xứ hữu thử nhất hư nhất thực. Vi liễu tố hảo hư thực đích điều chỉnh, thủ tiên tất tu nhận thanh hư thực đích chính xác hàm nghĩa. Sở vị hư, bất thị toàn vô lực lượng; sở vị thực, diệc phi toàn bộ chiếm sát. Dĩ song túc lai thuyết, hư bất thị tại giá nhất chích cước thượng toàn vô hà trọng, thực diệc phi toàn bộ hà trọng đô phóng tại giá nhất chích cước thượng (đề thối, độc lập hòa giải oản cầm nã đẳng quyền thức lệ ngoại), nhi bất quá thị sử hư bỉ thực đích hà trọng khinh ta. Giá nhất hư thực danh từ đích sản sinh, tại lực học thượng lai thuyết, thị do ư nhân thể tổng hà trọng đích trọng tâm thường hữu thiên di. Đương trọng tâm thiên di đáo hữu biên thời, tắc thành vi hữu túc thực nhi tả túc hư, thiên tả thời, tắc hựu thành vi tả túc thực nhi hữu túc hư (như hình 8). Thượng diện thuyết quá, Thái Cực Quyền động lực bản thân tựu sản sinh ư trọng tâm thiên soa đích đảo hoán trung, như quả một hữu thiên soa, tựu thị thuyết trọng tâm chính bãi tại trung tâm tuyến thượng, na tựu hội hình thành song trọng ②, thất khứ động lực nhi hình thành trệ trọng đích mao bệnh. Thử thời như quả tương song thủ hư hư bồng khởi, tựu</p>
+<ul class="posture-list">
+<li>① Trung thổ bất ly vị, chỉ nhân thể trọng tâm bất ly khai lưỡng thối gian cự ly đích trung gian tam phân chi nhất đích ý tư, tường kiến hình 9.</li>
+</ul>
+<ul class="posture-list">
+<li>② Song trọng thị song túc bất phân hư thực, thành vi song thực; song thủ dã bất phân hư thực, diệc thành vi song thực. Nhân thử thành vi song trọng, dĩ trí ngại ư hư thực trệ trụ, biến hoán bất linh, sở dĩ vi bệnh.</li>
+</ul>
+<p><span id="p46" class="page-anchor"></span>· 28 · khả thành vi song trầm ① đích công thủ, khả sử vận động trọng tân hoạch đắc chuyển hoán đích động lực.</p>
+<p>Hư thực bất thị cố định đích, tha tùy trứ quyền thức biến hóa nhi biến hoán. Tại khai thủy học quyền thời, nghi thái thủ đại hư đại thực đích tư thế, như nhị bát chi bỉ (nhị bát chi bỉ thị chỉ lưỡng cước phụ trọng đích phân phối bỉ lệ, như dĩ toàn thân trọng nhất bách cân vi lệ, tắc nhất cước phụ đam nhị thập cân, lánh nhất cước phụ đam bát thập cân). Tùy trứ công phu đích thục luyện, tựu yếu chuyển vi tiểu hư tiểu thực đích tư thế, như lưỡng cước đích phụ trọng phân phối bỉ lệ vi tứ lục đẳng. Kinh quá giá chủng khẩn thấu công phu dĩ hậu, do ư động độ biến tiểu, tựu khả sử hư thực biến hoán đắc canh gia linh hoạt. Biến hoán linh hoạt đích nội tại căn do, tại ư ý khí chuyển hoán đích linh hoạt, nhân nhi khả dĩ tố đáo bất trệ trụ ư mỗ nhất diện, bất chuyên chú ư mỗ nhất điểm: lệ như mỗ thức ứng chú ý tả thủ, tắc năng hào bất phí lực địa lập tức chuyển đáo tả thủ thượng ②. Giá dạng tựu khả sử nhân tại luyện quyền thời hữu tả hữu phùng nguyên đích cảm giác, sản sinh viên hoạt như châu cổn tại bàn thượng đích thú vị. Tòng tư thế thượng thuyết, tại nhậm hà biến hoán hạ, giai bất năng sử "trung thổ ly vị"; bất ly vị tài năng tiền hậu tả hữu biến hoán nhi bất thụ trở. Nhược thân thể thiên ư nhất biên lai tiến hành biến hoán, tựu tu kinh quá điều chỉnh tài năng linh hoạt quá lai. Giá Hình 8 · Đồ thị trọng tâm thiên di — trong hình ghi: vĩ lư trung chính tuyến, trọng tâm tuyến, tả túc hà trọng 1/2 (hư), hữu túc hà trọng 1/2 (thực), dĩ e biểu thị trọng tâm thiên di.</p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F8</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig046-L0F8.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig046-L0F8.jpg" alt="图 L0F8" loading="lazy"></a>
+  <div class="figure-caption">Đồ thị trọng tâm thiên di: tư thế cung bộ nghiêng thân, ghi "vĩ lư trung chính tuyến", "trọng tâm tuyến", "tả túc hà trọng 1/2 (hư)", "hữu túc hà trọng 1/2 (thực)", dĩ e biểu thị trọng tâm thiên di.</div>
+</div>
+<ul class="posture-list">
+<li>① Song trầm thị song túc tuy vị phân hư thực, tựu thị vi vị hư thực, thành vi song thực, đãn thị song thủ khước thị toàn hư, hoặc thị vi vị hư thực. Giá dạng tựu thành liễu thiên hư, như thập tự thủ, vi thượng hạ tương tùy đích song thực song hư, thị vi song trầm. Thử thời lưỡng thủ lưỡng túc tuy nhiên vi song hư hòa song thực, đãn nhưng nội trung hữu chủ tân chi phân, sở dĩ bất vi bệnh.</li>
+</ul>
+<ul class="posture-list">
+<li>② Giá thị chỉ nhân đích tập quán đa dụng hữu thủ, đãn hữu thời ứng chú ý tả thủ thời, nhưng cựu chú ý đáo hữu thủ thượng.</li>
+</ul>
+<p><span id="p47" class="page-anchor"></span>· 29 · thị nhất cá thất thế đích không khích, tịnh thả nhân vi đa liễu nhất đạo thủ tục, sử hành động chuyển mạn, tọa thất lương cơ. Giá dụng Thái Cực Quyền thuật ngữ lai thuyết, xưng vi thất cơ. Thất cơ, thất thế thị Thái Cực Quyền đích đại bệnh, sở dĩ biến hoán hư thực chỉ hữu tại chính trung lập thân đích tình huống hạ, tài khả dĩ đạt đáo linh hoạt chuyển hoán đích yếu cầu, giá thị tất tu chưởng ác đích trọng yếu quan kiện chi nhất.</p>
+<p><strong>ii. Tam chủng cơ bản hư thực</strong></p>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F9</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig047-L0F9.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig047-L0F9.jpg" alt="图 L0F9" loading="lazy"></a>
+  <div class="figure-caption">Bán khinh bán trọng: cung bộ hai cước khai lập trước sau, hai cước đều có trứ lạc, trọng tâm vị ư trung gian tam phân chi nhất dĩ nội của khoảng cách hai thối (hình ghi: tả túc phụ 1/3, hữu túc phụ 2/3).</div>
+</div>
+<div class="figure-wrap">
+  <div class="figure-caption-title">图 L0F10</div>
+  <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig047-L0F10.jpg" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/quan-shu-chen-shi-1995-reader/fig047-L0F10.jpg" alt="图 L0F10" loading="lazy"></a>
+  <div class="figure-caption">Thiên khinh thiên trọng: trọng tâm siêu xuất trung gian tam phân chi nhất, một cước đặc biệt nặng, cước kia phù bãi (hình ghi: quá khinh, quá trọng).</div>
+</div>
+<p>(1) Cước đích hư thực — cước đích hư thực hoa phân, tựu thị nhất chích cước phụ trọng ta, lánh nhất chích cước phụ đam khinh ta. Án chiếu lực học nguyên lý, thân thể trọng lượng đích trọng tâm nhược vị ư lưỡng thối gian cự ly đích trung gian tam phân chi nhất đích địa phương, tựu khả sử lưỡng cước quân hữu trứ lạc, xưng vi bán khinh bán trọng ① (như hình 9). Như quả trọng tâm vị trí siêu xuất liễu trung gian tam phân chi nhất đích phạm vi, tắc na chỉ hư cước tựu hội nhân quá hư nhi sản sinh phù bãi đích hiện Hình 9 · Bán khinh bán trọng　　Hình 10 · Thiên khinh thiên trọng</p>
+<ul class="posture-list">
+<li>① Bán giả tựu thị nhân thân trọng lượng đích trọng tâm tại lưỡng thối gian cự ly đích trung gian tam phân chi nhất dĩ nội, giá thời lưỡng cước quân hữu hạ kình lạc tại địa diện thượng, chỉ bất quá khinh trọng bất đồng nhi dĩ, sở dĩ xưng vi bán hữu trứ lạc, hoặc xưng bán khinh bán trọng, giá thị chính xác đích tư thế.</li>
+</ul>
+<p><span id="p48" class="page-anchor"></span>· 30 · tượng, đã thành bệnh tượng thiên khinh thiên trọng①. (như trong Hình 10)</p>
+<p>Ngoài ra, khi vận động hoặc khi phát kình, động tác phải đạt được khúc súc hữu dư (cong chứa mà vẫn còn dư). Cho dù sau khi phát kình, tứ chi cũng vẫn không nên duỗi thẳng hết mức. Bởi vì một khi đã duỗi thẳng, thì khi chuyển đổi hư thực, trước tiên phải đem thẳng đổi thành cong, rồi sau mới có thể đảo hoán co duỗi. Nhưng nếu tay chân ở trong tư thế khúc súc hữu dư, thì khi chạm vào liền có thể xoay chuyển tự nhiên, không phải phân tâm vào việc đảo hoán, đây là cơ sở khiến động tác có thể tự động hóa.</p>
+<p>Tóm lại, yêu cầu của Thái Cực Quyền đối với hư thực của hai chân, bất luận khi nào và ở đâu, đều phải có sự đảo hoán một hư một thực này, lại càng phải từng bước thu nhỏ tỷ lệ, khiến cho sự chuyển biến hư thực mau lẹ hơn. Nếu hư thực của hai chân đổi không mau, thì không thể thích ứng với sự biến hóa của tay, khiến trên dưới không thể tương tùy, liền phải phân thành hai ngả, phá hoại yêu cầu động tác phải chu thân nhất gia (toàn thân một nhà).</p>
+<p>(2) Hư thực của tay — phàm khi kình vận đến tay mà nâng lên đỡ (bằng) thì tay này là hư; vận đến tay mà trầm xuống thì tay này là thực. Động tác của hai tay trong Thái Cực Quyền, cũng như động tác của hai chân, cũng phải phân chia hư thực; cho dù khi hai tay cùng ấn, như quyền thức Lục Phong Tứ Bế (Sáu phong bốn bế) này, cũng là chia theo tỷ lệ bốn sáu. Nhưng tỷ lệ hư thực của tay hơi khác với chân: sau khi công phu tinh tiến, tỷ lệ của nó, trừ vài quyền thức cá biệt, đều ở trong khoảng ba bảy đến bốn sáu, tỷ lệ là lớn. Đây là để đạt được trầm trước tùng tĩnh (trầm ổn buông lỏng yên tĩnh), chuyên chủ một phương, lấy một phương làm chủ, phương kia làm khách mà quy định. Đặc biệt quan trọng là, không chỉ tứ chi phải đổi cho linh hoạt, mà ý khí lại càng phải đổi cho linh hoạt, khiến ý khí không trệ trên một tay, nhất là tay phải.</p>
+<p>(3) Hư thực của tay và chân — việc phân chia hư thực tốn công phu nhất, phải kể là việc phân chia hư thực trên dưới của một tay một chân. Mà có tác dụng nhất đối với bảo kiện và kỹ kích, cũng chính là việc phân chia hư thực trên dưới của tay và chân này. Đây là hạch tâm khiến bộ pháp đạt được liên tùy (liền theo).</p>
+<ul class="posture-list">
+<li>① "Thiên" là chỉ vị trí trọng tâm đã vượt ra khỏi phạm vi một phần ba ở giữa, khiến một chân đặc biệt nặng, còn chân kia thì trôi bồng bềnh trên mặt đất, hình thành thiên về một bên, vì vậy bên kia đương nhiên là thiên khinh; đây gọi là "thiên vô trước lạc" (thiên không chỗ dựa), hay gọi là thiên khinh thiên trọng, là một loại bệnh.</li>
+</ul>
+<p>· 31 · Yêu cầu và cách làm của nó là: như tay phải trầm xuống là thực, thì chân phải ắt là hư; đợi đến khi tay phải chuyển lên đỡ (bằng) là hư, thì chân phải liền theo tay ở trên mà chuyển thành thực; làm như vậy, gọi là "phân hư thực trên dưới tương tùy". Cho nên trong Thái Cực Quyền 《Đả Thủ Ca》 có nói: "Bằng lãm tễ án tu nhận chân, thượng hạ tương tùy nhân nan xâm" (Đỡ, lôi, chen, ấn phải nghiêm túc, trên dưới tương tùy người khó xâm nhập), tầm quan trọng của nó có thể suy ra được. Vì vậy, khi luyện quyền phải kiểm tra đầy đủ xem mỗi một động tác có đạt được yêu cầu trên dưới tương tùy này hay không. Lấy việc luyện một lượt giá tử mà nói, trong đó tư thế rất đa dạng, mà biến đổi tư thế lại thường xuyên như vậy, muốn làm được trên dưới tương tùy, đương nhiên phải tốn một phen công phu mới có thể nắm giữ thành thục. Sự chuyển đổi này, ngoài việc khi bước chân tay theo chân để chuyển đổi hư thực, đa số đều là chân theo tay để chuyển đổi hư thực. Tóm lại, làm được hư thực trên dưới của một tay một chân, thì vị trí trọng tâm có thể không ra khỏi phạm vi một phần ba ở giữa khoảng cách hai chân, khiến chân trái phải đều có chỗ dựa, cho nên nội kình có thể đạt được trung chính; nội kình trung chính rồi, mới có thể chống đỡ tám mặt. Loại hư thực này quy nạp vào điểm đáp của bàn chân trên mặt đất mà nói, là trong hư có thực và trong thực có hư. Chỉ khi có được loại hư thực trên dưới tương tùy này, bộ pháp mới có thể khinh linh bất trệ, tiến thoái tự như, mới có thể liên tùy với người mà không đến nỗi phát sinh bệnh tượng đâu đỉnh. Đồng thời, khi đã thuần thục rồi đẩy tay, chỉ cần chú ý đến một tay tiếp xúc với đối phương, còn tay kia và hai chân đều có thể do đó mà dưỡng thành thói quen trên dưới tương tùy, mà không phải phân tâm nữa, có thể được hiệu quả phối hợp tự động, cũng là mấu chốt của động trung cầu tĩnh (tìm tĩnh trong động) mà được tĩnh.</p></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

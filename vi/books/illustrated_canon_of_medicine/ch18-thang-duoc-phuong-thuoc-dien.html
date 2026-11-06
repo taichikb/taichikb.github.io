@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 18: Thang Dược &amp; Phương Thuốc Cổ Điển — Hoàng Đế Nội Kinh (Minh Hoạ) | TaichiNOW</title>
+<meta name="description" content="Chương 18 của Hoàng Đế Nội Kinh (Minh Hoạ): Thang Dược &amp; Phương Thuốc Cổ Điển">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <a href="/books/read/illustrated-canon-of-medicine/" class="btn-control lang-switch" title="Bản gốc Tiếng Anh (English Edition)"><i class="fa-solid fa-globe"></i> English</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+<aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#loi-mo-dau" class="active">Lời Mở Đầu &amp; Biểu Đồ Tương Quan</a></li>
+        <li><a href="#chuong-01">Chương 1 · Vai Trò Của Tự Nhiên Trong Thời Cổ Đại</a></li>
+        <li><a href="#chuong-02">Chương 2 · Bốn Khí Và Sự Điều Dưỡng Thần</a></li>
+        <li><a href="#chuong-03">Chương 3 · Sinh Khí Thông Với Trời</a></li>
+        <li><a href="#chuong-04-05">Chương 4 &amp; 5 · Kim Quỹ Yếu Lược &amp; Âm Dương Ứng Tượng</a></li>
+        <li><a href="#chuong-07-12">Chương 7 &amp; 12 · Âm Dương Lại Cải &amp; Dị Pháp Phương Y</a></li>
+        <li><a href="#chuong-17-22-23">Chương 17, 22, 23 · Mạch Yếu Tinh Vi &amp; Tạng Khí</a></li>
+        <li><a href="#chuong-25-28-39-40">Chương 25, 28, 39, 40 · Bảo Mệnh &amp; Thống Tất</a></li>
+        <li><a href="#chuong-42-1">Chương 42 · Phong Luận (1)</a></li>
+        <li><a href="#chuong-42-2">Chương 42 · Phong Luận (2)</a></li>
+        <li><a href="#chuong-44-47">Chương 44 &amp; 47 · Tẩu Quyết &amp; Kỳ Bệnh</a></li>
+        <li><a href="#chuong-74">Chương 74 · Chí Chân Yếu Đại</a></li>
+        <li><a href="#chuong-08-18">Chương 8 &amp; 18 · Thần Lung &amp; Hợp Tân</a></li>
+        <li><a href="#chuong-29-30-33-35-37">Chương 29, 30, 33, 35, 37 · Sư Truyền &amp; Tứ Hải</a></li>
+        <li><a href="#chuong-50">Chương 50 · Dũng Tỳ Luận</a></li>
+        <li><a href="#chuong-56-66-72">Chương 56, 66, 72 · Ngũ Vị &amp; Bệnh Khởi &amp; Phân Loại</a></li>
+        <li><a href="#chuong-80">Chương 80 · Tạp Tinh Luận</a></li>
+        <li><a href="#thuoc">Thang Dược &amp; Phương Thuốc Cổ Điển</a></li>
+        <li><a href="#duong-tinh">Dưỡng Tính Chân Nhân · Liệu Pháp Tình Chí</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../illustrated_canon_of_medicine_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Hoàng Đế Nội Kinh (Minh Hoạ) · Hoàng Đế Nội Kinh</p>
+<h3 class="chapter" id="ch18">Thang Dược &amp; Phương Thuốc Cổ Điển</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Rượu Ngũ Cốc</a> · <a href="#s2">Thang Sắt Phấn</a> · <a href="#s3">Rượu Thuốc Trán Trái</a> · <a href="#s4">Thang Trạch Tả</a> · <a href="#s5">Rượu Kê Nội Kim</a> · <a href="#s6">Hoàn Ô Tặc Cốt — Cẩu Kỷ</a> · <a href="#s7">Thang Liên Kiều</a></div>
+<div class="partnav"><a href="ch17-chuong-80-tap-tinh-luan.html"><span class="k">← Chương 17</span>Chương 80 · Tạp Tinh Luận</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch19-duong-tinh-chan-nhan-lieu-phap-tinh-chi.html" style="text-align:right"><span class="k">Chương 19 →</span>Dưỡng Tính Chân Nhân · Liệu Pháp Tình Chí</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Hoàng Đế Nội Kinh.</p>
+<p>Các phương pháp trị liệu được ghi chép trong Hoàng Đế Nội Kinh phần lớn chỉ giới hạn ở liệu pháp châm cứu. Về phần thuốc men và cách chữa trị, trong sách chỉ có 13 bài thuốc, thường được gọi chung là «13 phương»; đây là những ghi chép sớm nhất của Trung Hoa về việc trị bệnh bằng thảo dược, và một số bài trong đó vẫn còn được dùng trong các phòng khám ngày nay. Sau đây là một số bài được chọn làm minh hoạ.</p>
+
+      <h3 id="s1">Rượu Ngũ Cốc</h3>
+
+      <ol start="2">
+        <li>2. «Làm thế nào để chế ra rượu thuốc từ năm loại ngũ cốc?» — Hoàng Đế hỏi — «và vì sao nó lại có công năng chữa bệnh?»</li>
+        <li>3. «Phải lấy gạo làm vị thứ nhất, và việc nấu phải được tiến hành bằng cách dùng thân cây lúa làm nhiên liệu.» — Kỳ Bá đáp. «Mọc ở độ cao vừa phải, cây lúa được phú bẩm trọn vẹn khí hoà hợp của đất và trời; thân của nó, hái vào mùa thu, rắn chắc và kiên cường.»</li>
+      </ol>
+
+      <div class="callout">
+        <p>Chú thích: Người xưa Trung Hoa trị các chứng rối loạn của ngũ tạng bằng rượu ngọt làm từ năm loại ngũ cốc, qua công đoạn đun nấu và lên men.</p>
+      </div>
+
+      <h3 id="s2">Thang Sắt Phấn</h3>
+
+      <p>Thang Sắt Phấn — Một thứ nước thuốc chế bằng cách ngâm mạt sắt trong nước. Loại nước thuốc này hiện nay vẫn được dùng trên lâm sàng.</p>
+
+      <ol>
+        <li>1. «Nếu có người phát cuồng, chạy nhảy và gào thét ầm ĩ, thì phải trị thế nào?» — Hoàng Đế hỏi.</li>
+        <li>2. «Thang Sắt Phấn có thể là bài thuốc thích hợp cho trường hợp ấy. Nó có công năng giáng khí và làm tan khối ứ kết.»</li>
+        <li>3. Các chứng do đàm hoả cũng có thể chữa khỏi nhờ thứ nước thuốc này. Can khí có thể trở nên hoành hành vô chế, bởi cơn giận dữ làm tổn thương tạng. Can hoả, sinh ra do can khí bị uất tắc, tiêu hao tân dịch của cơ thể và hoá thành đàm hoả. Thang Sắt Phấn phối hợp với các vị hỗ trợ khác có công năng hoá đàm, và ngày nay đã được gia giảm ứng dụng trong điều trị lâm sàng.</li>
+      </ol>
+
+      <h3 id="s3">Rượu Thuốc Trán Trái</h3>
+
+      <p>Châm cứu — Một phương pháp chữa bệnh tiến hành bằng cách kích thích những huyệt vị nhất định trên cơ thể người bằng kim kim loại. Thạch châm và chín loại kim được dùng thời cổ, trong khi mai hoa châm, trúc châm và mộc châm được dùng trong thực hành ngày nay.</p>
+
+      <p>Trong khung tranh, tà khí xâm nhập được ví như những toán quân: «Mấy toán quân của chúng ta đã tiến vào trại của các ngươi rồi.»</p>
+
+      <ol>
+        <li>1. Năm Kinh: Kinh Phế, Kinh Tỳ, Kinh Tâm, Kinh Thận và Kinh Vị đều hội tụ bên trong tai. Tà khí xâm nhập vào kinh mạch có thể theo các kinh mà lần đến góc bên trái của trán, ngay phía trên tai trái, tức là điểm hội tụ; và sẽ làm chấn động toàn bộ các đường kinh của cơ thể nếu khí trong Năm Kinh không đầy đủ.</li>
+        <li>2. Ngay lúc ấy, người bệnh mất tri giác và trở nên như một xác chết. Chứng hôn mê như thây chính là tên gọi của tình trạng này.</li>
+      </ol>
+
+      <p>— «Có công hiệu không?»</p>
+
+      <ol start="3">
+        <li>3. Khi châm cứu không hiệu nghiệm, tóc ở phía bên trái trán của người bệnh nên được cạo đi. «Bệnh đã đi xa đến thế rồi. Tôi không còn lựa chọn nào khác ngoài việc thử bất cứ điều gì thầy thuốc bảo.»</li>
+        <li>4. Rồi đốt tóc ấy và tán thành bột.</li>
+        <li>5. Mở miệng người bệnh nếu anh ta không thể tự uống thuốc, và đổ bột ấy xuống họng cùng với rượu. Người bệnh sẽ khỏi ngay tức khắc. «Không sao đâu, hãy mở miệng anh ta ra.»</li>
+      </ol>
+
+      <h3 id="s4">Thang Trạch Tả</h3>
+
+      <p>Tửu phong (<i>jiufeng</i>) — Tên một chứng bệnh, có thể sinh ra do gió độc xâm nhập sau khi uống rượu quá độ.</p>
+
+      <p>Bên lề khung tranh vang lên: «Rốt cuộc đây là bệnh gì?» — «Anh vừa tắm phải không?»</p>
+
+      <ol>
+        <li>1. Hoàng Đế hỏi: «Đó là chứng bệnh gì, với những biểu hiện như mình nóng, tay chân mệt mỏi và ra mồ hôi quá nhiều?»</li>
+        <li>2. «Lại thêm cảm giác bứt rứt khó chịu kèm theo hơi thở ngắn? Phải trị bệnh nhân này thế nào?»</li>
+        <li>3. «Đó là chứng tửu phong,» Kỳ Bá đáp, «thành phần bài thuốc gồm trạch tả và bạch truật, mỗi vị 10 phân (1 phân = 1/2 gam), cùng với mizian — một loại cỏ thuốc, 5 phân. Tán tất cả thành bột. Uống 3 nhúm trước mỗi bữa ăn.»</li>
+        <li>4. Với tính chất nhẹ nhàng và thấm lợi, trạch tả có công năng lợi tiểu và trừ thấp nhiệt tà. Bạch truật, đắng mà tính ôn hoà, có thể làm khô thấp và cầm mồ hôi. Thuộc họ Vicia Cracca, mizian cũng là vị thuốc hay trong trị chứng phong thấp.</li>
+      </ol>
+
+      <h3 id="s5">Rượu Kê Nội Kim</h3>
+
+      <div class="callout">
+        <p>Trương Cảnh Nhạc (1563–1640), còn gọi là Trương Giới Tân, là một danh y thời Minh. Theo học y thuật từ năm mười ba tuổi, ông nghiên cứu Hoàng Đế Nội Kinh trong vài chục năm và cũng trước tác nhiều bộ y thư, trong đó có Loại Kinh, Loại Kinh Đồ Dực và Loại Kinh Phụ Dực. Các trước tác của ông có ảnh hưởng lớn đến các thầy thuốc đời sau.</p>
+      </div>
+
+      <ol>
+        <li>1. «Có một chứng bệnh sinh ra cảm giác đầy tức ở dạ dày và bụng,» Hoàng Đế nói, «người bệnh mất cảm giác thèm ăn sau một bữa điểm tâm buổi sáng. — Con không muốn ăn. Vậy tên bệnh là gì và phải dùng phương pháp nào để trị?»</li>
+        <li>2. «Đó gọi là chứng trướng khí,» Kỳ Bá đáp, «và Rượu Kê Nội Kim có thể là thang thuốc lý tưởng. Một thang đã thấy công hiệu, hai thang sẽ khỏi hẳn.»</li>
+        <li>3. Phơi khô màng mề gà dưới nắng rồi sao cho đến vàng. Thêm ba bát rượu gạo (1 lượng, tức 50 gam) vào màng mề đã sao và đun sôi vài lần. Lọc và làm trong phần nước, rồi uống nóng trước bữa ăn. Ngày hai lần.</li>
+        <li>4. Màng mề gà có thể tiêu thực, trị chứng ăn không tiêu, đưa khí nghịch xuống và thúc đẩy sự bài tiết phân và tiểu tiện.</li>
+      </ol>
+
+      <h3 id="s6">Hoàn Ô Tặc Cốt — Cẩu Kỷ</h3>
+
+      <p>Huyết khô (<i>xueku</i>) — 1. Tên một chứng bệnh với những biểu hiện như gầy mòn, thiếu máu và bế kinh; 2. Những chứng sinh ra do huyết hư vì mất máu quá nhiều.</p>
+
+      <p>Trong khung tranh, người con thốt lên: «Mẹ ơi, hơi thở của mẹ có mùi khó chịu quá.»</p>
+
+      <ol>
+        <li>1. Hoàng Đế nói: «Có một chứng rối loạn gây cảm giác đầy tức ở ngực và hai bên sườn, kèm theo ăn giảm và hơi thở hôi ở giai đoạn đầu.»</li>
+        <li>2. «Rồi nước bọt tiết ra nhiều, tay chân lạnh, chóng mặt, đại tiểu tiện ra máu… ta muốn biết tên chứng ấy và phương pháp chữa trị nó.»</li>
+        <li>3. «Đó là chứng huyết khô (hay kiệt huyết),» Kỳ Bá đáp. «Nó sinh ra từ một cơn đại xuất huyết vào những năm đầu của người bệnh.» — «Phải, chắc hẳn là vậy.»</li>
+        <li>4. «Sinh hoạt phòng dục khi say rượu làm hao kiệt chân khí và tổn thương can, sinh ra kinh nguyệt ít hoặc thậm chí bế kinh.»</li>
+        <li>5. Đây là bài thuốc: viên nhỏ bằng hạt đậu đỏ được chế từ ô tặc cốt 4 phân (1 phân = 1/2 gam), cẩu kỷ 1 phân, cùng với trứng chim sẻ. Bài thuốc rất có hiệu nghiệm. — «Mẹ quả thật chịu đựng giỏi.»</li>
+        <li>6. Trước mỗi bữa ăn, uống năm viên với nước bào ngư, thứ có công năng thông ruột và bổ can. Cẩu kỷ có thể dưỡng huyết và thông kinh nguyệt nữ giới. Trứng chim sẻ vị ngọt và tính ôn hoà, có thể bổ ích chân khí và huyết. Nó rất hay dùng trong trị các chứng như liệt dương nam giới, chứng bạch đới nữ giới và tiểu tiện khó; bào ngư, tính ôn hoà và cay, giỏi điều hoà lưu thông huyết và phục hồi âm.</li>
+        <li>7. Chú thích: Mặn, ôn hoà và dễ uống, ô tặc cốt đặc biệt hữu dụng trong trị các chứng bất hoà của nữ giới như khí hư lẫn máu đỏ, huyết khô và bế kinh. Cẩu kỷ có tính ngọt và hàn, có thể cầm băng huyết tử cung cũng như điều khí. Nó cũng rất hiệu nghiệm đối với chứng bế kinh.</li>
+      </ol>
+
+      <p>Bài thuốc này bổ ích chân khí và huyết, làm mạnh phế, can và thận, hoạt huyết và thông kinh nguyệt, nhờ đó tác dụng lý tưởng lên các chứng do huyết hư và khí hư.</p>
+
+      <h3 id="s7">Thang Liên Kiều</h3>
+
+      <p>Cứu pháp — Một liệu pháp chữa bệnh tiến hành bằng cách áp một nón ngải đã đốt cháy, tức một thỏi làm từ lá ngải, lên các huyệt vị trên mặt da hoặc các phần bị nhiễm, để tạo ra một miếng sinh nhiệt.</p>
+
+      <ol>
+        <li>1. Bại tì là một chứng bệnh của nữ giới gây đau ở hai bên sườn. Phần bị nhiễm sẽ mưng mủ khi được trị bằng cứu pháp, và da non, lớn cỡ hạt đậu đỏ, có thể xuất hiện.</li>
+        <li>2. Thành phần bài thuốc trị bại tì gồm: lá và rễ liên kiều, mỗi thứ 1 lít. Thêm 6,1 lít nước và đun cho đến khi còn 3 lít. Uống một lần cạn phần nước ấy, rồi ngồi gần hơi nước nóng với y phục dày. Bệnh sẽ khỏi hoàn toàn sau khi mồ hôi lạnh bay hơi.</li>
+        <li>3. Chú thích: Với vị đắng và tính hàn ôn hoà, liên kiều có thể giáng hoả ở kinh tâm và kinh can, trừ nhiệt độc, tiêu ung nhọt và khử ứ trệ. «Các chứng ung nhọt, mụn lở và loét da đủ loại, gây đau và ngứa, đều là những chứng có liên hệ trực tiếp với tâm.» Liên kiều đặc biệt hay dùng trong trị các chứng ấy.</li>
+      </ol>
+    </section>
+<section id="duong-tinh">
+      <div class="book-figure">
+        <img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/illustrated-canon-of-medicine/canon_p204.jpeg" alt="Trang đầu chương" loading="lazy">
+        <figcaption>Trang đầu chương từ bản in minh hoạ.</figcaption>
+      </div></main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

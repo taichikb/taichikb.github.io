@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 2: Kinh Văn · Toàn Văn Ba Mươi Sáu Chương — Huỳnh Đình Nội Cảnh Kinh | TaichiNOW</title>
+<meta name="description" content="Chương 2 của Huỳnh Đình Nội Cảnh Kinh: Kinh Văn · Toàn Văn Ba Mươi Sáu Chương">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+<aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Tác Phẩm</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#gioi-thieu" class="active">Giới Thiệu · Đôi Nét Về Huỳnh Đình Kinh</a></li>
+        <li><a href="#kinh-van">Kinh Văn · Toàn Văn 36 Chương</a></li>
+        <li><a href="#chu-giai-01">Chú Giải I · Chương 1–6</a></li>
+        <li><a href="#chu-giai-02">Chú Giải II · Chương 7–12</a></li>
+        <li><a href="#chu-giai-03">Chú Giải III · Chương 13–18</a></li>
+        <li><a href="#chu-giai-04">Chú Giải IV · Chương 19–24</a></li>
+        <li><a href="#chu-giai-05">Chú Giải V · Chương 25–30</a></li>
+        <li><a href="#chu-giai-06">Chú Giải VI · Chương 31–36</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../huynh_dinh_noi_canh_kinh_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Huỳnh Đình Nội Cảnh Kinh · Hoàng Đình Kinh</p>
+<h3 class="chapter" id="ch02">Kinh Văn · Toàn Văn Ba Mươi Sáu Chương</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Mộc Dục Chương Đệ Nhất</a> · <a href="#s2">Thượng Thanh Chương Đệ Nhị</a> · <a href="#s3">Thượng Hữu Chương Đệ Tam</a> · <a href="#s4">Khẩu Vi Chương Đệ Tứ</a> · <a href="#s5">Huỳnh Đình Chương Đệ Ngũ</a> · <a href="#s6">Trung Trì Chương Đệ Lục</a> · <a href="#s7">Thiên Trung Chương Đệ Thất</a> · <a href="#s8">Chí Đạo Chương Đệ Bát</a> · <a href="#s9">Tâm Thần Chương Đệ Cửu</a> · <a href="#s10">Phế Bộ Chương Đệ Thập</a> · <a href="#s11">Tâm Bộ Chương Đệ Thập Nhất</a> · <a href="#s12">Can Bộ Chương Đệ Thập Nhị</a> · <a href="#s13">Thận Bộ Chương Đệ Thập Tam</a> · <a href="#s14">Tì Bộ Chương Đệ Thập Tứ</a> · <a href="#s15">Đảm Bộ Chương Đệ Thập Ngũ</a> · <a href="#s16">Tì Trường Chương Đệ Thập Lục</a> · <a href="#s17">Thượng Đổ Chương Đệ Thập Thất</a> · <a href="#s18">Linh Đài Chương Đệ Thập Bát</a> · <a href="#s19">Tam Quan Chương Đệ Thập Cửu</a> · <a href="#s20">Nhược Đắc Chương Đệ Nhị Thập</a> · <a href="#s21">Hô Hấp Chương Đệ Nhị Thập Nhất</a> · <a href="#s22">Quỳnh Thất Chương Đệ Nhị Thập Nhị</a> · <a href="#s23">Thường Niệm Chương Đệ Nhị Thập Tam</a> · <a href="#s24">Trị Sanh Chương Đệ Nhị Thập Tứ</a> · <a href="#s25">Ẩn Ảnh Chương Đệ Nhị Thập Ngũ</a> · <a href="#s26">Ngũ Hành Chương Đệ Nhị Thập Lục</a> · <a href="#s27">Cao Bôn Chương Đệ Nhị Thập Thất</a> · <a href="#s28">Huyền Nguyên Chương Đệ Nhị Thập Bát</a> · <a href="#s29">Tiên Nhân Chương Đệ Nhị Thập Cửu</a> · <a href="#s30">Tử Thanh Chương Đệ Tam Thập</a> · <a href="#s31">Bách Cốc Chương Đệ Tam Thập Nhất</a> · <a href="#s32">Tâm Điển Chương Đệ Tam Thập Nhị</a> · <a href="#s33">Lưỡng Thận Chương Đệ Tam Thập Tam</a> · <a href="#s34">Can Khí Chương Đệ Tam Thập Tứ</a> · <a href="#s35">Phế Chi Đạo Chương Đệ Tam Thập Ngũ</a> · <a href="#s36">Ẩn Tàng Chương Đệ Tam Thập Lục</a></div>
+<div class="partnav"><a href="ch01-gioi-thieu-doi-net-ve-huynh-dinh-kinh.html"><span class="k">← Chương 1</span>Giới Thiệu · Đôi Nét Về Huỳnh Đình Kinh</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch03-chu-giai-i-chuong-1-6-moc-duc-den-trung-tri.html" style="text-align:right"><span class="k">Chương 3 →</span>Chú Giải I · Chương 1–6: Mộc Dục Đến Trung Trì</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Hoàng Đình Kinh.</p>
+<h3 id="s1">Mộc Dục Chương Đệ Nhất</h3>
+  <div class="callout chinese-quote">
+    <p>Mộc dục thịnh khiết khí phì huân</p>
+    <p>Nhập thất Đông hướng tụng Ngọc Thiên</p>
+    <p>Ước đắc vạn biến nghĩa tự tiên</p>
+    <p>Tán phát vô dục dĩ trường tồn</p>
+    <p>Ngũ Vị giai chí Chánh Khí hoàn</p>
+    <p>Di tâm tịch muộn vật phiền oan</p>
+    <p>Quá sổ dĩ tất thể Thần Tinh</p>
+    <p>Huỳnh Hoa Ngọc Nữ cáo tử tình</p>
+    <p>Chân Nhân ký chí sử Lục Đinh</p>
+    <p>Tức thụ ẩn chi Đại Động Kinh</p>
+    <p>Thập độc tứ bái triêu Thái Thượng</p>
+    <p>Tiên yết Thái Đế, hậu Bắc hướng</p>
+    <p>Huỳnh Đình Nội Kinh Ngọc Thư xướng</p>
+    <p>Thụ giả viết sư, thụ giả minh</p>
+    <p>Vân cẩm phụng la kim nữu triền</p>
+    <p>Dĩ đại cát phát cơ phu toàn</p>
+    <p>Huề thủ đăng san, sáp dịch đan</p>
+    <p>Kim Thư Ngọc Cảnh nãi khả tuyên</p>
+    <p>Truyền đắc khả thụ cáo Tam Quan</p>
+    <p>Vật lệnh Thất Tổ thụ minh hoạn</p>
+    <p>Thái Thượng vi ngôn trí Thần Tiên</p>
+    <p>Bất Tử Chi Đạo thử Chân Văn.</p>
+  </div>
+
+  <h3 id="s2">Thượng Thanh Chương Đệ Nhị</h3>
+  <div class="callout chinese-quote">
+    <p>Thượng Thanh Tử Hà, Hư Hoàng tiền</p>
+    <p>Thái Thượng Đại Đạo Ngọc Thần Quân</p>
+    <p>Nhàn cư Nhụy Châu, tác thất ngôn</p>
+    <p>Tán hóa Ngũ Hình biến vạn Thần</p>
+    <p>Thị vi Huỳnh Đình viết Nội Thiên</p>
+    <p>Cầm tâm Tam Điệp vũ Thai Tiên</p>
+    <p>Cửu Khí ánh minh xuất Tiêu Gian</p>
+    <p>Thần cái đồng tử sinh tử yên</p>
+    <p>Thị viết Ngọc Thư khả tinh nghiên</p>
+    <p>Vịnh chi vạn quá thăng Tam Thiên</p>
+    <p>Thiên tai dĩ tiêu, bách bệnh thuyên</p>
+    <p>Bất đạn hổ lang chi hung tàn</p>
+    <p>Diệc dĩ khước lão niên vĩnh diên.</p>
+  </div>
+
+  <h3 id="s3">Thượng Hữu Chương Đệ Tam</h3>
+  <div class="callout chinese-quote">
+    <p>Thượng hữu Hồn Linh, hạ Quan Nguyên</p>
+    <p>Tả vi Thiếu Dương, hữu Thái Âm</p>
+    <p>Hậu hữu Mật Hộ, tiền Sinh Môn</p>
+    <p>Xuất nhật nhập nguyệt, hô hấp tồn</p>
+    <p>Nguyên Khí sở hợp, liệt tú phân</p>
+    <p>Tử yên thượng hạ Tam Tố Vân</p>
+    <p>Quán khái Ngũ Hoa thực Linh Căn</p>
+    <p>Thất Dịch động lưu xung lư gian</p>
+    <p>Hồi tử bão huỳnh nhập Đan Điền</p>
+    <p>U Thất nội minh chiếu Dương Môn.</p>
+  </div>
+
+  <h3 id="s4">Khẩu Vi Chương Đệ Tứ</h3>
+  <div class="callout chinese-quote">
+    <p>Khẩu vi Ngọc Trì, Thái Hòa Cung</p>
+    <p>Sấu yết linh dịch tai bất can</p>
+    <p>Thể sinh quang hoa, khí hương lan</p>
+    <p>Tức diệt bách tà, ngọc luyện nhan</p>
+    <p>Thẩm năng tu chi đăng Quảng Hàn</p>
+    <p>Trú dạ bất mị nãi thành Chân</p>
+    <p>Lôi minh điện kích Thần an nhiên.</p>
+  </div>
+
+  <h3 id="s5">Huỳnh Đình Chương Đệ Ngũ</h3>
+  <div class="callout chinese-quote">
+    <p>Huỳnh Đình nội nhân phục cẩm y</p>
+    <p>Tử hoa phi quần vân khí la</p>
+    <p>Đan thanh lục điều thúy linh kha.</p>
+    <p>Thất Đình ngọc thược bế lưỡng phi</p>
+    <p>Trùng yểm Kim Quan, mật Xu Ki</p>
+    <p>Huyền Tuyền, U Quan cao thôi ngôi</p>
+    <p>Tam Điền chi trung Tinh Khí vi</p>
+    <p>Kiều nữ yểu điệu ế tiêu huy</p>
+    <p>Trọng đường hoán hoán minh bát uy</p>
+    <p>Thiên Đình, Địa Quan liệt phủ cân</p>
+    <p>Linh Đài bàn cố vĩnh bất suy.</p>
+  </div>
+
+  <h3 id="s6">Trung Trì Chương Đệ Lục</h3>
+  <div class="callout chinese-quote">
+    <p>Trung Trì nội thần phục xích châu</p>
+    <p>Đan cẩm vân bào đái hổ phù</p>
+    <p>Hoành tân tam thốn Linh sở cư</p>
+    <p>Ẩn Chi, Ế Uất tự tương phù.</p>
+  </div>
+
+  <h3 id="s7">Thiên Trung Chương Đệ Thất</h3>
+  <div class="callout chinese-quote">
+    <p>Thiên Trung chi nhạc tinh cẩn tu</p>
+    <p>Vân trạch ký thanh Ngọc Đế du</p>
+    <p>Thông lợi đạo lộ vô chung hưu</p>
+    <p>Mi hào hoa cái phúc minh châu</p>
+    <p>Cửu u nhật nguyệt động Hư Nguyên</p>
+    <p>Trạch trung hữu Chân thường y đan</p>
+    <p>Thẩm năng kiến chi vô tật hoạn</p>
+    <p>Xích châu linh quần hoa thiến xán</p>
+    <p>Thiệt hạ huyền ưng sinh tử ngạn</p>
+    <p>Xuất thanh nhập huyền nhị khí hoán</p>
+    <p>Tử nhược ngộ chi thăng Thiên Hán.</p>
+  </div>
+
+  <h3 id="s8">Chí Đạo Chương Đệ Bát</h3>
+  <div class="callout chinese-quote">
+    <p>Chí Đạo bất phiền quyết tồn Chân</p>
+    <p>Nê Hoàn bách tiết giai hữu Thần</p>
+    <p>Phát Thần Thương Hoa tự Thái Nguyên</p>
+    <p>Não Thần Tinh Căn tự Nê Hoàn</p>
+    <p>Nhãn Thần Minh Thượng tự Anh Huyền</p>
+    <p>Tị Thần Ngọc Lũng tự Linh Kiên</p>
+    <p>Nhĩ Thần Không Nhàn tự U Điền</p>
+    <p>Thiệt Thần Thông Mệnh tự Chánh Luân</p>
+    <p>Xỉ Thần Ngạc Phong tự La Thiên</p>
+    <p>Nhất diện chi Thần Tông Nê Hoàn</p>
+    <p>Nê Hoàn Cửu Chân giai hữu phòng</p>
+    <p>Phương viên nhất thốn xử thử trung</p>
+    <p>Đồng phục tử y phi la thường</p>
+    <p>Đãn tư nhất bộ thọ vô cùng</p>
+    <p>Phi các biệt trú cư não trung</p>
+    <p>Liệt vị thứ tọa hướng ngoại phương</p>
+    <p>Sở tồn tại tâm tự tương đương.</p>
+  </div>
+
+  <h3 id="s9">Tâm Thần Chương Đệ Cửu</h3>
+  <div class="callout chinese-quote">
+    <p>Tâm Thần Đan Nguyên tự Thủ Linh</p>
+    <p>Phế Thần Hạo Hoa tự Hư Thành</p>
+    <p>Can Thần Long Yên tự Hàm Minh</p>
+    <p>Ế Uất Đạo Yên chủ Trọc Thanh</p>
+    <p>Thận Thần Huyền Minh tự Dục Anh</p>
+    <p>Tì Thần Thường Tại tự Hồn Đình</p>
+    <p>Đảm Thần Long Diệu tự Uy Minh</p>
+    <p>Lục Phủ Ngũ Tạng Thần Thể Tinh</p>
+    <p>Giai tại tâm nội liên thiên kinh</p>
+    <p>Trú dạ tồn chi tự trường sinh.</p>
+  </div>
+
+  <h3 id="s10">Phế Bộ Chương Đệ Thập</h3>
+  <div class="callout chinese-quote">
+    <p>Phế Bộ Chi Cung vi Hoa Cái</p>
+    <p>Hạ hữu Đồng Tử tọa Ngọc Khuyết</p>
+    <p>Thất Nguyên Chi Tử chủ điều khí</p>
+    <p>Ngoại ứng trung nhạc tị tề vị</p>
+    <p>Tố cẩm y thường, huỳnh vân đái</p>
+    <p>Suyễn tức hô hấp thể bất khoái</p>
+    <p>Cấp tồn Bạch Nguyên hòa Lục Khí</p>
+    <p>Thần Tiên cửu thị vô tai hại</p>
+    <p>Dụng chi bất dĩ hình bất trệ.</p>
+  </div>
+
+  <h3 id="s11">Tâm Bộ Chương Đệ Thập Nhất</h3>
+  <div class="callout chinese-quote">
+    <p>Tâm Bộ Chi Cung Liên Hàm Hoa</p>
+    <p>Hạ hữu Đồng Tử Đan Nguyên Gia</p>
+    <p>Chủ thích hàn nhiệt vinh vệ hòa</p>
+    <p>Đan cẩm phi thường phi ngọc la</p>
+    <p>Kim linh châu đái, tọa bà sa</p>
+    <p>Điều huyết lý mệnh thân bất khô</p>
+    <p>Ngoại ứng khẩu thiệt thổ ngọc hoa</p>
+    <p>Lâm tuyệt hô chi diệc đăng tô</p>
+    <p>Cửu cửu hành chi phi Thái Hà.</p>
+  </div>
+
+  <h3 id="s12">Can Bộ Chương Đệ Thập Nhị</h3>
+  <div class="callout chinese-quote">
+    <p>Can Bộ Chi Cung Thúy Trọng Lý</p>
+    <p>Hạ hữu Thanh Đồng Thần Công Tử</p>
+    <p>Chủ chư Quan Kính, thông minh thủy</p>
+    <p>Thanh cẩm phi thường, bội ngọc kiềm</p>
+    <p>Hòa chế hồn phách, tân dịch bình</p>
+    <p>Ngoại ứng nhãn mục nhật nguyệt tinh</p>
+    <p>Bách kha bất chung tồn Vô Anh</p>
+    <p>Đồng dụng thất nhật tự sung doanh</p>
+    <p>Thùy tuyệt niệm Thần tử phục sinh</p>
+    <p>Nhiếp hồn hoàn phách vĩnh vô khuynh.</p>
+  </div>
+
+  <h3 id="s13">Thận Bộ Chương Đệ Thập Tam</h3>
+  <div class="callout chinese-quote">
+    <p>Thận Bộ Chi Cung Huyền Khuyết Viên</p>
+    <p>Trung hữu Đồng Tử Minh Thượng Huyền</p>
+    <p>Chủ chư Lục Phủ, Cửu Dịch Nguyên</p>
+    <p>Ngoại ứng lưỡng nhĩ bách dịch tân</p>
+    <p>Thương cẩm vân y vũ long phan</p>
+    <p>Thượng trí minh hà, nhật nguyệt yên</p>
+    <p>Bách bệnh, thiên tai cấp đương tồn</p>
+    <p>Lưỡng bộ Thủy Vương đối Sinh Môn</p>
+    <p>Sử nhân trường sinh thăng Cửu Thiên.</p>
+  </div>
+
+  <h3 id="s14">Tì Bộ Chương Đệ Thập Tứ</h3>
+  <div class="callout chinese-quote">
+    <p>Tì Bộ Chi Cung Chúc Mậu Kỷ</p>
+    <p>Trung hữu Minh Đồng huỳnh thường lý</p>
+    <p>Tiêu cốc tán khí, nhiếp nha xỉ</p>
+    <p>Thị vi thái thương lưỡng Minh Đồng</p>
+    <p>Tọa tại Kim Đài thành cửu trùng</p>
+    <p>Phương viên nhất thốn Mệnh Môn trung</p>
+    <p>Chủ điều bách cốc, Ngũ Vị Hương</p>
+    <p>Tích khước hư luy vô bệnh thương</p>
+    <p>Ngoại ứng xích trạch khí sắc phương</p>
+    <p>Quang hoa sở sinh dĩ biểu minh</p>
+    <p>Huỳnh cẩm ngọc y, đái hổ chương</p>
+    <p>Chú niệm Tam Lão tử khinh tường</p>
+    <p>Trường sinh cao Tiên viễn tử ương.</p>
+  </div>
+
+  <h3 id="s15">Đảm Bộ Chương Đệ Thập Ngũ</h3>
+  <div class="callout chinese-quote">
+    <p>Đảm Bộ Chi Cung Lục Phủ Tinh</p>
+    <p>Trung hữu Đồng Tử Diệu Uy Minh</p>
+    <p>Cửu sắc cẩm y lục hoa quần</p>
+    <p>Bội kim đái ngọc long hổ văn</p>
+    <p>Lôi điện bát chấn dương ngọc tinh</p>
+    <p>Long kỳ hoành thiên trịch hỏa linh</p>
+    <p>Chủ chư khí lực nhiếp hổ binh</p>
+    <p>Ngoại ứng nhãn đồng, tị trụ gian</p>
+    <p>Não phát tương phù diệc câu tiên</p>
+    <p>Năng tồn Uy Minh thừa khánh vân</p>
+    <p>Dịch sử vạn Thần triều Tam Nguyên.</p>
+  </div>
+
+  <h3 id="s16">Tì Trường Chương Đệ Thập Lục</h3>
+  <div class="callout chinese-quote">
+    <p>Tì trường nhất xích yểm thái thương</p>
+    <p>Trung Bộ Lão Quân trị Minh Đường</p>
+    <p>Quyết tự Linh Nguyên, danh Hỗn Khương</p>
+    <p>Trị nhân bách bệnh tiêu cốc lương</p>
+    <p>Hoàng y tử đái long hổ chương</p>
+    <p>Trưởng tinh ích mệnh lại Quân Vương</p>
+    <p>Tam hô ngã danh Thần tự thông</p>
+    <p>Tam Lão đồng tọa các hữu bằng</p>
+    <p>Hoặc Tinh hoặc Thai biệt chấp phương</p>
+    <p>Đào Hạch hợp diên sinh hoa mang</p>
+    <p>Nam nữ hồi cửu hữu Đào Khương</p>
+    <p>Đạo Phụ, Đạo Mẫu đối tương vọng</p>
+    <p>Sư Phụ, Sư Mẫu Đan Huyền Hương</p>
+    <p>Khả dụng tồn tư đăng hư không</p>
+    <p>Thù đồ nhất hội quy yếu chung</p>
+    <p>Quan tắc Tam Quan ốc cố đình</p>
+    <p>Hàm thấu kim lễ thôn ngọc anh</p>
+    <p>Toại chí bất cơ Tam Trùng vong</p>
+    <p>Tâm ý thường hòa, trí hân xương</p>
+    <p>Ngũ Nhạc chi vân khí bành hanh</p>
+    <p>Bảo quán ngọc lư dĩ tự thường</p>
+    <p>Ngũ Hình hoàn kiên vô tai ương.</p>
+  </div>
+
+  <h3 id="s17">Thượng Đổ Chương Đệ Thập Thất</h3>
+  <div class="callout chinese-quote">
+    <p>Thượng đổ Tam Nguyên như liên châu</p>
+    <p>Lạc lạc minh cảnh chiếu Cửu Ngung</p>
+    <p>Ngũ Linh dạ chúc hoán Bát Khu</p>
+    <p>Tử tồn nội hoàng dữ ngã du</p>
+    <p>Thân phi phụng y, hàm hổ phù</p>
+    <p>Nhất chí bất cửu thăng hư vô</p>
+    <p>Phương thốn chi trung niệm thâm tàng</p>
+    <p>Bất phương bất viên bế dũ song</p>
+    <p>Tam Thần hoàn Tinh lão phương tráng</p>
+    <p>Hồn phách nội thủ bất tranh cạnh</p>
+    <p>Thần sinh phúc trung hàm ngọc đang</p>
+    <p>Linh chú u khuyết na đắc tang</p>
+    <p>Lâm điều vạn tầm khả ấm trượng</p>
+    <p>Tam Hồn tự ninh, Đế thư mệnh.</p>
+  </div>
+
+  <h3 id="s18">Linh Đài Chương Đệ Thập Bát</h3>
+  <div class="callout chinese-quote">
+    <p>Linh Đài uất ái vọng hoàng dã</p>
+    <p>Tam thốn dị thất hữu thượng hạ</p>
+    <p>Gian quan Doanh Vệ, Cao Huyền thụ</p>
+    <p>Động Phòng tử cực Linh Môn Hộ</p>
+    <p>Thị tích Thái Thượng cáo ngã giả</p>
+    <p>Tả Thần Công Tử phát thần ngữ</p>
+    <p>Hữu hữu Bạch Nguyên tính lập xử</p>
+    <p>Minh Đường kim quỹ ngọc phòng gian</p>
+    <p>Thượng Thanh Chân Nhân đương Ngô tiền</p>
+    <p>Hoàng thường Tử Đan khí tần huyên</p>
+    <p>Tá vấn hà tại lưỡng mi đoan</p>
+    <p>Nội hiệp nhật nguyệt liệt tú trận</p>
+    <p>Thất Diệu Cửu Nguyên quan Sinh Môn.</p>
+  </div>
+
+  <h3 id="s19">Tam Quan Chương Đệ Thập Cửu</h3>
+  <div class="callout chinese-quote">
+    <p>Tam Quan chi trung Tinh Khí thâm</p>
+    <p>Cửu vi chi nội u thả âm</p>
+    <p>Khẩu vi Tâm Quan, tinh thần ki</p>
+    <p>Túc vi Địa Quan, sinh mệnh phi</p>
+    <p>Thủ vi Nhân Quan, bả thịnh suy.</p>
+  </div>
+
+  <h3 id="s20">Nhược Đắc Chương Đệ Nhị Thập</h3>
+  <div class="callout chinese-quote">
+    <p>Nhược đắc Tam Cung tồn Huyền Đan</p>
+    <p>Thái Nhất Lưu Châu an Côn Luân</p>
+    <p>Trùng trùng lâu các thập nhị hoàn</p>
+    <p>Tự cao tự hạ giai Chân Nhân</p>
+    <p>Ngọc Đường, Giáng Vũ tận Huyền Cung</p>
+    <p>Tuyền ki ngọc hành sắc lang can</p>
+    <p>Chiêm vọng Đồng Tử tọa bàn hoàn</p>
+    <p>Vấn thùy gia tử tại ngã thân</p>
+    <p>Thử nhân hà khứ nhập Nê Hoàn</p>
+    <p>Thiên thiên bách bách tự tương liên</p>
+    <p>Nhất nhất thập thập tự trọng san</p>
+    <p>Vân Nghi, Ngọc Hoa hiệp nhĩ môn</p>
+    <p>Xích Đế, Hoàng Lão dữ ngã hồn</p>
+    <p>Tam Chân phù cốt cộng phòng tân</p>
+    <p>Ngũ Đẩu hoán minh thị Thất Nguyên</p>
+    <p>Nhật nguyệt phi hành lục hợp gian</p>
+    <p>Đế Hương, Thiên Trung, Địa Hộ đoan</p>
+    <p>Diện bộ hồn thần giai tương tồn.</p>
+  </div>
+
+  <h3 id="s21">Hô Hấp Chương Đệ Nhị Thập Nhất</h3>
+  <div class="callout chinese-quote">
+    <p>Hô hấp Nguyên Khí dĩ cầu Tiên</p>
+    <p>Tiên Công Công Tử tự tại tiền</p>
+    <p>Chu điểu thổ súc bạch thạch nguyên</p>
+    <p>Kết Tinh dục bào hóa sinh thân</p>
+    <p>Lưu Thai chỉ Tinh khả trường sinh</p>
+    <p>Tam Khí hữu hồi Cửu Đạo minh</p>
+    <p>Chánh nhất Hàm Hoa nãi sung doanh</p>
+    <p>Diêu vọng nhất tâm như la tinh</p>
+    <p>Kim Thất chi hạ khả bất khuynh</p>
+    <p>Diên ngã bạch thủ phản hài anh.</p>
+  </div>
+
+  <h3 id="s22">Quỳnh Thất Chương Đệ Nhị Thập Nhị</h3>
+  <div class="callout chinese-quote">
+    <p>Quỳnh Thất chi trung Bát Tố tập</p>
+    <p>Nê Hoàn Phu Nhân đương trung lập</p>
+    <p>Trường cốc, Huyền Hương nhiễu giao ấp</p>
+    <p>Lục Long tán phi nan phân biệt</p>
+    <p>Trường sinh chí thận phòng trung cấp</p>
+    <p>Hà vi tử tác lệnh Thần khấp</p>
+    <p>Hốt chi họa hương, Tam Linh một</p>
+    <p>Đãn đương hấp khí lục tử tinh</p>
+    <p>Thốn điền xích trạch khả trị sinh</p>
+    <p>Nhược đương quyết hải bách độc ẩm</p>
+    <p>Diệp khứ thụ khô thất thanh thanh</p>
+    <p>Khí vong dịch lậu phi kỷ hình</p>
+    <p>Chuyên bế ngự cảnh nãi trường ninh</p>
+    <p>Bảo ngã Nê Hoàn, Tam Kỳ Linh</p>
+    <p>Điềm đạm bế thị nội tự minh</p>
+    <p>Vật vật bất can thái nhi bình</p>
+    <p>Khác hĩ phỉ sự lão phục đinh</p>
+    <p>Tư vịnh Ngọc Thư nhập Thượng Thanh.</p>
+  </div>
+
+  <h3 id="s23">Thường Niệm Chương Đệ Nhị Thập Tam</h3>
+  <div class="callout chinese-quote">
+    <p>Thường niệm Tam Phòng tương thông đạt</p>
+    <p>Động phục thị kiến vô nội ngoại</p>
+    <p>Tồn sấu Ngũ Nha bất cơ khát</p>
+    <p>Thần Hoa chấp cân Lục Đinh yết</p>
+    <p>Cấp thủ tinh thất vật vọng tiết</p>
+    <p>Bế nhi bảo chi khả trường hoạt</p>
+    <p>Khởi tự hình trung sơ bất khoát</p>
+    <p>Tam Quan cận tại dịch ẩn quát</p>
+    <p>Hư vô tịch tịch không trung tố</p>
+    <p>Sử hình như thị bất đương ô</p>
+    <p>Cửu Thất chánh hư Thần Minh xá</p>
+    <p>Tồn tư bách niệm, thị tiết độ</p>
+    <p>Lục Phủ tu trị vật lệnh cố</p>
+    <p>Hành tự cao tường nhập vân lộ.</p>
+  </div>
+
+  <h3 id="s24">Trị Sanh Chương Đệ Nhị Thập Tứ</h3>
+  <div class="callout chinese-quote">
+    <p>Trị Sanh Chi Đạo liễu bất phiền</p>
+    <p>Đãn tu động huyền dữ Ngọc Thiên</p>
+    <p>Kiêm hành hình trung Bát Cảnh Thần</p>
+    <p>Nhị Thập Tứ Chân xuất tự nhiên</p>
+    <p>Cao củng vô vi hồn phách an</p>
+    <p>Thanh tịnh Thần kiến dữ ngã ngôn</p>
+    <p>An tại Tử Phòng vi mạc gian</p>
+    <p>Lập tọa thất ngoại Tam Ngũ Huyền</p>
+    <p>Thiêu hương tiếp thủ Ngọc Hoa tiền</p>
+    <p>Cộng nhập Thái Thất, Tuyền Ki Môn</p>
+    <p>Cao nghiên điềm đạm Đạo chi viên</p>
+    <p>Nội thị mật phán tận đổ Chân</p>
+    <p>Chân Nhân tại kỷ mạc vấn lân</p>
+    <p>Hà xử viễn tác cầu nhân duyên.</p>
+  </div>
+
+  <h3 id="s25">Ẩn Ảnh Chương Đệ Nhị Thập Ngũ</h3>
+  <div class="callout chinese-quote">
+    <p>Ẩn ảnh tàng hình dữ thế thù</p>
+    <p>Hàm khí dưỡng tinh, khẩu như châu</p>
+    <p>Đái chấp tính mệnh thủ hư vô</p>
+    <p>Danh nhập Thượng Thanh tử lục trừ</p>
+    <p>Tam Thần chi lạc do ẩn cư</p>
+    <p>Thúc hốt du ngao vô di ưu</p>
+    <p>Vũ phục nhất chỉnh bát phong khu</p>
+    <p>Khống giá Tam Tố thừa thần hà</p>
+    <p>Kim liễn chánh vị tòng ngọc dư</p>
+    <p>Hà bất đăng san tụng ngã thư</p>
+    <p>Uất uất yểu điệu Chân Nhân khư</p>
+    <p>Nhập san hà nan cố trù trừ</p>
+    <p>Nhân gian phân phân xú như như.</p>
+  </div>
+
+  <h3 id="s26">Ngũ Hành Chương Đệ Nhị Thập Lục</h3>
+  <div class="callout chinese-quote">
+    <p>Ngũ Hành tương thôi phản quy nhất</p>
+    <p>Tam Ngũ hợp khí Cửu Cửu tiết</p>
+    <p>Khả dụng ẩn địa hồi Bát Thuật</p>
+    <p>Phục ngưu U Khuyết la phẩm liệt</p>
+    <p>Tam Minh xuất ư sinh tử tế</p>
+    <p>Động Phòng linh tượng đẩu nhật nguyệt</p>
+    <p>Phụ viết Nê Hoàn, Mẫu Thư Nhất</p>
+    <p>Tam Quang hoán chiếu nhập tử thất</p>
+    <p>Năng tồn Huyền Chân vạn sự tất</p>
+    <p>Nhất thân tinh thần bất khả thất.</p>
+  </div>
+
+  <h3 id="s27">Cao Bôn Chương Đệ Nhị Thập Thất</h3>
+  <div class="callout chinese-quote">
+    <p>Cao bôn nhật nguyệt vô thượng Đạo</p>
+    <p>Uất Nghi, Kết Lân thiện tương bảo</p>
+    <p>Nãi kiến Ngọc Thanh Hư Vô Lão</p>
+    <p>Khả dĩ hồi nhan, điền huyết não</p>
+    <p>Khẩu hàm linh chi huề Ngũ Tinh</p>
+    <p>Yêu đái hổ lục bội kim đang</p>
+    <p>Giá hốt tiếp sinh yến Đông Mông.</p>
+  </div>
+
+  <h3 id="s28">Huyền Nguyên Chương Đệ Nhị Thập Bát</h3>
+  <div class="callout chinese-quote">
+    <p>Huyền Nguyên thượng nhất hồn phách luyện</p>
+    <p>Nhất chi vi vật phả tốt kiến</p>
+    <p>Tu đắc chí chân thủy cố miện</p>
+    <p>Chí kỵ tử khí, chư uế tiện</p>
+    <p>Lục Thần hợp tập hư trung yến</p>
+    <p>Kết Châu cố Tinh, dưỡng Thần Căn</p>
+    <p>Ngọc thi kim thược thường hoàn kiên</p>
+    <p>Bế khẩu khuất thiệt thực thai tân</p>
+    <p>Sử ngã toại luyện hoạch phi Tiên.</p>
+  </div>
+
+  <h3 id="s29">Tiên Nhân Chương Đệ Nhị Thập Cửu</h3>
+  <div class="callout chinese-quote">
+    <p>Tiên nhân Đạo sĩ phi hữu thần</p>
+    <p>Tích Tinh luy Khí dĩ vi Chân</p>
+    <p>Hoàng Đồng diệu âm nan khả văn</p>
+    <p>Ngọc Thư giáng giản Xích Đan Văn</p>
+    <p>Tự viết Chân Nhân cân kim cân</p>
+    <p>Phụ giáp trì phù khai Thất Môn</p>
+    <p>Hỏa binh phù đồ bị Linh Quan</p>
+    <p>Tiền ngang hậu ti cao hạ trận</p>
+    <p>Chấp kiếm bách trượng, vũ cẩm phiên</p>
+    <p>Thập tuyệt bàn không phiến phân vân</p>
+    <p>Hỏa linh quan tiêu đội lạc yên</p>
+    <p>An tại Hoàng Khuyết lưỡng mi gian</p>
+    <p>Thử phi chi diệp thật thị căn.</p>
+  </div>
+
+  <h3 id="s30">Tử Thanh Chương Đệ Tam Thập</h3>
+  <div class="callout chinese-quote">
+    <p>Tử Thanh Thượng Hoàng Thái Đạo Quân</p>
+    <p>Thái huyền thái hòa, hiệp thị đoan</p>
+    <p>Hóa sinh vạn vật, sử ngã Tiên</p>
+    <p>Phi thăng thập Thiên giá ngọc luân</p>
+    <p>Trú dạ thất nhật tư vật miên</p>
+    <p>Tử năng tu thử khả trường tồn</p>
+    <p>Tích công thành luyện phi tự nhiên</p>
+    <p>Thị do tinh thành diệc thủ Nhất</p>
+    <p>Nội thủ kiên cố Chân chi Chân</p>
+    <p>Hư trung điềm đạm tự trí thần.</p>
+  </div>
+
+  <h3 id="s31">Bách Cốc Chương Đệ Tam Thập Nhất</h3>
+  <div class="callout chinese-quote">
+    <p>Bách cốc chi thật Thổ Địa Tinh</p>
+    <p>Ngũ vị ngoại mỹ, tà ma tinh</p>
+    <p>Xú loạn Thần Minh, Thai Khí linh</p>
+    <p>Na tòng phản lão đắc hoàn anh</p>
+    <p>Tam Hồn hốt hốt, phách mi khuynh</p>
+    <p>Hà bất thực khí Thái Hòa Tinh</p>
+    <p>Cố năng bất tử nhập Hoàng Ninh.</p>
+  </div>
+
+  <h3 id="s32">Tâm Điển Chương Đệ Tam Thập Nhị</h3>
+  <div class="callout chinese-quote">
+    <p>Tâm điển nhất thể, Ngũ Tàng vương</p>
+    <p>Động tĩnh niệm chi đạo đức hành</p>
+    <p>Thanh khiết hỷ khí tự minh quang</p>
+    <p>Tọa khởi ngô câu cộng luyện lương</p>
+    <p>Trú nhật diệu cảnh, mộ bế tàng</p>
+    <p>Thông đạt hoa tinh, điều Âm Dương.</p>
+  </div>
+
+  <h3 id="s33">Lưỡng Thận Chương Đệ Tam Thập Tam</h3>
+  <div class="callout chinese-quote">
+    <p>Lưỡng Thận Chi Thần chủ diên thọ</p>
+    <p>Kinh lịch Lục Hợp, ẩn Mão Dậu</p>
+    <p>Chuyển giáng thích đẩu Tàng Sơ Cửu</p>
+    <p>Tri hùng thủ thư khả vô lão</p>
+    <p>Tri bạch thủ hắc kiến Tọa Thủ.</p>
+  </div>
+
+  <h3 id="s34">Can Khí Chương Đệ Tam Thập Tứ</h3>
+  <div class="callout chinese-quote">
+    <p>Can Khí uất bột thanh thả trường</p>
+    <p>La liệt Lục Phủ sinh Tam Quang</p>
+    <p>Tâm tinh ý chuyên nội bất khuynh</p>
+    <p>Thượng hợp Tam Tiêu, hạ ngọc tương</p>
+    <p>Huyền dịch vân hành khứ xú hương</p>
+    <p>Trị đãng phát xỉ, luyện Ngũ Phương</p>
+    <p>Thủ tân huyền ưng nhập Minh Đường</p>
+    <p>Hạ khái hầu lung Thần Minh thông</p>
+    <p>Tọa thị Hoa Cái du Quý Kinh</p>
+    <p>Phiêu phiêu Tam Thanh tịch thanh lương</p>
+    <p>Ngũ sắc vân khí phân thanh thông</p>
+    <p>Bế mục nội miện tự tương vọng</p>
+    <p>Sử tâm chư Thần hoàn tự sùng</p>
+    <p>Thất Huyền anh hoa khai Mệnh Môn</p>
+    <p>Thông lợi Thiên Đạo tồn Huyền Căn</p>
+    <p>Bách nhị thập niên do khả hoàn</p>
+    <p>Quá thử thủ Đạo thành thậm nan</p>
+    <p>Duy đãi Cửu Chuyển Bát Quỳnh Đan</p>
+    <p>Yếu phục tinh tư tồn Thất Nguyên</p>
+    <p>Nhật nguyệt chi hoa cứu lão tàn</p>
+    <p>Can khí chu lưu chung vô đoan.</p>
+  </div>
+
+  <h3 id="s35">Phế Chi Đạo Chương Đệ Tam Thập Ngũ</h3>
+  <div class="callout chinese-quote">
+    <p>Phế Chi Vi Khí Tam Tiêu khởi</p>
+    <p>Thị thính u minh hậu Đồng Tử</p>
+    <p>Điều lý Ngũ Hoa tinh phát xỉ</p>
+    <p>Tam thập lục yết Ngọc Trì lý</p>
+    <p>Khai thông bách mạch huyết dịch thủy</p>
+    <p>Nhan sắc sinh quang kim ngọc trạch</p>
+    <p>Xỉ kiên phát hắc bất tri bạch</p>
+    <p>Tồn thử Chân Thần vật lạc lạc</p>
+    <p>Đương ức thử cung hữu tọa tịch</p>
+    <p>Chúng Thần hợp hội chuyển tương tác.</p>
+  </div>
+
+  <h3 id="s36">Ẩn Tàng Chương Đệ Tam Thập Lục</h3>
+  <div class="callout chinese-quote">
+    <p>Ẩn tàng vũ cái khán Thiên Xá</p>
+    <p>Triêu bái thái dương lạc tương hô</p>
+    <p>Minh Thần bát uy chánh tích tà</p>
+    <p>Tì Thần hoàn quy thị Vị Gia</p>
+    <p>Đam dưỡng Linh Căn bất phục khô</p>
+    <p>Bế tắc Mệnh Môn bảo Ngọc Đô</p>
+    <p>Vạn Thần phương tạc thọ hữu dư</p>
+    <p>Thị vị tì kiến tại Trung Cung</p>
+    <p>Ngũ Tạng Lục Phủ Thần Minh chủ</p>
+    <p>Thượng hợp Thiên Môn nhập Minh Đường</p>
+    <p>Thủ thư tồn hùng đính Tam Quang</p>
+    <p>Ngoại phương nội viên Thần tại trung</p>
+    <p>Thông lợi huyết mạch Ngũ Tạng phong</p>
+    <p>Cốt thanh cân xích tủy như sương</p>
+    <p>Tì cứu Thất Khiếu khứ bất tường</p>
+    <p>Nhật nguyệt liệt bố thiết Âm Dương</p>
+    <p>Lưỡng Thần tương hội hóa Ngọc Anh</p>
+    <p>Đạm nhiên vô vị Thiên Nhân lương</p>
+    <p>Tử Đan tiến soạn hào chánh hoàng</p>
+    <p>Nãi viết Lang Cao, cập Ngọc Sương</p>
+    <p>Thái Thượng ẩn hoàn Bát Tố Quỳnh</p>
+    <p>Khái ích Bát Dịch thận thụ tinh</p>
+    <p>Phục ư Thái Âm kiến ngã hình</p>
+    <p>Dương phong Tam Huyền xuất Thủy Thanh</p>
+    <p>Hoảng hốt chi gian chí Thanh Linh</p>
+    <p>Tọa ư Tiêu Đài kiến Xích Sinh</p>
+    <p>Nội phán trầm mặc luyện Ngũ Hình</p>
+    <p>Dật vực hi chân dưỡng hoa vinh</p>
+    <p>Tam Khí bồi hồi đắc Thần Minh</p>
+    <p>Ẩn long, độn chi, vân lang anh</p>
+    <p>Khả dĩ sung cơ sử vạn linh</p>
+    <p>Thượng cái huyền huyền hạ hổ chương.</p>
+  </div>
+</section>
+<section id="chu-giai-01">
+
+  <div class="book-figure">
+    <img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/huynh_dinh_noi_canh_kinh/huynh_p045.jpeg" alt="Hình ảnh" loading="lazy">
+    <figcaption>trang mở đầu phần này trong bản in gốc.</figcaption>
+  </div></main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

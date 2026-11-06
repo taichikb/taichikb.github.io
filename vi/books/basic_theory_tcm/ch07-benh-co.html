@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root{--accent-gold:#c59b27;--accent-crimson:#991b1b;--bg-primary:#fdfbf7;--text-primary:#1c1917;--text-secondary:#57534e;}
+body.dark-mode{--bg-primary:#121212;--text-primary:#f5f5f4;--text-secondary:#a8a29e;background-color:#121212!important;color:#f5f5f4!important;}
+*{box-sizing:border-box;}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:'Inter',sans-serif;margin:0;line-height:1.7;}
+#reading-progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#991b1b,#c59b27);z-index:9999;width:0%;transition:width .1s;}
+.reader-layout{display:block;max-width:900px;margin:0 auto;padding:2rem 1.5rem;}
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.86rem;color:var(--text-secondary);padding:0 0 1.1rem;margin-bottom:1.6rem;border-bottom:1px solid #e7e5e4;}
+body.dark-mode .breadcrumb{border-color:#333;}
+.breadcrumb a{color:var(--accent-crimson);text-decoration:none;font-weight:600;}
+.breadcrumb .sep{color:#d6d3d1;}
+.toc-drawer{border:1px solid #e7e5e4;border-radius:10px;background:#fafaf9;margin-bottom:2rem;padding:.2rem 1rem;}
+body.dark-mode .toc-drawer{background:#1a1a1a;border-color:#2e2e2e;}
+.toc-drawer summary{cursor:pointer;font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-crimson);padding:.9rem 0;display:flex;align-items:center;gap:8px;}
+.toc-list{list-style:none;padding:0;margin:0;}
+.toc-drawer .toc-list{max-height:60vh;overflow-y:auto;padding-bottom:.8rem;}
+.toc-item{margin-bottom:.35rem;}
+.toc-link{display:block;padding:.4rem .6rem;color:var(--text-secondary);text-decoration:none;border-radius:6px;font-size:.88rem;line-height:1.4;}
+.toc-link:hover{background:rgba(153,27,27,.08);color:var(--accent-crimson);font-weight:600;}
+.book-header{border-bottom:2px solid #e7e5e4;padding-bottom:2rem;margin-bottom:2.5rem;}
+.book-badge{display:inline-flex;align-items:center;gap:6px;background:#fef2f2;color:#991b1b;font-weight:600;font-size:.8rem;padding:4px 12px;border-radius:20px;border:1px solid #fecaca;margin-bottom:1rem;}
+.book-title{font-family:'Cormorant Garamond',serif;font-size:2.6rem;line-height:1.2;margin:0 0 1rem;}
+.book-meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;background:rgba(0,0,0,.02);padding:1.2rem;border-radius:8px;margin-top:1.5rem;border:1px solid #eee;}
+.meta-item strong{display:block;font-size:.75rem;text-transform:uppercase;color:#78716c;margin-bottom:2px;}
+.meta-item span{font-size:.95rem;}
+.pg{margin:0 0 1.6rem;}
+.pg h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;border-bottom:2px solid #991b1b;padding-bottom:.4rem;margin:2.4rem 0 1rem;color:var(--text-primary);}
+.pg h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin:1.8rem 0 .8rem;color:var(--accent-crimson);}
+.pg p{margin:0 0 .95rem;font-size:1.06rem;line-height:1.8;color:var(--text-secondary);}
+.pg .folio{font-size:.78rem;color:#a8a29e;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;}
+.page-nav{margin:3.5rem 0 1rem;padding-top:1.6rem;border-top:1px solid #e7e5e4;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;}
+.page-nav a{color:var(--accent-crimson);text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 14px;border-radius:8px;}
+.page-nav a.home{color:var(--accent-gold);}
+.page-nav a.disabled{color:#c7c2bd;pointer-events:none;}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid #e7e5e4;background:#fff;}
+body.dark-mode .site-header{background:#1a1a1a;border-color:#333;}
+.site-header .brand{display:flex;align-items:center;gap:.5rem;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;color:var(--text-primary);text-decoration:none;}
+.site-header .brand svg{width:28px;height:28px;}
+.site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
+.site-nav a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;}
+.site-footer{text-align:center;padding:2rem 1rem;color:#a8a29e;font-size:.85rem;border-top:1px solid #e7e5e4;margin-top:3rem;}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 7: Bệnh Cơ — Lý Luận Cơ Bản Của Đông Y (Tập 2) | TaichiNOW</title>
+<meta name="description" content="Chương 7 của Lý Luận Cơ Bản Của Đông Y (Tập 2): Bệnh Cơ">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="ch01-ly-thuyet-ban.html#sec00">Lý Thuyết Cơ Bản</a></li>
+        <li><a href="ch02-nha-xuat-ban-thuc-dung.html#sec01">Nhà Xuất Bản Thực Dụng</a></li>
+        <li><a href="ch03-ban-chi-dao.html#sec02">Ban Chỉ Đạo</a></li>
+        <li><a href="ch04-ban-bien-tap-dich-thuat.html#sec03">Ban Biên Tập Và Dịch Thuật</a></li>
+        <li><a href="ch05-muc-luc.html#sec04">Mục Lục</a></li>
+        <li><a href="ch06-nguyen-nhan-benh.html#sec05">Nguyên Nhân Bệnh</a></li>
+        <li><a href="ch07-benh-co.html#sec06">Bệnh Cơ</a></li>
+        <li><a href="ch08-du-phong.html#sec07">Dự Phòng</a></li>
+        <li><a href="ch09-dieu-tri.html#sec08">Điều Trị</a></li>
+        <li><a href="ch10-xuat-ban-kem.html#sec09">Xuất Bản Kèm Theo</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../basic_theory_tcm_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Lý Luận Cơ Bản Của Đông Y (Tập 2) · Thạch Lan Hoa</p>
+<h3 class="chapter" id="ch07">Bệnh Cơ</h3>
+
+<div class="partnav"><a href="ch06-nguyen-nhan-benh.html"><span class="k">← Chương 6</span>Nguyên Nhân Bệnh</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch08-du-phong.html" style="text-align:right"><span class="k">Chương 8 →</span>Dự Phòng</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Thạch Lan Hoa.</p>
+<span id="p067"></span>
+<p>Chương Hai</p>
+
+<p>Bệnh cơ là cơ lý của sự phát sinh, phát triển và biến hóa của bệnh tật. Nó bao gồm nguyên lý phát bệnh và bệnh cơ cơ bản, lần lượt được trình bày như sau.</p>
+<p>Tiết 1</p>
+<p>Nguyên lý phát bệnh</p>
+<p>Đông y xem xét sự phát sinh của bệnh tật từ hai phương diện sau: sự bất túc của chính khí hay sự rối loạn công năng của cơ thể người; và sự tổn hại bệnh lý đối với cơ thể. Cái gọi là chính khí là chỉ công năng sinh lý bình thường của cơ thể cũng như năng lực kháng bệnh và hồi phục của nó; trong Đông y gọi tắt là &quot;chính&quot;. Cái gọi là tà khí là chỉ chung mọi loại nhân tố gây bệnh dẫn đến sự phát sinh của bệnh tật; trong Đông y gọi tắt là &quot;tà&quot;.</p>
+<p>1. Chính khí bất túc là nguyên nhân nội tại cơ bản của sự phát sinh bệnh tật</p>
+<p>Đông y chú trọng đến chính khí, cho rằng nếu chính khí thịnh vượng thì tà khí khó có thể xâm nhập vào cơ thể và gây bệnh. Theo thiên &quot;Luận về phép châm cứu&quot; (thiên 12), trong</p>
+<p>46</p></section><section class="pg" id="p068"><p>Chương Hai</p>
+<p>Bệnh cơ</p>
+<p>Bệnh cơ là cơ lý của sự phát sinh, phát triển và biến hóa của bệnh tật, bao gồm nguyên lý phát bệnh và bệnh cơ</p>
+<p>cơ bản. Nay lần lượt trình bày như sau:</p>
+<p>Tiết thứ nhất: Nguyên lý phát bệnh</p>
+<p>Đông y cho rằng sự phát sinh của bệnh tật có hai phương diện nguyên nhân: một là chính khí của cơ thể bất</p>
+<p>túc hoặc công năng rối loạn, hai là tà khí gây tổn hại bệnh lý cho cơ thể. Cái gọi là chính khí là chỉ</p>
+<p>công năng sinh lý bình thường của cơ thể cùng năng lực kháng bệnh, hồi phục của nó, gọi tắt là &quot;chính&quot;; cái gọi là tà khí,</p>
+<p>là chỉ chung các nhân tố gây bệnh khiến cơ thể phát bệnh, gọi tắt là &quot;tà&quot;.</p>
+<p>1. Chính khí bất túc là căn cứ nội tại của sự phát bệnh</p>
+<p>Đông y rất coi trọng chính khí của cơ thể, cho rằng nếu chính khí của cơ thể thịnh vượng thì tà khí khó</p>
+<p>có thể xâm nhập, bệnh tật sẽ không phát sinh. Như thiên &quot;Tố Vấn di thiên · Thích pháp luận&quot; nói: &quot;Chính khí tồn tại bên trong,</p>
+<p>47</p></section><section class="pg" id="p069"><p>Tố Vấn: tà khí không thể gây hại nếu chính khí đầy đủ.&quot; Chỉ khi chính khí tương đối bất túc, không đủ sức đánh bại tà khí, thì tà khí mới thừa cơ xâm nhập cơ thể mà tấn công. Hiện tượng này đã được miêu tả trong thiên &quot;Luận về bốn loại ôn bệnh&quot; (thiên 33) trong Tố Vấn: &quot;Nơi tà khí tụ lại, ắt phần cơ thể ấy phải bất túc về chính khí.&quot;</p>
+<p>2. Tà khí xâm nhập là nguyên nhân bên ngoài của sự phát sinh bệnh tật</p>
+<p>Đông y hết sức coi trọng chính khí. Tuy nhiên, không vì thế mà phủ nhận tà khí, vốn thực sự đóng vai trò to lớn trong việc gây bệnh, thậm chí giữ vai trò quyết định trong một số trường hợp đặc biệt. Ví dụ, trong các trường hợp như ngoại thương, trúng độc hoặc rắn độc cắn, dù chính khí thịnh vượng, người bệnh cũng khó tránh bị tổn hại mà ngã bệnh.</p>
+<p>Tóm lại, bệnh nhân học của Đông y cho rằng sự phát sinh của bệnh tật chủ yếu liên quan đến hai phương diện, đó là chính khí và tà khí. Và chính khí bất túc được coi là nguyên nhân nội tại cơ bản, còn tà khí xâm nhập là nguyên nhân bên ngoài quan trọng của sự phát sinh bệnh tật.</p>
+<p>Tiết 2</p>
+<p>Bệnh cơ cơ bản</p>
+<p>Trong quá trình bệnh tật, do thể chất người bệnh khác nhau và nhân tố xâm nhập khác nhau, nên sinh ra các chứng hậu khác nhau. Tuy nhiên, mỗi chứng hậu tự nó đều có bệnh cơ cụ thể của</p>
+<p>48</p></section><section class="pg" id="p070"><p>tà bất khả can&quot;. Chỉ khi chính khí tương đối bất túc, vệ ngoại bất cố, tà khí mới xâm nhập vào cơ</p>
+<p>thể mà phát bệnh, tức như thiên &quot;Bình nhiệt bệnh luận&quot; trong Tố Vấn nói: &quot;Tà chi sở tấu, kỳ khí tất hư.&quot;</p>
+<p>2. Tà khí xâm tập là điều kiện quan trọng của sự phát bệnh</p>
+<p>Đông y coi trọng chính khí, nhưng không phủ nhận vai trò quan trọng của tà khí trong phát bệnh. Tà khí</p>
+<p>là điều kiện phát bệnh, trong một số trường hợp đặc biệt thậm chí giữ vai trò quyết định. Như ngoại thương,</p>
+<p>trúng độc, rắn độc cắn... dù chính khí thịnh vượng cũng khó tránh bị tổn hại mà phát bệnh.</p>
+<p>Tóm lại, học thuyết phát bệnh của Đông y cho rằng sự phát sinh bệnh tật do hai phương diện chính khí và tà khí</p>
+<p>quyết định: chính khí bất túc là căn cứ nội tại của phát bệnh, tà khí xâm nhập là điều kiện quan</p>
+<p>yếu của phát bệnh.</p>
+<p>Tiết thứ hai: Bệnh cơ cơ bản</p>
+<p>Trong quá trình bệnh tật, do thể chất người bệnh khác nhau, bệnh tà khác nhau, nên sinh ra</p>
+<p>các chứng bệnh khác nhau. Mà mỗi chứng bệnh tự nó đều có biến hóa bệnh cơ cụ thể. Nhưng</p>
+<p>49</p></section><section class="pg" id="p071"><p>sinh. Nhìn chung, bệnh cơ cơ bản không ngoài ba phương diện: đấu tranh giữa chính và tà, âm dương mất điều hòa và thăng giáng thất thường.</p>
+<p>1. Đấu tranh giữa &quot;chính&quot; và &quot;tà&quot;</p>
+<p>Đây là chỉ sự đấu tranh giữa chính khí và tà khí. Sự đấu tranh này không chỉ liên quan mật thiết đến sự phát sinh của bệnh tật mà còn ảnh hưởng đến sự phát triển và chuyển quy của bệnh tật. Đồng thời, nó còn ảnh hưởng trực tiếp đến sự biến hóa hư thực của bệnh chứng. Vì vậy, theo một nghĩa nào đó, quá trình của nhiều bệnh tật chính là quá trình đấu tranh giữa chính khí và tà khí.</p>
+<p>1) Đấu tranh giữa chính và tà với biến hóa hư thực. Trong quá trình đấu tranh, chính khí và tà khí tác động lẫn nhau, cùng tiêu cùng trưởng. Nói chung, nếu chính khí thịnh vượng thì có thể chế ngự tà khí để phòng bệnh. Nhưng nếu chính khí hư nhược, hoặc tà khí thiên thịnh, đều có thể khiến chính không thắng nổi tà, dẫn đến tà thắng chính phụ mà phát sinh bệnh tật. Theo sự tiêu trưởng, thịnh suy của cuộc đấu tranh giữa chính và tà, hình thành nên sự biến hóa hư thực của bệnh chứng.</p>
+<p>Theo thiên &quot;Thông bình hư thực luận&quot; (thiên 28) trong Tố Vấn, &quot;tà khí thịnh thì thực, tinh khí đoạt thì hư&quot;. Thực chủ yếu là chỉ tà khí cang thịnh, tức lấy tà khí cang thịnh làm phương diện chủ yếu của biến hóa bệnh lý. Trong trường hợp này, tà khí cang thịnh mà chính khí chưa suy, chính khí đủ sức chống lại</p>
+<p>50</p></section><section class="pg" id="p072"><p>Nhìn chung, bệnh cơ cơ bản không ngoài ba phương diện: đấu tranh giữa chính và tà, âm dương mất điều hòa và thăng giáng thất thường</p>
+<p>mà thôi.</p>
+<p>2. Đấu tranh giữa chính và tà</p>
+<p>Đấu tranh giữa chính và tà là chỉ sự đấu tranh giữa chính khí và bệnh tà. Sự đấu tranh này không chỉ quan hệ đến sự</p>
+<p>phát sinh của bệnh tật, mà còn ảnh hưởng đến sự phát triển và chuyển quy của bệnh tật, đồng thời trực tiếp ảnh hưởng đến sự</p>
+<p>biến hóa hư thực của bệnh chứng. Vì vậy, theo một nghĩa nào đó, quá trình của nhiều bệnh tật chính là quá trình đấu tranh</p>
+<p>giữa chính và tà.</p>
+<p>1) Đấu tranh giữa chính và tà với biến hóa hư thực. Hai bên chính và tà trong quá trình đấu tranh vốn tiêu trưởng lẫn</p>
+<p>nhau. Nói chung, nếu chính khí cường thịnh, chính thắng được tà, cơ thể sẽ không phát bệnh. Nếu</p>
+<p>chính khí hư nhược, hoặc tà khí thiên thịnh, đều có thể dẫn đến chính không thắng tà, xuất hiện tà thắng chính phụ mà phát</p>
+<p>sinh bệnh tật. Theo sự tiêu trưởng, thịnh suy của cuộc đấu tranh chính tà, hình thành nên biến hóa hư thực của bệnh chứng.</p>
+<p>Thiên &quot;Thông bình hư thực luận&quot; trong Tố Vấn nói: &quot;Tà khí thịnh thì thực, tinh khí đoạt thì hư.&quot; Thực chủ</p>
+<p>yếu là chỉ tà khí cang thịnh, tức lấy tà khí cang thịnh làm phương diện chủ yếu của biến hóa bệnh lý. Bệnh lý của nó</p>
+<p>đặc điểm là: tà khí cang thịnh mà chính khí chưa suy, chính khí đủ sức chống lại tà khí, nên chính tà đấu</p></section><section class="pg" id="p073"><p>tà khí cùng một lúc, do đó cuộc đấu tranh giữa hai bên rất kịch liệt, biểu hiện lâm sàng là thực chứng với phản ứng dữ dội. Thực chứng thường gặp ở giai đoạn đầu hoặc giữa của bệnh ngoại cảm, hoặc các bệnh chứng do đàm, thực, thủy, huyết đình trệ trong cơ thể gây ra, như tráng nhiệt, cuồng táo, tiếng nói to khí thô, đau bụng cự án, đại tiểu tiện không thông, mạch thực hữu lực... đều thuộc thực chứng.</p>
+<p>Hư chủ yếu là chỉ loại biến hóa bệnh lý lấy chính khí bất túc làm phương diện chủ yếu. Đặc điểm bệnh lý của nó là: chính khí đã hư, không đủ sức chống lại tà khí, phản ứng bệnh lý không dữ dội, trên lâm sàng có thể xuất hiện một loạt chứng hậu hư nhược, vô lực và bất túc. Hư chứng thường gặp ở người vốn thể chất hư nhược hoặc giai đoạn sau của bệnh tật cũng như nhiều loại bệnh mạn tính; biểu hiện lâm sàng là thần bì phạp lực, sắc mặt vàng vọt, tâm quý khí đoản, tự hãn, đạo hãn hoặc ngũ tâm phiền nhiệt, hoặc úy hàn chi lãnh, mạch hư vô lực...</p>
+<p>Sự tiêu trưởng, thịnh suy của cuộc đấu tranh chính tà không chỉ có thể sinh ra hư chứng, thực chứng đơn thuần, mà trong những bệnh phức tạp, do trị liệu không thỏa đáng hoặc thất trị khiến chính khí đã tổn thương mà tà khí lưu lại lâu; hoặc do chính khí vốn hư, không đủ sức trục tà; hoặc chính khí bất túc, sinh ra nội thủy thấp, đàm ẩm, ứ huyết... tạo thành chứng hậu hư thực thác tạp kiểu hư trung hiệp thực, thực trung hiệp hư. Trong đó, hư trung hiệp thực là chỉ bệnh chứng lấy chính hư làm chủ lại kiêm thực tà, như Tỳ hư thủy thũng; thực trung hiệp hư là chỉ bệnh chứng lấy tà thực làm chủ lại kiêm thấy hư chứng, như nhiệt thịnh thương tân. Do sự so sánh lực lượng đấu tranh giữa hai bên tà chính thường xuyên biến đổi, nên bệnh tật cũng có thể từ thực chuyển hư hoặc từ hư chuyển thực.</p>
+<p>52</p></section><section class="pg" id="p074"><p>tranh kịch liệt, biểu hiện lâm sàng là thực chứng với phản ứng dữ dội. Thực chứng thường gặp ở giai đoạn đầu,</p>
+<p>giữa của bệnh ngoại cảm, hoặc các bệnh chứng do đàm, thực, thủy, huyết... đình trệ trong cơ thể gây ra, như tráng nhiệt,</p>
+<p>cuồng táo, tiếng nói to khí thô, đau bụng cự án, đại tiểu tiện không thông, mạch thực hữu lực...</p>
+<p>Hư, chủ yếu là chỉ chính khí bất túc, tức lấy chính khí hư tổn làm phương diện chủ yếu của biến</p>
+<p>hóa bệnh lý. Đặc điểm bệnh lý của nó là: chính khí đã hư, vô lực đấu tranh với tà, phản ứng bệnh lý không dữ dội,</p>
+<p>lâm sàng có thể xuất hiện một loạt chứng hậu hư nhược, vô lực và bất túc. Hư chứng thường gặp ở người vốn thể chất hư</p>
+<p>nhược hoặc giai đoạn sau của bệnh tật cũng như nhiều loại bệnh mạn tính; biểu hiện lâm sàng là thần bì phạp lực, sắc mặt</p>
+<p>, tâm quý khí đoản, tự hãn, đạo hãn hoặc ngũ tâm phiền nhiệt, hoặc úy hàn chi lãnh, mạch hư vô</p>
+<p>lực...</p>
+<p>Sự tiêu trưởng, thịnh suy của cuộc đấu tranh chính tà không chỉ có thể sinh ra hư chứng, thực chứng đơn thuần, mà</p>
+<p>trong những bệnh phức tạp, do trị liệu không thỏa đáng hoặc thất trị, khiến chính khí đã tổn thương mà tà khí</p>
+<p>lưu lại lâu; hoặc do chính khí vốn hư, không đủ sức trục tà; hoặc chính khí bất túc, sinh ra nội thủy thấp, đàm ẩm, ứ huyết</p>
+<p>..., tạo thành chứng hậu hư thực thác tạp kiểu hư trung hiệp thực, thực trung hiệp hư. Trong đó, hư trung hiệp thực là</p>
+<p>chỉ bệnh chứng lấy chính hư làm chủ lại kiêm thực tà, như Tỳ hư thủy thũng; thực trung hiệp hư là chỉ</p>
+<p>bệnh chứng lấy tà thực làm chủ lại kiêm thấy hư chứng, như nhiệt thịnh thương tân. Do sự đấu tranh giữa hai bên tà chính</p>
+<p>so sánh lực lượng thường xuyên biến đổi, nên bệnh tật cũng có thể từ thực chuyển hư hoặc từ hư chuyển thực.</p>
+<p>53</p></section><section class="pg" id="p075"><p>Cần chỉ ra rằng, trong tình huống thông thường, hiện tượng và bản chất của bệnh tật là tương phù, có thể phản ánh hư và thực của bệnh cơ. Nhưng trong một số trường hợp đặc biệt, sẽ xuất hiện tình huống hiện tượng và bản chất của bệnh tật trái ngược nhau, như &quot;đại thực hữu doanh trạng (tức chân thực giả hư)&quot; và &quot;chí hư hữu thịnh hậu (tức chân hư giả thực)&quot;. Trên lâm sàng cần chú ý giám biệt.</p>
+<p>2) Đấu tranh chính tà với chuyển quy của bệnh tật. Trong quá trình bệnh tật, sự đấu tranh giữa hai bên chính tà không chỉ phản ánh hư và thực của bệnh tật, mà còn quyết định sự chuyển quy của bệnh tật. Chính thắng tà thoái, thì bệnh tật có xu hướng chuyển biến tốt hoặc khỏi hẳn; tà thắng chính suy, thì bệnh tật có xu hướng nặng thêm hoặc xấu đi, thậm chí dẫn đến tử vong.</p>
+<p>Chính thắng tà thoái là một loại chuyển quy thường gặp nhất của nhiều bệnh tật. Nếu chính khí của người bệnh tương đối sung thịnh, năng lực chống đỡ bệnh tà khá mạnh, hoặc do được trị liệu kịp thời và đúng đắn, thì tà khí khó có thể tiếp tục phát triển, tác dụng độc hại đối với cơ thể giảm nhẹ hoặc tiêu mất, các tổn hại bệnh lý của tạng phủ, kinh lạc, tổ chức, khí quan dần dần được tu phục, sự hao tổn tinh, khí, huyết, tân dịch... cũng dần dần được hồi phục, hai phương diện âm dương của cơ thể lại đạt được thăng bằng động trên cơ sở mới, bệnh tật liền khỏi hẳn.</p>
+<p>Tà thắng chính suy là một kết cục chuyển quy của bệnh tật theo hướng xấu đi thậm chí tử vong. Nếu chính khí hư nhược hoặc tà khí quá thịnh,</p>
+<p>54</p></section><section class="pg" id="p076"><p>Cần chỉ ra rằng, trong tình huống thông thường, hiện tượng và bản chất của bệnh tật là tương phù,</p>
+<p>có thể phản ánh hư và thực của bệnh cơ. Nhưng trong một số trường hợp đặc biệt, sẽ xuất hiện hiện tượng</p>
+<p>và bản chất của bệnh tật trái ngược nhau, như &quot;đại thực hữu doanh trạng (tức chân thực giả hư)&quot; và &quot;chí hư hữu</p>
+<p>thịnh hậu (tức chân hư giả thực)&quot;. Trên lâm sàng cần chú ý giám biệt.</p>
+<p>2) Đấu tranh chính tà với chuyển quy của bệnh tật. Trong quá trình bệnh tật, sự đấu tranh giữa hai bên chính tà</p>
+<p>không chỉ phản ánh hư và thực của bệnh tật, mà còn quyết định sự chuyển quy của bệnh tật. Chính thắng tà thoái,</p>
+<p>thì bệnh tật có xu hướng chuyển biến tốt hoặc khỏi hẳn; tà thắng chính suy, thì bệnh tật có xu hướng nặng thêm hoặc xấu đi, thậm</p>
+<p>chí dẫn đến tử vong.</p>
+<p>Chính thắng tà thoái là một loại chuyển quy thường gặp nhất của nhiều bệnh tật. Nếu chính khí của người bệnh tương đối</p>
+<p>sung thịnh, năng lực chống đỡ bệnh tà khá mạnh, hoặc do được trị liệu kịp thời và đúng đắn, thì tà</p>
+<p>khí khó có thể tiếp tục phát triển, tác dụng độc hại đối với cơ thể giảm nhẹ hoặc tiêu mất, tạng phủ, kinh</p>
+<p>lạc, tổ chức, khí quan; các tổn hại bệnh lý dần dần được tu phục; tinh, khí, huyết, tân dịch...</p>
+<p>sự hao tổn cũng dần dần được hồi phục, hai phương diện âm dương của cơ thể lại đạt được</p>
+<p>thăng bằng động trên cơ sở mới, bệnh tật liền khỏi hẳn.</p>
+<p>Tà thắng chính suy là một kết cục chuyển quy của bệnh tật theo hướng xấu đi thậm chí tử vong. Nếu</p></section><section class="pg" id="p077"><p>năng lực kháng bệnh của cơ thể ngày càng thấp kém, không thể ngăn chặn sự phát triển của tà khí, thì tổn hại bệnh lý mà cơ thể phải chịu ngày càng nặng thêm, bệnh tình sẽ có xu hướng xấu đi. Nếu chính khí suy kiệt, tà khí độc thịnh, công năng tạng phủ, kinh lạc suy bại, tinh, khí, huyết, tân dịch khô kiệt, thậm chí âm dương ly quyết, hoạt động sống cũng chấm dứt mà tử vong.</p>
+<p>Ngoài ra, trong quá trình bệnh tật, cũng có thể xuất hiện tình huống chính hư tà luyến hoặc tà khứ nhi chính hư, thì dễ khiến bệnh trình kéo dài, ngày tháng không khỏi, bệnh từ cấp tính chuyển thành mạn tính, hoặc lưu lại một số di chứng.</p>
+<p>2. Âm dương thất điều. Âm dương thất điều là chỉ trạng thái bệnh lý mà hai bên âm dương của cơ thể mất đi sự điều hòa, thăng bằng dưới tác dụng của các nhân tố gây bệnh. Do tạng phủ, kinh lạc, khí huyết, doanh vệ của cơ thể người cũng như sự thăng giáng xuất nhập của khí cơ đều có sự phân biệt âm dương, nên lục dâm, thất tình, ẩm thực, lao quyện... các nhân tố gây bệnh đều phải thông qua việc dẫn đến âm dương thất điều bên trong cơ thể mới có thể hình thành bệnh tật. Vì vậy, âm dương thất điều là sự khái quát cao độ đối với các loại bệnh cơ mất thăng bằng điều hòa của cơ thể người, cũng là bệnh cơ cơ bản nhất của các loại bệnh biến của cơ thể người. Mặc dù biến hóa bệnh lý của âm dương thất điều hết sức phức tạp, nhưng hình thức biểu hiện của nó không ngoài các phương diện sau:</p>
+<p>1) Âm hoặc dương thiên thắng. Âm hoặc dương thiên thắng chủ yếu là chỉ thực chứng &quot;tà khí thịnh thì thực&quot;.</p>
+<p>56</p></section><section class="pg" id="p078"><p>Chính khí hư nhược hoặc tà khí quá thịnh, năng lực kháng bệnh của cơ thể ngày càng thấp kém, không thể ngăn chặn sự</p>
+<p>phát triển của tà khí, tổn hại bệnh lý mà cơ thể phải chịu ngày càng nặng thêm, bệnh tình sẽ có xu hướng xấu đi. Nếu</p>
+<p>chính khí suy kiệt, tà khí độc thịnh, công năng tạng phủ, kinh lạc suy bại, tinh, khí, huyết, tân dịch</p>
+<p>khô kiệt, thậm chí âm dương ly quyết, hoạt động sống cũng chấm dứt mà tử vong.</p>
+<p>Ngoài ra, trong quá trình bệnh tật, cũng có thể xuất hiện tình huống chính hư tà luyến hoặc tà khứ nhi chính hư,</p>
+<p>thì dễ khiến bệnh trình kéo dài, ngày tháng không khỏi, bệnh từ cấp tính chuyển thành mạn tính, hoặc lưu lại</p>
+<p>một số di chứng.</p>
+<p>2. Âm dương thất điều</p>
+<p>Âm dương thất điều là chỉ trạng thái bệnh lý mà hai bên âm dương của cơ thể mất đi</p>
+<p>sự điều hòa, thăng bằng dưới tác dụng của các nhân tố gây bệnh. Do tạng phủ, kinh lạc, khí huyết, doanh vệ</p>
+<p>cũng như sự thăng giáng xuất nhập của khí cơ đều có sự phân biệt âm dương, nên lục dâm, thất tình, ẩm thực, lao quyện</p>
+<p>và các nhân tố gây bệnh khác đều phải thông qua việc dẫn đến âm dương thất điều bên trong cơ thể mới có thể hình thành bệnh</p>
+<p>tật. Vì vậy, âm dương thất điều là sự khái quát cao độ đối với các loại bệnh cơ mất thăng bằng điều hòa của cơ thể người,</p>
+<p>cũng là bệnh cơ cơ bản nhất của các loại bệnh biến của cơ thể người. Mặc dù biến hóa bệnh lý của âm dương thất điều hết sức</p>
+<p>phức tạp, nhưng hình thức biểu hiện của nó không ngoài các phương diện sau:</p>
+<p>1) Âm dương thiên thắng. Âm hoặc dương thiên thắng chủ yếu là chỉ thực chứng &quot;tà khí thịnh thì thực&quot;.</p>
+<p>57</p></section><section class="pg" id="p079"><p>khi tà khí xâm nhập cang thịnh. Tà khí khi xâm nhập cơ thể người thường đi theo đặc tính phân loại của nó. Tức là, khi tà dương xâm nhập, sẽ gây dương thiên thắng; và khi tà âm xâm nhập, sẽ gây âm thiên thắng.</p>
+<p>Dương thiên thắng là chỉ trạng thái bệnh lý mà dương thịnh, cơ thể ở tình trạng công năng cang thịnh. Đặc điểm bệnh lý của nó là dương thịnh mà âm hư không rõ rệt. Dương thiên thắng phần nhiều do ôn nhiệt tà khí, cũng như do tà âm bị cảm hóa thành dương nhiệt; hoặc do thất tình quá độ gây nội thương, như hỏa chứng do ngũ chí hóa hỏa hoặc khí trệ, ứ huyết, thực tích... gây ra. Dương có đặc tính nhiệt, động và táo, nên biểu hiện của dương thịnh chủ yếu là tráng nhiệt, ác nhiệt, phiền táo, lưỡi đỏ, rêu lưỡi khô thô và vàng, hoặc bụng đầy đau cự án, triều nhiệt, si ngôn...</p>
+<p>Do dương thịnh có thể dẫn đến âm thất điều, nên cũng có thể kèm theo âm hư với các triệu chứng như khát nước, muốn uống đồ lạnh, táo bón, tiểu ít...</p>
+<p>Âm thiên thắng là chỉ trạng thái bệnh lý mà âm thịnh, công năng cơ thể suy giảm và sản vật bệnh lý tích tụ trong quá trình bệnh tật. Đặc điểm bệnh lý của nó là âm thịnh mà dương hư không rõ rệt. Âm thiên thắng phần nhiều do hàn thấp và các tà khí âm khác xâm nhập, ăn quá nhiều đồ sống lạnh, hoặc do tà hàn đình trệ trở ngại bên trong khiến dương không thể chế ước âm, dẫn đến âm hàn thiên thắng. Âm có đặc tính hàn, tĩnh và thấp, nên biểu hiện của âm thịnh chủ yếu là úy hàn, yên tĩnh, đau thượng vị cự án, đại tiện lỏng...</p>
+<p>Do âm thịnh có thể dẫn đến dương thất điều, nó</p>
+<p>58</p></section><section class="pg" id="p080"><p>Tà khí xâm nhập cơ thể ắt theo loại của nó, tức tà khí dương xâm nhập cơ thể có thể hình thành dương thiên thắng, tà khí âm xâm</p>
+<p>nhập cơ thể thì hình thành âm thiên thắng.</p>
+<p>Dương thiên thắng là trạng thái bệnh lý dương khí thiên thắng, cơ năng cang</p>
+<p>tiến xuất hiện trong quá trình bệnh tật của cơ thể. Đặc điểm bệnh lý của nó là tuy dương thịnh nhưng âm hư không rõ. Sự hình thành dương thiên thắng</p>
+<p>chủ yếu là do cảm nhiễm ôn nhiệt dương tà, hoặc tuy cảm nhiễm âm tà nhưng từ dương hóa nhiệt,</p>
+<p>hoặc thất tình nội thương, ngũ chí quá cực hóa hỏa, cùng với khí trệ, huyết ứ, thực tích... uất mà hóa hỏa</p>
+<p>mà thành. Dương lấy nhiệt, động, táo làm đặc điểm, nên dương thiên thắng thường biểu hiện là tráng nhiệt, ố nhiệt, phiền</p>
+<p>táo bất an, lưỡi hồng, rêu vàng táo, hoặc bụng đầy trướng, đau bụng cự án, triều nhiệt, mê sảng...</p>
+<p>chứng thực nhiệt.</p>
+<p>Do dương thắng tắc âm bệnh, nên dương thiên thắng còn có thể kiêm thấy khát nước, thích uống đồ mát, đại tiện bí kết,</p>
+<p>tiểu tiện ngắn ít... các chứng trạng âm khuy.</p>
+<p>Âm thiên thắng là trạng thái bệnh lý âm khí thiên thắng, cơ năng suy</p>
+<p>thoái cùng bệnh lý sản vật tích tụ xuất hiện trong quá trình bệnh tật của cơ thể. Đặc điểm bệnh lý của nó là tuy âm thịnh nhưng dương hư không</p>
+<p>rõ. Nguyên nhân hình thành âm thiên thắng chủ yếu là do cảm nhiễm hàn thấp âm tà, hoặc ăn quá nhiều đồ sống lạnh,</p>
+<p>hàn trệ trung trở, do đó dương không chế âm, âm hàn nội thịnh. Âm lấy hàn, tĩnh, thấp làm đặc điểm,</p>
+<p>nên âm thiên thắng thường biểu hiện là ố hàn, trầm tĩnh, vùng bụng trên lạnh đau cự án, đại tiện lỏng... hàn thực</p>
+<p>chứng.</p>
+<p>Do âm thắng tắc dương bệnh, nên âm thiên thắng còn có thể kiêm thấy hình hàn tay chân lạnh, tinh thần mệt mỏi thích nằm...</p>
+<p>59</p></section><section class="pg" id="p081"><p>cũng có thể có những biểu hiện như sắc mặt sợ lạnh và tay chân lạnh, mệt mỏi kèm xu hướng nằm co chân lại, v.v.</p>
+<p>2) Âm dương thiên suy — Chỉ chứng hư theo nghĩa &quot;tinh khí đoạt tắc hư&quot;.</p>
+<p>Dương hư là trạng thái bệnh lý trong đó dương khí bất túc, chức năng cơ thể suy giảm và thiếu sự ấm áp trong quá trình bệnh tật. Đặc điểm bệnh lý của nó là dương khí thiếu hụt, dương không chế được âm và âm tương đối thịnh. Dương hư phần nhiều do bẩm sinh bất túc hoặc nuôi dưỡng sau sinh không đúng cách, hoặc lao lực quá độ, hoặc bệnh lâu ngày dẫn đến tổn thương dương khí mạn tính. Dương hư sẽ sinh ra hiệu quả của chứng hàn, nên trên lâm sàng triệu chứng thường là sợ lạnh và tay chân lạnh, mệt mỏi kèm xu hướng nằm co chân, đau bụng giảm khi được sưởi ấm và xoa ấn, đại tiện lỏng, tiểu tiện trong và nhiều, mạch trì nhược, v.v.</p>
+<p>Âm hư, tức âm khí suy nhược, chỉ trạng thái bệnh lý mà âm dịch quá yếu không chế được dương, biểu hiện là hưng phấn hư tính. Đặc điểm của nó là âm dịch bất túc, chức năng tư dưỡng, an tĩnh và chế ước dương nhiệt suy giảm, dương tương đối thịnh và xuất hiện chứng nhiệt thuộc loại hư. Âm hư phần nhiều do tà nhiệt từ dương lan đến âm, hoặc do chứng bệnh từ ngũ chí quá cực hóa hỏa làm tổn hại âm, hoặc do bệnh mạn tính làm tổn hại âm dịch, hoặc do ăn quá nhiều đồ khô nóng làm tổn thương âm. Âm hư do đó sẽ sinh ra chứng nhiệt thuộc loại hư, biểu hiện là ngũ tâm phiền nhiệt, cốt chưng triều nhiệt, mặt đỏ, gầy còm, đạo hãn, họng khô</p>
+<p>60</p></section><section class="pg" id="p082"><p>triệu chứng dương hư.</p>
+<p>2) Âm dương thiên suy — Âm hoặc dương thiên suy, chỉ chứng hư của &quot;tinh khí đoạt tắc hư&quot;.</p>
+<p>Dương thiên suy, tức dương hư, chỉ trạng thái bệnh lý dương khí hư tổn,</p>
+<p>chức năng suy giảm, ôn húy bất túc xuất hiện trong quá trình bệnh tật của cơ thể. Đặc điểm bệnh lý của nó là dương khí bất túc, dương không</p>
+<p>chế âm, âm tương đối cang thịnh. Dương thiên suy phần nhiều do tiên thiên bẩm phú bất túc, hoặc hậu thiên thất dưỡng, hoặc lao</p>
+<p>quyện nội thương, cùng bệnh lâu ngày tổn thương dương khí mà thành. Dương hư tắc hàn, nên lâm sàng thường biểu hiện là sợ</p>
+<p>lạnh tay chân lạnh, tinh thần mệt mỏi thích nằm, đau bụng thích ấm thích xoa ấn, đại tiện lỏng, tiểu tiện trong dài, mạch trì</p>
+<p>vô lực... chứng hư hàn.</p>
+<p>Âm thiên suy, tức âm hư, là trạng thái bệnh lý âm dịch bất túc xuất hiện trong quá trình bệnh tật của cơ thể,</p>
+<p>không chế được dương, chức năng hưng phấn hư tính. Đặc điểm bệnh lý của nó là âm dịch bất túc,</p>
+<p>chức năng tư dưỡng, an tĩnh và chế ước dương nhiệt suy giảm, dương khí tương đối cang phấn, xuất hiện chứng hư nhiệt.</p>
+<p>Âm thiên suy phần nhiều do dương tà thương âm, hoặc ngũ chí quá cực hóa hỏa thương âm, hoặc bệnh lâu ngày hao tổn âm dịch,</p>
+<p>hoặc ăn quá nhiều đồ táo nhiệt làm thương âm mà thành. Âm hư tắc nhiệt, nên lâm sàng thường biểu hiện là ngũ tâm phiền nhiệt,</p>
+<p>cốt chưng triều nhiệt, mặt đỏ bốc hỏa, gầy còm, đạo hãn, họng khô miệng táo, lưỡi hồng ít rêu, mạch tế</p>
+<p>61</p></section><section class="pg" id="p083"><p>và khát, lưỡi đỏ rêu mỏng, mạch tế sác.</p>
+<p>3) Âm dương hỗ tổn — Chỉ bệnh cơ của chứng âm dương lưỡng hư do một bên biến đổi bệnh lý kéo theo bên đối lập.</p>
+<p>Âm tổn cập dương là khi âm hư đã đến mức độ khiến dương khí bị liên lụy, nên sự sinh thành của dương bất túc hoặc hao tán vì không có chỗ nương tựa, do đó hình thành trạng thái bệnh lý trong đó âm hư và dương hư cùng tồn tại nhưng âm hư chiếm ưu thế. Ví dụ, chóng mặt và mỏi yếu vùng thắt lưng đầu gối do thận âm bất túc, một khi liên lụy đến sự sinh thành của thận dương, các triệu chứng như liệt dương, tay chân lạnh sẽ xuất hiện.</p>
+<p>Dương tổn cập âm là khi dương hư đủ nghiêm trọng để ảnh hưởng đến sự sinh thành âm dịch, nên</p>
+<p>âm dương lưỡng hư lấy dương hư làm chủ. Lấy ví dụ phù thũng do dương khí bất túc, một khi có cơ hội ảnh hưởng đến sự sinh thành âm tinh, các triệu chứng như gầy còm, phiền táo, thậm chí co giật, có thể xuất hiện.</p>
+<p>4) Âm dương cách cự — Chỉ trạng thái bệnh lý trong đó âm hoặc dương một bên cực thịnh, uất tắc bên trong, hoặc âm hoặc dương một bên quá hư khiến thế lực hai bên chênh lệch lớn. Bên mạnh sẽ cự tuyệt bên yếu. Kết quả là âm dương phân ly. Các chứng như chứng hàn giả nhiệt hoặc chứng nhiệt giả hàn sẽ xuất hiện.</p>
+<p>Âm thịnh cách dương. Chỉ trạng thái bệnh lý trong đó dương quá hư không chế được âm, tà hàn quá thịnh sẽ uất tắc bên trong cơ thể và bức dương khí ra ngoài, âm dương phân ly. Theo Điều 317 sách Thương hàn luận: Chứng thiếu âm hạ lợi, lý hàn ngoại nhiệt,</p>
+<p>62</p></section><section class="pg" id="p084"><p>sác... chứng hư nhiệt.</p>
+<p>3) Âm dương hỗ tổn — Âm dương hỗ tổn, chỉ khi âm hoặc dương bất kỳ một bên hư tổn đến mức</p>
+<p>độ nhất định, bệnh biến lại liên lụy đến bên đối lập, gây ra trạng thái bệnh lý âm dương lưỡng hư</p>
+<p>Âm tổn cập dương, chỉ khi âm hư đến mức độ nhất định, lại liên lụy đến bên dương, khiến dương khí</p>
+<p>hóa sinh bất túc hoặc không có chỗ nương tựa mà hao tán, do đó hình thành trạng thái bệnh lý âm dương lưỡng hư lấy âm hư làm chủ</p>
+<p>Ví dụ thận âm bất túc, xuất hiện chóng mặt hoa mắt, lưng gối mỏi yếu, một khi liên lụy đến sự</p>
+<p>hóa sinh của thận dương, có thể đồng thời kiêm thấy liệt dương, tay chân lạnh... các triệu chứng thận dương hư.</p>
+<p>Dương tổn cập âm, là dương hư khá nặng lại liên lụy đến sự hóa sinh âm dịch, khiến âm dịch sinh thành bất túc,</p>
+<p>do đó hình thành trạng thái bệnh lý âm dương lưỡng hư lấy dương hư làm chủ. Ví dụ chứng thủy phiếm phù</p>
+<p>thũng do dương hư, một khi liên lụy đến sự sinh thành âm tinh, có thể đồng thời kiêm thấy gầy còm, tâm phiền, thậm chí co giật...</p>
+<p>các triệu chứng âm hư.</p>
+<p>4) Âm dương cách cự — Âm dương cách cự, là khi âm hoặc dương một bên thiên thắng đến cực, ung át</p>
+<p>bên trong; hoặc một bên cực kỳ hư nhược, hai bên thịnh suy chênh lệch, bên thịnh chiếm cứ bên trong, đem bên kia</p>
+<p>bài xích, cách cự ra ngoài, khiến âm dương không duy trì được nhau, xuất hiện chân hàn giả nhiệt hoặc chân nhiệt giả</p>
+<p>hàn... hiện tượng bệnh lý phức tạp.</p>
+<p>Âm thịnh cách dương, chỉ khi dương khí cực kỳ hư nhược, dương không chế âm, tà âm hàn thịnh vượng ở</p>
+<p>bên trong, bức bách dương khí phù việt ra ngoài, khí âm dương không duy trì được nhau, hỗ tương cách cự... trạng thái bệnh lý.</p>
+<p>63</p></section><section class="pg" id="p085"><p>tay chân lạnh, mạch khó sờ thấy, sắc mặt đỏ mà không sợ lạnh...&quot;. Đây có thể là một trong những ví dụ về âm thịnh cách dương ra ngoài.</p>
+<p>Dương thịnh cách âm. Nghĩa là khi tà nhiệt mạnh và ẩn sâu trong cơ thể người, dương bị uất tắc bên trong không thể đạt tới tứ chi, âm bị cự tuyệt ra ngoài. Theo Điều 350 sách Thương hàn luận: &quot;Bệnh thương hàn, mạch hoạt mà quyết, lý hữu nhiệt, Bạch Hổ thang chủ chi&quot;, tức là ví dụ. Đây là một trong những ví dụ về dương thịnh cách âm ra ngoài.</p>
+<p>5) Âm dương vong thất — Bao gồm sự vong thất của âm hoặc dương.</p>
+<p>Chỉ trạng thái bệnh lý trong đó âm dịch hoặc dương khí đột ngột vong thất với lượng lớn, khiến xuất hiện trạng thái sinh mệnh lâm nguy.</p>
+<p>Vong dương chỉ trạng thái bệnh lý trong đó dương khí đột ngột suy kiệt nghiêm trọng, đe dọa tính mạng. Nói chung, vong dương chủ yếu do tà khí quá thịnh vượt quá khả năng chống cự của chính khí; hoặc cơ thể vốn dương hư, chính khí bất túc và khí bị tiêu hao quá mức do lao lực quá độ; cũng có thể là kết quả của việc lạm dụng phép phát hãn, thổ hoặc hạ, hoặc do ra mồ hôi, nôn, tả quá độ khiến dương bị tiêu hao cùng tân dịch; hoặc là hậu quả của dương hư cực độ trong bệnh mạn tính khiến dương thoát ra ngoài. Trên lâm sàng, biểu hiện thường là mồ hôi đầm đìa, tay chân và da thịt quyết lạnh, mệt mỏi, thần sắc đạm mạc thậm chí hôn mê, mạch vi, v.v.</p>
+<p>Vong âm chỉ trạng thái bệnh lý trong đó âm dịch đột ngột vong thất dẫn đến sự suy giảm nghiêm trọng các chức năng toàn thân. Thông</p>
+<p>64</p></section><section class="pg" id="p086"><p>Như Điều 317 sách Thương hàn luận nói: &quot;Thiếu âm hạ lợi, lý hàn ngoại nhiệt, thủ túc quyết nghịch, mạch vi dục</p>
+<p>tuyệt, thân phản bất ố hàn, kỳ nhân diện sắc xích&quot;, tức là ví dụ.</p>
+<p>Dương thịnh cách âm, chỉ khi tà nhiệt cực thịnh, tà dương nhiệt thâm phục bên trong, dương khí bị uất,</p>
+<p>không thể đạt ra tứ chi, mà cách âm ra ngoài... trạng thái bệnh lý. Như Điều 350 sách Thương hàn luận nói:</p>
+<p>&quot;Thương hàn, mạch hoạt nhi quyết giả, lý hữu nhiệt, Bạch Hổ thang chủ chi&quot;, tức là ví dụ.</p>
+<p>5) Âm dương vong thất — Bao gồm hai loại lớn vong âm và vong dương, chỉ âm dịch hoặc</p>
+<p>dương khí của cơ thể đột ngột vong thất với lượng lớn, dẫn đến trạng thái bệnh lý sinh mệnh lâm nguy.</p>
+<p>Vong dương, chỉ dương khí nhân thể đột ngột suy kiệt nghiêm trọng, dẫn đến sinh mệnh lâm nguy... bệnh</p>
+<p>lý trạng thái. Nói chung, vong dương phần nhiều do tà khí quá thịnh, chính bất địch tà; hoặc cơ thể vốn dương hư,</p>
+<p>chính khí bất túc, mệt nhọc quá độ, hao khí quá mức, hoặc dùng sai các phép hãn, thổ, hạ, hoặc phát hãn,</p>
+<p>thổ, hạ quá độ, dương theo tân mà thoát, hoặc bệnh lâu ngày dương khí cực hư..., khiến hư dương phù việt ra ngoài mà thành.</p>
+<p>Biểu hiện lâm sàng thường là mồ hôi đầm đìa, cơ phu tay chân quyết lạnh, tinh thần mệt mỏi, biểu tình đạm mạc,</p>
+<p>thậm chí hôn mê, mạch vi dục tuyệt... v.v.</p>
+<p>Vong âm, chỉ âm dịch nhân thể bị tiêu hao hoặc thoát thất đột ngột, dẫn đến toàn thân cơ năng</p>
+<p>suy kiệt nghiêm trọng... một trạng thái bệnh lý khác. Nói chung, vong âm phần nhiều do tà nhiệt xí thịnh, hoặc tà</p>
+<p>65</p></section><section class="pg" id="p087"><p>thường, vong âm chủ yếu do tà nhiệt quá thịnh, tà nhiệt kéo dài tiêu đốt lượng lớn âm dịch, hoặc do điều trị sai cách và các nhân tố khác gây tổn hại nghiêm trọng âm dịch. Trên lâm sàng, biểu hiện là mồ hôi ra không ngừng, mồ hôi nóng mà dính, tứ chi ấm, khát và thích uống lạnh, da nhăn, hốc mắt sâu, phiền táo hoặc hôn mê, mạch tế sác vô lực hoặc đại nhi vô lực.</p>
+<p>Vì âm dương nương tựa vào nhau, vong âm sẽ ngăn trở sự sinh thành của dương và ngược lại. Tương ứng, vong âm sẽ sớm dẫn đến vong dương; và vong dương cũng ảnh hưởng đến âm theo cách tương tự.</p>
+<p>Do đó, dù vong âm hay vong dương cuối cùng đều có thể dẫn đến sự phân ly hai bên và dẫn tới tử vong, tuy bệnh cơ khác nhau và biểu hiện đa dạng.</p>
+<p>3. Thăng giáng thất thường</p>
+<p>Điều này nói chung chỉ trạng thái bệnh lý trong đó sự vận động thăng giáng của khí cơ tạng phủ bị rối loạn và âm, dương, khí, huyết mất cân bằng dưới tác dụng của nhân tố gây bệnh.</p>
+<p>Vì sự thăng giáng, xuất nhập của khí cơ liên quan mật thiết đến tạng phủ, kinh lạc, khí huyết, âm dương..., nên sự thất thường của chúng có thể gây bất thường chức năng của ngũ tạng lục phủ, biểu lý trong ngoài, tứ chi cửu khiếu: tâm hỏa thượng viêm gây loét miệng lưỡi; phế mất chức năng tuyên giáng gây ho, suyễn, ngực tức; tỳ mất chức năng thăng thanh gây đại tiện lỏng; can khí thượng nghịch gây chóng mặt, trướng đầu; sự không nạp khí</p>
+<p>66</p></section><section class="pg" id="p088"><p>Nhiệt lưu lâu ngày, tiêu đốt lượng lớn âm dịch, hoặc do điều trị sai và các nhân tố khác làm tổn hao lượng lớn âm dịch mà thành.</p>
+<p>Biểu hiện lâm sàng thường là mồ hôi ra không ngừng, mồ hôi nóng mà dính, tứ chi ôn hòa, khát thích uống lạnh, da</p>
+<p>nhăn, hốc mắt sâu, phiền táo hoặc hôn mê, mạch tế sác vô lực hoặc đại nhi vô lực...</p>
+<p>Vong âm, vong dương tuy bệnh cơ khác nhau, biểu hiện khác nhau, nhưng do âm dương hỗ căn, âm vong</p>
+<p>thì dương không có chỗ sinh, dương vong thì âm không có chỗ hóa, nên vong âm có thể nhanh chóng dẫn đến vong dương, vong dương cũng</p>
+<p>có thể tiếp đó xuất hiện vong âm, cuối cùng đều có thể dẫn đến &quot;âm dương ly quyết&quot; mà tử vong.</p>
+<p>3. Thăng giáng thất thường</p>
+<p>Thăng giáng thất thường, nói chung chỉ trạng thái bệnh lý dưới tác dụng của nhân tố gây bệnh, dẫn đến khí cơ tạng phủ thăng giáng xuất nhập</p>
+<p>vận động rối loạn, âm dương khí huyết mất điều hòa.</p>
+<p>Do sự thăng giáng xuất nhập của khí cơ liên quan đến tạng phủ, kinh lạc, khí huyết, âm dương... mọi</p>
+<p>phương diện, nên thăng giáng xuất nhập thất thường có thể dẫn đến ngũ tạng lục phủ, biểu lý trong ngoài, tứ chi cửu khiếu... các</p>
+<p>tổ chức, khí quan chức năng bất thường. Như tâm hỏa thượng viêm thì miệng lưỡi sinh loét; phế thất tuyên giáng thì</p>
+<p>khái suyễn, ngực muộn; tỳ bất thăng thanh thì đại tiện lỏng; can khí thượng nghịch thì huyễn vựng, đầu trướng;</p>
+<p>67</p></section><section class="pg" id="p089"><p>ở thận sẽ dẫn đến thở ra nhiều hít vào ít cùng khí đoản tức xúc. Trạng thái bình thường của lục phủ được đánh giá bằng sự vận động giáng xuống thông suốt của chúng. Nếu đởm khí đi lên, sẽ dẫn đến nôn ra nước mật; nếu vị khí không giáng xuống, sẽ dẫn đến buồn nôn, nôn, nấc, ợ hơi; sự rối loạn vận chuyển của đại trường có thể dẫn đến bụng trướng và táo bón; sự rối loạn chức năng của bàng quang có thể dẫn đến tiểu tiện khó hoặc thậm chí niệu bế. Khi sự nghịch loạn đi lên của âm, dương, khí, huyết che mờ não, sẽ xảy ra ngất và bất tỉnh.</p>
+<p>Trung y cũng trình bày lý luận rằng sự rối loạn các vận động thăng, giáng, xuất, nhập biểu hiện trọng điểm tương ứng ở cả ngoại cảm bệnh và nội thương bệnh. Bệnh cơ của ngoại cảm bệnh đến từ bên ngoài, nên trọng điểm là sự mất cân bằng giữa xuất và nhập; bệnh cơ của nội thương bệnh đến từ bên trong, nên trọng điểm đặt vào sự mất cân bằng giữa thăng và giáng. Thăng giáng, xuất nhập liên quan mật thiết với nhau không chỉ về sinh lý mà cả về bệnh lý. Trong trường hợp ho khó thở do tà phong hàn, sự xâm nhập của phong hàn vào phần biểu của cơ thể có thể khiến cả cơ tấu và tuyến mồ hôi đóng kín, vệ khí bị ngăn trở, biểu hiện là sợ lạnh, phát sốt và vô hãn do mất cân bằng giữa xuất và nhập. Vì phế liên quan đến da và lông, tà biểu không thể bị trục xuất, phế bị ảnh hưởng, do đó dẫn đến hậu quả là phế mất chức năng tuyên giáng, biểu hiện là ho và khó thở do mất cân bằng giữa thăng và giáng. Hai trường hợp trên là ví dụ về sự ảnh hưởng lẫn nhau giữa mất cân bằng xuất nhập và mất cân bằng thăng giáng</p>
+<p>68</p></section><section class="pg" id="p090"><p>Thận bất nạp khí thì hô đa hấp thiểu, khí đoản tức xúc. Lục phủ lấy thông giáng làm thuận, nếu đởm khí thượng</p>
+<p>nghịch thì nôn ra nước đắng; vị thất hòa giáng thì buồn nôn, nôn, nấc, ợ hơi; đại trường</p>
+<p>truyền đạo thất chức thì bụng trướng, táo bón; bàng quang khí hóa bất hành thì tiểu tiện bất lợi hoặc niệu bế.</p>
+<p>Nếu âm dương khí huyết nghịch loạn cùng đi lên trên che mờ thanh khiếu thì xuất hiện đột nhiên hôn đảo, bất tỉnh nhân sự</p>
+<p>và các triệu chứng khác.</p>
+<p>Trung y học cho rằng, ngoại cảm bệnh và nội thương bệnh về phương diện thăng giáng xuất nhập thất thường, mỗi bên có thiên</p>
+<p>trọng. Ngoại cảm tà đến từ ngoài, nên lấy xuất nhập thất thường làm chủ; nội thương tà từ trong sinh ra, nên</p>
+<p>lấy thăng giáng thất thường làm trọng. Nhưng thăng giáng và xuất nhập, về sinh lý liên quan mật thiết, về bệnh lý cũng</p>
+<p>ảnh hưởng lẫn nhau. Như chứng khái suyễn do ngoại cảm phong hàn, phong hàn tập biểu, cơ tấu uất bế, lỗ chân lông</p>
+<p>đóng kín, vệ khí không thể tuyên thông, chứng thấy ố hàn, phát nhiệt, vô hãn, là biểu hiện của xuất nhập thất thường;</p>
+<p>phế hợp bì mao, biểu tà bất giải, nội xá ở phế, phế thất túc giáng, chứng thấy khái suyễn, khí</p>
+<p>nghịch, lại là biểu hiện của thăng giáng thất thường. Đây chính là minh chứng cho sự ảnh hưởng lẫn nhau giữa xuất nhập thất thường và thăng giáng thất thường</p>
+<p>ví dụ.</p>
+<p>Tỳ vị là gốc của hậu thiên, ở trung tiêu, thông trên liền dưới, là ... của vận động thăng giáng xuất nhập</p>
+<p>69</p></section><section class="pg" id="p091"><p>Tỳ vị cung cấp cơ sở vật chất cho hậu thiên chi bản. Chúng ở phần giữa cơ thể, nối liền phần trên và phần dưới để làm trụ cột cho các vận động thăng, giáng, xuất, nhập. Sự phối hợp chức năng thăng giáng của tỳ vị và trật tự tốt của các vận động xuất nhập của chúng có thể khiến thanh khí thăng lên và trọc khí giáng xuống nhằm tư dưỡng toàn thân và bài trừ tà khí, đồng thời khiến các chức năng sinh lý của các tạng phủ khác hoạt động bình thường. Sự rối loạn các vận động thăng giáng của tỳ vị sẽ dẫn đến những bất thường sau: sự phân bố dương khí bị ngăn trở; hậu thiên chi tinh không thể tàng trữ; thức ăn thức uống và dưỡng khí đều không thể thu nạp; sản phẩm chuyển hóa không thể bài xuất ra ngoài và do đó các tạng phủ khác có thể bị ảnh hưởng. Từ những bất thường đã nêu trên, nhiều bệnh tật sẽ phát sinh. Vì vậy, Trung y luôn đặt trọng tâm lớn vào việc điều hòa chức năng tỳ vị.</p>
+<p>70</p></section><section class="pg" id="p092"><p>trụ cột. Tỳ vị thăng giáng bình thường, xuất nhập có trật tự, thì có thể duy trì thăng thanh giáng trọc, tư dưỡng toàn thân</p>
+<p>và bài tiết cặn bã, đồng thời khiến các tác dụng sinh lý của tạng phủ khác được phát huy bình thường. Nếu</p>
+<p>tỳ vị thăng giáng xuất nhập thất thường, thì thanh dương chi khí không thể phu bố, hậu thiên chi tinh không thể quy tàng,</p>
+<p>ẩm thực, tinh khí không thể thu nạp, sản phẩm chuyển hóa không thể bài xuất, và có thể ảnh hưởng đến các tạng phủ khác,</p>
+<p>trăm bệnh do đó mà sinh ra. Nên các y gia qua các thời đại khi trị bệnh đều rất coi trọng việc điều lý tỳ vị</p>
+<p>chức năng.</p>
+<p>71</p></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
