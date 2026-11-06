@@ -83,8 +83,12 @@ jobs:
         uses: actions/deploy-pages@v4
         # NOTE: GitHub clamps this action's `timeout` input to a maximum of
         # 600000 ms, so setting a larger value has no effect. When the Pages
-        # backend is slow to leave `deployment_queued` the step can hit that
-        # cap while the deployment is still progressing (runs 42229615784 and
-        # 42236333575 both failed this way). The fix is to RE-RUN the failed
-        # job/run, not to raise `timeout`: run 42243539112 succeeded in 9m34s
-        # on a plain retry with the default settings.
+        # backend is slow to leave `deployment_queued` / `updating_pages` the
+        # step can hit that cap while the deployment is still progressing
+        # (runs 42229615784, 42236333575 and 42249511875 all failed this way,
+        # each at exactly 10m00s after the step started). The fix is to RETRY
+        # the deployment, not to raise `timeout`: run 42243539112 succeeded in
+        # 9m34s on a plain retry with the default settings.
+        # `gh run rerun` and `workflow_dispatch` both need repo admin rights,
+        # which the publishing token does not have, so a tiny commit pushed to
+        # main is the reliable way to start that retry build.
