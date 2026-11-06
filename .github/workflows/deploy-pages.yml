@@ -81,3 +81,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The action defaults to timeout: 600000 (10 min). Deployments on this
+          # site can sit in `deployment_queued` for 5+ minutes before Pages even
+          # starts syncing_files/updating_pages, so 10 min is not enough: runs
+          # 42229615784 and 42236333575 both hit the cap while the deployment
+          # was still progressing. 30 min gives the backend room to finish.
+          timeout: 1800000
