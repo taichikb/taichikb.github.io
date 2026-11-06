@@ -19,8 +19,9 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.pages_url.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -78,17 +79,60 @@ jobs:
         with:
           path: '_site'
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      # ---------------------------------------------------------------------------
+      # actions/deploy-pages@v4 hard-clamps its `timeout` input to 600000 ms
+      # (10 minutes) and CANCELS the Pages deployment when that cap is hit.
+      # The staged artifact here is ~619 MB, so when the Pages backend is
+      # congested the `deployment_queued` / `updating_pages` phases can outlast
+      # 10 minutes. Runs 42229615784, 42236333575, 42249511875 and 42252334528
+      # all failed exactly 10m after the step started; run 42243539112 succeeded
+      # on a plain retry in 9m34s. Raising `timeout` has NO effect (it is
+      # clamped), and `gh run rerun` / `workflow_dispatch` need repo admin rights
+      # that the publishing token does not have.
+      #
+      # So make retries self-contained: up to three independent 10-minute deploy
+      # attempts against the SAME already-uploaded artifact, in this one job.
+      # Skipped attempts report outcome `skipped`; the final step fails the job
+      # only if none of the three succeeded.
+      # ---------------------------------------------------------------------------
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: deployment1
         uses: actions/deploy-pages@v4
-        # NOTE: GitHub clamps this action's `timeout` input to a maximum of
-        # 600000 ms, so setting a larger value has no effect. When the Pages
-        # backend is slow to leave `deployment_queued` / `updating_pages` the
-        # step can hit that cap while the deployment is still progressing
-        # (runs 42229615784, 42236333575 and 42249511875 all failed this way,
-        # each at exactly 10m00s after the step started). The fix is to RETRY
-        # the deployment, not to raise `timeout`: run 42243539112 succeeded in
-        # 9m34s on a plain retry with the default settings.
-        # `gh run rerun` and `workflow_dispatch` both need repo admin rights,
-        # which the publishing token does not have, so a tiny commit pushed to
-        # main is the reliable way to start that retry build.
+        continue-on-error: true
+
+      - name: Pause before retry 2
+        if: steps.deployment1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deployment2
+        if: steps.deployment1.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Pause before retry 3
+        if: steps.deployment1.outcome == 'failure' && steps.deployment2.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deployment3
+        if: steps.deployment1.outcome == 'failure' && steps.deployment2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Pages deploy outcome
+        id: pages_url
+        if: always()
+        env:
+          A1: ${{ steps.deployment1.outcome }}
+          A2: ${{ steps.deployment2.outcome }}
+          A3: ${{ steps.deployment3.outcome }}
+        run: |
+          echo "attempt1=$A1 attempt2=$A2 attempt3=$A3"
+          if [ "$A1" = success ] || [ "$A2" = success ] || [ "$A3" = success ]; then
+            echo "page_url=https://taichikb.github.io/" >> "$GITHUB_OUTPUT"
+            echo "At least one Pages deploy attempt succeeded"
+          else
+            echo "::error::All three Pages deploy attempts hit the 10-minute cap"
+            exit 1
+          fi
