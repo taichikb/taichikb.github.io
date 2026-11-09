@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #0f766e;
+  --accent-crimson: #134e4a;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+}
+body.dark-mode {
+  --bg-primary: #121212; --text-primary: #f5f5f4; --text-secondary: #a8a29e;
+  background-color: #121212 !important; color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #10302f; color: #99f6e4; border-color: #0f766e; }
+body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
+body.dark-mode .tech-table th { background: #134e4a; color: #99f6e4; }
+body.dark-mode .tech-table td { border-color: #333; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0f766e, #134e4a); z-index: 9999; width: 0%; transition: width 0.1s; }
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.45rem; }
+.toc-link { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; line-height: 1.35; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.2s; }
+.toc-link:hover { background: rgba(15, 118, 110, 0.12); color: #134e4a; transform: translateX(3px); }
+.reader-content { flex: 1; min-width: 0; background: var(--bg-primary); line-height: 1.85; font-size: 1.05rem; }
+.book-hero { border-bottom: 2px solid #0f766e; padding-bottom: 2rem; margin-bottom: 3rem; text-align: center; }
+.book-badge { display: inline-block; background: #ccfbf1; color: #134e4a; font-weight: 700; font-size: 0.82rem; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid #99f6e4; }
+.book-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; color: #134e4a; line-height: 1.25; margin: 0 0 0.5rem; }
+.book-orig-title { font-family: 'Noto Serif SC', serif; font-size: 1.25rem; color: #78716c; margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.98rem; color: #57534e; margin-bottom: 1.2rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+.book-tag { background: #f0fdfa; color: #115e59; padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; border: 1px solid #99f6e4; }
+body.dark-mode .book-tag { background: #134e4a; color: #ccfbf1; border-color: #0f766e; }
+.chapter-block { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+.chapter-header { border-left: 4px solid #0f766e; padding-left: 1.2rem; margin-bottom: 1.8rem; }
+.chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: #0f766e; display: block; }
+.chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
+.key-point { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+.tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: #0f766e; text-decoration: none; font-weight: 600; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer { border: 1px solid #e7e5e4; border-radius: 10px; background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem; }
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0f766e; padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
+.page-nav a.home { color: #0f766e; }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 15: Kỹ Thuật Phối Hợp — Cơ Học Võ Thuật | TaichiNOW</title>
+<meta name="description" content="Chương 15 của Cơ Học Võ Thuật: Kỹ Thuật Phối Hợp">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+/* starr_CSS */
+.ornament { text-align: center; color: var(--gold); letter-spacing: .5em; margin: 2.2rem 0; font-size: 1.2rem; }
+.chapter-teaser { font-style: italic; color: var(--ink-muted); border-left: 3px solid var(--border); padding: .5rem 1rem; margin: 1.4rem 0; }
+.journal-date { display: block; font-size: .8rem; color: var(--ink-muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .04em; }
+.tr-note { background: #fffbeb; border-left: 4px solid var(--gold); padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #713f12; }
+body.dark-mode .tr-note { background: #2a2415; color: #fde68a; border-color: var(--gold); }
+.key-takeaway { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+body.dark-mode .key-takeaway { background: #10302f; color: #99f6e4; }
+.starr-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
+.starr-table th, .starr-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+.starr-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.fig-cap { font-size: .93rem; color: var(--ink-muted); font-style: italic; border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 22px; }
+.fig-cap strong { font-style: normal; color: var(--ink); }
+body.dark-mode .fig-cap { color: #a1a1aa; }
+.book-figure { margin: 26px auto; text-align: center; }
+.book-figure img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+.book-figure figcaption { font-size: .93rem; color: var(--ink-muted); margin-top: 10px; font-style: italic; }
+.book-figure figcaption strong { font-style: normal; color: var(--ink); }
+body.dark-mode .book-figure figcaption { color: #a1a1aa; }
+.bib-intro { font-size: .95rem; color: var(--ink-muted); border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 26px; }
+.bib-entry { font-size: .95rem; line-height: 1.7; margin: 0 0 12px; padding-left: 1.4rem; text-indent: -1.4rem; }
+.bib-entry strong { color: var(--ink); }
+body.dark-mode .bib-intro { color: #a1a1aa; }
+</style>
+
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="index.html#sec_note">Ghi Chú Của Người Dịch</a></li>
+        <li><a href="index.html#sec_ack">Lời Cảm Ơn</a></li>
+        <li><a href="index.html#sec_foreword">Lời Tựa</a></li>
+        <li><a href="index.html#sec_intro">Dẫn Nhập</a></li>
+        <li><a href="ch01-chuong-1-chung-ta-da-tung-nhu-the.html#sec01">Chương 1 &#8226; Chúng Ta Đã Từng Như Thế</a></li>
+        <li><a href="ch02-chuong-2-nguyen-ly-suc-manh.html#sec02">Chương 2 &#8226; Những Nguyên Lý Của Sức Mạnh</a></li>
+        <li><a href="ch03-chuong-3-cu-no-lon.html#sec03">Chương 3 &#8226; Cú Nổ Lớn</a></li>
+        <li><a href="ch04-chuong-4-can-toc-do.html#sec04">Chương 4 &#8226; Cần Có Tốc Độ</a></li>
+        <li><a href="ch05-chuong-5-chuyen-ay-that-soc.html#sec05">Chương 5 &#8226; Chuyện Ấy Thật Sốc!</a></li>
+        <li><a href="ch06-chuong-6-cang-ngan-cang-tot.html#sec06">Chương 6 &#8226; Càng Ngắn Càng Tốt</a></li>
+        <li><a href="ch07-chuong-7-diem-tua.html#sec07">Chương 7 &#8226; Điểm Tựa</a></li>
+        <li><a href="ch08-chuong-8-tam-quan-buoc-chan.html#sec08">Chương 8 &#8226; Tầm Quan Trọng Của Bước Chân</a></li>
+        <li><a href="ch09-chuong-9-dung-the-nhu-nam-dam.html#sec09">Chương 9 &#8226; Dùng Cơ Thể Như Một Nắm Đấm</a></li>
+        <li><a href="ch10-chuong-10-bi-mat-hoi-tho.html#sec10">Chương 10 &#8226; Những Bí Mật Của Hơi Thở</a></li>
+        <li><a href="ch11-chuong-11-tam-quan-su-thang-hang-cot-song.html#sec11">Chương 11 &#8226; Tầm Quan Trọng Của Sự Thẳng Hàng Cột Sống</a></li>
+        <li><a href="ch12-chuong-12-dung-lap-hay-thong.html#sec12">Chương 12 &#8226; Đừng Cô Lập&#8230;Hãy Thống Nhất!</a></li>
+        <li><a href="ch13-chuong-13-the-dung-chien-dau.html#sec13">Chương 13 &#8226; Thế Đứng Chiến Đấu</a></li>
+        <li><a href="ch14-chuong-14-xuong.html#sec14">Chương 14 &#8226; Xưởng Cơ Khí</a></li>
+        <li><a href="ch15-chuong-15-ky-thuat-phoi-hop.html#sec15">Chương 15 &#8226; Kỹ Thuật Phối Hợp</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../martial-mechanics_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Cơ Học Võ Thuật · Phillip Starr</p>
+<a id="sec15"></a>
+<h3 class="chapter" id="ch15">Chương 15: Kỹ Thuật Phối Hợp</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Sự Phối Hợp Kỹ Thuật Là Gì?</a> · <a href="#s2">Tại Sao Lại Phối Hợp Kỹ Thuật?</a> · <a href="#s3">Tìm Những Sự Phối Hợp Kỹ Thuật Hiệu Quả</a> · <a href="#s4">Sự Phối Hợp Kỹ Thuật Và Hơi Thở</a></div>
+<div class="partnav"><a href="ch14-chuong-14-xuong.html"><span class="k">← Chương 14</span>Chương 14: Xưởng Cơ Khí</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<span class="disabled"><span class="k">Hết sách →</span>Kết thúc cuốn sách</span>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Phillip Starr.</p>
+<h3 id="s1">Sự Phối Hợp Kỹ Thuật Là Gì?</h3>
+<p>Một sự phối hợp kỹ thuật gồm hai hay nhiều kỹ thuật được thực hiện nối tiếp nhau một cách nhanh chóng. Bạn bảo là bạn đã biết điều đó rồi ư? Hãy xem thử bạn thực sự hiểu bao nhiêu về những đòn phối hợp của mình, nhé? Đứng dậy và tung ra cú phối hợp hay nhất của bạn, rồi chúng ta sẽ làm một bài trắc nghiệm nhỏ. Mời bạn. Đừng lật trước để xem phần kế tiếp. Làm thế là gian lận đấy. Rời khỏi chiếc ghế bành ra và làm đi!</p>
+<p>Xong chưa? Tuyệt! Đây là một bài trắc nghiệm ngắn. Hãy trả lời những câu hỏi sau một cách trung thực:</p>
+<p><em>Có bao nhiêu kỹ thuật tham gia vào sự phối hợp của bạn?</em></p>
+<p><em>Bạn đã di chuyển bao xa?</em></p>
+<p><em>Bạn mất bao lâu để hoàn tất sự phối hợp?</em></p>
+<p><em>Bạn có bao giờ mất thăng bằng không?</em></p>
+<p><em>Bạn đã dùng bao nhiêu hơi thở?</em></p>
+<p>Giờ thì hãy xem xét một vài sự thật phũ phàng về sự phối hợp kỹ thuật và xem xem câu trả lời của bạn có khớp không.</p>
+<h3 id="s2">Tại Sao Lại Phối Hợp Kỹ Thuật?</h3>
+<p>Vậy, lý do gì để thực hiện một sự phối hợp? Hãy ghi nhớ rằng chúng ta không nói về việc ghi điểm ở đây. Chúng ta đang nói về tự vệ thực sự, nơi mà những sai lầm như mất thăng bằng hay một chút do dự có thể trở nên cực kỳ đắt giá. Nếu bạn sai lầm quá nặng, bạn có thể vô tình lo luôn tiền đại học cho con trai bác sĩ phẫu thuật của chính mình.</p>
+<p>Công dụng của một sự phối hợp rất đơn giản: nó dùng để phóng một loạt đòn kỹ thuật mạnh mẽ vào kẻ thù trong lúc bạn chiếm lấy địa bàn của hắn. <em>Đừng bao giờ tung một sự phối hợp với ý định chỉ để giữ nguyên vị trí của mình.</em> Mục tiêu trong bất kỳ cuộc chiến nào cũng là xuyên qua đối phương, giành lấy mảnh đất của hắn, và nghiền nát hắn! Bạn phải nỗ lực giữ cho kẻ thù ở thế phòng thủ. Chừng nào hắn còn ở thế thủ, khả năng phản kích lại bạn của hắn sẽ bị suy giảm nghiêm trọng. Thế nhưng, nếu bạn không làm hắn bị thương, hoặc nếu bạn khựng lại đà tấn công hung hãn của mình, đối phương có thể nhanh chóng phục hồi và giành thế chủ động, từ đó đảo ngược vai trò một cách hiệu quả. Đừng cho hắn cơ hội để phục hồi. Xông qua hắn và hạ gục hắn càng nhanh càng tốt.</p>
+<p>Kể ra thế là đủ bài học.</p>
+<h3 id="s3">Tìm Những Sự Phối Hợp Kỹ Thuật Hiệu Quả</h3>
+<p>Để một sự phối hợp có hiệu quả, các kỹ thuật và những động tác cơ thể tham gia vào việc thực hiện nó phải ăn khớp vào nhau càng mượt mà càng tốt. Hình 15-1 đến 15-4 minh họa một sự phối hợp rất cơ bản và trôi chảy, gồm một cú jab, một cú đấm nghịch (reverse punch), và một cú đá. Bạn không cần chỉnh lại thế đứng khi chuyển từ kỹ thuật này sang kỹ thuật kế tiếp. Kết thúc của kỹ thuật này chính là khởi đầu của kỹ thuật kế tiếp. Bạn liên tục tiến vào kẻ thù và không hề có khoảng dừng giữa các kỹ thuật.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-1.jpg" alt="Hình 15.1" loading="lazy"><figcaption><strong>Hình 15-1 đến 15-4.</strong>Một sự phối hợp rất cơ bản và mượt mà: cú jab, cú đấm nghịch (reverse punch) và cú đá.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-2.jpg" alt="Hình 15.2" loading="lazy"><figcaption><strong>Hình 15.2.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-3.jpg" alt="Hình 15.3" loading="lazy"><figcaption><strong>Hình 15.3.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-4.jpg" alt="Hình 15.4" loading="lazy"><figcaption><strong>Hình 15.4.</strong></figcaption></div>
+<p>Hình 15-5 đến 15-7 mô tả một sự phối hợp các kỹ thuật không ăn nhập với nhau cho lắm: một cú đấm nghịch, tiếp đến một cú đá bằng chân trước, rồi một cú đá bằng chân sau. Tại sao sự phối hợp này lại dễ thất bại?</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-5.jpg" alt="Hình 15.5" loading="lazy"><figcaption><strong>Hình 15-5 đến 15-7.</strong>Một sự phối hợp kém nhịp nhàng: cú đấm nghịch, tiếp đến cú đá chân trước, rồi cú đá chân sau.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-6.jpg" alt="Hình 15.6" loading="lazy"><figcaption><strong>Hình 15.6.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-7.jpg" alt="Hình 15.7" loading="lazy"><figcaption><strong>Hình 15.7.</strong></figcaption></div>
+<p>Hãy suy nghĩ về điều đó. Dưới đây là một vài sai sót lớn.</p>
+<p>Sai sót đầu tiên và rõ ràng nhất là: để thực hiện cú đá bằng chân trước, người mẫu của chúng ta phải tạm thời khựng bước tiến và dồn trọng lượng về phía sau. Đà tiến tới của hắn bị đình trệ và sẽ có một khoảng dừng rõ rệt giữa cú jab và cú đá chân trước. Điều này tạo ra một kẽ hở &#8212; một đứt gãy trong dòng chảy động tác của người mẫu mà một đối thủ lành nghề có thể dễ dàng khai thác.</p>
+<p>Cùng một kiểu khoảng dừng ấy cũng sẽ xuất hiện giữa hai cú đá. Trừ khi anh chàng của chúng ta lén học được cách lơ lửng trên không, bằng không hắn sẽ phải đặt chân trước xuống đất trước khi thực hiện cú đá thứ hai.</p>
+<p>Cú đá chân trước cũng ngăn cản việc tiến lên phía trước để chiếm địa bàn. Điều này cho phép kẻ thù rút lui an toàn và phục hồi.</p>
+<p>Tôi có thể thấy anh chàng ngồi ở hàng ghế sau đang vẫy tay và hô lên: &#8220;Thế còn dùng nhiều cú đá liên tiếp bằng cùng một chân thì sao? Đó là một sự phối hợp cực kỳ hiệu quả đấy! Tôi đã dùng nó nhiều lần và lúc nào cũng thắng!&#8221;</p>
+<p>Ừm, chắc chắn rồi. Thắng cái gì? Một điểm số? Hãy thử kiểu ngớ ngẩn đó ngoài đường phố, và đối phương của bạn rất có thể sẽ tháo rời cái chân của bạn ra và nhét nó&#8230; à, vào đâu đó. Hai cú đá liên tiếp bằng cùng một chân có thể thành công (xem Hình 15-8 đến 15-10). Nhưng hơn hai cú thì sao?</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-8.jpg" alt="Hình 15.8" loading="lazy"><figcaption><strong>Hình 15-8 đến 15-10.</strong>Hai cú đá liên tiếp bằng cùng một chân: sau cú thứ hai, chân chống không còn đạp được xuống đất nên đà và uy lực đều cạn.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-9.jpg" alt="Hình 15.9" loading="lazy"><figcaption><strong>Hình 15.9.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig15-10.jpg" alt="Hình 15.10" loading="lazy"><figcaption><strong>Hình 15.10.</strong></figcaption></div>
+<p>Không đời nào, không có cơ hội.</p>
+<p>Tại sao? Bởi vì sau khi bạn tung cú đá đầu tiên, chân chống của bạn không thể đạp mạnh vào đất được nữa. Điều đó có nghĩa là bạn bị giới hạn vào việc dùng sức mạnh đơn lẻ của cái chân đang nhấc lên kia. Bạn có thể thực hiện cú đá thứ hai vào đầu gối của kẻ thù nếu bạn thực sự vặn xoáy hông vào nó, nhưng nếu bạn cố đá cao quá mức thắt lưng của chính mình thì bạn sẽ chẳng sinh ra được bao nhiêu lực.</p>
+<p>Sau khi cú đá thứ hai hoàn tất, bạn đã cạn kiệt. Đà của bạn hầu như đã cạn và những cú đá của bạn sẽ chẳng còn chút uy lực nào cả. Nếu đối phương chưa làm thế, hắn rất có thể sẽ túm lấy chân bạn và biến bạn thành một cái máy đào hố cọc bằng người.</p>
+<p>Điều quan trọng cần nhớ là những trận đấu thực sự không diễn ra như trên màn ảnh điện ảnh. Ngay cả khi là những người tập võ thuật lão luyện, các diễn viên cũng phải thực hiện những động tác lớn, phô trương khiến người hâm mộ bấn loạn. Thực tế, bất kỳ tên du đãng nào có chút kinh nghiệm đường phố cũng dễ dàng hóa giải những động tác lộ liễu ấy. Những kỹ thuật chiến đấu hiệu quả nhất thường tinh tế hơn nhiều, và, thẳng thắn mà nói, cũng tàn bạo hơn nhiều. Một người chiến đấu nhiều kinh nghiệm để cho những động tác của đối phương quyết định chính xác việc anh ta sẽ làm.</p>
+<div class="key-takeaway"><p><strong>Chất Lượng Hay Số Lượng?</strong> Nhiều năm về trước, khi tôi còn chỉ là một đệ tử non nớt dưới trướng vị sư phụ kung-fu lừng lẫy W.C. Chen, một trong những huynh trưởng lớn hơn đã tiếp cận tôi và tìm cách dọa nạt tôi bằng cách phô diễn anh ta có thể tung ra bao nhiêu cú đánh trong vòng một giây. &#8220;Tao có thể đánh trúng mày ít nhất năm lần trong một giây,&#8221; Lum khoe khoang. Rồi, đưa hai tay lên tư thế cảnh giới, hắn phóng ra một loạt những cú đấm và cú đánh nhanh đến chớp mắt, rút tất cả lại ngay sát trước mặt tôi. Thật không may, hắn đã không để ý rằng sư phụ của chúng tôi đã đi đến ngay sau lưng hắn.</p><p>&#8220;Hứ,&#8221; Chen gầm gừ. Lum đông cứng và hàm dưới rơi xuống khi quay người lại. &#8220;Ta không nhanh đến thế,&#8221; Chen nói nhỏ nhẹ. &#8220;Ta chỉ có thể đánh trúng hắn một lần. Nhưng ta chỉ cần đánh trúng một lần thôi.&#8221;</p><p>Chen mỉm cười khi quay người bước đi. Lum không bao giờ khoe khoang về những cú đánh như súng máy của mình nữa.</p></div>
+<h3 id="s4">Sự Phối Hợp Kỹ Thuật Và Hơi Thở</h3>
+<p>Hơi thở đúng đóng vai trò thiết yếu trong việc phát triển những sự phối hợp mạnh mẽ và hiệu quả. Thở đúng khi bạn thực hiện một kỹ thuật đơn lẻ là một chuyện, nhưng học cách thở đúng khi thực hiện nhiều kỹ thuật liên tiếp lại là một chuyện hoàn toàn khác. Nó sẽ đòi hỏi khá nhiều luyện tập, nên hãy đặt bát nachos xuống và chú ý nghe đây.</p>
+<p>Một hơi thở trọn vẹn gồm bốn phần.</p>
+<p><em>Một sự hít vào.</em></p>
+<p><em>Một khoảng dừng ngắn.</em></p>
+<p><em>Một sự thở ra.</em></p>
+<p><em>Một khoảng dừng khác.</em></p>
+<p>Có hai khoảng dừng trong mỗi hơi thở. Khoảng dừng xảy ra vào cuối sự thở ra (nhưng trước khi hít vào tiếp theo) thường là khoảng dừng dài hơn trong hai khoảng. Bạn có nhớ những gì tôi nói ở Chương 10 về sự dễ bị tổn thương khi hơi thở đang được hít vào hoặc đang bị ngưng lại không? Nếu không, bạn có một vấn đề nghiêm trọng về khả năng tiếp thu khi đọc.</p>
+<p>Bạn sẽ nhận thấy rằng ba trong bốn phần của một hơi thở trọn vẹn khiến bạn trở nên dễ bị tổn thương. Khi bạn hít vào hoặc ngưng hơi thở:</p>
+<p><em>Khả năng chống lại một đòn đánh của cơ thể bạn giảm sút đáng kể.</em></p>
+<p><em>Thời gian phản ứng của bạn tăng lên.</em></p>
+<p><em>Tốc độ của bạn bị giảm.</em></p>
+<p>Bạn có nhớ bao nhiêu kỹ thuật bạn đã tung ra trong sự phối hợp mà bạn thực hiện ở đầu chương này không? Bạn có thở ra với mỗi kỹ thuật không? Nếu có, bạn đã làm hỏng nó.</p>
+<p>Tại sao? Bởi vì nếu bạn thở ra với mỗi kỹ thuật, bạn đã làm một trong hai điều, cả hai đều là điều cấm kỵ:</p>
+<p><em>Hoặc bạn đã hít vào giữa các kỹ thuật.</em></p>
+<p><em>Hoặc bạn đã nín thở giữa các kỹ thuật, tạo ra một khoảng dừng rõ rệt ở kết thúc của mỗi kỹ thuật.</em></p>
+<p>Và chuyện gì xảy ra khi bạn hít vào hoặc ngưng hơi thở? Một đối phương có thời điểm nhạy bén có thể dễ dàng tận dụng những lúc dễ bị tổn thương đó mà tung ra một đòn tấn công tàn khốc. Vậy, bạn có thể làm gì để ngăn chặn điều đó xảy ra? Câu trả lời thật rõ ràng: Hãy tung toàn bộ sự phối hợp của bạn trong khoảng không gian của một lần thở ra! Nếu bạn không làm được, thì hoặc bạn có quá nhiều kỹ thuật trong sự phối hợp, hoặc bạn cần luyện tập để tăng dung tích phổi.</p>
+<p>Đừng gian lận bằng cách kéo dài hơi thở của bạn. Hãy nhớ rằng càng thở ra nhanh, bạn càng di chuyển nhanh. Hãy thở ra thật nhanh hết mức có thể và nhét các kỹ thuật của bạn vào khoảng thời gian ngắn ngủi đó. Và đừng quên dùng thở ngược! Thực hiện hai kỹ thuật trong một lần thở ra không quá khó, nhưng tung ra ba kỹ thuật mạnh trở lên sẽ cần khá nhiều luyện tập.</p></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
