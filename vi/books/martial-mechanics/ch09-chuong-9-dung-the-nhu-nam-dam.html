@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #0f766e;
+  --accent-crimson: #134e4a;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+}
+body.dark-mode {
+  --bg-primary: #121212; --text-primary: #f5f5f4; --text-secondary: #a8a29e;
+  background-color: #121212 !important; color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #10302f; color: #99f6e4; border-color: #0f766e; }
+body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
+body.dark-mode .tech-table th { background: #134e4a; color: #99f6e4; }
+body.dark-mode .tech-table td { border-color: #333; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0f766e, #134e4a); z-index: 9999; width: 0%; transition: width 0.1s; }
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.45rem; }
+.toc-link { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; line-height: 1.35; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.2s; }
+.toc-link:hover { background: rgba(15, 118, 110, 0.12); color: #134e4a; transform: translateX(3px); }
+.reader-content { flex: 1; min-width: 0; background: var(--bg-primary); line-height: 1.85; font-size: 1.05rem; }
+.book-hero { border-bottom: 2px solid #0f766e; padding-bottom: 2rem; margin-bottom: 3rem; text-align: center; }
+.book-badge { display: inline-block; background: #ccfbf1; color: #134e4a; font-weight: 700; font-size: 0.82rem; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid #99f6e4; }
+.book-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; color: #134e4a; line-height: 1.25; margin: 0 0 0.5rem; }
+.book-orig-title { font-family: 'Noto Serif SC', serif; font-size: 1.25rem; color: #78716c; margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.98rem; color: #57534e; margin-bottom: 1.2rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+.book-tag { background: #f0fdfa; color: #115e59; padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; border: 1px solid #99f6e4; }
+body.dark-mode .book-tag { background: #134e4a; color: #ccfbf1; border-color: #0f766e; }
+.chapter-block { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+.chapter-header { border-left: 4px solid #0f766e; padding-left: 1.2rem; margin-bottom: 1.8rem; }
+.chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: #0f766e; display: block; }
+.chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
+.key-point { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+.tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: #0f766e; text-decoration: none; font-weight: 600; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer { border: 1px solid #e7e5e4; border-radius: 10px; background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem; }
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0f766e; padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
+.page-nav a.home { color: #0f766e; }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 9: Dùng Cơ Thể Như Một Nắm Đấm — Cơ Học Võ Thuật | TaichiNOW</title>
+<meta name="description" content="Chương 9 của Cơ Học Võ Thuật: Dùng Cơ Thể Như Một Nắm Đấm">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+/* starr_CSS */
+.ornament { text-align: center; color: var(--gold); letter-spacing: .5em; margin: 2.2rem 0; font-size: 1.2rem; }
+.chapter-teaser { font-style: italic; color: var(--ink-muted); border-left: 3px solid var(--border); padding: .5rem 1rem; margin: 1.4rem 0; }
+.journal-date { display: block; font-size: .8rem; color: var(--ink-muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .04em; }
+.tr-note { background: #fffbeb; border-left: 4px solid var(--gold); padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #713f12; }
+body.dark-mode .tr-note { background: #2a2415; color: #fde68a; border-color: var(--gold); }
+.key-takeaway { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+body.dark-mode .key-takeaway { background: #10302f; color: #99f6e4; }
+.starr-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
+.starr-table th, .starr-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+.starr-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.fig-cap { font-size: .93rem; color: var(--ink-muted); font-style: italic; border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 22px; }
+.fig-cap strong { font-style: normal; color: var(--ink); }
+body.dark-mode .fig-cap { color: #a1a1aa; }
+.book-figure { margin: 26px auto; text-align: center; }
+.book-figure img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+.book-figure figcaption { font-size: .93rem; color: var(--ink-muted); margin-top: 10px; font-style: italic; }
+.book-figure figcaption strong { font-style: normal; color: var(--ink); }
+body.dark-mode .book-figure figcaption { color: #a1a1aa; }
+.bib-intro { font-size: .95rem; color: var(--ink-muted); border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 26px; }
+.bib-entry { font-size: .95rem; line-height: 1.7; margin: 0 0 12px; padding-left: 1.4rem; text-indent: -1.4rem; }
+.bib-entry strong { color: var(--ink); }
+body.dark-mode .bib-intro { color: #a1a1aa; }
+</style>
+
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="index.html#sec_note">Ghi Chú Của Người Dịch</a></li>
+        <li><a href="index.html#sec_ack">Lời Cảm Ơn</a></li>
+        <li><a href="index.html#sec_foreword">Lời Tựa</a></li>
+        <li><a href="index.html#sec_intro">Dẫn Nhập</a></li>
+        <li><a href="ch01-chuong-1-chung-ta-da-tung-nhu-the.html#sec01">Chương 1 &#8226; Chúng Ta Đã Từng Như Thế</a></li>
+        <li><a href="ch02-chuong-2-nguyen-ly-suc-manh.html#sec02">Chương 2 &#8226; Những Nguyên Lý Của Sức Mạnh</a></li>
+        <li><a href="ch03-chuong-3-cu-no-lon.html#sec03">Chương 3 &#8226; Cú Nổ Lớn</a></li>
+        <li><a href="ch04-chuong-4-can-toc-do.html#sec04">Chương 4 &#8226; Cần Có Tốc Độ</a></li>
+        <li><a href="ch05-chuong-5-chuyen-ay-that-soc.html#sec05">Chương 5 &#8226; Chuyện Ấy Thật Sốc!</a></li>
+        <li><a href="ch06-chuong-6-cang-ngan-cang-tot.html#sec06">Chương 6 &#8226; Càng Ngắn Càng Tốt</a></li>
+        <li><a href="ch07-chuong-7-diem-tua.html#sec07">Chương 7 &#8226; Điểm Tựa</a></li>
+        <li><a href="ch08-chuong-8-tam-quan-buoc-chan.html#sec08">Chương 8 &#8226; Tầm Quan Trọng Của Bước Chân</a></li>
+        <li><a href="ch09-chuong-9-dung-the-nhu-nam-dam.html#sec09">Chương 9 &#8226; Dùng Cơ Thể Như Một Nắm Đấm</a></li>
+        <li><a href="ch10-chuong-10-bi-mat-hoi-tho.html#sec10">Chương 10 &#8226; Những Bí Mật Của Hơi Thở</a></li>
+        <li><a href="ch11-chuong-11-tam-quan-su-thang-hang-cot-song.html#sec11">Chương 11 &#8226; Tầm Quan Trọng Của Sự Thẳng Hàng Cột Sống</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../martial-mechanics_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Cơ Học Võ Thuật · Phillip Starr</p>
+<a id="sec09"></a>
+<h3 class="chapter" id="ch09">Chương 9: Dùng Cơ Thể Như Một Nắm Đấm</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Sư Tử, Hổ Và Gấu!</a> · <a href="#s2">Tám Động Tác Cơ Thể</a> · <a href="#s3">Xoay Vòng Cơ Thể</a> · <a href="#s4">Lỗi Thường Gặp: Xoay Vòng Cơ Thể</a> · <a href="#s5">Dịch Chuyển Cơ Thể</a> · <a href="#s6">Lỗi Thường Gặp: Dịch Chuyển Cơ Thể</a> · <a href="#s7">Lao Cơ Thể</a> · <a href="#s8">Lỗi Thường Gặp: Lao Cơ Thể</a> · <a href="#s9">Rung Động Cơ Thể</a> · <a href="#s10">Lỗi Thường Gặp: Rung Động Cơ Thể</a> · <a href="#s11">Nâng Cơ Thể</a> · <a href="#s12">Lỗi Thường Gặp: Nâng Cơ Thể</a> · <a href="#s13">Hạ Cơ Thể</a> · <a href="#s14">Lỗi Thường Gặp: Hạ Cơ Thể</a> · <a href="#s15">Xoay Tròn Cơ Thể</a> · <a href="#s16">Vung Roi Cơ Thể</a></div>
+<div class="partnav"><a href="ch08-chuong-8-tam-quan-buoc-chan.html"><span class="k">← Chương 8</span>Chương 8: Tầm Quan Trọng Của Bước Chân</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<a href="ch10-chuong-10-bi-mat-hoi-tho.html" style="text-align:right"><span class="k">Chương 10 →</span>Chương 10: Những Bí Mật Của Hơi Thở</a>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Phillip Starr.</p>
+<h3 id="s1">Sư Tử, Hổ Và Gấu!</h3>
+<p>Suốt hàng trăm năm, con người đã tìm cách nâng cao kỹ năng chiến đấu của mình bằng cách bắt chước những chiến thuật mà các loài vật sử dụng. Chẳng hạn, hổ thường tiếp cận con mồi từ sườn và rồi vồ lấy bất ngờ từ &#8220;phía mù&#8221; của nạn nhân. Chim sếu dùng đôi cánh vỗ đập và làm phân tâm kẻ thù trước khi tấn công bằng mỏ và vuốt. Gấu nổi tiếng với sức mạnh khổng lồ; sư tử và hổ được tôn sùng vì sự nhanh nhẹn và hung hãn; còn rắn thì nổi tiếng với sự tập trung nhất điểm và tốc độ chớp nhoáng.</p>
+<p>Một số môn võ cố gắng thực sự bắt chước những cử động cơ thể của một số loài vật nhất định, và theo tôi, kiểu bắt chước ấy có một khiếm khuyết nghiêm trọng. Chẳng hạn, hổ có thể tạo ra sức mạnh khổng lồ bằng cách vồ từ ngoài vào trong bằng hai chân trước và vuốt, nhưng chúng không thể nâng một vật rất nặng bằng hai bàn chân trước, cũng chẳng thể tạo ra nhiều sức mạnh bằng cách vồ từ trong ra ngoài. Đó là vì chúng có xương đòn trôi nổi tự do, không khớp nối với các xương khác như ở con người. Cấu trúc đặc thù của con người cho phép chúng ta nâng những vật nặng và tung đòn theo đủ mọi hướng &#8212; những việc mà mèo và rắn không làm được.</p>
+<p>Khi con rắn tấn công, nó lao cả thân mình vào con mồi. Một khi đòn tấn công đã phát động, nó hoàn toàn mất kiểm soát bản thân. Bọ ngựa cũng y hệt như vậy. Loài khỉ sở hữu sức mạnh phần thân trên cực lớn, điều thiết yếu cho sự sinh tồn của chúng với tư cách những kẻ sống trên cây. Chim chóc như con sếu và đại bàng có những chiếc xương rỗng giúp chúng nhẹ đến mức đủ sức bay.</p>
+<p>Bạn không phải là kẻ sống trên cây, cũng chẳng thể bay. Dù bạn có luyện tập hay mơ mộng về điều đó đến đâu, bạn sẽ chẳng bao giờ có được sức mạnh phi thường của loài khỉ, sự nhẹ nhàng và nhanh nhẹn của con sếu, hay tốc độ chớp nhoáng của bọ ngựa. Bạn không được cấu tạo như những sinh vật ấy và sẽ chẳng bao giờ di chuyển được như chúng. Bạn là một con người và bạn vận động như một con người. Vì thế, điều thiết yếu là học cách tận dụng tối đa cấu trúc độc đáo của riêng con người bạn.</p>
+<h3 id="s2">Tám Động Tác Cơ Thể</h3>
+<p>Bất kỳ cử động nào chúng ta thực hiện đều tạo ra lực, nhưng chỉ có tám cách để cơ thể con người có thể vận động và tạo ra chấn động. Tôi gọi những cách ấy là tám động tác cơ thể. Chúng là những cách chúng ta vận dụng các định luật vật lý và khoa học vận động học (kinesiology) để nâng cao hiệu quả của kỹ thuật, bằng cách tối đa hóa khối lượng được sử dụng trong mỗi kỹ thuật và di chuyển khối lượng ấy ở vận tốc cao nhất có thể. Điều này đạt được bằng cách học cách di chuyển Đan Điền theo nhiều cách khác nhau.</p>
+<p>Điều then chốt là bạn phải học cách đấm và đá bằng sức mạnh của toàn bộ cơ thể thay vì chỉ bằng cánh tay hay chân. Sức mạnh riêng lẻ của một chi nào đó không thể sản sinh ra nhiều uy lực. Mặt khác, tung đòn bằng sức mạnh của toàn thân lại tạo ra một sức mạnh kinh ngạc nhờ sự gia tăng khối lượng.</p>
+<p>Chúng ta sẽ xem xét tám động tác cơ thể sau đây, từng cái một:</p>
+<p><em>Xoay vòng cơ thể</em> (body rotation).</p>
+<p><em>Dịch chuyển cơ thể</em> (body shift).</p>
+<p><em>Lao cơ thể</em> (body throw).</p>
+<p><em>Rung động cơ thể</em> (body vibration).</p>
+<p><em>Nâng cơ thể</em> (body up).</p>
+<p><em>Hạ cơ thể</em> (body down).</p>
+<p><em>Xoay tròn cơ thể</em> (body circle).</p>
+<p><em>Vung roi cơ thể</em> (body whip).</p>
+<h3 id="s3">Xoay Vòng Cơ Thể</h3>
+<p>Đây là động tác cơ thể đầu tiên và căn bản nhất được dạy cho các học trò mới, bởi nó tự nhiên và dễ thực hiện. Thật ra, nó rất giống với động tác cơ thể có trong cú ném bóng chày. Mục đích là xoay hông và eo 45 độ càng nhanh càng tốt.</p>
+<p>1. Bắt đầu bằng một thế đứng trước (forward stance), với rốn xoay vào trong 45 độ và cánh tay trước duỗi thẳng. Nắm đấm sau được giữ ở tư thế sẵn sàng tung đòn. Thân trên thả lỏng và chân sau hơi co (Hình 9-1).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-1.jpg" alt="Hình 9.1" loading="lazy"><figcaption><strong>Hình 9-1.</strong>Thế đứng trước với rốn xoay vào trong 45 độ, tay trước duỗi thẳng, nắm đấm sau ở tư thế sẵn sàng.</figcaption></div>
+<p>2. Co cơ thắt hậu môn lại trong khi siết chặt hai mông với nhau và ép chân sau cùng bàn chân sau xuống đất như một cái pít-tông. Điều này sẽ quật hông sau của bạn xoay lại sao cho rốn chỉ thẳng về trước trong lúc bạn tung một cú đấm thúc bằng nắm đấm sau (Hình 9-2). Giữ cho đầu gối trước hướng về mục tiêu.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-2.jpg" alt="Hình 9.2" loading="lazy"><figcaption><strong>Hình 9-2.</strong>Ép chân sau xuống đất để quật hông sau xoay lại, rốn hướng thẳng về trước khi tung đòn thúc bằng nắm đấm sau.</figcaption></div>
+<p>Đấm theo cách này thường được gọi là cú đấm thuận đảo (reverse punch), vì đòn được tung bằng nắm đấm sau (đảo ngược).</p>
+<p>Không chỉ riêng sự xoay của hông và eo mới sinh ra chấn động &#8212; mà là ở chỗ bạn có thể làm điều đó nhanh đến mức nào! Bạn càng làm nhanh, kết quả càng tốt.</p>
+<p>Bạn cũng phải vận dụng kiểu thở ngược (reverse breathing) khi di chuyển (xem Chương 10). Bạn thở ra càng nhanh, bạn sẽ di chuyển càng nhanh. Hãy thở ra hai phần ba hơi trong cơ thể càng nhanh càng tốt khi thực hiện kỹ thuật của mình. Luôn giữ lại một phần ba hơi thở để dành.</p>
+<p>Xoay ngược (reverse rotation) tức là xoay hông trước 45 độ. Nó thường được dùng để thực hiện các kỹ thuật như cú đấm thọc (jab) hay đòn chém cạnh tay ngang. Cách thực hiện như sau.</p>
+<p>1. Bắt đầu bằng một thế đứng trước, nhưng với rốn hướng thẳng về phía trước (Hình 9-3). Tay sau duỗi thẳng về trước và cánh tay trước được thu về sau để chuẩn bị cho một đòn chém cạnh tay (sword-hand strike).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-3.jpg" alt="Hình 9.3" loading="lazy"><figcaption><strong>Hình 9-3.</strong>Thế đứng trước với rốn hướng thẳng về trước, tay sau duỗi, tay trước thu về chuẩn bị chém cạnh tay.</figcaption></div>
+<p>2. Ép xuống bằng bàn chân trước và quật hông trước về phía trước để xoay rốn vào trong 45 độ trong lúc bạn chém ra ngoài bằng tay trước. Đừng để chân trước duỗi thẳng ra, và hãy chắc rằng hông của bạn không bị nhấc lên. Giữ chân sau ở tư thế co, và thực hiện động tác cơ thể này thông qua áp lực của bàn chân bạn lên mặt đất. Cũng như ở động tác xoay, thân dưới hầu như không di chuyển nhiều (Hình 9-4).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-4.jpg" alt="Hình 9.4" loading="lazy"><figcaption><strong>Hình 9-4.</strong>Xoay hông trước vào trong 45 độ khi chém cạnh tay; giữ chân sau co và không nhấc hông lên.</figcaption></div>
+<p>Xoay và xoay ngược được dùng trong việc thực hiện nhiều kỹ thuật thân trên cũng như một số kỹ thuật đá, chẳng hạn như cú đá vòng cầu (roundhouse kick).</p>
+<h3 id="s4">Lỗi Thường Gặp: Xoay Vòng Cơ Thể</h3>
+<p>Đừng xoay hông quá xa, như minh họa ở Hình 9-5, và đừng bắt đầu với rốn hướng lệch 90 độ so với mục tiêu, như minh họa ở Hình 9-6. Một sự xoay lớn hơn 45 độ là quá mức và sẽ tạo ra hiệu ứng đẩy hơn là sinh ra chấn động.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-5.jpg" alt="Hình 9.5" loading="lazy"><figcaption><strong>Hình 9-5 và 9-6.</strong>Các lỗi: xoay hông quá xa (9-5) và bắt đầu với rốn lệch 90 độ so với mục tiêu (9-6).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-6.jpg" alt="Hình 9.6" loading="lazy"><figcaption><strong>Hình 9.6.</strong></figcaption></div>
+<p>Hãy cẩn thận đừng co cơ bụng vào trong. Cách thở bình thường bị phóng đại này sẽ ngăn bạn sử dụng sức mạnh thống nhất của thân trên và thân dưới, bởi nó tách rời và cô lập chúng.</p>
+<p>Đừng nhấc gót chân sau lên (Hình 9-7). Nếu bạn không nhớ tại sao, hãy quay lại đọc lại phần Những Lỗi Thường Gặp của Chương 5.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-7.jpg" alt="Hình 9.7" loading="lazy"><figcaption><strong>Hình 9-7.</strong>Lỗi: nhấc gót chân sau lên.</figcaption></div>
+<p>Đừng duỗi thẳng chân sau. Nhớ những gì tôi đã nói về điều đó ở Chương 7 chứ? Bạn phải chú ý, vì tất cả những chi tiết này đều khớp nối với nhau.</p>
+<p>Hãy cẩn thận để đầu gối trước của bạn đừng lay động. Nếu nó lay động, sự ổn định của bạn sẽ bị tổn hại và bạn có thể nói lời tạm biệt với sức mạnh của mình.</p>
+<h3 id="s5">Dịch Chuyển Cơ Thể</h3>
+<p>Động tác cơ thể này hầu như chỉ được dùng cho việc đá. Ý tưởng là dịch chuyển hông và Đan Điền trực tiếp về phía mục tiêu. Một chút xoay hông cũng thường đi kèm.</p>
+<p>Khi thực hiện cú đá tạt trước (front snap kick), bàn chân chống &#8212; đồng thời cũng là chân đạp &#8212; ép xuống đất trong lúc hông bị đẩy hơi về phía trước, về mục tiêu. Hông của chân đá cũng sẽ xoay về phía trước (Hình 9-8).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-8.jpg" alt="Hình 9.8" loading="lazy"><figcaption><strong>Hình 9-8.</strong>Đá tạt trước: chân chống ép đất, hông và đùi chân đá hướng về mục tiêu.</figcaption></div>
+<p>Cú đá thúc trước (front thrust kick) dùng một cú đẩy hông mạnh hơn. Bạn không được đá chỉ bằng sức của riêng đôi chân. Hãy đá bằng toàn thân! (Xem Hình 9-9.)</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-9.jpg" alt="Hình 9.9" loading="lazy"><figcaption><strong>Hình 9-9.</strong>Đá thúc trước: thúc hông mạnh hơn, đá bằng toàn thân chứ không chỉ bằng chân.</figcaption></div>
+<p>Ở cú đá thúc ngang (side thrust kick), hông bị đẩy hất ra bên cạnh và có thể kèm theo một chút xoay (Hình 9-10).</p>
+<p>Cú đá thúc sau (back thrust kick) liên quan đến một cú đẩy hông hơi ra phía sau (Hình 9-11).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-10.jpg" alt="Hình 9.10" loading="lazy"><figcaption><strong>Hình 9-10 và 9-11.</strong>Đá thúc ngang (9-10) và đá thúc sau (9-11): hông đẩy sang bên hoặc hơi ra sau.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-11.jpg" alt="Hình 9.11" loading="lazy"><figcaption><strong>Hình 9.11.</strong></figcaption></div>
+<p>Cố gắng giữ đầu của bạn càng thẳng đứng càng tốt. Cơ thể bạn có xu hướng đi theo cái đầu. Nếu bạn ngả đầu ra sau, cơ thể bạn sẽ đi theo, và bạn có thể kết thúc nằm trên sàn trong khi đang cố nhớ tên mình.</p>
+<p>Trừ khi bạn đang thử sức cho đội cổ vũ, nếu không thì chớ, chớ bao giờ nhón lên trên mũi bàn chân chống khi thực hiện một cú đá. Nó có thể trông đẹp mắt và giúp bạn đá cao hơn, nhưng nếu bạn từng đá một đối thủ theo kiểu ấy, phản lực sinh ra sẽ khiến bạn mất thăng bằng, có thể mất luôn vài cái răng, và cả trận đấu.</p>
+<h3 id="s6">Lỗi Thường Gặp: Dịch Chuyển Cơ Thể</h3>
+<p>Hãy cẩn thận đừng dịch hông quá xa theo hướng của cú đá. Điều này sẽ khiến thân trên của bạn &#8212; vốn chiếm một phần rất lớn khối lượng cơ thể &#8212; ngả ra xa khỏi cú đá. Kết quả là bạn sẽ tự húc chính mình ngã bật lại phía sau bằng chính lực của cú đá! (Xem Hình 9-12 và 9-13.)</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-12.jpg" alt="Hình 9.12" loading="lazy"><figcaption><strong>Hình 9-12 và 9-13.</strong>Lỗi dịch chuyển: đẩy hông quá xa theo hướng đá khiến thân trên ngả về sau.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-13.jpg" alt="Hình 9.13" loading="lazy"><figcaption><strong>Hình 9.13.</strong></figcaption></div>
+<h3 id="s7">Lao Cơ Thể</h3>
+<p>Động tác cơ thể này được dùng để tung ra những cú thúc lao tới. Nó nói chung được xem là động tác cơ thể mạnh nhất, vì nó di chuyển nhiều khối lượng của bạn hơn bất kỳ động tác nào khác. Hầu hết các môn võ đấm đá (percussive) đều luyện tập một hình thức đấm lao nào đó, nhưng nó hiếm khi xuất hiện trong các trận đối luyện tự do (freestyle sparring). Nếu bạn hỏi tại sao, có lẽ bạn sẽ được bảo rằng kiểu cử động này đơn giản là quá chậm hay quá vụng về để dùng trong chiến đấu thực sự.</p>
+<p>Vô lý!</p>
+<p>Mọi thứ trong võ thuật truyền thống đều tồn tại vì một lý do. Nếu bạn không thể thực hiện cử động này đủ nhanh để dùng hiệu quả trong đối luyện, thì có lẽ là vì bạn đang làm sai. Vì thế, hãy chú ý.</p>
+<p>1. Bắt đầu bằng một thế đứng trước với cánh tay và nắm đấm trước duỗi thẳng (Hình 9-14).</p>
+<p>2. Nhanh chóng co các cơ thụt trong (adductors &#8212; cơ khép đùi) bằng một động tác siết lại để đưa chân sau lên phía trước càng nhanh càng tốt (Hình 9-15).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-14.jpg" alt="Hình 9.14" loading="lazy"><figcaption><strong>Hình 9-14 và 9-15.</strong>Thế đứng trước với tay trước duỗi thẳng (9-14); co cơ thụt trong đùi để kéo chân sau tới (9-15).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-15.jpg" alt="Hình 9.15" loading="lazy"><figcaption><strong>Hình 9.15.</strong></figcaption></div>
+<p>Bạn phải di chuyển từ Đan Điền của mình, như thể có ai đó đang đẩy vào xương cùng (sacrum) và xương cụt (coccyx) của bạn. Và, hãy nhớ, duy trì sự thẳng hàng của cột sống.</p>
+<p>3. Thả lỏng các cơ thụt trong trong lúc bạn ép chân sau xuống đất và tung một cú đấm lao tới. Hông đánh trúng nên xoay 45 độ về phía trước khi bạn thực hiện cú thúc hay đòn đánh của mình (Hình 9-16).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-16.jpg" alt="Hình 9.16" loading="lazy"><figcaption><strong>Hình 9-16.</strong>Lao đấm: hông xoay 45 độ về trước khi thúc đòn.</figcaption></div>
+<p>Đừng cố &#8220;nghĩ thông qua&#8221; từng giai đoạn của cử động này. Việc đó chỉ làm cản trở cử động của bạn. Đơn giản là siết-rồi-đẩy thôi! Hãy biến những hành động này thành một cử động duy nhất, liền mạch.</p>
+<p>Hãy phối hợp cử động của cơ thể bạn với một hơi thở bật ra bùng nổ, dùng kiểu thở ngược (xem Chương 10). Hãy chắc rằng bạn bắt đầu thở ra ngay từ đầu cử động, vì đó là lúc bạn cần luồng bùng nổ sức mạnh lớn nhất. Bạn phải vượt qua sức ỳ ban đầu của cơ thể đối với vận động (quán tính) và đẩy nó tới phía trước một cách thăng bằng, có kiểm soát. Với sự luyện tập, động tác này có thể được thực hiện với tốc độ nhanh đáng ngạc nhiên.</p>
+<h3 id="s8">Lỗi Thường Gặp: Lao Cơ Thể</h3>
+<p>Đừng nghiêng người về phía trước dù chỉ một chút. Điều này đôi khi được gọi là &#8220;dẫn đầu bằng mặt mũi&#8221;.</p>
+<p>Tránh nhấc gót chân sau lên (Hình 9-17).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-17.jpg" alt="Hình 9.17" loading="lazy"><figcaption><strong>Hình 9-17.</strong>Lỗi lao thân: nhấc gót chân sau và các lỗi khác.</figcaption></div>
+<p>Đừng cúi đầu xuống. Hãy nhớ, cúi đầu xuống tức là &#8220;đạp phanh&#8221;.</p>
+<h3 id="s9">Rung Động Cơ Thể</h3>
+<p>Động tác cơ thể rung động chỉ được dùng khi thực hiện các kỹ thuật va chạm bật ngược (snap-back impact), chẳng hạn như các đòn mu bàn tay (backfist). Hầu hết các môn sinh võ thuật chỉ ném những đòn ấy về phía đối thủ, dùng duy nhất sức mạnh của cánh tay và vai. Thế nhưng, bằng cách học cách dùng rung động cơ thể, bạn sẽ có thể tung ra một cú đánh nhanh như chớp, tận dụng sức mạnh của toàn bộ cơ thể.</p>
+<p>1. Bắt đầu bằng một thế đứng trước, với khuỷu tay trước và rốn hướng về phía mục tiêu, như thể đang chuẩn bị cho một đòn mu bàn tay ngang (Hình 9-18).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-18.jpg" alt="Hình 9.18" loading="lazy"><figcaption><strong>Hình 9-18.</strong>Thế chuẩn bị cho đòn mu bàn tay ngang, khuỷu trước và rốn hướng về mục tiêu.</figcaption></div>
+<p>2. Khi đòn bắt đầu và nắm đấm đi tới mục tiêu, hông trước xoay về phía trước (dùng xoay ngược) khoảng 30 độ.</p>
+<p>3. Ngay khoảnh khắc sau va chạm, hông trước bật ngược trở lại vị trí ban đầu, và nắm đấm cùng cẳng tay bật ngược về vị trí nguyên thủy. Trọng tâm đặt vào sự xoay ngược lại đột ngột và mạnh mẽ của hông. (Xem Hình 9-19 và 9-20.)</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-19.jpg" alt="Hình 9.19" loading="lazy"><figcaption><strong>Hình 9-19 và 9-20.</strong>Rung động: hông trước xoay tới rồi bật ngược lại ngay sau va chạm.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-20.jpg" alt="Hình 9.20" loading="lazy"><figcaption><strong>Hình 9.20.</strong></figcaption></div>
+<p>Hãy từ từ và học cách thực hiện cử động này cho đúng, dần dần tăng tốc độ khi bạn cảm thấy thoải mái hơn với nó. Khi cử động được thực hiện đúng và nhanh, hai hông dường như rung lên.</p>
+<h3 id="s10">Lỗi Thường Gặp: Rung Động Cơ Thể</h3>
+<p>Các học trò mới thường gặp khó khăn khi học cách thực hiện động tác cơ thể này, vì họ xoay hông đánh trúng quá xa về phía trước, xoay sai hông về phía trước, hoặc đưa hông lệch hẳn sang một bên (Hình 9-21 và 9-22).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-21.jpg" alt="Hình 9.21" loading="lazy"><figcaption><strong>Hình 9-21 và 9-22.</strong>Lỗi rung động: xoay hông quá xa, xoay sai hông, hoặc đưa hông lệch sang một bên.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-22.jpg" alt="Hình 9.22" loading="lazy"><figcaption><strong>Hình 9.22.</strong></figcaption></div>
+<h3 id="s11">Nâng Cơ Thể</h3>
+<p>Động tác cơ thể nâng được dùng cho các đòn đấm hay thúc đi lên, chẳng hạn như cú zuanquan (đấm móc, uppercut) của Hình Ý Quyền (xingyiquan).</p>
+<p>1. Bắt đầu bằng một thế đứng trước, nhưng hạ hông thấp hơn một chút so với bình thường.</p>
+<p>2. Khi bạn đấm hay thúc lên, hãy để hông nhích lên thẳng (Hình 9-23 và 9-24).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-23.jpg" alt="Hình 9.23" loading="lazy"><figcaption><strong>Hình 9-23 và 9-24.</strong>Nâng cơ thể: hông nhích lên thẳng khi đấm hay thúc lên.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-24.jpg" alt="Hình 9.24" loading="lazy"><figcaption><strong>Hình 9.24.</strong></figcaption></div>
+<h3 id="s12">Lỗi Thường Gặp: Nâng Cơ Thể</h3>
+<p>Đừng duỗi thẳng chân hay vươn người lên, vì điều đó sẽ làm bạn mất thăng bằng và thực tế làm giảm sức mạnh đòn đấm (Hình 9-25). Cử động đi lên thực ra rất nhẹ.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-25.jpg" alt="Hình 9.25" loading="lazy"><figcaption><strong>Hình 9-25.</strong>Lỗi nâng: duỗi thẳng chân hoặc vươn người lên làm mất thăng bằng.</figcaption></div>
+<p>Đừng ngẩng cằm lên, vì điều đó sẽ làm hỏng sự thẳng hàng của đốt sống và làm yếu đi tư thế của bạn.</p>
+<h3 id="s13">Hạ Cơ Thể</h3>
+<p>Động tác cơ thể hạ được dùng cho các đòn đánh được tung theo kiểu đi xuống.</p>
+<p>1. Bắt đầu bằng một thế đứng trước bình thường.</p>
+<p>2. Khi bạn đánh xuống, hãy hạ hông thấp xuống một chút và chìm thẳng xuống bằng cách chùng đầu gối (Hình 9-26 và 9-27).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-26.jpg" alt="Hình 9.26" loading="lazy"><figcaption><strong>Hình 9-26 và 9-27.</strong>Hạ cơ thể: hạ hông và chùng gối xuống khi đánh xuống.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-27.jpg" alt="Hình 9.27" loading="lazy"><figcaption><strong>Hình 9.27.</strong></figcaption></div>
+<h3 id="s14">Lỗi Thường Gặp: Hạ Cơ Thể</h3>
+<p>Đừng cúi gập người tại eo, vì điều đó sẽ dẫn đến mất sức mạnh đòn đấm cũng như thăng bằng (Hình 9-28).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-28.jpg" alt="Hình 9.28" loading="lazy"><figcaption><strong>Hình 9-28.</strong>Lỗi hạ: cúi gập eo làm mất lực và thăng bằng.</figcaption></div>
+<p>Đừng nhảy lên rồi giáng sầm xuống mục tiêu. Kiểu cử động này hoàn toàn dựa vào đà. Mặc dù nó có thể giúp bạn đập vỡ vài viên gạch giòn trong các buổi biểu diễn, nhưng đây là một cử động cực kỳ chậm và rủi ro nếu dùng trong một cuộc xô xát thực sự.</p>
+<h3 id="s15">Xoay Tròn Cơ Thể</h3>
+<p>Động tác xoay tròn được dùng để thực hiện các kỹ thuật quăng quật khác nhau, hoặc để tung một đòn đánh bằng hông. Nó được thực hiện hướng ra hai bên.</p>
+<p>Đan Điền được lăn hơi lên một bên khi hông đẩy hơi ra ngoài (Hình 9-29).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-29.jpg" alt="Hình 9.29" loading="lazy"><figcaption><strong>Hình 9-29.</strong>Xoay tròn: Đan Điền lăn nhẹ lên một bên khi hông đẩy hơi ra ngoài.</figcaption></div>
+<p>Hãy nhớ, Đan Điền giống như một quả cầu có thể lăn hay xoay theo bất kỳ hướng nào.</p>
+<h3 id="s16">Vung Roi Cơ Thể</h3>
+<p>Động tác cơ thể vung roi (còn gọi là &#8220;lưng rồng&#8221;, dragon's back) được dùng để thực hiện các kỹ thuật thúc khác nhau.</p>
+<p>1. Rút vai lại như thể đang cố chạm hai bả vai vào nhau (Hình 9-30).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-30.jpg" alt="Hình 9.30" loading="lazy"><figcaption><strong>Hình 9-30.</strong>Vung roi: rút vai lại như muốn chạm hai bả vai.</figcaption></div>
+<p>2. Thúc hông và Đan Điền về phía trước để tạo ra một hiệu ứng sóng qua cột sống. Hành động này truyền đến hai vai, vốn đẩy hơi về phía trước khi cú thúc được thực hiện (Hình 9-31 và 9-32).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-31.jpg" alt="Hình 9.31" loading="lazy"><figcaption><strong>Hình 9-31 và 9-32.</strong>Vung roi: thúc hông và Đan Điền tới tạo sóng qua cột sống truyền lên vai.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-32.jpg" alt="Hình 9.32" loading="lazy"><figcaption><strong>Hình 9.32.</strong></figcaption></div>
+<p>Khi bạn đánh bằng một tay và vận dụng động tác cơ thể vung roi, thì động tác cơ thể căn bản là xoay vòng cũng được huy động. Hông đánh trúng xoay 45 độ về phía trước trong lúc cột sống quật tới. Hình 9-33 minh họa thế piquan của Hình Ý Quyền (thế thường đánh bằng cạnh ngoài lòng bàn tay) đang dùng động tác cơ thể vung roi.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-33.jpg" alt="Hình 9.33" loading="lazy"><figcaption><strong>Hình 9-33.</strong>Thế piquan của Hình Ý Quyền dùng động tác vung roi, hông xoay 45 độ khi cột sống quật tới.</figcaption></div></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

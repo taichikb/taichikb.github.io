@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #0f766e;
+  --accent-crimson: #134e4a;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+}
+body.dark-mode {
+  --bg-primary: #121212; --text-primary: #f5f5f4; --text-secondary: #a8a29e;
+  background-color: #121212 !important; color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #10302f; color: #99f6e4; border-color: #0f766e; }
+body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
+body.dark-mode .tech-table th { background: #134e4a; color: #99f6e4; }
+body.dark-mode .tech-table td { border-color: #333; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0f766e, #134e4a); z-index: 9999; width: 0%; transition: width 0.1s; }
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.45rem; }
+.toc-link { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; line-height: 1.35; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.2s; }
+.toc-link:hover { background: rgba(15, 118, 110, 0.12); color: #134e4a; transform: translateX(3px); }
+.reader-content { flex: 1; min-width: 0; background: var(--bg-primary); line-height: 1.85; font-size: 1.05rem; }
+.book-hero { border-bottom: 2px solid #0f766e; padding-bottom: 2rem; margin-bottom: 3rem; text-align: center; }
+.book-badge { display: inline-block; background: #ccfbf1; color: #134e4a; font-weight: 700; font-size: 0.82rem; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid #99f6e4; }
+.book-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; color: #134e4a; line-height: 1.25; margin: 0 0 0.5rem; }
+.book-orig-title { font-family: 'Noto Serif SC', serif; font-size: 1.25rem; color: #78716c; margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.98rem; color: #57534e; margin-bottom: 1.2rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+.book-tag { background: #f0fdfa; color: #115e59; padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; border: 1px solid #99f6e4; }
+body.dark-mode .book-tag { background: #134e4a; color: #ccfbf1; border-color: #0f766e; }
+.chapter-block { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+.chapter-header { border-left: 4px solid #0f766e; padding-left: 1.2rem; margin-bottom: 1.8rem; }
+.chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: #0f766e; display: block; }
+.chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
+.key-point { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+.tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: #0f766e; text-decoration: none; font-weight: 600; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer { border: 1px solid #e7e5e4; border-radius: 10px; background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem; }
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0f766e; padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
+.page-nav a.home { color: #0f766e; }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cơ Học Võ Thuật — Hiệu Quả Tối Đa Với Nỗ Lực Tối Thiểu | Phillip Starr | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu Healing Bodies, Healing Hearts (Janice Doppler) — câu chuyện của Master Lijun Cheng và Trung tâm Hòa hợp Quốc tế, trí tuệ Trung Hoa, khủng hoảng sức khỏe, và nghiên cứu định tính về tác động của Khí Công.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+/* starr_CSS */
+.ornament { text-align: center; color: var(--gold); letter-spacing: .5em; margin: 2.2rem 0; font-size: 1.2rem; }
+.chapter-teaser { font-style: italic; color: var(--ink-muted); border-left: 3px solid var(--border); padding: .5rem 1rem; margin: 1.4rem 0; }
+.journal-date { display: block; font-size: .8rem; color: var(--ink-muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .04em; }
+.tr-note { background: #fffbeb; border-left: 4px solid var(--gold); padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #713f12; }
+body.dark-mode .tr-note { background: #2a2415; color: #fde68a; border-color: var(--gold); }
+.key-takeaway { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+body.dark-mode .key-takeaway { background: #10302f; color: #99f6e4; }
+.starr-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
+.starr-table th, .starr-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+.starr-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.fig-cap { font-size: .93rem; color: var(--ink-muted); font-style: italic; border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 22px; }
+.fig-cap strong { font-style: normal; color: var(--ink); }
+body.dark-mode .fig-cap { color: #a1a1aa; }
+.book-figure { margin: 26px auto; text-align: center; }
+.book-figure img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+.book-figure figcaption { font-size: .93rem; color: var(--ink-muted); margin-top: 10px; font-style: italic; }
+.book-figure figcaption strong { font-style: normal; color: var(--ink); }
+body.dark-mode .book-figure figcaption { color: #a1a1aa; }
+.bib-intro { font-size: .95rem; color: var(--ink-muted); border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 26px; }
+.bib-entry { font-size: .95rem; line-height: 1.7; margin: 0 0 12px; padding-left: 1.4rem; text-indent: -1.4rem; }
+.bib-entry strong { color: var(--ink); }
+body.dark-mode .bib-intro { color: #a1a1aa; }
+</style>
+
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec_note">Ghi Chú Của Người Dịch</a></li>
+        <li><a href="#sec_ack">Lời Cảm Ơn</a></li>
+        <li><a href="#sec_foreword">Lời Tựa</a></li>
+        <li><a href="#sec_intro">Dẫn Nhập</a></li>
+        <li><a href="#sec01">Chương 1 &#8226; Chúng Ta Đã Từng Như Thế</a></li>
+        <li><a href="#sec02">Chương 2 &#8226; Những Nguyên Lý Của Sức Mạnh</a></li>
+        <li><a href="#sec03">Chương 3 &#8226; Cú Nổ Lớn</a></li>
+        <li><a href="#sec04">Chương 4 &#8226; Cần Có Tốc Độ</a></li>
+        <li><a href="#sec05">Chương 5 &#8226; Chuyện Ấy Thật Sốc!</a></li>
+        <li><a href="#sec06">Chương 6 &#8226; Càng Ngắn Càng Tốt</a></li>
+        <li><a href="#sec07">Chương 7 &#8226; Điểm Tựa</a></li>
+        <li><a href="#sec08">Chương 8 &#8226; Tầm Quan Trọng Của Bước Chân</a></li>
+        <li><a href="#sec09">Chương 9 &#8226; Dùng Cơ Thể Như Một Nắm Đấm</a></li>
+        <li><a href="#sec10">Chương 10 &#8226; Những Bí Mật Của Hơi Thở</a></li>
+        <li><a href="#sec11">Chương 11 &#8226; Tầm Quan Trọng Của Sự Thẳng Hàng Cột Sống</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Võ Thuật Nội Gia &middot; Cơ Học Chuyển Động &middot; Phillip Starr (Blue Snake Books, 2008)
+        Nguyên tác: <em>Martial Mechanics: Maximum Results with Minimum Effort in the Practice of Martial Arts</em>
+        Bản dịch toàn văn tiếng Việt: Ban Biên khảo Võ học Nội gia TaichiNOW</span>
+      <h1>Cơ Học Võ Thuật</h1>
+      <div class="subtitle">Hiệu Quả Tối Đa Với Nỗ Lực Tối Thiểu Trong Tập Luyện Võ Thuật</div>
+      <div class="meta-row">Song ngữ Việt&ndash;Anh &middot; 22 chương</div>
+    </div>
+<section id="sec_note">
+<h2>Ghi Chú Của Người Dịch</h2>
+<p><em>Martial Mechanics: Maximum Results with Minimum Effort in the Practice of Martial Arts</em> là tác phẩm của <strong>Phillip Starr</strong>, do Blue Snake Books (thuộc North Atlantic Books, Berkeley, California) xuất bản năm 2008. Chúng tôi đối chiếu tên tác giả trực tiếp với trang nhan đề và trang bản quyền in trong chính cuốn sách: dòng ghi bản quyền đọc rõ &#8220;Copyright &#169; 2008 by Phillip Starr&#8221;, kèm số ISBN 978-1-58394-211-6. Một trang giới thiệu bằng tiếng Anh trên thư viện trực tuyến lại ghi tác giả là William C.C. Chen; đó là sư phụ của tác giả và là nhân vật được ông nhắc đến với lòng kính trọng, không phải người viết sách. Bản dịch này dùng lại cách ghi đúng của nguyên tác.</p>
+<p>Nguyên bản được số hóa thành 220 trang ảnh, hoàn toàn không có lớp văn bản, nên toàn bộ chữ in phải được nhận dạng lại bằng OCR ở độ phân giải 300 dpi rồi đối chiếu với ảnh từng trang. Cách đánh số trang in không liền mạch với số trang quét vì bản quét có thêm một số tờ rời không đánh số; vì thế bản dịch không giữ lại bất kỳ con số trang nào, và các câu bị ngang trang đều được nối lại thành một đoạn văn duy nhất. Những đoạn nào bị bản quét làm mất chữ được nối bằng liên từ ngắn nhất và ghi chú rõ ràng, tuyệt không tự bịa thêm nội dung.</p>
+<p>Về thuật ngữ, bản dịch đi theo bảng thuật ngữ chung của ba cuốn sách của Phillip Starr: <strong>Kình</strong> (jin), <strong>khí</strong> (qi), <strong>Đan Điền</strong> (dantian), <strong>thức</strong> (form), <strong>thẩy thủ</strong> (push hands), <strong>nội gia</strong> (neijia). Ở lần xuất hiện đầu tiên, thuật ngữ gốc được đặt trong ngoặc đơn; từ đó trở đi chỉ dùng tiếng Việt. Các số hiệu hình vẽ của nguyên tác được giữ nguyên dưới dạng <strong>Hình 1.1</strong>, <strong>Hình 3.6</strong> v.v.; ảnh minh họa được bổ sung dần theo đúng quy trình của hai cuốn trước.</p>
+<p>Giọng văn của tác giả vừa thực dụng vừa hay đùa cợt, thậm chí có phần khiêu khích. Chúng tôi cố giữ nguyên cái giọng ấy thay vì làm cho nó trở nên trang trọng hơn. Cần nhắc lại lời cảnh báo của chính cuốn sách: đây là tài liệu hướng dẫn kỹ thuật, không thay thế được việc tập luyện với một sư phụ có chuyên môn, và độc giả tự chịu trách nhiệm khi thực hành.</p>
+<div class="tr-note">Người dịch: bản dịch đang được tiến hành theo từng chương. Bản đọc thử này gồm phần mở đầu và mười một chương đầu trong tổng số 22 chương; các chương còn lại sẽ được bổ sung tuần tự. Thẻ &#8220;đã dịch toàn văn&#8221; trên trang danh mục chỉ được bật sau khi toàn bộ cuốn sách hoàn tất.</div>
+</section>
+
+<section id="sec_ack">
+<h2>Lời Cảm Ơn</h2>
+<p>Tôi mang ơn các học trò tuyệt vời của mình: Sư phụ Vince Hardy (Huấn luyện viên trưởng của Hội Võ thuật Yiliquan), Jeremy Thompson, Susan Brown và Matt Schumacher, những người đã rộng rãi dành thời gian làm người mẫu cho các bức ảnh trong sách.</p>
+<p>Tôi cũng xin ghi nhận sự tận tâm và công sức của con gái nuôi, đồng thời là cựu học trò của tôi, cô Alanda Foster (cựu vô địch hạng trung kickboxing miền Trung Tây Hoa Kỳ, giải nghệ mà chưa từng thua trận nào). Cô không chỉ làm người mẫu mà còn hiến cả thời gian và chuyên môn nhiếp ảnh của mình.</p>
+<p>Và tôi đặc biệt cảm ơn ba quý cô phi thường: cô Anastasia McGhee, cô Yvonne Cardenas và cô Allegra Harris của North Atlantic/Frog Ltd./Blue Snake Books. Chính sự kiên nhẫn lạ lùng cùng sự hướng dẫn chuyên nghiệp mà vẫn hết sức nhẹ nhàng của ba người đã làm cho cuốn sách này thành hình.</p>
+</section>
+
+<section id="sec_foreword">
+<h2>Lời Tựa</h2>
+<p>Trước khi bạn đọc tiếp, tôi phải cảnh báo: trong cuốn sách này không có viên &#8220;đạn bạc&#8221; nào hết &#8212; không có bí quyết nào biến bạn thành một anh hùng võ lâm bất bại, đứng lên vì chân lý, vì công lý và vì món bánh gạo nếp của mẹ. Tuy nhiên, nếu bạn thật sự muốn tìm hiểu những nguyên lý làm nền tảng cho võ thuật truyền thống và cách dùng chúng để làm cho đòn của mình nhanh hơn, mạnh hơn, hiệu quả hơn, thì cái bạn đang tìm nằm ngay trong đây. Dù sao, hầu hết các hiệu sách cũng chẳng hoàn tiền cho cuốn này, nên lỡ trả tiền rồi thì đành chịu. Chi bằng cứ đọc thử xem giữa hai bìa có gì đáng giá.</p>
+<p>Có đấy. Nhiều là đằng khác.</p>
+<p>Tôi cố trình bày chất liệu ấy một cách giản dị, dễ hiểu, lại pha chút tinh nghịch. Cũng phải thú nhận là tôi nêm vào khá nhiều sự bông đùa thiếu cung kính. Tôi không rõ bạn thế nào, chứ tôi đã ngán những cuốn sách võ thuật nghe khô khốc đến mức&#8230; vô trùng. Vì thế, nếu thỉnh thoảng tôi trêu chọc bạn, xin đừng dỗi; không có gì mang tính cá nhân đâu. Tôi chỉ muốn cuốn sách có sinh khí và có cá tính &#8212; một cuốn sách võ thuật vừa đọc vừa vui, mà vẫn dạy được điều gì đó.</p>
+<p>Tại sao ư?</p>
+<p>Hãy nhớ lại những ngày đi học &#8212; những buổi mà bạn không trốn học. Bạn học được nhiều nhất từ những thầy cô nào? Tôi dám cá rằng những người bạn nhớ rõ nhất chính là những người đã làm bạn bật cười trong lúc dạy. Học dễ hơn khi đang mỉm cười. Mà điều cốt yếu vẫn là học được.</p>
+</section>
+
+<section id="sec_intro">
+<h2>Dẫn Nhập</h2>
+<p>Tôi gắn bó với võ thuật gần như suốt cuộc đời. Năm 1956, tôi bắt đầu tập võ tại một câu lạc bộ judo nhỏ trong một căn cứ quân sự ở Khu Kênh đào Panama, khi ấy là học trò nhỏ tuổi nhất. Từ đó đến nay, tôi đã tập qua baixingquan (một dạng công phu Thiếu Lâm miền Bắc), Thái Cực Quyền, Hình Ý Quyền, Bát Quái Chưởng, hai hệ phái karate Kyokushin và Shito-ryu, cùng môn arnis Philippines hệ Pekiti-Tersia.</p>
+<p>Vào cuối những năm 1950 và đầu những năm 1960, võ thuật châu Á vẫn còn rất mới lạ với phương Tây. Phần lớn việc giảng dạy lúc ấy do các sư phụ phương Đông đảm nhiệm, những người vừa muốn truyền bá môn phái của mình, vừa muốn gìn giữ nguyên vẹn các nguyên lý và truyền thống nền tảng. Nhìn chung họ đã làm được, nhưng thời gian trôi đi đã đổi thay mọi thứ rất nhiều.</p>
+<p>Hơn năm mươi năm trong nghề giúp tôi có thể làm chứng cho những biến đổi mà kỹ thuật võ thuật đã trải qua trong vài thập kỷ gần đây. Các giải đấu xuất hiện rồi trở nên phổ biến, kéo theo việc không ít môn võ bị &#8220;thể thao hóa&#8221;. Vô số người yêu võ bị cuốn vào ý tưởng thi đấu, vào chuyện trở thành nhà vô địch lừng danh và đoạt những chiếc cúp khổng lồ. Nhiều huấn luyện viên bắt đầu nhấn mạnh chuyện ghi điểm hơn hẳn việc luyện kỹ thuật truyền thống. Hệ quả là không ít nguyên lý ban đầu làm nền cho các đòn thế bị bỏ qua, có khi bị quên lãng hoàn toàn.</p>
+<p>Tôi đã nhìn thấy kỹ thuật truyền thống bị sửa lại để thích nghi với sàn đấu, nhất là từ khi găng tay và giày đệm xốp trở nên phổ biến. Sự xuất hiện của môn karate &#8220;full-contact&#8221; &#8212; vốn chẳng thật sự full-contact mà cũng chẳng thật sự là karate &#8212; là điều khó tránh khỏi. Cũng như những cú đấm tay trần nguyên thủy của quyền Anh phương Tây dần bị chỉnh lại để thích ứng với chiếc găng tay bắt buộc theo luật, việc dùng đệm tay và đệm chân trong thi đấu karate cuối cùng cũng dẫn đến những sửa đổi nữa (và theo tôi là sự xuống cấp) của các kỹ thuật đấm, đánh và đá truyền thống.</p>
+<p>Chính đà suy tàn của karate full-contact lại sinh ra những hình thức thi đấu mới, những sự kiện hiện được quảng bá là &#8220;võ thuật&#8221; nhưng thật ra giống đô vật chuyên nghiệp dùng chất kích thích hơn. Nhiều huấn luyện viên và học viên đương thời đã chán ngán trò hề này. Họ ngấy khi thấy các vận động viên thể dục dụng cụ và đô vật bán chuyên bị gán nhãn là võ sĩ. Họ muốn trở về với cội nguồn, muốn trở lại với việc luyện môn võ thật và với thứ kỹ thuật đã đưa các môn phái ấy cùng những người theo đuổi chúng vào cõi huyền thoại. Tiếc là họ thường thiếu một sự hiểu biết vững chắc về các nguyên lý làm nền cho những kỹ thuật ấy. Chính vì những con người đó mà tôi viết cuốn sách này.</p>
+</section>
+
+<section id="sec01">
+<h2>Chương 1: Chúng Ta Đã Từng Như Thế</h2>
+<h3>Những Khác Biệt</h3>
+<p>Đã từng có một thời, nhiều người hành võ kiếm sống bằng nghề lính chuyên nghiệp, vệ sĩ, hộ tống đoàn hàng hay cảnh sát. Những nghề ấy luôn rình rập hiểm nguy, và chỉ ít người sống đủ lâu để được về hưu. Họ luyện tập cực kỳ nghiêm túc và cần mẫn, bởi họ biết mạng sống mình nhiều khi phụ thuộc vào bản lĩnh giao đấu. Cận chiến được nghiên cứu tỉ mỉ đến từng chi tiết, vì mỗi chiến binh đều đi tìm cái &#8220;lợi thế hơn người&#8221; rất có thể quyết định ranh giới giữa sống và chết.</p>
+<p>Nhiều võ sĩ dành gần như trọn đời để hình thành và mài giũa đòn thế của mình; những đòn thật sự hiệu quả vẫn còn đến hôm nay, được gìn giữ trong một số hệ thống võ thuật truyền thống. Còn những đòn không hiệu quả&#8230; thì đã được chôn cùng chính người tạo ra chúng, những kẻ ngã xuống trận tiền mà vẫn tin rằng kỹ thuật hoặc chiến thuật sai lầm của mình là phát minh vĩ đại nhất kể từ khi người ta biết xay gạo trắng.</p>
+<p>Thời ấy, muốn biết kỹ thuật của mình có thật sự hiệu quả hay không rất dễ: không hiệu quả thì bạn chết.</p>
+<p>Chính trị và sự xuất hiện của súng ống chấm dứt kỷ nguyên của những chiến binh mang kiếm, nắm đấm sắt. Nhiều cựu binh từng vào sinh ra tử quay sang thi đấu như một cách mài giũa kỹ thuật và nâng cao năng lực chiến đấu. Vì không ít người tham gia bị thương nặng, thậm chí thiệt mạng trong những cuộc đấu tàn khốc ấy, người ta phải đặt ra luật lệ khả dĩ; thế là nhiều đòn từng rất lợi hại trên chiến trường bị pha loãng hoặc bị cấm hoàn toàn khỏi sàn đấu.</p>
+<p>Ngày nay, rất nhiều người yêu võ tập chủ yếu để thi đấu, chứ không phải để đối mặt với những cuộc xung đột sinh tử thật sự. Điều đó không sao cả, miễn họ hiểu rằng giữa thi đấu và chiến đấu là một khoảng cách mênh mông. Trong tự vệ thật sự không có giải nhì, không có cúp, không có đệm bảo hộ, không có trọng tài và cũng chẳng có luật lệ. Cái dùng được trên sàn đấu chưa chắc dùng được ngoài đường, và cái dùng được ngoài đường thường bị cấm trong thi đấu.</p>
+<p>Xin dành một chút thời gian để kết thêm vài người bạn mới bằng cách nói thẳng: theo tôi, chiếc găng tay đệm là một trong những tai họa tồi tệ nhất từng giáng xuống võ thuật. Vì sao tôi nói vậy? Thử đi dạo một vòng qua ngõ Lịch sử và nhớ lại những tay quyền Anh đấm tay trần thế kỷ mười chín và đầu thế kỷ hai mươi đã.</p>
+<p>Các võ sĩ thời ấy thường dùng cú đấm thẳng theo đường thẳng, vì những cú thúc thẳng này nhanh và khó đỡ. Không ít nhà vô địch tương lai đã bị đo ván vì lãnh trọn một đòn như thế, và khá nhiều người thậm chí mất mạng trong những trận &#8220;đấm cho đến khi ngã&#8221; kiểu cũ. Rồi vào cuối những năm 1860, luật của Hầu tước Queensbury ra đời và võ sĩ bị buộc phải đeo găng đệm. Giới chức nhấn mạnh rằng găng tay sẽ giảm bớt số ca chấn thương lẫn mức độ nặng của chúng, vốn đã trở nên quá phổ biến trong môn này. Nhưng các đấu thủ chẳng mấy bận tâm đến sức khỏe của đối phương; họ lập tức bắt tay vào tìm xem có thể dùng món đồ mới này thế nào để hạ gục đối thủ hiệu quả nhất.</p>
+<p>Họ chẳng mất mấy lâu đã phát hiện ra rằng chiếc găng đã làm thay đổi chính bề mặt tiếp xúc của nắm đấm. Một cú đấm thẳng trở nên kém hiệu quả hơn nhiều khi bàn tay bị nhốt trong chiếc bao tay quá khổ, có đệm, vì lực của đòn bị phân tán ra xung quanh. Từ đó người ta phụ thuộc nhiều hơn vào những cú đấm móc đi theo cung tròn, vốn sinh ra một lực đáng kể ở các góc ngoài của găng tay nhờ lực ly tâm (Hình 1.1).</p>
+<div class="tr-note">Người dịch: câu trên được nối từ hai trang quét liền nhau (trang in 2 sang trang in 3); bản quét làm mất một vài chữ ở đầu câu, nên chúng tôi phục hồi theo đúng mạch của nguyên tác.</div>
+<p>Kiểu đấm vòng cung này hoạt động tốt chừng nào bạn còn đeo găng đệm. Nhưng áp nó vào nắm đấm trần thì kết quả thường là cái gọi là &#8220;gãy tay võ sĩ&#8221; kinh điển: xương bàn tay thứ năm, đôi khi cả xương thứ tư, bị gãy. Thêm vào đó, có thể áp hai găng tay vào hai bên đầu để tạo thành một tấm khiên thô sơ chống đỡ đòn đang tới. Chiêu ấy dùng trong võ đài rất ổn, nhưng làm tấm khiên bằng hai nắm tay trần thì rõ ràng là một vấn đề (Hình 1.2 và 1.3).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig1-1.jpg" alt="Hình 1.1" loading="lazy"><figcaption><strong>Hình 1.1.</strong>Cú đấm móc theo cung tròn, với lực tập trung ở góc ngoài của găng tay đệm.</figcaption></div>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig1-2.jpg" alt="Hình 1.2" loading="lazy"><figcaption><strong>Hình 1.2 và 1.3.</strong>Hai găng tay đệm áp sát hai bên đầu tạo thành tấm khiên chống đòn.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig1-3.jpg" alt="Hình 1.3" loading="lazy"><figcaption><strong>Hình 1.3.</strong></figcaption></div>
+<p>Môn quyền Anh dần được dựng lại quanh chiếc găng tay, và cái &#8220;nghệ thuật tự vệ của đàn ông&#8221; đã thay đổi vĩnh viễn. Khi găng tay và giày đệm lần đầu được đưa vào các giải võ thuật, ban tổ chức quảng cáo chúng như những thiết bị giảm nguy cơ chấn thương. Ừ, đúng rồi đấy &#8212; ai đó chẳng đã từng nói y hệt như thế rồi sao?</p>
+<p>Chẳng mất bao lâu để các đấu thủ nhận ra rằng hiệu quả của nhiều kỹ thuật truyền thống bị sụt giảm đáng kể khi tay và chân bị bọc trong lớp xốp dày; rồi, đúng như chuyện đã xảy ra với quyền Anh khoảng một trăm năm trước, những cú đấm móc rộng bắt đầu xuất hiện. Ngay cả một số kỹ thuật đá căn bản cũng bị sửa để thích nghi với chiếc giày đệm. Chỉ trong vòng một thập kỷ, nhiều vận động viên karate đã định hình lại toàn bộ đòn thế của mình cho vừa với găng và giày. Kỹ thuật truyền thống bắt đầu biến mất hẳn.</p>
+<h3>Cái Gì Là Thật, Cái Gì Không</h3>
+<p>Có người bảo võ thuật truyền thống không còn thích hợp cho việc tự vệ trong thế giới hiện đại nữa. Họ nói những môn phái cũ kỹ ấy đòi hỏi quá nhiều thời gian luyện tập, và việc bám chặt lấy kỹ thuật truyền thống kìm hãm sáng tạo cá nhân. Những phát ngôn ngốc nghếch kiểu đó thường đến từ người không hiểu thấu đáo võ thuật đích thực, hoặc chưa từng nếm một trận ẩu đả thực sự đến cùng &#8212; hoặc cả hai.</p>
+<p>Hãy nhớ rằng các hệ thống võ thuật nguyên thủy do chính những chiến binh từng bước vào những cuộc xung đột sinh tử thật sự&#8230; và còn sống trở về, sáng tạo ra. Họ vốn khá kỹ tính trong chuyện luyện đi luyện lại các đòn mình đã nghĩ ra, vì họ hiểu bản chất thật của chiến đấu. Mục tiêu không đơn giản là chạm được một cái, ghi được một điểm hay ghì đối thủ xuống đất đến lúc anh ta kêu &#8220;thua!&#8221;. Mục tiêu là giải quyết đối phương &#8212; nói một cách lịch sự thì là hạ gục hắn &#8212; nhanh nhất có thể. Chỉ có thế thôi.</p>
+<p>Những trận đánh kiểu Hollywood kéo dài, nhất là kiểu có đá xoay vào đầu và nhào lộn trên không, chưa hề xảy ra.</p>
+<p>Thử nhìn vào vài sự thật trần trụi về tự vệ ngoài đời thực.</p>
+<p>Hiếm khi bạn có cơ hội vào một thế &#8220;thủ&#8221; chỉnh tề nào đó. Kẻ xấu thường chọn đánh úp, và hắn ra tay vào lúc bạn yếu nhất cả về thể chất lẫn tinh thần. Hắn thích bất ngờ. Nghe đến cú đấm úp bao giờ chưa?</p>
+<p>Dân đánh nhau ngoài đường đều dai sức. Không dai thì họ đã chẳng sống nổi ngoài đường. Nếu bạn đánh trúng một gã như thế, tốt hơn là phải làm hắn đau thật sự, đau nhiều. Một khi hắn đã đau, hãy áp sát và kết thúc luôn trận đánh; đừng chỉ chọn cách chạm cho được một cái. Làm thế chỉ càng khơi thêm hứng cho hắn mà thôi.</p>
+<p>Sói đi lẻ thường không sống lâu, nên sói mới săn theo bầy. Bọn côn đồ cũng hành xử y hệt. Rất hiếm khi bạn chỉ phải đối mặt với một kẻ tấn công duy nhất. Có vẻ như đối thủ đang đơn thương độc mã, nhưng đừng bao giờ cho là vậy. Hãy nhớ rằng cứ cho là thế thì chỉ tổ biến mình thành kẻ ngốc. Không trông thấy những con sói khác không có nghĩa là chúng không có mặt; chúng rất có thể đang nấp sẵn ở hai bên, chờ lúc nhảy vào kết liễu bạn.</p>
+<p>Tiếp nối ý trên, đừng có tìm cách vật ngã đối thủ xuống đất. Trong lúc bạn lăn lộn trên mặt đường, mấy tên đồng bọn của hắn chắc chẳng đứng nhìn cái tấm lưng xinh xắn của bạn mà trầm trồ đâu; chúng sẽ xông vào và kết thúc cuộc ẩu đả rất nhanh bằng cách biến bạn thành một vệt ướt trên nhựa đường.</p>
+<p>Vả lại, nếu lỡ ghì được hắn xuống đất rồi thì bạn định làm gì với gã ấy? Bạn đâu có thể nằm ôm chặt một nhân vật khó ưa như thế suốt đêm. Nếu hắn hứa sẽ ngoan ngoãn và không đánh bạn nữa, bạn có tin không? Mà nếu tin thật thì chúng ta cần nói chuyện nghiêm túc rồi đấy.</p>
+<p>Trong hầu hết các cuộc ẩu đả, kẻ xấu có mang vũ khí. Thứ hắn chọn có thể là bất cứ gì, từ một lưỡi dao, một đoạn cáp cho đến một khẩu súng. Hắn có dùng hay không thì chưa biết, nhưng cứ tin rằng hắn giấu một lá bài tẩy nào đó trong người và bạn phải sẵn sàng đối phó.</p>
+<p>Dù bạn không trông thấy ông ấy, chắc chắn ngài Murphy (nổi tiếng với &#8220;Định luật Murphy&#8221;) cũng có mặt. Ngài được biết đến nhiều nhất nhờ nguyên lý: &#8220;Hễ cái gì có thể hỏng thì sẽ hỏng&#8230; và luôn hỏng đúng vào lúc tồi tệ nhất.&#8221; Thế nhưng ngài Murphy còn viết một cuốn sách võ thuật nhan đề <em>When Bad Things Happen to Good Techniques</em>. Bạn sẽ chẳng tìm thấy nó ở hiệu sách nào, nhưng ông Murphy ấy rất sẵn lòng đọc cho bạn nghe vài đoạn vào đúng lúc bạn chẳng muốn nghe nhất.</p>
+<p>Ý tôi là: bạn đơn giản không có thời gian cho một trận đấm đá kéo dài. Bạn phải đánh được mạnh và nhanh, với sức công phá tối đa. Hiểu được cách áp dụng một số nguyên lý khoa học vào kỹ thuật của mình sẽ giúp bạn làm được điều đó. Rõ chưa? Tốt. Giờ thì bắt tay vào việc thôi.</p>
+</section>
+
+<section id="sec02">
+<h2>Chương 2: Những Nguyên Lý Của Sức Mạnh</h2>
+<h3>Những Nguyên Lý Căn Bản Của Lực</h3>
+<p>Hồi mới bắt đầu tập võ vào cuối những năm 1950, tôi thấy nhiều người tin rằng các &#8220;cao thủ&#8221; võ thuật sở hữu một thứ năng lực siêu phàm nào đó, giúp họ ra đòn với tốc độ và sức mạnh khủng khiếp đến mức dễ dàng hạ gục một người chỉ bằng một cú duy nhất. Tôi và các bạn cùng lớp cố bắt chước thầy, nhưng lực chúng tôi tạo ra thì chậm, nặng và vụng về.</p>
+<p>Thầy dạy công phu của tôi, cố Sư phụ W.C. Chen, mở lớp trong tầng hầm nhà ông ở McLean, tiểu bang Virginia. Như hầu hết người Trung Hoa, ông không cao lớn lắm &#8212; chắc chừng 125 pao dù đã ướt sũng và vừa ăn một bữa no nê &#8212; nhưng cú đấm của ông tựa chiếc búa của thần Thor.</p>
+<p>Một chiều hè nóng ẩm, tôi và các bạn tập đi tập lại những cú đấm căn bản, lâu đến mức tưởng như hàng mấy tiếng đồng hồ. Thực ra có lẽ chỉ mười phút, nhưng đứa nào cũng mồ hôi đầm đìa, thở hổn hển, thì ông Chen nhăn mặt, đứng dậy và bảo chúng tôi dừng lại.</p>
+<p>&#8220;Đừng đấm bằng nắm tay,&#8221; ông nói, giơ nắm tay lên cho mọi người cùng thấy. Ờ&#8230; vậy thì tôi lấy gì mà đấm?</p>
+<p>&#8220;Đánh bằng cả thân thể,&#8221; ông vừa nói vừa đưa hai tay xuôi xuống hai bên sườn.</p>
+<p>Tôi hình dung mình lao cả người vào đối phương. Không, chắc không phải thế rồi. Người ta đấm bằng nắm tay mà! Làm sao lại đấm bằng cả thân thể được?</p>
+<p>Trước khi kịp làm mình xấu hổ bằng một câu hỏi ngớ ngẩn và lộ ra sự dốt nát, tôi để ông Chen tiếp tục thị phạm điều ông muốn nói. Ông bước tới và tung liên tiếp hết cú đấm này đến cú đấm khác. Tôi biết thừa, nếu một trong những cú thúc ấy trúng mình chắc nó cắt tôi làm đôi mất.</p>
+<p>&#8220;Đấm bằng sức mạnh của cả thân thể, chứ không chỉ bằng nắm tay!&#8221; ông Chen gầm gừ. &#8220;Sức mạnh đi lên từ bàn chân, không phải từ cánh tay. Đấm thật nhanh! Cả người đi vào cú đấm, thấy chưa?&#8221;</p>
+<p>Nghe thì hợp lý và tưởng dễ làm, nhưng ông Chen làm rõ rằng tôi vẫn còn phải luyện thêm rất nhiều.</p>
+<p>&#8220;Anh học đấm kiểu đó ở đâu thế?&#8221; ông hỏi.</p>
+<p>Trước khi theo học ông Chen, tôi đã tập một hệ phái karate, nên tôi thưa với ông rằng chính ở đó tôi học được cú đấm căn bản của mình, và tôi đang làm đúng y hệt lời người thầy cũ dạy. Ông Chen lắc đầu: &#8220;Tôi không quan tâm anh học nó ở đâu! Nó sai!&#8221; Sau buổi tập, tôi ngồi lại với thầy và hỏi vì sao các dạng công phu, karate và những môn võ khác dường như đấm mỗi nơi một kiểu.</p>
+<p>&#8220;Một cú đấm thật sự không chỉ là lấy nắm tay vỗ vào ai đó,&#8221; ông nói. &#8220;Nếu chỉ muốn chạm trúng thì dễ thôi, ai cũng làm được. Nhưng nếu muốn có đủ sức mạnh hạ gục một người bằng một cú đấm, anh phải nghiên cứu các nguyên lý liên quan. Anh tập karate, Thiếu Lâm, Hình Ý Quyền hay bất cứ môn gì cũng không thành vấn đề. Muốn có sức mạnh thật sự, anh phải dùng đúng nguyên lý.&#8221;</p>
+<p>Và rồi tôi hiểu ra: dù tập môn võ nào, tất cả chúng ta đều chịu chi phối bởi cùng một hệ thống định luật vật lý và cử động học không thể thay đổi; muốn tối đa hóa hiệu quả của kỹ thuật, ta phải học cách vận dụng những nguyên lý ấy sao cho có lợi nhất. Hiểu được các định luật này tác động thế nào đến chuyển động và đòn thế sẽ giúp ta dùng được trọn vẹn sức mạnh của cả cơ thể. Cử động đúng còn tạo điều kiện cho nội năng &#8212; tiếng Hán gọi là khí, tiếng Nhật gọi là ki &#8212; phát ra.</p>
+<p>Ngược lại, không tuân theo các định luật chuyển động ấy thì lực và sự vững vàng đều hao hụt, vì ta tự bó hẹp mình vào sức mạnh riêng lẻ của từng tay chân. Khả năng phát nội năng cũng giảm theo: khí chỉ biểu hiện qua thân xác khi các kinh lộ thông suốt, không bị &#8220;thắt nút&#8221; bởi tư thế hay cử động sai.</p>
+<h3>Vật Lý Và Võ Thuật</h3>
+<p>Ừ, tôi thấy cái nhìn trên mặt bạn ngay khi bạn đọc chữ đầu của tiểu mục này đấy: &#8220;Vật lý&#8221;. Và bạn đang thắc mắc vật lý có liên quan gì đến&#8230; Tất cả. Hết thảy mọi thứ.</p>
+<p>Muốn ra đòn mạnh hơn, bạn phải hiểu các nguyên lý vật lý liên quan và cách dùng chúng. Vì thế đừng lật qua đoạn này như hồi còn lật sách trong giờ khoa học. Ngồi xuống mà nghiền ngẫm đi. Nó sẽ tạo ra khác biệt thật sự cho đòn thế của bạn.</p>
+<h3>Đo Lực</h3>
+<p>F = ma. Nghĩa là lực (F) bằng khối lượng (m) nhân với gia tốc (a) của khối lượng ấy. Hai đại lượng càng lớn thì lực sinh ra càng lớn. Dễ hiểu phải không? Nhưng ta cần đi thêm một bước nữa: phải xét riêng từng thành phần và xem phương trình F = ma áp dụng thế nào vào một cú đấm trúng miệng ai đó.</p>
+<p>Trước hết, hãy định nghĩa rõ thế nào là khối lượng. Theo vật lý cổ điển, khối lượng là lượng vật chất chứa trong một vật. Trọng lượng, ngược lại, bằng khối lượng nhân với g, trong đó g là gia tốc do trọng trường. Khối lượng của bạn giữ nguyên dù bạn đứng ở bất cứ đâu trong vũ trụ, còn trọng lượng thì thay đổi. Chẳng hạn, g trên Mặt trăng chỉ bằng một phần sáu g trên Trái đất, nên trọng lượng của bạn ở đó còn một phần sáu so với ở nhà, nhưng khối lượng vẫn không đổi. Tuy nhiên, khi bàn về kỹ thuật võ thuật, ta sẽ coi &#8220;khối lượng&#8221; của bạn đồng nghĩa với cân nặng của bạn, nhé?</p>
+<p>Giờ hãy hiểu rằng bạn không thể đánh đối thủ bằng sức mạnh của toàn bộ khối lượng cơ thể, trừ phi bạn đang làm một cú tackle bay người hoặc bị ai đó dùng làm cây dập người. Cú tackle bay có thể rất hiệu quả trên sân bóng bầu dục, nhưng trong một cuộc đối đầu mặt đối mặt thì đó là một động tác khá liều lĩnh.</p>
+<p>Trong chiến đấu, điều cốt tử là giữ trọn quyền kiểm soát thăng bằng trong mọi khoảnh khắc. Muốn vậy, với bất kỳ kỹ thuật nào bạn cũng chỉ có thể huy động chừng 50 đến 60 phần trăm khối lượng của mình. Dùng quá mức đó, bạn sẽ làm đòn bị quá tầm và mất thăng bằng. Vậy lực bạn tạo ra bằng đúng phần khối lượng tham gia thực hiện kỹ thuật nhân với gia tốc của nó.</p>
+<p>Ừ, tôi nghe thấy bạn cằn nhằn rồi: &#8220;Chỉ dùng được một nửa khối lượng thôi à? Sao lại một nửa? Tôi muốn dùng hết để đấm như một đoàn tàu chở hàng!&#8221; Nếu bạn nhất quyết dùng toàn bộ khối lượng, hãy gia nhập gánh xiếc mà làm viên đạn người. Còn nếu muốn cải thiện kỹ thuật võ thuật, thôi đừng ngắt lời tôi nữa và lắng nghe đây.</p>
+<p>Nửa còn lại của phương trình là gia tốc. Dù nhiều người mê võ thích tưởng tượng cú đấm và cú đá của mình bay gần đến Mach 2, sự thật thường khá nản lòng. Cách đây nhiều năm, một tổ chức karate Nhật Bản có tiếng đã làm thí nghiệm đo tốc độ của nhiều kỹ thuật do học viên các cấp bậc khác nhau thực hiện. Cú đấm của một người mới tập được ghi nhận khoảng 16 dặm/giờ &#8212; nhanh hơn bạn tưởng đấy.</p>
+<p>Hầu hết các nhà vật lý đo vận tốc bằng mét trên giây (m/s) và gia tốc bằng mét trên giây bình phương (m/s&#178;). Vậy 16 dặm/giờ tương đương chừng 8 m/s. Nghe thì không nhanh, nhưng tin tôi đi, một cú đấm bay tới với tốc độ ấy sẽ làm bạn choáng cả người! Các đai đen cấp thấp có thể đấm tới 30 dặm/giờ, tức chừng 15 m/s. Chưa hẳn là tốc độ warp, nhưng vẫn là quá nhanh. Thử nghĩ mà xem: một nắm đấm chỉ cách bạn bốn bộ (foot) mà lao thẳng vào mặt với vận tốc đó!</p>
+<p>Giờ hãy tính xem cú đấm tốt nhất của bạn sinh ra được bao nhiêu lực. Giả sử bạn nặng 180 pao và đấm được tối đa 20 dặm/giờ, tức 9 m/s. Coi như bạn mất một giây để tung đấm: cú đấm tăng từ 0 lên 9 m/s trong một giây, nên gia tốc là 9 m/s trong mỗi giây, tức 9 m/s&#178;. Ta bắt đầu bằng cách chia đôi khối lượng 180 pao, vì bạn chỉ huy động được chừng một nửa trong một kỹ thuật, đúng không? Nghĩa là cú đấm dùng 90 pao khối lượng. Công thức sẽ là F bằng 90 pao nhân 9 m/s (thôi, bạn cứ dùng 20 dặm/giờ trên giây cũng được). Giờ thì tính tiếp đi.</p>
+<p>Con số lực bạn tính ra lớn đến mức đáng sợ! Đủ để quật ngã một con ngựa! Nhưng trước khi bạn phát cuồng lên và lật cuốn niên giám điện thoại tìm chuồng ngựa gần nhất, cần biết rằng vì một số biến số nhất định, bạn sẽ mất đi phần lớn sức mạnh ấy.</p>
+<p>Xin lỗi nhé. Lẽ ra bạn phải biết là chuyện tốt đến thế thì khó có thật. Nhưng hãy nhìn vào mặt tươi sáng hơn: dù hao hụt tới một nửa, thứ còn lại vẫn thừa sức quật ngã cả một đối thủ to lớn nhất. Hơn nữa, toàn bộ lực ấy lại dồn vào bề mặt tiếp xúc của đòn, và đó là một trong những lý do khiến kỹ thuật võ thuật trở nên sát thương đến vậy.</p>
+<h3>Lực Đánh Tập Trung</h3>
+<p>Lực bạn tạo ra phải được chia cho diện tích bề mặt tiếp xúc của thứ vũ khí trên cơ thể bạn. Bề mặt tiếp xúc của hầu hết các vũ khí bằng tay chỉ chừng một inch vuông, có thể nhỉnh hơn một chút. Vì thế, nếu bạn đấm bằng hai đốt ngón tay đầu tiên của nắm đấm (diện tích chừng một inch vuông), áp lực sinh ra sẽ được tính bằng pao trên inch vuông. Những bề mặt khác, chẳng hạn bàn chân, lớn hơn đáng kể.</p>
+<p>Hãy tưởng tượng bạn nằm ngửa, trên ngực đặt một cái chốt một inch, rồi người bạn tập thả xuống đó một quả tạ một trăm pao! Chắc nó để lại một vết thật khó coi (ở gan), mà mới chỉ là 100 pao trên inch vuông (psi) thôi. Tôi dám cá con số áp lực bạn vừa tính được lớn hơn thế nhiều!</p>
+<p>Dĩ nhiên, mẹo thật sự nằm ở chỗ thực hiện và áp dụng kỹ thuật hoàn hảo nhất có thể, nhờ đó giảm thiểu phần lực không tránh khỏi bị hao hụt. Chuyện này phức tạp hơn bạn tưởng nhiều. Một kỹ thuật trông đúng chưa có nghĩa là nó đúng. Những gì diễn ra bên trong cũng quan trọng không kém những gì diễn ra bên ngoài. Bạn không muốn đòn thế của mình giống một chiếc bánh rán rắc đường: hào nhoáng bên ngoài mà rỗng tuếch bên trong, đúng chỗ đáng lẽ phải có cả.</p>
+<h3>To Hơn Có Tốt Hơn Không?</h3>
+<p>Nếu hai võ sĩ đấm hay đá cùng vận tốc, người to lớn hơn thường ra đòn mạnh hơn, đơn giản vì hắn đưa được nhiều khối lượng vào đòn hơn đối thủ nhẹ cân. Nhưng trên thực tế phải xét thêm một số yếu tố.</p>
+<p>Không bao giờ có hai võ sĩ ra đòn với vận tốc hoàn toàn bằng nhau; một người luôn nhanh hơn người kia.</p>
+<p>Dù người to hơn có nhiều khối lượng hơn trong tay, hắn có thể chẳng dùng hiệu quả nếu kỹ thuật hay chuyển động cơ thể bị lỗi. Thật vậy, hoàn toàn có khả năng hắn ra đòn với ít khối lượng hơn cả người nhỏ hơn. Dĩ nhiên, điều đó cũng có thể đúng với chính người nhỏ hơn.</p>
+<p>Người võ sĩ nhỏ con có thể tối đa hóa hiệu quả đòn của mình bằng cách đánh vào các huyệt hiểm yếu của đối phương.</p>
+<p>Nếu bạn chịu đọc sâu thêm vào cuốn sách này, bạn sẽ khám phá ra bằng cách nào và vì sao người nhỏ con lại có thể tăng sức đánh của mình lên rất nhiều.</p>
+<p>Nếu người nhỏ con chịu đọc Chương 16, anh ta sẽ học được cách dùng chính sức mạnh của đối thủ to lớn hơn để chống lại hắn!</p>
+<div class="key-takeaway"><p><strong>Một Tấn Sức Mạnh.</strong> Kỹ thuật võ thuật đúng có thể sinh ra một sức mạnh khổng lồ. Một trong những cú đấm mạnh nhất từng được đo lường do một võ sinh karate Okinawa nhỏ con, nặng 110 pao, thực hiện: anh ta tạo được xấp xỉ 2.000 pao lực trong cú thúc của mình! Hãy so với cú đấm huyền thoại của Muhammad Ali, vốn sinh ra chừng 1.000 pao lực.</p></div>
+</section>
+
+<section id="sec03">
+<h2>Chương 3: Cú Nổ Lớn</h2>
+<h3>Tạo Ra Va Chạm</h3>
+<p>Võ thuật đích thực không chỉ là vung tay lên rồi giáng thật mạnh vào đối phương. Ai cũng làm được chuyện đó. Võ thuật thật sự dạy bạn cách phân phát những kiểu va chạm khác nhau. Kiểu va chạm bạn tạo ra tùy thuộc vào kỹ thuật và chuyển động cơ thể bạn dùng, vào bề mặt bạn định đánh, và vào hiệu ứng bạn muốn gây ra cho bề mặt ấy cùng các mô nằm bên dưới nó.</p>
+<p>Đây là chuyện quan trọng, nên đừng lướt qua. Nó là một trong những khác biệt then chốt giữa võ thuật và ẩu đả.</p>
+<h3>Các Bề Mặt Mục Tiêu</h3>
+<p>Khi đấm vào một cơ thể người, bạn có đấm kiểu như đấm vào bao cát nặng không? Bạn đã bao giờ nghĩ rằng con người chẳng được cấu tạo giống một cái bao vải bố hay bao nhựa nhồi bông nặng trịch chút nào chưa? Vì khả năng phải tự vệ trước một con người cao hơn hẳn trước một cái bao cát hay cãi nhau, nên tìm hiểu sơ qua xem mình sắp đánh vào cái gì là ý hay đấy. Trên cơ thể người có ba loại bề mặt căn bản.</p>
+<p>Bề mặt mềm là những vùng không được xương che chở, chỉ phủ bằng các lớp cơ và mỡ giúp bảo vệ nội tạng cùng những mô thiết yếu nằm bên dưới. Vùng bụng là ví dụ điển hình nhất. Đòn của bạn phải đủ sức xuyên qua các lớp mô bảo vệ ấy thì mới tác động được đến mục tiêu hiểm yếu bên trong. Đánh vào những vùng được che chắn mỏng như hai bên cổ hay họng thì không khó lắm; nhưng đánh vào vùng bụng, kỹ thuật của bạn phải sinh ra một chấn động đáng kể mới làm tổn thương được nội tạng nằm dưới những lớp cơ và mỡ dày, chắc hơn.</p>
+<p>Bề mặt cứng là những vùng da thịt và lớp cơ mỏng được căng chặt lên cấu trúc xương: đầu và mặt, cổ tay, ngón chân, ngón tay. Làm tổn thương những bề mặt này, hoặc các mô thiết yếu bên dưới, không khó lắm, vì chúng không được những lớp cơ dày bảo vệ.</p>
+<p>Bề mặt cứng&#8211;mềm là những vùng có một lượng đáng kể cơ và mô mỡ phủ lên cấu trúc xương. Đùi, bắp chân, cánh tay trên và cẳng tay là những ví dụ điển hình.</p>
+<h3>Các Kiểu Va Chạm</h3>
+<p>Có thể bạn sẽ ngạc nhiên khi biết rằng một cú đấm, một cú đánh mu bàn tay, một cú chỏ và một cú đá trước không nhất thiết cùng sinh ra một kiểu va chạm. &#8220;Thì đã sao?&#8221; bạn hỏi. &#8220;Miễn là trúng đối thủ, khác nhau chỗ đó có nghĩa lý gì?&#8221;</p>
+<p>Nghĩa lý lớn lắm.</p>
+<p>Mỗi kỹ thuật đánh đều được thiết kế riêng để tạo ra một kiểu va chạm cụ thể. Nếu bạn dồn mọi đòn thế vào một nhóm va chạm duy nhất, với mục tiêu đơn giản là đánh thật mạnh vào đối phương, thì bạn đang dùng cái mà tôi gọi là cách tiếp cận &#8220;cái gì cũng na ná nhau&#8221; (tastes like chicken). Đó không phải võ thuật. Chỉ là một trận ẩu đả được tân trang lại cho bóng bẩy hơn mà thôi.</p>
+<p>Có bốn nhóm va chạm căn bản: va chạm tập trung, va chạm xuyên, va chạm bật ngược và va chạm đập nát. Ta hãy lần lượt xem qua từng nhóm một cách ngắn gọn.</p>
+<h3>Va Chạm Tập Trung</h3>
+<p>Muốn hiểu kiểu va chạm này vận hành ra sao, hãy nhớ lại những ngày bạn còn thật sự tỉnh táo trong giờ khoa học&#8230; Rồi hoàn thành câu sau: cơ thể người chứa khoảng 60 phần trăm ______.</p>
+<p>Không, đáp án không phải là bia! Nhưng nếu bạn đoán là nước thì đúng rồi đấy! Bao cát hầu như không chứa nước, còn con người thì phần lớn là nước. Ta giống những quả bóng da dày nhồi đầy H&#8322;O (và đôi khi là bia). Vậy muốn gây tối đa sát thương cho một mục tiêu là người, bạn phải học cách tạo ra chấn động thủy tĩnh. Và đó chính là việc của va chạm tập trung. Khi chạm mục tiêu, đòn được dừng lại đột ngột: nó không xuyên sâu, cũng chẳng bật ngược nhanh. Sức mạnh của cú đánh được hội tụ <em>xuyên qua</em> một điểm, thay vì <em>trên</em> điểm đó. Lực chấn động kiểu này đi sâu vào bên trong cơ thể đối phương và gây tổn thương nội tạng nghiêm trọng.</p>
+<p>Hình 3.1 cho thấy một ví dụ về kiểu va chạm này: nắm đấm giáng vào quả bóng chứa đầy nước. Lực của cú đánh đi xuyên qua mục tiêu và làm phình ra phía bên kia của quả bóng.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-1.jpg" alt="Hình 3.1" loading="lazy"><figcaption><strong>Hình 3.1.</strong>Nắm đấm đánh vào quả bóng chứa nước: lực truyền xuyên qua mục tiêu, làm phình mặt bên kia.</figcaption></div>
+<p>Hầu hết các kỹ thuật đấm và đánh, cùng những cú đá có động tác bật gối, đều thuộc nhóm va chạm tập trung. Kiểu đòn này có thể áp dụng cho hầu như mọi bề mặt mục tiêu.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-2.jpg" alt="Hình 3.2" loading="lazy"><figcaption><strong>Hình 3.2 đến 3.5.</strong>Các kỹ thuật đấm, đánh và đá thuộc nhóm va chạm tập trung, áp dụng được cho nhiều bề mặt mục tiêu khác nhau.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-3.jpg" alt="Hình 3.3" loading="lazy"><figcaption><strong>Hình 3.3.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-4.jpg" alt="Hình 3.4" loading="lazy"><figcaption><strong>Hình 3.4.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-5.jpg" alt="Hình 3.5" loading="lazy"><figcaption><strong>Hình 3.5.</strong></figcaption></div>
+<h3>Va Chạm Xuyên</h3>
+<p>Các kỹ thuật va chạm xuyên được dùng để đi vào bên trong bề mặt mục tiêu. Số lượng không nhiều, chủ yếu là những đòn dùng đầu ngón tay hoặc đốt ngón tay thứ hai thúc vào các bề mặt mềm hơn của cơ thể. Dù chúng có sinh thêm một phản lực thứ cấp (xem Chương 5), chấn động do chúng tạo ra khác khá nhiều với chấn động của các kỹ thuật va chạm tập trung. Hình 3.6 minh họa cách chấn động ấy hoạt động: bạn sẽ thấy mặt bên kia của quả bóng không nhất thiết phình ra xa mấy, vì phần lớn chấn động dồn ngay tại điểm xuyên vào.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-6.jpg" alt="Hình 3.6" loading="lazy"><figcaption><strong>Hình 3.6.</strong>Chấn động kiểu xuyên dồn tại chính điểm tiếp xúc, thay vì làm phình phía đối diện.</figcaption></div>
+<p>Muốn dùng thành thạo các kỹ thuật va chạm xuyên thường phải trải qua những bài tập đặc biệt &#8212; và thường khá đau &#8212; nhằm làm cho ngón tay và các đốt ngón tay cứng cáp, dẻo dai hơn. Một số kiểu đá cũng có thể được dùng để xuyên vào bề mặt mục tiêu.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-7.jpg" alt="Hình 3.7" loading="lazy"><figcaption><strong>Hình 3.7 đến 3.9.</strong>Những cú đá dùng để xuyên vào bề mặt mục tiêu.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-8.jpg" alt="Hình 3.8" loading="lazy"><figcaption><strong>Hình 3.8.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-9.jpg" alt="Hình 3.9" loading="lazy"><figcaption><strong>Hình 3.9.</strong></figcaption></div>
+<p>Cần nhấn mạnh rằng các kỹ thuật này không nhằm xuyên thủng theo nghĩa đen. Hãy tưởng tượng đưa đầu một cán chổi thúc vào bụng hay họng kẻ tấn công: một cú thúc mạnh dễ dàng gây tổn thương nội tạng nghiêm trọng mà chẳng cần xuyên qua da thịt. Vả lại, dùng đầu ngón tay xuyên thủng da người gần như là chuyện không thể. Thế nhưng, cứ mỗi kẻ khoác lác rằng mình hoặc ông chú mình có thể thọc ngón tay vào lồng ngực đối phương và móc lấy trái tim mà tôi được một xu, thì tôi đã nghỉ hưu từ lâu rồi. Nếu bạn biết ai hay nói kiểu ấy, có thể gợi ý họ mở một quầy phẫu thuật kiểu drive-through.</p>
+<h3>Va Chạm Bật Ngược</h3>
+<p>Va chạm bật ngược do những kỹ thuật như cú đánh mu bàn tay tạo ra. Vì các đòn này hầu như không xuyên sâu nên dùng tốt nhất vào những bề mặt có xương như đầu và mặt.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-10.jpg" alt="Hình 3.10" loading="lazy"><figcaption><strong>Hình 3.10 và 3.11.</strong>Các cú đánh mu bàn tay nhắm vào vùng đầu và mặt.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-11.jpg" alt="Hình 3.11" loading="lazy"><figcaption><strong>Hình 3.11.</strong></figcaption></div>
+<p>Dù chỉ tiếp xúc với bề mặt cứng của mục tiêu trong một phần rất nhỏ của giây, những đòn quất như roi này vẫn tạo ra một dạng chấn động rất sắc và rất tập trung. Thật vậy, nếu áp dụng đúng, chúng có thể làm vỡ xương! Đó là nhờ lượng lực rất lớn sinh ra từ xung lượng (xem Chương 6). Hình 3.12 cho thấy kiểu chấn động này tác động thế nào lên quả bóng của chúng ta.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-12.jpg" alt="Hình 3.12" loading="lazy"><figcaption><strong>Hình 3.12.</strong>Chấn động kiểu bật ngược tác động lên quả bóng chứa nước.</figcaption></div>
+<h3>Va Chạm Đập Nát</h3>
+<p>Va chạm đập nát do các cú đá dậm, cú đá vòng buông lỏng, cú đá bay, cú đấm kiểu quyền Anh, cú đá bằng gối và cú chặt bằng cẳng tay tạo ra. Những đòn này thường nhắm vào bề mặt cứng hoặc cứng&#8211;mềm, nơi xương có thể bị vỡ. Chúng không sinh ra chấn động vì sức mạnh không được hội tụ sắc, cũng chẳng nhất thiết khoan sâu vào mục tiêu.</p>
+<p>Các kỹ thuật này hoàn toàn trông cậy vào động lượng, tựa như dùng cán rìu quật vào đối phương. Mục tiêu đơn giản là nghiền nát chỗ tiếp xúc ngay trong cú chạm.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-13.jpg" alt="Hình 3.13" loading="lazy"><figcaption><strong>Hình 3.13 đến 3.15.</strong>Các kỹ thuật thuộc nhóm va chạm đập nát.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-14.jpg" alt="Hình 3.14" loading="lazy"><figcaption><strong>Hình 3.14.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig3-15.jpg" alt="Hình 3.15" loading="lazy"><figcaption><strong>Hình 3.15.</strong></figcaption></div>
+<p>Các môn nội gia Trung Hoa (neijia) còn dạy thêm vài kiểu va chạm nữa, nhưng chúng nằm ngoài phạm vi của cuốn sách nhập môn này. Biết đâu, nếu có đủ người mua sách, tôi sẽ viết tiếp một cuốn và bàn về những phương pháp ấy.</p>
+</section>
+
+<section id="sec04">
+<h2>Chương 4: Cần Có Tốc Độ</h2>
+<h3>Bí Mật Của Động Năng</h3>
+<p>Động năng là năng lượng của chuyển động. Nó được tính bằng một nửa khối lượng tham gia thực hiện kỹ thuật nhân với bình phương vận tốc của khối lượng ấy (KE = &#189; m v&#178;). Nói cách khác, bạn đánh càng nhanh thì đòn càng mạnh.</p>
+<p>Bạn đã biết động lượng tính bằng khối lượng nhân vận tốc, đúng không? Thế nhưng động năng lại tỷ lệ thuận thẳng với <em>bình phương</em> vận tốc! Nếu muốn ra đòn có sức công phá lớn hơn, đừng bận tâm đến việc gánh thêm thật nhiều tạ hay uống cạn những ly sinh tố đạm &#8220;ngon tuyệt&#8221; mỗi ngày để tăng khối lượng. Thay vào đó, hãy luyện để tăng vận tốc của kỹ thuật! Thử nghĩ mà xem: nếu bạn tăng gấp đôi tốc độ cú đấm hay cú đá, động năng sinh ra không chỉ tăng gấp đôi, mà tăng gấp bốn lần. Nó tăng bốn lần đấy!</p>
+<h3>Vận Tốc Cuối</h3>
+<p>Bạn có thể làm gì để tăng gia tốc cho kỹ thuật của mình? Câu trả lời là trước hết phải học cách thực hiện kỹ thuật cho đúng. Kỹ thuật đúng đã có sẵn những cơ chế nhằm tối đa hóa gia tốc và vận tốc. Nếu cú đấm hay cú đá của bạn yếu, có thể nó thiếu gia tốc cần thiết vì chuyển động cơ thể hoặc nhịp thở sai.</p>
+<p>Chẳng hạn, khi tung một cú đấm, nắm tay phải xoắn lại ngay vào khoảnh khắc trước khi chạm mục tiêu (Hình 4.1 đến 4.3).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-1.jpg" alt="Hình 4.1" loading="lazy"><figcaption><strong>Hình 4.1 đến 4.3.</strong>Nắm tay xoắn lại ngay trước thời điểm tiếp xúc.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-2.jpg" alt="Hình 4.2" loading="lazy"><figcaption><strong>Hình 4.2.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-3.jpg" alt="Hình 4.3" loading="lazy"><figcaption><strong>Hình 4.3.</strong></figcaption></div>
+<p>Bạn bảo cái đó mình biết rồi? Được thôi, nhưng bạn có biết vì sao nó quan trọng không? Động tác xoắn nắm tay, dù là nửa vòng hay chỉ một phần tư vòng, thật ra có hai chức năng chính.</p>
+<p>Thứ nhất, nó làm cho lực đánh xoáy theo đường xoắn ốc như một viên đạn đang lao tới mục tiêu. Chuyển động xoắn ốc này cho phép năng lượng của cú đánh đi sâu vào mục tiêu hơn so với khi không có nó.</p>
+<p>Thứ hai, nó tạo ra một cú tăng tốc dữ dội cho kỹ thuật ngay trước khi chạm. Một khi động tác xoắn đã hoàn tất, một sự giảm tốc đáng kể lập tức xảy ra. Người mới tập thường không hiểu tầm quan trọng của cử động tưởng chừng nhỏ nhặt này: họ xoắn nắm tay quá sớm, ngay sau khi cú đấm vừa được tung ra. Nghĩa là cú thúc đang giảm tốc và mất lực đúng vào lúc nó chạm mục tiêu.</p>
+<p>Hầu hết các kỹ thuật đánh và thúc đều dùng một kiểu xoắn hay bật cổ tay nào đó ngay trước khi tiếp xúc với đối phương. Hình 4.4 đến 4.7 cho thấy động tác ấy được dùng thế nào trong những cú đánh bằng cạnh bàn tay căn bản.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-4.jpg" alt="Hình 4.4" loading="lazy"><figcaption><strong>Hình 4.4 đến 4.7.</strong>Động tác bật cổ tay trong các cú đánh bằng cạnh bàn tay (sword-hand).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-5.jpg" alt="Hình 4.5" loading="lazy"><figcaption><strong>Hình 4.5.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-6.jpg" alt="Hình 4.6" loading="lazy"><figcaption><strong>Hình 4.6.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-7.jpg" alt="Hình 4.7" loading="lazy"><figcaption><strong>Hình 4.7.</strong></figcaption></div>
+<p>Nhiều người tập võ đương thời không hay rằng cú đá bật trước và cú đá thúc ngang cũng dùng nguyên lý này. Một cú bật nhẹ của mắt cá chân xuống dưới làm gia tốc tăng vọt ngay trước khi bàn chân chạm mục tiêu. Hai cú đá này được gom chân ở cùng một tư thế. Với cú đá bật trước, mắt cá bật ra trước và xuống dưới ngay trước lúc chạm; còn với cú đá thúc ngang, mắt cá bật xuống để tiếp xúc được thực hiện bằng mép ngoài của gót chân (Hình 4.8 đến 4.10).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-8.jpg" alt="Hình 4.8" loading="lazy"><figcaption><strong>Hình 4.8 đến 4.10.</strong>Cú bật mắt cá trong đá bật trước và đá thúc ngang.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-9.jpg" alt="Hình 4.9" loading="lazy"><figcaption><strong>Hình 4.9.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-10.jpg" alt="Hình 4.10" loading="lazy"><figcaption><strong>Hình 4.10.</strong></figcaption></div>
+<h3>Càng Dài Càng Tốt</h3>
+<p>Nếu tôi ném một hòn đá vào bạn từ khoảng cách chỉ hai bộ (foot), chắc nó chẳng gây được mấy sát thương, phải không? Nhưng nếu tôi lùi lại vài thước (yard) rồi ném chính hòn đá ấy, nó sẽ chạm bạn với một lực lớn hơn đáng kể. Lý do là thế này:</p>
+<p>Khối lượng gia tốc trên một quãng đường càng dài thì lực sinh ra càng lớn.</p>
+<p>Vì sao ư? Vì trong lúc gia tốc, nó thu được thêm vận tốc, và nhờ đó thêm động lượng! Tuy nhiên, khối lượng phải còn đang gia tốc thì mới gom được lực; hễ bắt đầu giảm tốc là nó mất lực ngay. Vì thế bạn nên tìm cách tối đa hóa quãng đường mà kỹ thuật của mình còn tăng tốc. Quãng đường ấy càng dài, đòn của bạn càng mạnh.</p>
+<p>Hầu hết người mới tập chỉ đấm bằng cử động của cánh tay, nên quãng đường lực đi được chỉ bằng một sải tay (Hình 4.11). Một khi kẻ mới vào nghề học được cách dùng cử động của eo, quãng đường ấy tăng gấp đôi (Hình 4.12). Sau một thời gian luyện tập đáng kể, học viên học được cách đưa lực của cú đánh đi lên từ gan bàn chân trụ phía sau, làm quãng đường gia tốc tăng gấp ba và cho phép anh ta ra đòn mạnh hơn rất nhiều (Hình 4.13).</p>
+<p>Quãng đường ấy có thể kéo dài thêm nữa không? Thừa sức!</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-11.jpg" alt="Hình 4.11" loading="lazy"><figcaption><strong>Hình 4.11 đến 4.13.</strong>Quãng đường gia tốc của lực: chỉ bằng cánh tay, thêm cử động của eo, rồi đi lên từ gan bàn chân trụ.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-12.jpg" alt="Hình 4.12" loading="lazy"><figcaption><strong>Hình 4.12.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-13.jpg" alt="Hình 4.13" loading="lazy"><figcaption><strong>Hình 4.13.</strong></figcaption></div>
+<h3>Sức Mạnh Cuộn Xoắn</h3>
+<p>Những người tập các môn nội gia Trung Hoa có thể kéo dài đáng kể quãng đường mà lực và năng lượng của kỹ thuật đi qua, bằng một dạng kỹ thuật đặc biệt làm cho lực xoáy đi lên từ gan bàn chân trụ. Mỗi hệ phái nội gia gọi nó bằng một tên riêng, nhưng tên được biết đến nhiều nhất là <strong>chan-si jin</strong> (công xe tơ tằm), thuật ngữ của giới luyện Thái Cực Quyền. Nghe thì có vẻ xa lạ, nhưng lý thuyết nền bên dưới không khó hiểu lắm. Hãy bắt đầu bằng một phép so sánh đơn giản.</p>
+<p>Muốn tăng khả năng thu sóng radio trên ô tô, bạn có thể gắn vào chiếc ăng-ten nguyên bản một cuộn dây hình trụ ngắn, vốn gồm vài thước ăng-ten bổ sung được quấn lại. Việc đó tăng hiệu suất của chiếc radio lên gấp mấy lần. Cùng nguyên lý ấy được dùng để sinh ra công xe tơ tằm: bàn chân sau được &#8220;vặn&#8221; xuống đất ngay ở khởi đầu của chuyển động. Sức mạnh được cho xoáy ngược lên theo chân, vòng qua eo, lên và vòng qua lưng cùng vai, xuôi xuống cánh tay rồi thoát ra ở bề mặt tiếp xúc của bàn tay, nơi nó cuối cùng được phóng ra. Cách này làm tăng đáng kể quãng đường mà lực còn gia tốc, tiếp thêm một xung lực khổng lồ cho cú đánh (Hình 4.14).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig4-14.jpg" alt="Hình 4.14" loading="lazy"><figcaption><strong>Hình 4.14.</strong>Đường xoáy của lực từ gan bàn chân trụ, qua eo, lưng, vai, cánh tay tới bề mặt đánh.</figcaption></div>
+<p>Chan-si jin được dịch là &#8220;sức mạnh xe tơ tằm&#8221; (silk-reeling power) vì nó giống động tác kéo một sợi tơ từ kén của con tằm. Khi sợi tơ được kéo, cái kén quay tròn. Nếu bạn ngưng kéo dù chỉ một thoáng rồi cố kéo lại, sợi tơ sẽ đứt. Cũng như sợi tơ mảnh manh ấy phải được rút ra đều và liền mạch, chuyển động xoáy của lực trong cơ thể bạn phải đi qua mà không được chậm lại hay ngưng lại ở bất kỳ điểm nào. Một sự ngắt quãng như thế cắt đứt đường truyền lực trơn tru và làm hao hụt phần lớn sức mạnh. Nếu muốn tìm hiểu thêm về phương pháp phát lực đặc biệt này, bạn phải tìm đến một sư phụ có đủ năng lực của các môn nội gia Trung Hoa.</p>
+<h3>Những Lỗi Thường Gặp</h3>
+<p>Luyện để tăng tốc độ và gia tốc cho kỹ thuật cần có thời gian. Vội vàng thì rất dễ bị chấn thương, thường là do duỗi quá mức khuỷu tay hoặc đầu gối. Hãy nghiên cứu danh sách những lỗi thường gặp sau đây.</p>
+<p>Khi thực hiện một kỹ thuật, đừng dùng sức căng cơ nhiều hơn mức thật sự cần thiết. Cơ căng cứng thì không chuyển động được nhanh.</p>
+<p>Khi đấm, đừng siết nắm tay quá chặt. Bóp chặt nắm tay gây căng thẳng quá mức ở cổ tay và cẳng tay.</p>
+<p>Nếu thân thể không vững, kỹ thuật không thể tăng tốc đúng cách. Hãy bảo đảm mình đứng ở một tư thế chắc chắn, ổn định trước khi ra đòn.</p>
+<p>Đừng ụp khuỷu tay hay đầu gối vào tư thế duỗi thẳng, khóa cứng. Trước hết, đó là một cách rất hiệu quả để làm khớp bị duỗi quá mức và có thể hư hại luôn.</p>
+<p>Thêm vào đó, khi phản lực quay ngược đi qua một khớp bị khóa cứng, nó cũng có thể gây tổn thương. Hãy xem lại mục đầu tiên trong phần Những Lỗi Thường Gặp của Chương 5: thứ vũ khí trên cơ thể bạn phải chịu đựng nổi toàn bộ lực của chính cú đánh mình! Một khi lực ấy đã truyền vào đối phương rồi đi xuống gan bàn chân sau của hắn (cú chạm ban đầu), nó sẽ &#8220;dội&#8221; ngược trở lại điểm tiếp xúc, rồi quay ngược qua chi đang đánh của bạn và trở xuống bàn chân trụ phía sau (phản lực; xem Chương 5). Tin tôi đi, bạn không muốn một thứ sức mạnh như thế chạy xuyên qua một khớp đang khóa cứng đâu!</p>
+<p>Nếu bạn đang tung cú đấm hay một cú đánh, khuỷu tay nên hơi hơi gập vào đúng khoảnh khắc chạm mục tiêu. Đầu gối cũng nên hơi gập khi bạn đánh đối phương bằng một kỹ thuật đá.</p>
+<p>Nhịp thở đúng là điều thiết yếu để tối đa hóa vận tốc. Muốn cử động nhanh, bạn phải thở ra thật nhanh. Nếu hơi thở ra quá chậm, tốc độ chuyển động của bạn cũng bị ảnh hưởng tương ứng (xem Chương 9).</p>
+</section>
+
+<section id="sec05">
+<h2>Chương 5: Chuyện Ấy Thật Sốc!</h2>
+<h3>Sức Mạnh Thô Và Chấn Động</h3>
+<p>Hầu hết các kỹ thuật đấm, đánh và đá của võ thuật truyền thống đều cố sinh ra <em>chấn động</em> thay vì sức mạnh thô. Tiếc là không ít người tập võ không phân biệt nổi hai thứ ấy. Vậy nên, chú ý theo dõi nhé.</p>
+<p>Nếu ai đó ném vào bạn một bao cát nặng 50 pao, đó là một ví dụ thô sơ về sức mạnh thô. Lực của bao cát lúc rơi xuống được trải ra trên một bề mặt khá rộng. Sức mạnh ấy không dồn vào một điểm cụ thể nào, nên khả năng gây chấn thương nghiêm trọng cũng khá thấp. Bất kỳ đứa trẻ nào ở vùng Trung Tây Hoa Kỳ từng bó cỏ khô đều là bằng chứng sống cho điều đó.</p>
+<p>Nhưng nếu ai đó thả một quả cân 50 pao lên một cái chốt đường kính 1 inch đặt trên ngực bạn (50 psi), lực ấy sẽ dồn vào một điểm rất nhỏ. Thứ sức mạnh đó gọi là <em>chấn động</em>. Nó xuyên qua các lớp cơ và xương bảo vệ bên ngoài, rồi tiêu hao phần lớn năng lượng <em>bên trong</em> mục tiêu. Nó có thể gây tổn thương nội tạng nghiêm trọng.</p>
+<p>Nhiều người mê võ không tạo được chấn động thật sự trong kỹ thuật của mình vì họ chẳng hiểu nó là gì, vận hành ra sao, hay làm thế nào để sinh ra nó. Ta hãy sửa ngay chuyện ấy.</p>
+<h3>Tác Động Và Phản Ứng</h3>
+<p>Chắc bạn còn nhớ thầy giáo khoa học đáng mến của mình từng nhắc đến Định luật chuyển động thứ ba của Newton? Đó là định luật nói rằng: <em>&#8220;Với mọi tác động, luôn có một phản ứng bằng nhau và ngược chiều.&#8221;</em></p>
+<p>Hiểu được định luật này tác động thế nào đến kỹ thuật của bạn, rồi dùng nó để sinh lợi, là chuyện cốt yếu.</p>
+<p>Ví dụ, khi bạn tung một cú đánh mạnh bằng một tay, tay kia đồng thời được rút về hông hay ngực (Hình 5.1). Đó là một ví dụ về cách Định luật chuyển động thứ ba của Newton được áp dụng vào kỹ thuật căn bản. Việc rút tay không đánh ấy thật sự góp thêm lực cho cú đánh, và rút càng mạnh thì cú đấm đi ra càng mạnh.</p>
+<p>Một số người tập võ đương thời khăng khăng rằng nhận định này không đúng &#8212; rằng đó chỉ là một lối làm cũ kỹ, đã bị cách điệu hóa. Tôi không đồng ý.</p>
+<p>Hãy thử nghiệm đơn giản này: đưa một cánh tay duỗi thẳng ra trước mặt. Bây giờ, dùng tay kia đấm mạnh hết sức nhưng đừng cho cánh tay đang duỗi cử động (Hình 5.2 và 5.3). Chẳng đưa được bao nhiêu lực vào cú đấm, đúng không? Ấy là vì cơ thể bạn <em>tự nhiên</em> muốn rút cánh tay đang duỗi ấy về. Cơ thể đã muốn thế thì hãy nghe cơ thể! Rút mạnh tay đó về, bạn sẽ thấy sức mạnh cú đấm tăng lên rõ rệt.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-1.jpg" alt="Hình 5.1" loading="lazy"><figcaption><strong>Hình 5.1.</strong>Khi một tay tung đòn, tay kia rút về hông hoặc ngực: phản ứng ngược chiều góp thêm lực cho cú đánh.</figcaption></div>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-2.jpg" alt="Hình 5.2" loading="lazy"><figcaption><strong>Hình 5.2 và 5.3.</strong>Giữ nguyên cánh tay duỗi thẳng lúc đấm so với rút mạnh cánh tay ấy về.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-3.jpg" alt="Hình 5.3" loading="lazy"><figcaption><strong>Hình 5.3.</strong></figcaption></div>
+<h3>Lực, Phản Lực Và Chấn Động</h3>
+<p>Định luật chuyển động ấy cũng áp dụng mỗi khi một vật va vào một vật khác &#8212; chẳng hạn khi vũ khí trên cơ thể bạn chạm vào đối phương. Trước khi đi tiếp, bạn cần biết mình đang dùng tay hay chân nào để đánh, và chân nào là bàn chân trụ.</p>
+<p>&#8220;Thế nào là bàn chân trụ?&#8221; bạn hỏi. Bàn chân trụ là bàn chân ấn xuống đất và đẩy bạn, hoặc đẩy luôn cả kỹ thuật của bạn, về phía trước (Hình 5.4). Thường thì đó là bàn chân sau, nhưng không phải lúc nào cũng vậy.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-4.jpg" alt="Hình 5.4" loading="lazy"><figcaption><strong>Hình 5.4.</strong>Bàn chân trụ ấn xuống đất, đẩy cơ thể và kỹ thuật về trước.</figcaption></div>
+<p>Giờ đã có khái niệm ấy trong đầu, ta hãy xem từng bước toàn bộ chuyện lực và chấn động này vận hành ra sao.</p>
+<p><strong>1.</strong> Lực của bạn ban đầu đi từ bàn chân trụ đến tay hoặc chân đánh vào đối phương. Rồi nó nhập vào thân thể đối phương, từ điểm tiếp xúc chạy xuống bàn chân sau cùng của hắn. Đó là <em>cú chạm ban đầu</em> (Hình 5.5).</p>
+<p><strong>2.</strong> Lực ấy rồi dội ngược lại. Nó đi ngược lên qua thân đối phương, tái nhập vào cơ thể bạn qua tay hay chân (tùy bạn đấm hay đá), rồi trở về điểm xuất phát, tức bàn chân trụ của bạn. Lực dội ngược này chính là <em>phản lực</em> sinh ra từ cú chạm ban đầu do chính bạn tạo nên (Hình 5.6).</p>
+<p>Nếu bạn đẩy vào một thân cây hay một bức tường, bạn sẽ cảm thấy phản lực truyền ngược qua cánh tay lên vai, xuôi xuống chân trụ phía sau rồi vào bàn chân trụ ấy. Cứ thử đi. Nhớ giữ lưng thẳng, đừng gian lận bằng cách ngả người vào cây hay tường. Đẩy càng mạnh, bạn càng cảm nhận rõ lực ở bàn chân sau. Điều đó cho thấy lực ban đầu của bạn quay về đúng điểm xuất phát của nó.</p>
+<p><strong>3.</strong> Nếu kỹ thuật của bạn được thực hiện đúng từ một tư thế vững chắc, cân bằng, thì phản lực sẽ dội ngược trở lại! Nếu bạn đang thắc mắc làm sao lại được như vậy, tức là bạn đã không chú ý đọc rồi. Hãy quay lại đọc Định luật chuyển động thứ ba của Newton ở trên và nghĩ xem: nếu bàn chân trụ của bạn đang ấn chặt xuống đất, nó tạo ra một lực &#8212; và lực ấy sinh ra cái gì? <em>Nó sinh ra một phản lực!</em></p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-5.jpg" alt="Hình 5.5" loading="lazy"><figcaption><strong>Hình 5.5 và 5.6.</strong>Cú chạm ban đầu đi từ bàn chân trụ xuống bàn chân sau của đối phương; phản lực dội ngược trở về chính bàn chân trụ ấy.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-6.jpg" alt="Hình 5.6" loading="lazy"><figcaption><strong>Hình 5.6.</strong></figcaption></div>
+<p>Bạn ấn bàn chân trụ xuống đất càng mạnh, cú đánh của bạn càng mạnh. Lực ấy đi lên từ gan bàn chân trụ và tiến vào mục tiêu <em>lần thứ hai</em>. Đó là cái ta gọi là chấn động, và nó xuyên sâu vào mục tiêu (Hình 5.7). Thực chất, chấn động là một <em>phản lực thứ cấp</em>.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-7.jpg" alt="Hình 5.7" loading="lazy"><figcaption><strong>Hình 5.7.</strong>Phản lực thứ cấp đi lên từ gan bàn chân trụ và vào mục tiêu lần thứ hai: đó là chấn động.</figcaption></div>
+<p>Phản lực thứ cấp này luôn đi theo đường ít cản trở nhất, tiêu hao phần lớn năng lượng vào mục tiêu kém vững nhất. Nếu đối phương mất thăng bằng đúng khoảnh khắc chạm, hắn sẽ hứng phần lớn sức mạnh cú đánh của bạn. Nhưng nếu bạn kém vững hơn đối phương, chính bạn sẽ nhận phần sư tử của cái lực do cú đánh của mình sinh ra!</p>
+<p>Bạn phải bảo đảm mình đứng ở một tư thế bám rễ thật chắc vào đúng khoảnh khắc chạm mục tiêu, để khỏi phải tự nuốt phần lớn sức lực do chính mình tạo ra (Hình 5.8 và 5.9).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-8.jpg" alt="Hình 5.8" loading="lazy"><figcaption><strong>Hình 5.8 và 5.9.</strong>Cùng một cú đánh, nhưng tư thế vững hay không vững quyết định ai phải hứng phần lớn lực.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-9.jpg" alt="Hình 5.9" loading="lazy"><figcaption><strong>Hình 5.9.</strong></figcaption></div>
+<p>&#8220;Thế thì đánh người ta bằng thứ chấn động ấy có gì to tát?&#8221; bạn hỏi. &#8220;Cứ dùng thật nhiều sức mạnh thô thì vẫn làm đối phương đau chứ sao?&#8221;</p>
+<p>Được chứ. Nhưng nếu dùng sức mạnh thô, mức độ sát thương bạn gây ra còn tùy vào sức cánh tay bạn so với tầm vóc của đối phương. Bạn đang đánh bằng sức lực cô lập của cánh tay thay vì của toàn thân; và nếu kỹ thuật thật sự tệ, bạn có thể đang dùng nắm đấm <em>đẩy</em> đối phương đi thay vì tung ra một cú đấm sắc, dồn đúng điểm.</p>
+<p>Giả sử bạn là người tầm vóc trung bình, sức khỏe trung bình, và bạn dùng sức mạnh thô để quật vào một gã có thân hình như Mr. Universe, thì chuyện gì sẽ xảy ra? À, nếu lỡ hắn phát hiện ra, bạn có thể rắc rối to và phải mang về một cái mũi trông như chiếc bánh Twinkie bị ai đó ngồi bẹp lên. Ngược lại, nếu bạn lái vào một cú đánh dồn sắc, có chấn động, bạn rất có thể biến một phần nội tạng của hắn thành mứt dâu.</p>
+<div class="key-takeaway"><p><strong>Bậc Thầy Của Bậc Thầy.</strong> Tôi gặp Sư phụ Arthur Lee ở Honolulu lần đầu năm 1991, tại Giải vô địch Võ thuật Trung Hoa toàn quốc của AAU; từ đó chúng tôi kết thành một tình bạn tuyệt đẹp, bền suốt đời. Ông theo đuổi hết lòng môn Fut-Ga (một dạng quyền Thiếu Lâm miền Nam, lĩnh vực mà ông không còn nghi ngờ gì là một trong những bậc thầy uy tín hàng đầu thế giới) cùng môn Thái Cực Quyền, và ông là hiện thân của chính cái từ &#8220;bậc thầy&#8221;. Tôi lấy làm vinh hạnh được gọi ông là một trong những người bạn thân thiết và quý giá nhất của mình.</p>
+<p>Trong giờ nghỉ giữa hai hiệp của giải đấu, ông Lee vui lòng dạy một buổi tập ngắn. Một trong những kỹ thuật ông trình diễn là một kiểu chặn đòn, dùng lòng bàn tay vả vào cánh tay đang tấn công của đối phương. &#8220;Thầy tôi có thể để lại một dấu tay đen trên cánh tay bạn chỉ bằng cách chặn đòn kiểu này,&#8221; ông nói. &#8220;Nó sẽ in rõ lòng bàn tay và cả năm ngón tay.&#8221;</p>
+<p>Tất nhiên, có một người tham dự xin được xem kỹ thuật ấy, và số phận đưa đẩy thế nào, người ấy lại là một học trò cao cấp của tôi! Tôi nín thở. Ông Lee nhận lời thách thức được che đậy mỏng manh ấy với vẻ hòa nhã, rồi bảo chàng trai trẻ tung một cú đấm thật mạnh vào mình. Ông né cú thúc ấy dễ dàng và vả nhẹ vào cẳng tay đối phương. Học trò tôi nhìn xuống cánh tay mình. &#8220;Hừm,&#8221; anh ta nhận xét, &#8220;chẳng thấy đau mấy nhỉ.&#8221;</p>
+<p>Tôi giấu gương mặt đã đỏ bừng vào hai bàn tay và quay đi, biết quá rõ chuyện gì sắp xảy ra. &#8220;Đó mới chỉ là một cái vả nhẹ,&#8221; ông Lee giải thích. &#8220;Nhưng nếu bạn thích, tôi sẽ làm thật. Mời bạn tấn công tôi mạnh hết sức.&#8221; Chàng trai làm theo, phóng một cú thúc hết tốc lực thẳng vào ông Lee, người bình thản bước sang một bên và vả gọn vào cái chi đang lấn lỗi ấy.</p>
+<p>Sức mạnh của kỹ thuật phòng thủ ấy nổ ra trong cánh tay chàng trai trẻ, suýt nữa quật ngã anh ta. Anh ta xoa nhẹ cái chi đã tê dại, và chỉ vài giây sau một dấu bàn tay năm ngón đỏ rực hiện lên trên cánh tay. Chừng một phút sau, nó chuyển sang gần như đen kịt. Chàng trai ấn tượng đến mức chạy khắp phòng tập, giơ cánh tay cho mọi người xem. Tôi dám chắc không ít thí sinh đã nghĩ rằng đầu óc anh ta cũng bị ảnh hưởng chứ không riêng gì cánh tay.</p>
+<p>Đó là một màn trình diễn tuyệt đẹp của kỹ thuật bậc thầy. Kiểu tài năng như thế ngày nay hiếm thấy lắm rồi.</p></div>
+<h3>Những Lỗi Thường Gặp</h3>
+<p>Tạo ra chấn động không dễ như vẻ ngoài của nó. Có nhiều cách làm sai kỹ thuật hơn bạn tưởng, và cách nào cũng làm hao lực. Có cách còn khiến bạn chẳng sinh được chút chấn động nào. Ta hãy xem qua vài lỗi căn bản nhất.</p>
+<p><em>Nếu vũ khí trên cơ thể bạn, hoặc cái chi gắn với nó, không chịu nổi lực của cú đánh, cổ tay, khuỷu tay hay cổ chân bạn sẽ sụp xuống.</em> Nếu cổ tay bị gập lên hoặc xuống đúng lúc chạm, nó sẽ bật ngược ra sau hoặc gập gãy xuống dưới, thường để lại một chấn thương khá đau ở khớp (Hình 5.10).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-10.jpg" alt="Hình 5.10" loading="lazy"><figcaption><strong>Hình 5.10.</strong>Cổ tay gập lên hoặc xuống lúc chạm mục tiêu sẽ bật ngược hay sụp xuống, làm đau khớp.</figcaption></div>
+<p>Đó là lý do nhiều võ đường nhất quyết bắt học trò làm cứng cổ tay bằng những bài như chống đẩy trên nắm đấm hay đập tay vào cột tập đấm lặp đi lặp lại.</p>
+<p><em>Lực có xu hướng đi theo đường thẳng.</em> Nếu đúng lúc chạm mà khuỷu tay bạn gập thành một góc chĩa ra ngoài, bạn nghĩ phần lớn phản lực sẽ đi đâu? Nếu bạn đoán là nó sẽ bắn ra khỏi khuỷu tay và tan biến vào không trung, thì bạn đoán đúng rồi (Hình 5.11 và 5.12). Kiểu đòn này chỉ dùng được sức của cánh tay thay vì sức của toàn thân.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-11.jpg" alt="Hình 5.11" loading="lazy"><figcaption><strong>Hình 5.11 và 5.12.</strong>Khuỷu tay bật góc ra ngoài làm phản lực thoát ra không trung thay vì truyền ngược về bàn chân trụ.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-12.jpg" alt="Hình 5.12" loading="lazy"><figcaption><strong>Hình 5.12.</strong></figcaption></div>
+<p><em>Nếu bạn không vững khi đánh trúng mục tiêu, rất có thể bạn sẽ đem lại cho đối thủ vài tràng cười khi tự làm mình mất thăng bằng và hứng phần lớn cái lực chính mình tạo ra.</em> Thực ra là bạn đang tự đánh mình! Vừa nguy hiểm vừa hết sức ngượng ngùng (Hình 5.13 đến 5.15).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-13.jpg" alt="Hình 5.13" loading="lazy"><figcaption><strong>Hình 5.13 đến 5.15.</strong>Người đánh không vững tự mất thăng bằng và hấp thụ phần lớn lực do chính mình sinh ra.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-14.jpg" alt="Hình 5.14" loading="lazy"><figcaption><strong>Hình 5.14.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-15.jpg" alt="Hình 5.15" loading="lazy"><figcaption><strong>Hình 5.15.</strong></figcaption></div>
+<p><em>Nếu gót bàn chân trụ bị nhấc lên, cổ chân bạn sẽ hấp thụ phần lớn phản lực.</em> Lực ấy sẽ không dội ngược trở lại, và bạn không thể tạo ra chấn động (Hình 5.16).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig5-16.jpg" alt="Hình 5.16" loading="lazy"><figcaption><strong>Hình 5.16.</strong>Gót bàn chân trụ nhấc lên: cổ chân hấp thụ phản lực, sự dội ngược không xảy ra.</figcaption></div>
+<h3>Đánh Xuyên Qua Mục Tiêu</h3>
+<p>Học viên võ thuật thường được dạy phải &#8220;đánh xuyên qua&#8221; bề mặt mục tiêu, phải hướng cú đánh vào một điểm tưởng tượng nằm bên dưới hay phía sau nó. Người ta thường đưa khái niệm này vào lúc học trò bắt đầu tập bẻ tấm ván đầu tiên. Người mới tập hay ngạc nhiên khi thấy bài tập tinh thần giản đơn ấy dường như làm tăng sức mạnh và hiệu quả của kỹ thuật, nhưng chỉ vài tuần sau họ thường đã quên sạch. Đáng tiếc thật, vì đó là một trong những bài học quan trọng nhất mà họ từng học về cách ứng dụng hiệu quả kỹ thuật võ thuật. Và vì sao lại thế?</p>
+<p>Khi bạn lái một kỹ thuật mạnh vào một mục tiêu nào đó, bạn có xu hướng căng cứng một số nhóm cơ ngay trước lúc chạm, tùy theo mức cản bạn dự đoán từ mục tiêu ấy. Chẳng hạn, hẳn bạn chẳng căng chút nào khi đấm vào một bồn tắm đầy nước&#8230; trừ phi trong đó có người đang ngồi. Nhưng khi tung cú đấm tốt nhất vào bao cát nặng, hay cố thọc nắm đấm qua mấy tấm ván, bạn gần như chắc chắn sẽ căng lên vì đoán trước một sức cản khá dữ dội.</p>
+<p>Và chuyện gì xảy ra khi bạn căng cứng ngay trước lúc chạm? Nhóm cơ đang căng ấy đóng vai trò như cái phanh, và kỹ thuật của bạn giảm tốc! Nghĩa là bạn đang mất lực rất nhanh.</p>
+<p>Ngược lại, khi bạn nhắm vào một điểm nằm bên ngoài mục tiêu, bạn không căng cứng ở khoảnh khắc chạm, vì tâm trí không dính vào bề mặt đối tượng để chờ đợi sức cản. Bạn thả lỏng, cái phanh không bị đạp, và kỹ thuật của bạn sẽ chạm mục tiêu ở vận tốc cao nhất có thể. Chấn động của cú đánh sẽ xuyên vào trong, hoặc xuyên qua mục tiêu &#8212; tùy vào chỗ tâm trí bạn đang đặt.</p>
+<p>Đánh xuyên qua mục tiêu kéo dài cái <strong>ý</strong> (yi) của bạn ra xa hơn. Ý đi đến đâu, <strong>khí</strong> (qi, sinh khí) cũng đi đến đó. Ý và khí luôn đi cùng nhau. Cũng vậy, khí đi đến đâu, sức lực của bạn đi theo đến đó.</p>
+</section>
+
+<section id="sec06">
+<h2>Chương 6: Càng Ngắn Càng Tốt</h2>
+<h3>Dù Và Cú Đấm</h3>
+<p>Tại sao nhảy khỏi máy bay có dù lại tốt hơn nhảy không có dù? Tôi thật lòng hy vọng bạn không cần hơn vài giây để trả lời câu này! Này, đặt miếng pizza xuống đã rồi nghĩ thử xem! Khác biệt chính giữa việc nhảy có dù và nhảy không dù là gì?</p>
+<p>Câu trả lời nằm ở <em>thời gian</em>. Khi bạn nhảy có dù &#8212; giả sử bạn còn nhớ giật dây mở dù &#8212; bạn mất lâu hơn rất nhiều để chạm đất so với khi nhảy không có dù. Và nếu hiểu được điều đó, bạn cũng hiểu luôn <em>định lý biến thiên xung lượng&#8211;động lượng</em>, một nguyên lý cốt yếu để tạo ra chấn động.</p>
+<h3>Xung Lượng</h3>
+<p><em>Xung lượng được định nghĩa là một sự biến thiên của động lượng.</em> Nghĩa là, nó là tích của lực tác dụng lên một vật với khoảng thời gian lực ấy được áp đặt. Nghe thì rắc rối, nhưng thật ra chẳng phức tạp đến thế. Hãy xét hai trường hợp.</p>
+<p><strong>Muốn tạo ra một biến thiên lớn của động lượng trong một khoảng thời gian <em>dài</em>, chỉ cần một lực <em>nhỏ</em>.</strong> Khi bạn giật dây mở dù, vận tốc rơi của bạn đột ngột giảm xuống. Điều đó tạo ra một biến thiên lớn về động lượng, nhưng trải dài trên một khoảng thời gian dài. Vì bạn chậm lại, lực của cú rơi được giảm đi và cơ thể bạn không để lại một vết lõm sâu chừng hai foot trên mặt đất.</p>
+<p><strong>Muốn tạo ra một biến thiên lớn của động lượng trong một khoảng thời gian <em>ngắn</em>, thì cần một lực <em>lớn hơn nhiều</em>.</strong> Nếu bạn nhảy khỏi máy bay mà không có dù, vận tốc rơi của bạn chắc chắn chẳng giảm đi. Nhưng như người ta vẫn nói, &#8220;Không phải cú rơi giết bạn đâu &#8212; mà chính là cú dừng đột ngột ở cuối.&#8221; Sẽ có một biến thiên lớn về động lượng của bạn (và cả về ý thức của bạn nữa), nhưng nó diễn ra trong một phần triệu giây và để lại một vết rất khó coi trên mặt đất. Lực trong trường hợp này lớn hơn đáng kể.</p>
+<p><em>Vì vậy, thời gian tiếp xúc càng ngắn, lực sinh ra càng lớn.</em></p>
+<p>Nếu muốn tung ra nhiều lực nhất có thể bằng kỹ thuật của mình, bạn phải luyện sao cho rút ngắn tối đa khoảng thời gian mà lực của kỹ thuật ấy truyền vào mục tiêu.</p>
+<p>Nhiều người tập võ đương thời đã quên một nguyên lý rất quan trọng, làm nền cho việc phát triển sức mạnh thật sự. Nguyên lý ấy nói rằng:</p>
+<p><em>Sức mạnh sắc của một cú đánh tỉ lệ nghịch với độ dài thời gian nó còn tiếp xúc với mục tiêu.</em></p>
+<p>Lực của bạn được áp lên mục tiêu càng lâu, bạn sinh ra càng ít chấn động. Thực tế, bạn sẽ tạo ra một cú &#8220;đẩy&#8221; nhiều hơn là một cú đánh sắc. Nếu cú đấm hay cú đá của bạn chạm đối phương quá sớm, khuỷu tay hoặc đầu gối bạn vẫn còn gập khá nhiều ở thời điểm va chạm. Nếu bạn cố lái nắm đấm hay bàn chân xuyên qua kẻ tấn công mà không tạo được một xung lượng mạnh, bạn chỉ đẩy lùi hắn lại mà thôi. Đó là vì bạn đang kéo dài khoảng thời gian lực của mình tác dụng lên đối phương (Hình 6.1 và 6.2).</p>
+<p>Nếu muốn tung ra một cú đánh thật sự tàn phá, bạn phải luyện để kỹ thuật của mình có khả năng sinh ra một dạng chấn động sắc, xuyên sâu, đủ sức tàn phá các mô bên trong cơ thể đối phương.</p>
+<div class="key-takeaway"><p><strong>Chỉ Đi Xuyên Qua.</strong> Mark Hachey, một cao thủ môn Yiliquan kung-fu, đã cho học trò xem một màn trình diễn chấn động rất thú vị. Ông cần một người tình nguyện chịu một cái vả sắc vào ngực. Khi một học trò bước ra, Sư phụ Hachey giải thích rằng ông chỉ đơn giản vả vào ngực chàng trai và sẽ không có cảm giác khó chịu đáng kể nào.</p>
+<p>Nói rồi, ông xòe lòng bàn tay và vả gọn vào cơ ngực của học trò. Cú đánh chỉ hơi xót, nhưng chỉ vài giây sau, vùng da dọc theo xương bả vai của chàng trai bỗng đỏ rực. Sức mạnh của cú vả đã đi xuyên qua thân thể chàng trai và thoát ra sau lưng! Giá như sức mạnh ấy được hướng vào một nội tạng, hậu quả đã rất nghiêm trọng rồi.</p>
+<p>Jim Burgess, cũng là một cao thủ Yiliquan, làm một màn trình diễn tương tự. Học trò của ông áp vào ngực một cuốn danh bạ điện thoại dày bọc băng keo. Sư phụ Burgess duỗi cánh tay sao cho đầu ngón tay vừa chạm vào cuốn danh bạ che chắn ấy. Khi người nhận đòn ra hiệu đã sẵn sàng, ông Burgess khép bàn tay lại và tung một cú đấm đột ngột từ khoảng cách chỉ chừng ba inch. Luồng sức mạnh ấy làm học trò đánh rơi cuốn danh bạ và nhăn mặt đau đớn. Chỉ một lúc sau, một vết bầm sẫm hiện lên ở lưng anh ta, cho thấy sức mạnh của cú thúc đã xuyên hoàn toàn qua cơ thể!</p></div>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig6-1.jpg" alt="Hình 6.1" loading="lazy"><figcaption><strong>Hình 6.1 và 6.2.</strong>Đánh trúng mục tiêu quá sớm, lúc khuỷu tay hoặc đầu gối còn gập nhiều: lực bị kéo dài thành một cú đẩy thay vì một cú đánh sắc.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig6-2.jpg" alt="Hình 6.2" loading="lazy"><figcaption><strong>Hình 6.2.</strong></figcaption></div>
+<p>Trong bốn kiểu va chạm, chỉ hai kiểu có khả năng sinh ra chấn động: <em>va chạm tập trung</em> và <em>va chạm bật ngược</em>. Lý do là lực do hai kiểu va chạm ấy tạo ra chỉ tiếp xúc với mục tiêu trong một phần rất nhỏ của giây. Lực sinh ra từ hai kiểu còn lại &#8212; <em>va chạm xuyên</em> và <em>va chạm đập nát</em> &#8212; tiếp xúc với mục tiêu lâu hơn nhiều.</p>
+</section>
+
+<section id="sec07">
+<h2>Chương 7: Điểm Tựa</h2>
+<h3>Tầm Quan Trọng Của Nền Tảng</h3>
+<p>Tòa nhà chọc trời vững chắc nhất cũng chỉ vững bằng chính cái nền của nó. Với người tập võ cũng vậy. Bạn sẽ gặp rắc rối lớn nếu không giữ được một tư thế cân bằng, hoặc nếu cái nền ấy không chịu nổi phản lực sinh ra từ chính kỹ thuật của mình.</p>
+<p>Ngày xưa, việc luyện cho thế đứng thật vững được coi là điều tối quan trọng. Học trò thường phải tập đi tập lại các bài luyện chỗ đứng suốt mấy năm trời để có một cái nền ổn định, từ đó mới phát ra được sức mạnh. Những bài luyện ấy không chỉ nhàm chán mà còn thường khá đau đớn, và không ít kẻ mơ làm cao thủ kung-fu hay karate đã bỏ cuộc giữa chừng. Ai trụ lại được thì có những thế đứng cực kỳ vững, nhờ đó tung ra cú đấm, cú đá mạnh một cách khó tin. Như một lão sư karate xứ Okinawa từng nói với tôi: &#8220;Thế đứng là một trong những bí quyết lớn nhất của karate, nhưng ngày nay rất ít người còn chịu luyện nó nữa.&#8221;</p>
+<h3>Thế Đứng Là Gì?</h3>
+<p>Các thế đứng là những vị trí tĩnh. Bạn di chuyển <em>từ</em> thế đứng này <em>sang</em> thế đứng khác. Mọi thế đứng đều nhằm làm một trong hai việc:</p>
+<p><em>Làm một vị trí vững chắc để từ đó bạn có thể di chuyển nhanh;</em></p>
+<p><em>Làm một bệ phóng vững chắc để từ đó bạn tung ra các kỹ thuật.</em></p>
+<p>Nếu ví kỹ thuật đấm hay đá của bạn là một viên đạn, thì thế đứng chính là khẩu súng bắn ra viên đạn ấy. Nếu sắp ra trận, bạn muốn mang theo cái gì &#8212; một khẩu súng sạch sẽ, còn nguyên vẹn, hay một món đồ gỉ sét bỏ đi? Bạn có muốn mang một khẩu súng mà mình chưa quen tay không? Chẳng lẽ bạn lại không muốn làm quen thật kỹ với khẩu súng của mình trước khi đi vào chỗ nguy hiểm? Vậy thì, bạn quen thuộc đến đâu với những thế đứng mình dùng trong môn võ đã chọn? Chúng có vững không? Hãy cùng thử xem.</p>
+<h3>Các Thế Đứng Dùng Sức Căng Vào Trong</h3>
+<p>Đừng làm mặt ngơ ngác thế! Tôi tưởng bạn bảo mình đã quen thuộc với các thế đứng rồi cơ mà. Bạn nói chưa từng nghe đến thế đứng dùng sức căng vào trong? Thì sắp nghe rồi đây.</p>
+<p><em>Các thế đứng dùng sức căng vào trong là những thế đứng ngắn</em> như tấn mèo (cat stance), tấn móc (hook stance), tấn tam tài (sancai &#8212; một thế đứng căn bản chung cho Hình Ý Quyền, Bát Quái Chưởng và Yiliquan), và thế sanchin của karate (xem Hình 7.1&#8211;7.4). Ở những thế đứng này, các cơ khép (cơ ở mặt trong đùi) co lại để tạo sự vững chắc.</p>
+<p>Nếu bạn chỉ đơn giản &#8220;ngồi&#8221; vào một trong các thế đứng ấy mà không co cơ khép, người ta chỉ cần đẩy nhẹ là bạn mất thăng bằng ngay. Nghĩa là nếu từ tư thế buông lỏng đó mà bạn đánh vào vật gì, bạn chỉ thành công trong việc tự đẩy mình giật lùi lại mà thôi. Vì thế, khi tung một cú đánh từ thế đứng ngắn, bạn phải tạo một cái nền thật chắc bằng cách co mạnh cơ khép và dùng các ngón chân bám lấy mặt đất.</p>
+<p>Hơn nữa, từ một thế đứng buông lỏng mà di chuyển nhanh và linh hoạt là điều hoàn toàn không thể. Nếu đoán trước mình sẽ phải di chuyển đột ngột, bạn nên &#8220;lên cò&#8221; thế đứng bằng cách hơi co nhẹ cơ mặt trong đùi. Việc ấy có tác dụng đặt tư thế của bạn vào trạng thái &#8220;cò súng nhạy&#8221;. Nhưng hãy nhớ: nếu cơ khép bị căng quá mạnh, bạn sẽ bị khóa cứng tại chỗ và không thể di chuyển nhanh được nữa.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-1.jpg" alt="Hình 7.1" loading="lazy"><figcaption><strong>Hình 7.1&#8211;7.4.</strong>Bốn thế đứng ngắn dùng sức căng vào trong, lần lượt là tấn mèo (cat stance), tấn móc (hook stance), tấn tam tài (sancai) và thế sanchin của karate. Mũi tên trên ảnh chỉ chỗ các cơ khép co lại để khóa lấy cái nền.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-2.jpg" alt="Hình 7.2" loading="lazy"><figcaption><strong>Hình 7.2.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-3.jpg" alt="Hình 7.3" loading="lazy"><figcaption><strong>Hình 7.3.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-4.jpg" alt="Hình 7.4" loading="lazy"><figcaption><strong>Hình 7.4.</strong></figcaption></div>
+<h3>Các Thế Đứng Dùng Sức Căng Ra Ngoài</h3>
+<p>Nếu thế đứng ngắn dùng sức căng vào trong, thì loại thế đứng nào dùng sức căng ra ngoài?</p>
+<p>Đúng rồi, <em>những thế đứng dài</em>. Bạn bắt đầu hiểu rồi đấy!</p>
+<p>Thế đứng trước, thế đứng sau và thế tọa mã đều là những ví dụ rất tốt về thế đứng dùng sức căng ra ngoài. Tuy thế đứng ngắn cho phép di chuyển nhanh hơn, thế đứng dài lại cho phép bạn đánh với sức mạnh lớn hơn. Lý do là đầu gối gập khá sâu và hai bàn chân dang rộng hơn, nhờ đó hạ thấp trọng tâm. Tuy nhiên, muốn tận dụng cái nền sức mạnh lớn hơn ấy, bạn phải dùng <em>đúng sức căng hướng ra ngoài</em>.</p>
+<p>Thế đứng trước (có nhiều tên gọi khác nhau tùy môn võ bạn theo học) đặt phần lớn trọng lượng cơ thể lên chân trước. Chân sau phải ấn xuống và đẩy ngược ra sau vào mặt đất, trong khi các ngón chân trước &#8220;quắp&#8221; lấy nền. Đầu gối chân trước nên nằm thẳng ngay phía trên các ngón chân (Hình 7.5).</p>
+<p>Thế đứng sau đặt hơn một nửa trọng lượng cơ thể lên chân sau, và chân ấy được căng ra ngoài. Các ngón chân trước bám lấy mặt đất (Hình 7.6). Thế tọa mã chia đều trọng lượng cơ thể lên cả hai chân. Hai chân hơi căng ra ngoài trong khi các ngón chân của cả hai bàn chân bấm xuống nền (Hình 7.7).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-5.jpg" alt="Hình 7.5" loading="lazy"><figcaption><strong>Hình 7.5, 7.6 và 7.7.</strong>Ba thế đứng dài dùng sức căng ra ngoài: thế đứng trước, thế đứng sau và thế tọa mã. Mũi tên trên ảnh chỉ hướng căng của hai chân.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-6.jpg" alt="Hình 7.6" loading="lazy"><figcaption><strong>Hình 7.6.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-7.jpg" alt="Hình 7.7" loading="lazy"><figcaption><strong>Hình 7.7.</strong></figcaption></div>
+<h3>Ngồi Thẳng!</h3>
+<p>Khi gập đầu gối và &#8220;ngồi&#8221; vào thế đứng, điều quan trọng là phải ngồi thẳng. Đừng để thân trên nghiêng về bất kỳ hướng nào. Nếu thân trên bị nghiêng, chân và hông bạn phải làm việc vất vả hơn để giữ cơ thể thẳng đứng, và sự toàn vẹn của thế đứng bị tổn hại (Hình 7.8 và 7.9).</p>
+<p>Đừng để mông nhô ra phía sau (Hình 7.10). Dù bạn có một vòng ba đẹp đến đâu, đối phương chắc cũng chẳng mấy ấn tượng, nên hãy kéo nó vào và giữ cho riêng mình. Vả lại, đứng kiểu ấy thì chân bạn &#8212; cụ thể là cơ tứ đầu đùi ở mặt trước đùi &#8212; phải làm việc nặng hơn nhiều để giữ bạn thẳng. Bạn mất vững và không thể tạo ra bao nhiêu sức mạnh.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-8.jpg" alt="Hình 7.8" loading="lazy"><figcaption><strong>Hình 7.8&#8211;7.10.</strong>Thân trên bị nghiêng làm cái nền mất vững (7.8 và 7.9); mông nhô ra phía sau (7.10).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-9.jpg" alt="Hình 7.9" loading="lazy"><figcaption><strong>Hình 7.9.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-10.jpg" alt="Hình 7.10" loading="lazy"><figcaption><strong>Hình 7.10.</strong></figcaption></div>
+<p>Lý tưởng nhất, đoạn dưới của chân chịu lực (từ đầu gối đến mắt cá) nên thẳng đứng hết mức có thể. Trọng lượng của bạn khi ấy sẽ dồn thẳng xuống đúng điểm ở lòng bàn chân gọi là <em>huyệt dũng tuyền</em> (yongquan point, Hình 7.11).</p>
+<p>Trong võ thuật Trung Hoa, người ta tin rằng chính qua điểm này mà người tập hút khí từ đất và bám rễ mình xuống đất. Cũng chính tại vùng ấy của lòng bàn chân mà con người tự nhiên giữ được thăng bằng. Nếu phần lớn trọng lượng của bạn đặt lên điểm này, bạn có thể duy trì một tư thế vững với nỗ lực tối thiểu. Ngược lại, chân càng lệch khỏi đường thẳng đứng thì thế đứng càng kém vững (Hình 7.12&#8211;7.14).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-11.jpg" alt="Hình 7.11" loading="lazy"><figcaption><strong>Hình 7.11&#8211;7.14.</strong>Huyệt dũng tuyền nằm ở lòng bàn chân (7.11), và ba thế đứng so sánh: chân càng lệch khỏi đường thẳng đứng thì cái nền càng kém vững (7.12&#8211;7.14).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-12.jpg" alt="Hình 7.12" loading="lazy"><figcaption><strong>Hình 7.12.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-13.jpg" alt="Hình 7.13" loading="lazy"><figcaption><strong>Hình 7.13.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-14.jpg" alt="Hình 7.14" loading="lazy"><figcaption><strong>Hình 7.14.</strong></figcaption></div>
+<h3>Kéo Căng Quá Mức Cơ Và Khớp</h3>
+<p><em>Wushu</em> đương đại là một loại hình biểu diễn thịnh hành, pha trộn thể dục dụng cụ, tuồng Trung Hoa và các tư thế võ thuật. Người biểu diễn thường làm cho màn diễn thêm kịch tính bằng những thế đứng rất thấp và rất duỗi; trông thì đẹp mắt, nhưng chứa rất ít sức mạnh thật. Vì sao? Là bởi vì:</p>
+<p><em>Một cơ chỉ sinh ra sức mạnh khi nó co lại.</em></p>
+<p>Vì thế, một cơ bị duỗi hoàn toàn thì yếu. Nếu nó không co lại, nó không thể sinh ra chút sức mạnh nào. Cho nên, nếu chân sau của thế đứng trước bị duỗi thẳng ra và đầu gối khóa cứng, bàn chân sau không thể ấn xuống sàn để tạo ra lực đánh cần thiết cho một cú đấm thật sự mạnh (Hình 7.15). Đó là lý do người tập hầu hết các môn võ truyền thống không bao giờ khóa thẳng đầu gối chân sau.</p>
+<p>Bàn chân trụ chỉ ấn xuống mặt đất trong một phần rất nhỏ của giây, sao cho thời gian lực đánh tác dụng lên huyệt hiểm của đối phương được rút ngắn tối đa. Việc này không dễ như nghe đâu. Cứ thử mà xem. Và nếu bạn chẳng hiểu tôi đang nói gì, bạn nên tìm một chuyên gia trị liệu trí nhớ trước khi quay lại đọc lại Chương 6.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-15.jpg" alt="Hình 7.15" loading="lazy"><figcaption><strong>Hình 7.15.</strong>Chân sau duỗi thẳng, đầu gối khóa cứng: bàn chân trụ không còn chỗ để ấn xuống và phát lực.</figcaption></div>
+<p>Luyện tập với thế đứng thấp có thể có lợi ở chỗ phát triển sức mạnh cho hông và chân, nhưng thế đứng thấp có rất ít giá trị trong giao đấu thật sự. Muốn di chuyển nhanh và mạnh, cơ chân và cơ hông phải có khả năng co lại rất đột ngột để nhấc trọng lượng cơ thể lên. Nếu thế đứng bị duỗi quá mức hoặc quá thấp, các cơ không thể co nhanh đủ để tạo ra động tác vừa nhanh vừa mạnh.</p>
+<p>Thêm vào đó, dồn quá nhiều áp lực lên đầu gối về lâu dài sẽ gây hại. Đứng với mông cao hơn đầu gối thì hiệu quả hơn nhiều (Hình 7.16).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig7-16.jpg" alt="Hình 7.16" loading="lazy"><figcaption><strong>Hình 7.16.</strong>Mông cao hơn đầu gối: các cơ vẫn sẵn sàng co lại đột ngột để nhấc cơ thể lên.</figcaption></div>
+</section>
+
+<section id="sec08">
+<h2>Chương 8: Tầm Quan Trọng Của Bước Chân</h2>
+<p>Dù bạn có luyện được một cú đấm như sấm sét hay một cú đá chấn động đất trời, thì nó cũng vô dụng nếu bạn không tài nào đánh trúng đối phương bằng nó. Để làm được việc đó, bạn phải làm chủ thế đứng và bước chân &#8212; hai mảng kiến thức sinh đôi thường bị các học trò mới tảng lờ, bởi họ thà dồn thời gian đấm đá túi bào cát cho đến khi bật cả bông ra. Hãy nhớ: túi bào cát chẳng bao giờ né tránh hay đấm trả bạn. Đối thủ thì có. Vậy nên, nếu muốn thực sự tung được các kỹ thuật của mình trong chiến đấu thật sự, trước hết bạn phải học cách đứng và di chuyển.</p>
+<h3>Bước Chân Là Gì?</h3>
+<p>Những kỹ thuật bước chân của võ thuật (trong tiếng Trung gọi là <em>bộ pháp</em>, bufa) nhằm hai mục đích cơ bản:</p>
+<p><em>Giúp bạn lẩn tránh đòn tấn công của đối phương;</em></p>
+<p><em>Cho phép bạn áp sát đối phương đủ gần để tung ra các kỹ thuật của chính mình một cách hiệu quả.</em></p>
+<p>Nói một cách cơ bản, bước chân là những gì diễn ra giữa hai thế đứng. Một số môn võ như Bát Quái Chưởng (baguazhang) và Yiliquan rất chú trọng việc lẩn tránh đòn của đối phương và đặt nhiều trọng tâm vào luyện tập các hình thức bộ pháp khác nhau. Thế nhưng, chỉ luyện riêng lẻ từng thế bước là không đủ. Bạn phải có thể di chuyển toàn thân như một khối thống nhất, với tốc độ và sự trôi chảy mà vẫn giữ thăng bằng hoàn hảo. Cách duy nhất để làm được điều đó là học cách di chuyển từ Đan Điền.</p>
+<h3>Đan Điền Là Gì?</h3>
+<p>Đan Điền (dantien; trong tiếng Nhật gọi là tanden) nằm cách rốn chừng ba đốt ngón tay về phía dưới và khoảng hai đốt ngón tay hướng vào trong. Dù một số thầy dạy bảo rằng đó là một điểm thực sự trên bề mặt da, thì thật ra nó giống như một quả cầu lấp đầy phần lớn ổ bụng dưới (Hình 8.1).</p>
+<p>Đây là nơi năng lượng sinh lực của cơ thể (khí, qi, hay ki) tụ hội, và cũng từ Đan Điền mà sinh lực ấy tuôn chảy ra để nuôi dưỡng và tiếp năng lượng cho toàn bộ cơ thể (đi vào và xuyên qua các kinh lạc châm cứu). Bàn luận về các học thuyết căn bản của y học cổ truyền Trung Hoa vượt quá phạm vi cuốn sách này, và bạn có tin vào khái niệm khí hay không cũng chẳng quan trọng. Điều quan trọng là bạn phải hiểu rằng Đan Điền chính là trung tâm vật lý của cơ thể con người, và mọi cử động đều phải bắt nguồn từ đó.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-1.jpg" alt="Hình 8.1" loading="lazy"><figcaption><strong>Hình 8.1.</strong>Vị trí Đan Điền trong ổ bụng dưới, cách rốn ba đốt ngón tay về phía dưới.</figcaption></div>
+<div class="key-takeaway"><p><strong>Striking the Wind (Đánh Trúng Làn Gió).</strong> Thầy của tôi, ông W.C. Chen, đang cố gắng giải thích tầm quan trọng của việc di chuyển toàn thân như một khối thống nhất. Ông chẳng mấy thành công. Tôi và các bạn cùng lớp thực sự không hiểu ông muốn chúng tôi làm gì, cũng chẳng rõ vì sao nó lại quan trọng đến thế. Bực mình gần như hết lời, Chen lầm bầm bảo tôi vào thế thủ thế đấu với ông. &#8220;Em tấn công thầy nhanh hết sức có thể,&#8221; ông nói. &#8220;Đánh thầy đi! Đấm, đá, bất cứ thứ gì em muốn.&#8221;</p>
+<p>Khi tôi giơ hai tay lên, Chen đứng thản nhiên với hai tay buông xuôi, cách tôi chưa tới 4 foot. Ông thư thái, nhưng tôi cảm thấy ánh mắt ông xuyên thấu vào tận linh hồn tôi.</p>
+<p>Ôi không&#8230; lần nào ông ấy làm thế này, tôi cũng bị thổi một trận. À, thôi vậy.</p>
+<p>Tôi lao lên với nhịp rock &#8217;n&#8217; roll tối đa, giáng cú đấm hay nhất thẳng vào cằm ông ấy.</p>
+<p>Nhưng ông ấy không ở đó. Ông dường như đã biến mất, và thay vì đứng trước mặt tôi, ông đứng sát bên cạnh tôi! Tôi mỉm cười. Ông ấy không.</p>
+<p>Ông ấy làm thế nào vậy?</p>
+<p>&#8220;Thử lại lần nữa,&#8221; Chen chỉ thị. &#8220;Lần này thực sự cố gắng nhé. Làm ơn!&#8221;</p>
+<p>Tôi thả lỏng, hít khí xuống tận ổ bụng. Các bạn cùng lớp vẫn hay bảo cú đá trước của tôi rất nhanh &#8212; nhanh đến mức họ hầu như chẳng kịp né. Tôi quyết định sẽ giáng vào ông bằng cú đá trước hay nhất của mình.</p>
+<p>Và tôi đã thử. Tôi thực sự đã thử. Nhưng ngay trước khi bàn chân tôi lẽ ra phải giáng trúng bụng ông ấy, tôi chợt nhận ra Chen lại đang đứng bên cạnh tôi, đang trừng mắt nhìn.</p>
+<p>&#8220;Giờ đến lượt thầy tấn công,&#8221; Chen nói. &#8220;Em phòng thủ, được không?&#8221;</p>
+<p>&#8220;Dạ, thưa thầy,&#8221; tôi đáp.</p>
+<div class="tr-note">Người dịch: trang quét p079 (tương ứng trang in 58) là một lá rút ngắn &#8212; phần trên cùng của trang in bị cắt khuyết trong bản scan. Đoạn nối từ lời thầy Chen &#8220;Giờ đến lượt thầy tấn công&#8221; sang câu &#8220;Em đã không phòng thủ&#8221; có thể thiếu một vài chữ tả cú tấn công; người dịch nối tiếp theo đúng mạch truyện mà không suy diễn thêm.</div>
+<p>&#8220;Em đã không phòng thủ,&#8221; ông quở tôi. &#8220;Làm ơn phòng thủ đi chứ.&#8221;</p>
+<p>Thế chẳng phải là tôi không định làm sao!</p>
+<p>Chúng tôi lại vào thế thủ. Tôi hình như thấy ông lão hơi dịch trọng tâm, nhưng khi tôi kịp đỡ đòn tấn công của ông thì mọi chuyện đã xong. Ông đứng trước mặt tôi, đã rút nắm đấm lại rất nhanh để khỏi đấm thủng luôn mặt tôi.</p>
+<p>&#8220;Các em phải học cách di chuyển từ đây,&#8221; Chen nói, vừa vỗ vỗ vào bụng dưới của mình. &#8220;Thế thì toàn thân mới chuyển động cùng một lúc. Nó làm cho cử động của thầy rất nhanh, rất mạnh. Các em không di chuyển theo cách ấy. Khi em tấn công, đầu em di chuyển trước, và thầy biết em sắp tới. Cử động của em quá chậm và rất yếu. Em chỉ đánh trúng không khí. Thầy di chuyển toàn thân cùng một lúc. Đến khi em thấy thầy tới, thầy đã ở đó rồi! Nếu thầy tấn công, em không thể phòng thủ.&#8221;</p>
+<p>Và thế là Chen bắt đầu dạy chúng tôi cách di chuyển từ Đan Điền. Lần này chúng tôi chăm chú lắng nghe và học được. Vậy nên, nếu bạn muốn làm được như Chen đã làm, thì hãy lắng nghe lời tôi.</p></div>
+<h3>Cách Di Chuyển Từ Đan Điền</h3>
+<p>Để di chuyển toàn thân như một khối thống nhất, bạn phải di chuyển từ trung tâm cơ thể mình. Nếu không làm thế, bạn sẽ bắt đầu cử động bằng cách nghiêng hoặc dịch chuyển từng phần riêng lẻ của thân trên hay thân dưới. Những cử động như thế thiếu một nền tảng vững chắc. Chúng rời rạc, mất thăng bằng và yếu ớt. Trong các môn võ nội gia (neijia) cổ điển, các chi không bao giờ cử động độc lập với phần còn lại của cơ thể; chúng vận động cùng với Đan Điền. Bằng cách ấy, sự toàn vẹn của toàn thân được duy trì và một sức mạnh lớn có thể được biểu lộ.</p>
+<p>Tôi dạy học trò cách đi bộ từ Đan Điền ngay từ những giai đoạn đầu của việc luyện tập. Sau đây là một vài bài tập căn bản minh họa rõ rệt tính hiệu quả của kiểu di chuyển này:</p>
+<h3>Bài Tập: Đi Bộ Từ Đan Điền</h3>
+<p>Bảo một bạn tập đứng cách bạn vài yard phía trước, duỗi thẳng một cánh tay, rồi đi bộ về phía người ấy một cách tự nhiên. Người ấy sẽ gồng cánh tay và cố ngăn đà tiến của bạn khi bạn đi vào lòng bàn tay của họ. Đừng gian lận mà nghiêng người vào họ. Giữ lưng thẳng và đi bình thường. Nhiều khả năng bạn sẽ bị chặn đứng ngay tại chỗ khi ngực bạn chạm vào lòng bàn tay của họ (Hình 8.2 và 8.3).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-2.jpg" alt="Hình 8.2" loading="lazy"><figcaption><strong>Hình 8.2 và 8.3.</strong>Bạn tập đứng chắn trước, duỗi thẳng một cánh tay; người tập đi bộ vào lòng bàn tay và bị chặn đứng.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-3.jpg" alt="Hình 8.3" loading="lazy"><figcaption><strong>Hình 8.3.</strong></figcaption></div>
+<p>Lý do bạn bị bạn tập cản trở cử động với nỗ lực tối thiểu là vì các phần cơ thể bạn không di chuyển cùng nhau dù chúng có kết nối vật lý. Bạn tập chỉ cần chặn cơ ngực đơn lẻ của bạn, và phần còn lại của cơ thể bạn cũng sẽ dừng theo. Họ có thể dùng sức kết hợp của lưng trên, ngực (cơ ngực) và cánh tay để đối chọi với sức của riêng một cơ ngực của bạn! Chẳng phải là một cuộc đối đầu quá chênh lệch sao?</p>
+<p>Khi bắt đầu lại, hãy áp mặt sau một bàn tay vào đuôi xương cụt (Hình 8.4). Đừng ngại chạm vào xương cụt; nó là của bạn mà. Khi bạn tiến lên, hãy đẩy nhẹ bằng tay như thể đang đẩy thẳng ra qua Đan Điền. Hơi co nhẹ cơ thắt hậu môn. Điều này giúp thống nhất thân dưới và thân trên của bạn. Khi bạn đi vào lòng bàn tay của bạn tập, bạn sẽ dễ dàng đẩy người ấy lùi lại và tiếp tục tiến lên. Hãy chắc rằng bạn không nghiêng người về phía trước. Giữ cột sống và cổ thẳng hàng khi bạn đẩy tới trên xương cụt của mình (Hình 8.5).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-4.jpg" alt="Hình 8.4" loading="lazy"><figcaption><strong>Hình 8.4 và 8.5.</strong>Đặt mặt sau bàn tay lên đuôi xương cụt và đẩy qua Đan Điền khi đi bộ; giữ cột sống và cổ thẳng hàng.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-5.jpg" alt="Hình 8.5" loading="lazy"><figcaption><strong>Hình 8.5.</strong></figcaption></div>
+<p>Đó là ý nghĩa của câu &#8220;di chuyển tiến lên xuyên qua lưng&#8221; mà Thái Cực Quyền (Taijiquan) đã nói tới. Bạn cũng có thể luyện đi lùi bằng cùng kỹ thuật này. Chỉ cần đặt lòng bàn tay lên Đan Điền và hơi đẩy lùi lại khi bạn lùi bước (Hình 8.6).</p>
+<p><em>(Ghi chú: Thái Cực Quyền (Taijiquan) là một tập hợp các văn bản thời kỳ đầu viết về môn võ này. Những lời dạy ấy, phần lớn do các thành viên gia tộc Dương (Yang) viết ra, đã được các môn đồ nội gia (neijia) dùng làm chuẩn mực suốt gần 200 năm qua.)</em></p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-6.jpg" alt="Hình 8.6" loading="lazy"><figcaption><strong>Hình 8.6.</strong>Đi lùi bằng cách đặt lòng bàn tay lên Đan Điền và hơi đẩy lùi nhẹ.</figcaption></div>
+<h3>Bài Tập: Chuyển Đổi Thế Đứng Từ Đan Điền</h3>
+<p>Một khi đã học cách di chuyển từ Đan Điền khi đi bộ, bạn phải học làm điều đó khi chuyển từ thế đứng này sang thế đứng khác. Điều quan trọng là bạn phải học cách di chuyển toàn thân &#8212; từ đỉnh đầu đến gan bàn chân &#8212; như một khối duy nhất.</p>
+<p>Nếu bạn có một tấm gương toàn thân, bạn có thể quan sát mình để đảm bảo rằng mình đang di chuyển toàn thân như một khối thống nhất. Nếu không có gương lớn, hãy tập trung vào cảm giác cử động của mình.</p>
+<p>Bắt đầu bằng một thế đứng trước. Khi bạn đưa chân sau lên một bước đầy đủ, hãy quan sát và cảm nhận sự di chuyển của cơ thể. Nếu bạn không di chuyển từ Đan Điền, bạn sẽ nhận ra rằng thân trên có xu hướng nghiêng hơi về phía trước trước khi bạn thực sự đưa chân lên (Hình 8.7 và 8.8).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-7.jpg" alt="Hình 8.7" loading="lazy"><figcaption><strong>Hình 8.7 và 8.8.</strong>Chuyển thế đứng; quan sát xem thân trên có nghiêng về phía trước trước khi đưa chân không.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-8.jpg" alt="Hình 8.8" loading="lazy"><figcaption><strong>Hình 8.8.</strong></figcaption></div>
+<p>Giờ đây, như trước, hãy đặt mặt sau một bàn tay lên chóp xương cụt. Khi bạn bắt đầu tiến lên, hãy đẩy về phía trước bằng mặt sau bàn tay và cảm nhận lực đi thẳng xuyên qua Đan Điền. Khi di chuyển, hãy hơi co cơ thắt hậu môn và đảm bảo xương cụt được hơi vểnh về phía trước. Điều này sẽ giúp bạn di chuyển đúng cách, và nếu bạn bắt đầu nghiêng người, bạn sẽ cảm nhận được ngay. Thăng bằng của bạn sẽ được tăng cường rất lớn và cử động của bạn sẽ mạnh mẽ hơn nhiều (Hình 8.9 và 8.10). Bài tập huấn luyện này cũng có thể tập cùng bạn tập theo cùng cách với bài đi bộ ở trên (Hình 8.11).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-9.jpg" alt="Hình 8.9" loading="lazy"><figcaption><strong>Hình 8.9, 8.10 và 8.11.</strong>Đặt tay sau lên xương cụt khi chuyển thế đứng; bài tập cũng có thể tập cùng bạn tập.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-10.jpg" alt="Hình 8.10" loading="lazy"><figcaption><strong>Hình 8.10.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig8-11.jpg" alt="Hình 8.11" loading="lazy"><figcaption><strong>Hình 8.11.</strong></figcaption></div>
+<h3>Những Lỗi Thường Gặp</h3>
+<p>Nhiều học trò có xu hướng nhìn chằm chằm vào chân mình khi học cách di chuyển từ Đan Điền. Đây là một lỗi nghiêm trọng vì hai lý do.</p>
+<p>Nhìn chân khi di chuyển sẽ làm hỏng sự thẳng hàng đúng của cột sống, khiến thế đứng mất ổn định và làm yếu đi cử động của bạn.</p>
+<p>Khi bạn cúi nhìn xuống, nó đóng vai trò như một loại phanh. Cơ thể bạn muốn dừng lại nhưng bạn lại ép nó phải di chuyển. Nếu ví với lái xe, thì khác nào đạp cả chân ga lẫn chân phanh cùng một lúc.</p>
+<h3>Vận Dụng Đan Điền Vào Đời Sống Hằng Ngày</h3>
+<p>Di chuyển từ Đan Điền phải trở thành một thói quen vô thức. Nó phải trở thành cách bạn vận động bình thường, và điều đó chỉ đạt được qua luyện tập đều đặn trong một thời gian dài.</p>
+<p>Dù đi bộ với tay áp lên xương cụt là một cách tập luyện tuyệt vời các bài tập này tại nhà hay tại võ đường, thì làm thế ở chốn công sở hay ngoài phố phường lại là một cách nhanh nhất và chắc chắn để tự sát về mặt nghề nghiệp lẫn xã hội!</p>
+<p>Thế nhưng, bạn nên tự kiểm tra mình nhiều lần trong ngày để đảm bảo mình đang di chuyển từ Đan Điền. Việc này dễ làm nếu bạn đã chú ý đến cảm giác của nó. Nếu thấy mình di chuyển chưa đúng, bạn có thể dùng một ngón tay ấn nhẹ vào Đan Điền như một lời nhắc nhở nhẹ nhàng. Quan trọng là phải học cách thực hiện mọi cử động từ Nhất Điểm (One-Point &#8212; một thuật ngữ khác chỉ Đan Điền) của bạn, dù là ngồi xuống, đứng lên, đi bộ, chạy hay bất kỳ cử động nào khác. Di chuyển theo cách này cho phép bạn vận động thật mạnh mẽ mà với căng thẳng thể chất tối thiểu.</p>
+<p>Hầu hết mọi người có xu hướng bật nhảy hoặc lắc lư khi đi bộ hay chạy. Câu châm ngôn cũ rích bảo bạn &#8220;hãy bước đi với một cái lò xo dưới gót chân&#8221; thực ra là một lời khuyên kinh khủng. Hãy xem điều gì xảy ra khi bạn tuân theo lời răn dạy ngu ngốc ấy. Trước hết, một chân phải tung trọng lượng cơ thể bạn lên không trung. Nếu bạn nặng, nói là, 180 pound, thì đó là một nỗ lực kha khá đấy! Chân kia phải bắt lấy trọng lượng ấy để ngăn bạn ngã sầm xuống đất, rồi lại tung nó lên và về phía trước để bạn có thể bước tiếp.</p>
+<p>Bạn không thể làm thế bằng tay, vì tay không đủ khỏe để tung và bắt 180 pound liên tục, nhưng chân và hông của bạn rất bền bỉ và chúng sẽ làm việc đó&#8230; một thời gian. Cuối cùng, chúng bắt đầu yếu đi và bạn thấy đau ở mắt cá, đầu gối, hông và/hoặc thắt lưng dưới. Nếu bạn cứ tiếp tục đi bộ theo cách ấy, bạn có thể về lâu dài làm hỏng một số xương, dây chằng và cơ bắp.</p>
+<p>Thế nhưng, khi bạn di chuyển từ Đan Điền, hông bạn không bật nhảy. Chúng trượt dài trên một mặt phẳng bằng phẳng. Đôi chân chẳng bao giờ phải bắt lấy hay tung trọng lượng của bạn; tất cả những gì chúng phải làm là đẩy khoảng 50 phần trăm trọng lượng cơ thể bạn tại bất kỳ thời điểm nào. Điều này giống như lăn một quả bóng lớn thay vì ném nó lên không rồi bắt lấy. Mắt cá, đầu gối, hông và thắt lưng dưới không bị căng thẳng quá mức, và các cử động của cơ thể cân bằng hơn, mượt mà hơn và nhanh hơn. Trong xã hội hiện đại, nơi chúng ta dành phần lớn cuộc đời để đứng, đi bộ hay chạy trên bê tông hay nhựa đường, đây là một điểm đáng cân nhắc.</p>
+</section>
+
+<section id="sec09">
+<h2>Chương 9: Dùng Cơ Thể Như Một Nắm Đấm</h2>
+<h3>Sư Tử, Hổ Và Gấu!</h3>
+<p>Suốt hàng trăm năm, con người đã tìm cách nâng cao kỹ năng chiến đấu của mình bằng cách bắt chước những chiến thuật mà các loài vật sử dụng. Chẳng hạn, hổ thường tiếp cận con mồi từ sườn và rồi vồ lấy bất ngờ từ &#8220;phía mù&#8221; của nạn nhân. Chim sếu dùng đôi cánh vỗ đập và làm phân tâm kẻ thù trước khi tấn công bằng mỏ và vuốt. Gấu nổi tiếng với sức mạnh khổng lồ; sư tử và hổ được tôn sùng vì sự nhanh nhẹn và hung hãn; còn rắn thì nổi tiếng với sự tập trung nhất điểm và tốc độ chớp nhoáng.</p>
+<p>Một số môn võ cố gắng thực sự bắt chước những cử động cơ thể của một số loài vật nhất định, và theo tôi, kiểu bắt chước ấy có một khiếm khuyết nghiêm trọng. Chẳng hạn, hổ có thể tạo ra sức mạnh khổng lồ bằng cách vồ từ ngoài vào trong bằng hai chân trước và vuốt, nhưng chúng không thể nâng một vật rất nặng bằng hai bàn chân trước, cũng chẳng thể tạo ra nhiều sức mạnh bằng cách vồ từ trong ra ngoài. Đó là vì chúng có xương đòn trôi nổi tự do, không khớp nối với các xương khác như ở con người. Cấu trúc đặc thù của con người cho phép chúng ta nâng những vật nặng và tung đòn theo đủ mọi hướng &#8212; những việc mà mèo và rắn không làm được.</p>
+<p>Khi con rắn tấn công, nó lao cả thân mình vào con mồi. Một khi đòn tấn công đã phát động, nó hoàn toàn mất kiểm soát bản thân. Bọ ngựa cũng y hệt như vậy. Loài khỉ sở hữu sức mạnh phần thân trên cực lớn, điều thiết yếu cho sự sinh tồn của chúng với tư cách những kẻ sống trên cây. Chim chóc như con sếu và đại bàng có những chiếc xương rỗng giúp chúng nhẹ đến mức đủ sức bay.</p>
+<p>Bạn không phải là kẻ sống trên cây, cũng chẳng thể bay. Dù bạn có luyện tập hay mơ mộng về điều đó đến đâu, bạn sẽ chẳng bao giờ có được sức mạnh phi thường của loài khỉ, sự nhẹ nhàng và nhanh nhẹn của con sếu, hay tốc độ chớp nhoáng của bọ ngựa. Bạn không được cấu tạo như những sinh vật ấy và sẽ chẳng bao giờ di chuyển được như chúng. Bạn là một con người và bạn vận động như một con người. Vì thế, điều thiết yếu là học cách tận dụng tối đa cấu trúc độc đáo của riêng con người bạn.</p>
+<h3>Tám Động Tác Cơ Thể</h3>
+<p>Bất kỳ cử động nào chúng ta thực hiện đều tạo ra lực, nhưng chỉ có tám cách để cơ thể con người có thể vận động và tạo ra chấn động. Tôi gọi những cách ấy là tám động tác cơ thể. Chúng là những cách chúng ta vận dụng các định luật vật lý và khoa học vận động học (kinesiology) để nâng cao hiệu quả của kỹ thuật, bằng cách tối đa hóa khối lượng được sử dụng trong mỗi kỹ thuật và di chuyển khối lượng ấy ở vận tốc cao nhất có thể. Điều này đạt được bằng cách học cách di chuyển Đan Điền theo nhiều cách khác nhau.</p>
+<p>Điều then chốt là bạn phải học cách đấm và đá bằng sức mạnh của toàn bộ cơ thể thay vì chỉ bằng cánh tay hay chân. Sức mạnh riêng lẻ của một chi nào đó không thể sản sinh ra nhiều uy lực. Mặt khác, tung đòn bằng sức mạnh của toàn thân lại tạo ra một sức mạnh kinh ngạc nhờ sự gia tăng khối lượng.</p>
+<p>Chúng ta sẽ xem xét tám động tác cơ thể sau đây, từng cái một:</p>
+<p><em>Xoay vòng cơ thể</em> (body rotation).</p>
+<p><em>Dịch chuyển cơ thể</em> (body shift).</p>
+<p><em>Lao cơ thể</em> (body throw).</p>
+<p><em>Rung động cơ thể</em> (body vibration).</p>
+<p><em>Nâng cơ thể</em> (body up).</p>
+<p><em>Hạ cơ thể</em> (body down).</p>
+<p><em>Xoay tròn cơ thể</em> (body circle).</p>
+<p><em>Vung roi cơ thể</em> (body whip).</p>
+<h3>Xoay Vòng Cơ Thể</h3>
+<p>Đây là động tác cơ thể đầu tiên và căn bản nhất được dạy cho các học trò mới, bởi nó tự nhiên và dễ thực hiện. Thật ra, nó rất giống với động tác cơ thể có trong cú ném bóng chày. Mục đích là xoay hông và eo 45 độ càng nhanh càng tốt.</p>
+<p>1. Bắt đầu bằng một thế đứng trước (forward stance), với rốn xoay vào trong 45 độ và cánh tay trước duỗi thẳng. Nắm đấm sau được giữ ở tư thế sẵn sàng tung đòn. Thân trên thả lỏng và chân sau hơi co (Hình 9-1).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-1.jpg" alt="Hình 9.1" loading="lazy"><figcaption><strong>Hình 9-1.</strong>Thế đứng trước với rốn xoay vào trong 45 độ, tay trước duỗi thẳng, nắm đấm sau ở tư thế sẵn sàng.</figcaption></div>
+<p>2. Co cơ thắt hậu môn lại trong khi siết chặt hai mông với nhau và ép chân sau cùng bàn chân sau xuống đất như một cái pít-tông. Điều này sẽ quật hông sau của bạn xoay lại sao cho rốn chỉ thẳng về trước trong lúc bạn tung một cú đấm thúc bằng nắm đấm sau (Hình 9-2). Giữ cho đầu gối trước hướng về mục tiêu.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-2.jpg" alt="Hình 9.2" loading="lazy"><figcaption><strong>Hình 9-2.</strong>Ép chân sau xuống đất để quật hông sau xoay lại, rốn hướng thẳng về trước khi tung đòn thúc bằng nắm đấm sau.</figcaption></div>
+<p>Đấm theo cách này thường được gọi là cú đấm thuận đảo (reverse punch), vì đòn được tung bằng nắm đấm sau (đảo ngược).</p>
+<p>Không chỉ riêng sự xoay của hông và eo mới sinh ra chấn động &#8212; mà là ở chỗ bạn có thể làm điều đó nhanh đến mức nào! Bạn càng làm nhanh, kết quả càng tốt.</p>
+<p>Bạn cũng phải vận dụng kiểu thở ngược (reverse breathing) khi di chuyển (xem Chương 10). Bạn thở ra càng nhanh, bạn sẽ di chuyển càng nhanh. Hãy thở ra hai phần ba hơi trong cơ thể càng nhanh càng tốt khi thực hiện kỹ thuật của mình. Luôn giữ lại một phần ba hơi thở để dành.</p>
+<p>Xoay ngược (reverse rotation) tức là xoay hông trước 45 độ. Nó thường được dùng để thực hiện các kỹ thuật như cú đấm thọc (jab) hay đòn chém cạnh tay ngang. Cách thực hiện như sau.</p>
+<p>1. Bắt đầu bằng một thế đứng trước, nhưng với rốn hướng thẳng về phía trước (Hình 9-3). Tay sau duỗi thẳng về trước và cánh tay trước được thu về sau để chuẩn bị cho một đòn chém cạnh tay (sword-hand strike).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-3.jpg" alt="Hình 9.3" loading="lazy"><figcaption><strong>Hình 9-3.</strong>Thế đứng trước với rốn hướng thẳng về trước, tay sau duỗi, tay trước thu về chuẩn bị chém cạnh tay.</figcaption></div>
+<p>2. Ép xuống bằng bàn chân trước và quật hông trước về phía trước để xoay rốn vào trong 45 độ trong lúc bạn chém ra ngoài bằng tay trước. Đừng để chân trước duỗi thẳng ra, và hãy chắc rằng hông của bạn không bị nhấc lên. Giữ chân sau ở tư thế co, và thực hiện động tác cơ thể này thông qua áp lực của bàn chân bạn lên mặt đất. Cũng như ở động tác xoay, thân dưới hầu như không di chuyển nhiều (Hình 9-4).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-4.jpg" alt="Hình 9.4" loading="lazy"><figcaption><strong>Hình 9-4.</strong>Xoay hông trước vào trong 45 độ khi chém cạnh tay; giữ chân sau co và không nhấc hông lên.</figcaption></div>
+<p>Xoay và xoay ngược được dùng trong việc thực hiện nhiều kỹ thuật thân trên cũng như một số kỹ thuật đá, chẳng hạn như cú đá vòng cầu (roundhouse kick).</p>
+<h3>Lỗi Thường Gặp: Xoay Vòng Cơ Thể</h3>
+<p>Đừng xoay hông quá xa, như minh họa ở Hình 9-5, và đừng bắt đầu với rốn hướng lệch 90 độ so với mục tiêu, như minh họa ở Hình 9-6. Một sự xoay lớn hơn 45 độ là quá mức và sẽ tạo ra hiệu ứng đẩy hơn là sinh ra chấn động.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-5.jpg" alt="Hình 9.5" loading="lazy"><figcaption><strong>Hình 9-5 và 9-6.</strong>Các lỗi: xoay hông quá xa (9-5) và bắt đầu với rốn lệch 90 độ so với mục tiêu (9-6).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-6.jpg" alt="Hình 9.6" loading="lazy"><figcaption><strong>Hình 9.6.</strong></figcaption></div>
+<p>Hãy cẩn thận đừng co cơ bụng vào trong. Cách thở bình thường bị phóng đại này sẽ ngăn bạn sử dụng sức mạnh thống nhất của thân trên và thân dưới, bởi nó tách rời và cô lập chúng.</p>
+<p>Đừng nhấc gót chân sau lên (Hình 9-7). Nếu bạn không nhớ tại sao, hãy quay lại đọc lại phần Những Lỗi Thường Gặp của Chương 5.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-7.jpg" alt="Hình 9.7" loading="lazy"><figcaption><strong>Hình 9-7.</strong>Lỗi: nhấc gót chân sau lên.</figcaption></div>
+<p>Đừng duỗi thẳng chân sau. Nhớ những gì tôi đã nói về điều đó ở Chương 7 chứ? Bạn phải chú ý, vì tất cả những chi tiết này đều khớp nối với nhau.</p>
+<p>Hãy cẩn thận để đầu gối trước của bạn đừng lay động. Nếu nó lay động, sự ổn định của bạn sẽ bị tổn hại và bạn có thể nói lời tạm biệt với sức mạnh của mình.</p>
+<h3>Dịch Chuyển Cơ Thể</h3>
+<p>Động tác cơ thể này hầu như chỉ được dùng cho việc đá. Ý tưởng là dịch chuyển hông và Đan Điền trực tiếp về phía mục tiêu. Một chút xoay hông cũng thường đi kèm.</p>
+<p>Khi thực hiện cú đá tạt trước (front snap kick), bàn chân chống &#8212; đồng thời cũng là chân đạp &#8212; ép xuống đất trong lúc hông bị đẩy hơi về phía trước, về mục tiêu. Hông của chân đá cũng sẽ xoay về phía trước (Hình 9-8).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-8.jpg" alt="Hình 9.8" loading="lazy"><figcaption><strong>Hình 9-8.</strong>Đá tạt trước: chân chống ép đất, hông và đùi chân đá hướng về mục tiêu.</figcaption></div>
+<p>Cú đá thúc trước (front thrust kick) dùng một cú đẩy hông mạnh hơn. Bạn không được đá chỉ bằng sức của riêng đôi chân. Hãy đá bằng toàn thân! (Xem Hình 9-9.)</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-9.jpg" alt="Hình 9.9" loading="lazy"><figcaption><strong>Hình 9-9.</strong>Đá thúc trước: thúc hông mạnh hơn, đá bằng toàn thân chứ không chỉ bằng chân.</figcaption></div>
+<p>Ở cú đá thúc ngang (side thrust kick), hông bị đẩy hất ra bên cạnh và có thể kèm theo một chút xoay (Hình 9-10).</p>
+<p>Cú đá thúc sau (back thrust kick) liên quan đến một cú đẩy hông hơi ra phía sau (Hình 9-11).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-10.jpg" alt="Hình 9.10" loading="lazy"><figcaption><strong>Hình 9-10 và 9-11.</strong>Đá thúc ngang (9-10) và đá thúc sau (9-11): hông đẩy sang bên hoặc hơi ra sau.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-11.jpg" alt="Hình 9.11" loading="lazy"><figcaption><strong>Hình 9.11.</strong></figcaption></div>
+<p>Cố gắng giữ đầu của bạn càng thẳng đứng càng tốt. Cơ thể bạn có xu hướng đi theo cái đầu. Nếu bạn ngả đầu ra sau, cơ thể bạn sẽ đi theo, và bạn có thể kết thúc nằm trên sàn trong khi đang cố nhớ tên mình.</p>
+<p>Trừ khi bạn đang thử sức cho đội cổ vũ, nếu không thì chớ, chớ bao giờ nhón lên trên mũi bàn chân chống khi thực hiện một cú đá. Nó có thể trông đẹp mắt và giúp bạn đá cao hơn, nhưng nếu bạn từng đá một đối thủ theo kiểu ấy, phản lực sinh ra sẽ khiến bạn mất thăng bằng, có thể mất luôn vài cái răng, và cả trận đấu.</p>
+<h3>Lỗi Thường Gặp: Dịch Chuyển Cơ Thể</h3>
+<p>Hãy cẩn thận đừng dịch hông quá xa theo hướng của cú đá. Điều này sẽ khiến thân trên của bạn &#8212; vốn chiếm một phần rất lớn khối lượng cơ thể &#8212; ngả ra xa khỏi cú đá. Kết quả là bạn sẽ tự húc chính mình ngã bật lại phía sau bằng chính lực của cú đá! (Xem Hình 9-12 và 9-13.)</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-12.jpg" alt="Hình 9.12" loading="lazy"><figcaption><strong>Hình 9-12 và 9-13.</strong>Lỗi dịch chuyển: đẩy hông quá xa theo hướng đá khiến thân trên ngả về sau.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-13.jpg" alt="Hình 9.13" loading="lazy"><figcaption><strong>Hình 9.13.</strong></figcaption></div>
+<h3>Lao Cơ Thể</h3>
+<p>Động tác cơ thể này được dùng để tung ra những cú thúc lao tới. Nó nói chung được xem là động tác cơ thể mạnh nhất, vì nó di chuyển nhiều khối lượng của bạn hơn bất kỳ động tác nào khác. Hầu hết các môn võ đấm đá (percussive) đều luyện tập một hình thức đấm lao nào đó, nhưng nó hiếm khi xuất hiện trong các trận đối luyện tự do (freestyle sparring). Nếu bạn hỏi tại sao, có lẽ bạn sẽ được bảo rằng kiểu cử động này đơn giản là quá chậm hay quá vụng về để dùng trong chiến đấu thực sự.</p>
+<p>Vô lý!</p>
+<p>Mọi thứ trong võ thuật truyền thống đều tồn tại vì một lý do. Nếu bạn không thể thực hiện cử động này đủ nhanh để dùng hiệu quả trong đối luyện, thì có lẽ là vì bạn đang làm sai. Vì thế, hãy chú ý.</p>
+<p>1. Bắt đầu bằng một thế đứng trước với cánh tay và nắm đấm trước duỗi thẳng (Hình 9-14).</p>
+<p>2. Nhanh chóng co các cơ thụt trong (adductors &#8212; cơ khép đùi) bằng một động tác siết lại để đưa chân sau lên phía trước càng nhanh càng tốt (Hình 9-15).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-14.jpg" alt="Hình 9.14" loading="lazy"><figcaption><strong>Hình 9-14 và 9-15.</strong>Thế đứng trước với tay trước duỗi thẳng (9-14); co cơ thụt trong đùi để kéo chân sau tới (9-15).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-15.jpg" alt="Hình 9.15" loading="lazy"><figcaption><strong>Hình 9.15.</strong></figcaption></div>
+<p>Bạn phải di chuyển từ Đan Điền của mình, như thể có ai đó đang đẩy vào xương cùng (sacrum) và xương cụt (coccyx) của bạn. Và, hãy nhớ, duy trì sự thẳng hàng của cột sống.</p>
+<p>3. Thả lỏng các cơ thụt trong trong lúc bạn ép chân sau xuống đất và tung một cú đấm lao tới. Hông đánh trúng nên xoay 45 độ về phía trước khi bạn thực hiện cú thúc hay đòn đánh của mình (Hình 9-16).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-16.jpg" alt="Hình 9.16" loading="lazy"><figcaption><strong>Hình 9-16.</strong>Lao đấm: hông xoay 45 độ về trước khi thúc đòn.</figcaption></div>
+<p>Đừng cố &#8220;nghĩ thông qua&#8221; từng giai đoạn của cử động này. Việc đó chỉ làm cản trở cử động của bạn. Đơn giản là siết-rồi-đẩy thôi! Hãy biến những hành động này thành một cử động duy nhất, liền mạch.</p>
+<p>Hãy phối hợp cử động của cơ thể bạn với một hơi thở bật ra bùng nổ, dùng kiểu thở ngược (xem Chương 10). Hãy chắc rằng bạn bắt đầu thở ra ngay từ đầu cử động, vì đó là lúc bạn cần luồng bùng nổ sức mạnh lớn nhất. Bạn phải vượt qua sức ỳ ban đầu của cơ thể đối với vận động (quán tính) và đẩy nó tới phía trước một cách thăng bằng, có kiểm soát. Với sự luyện tập, động tác này có thể được thực hiện với tốc độ nhanh đáng ngạc nhiên.</p>
+<h3>Lỗi Thường Gặp: Lao Cơ Thể</h3>
+<p>Đừng nghiêng người về phía trước dù chỉ một chút. Điều này đôi khi được gọi là &#8220;dẫn đầu bằng mặt mũi&#8221;.</p>
+<p>Tránh nhấc gót chân sau lên (Hình 9-17).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-17.jpg" alt="Hình 9.17" loading="lazy"><figcaption><strong>Hình 9-17.</strong>Lỗi lao thân: nhấc gót chân sau và các lỗi khác.</figcaption></div>
+<p>Đừng cúi đầu xuống. Hãy nhớ, cúi đầu xuống tức là &#8220;đạp phanh&#8221;.</p>
+<h3>Rung Động Cơ Thể</h3>
+<p>Động tác cơ thể rung động chỉ được dùng khi thực hiện các kỹ thuật va chạm bật ngược (snap-back impact), chẳng hạn như các đòn mu bàn tay (backfist). Hầu hết các môn sinh võ thuật chỉ ném những đòn ấy về phía đối thủ, dùng duy nhất sức mạnh của cánh tay và vai. Thế nhưng, bằng cách học cách dùng rung động cơ thể, bạn sẽ có thể tung ra một cú đánh nhanh như chớp, tận dụng sức mạnh của toàn bộ cơ thể.</p>
+<p>1. Bắt đầu bằng một thế đứng trước, với khuỷu tay trước và rốn hướng về phía mục tiêu, như thể đang chuẩn bị cho một đòn mu bàn tay ngang (Hình 9-18).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-18.jpg" alt="Hình 9.18" loading="lazy"><figcaption><strong>Hình 9-18.</strong>Thế chuẩn bị cho đòn mu bàn tay ngang, khuỷu trước và rốn hướng về mục tiêu.</figcaption></div>
+<p>2. Khi đòn bắt đầu và nắm đấm đi tới mục tiêu, hông trước xoay về phía trước (dùng xoay ngược) khoảng 30 độ.</p>
+<p>3. Ngay khoảnh khắc sau va chạm, hông trước bật ngược trở lại vị trí ban đầu, và nắm đấm cùng cẳng tay bật ngược về vị trí nguyên thủy. Trọng tâm đặt vào sự xoay ngược lại đột ngột và mạnh mẽ của hông. (Xem Hình 9-19 và 9-20.)</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-19.jpg" alt="Hình 9.19" loading="lazy"><figcaption><strong>Hình 9-19 và 9-20.</strong>Rung động: hông trước xoay tới rồi bật ngược lại ngay sau va chạm.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-20.jpg" alt="Hình 9.20" loading="lazy"><figcaption><strong>Hình 9.20.</strong></figcaption></div>
+<p>Hãy từ từ và học cách thực hiện cử động này cho đúng, dần dần tăng tốc độ khi bạn cảm thấy thoải mái hơn với nó. Khi cử động được thực hiện đúng và nhanh, hai hông dường như rung lên.</p>
+<h3>Lỗi Thường Gặp: Rung Động Cơ Thể</h3>
+<p>Các học trò mới thường gặp khó khăn khi học cách thực hiện động tác cơ thể này, vì họ xoay hông đánh trúng quá xa về phía trước, xoay sai hông về phía trước, hoặc đưa hông lệch hẳn sang một bên (Hình 9-21 và 9-22).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-21.jpg" alt="Hình 9.21" loading="lazy"><figcaption><strong>Hình 9-21 và 9-22.</strong>Lỗi rung động: xoay hông quá xa, xoay sai hông, hoặc đưa hông lệch sang một bên.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-22.jpg" alt="Hình 9.22" loading="lazy"><figcaption><strong>Hình 9.22.</strong></figcaption></div>
+<h3>Nâng Cơ Thể</h3>
+<p>Động tác cơ thể nâng được dùng cho các đòn đấm hay thúc đi lên, chẳng hạn như cú zuanquan (đấm móc, uppercut) của Hình Ý Quyền (xingyiquan).</p>
+<p>1. Bắt đầu bằng một thế đứng trước, nhưng hạ hông thấp hơn một chút so với bình thường.</p>
+<p>2. Khi bạn đấm hay thúc lên, hãy để hông nhích lên thẳng (Hình 9-23 và 9-24).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-23.jpg" alt="Hình 9.23" loading="lazy"><figcaption><strong>Hình 9-23 và 9-24.</strong>Nâng cơ thể: hông nhích lên thẳng khi đấm hay thúc lên.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-24.jpg" alt="Hình 9.24" loading="lazy"><figcaption><strong>Hình 9.24.</strong></figcaption></div>
+<h3>Lỗi Thường Gặp: Nâng Cơ Thể</h3>
+<p>Đừng duỗi thẳng chân hay vươn người lên, vì điều đó sẽ làm bạn mất thăng bằng và thực tế làm giảm sức mạnh đòn đấm (Hình 9-25). Cử động đi lên thực ra rất nhẹ.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-25.jpg" alt="Hình 9.25" loading="lazy"><figcaption><strong>Hình 9-25.</strong>Lỗi nâng: duỗi thẳng chân hoặc vươn người lên làm mất thăng bằng.</figcaption></div>
+<p>Đừng ngẩng cằm lên, vì điều đó sẽ làm hỏng sự thẳng hàng của đốt sống và làm yếu đi tư thế của bạn.</p>
+<h3>Hạ Cơ Thể</h3>
+<p>Động tác cơ thể hạ được dùng cho các đòn đánh được tung theo kiểu đi xuống.</p>
+<p>1. Bắt đầu bằng một thế đứng trước bình thường.</p>
+<p>2. Khi bạn đánh xuống, hãy hạ hông thấp xuống một chút và chìm thẳng xuống bằng cách chùng đầu gối (Hình 9-26 và 9-27).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-26.jpg" alt="Hình 9.26" loading="lazy"><figcaption><strong>Hình 9-26 và 9-27.</strong>Hạ cơ thể: hạ hông và chùng gối xuống khi đánh xuống.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-27.jpg" alt="Hình 9.27" loading="lazy"><figcaption><strong>Hình 9.27.</strong></figcaption></div>
+<h3>Lỗi Thường Gặp: Hạ Cơ Thể</h3>
+<p>Đừng cúi gập người tại eo, vì điều đó sẽ dẫn đến mất sức mạnh đòn đấm cũng như thăng bằng (Hình 9-28).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-28.jpg" alt="Hình 9.28" loading="lazy"><figcaption><strong>Hình 9-28.</strong>Lỗi hạ: cúi gập eo làm mất lực và thăng bằng.</figcaption></div>
+<p>Đừng nhảy lên rồi giáng sầm xuống mục tiêu. Kiểu cử động này hoàn toàn dựa vào đà. Mặc dù nó có thể giúp bạn đập vỡ vài viên gạch giòn trong các buổi biểu diễn, nhưng đây là một cử động cực kỳ chậm và rủi ro nếu dùng trong một cuộc xô xát thực sự.</p>
+<h3>Xoay Tròn Cơ Thể</h3>
+<p>Động tác xoay tròn được dùng để thực hiện các kỹ thuật quăng quật khác nhau, hoặc để tung một đòn đánh bằng hông. Nó được thực hiện hướng ra hai bên.</p>
+<p>Đan Điền được lăn hơi lên một bên khi hông đẩy hơi ra ngoài (Hình 9-29).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-29.jpg" alt="Hình 9.29" loading="lazy"><figcaption><strong>Hình 9-29.</strong>Xoay tròn: Đan Điền lăn nhẹ lên một bên khi hông đẩy hơi ra ngoài.</figcaption></div>
+<p>Hãy nhớ, Đan Điền giống như một quả cầu có thể lăn hay xoay theo bất kỳ hướng nào.</p>
+<h3>Vung Roi Cơ Thể</h3>
+<p>Động tác cơ thể vung roi (còn gọi là &#8220;lưng rồng&#8221;, dragon's back) được dùng để thực hiện các kỹ thuật thúc khác nhau.</p>
+<p>1. Rút vai lại như thể đang cố chạm hai bả vai vào nhau (Hình 9-30).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-30.jpg" alt="Hình 9.30" loading="lazy"><figcaption><strong>Hình 9-30.</strong>Vung roi: rút vai lại như muốn chạm hai bả vai.</figcaption></div>
+<p>2. Thúc hông và Đan Điền về phía trước để tạo ra một hiệu ứng sóng qua cột sống. Hành động này truyền đến hai vai, vốn đẩy hơi về phía trước khi cú thúc được thực hiện (Hình 9-31 và 9-32).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-31.jpg" alt="Hình 9.31" loading="lazy"><figcaption><strong>Hình 9-31 và 9-32.</strong>Vung roi: thúc hông và Đan Điền tới tạo sóng qua cột sống truyền lên vai.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-32.jpg" alt="Hình 9.32" loading="lazy"><figcaption><strong>Hình 9.32.</strong></figcaption></div>
+<p>Khi bạn đánh bằng một tay và vận dụng động tác cơ thể vung roi, thì động tác cơ thể căn bản là xoay vòng cũng được huy động. Hông đánh trúng xoay 45 độ về phía trước trong lúc cột sống quật tới. Hình 9-33 minh họa thế piquan của Hình Ý Quyền (thế thường đánh bằng cạnh ngoài lòng bàn tay) đang dùng động tác cơ thể vung roi.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig9-33.jpg" alt="Hình 9.33" loading="lazy"><figcaption><strong>Hình 9-33.</strong>Thế piquan của Hình Ý Quyền dùng động tác vung roi, hông xoay 45 độ khi cột sống quật tới.</figcaption></div>
+</section>
+
+<section id="sec10">
+<h2>Chương 10: Những Bí Mật Của Hơi Thở</h2>
+<h3>Hơi Thở Và Võ Thuật</h3>
+<p>Những học trò mới bắt đầu thường chỉ tỏ ra hờ hững tối thiểu với việc luyện các kỹ thuật thở đặc biệt. Họ muốn đi thẳng vào &#8220;phần thịt&#8221; của vấn đề và học cách đấm, đá, cùng luyện các bài tập chiến đấu. Họ không hiểu rằng hơi thở đúng là yếu tố thiết yếu để thực thi và vận dụng mọi kỹ thuật một cách hiệu quả. Một câu ngạn ngữ cổ của Thiếu Lâm (Shao-lin) dạy rằng: &#8220;Ai biết sức mạnh thì cũng biết hơi thở.&#8221;</p>
+<p>Về điểm này, chúng ta đang nói đến sức mạnh thật sự chứ không phải thứ trông có vẻ mạnh. Vậy nên, đừng chỉ lướt qua chương này, bởi nó thực sự chứa đựng một số thông tin quan trọng nhất trong toàn bộ cuốn sách.</p>
+<p>Các kỹ thuật thở đặc biệt được dùng trong luyện tập võ thuật truyền thống không phải lúc nào cũng được dạy công khai. Nhiều thầy võ đã nắm giữ tri thức này một cách đầy ghen tị, bởi nó mang lại cho họ một lợi thế rất thực tế trước bất kỳ ai từng giao đấu quyền cước hay gươm kiếm. Thế nhưng, theo thời gian, những kỹ thuật bí truyền ấy rốt cuộc đã bị bộc lộ và được dạy công khai trong nhiều môn phái chiến đấu.</p>
+<p>Đáng tiếc thay, chỉ trong vài ba thế hệ, nhiều người luyện võ đã vứt bỏ kho báu vĩ đại này. Họ không thích việc luyện những bài tập thở rề rà, mà thay vào đó chỉ chăm chú vào luyện những kỹ thuật thân thể hào hứng hơn như đấm, đá và chém. Những kỹ thuật thở đặc biệt từng được coi là một khía cạnh thiết yếu của việc huấn luyện đã bị lãng quên và cuối cùng bị quên hẳn mất.</p>
+<p>May mắn cho chúng ta, một số ít người tận tụy vẫn tiếp tục tập luyện những bài tập ít người biết này, và những lời dạy cổ xưa đã được bảo tồn. Đấy là cách những kỹ thuật ấy lại trở thành &#8220;bí mật&#8221; một lần nữa; chỉ có một vài người nhớ tới chúng mà thôi!</p>
+<p>Những lưu phái karate như Goju-ryu và Uechi-ryu, cũng như vô số hình thức quyền thuật (kung-fu), đều nhấn mạnh tầm quan trọng của việc học thở cho đúng cách. Dù sao đi nữa, hơi thở ảnh hưởng đến mọi khía cạnh trong đời sống chúng ta. Sự ổn định, tốc độ, thăng bằng, sự thống nhất cơ thể và việc duy trì sức khỏe đều chịu tác động mạnh mẽ và được tăng cường bởi hơi thở đúng.</p>
+<h3>Hơi Thở Và Sự Ổn Định</h3>
+<p>Bất kể khi bạn thi triển một kỹ thuật &#8212; dù là một cú đấm, một cú đá, hay một kỹ thuật vật (grappling) &#8212; sự kiểm soát hơi thở đều đóng vai trò then chốt. Nó mang lại sự ổn định cho cơ thể, cũng như tốc độ và uy lực của kỹ thuật. Thiếu đi những yếu tố quan trọng ấy, kỹ thuật chẳng khác gì việc bạn vung vẩy tay chân giữa không trung.</p>
+<p>Bạn biết rằng một nền tảng vững chắc là điều tuyệt đối thiết yếu để thi triển những kỹ thuật mạnh mẽ, phải không? Thiếu một căn gốc vững, ngay cả người đàn ông khỏe nhất thế giới cũng trở nên bất lực. Hơi thở đúng bảo đảm sự thăng bằng được duy trì xuyên suốt quá trình thi triển kỹ thuật của bạn. Nó làm vững thế đứng và khắc căn bạn xuống đất.</p>
+<p>Hạ trọng tâm xuống sẽ tăng cường sự ổn định của bạn, nhờ đó các kỹ thuật có thể được tung ra với uy lực lớn hơn. Thế nhưng, nhiều người say mê võ thuật dường như bám vào triết lý &#8220;nhiều thì tốt hơn&#8221;. Họ cúi rạp xuống thấp đến mức trông như đang cố dùng bô xí xổm ở một xó xỉnh thế giới thứ ba! Điều đó không chỉ ngớ ngẩn và vô ích; nó còn nguy hiểm nếu xét trong việc tập luyện chiến đấu thật sự (tôi đang ám chỉ việc đứng với thế tấn quá thấp, chứ không phải chuyện dùng bô xí xổm&#8230; dù rằng việc ấy cũng có thể rủi ro). Hạ thế tấn xuống một chút có thể tăng cường sự ổn định của bạn ở mức độ nào đó, nhưng mông không bao giờ được ngang bằng hay thấp hơn đầu gối.</p>
+<p>Chẳng có lý do gì để hạ thế tấn xuống những mức độ lố bịch chỉ để chìm trọng tâm; điều tương tự có thể đạt được qua hơi thở đúng. Thật vậy, kỹ thuật thở đúng sẽ giúp bạn hạ trọng tâm xuống thấp hơn cả mặt đất! Đấy là ý nghĩa thật sự của việc &#8220;khắc căn&#8221;. Rễ cây mọc bên dưới mặt đất, chứ không phải bên trên nó. Nếu thế tấn của bạn thực sự khắc căn, trọng tâm của bạn sẽ rơi xuống dưới mặt đất và tạo nên một nền tảng cực kỳ vững chắc, từ đó bạn có thể phát ra những kỹ thuật cực mạnh (Hình 10-1).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-1.jpg" alt="Hình 10.1" loading="lazy"><figcaption><strong>Hình 10-1.</strong>Thế tấn thực sự khắc căn: trọng tâm hạ thấp xuống dưới mặt đất, tạo nền tảng vững chắc để phát ra các kỹ thuật cực mạnh.</figcaption></div>
+<h3>Hơi Thở Và Tốc Độ</h3>
+<p>Nếu chúng ta so việc thi triển một kỹ thuật xung kích với sự phóng ra bùng nổ của một loại súng, thì nắm đấm hay bàn chân chính là viên đạn, còn hơi thở là thuốc súng đẩy nó đi. Thiếu đi sức công phá bùng nổ của thuốc súng, viên đạn vô dụng chẳng khác gì một viên sỏi.</p>
+<p>Một số học trò kêu lên những tiếng rít nhỏ khi đánh. Điều đó có thể ví với việc khai hỏa một viên đạn cỡ .22 nhỏ bé. Trong nhiều môn võ thuật truyền thống, hơi thở ra mạnh bùng hơn nhiều và có thể ví với việc bắn một viên đạn lớn hơn nhiều. Kỹ thuật của họ có thể tàn phá đến mức chỉ một đòn duy nhất cũng đủ để kết thúc cuộc xung đột.</p>
+<p>Cơ thể con người hoạt động như một cỗ máy được cấp năng lượng bởi một chiếc bễ (bellows). Lượng không khí bơm qua nó càng lớn, cơ thể càng sinh ra được nhiều sức mạnh. Và không khí được bơm qua nó càng nhanh, cơ thể sẽ càng di chuyển nhanh hơn. Đấy là lý do chúng ta nhấn mạnh rằng bạn phải thở ra hai phần ba hơi thở trong khoảng một tiếng súng nổ. BÙM, và mọi chuyện kết thúc! Hai phần ba hơi thở của bạn được tống ra gần như tức thời!</p>
+<p>Hãy nhớ rằng tốc độ chính là sức mạnh. Viên đạn cỡ .223 thực ra chỉ là viên .22 được tiếp thêm một liều thuốc súng lớn. Nó bay với vận tốc cực cao và, dù nhỏ hơn nhiều loại đạn súng trường khác, nó vẫn có khả năng gây ra những tổn hại khủng khiếp cho mục tiêu nhờ tạo ra cú sốc thủy tĩnh (hydrostatic shock) khi va chạm. Nếu bạn muốn kỹ thuật của mình (viên đạn) bay với vận tốc cực cao nhằm tạo ra sức công phá tối đa, bạn phải huấn luyện hơi thở (thuốc súng) của mình.</p>
+<h3>Hơi Thở Và Sự Thống Nhất Cơ Thể</h3>
+<p>Bên cạnh việc mang lại sự ổn định lớn hơn và tăng tốc độ cho các kỹ thuật, hơi thở còn được dùng để thích ứng với một định luật vật lý khác. Định luật này nói rằng: càng đưa được nhiều khối lượng vào việc thi triển một kỹ thuật, kỹ thuật ấy càng mạnh (F = ma, bạn còn nhớ chứ?).</p>
+<p>Hơi thở đúng củng cố những kết nối cơ bắp nhất định chạy giữa thân trên và thân dưới. Điều này cho phép chúng ta vận dụng sức mạnh và khối lượng của toàn bộ cơ thể, thay vì chỉ dùng sức của từng chi riêng lẻ.</p>
+<h3>Hơi Thở Và Việc Duy Trì Sức Khỏe</h3>
+<p>Ai cũng biết hơi thở là thiết yếu để duy trì sự sống. Thế nhưng, không khí chúng ta hít vào không chỉ cung cấp những thành phần vật lý cần thiết (như oxy) để duy trì sự sống, mà còn có khí (qi, nội năng).</p>
+<p>Tôi tin rằng một trong những nguyên nhân góp phần vào quá trình lão hóa và sự suy giảm sức khỏe tổng thể đi kèm chính là việc không thở cho đúng cách. Một số phương thức tập luyện cổ xưa, như môn Bát Đoạn Cẩm (baduanjin, &#8220;Tám Mảnh Gấm&#8221;), dùng hơi thở để xoa bóp các tạng phủ và các mô nội tạng khác, giữ cho chúng vận hành ở trạng thái tối ưu.</p>
+<h3>Hơi Thở Và Sự Dễ Bị Tổn Thương</h3>
+<p>Hơi thở cũng đóng vai trò then chốt trong việc xác định lúc nào bạn và đối phương dễ bị tổn thương nhất trước một cuộc tấn công bất ngờ. Trong lúc hít vào và, ở mức độ thấp hơn, bất cứ khi nào hơi thở bị ngưng, thời gian phản ứng của một người bị kéo dài và khả năng kháng lại lực của anh ta bị giảm sút đáng kể. Đây là thông tin cực kỳ quan trọng đối với những người luyện võ thuật; bạn phải luôn nỗ lực đánh trúng đối phương khi hắn đang hít vào hoặc khi hơi thở hắn đang ngưng! Điều đó đòi hỏi một sự nhịp nhàng cực tinh tế và rất nhiều luyện tập.</p>
+<p>Đồng thời, bạn phải học cách &#8220;giấu hơi thở&#8221; để đối phương không thể dễ dàng xác định lúc nào bạn dễ bị tổn thương nhất. Điều này không dễ làm, nhất là khi tình hình căng thẳng, ván bài đã ngã ngũ, và bạn đang thở dốc. Thế nhưng, nếu bạn tập luyện để vận dụng thở nghịch (xem phần tiếp theo) trong những tình huống căng thẳng, bạn sẽ có thể ổn định hơi thở rất nhanh.</p>
+<h3>Các Hình Thức Thở Cơ Bản</h3>
+<p>Trong các môn nội gia (neijia) truyền thống của Trung Hoa, người ta dạy ba hình thức thở: thở bình thường, thở nghịch (reverse breathing) và thở đảo (inverse breathing). Trong chương này, chúng ta sẽ bàn về hai hình thức thở đầu tiên. Thở đảo chỉ được dạy cho những học trò cao cấp và sẽ được trình bày trong một tập sau.</p>
+<h3>Thở Bình Thường So Với Thở Nghịch</h3>
+<p>Rất nhiều võ đường ngày nay vận dụng cái gọi là thở bình thường. Đấy là cách hầu hết mọi người thở &#8212; nên mới có cái tên ấy. Trong thở bình thường, bụng dưới phình ra nhẹ khi hít vào rồi co lại khi thở ra (Hình 10-2 và 10-3). Khi những người luyện võ thuật vận dụng hình thức thở này, họ thở ra bằng miệng và mạnh mẽ co cơ bụng. Đó có phải là cách bạn làm không? Nếu đúng thế, thì thôi đừng làm nữa!</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-2.jpg" alt="Hình 10.2" loading="lazy"><figcaption><strong>Hình 10-2 và 10-3.</strong>Thở bình thường: bụng dưới phình nhẹ khi hít vào và co lại khi thở ra; người luyện thở ra bằng miệng và mạnh mẽ co cơ bụng.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-3.jpg" alt="Hình 10.3" loading="lazy"><figcaption><strong>Hình 10.3.</strong></figcaption></div>
+<p>Thở bình thường thực ra làm yếu kỹ thuật của bạn, bởi sự co cơ bụng có tác dụng phá hoại những kết nối cơ bắp chạy giữa thân trên và thân dưới. Sức mạnh của thân trên bị tách rời khỏi sức mạnh của thân dưới, và bạn trở nên như một cái bánh vòng (doughnut). Bạn có sức ở các chi nhưng chẳng có gì ở giữa. Thở bình thường tước đoạt của bạn quyền năng của Đan Điền (dantien) và sức mạnh trọn vẹn của các cơ bụng cùng thắt lưng dưới.</p>
+<h3>Thở Nghịch</h3>
+<p>Thở nghịch là một trong những bí mật của các môn võ thuật nội gia, dù nó từng được nhiều môn ngoại gia (external arts) sử dụng phổ biến. Kỹ thuật thở độc đáo này vận động bụng theo cách trái ngược với thở bình thường &#8212; nên mới có cái tên ấy. Thở nghịch củng cố các kết nối cơ bắp giữa thân trên và thân dưới, nhờ đó sức mạnh của toàn bộ cơ thể có thể được tập trung vào bất kỳ cử động nào.</p>
+<h3>Cách Thực Hiện Thở Nghịch</h3>
+<p>1. Hít vào bằng mũi và hơi co bụng. Đừng phình ngực hay nhấc vai (Hình 10-4).</p>
+<p>2. Khi thở ra bằng miệng, hãy phình bụng dưới ra ngoài, cùng với phần trước, hai bên sườn và thắt lưng dưới (Hình 10-5). Hơi co cơ thắt hậu môn và vểnh xương cụt về phía trước và hướng lên.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-4.jpg" alt="Hình 10.4" loading="lazy"><figcaption><strong>Hình 10-4 và 10-5.</strong>Thở nghịch: hít vào bằng mũi và hơi co bụng (10-4); thở ra bằng miệng, phình bụng dưới cùng phần trước, hai bên sườn và thắt lưng dưới, hơi co thắt hậu môn và vểnh xương cụt (10-5).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-5.jpg" alt="Hình 10.5" loading="lazy"><figcaption><strong>Hình 10.5.</strong></figcaption></div>
+<h3>Thở Nghịch Và Sức Mạnh</h3>
+<p>Thở nghịch không chỉ giới hạn trong việc vận dụng kỹ thuật võ thuật. Bất cứ khi nào bạn cần phát sức để nâng, đẩy, hay kéo một vật nặng &#8212; chẳng hạn như thế &#8212; bạn đều có thể dùng thở nghịch để tăng sức mạnh của mình. Sức mạnh thể chất của bạn sẽ được tăng gấp đôi (ít nhất là thế) ngay lần đầu bạn thử nó.</p>
+<p>Khi bạn đang phát ra nhiều sức mạnh thể chất, bạn nên thở ra chậm, phù hợp với tốc độ cử động của mình.</p>
+<h3>Để Phục Vụ Và Bảo Vệ</h3>
+<p>Thở nghịch cũng là một phần của giai đoạn đầu trong việc phát triển áo giáp sắt (iron shirt) huyền thoại, một kỹ thuật đặc biệt vận dụng sinh lực (khí, qi) của một người để bảo vệ cơ thể. Sau khi bạn đã tập thở nghịch chừng một năm trở lên, bạn sẽ thấy rằng bất cứ khi nào thở ra, cơ thể bạn đều kháng cự rất mạnh trước những đòn đánh của đối phương. Điều này là vì thở nghịch kích thích dòng chảy năng lượng trong các kinh mạch (châm cứu) và toàn bộ các mô nội tạng của cơ thể.</p>
+<p>Thêm vào đó, thở nghịch sinh ra một dòng khí mạnh mẽ dù bạn có thể chưa từng luyện bất kỳ hình thức Khí Công (qigong) đặc biệt nào một cách đều đặn. Hãy thử những bài tập đơn giản được mô tả ở đây, như những bài tập.</p>
+<h3>Bài Tập: Tư Thế Bất Động</h3>
+<p>Đứng tự nhiên với hai tay buông xuôi bên hông. Bạn tập nên đứng sau bạn và đặt hai tay vào nách bạn. Bảo anh ấy nâng bạn thẳng lên để anh ấy cảm nhận được trọng lượng thật sự của bạn. Hãy chắc rằng anh ấy nâng bằng chân và không làm bạn mất thăng bằng.</p>
+<p>Khi anh ấy cố nâng bạn lần thứ hai, hãy thở ra mạnh mẽ bằng thở nghịch. Bạn sẽ thấy kỹ thuật đơn giản này làm tăng đáng kể khả năng khắc căn xuống đất của bạn (Hình 10-6).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-6.jpg" alt="Hình 10.6" loading="lazy"><figcaption><strong>Hình 10-6.</strong>Bài tập Tư Thế Bất Động: bạn tập đứng sau, đặt tay vào nách và nâng bạn thẳng lên; khi nâng lần hai, bạn thở nghịch mạnh mẽ để tăng khả năng khắc căn.</figcaption></div>
+<h3>Bài Tập: Kháng Đỡ Đòn Đánh</h3>
+<p>Đứng vào thế tọa mã (horse-riding stance). Để bạn tập dùng cẳng tay đánh vào bụng bạn trong lúc bạn thực hiện một hơi thở nghịch mạnh (Hình 10-7). Bạn sẽ thấy những cú đánh của anh ấy có xu hướng bật ra với rất ít hoặc chẳng có chút khó chịu nào, và bạn dễ dàng duy trì được thăng bằng. Hãy bắt đầu bằng những cú đánh nhẹ, rồi, qua vài tuần và vài tháng, cho bạn tập từ từ tăng dần sức mạnh của những cú đánh.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig10-7.jpg" alt="Hình 10.7" loading="lazy"><figcaption><strong>Hình 10-7.</strong>Bài tập Kháng Đỡ Đòn Đánh: đứng thế tọa mã, bạn tập dùng cẳng tay đánh vào bụng bạn khi bạn thở nghịch mạnh.</figcaption></div>
+<h3>Ổn Định Hơi Thở Và Tâm Trí</h3>
+<p>Khi bạn đã vận sức mạnh mẽ và đang thở dốc, bạn có thể dễ dàng và nhanh chóng ổn định nhịp thở bằng cách thực hiện ba hoặc bốn hơi thở nghịch thật chậm và dứt khoát.</p>
+<p>Khi bạn cảm thấy căng thẳng về mặt tinh thần, bối rối, hay sợ hãi, hãy dành thời gian thực hiện vài hơi thở nghịch dài và mạnh mẽ. Bạn sẽ thấy bình tĩnh hơn, thư giãn hơn, và tập trung tâm trí vào việc đang làm tốt hơn.</p>
+<h3>Công Dụng Thực Sự Của Thắt Lưng</h3>
+<p>Bạn có biết rằng chiếc thắt lưng hay đai mà bạn quấn quanh eo khi mặc võ phục karate hay quyền thuật (kung-fu) thực ra có một công dụng huấn luyện cụ thể không? Trước khi được dùng để phân định cấp bậc, thắt lưng và đai từng được đeo để giúp học trò học thở cho đúng cách.</p>
+<p>Khi thở ra bằng một hơi thở nghịch mạnh, người tập có thể cảm nhận bụng phình ra và ép vào thắt lưng hay đai được quấn chặt quanh eo. Những người tập karate thường buộc nút của obi (thắt lưng karate) ngay trên Đan Điền để tăng cường thêm cảm giác ấy. Các môn đồ quyền thuật thường đeo một chiếc thắt lưng cotton mỏng bên dưới quần áo thường nhật vì cùng một lý do.</p>
+<h3>Ý Nghĩa Thực Sự Của Sự Thăng Bằng</h3>
+<p>Khả năng khắc căn vững chắc là thước đo tốt cho uy lực võ thuật thật sự của bạn. Không một chút chạy bộ hay tạ tập nào có thể giúp ích trong việc phát triển kỹ năng đặc biệt này. Chỉ có luyện tập đúng cách, lặp đi lặp lại và đều đặn mới gieo trồng được nó. Thiếu một căn gốc vững, các kỹ thuật của bạn sẽ chẳng có sức mạnh thật sự và cử động của bạn sẽ mất thăng bằng, vụng về, và yếu ớt.</p>
+<p>Tất cả đều liên quan đến sự thăng bằng. Trong võ thuật truyền thống, từ &#8220;thăng bằng&#8221; không chỉ chỉ sự thăng bằng thể chất, mà còn chỉ sự ổn định tinh thần. Cái trước ám chỉ sự cân bằng của cơ thể, còn cái sau ám chỉ sự cân bằng của tâm trí. Nếu bạn vấp ngã hay lảo đảo, chúng ta sẽ nói rằng bạn đã mất thăng bằng thể chất. Nếu bạn trở nên rất bối rối, cực kỳ sợ hãi, hoảng loạn, hay cuồng loạn (hysterical), chúng ta sẽ nói rằng thăng bằng tinh thần của bạn đã bị trục trặc.</p>
+<p>Hai hình thức thăng bằng này có liên quan và phụ thuộc lẫn nhau. Mất đi một cái tất yếu dẫn đến mất đi cái kia. Chẳng hạn, khi bạn vấp ngã và bắt đầu ngã, bạn trở nên sợ hãi. Đây là một ví dụ về việc mất thăng bằng thể chất gây ra mất thăng bằng tinh thần. Nếu bạn đột ngột sợ hãi, đôi chân bạn có thể trở nên yếu ớt và toàn thân cảm thấy rã rời. Đây là một ví dụ về việc mất thăng bằng tinh thần dẫn đến mất thăng bằng thể chất.</p>
+<p>Khi một loại thăng bằng được duy trì, hình thức kia cũng được nâng đỡ tương ứng. Chẳng hạn, khi bạn vững vàng về thể chất và cảm thấy mình đang đứng trên một nền móng vững chắc, tâm trí bạn trở nên sáng suốt và thần khí bình tĩnh. Khi bạn cảm thấy tự tin và an toàn về mặt tinh thần, cơ thể bạn cũng được thăng bằng vững chắc và cử động chắc chắn, mạnh mẽ.</p>
+<h3>Mối Quan Hệ Giữa Hơi Thở Và Sự Thăng Bằng</h3>
+<p>Thăng bằng thể chất và tinh thần bị mất hay được duy trì cùng nhau, và cả hai trạng thái &#8212; mất thăng bằng thể chất và mất thăng bằng tinh thần &#8212; đều luôn đi kèm với sự mất hơi thở!</p>
+<p>Khi bạn thở hổn hển, khi hơi thở của bạn nông và cao ở ngực, thăng bằng của bạn dễ dàng bị mất. Chẳng hạn, bạn có lẽ thở hổn hển khi vấp ngã và bắt đầu ngã. Khi bạn đột ngột sợ hãi hay giật mình, bạn cũng làm y hệt như thế. Sự mất đi hơi thở đúng này cắt đứt khả năng duy trì một căn gốc vững và giữ thăng bằng đúng đắn của cả thân thể lẫn tâm trí.</p>
+<p>Nhiều năm về trước, một nghiên cứu về hiện tượng này đã được một số nhà tâm lý học thực hiện. Họ xác định rằng những trạng thái tinh thần như hoảng loạn và cuồng loạn (hysteria) luôn đi kèm với hơi thở nông, cao. Họ phát hiện rằng khi hơi thở được giữ thấp ở bụng, thì về mặt sinh lý không thể nào trở nên cuồng loạn hay hoảng sợ được! Trong võ thuật truyền thống, học trò được dạy thực hiện một hơi thở nghịch mạnh nếu cảm thấy sắp mất thăng bằng thể chất hay tinh thần. Thở theo cách ấy sẽ giúp bạn duy trì thăng bằng, và, ngay cả khi thăng bằng của bạn đã mất, nó có thể nhanh chóng được lấy lại bằng cách thực hiện kỹ thuật thở đơn giản này.</p>
+<h3>Tập Luyện Hơi Thở Và Sự Thăng Bằng Cùng Nhau</h3>
+<p>Mối quan hệ giữa thăng bằng và hơi thở từng là tri thức phổ biến khắp cộng đồng võ thuật, và nhiều loại bài tập huấn luyện khác nhau thường được dùng để củng cố cả hai cùng lúc. Một số môn phái tập trung vào luyện các bài tập thở đặc biệt. Những bài tập này dạy học trò cách thở cho đúng đồng thời cũng thúc đẩy một cảm giác thăng bằng mạnh mẽ.</p>
+<p>Các môn phái khác luyện những bài tập thăng bằng đặc biệt dùng các thiết bị chuyên dụng như xà thăng bằng, cọc, và gạch. Bằng cách tập trung phát triển thăng bằng thể chất, các học trò vô tình học được cách thở cho đúng! Nhiều võ đường đương đại, như yiliquan, xingyiquan, Goju-ryu của Okinawa, và Uechi-ryu, đều có những bài tập với cả bài tập thở lẫn một số bài tập thăng bằng hay bộ pháp đặc biệt. Dù hơi thở đúng được nhấn mạnh mạnh mẽ trong lúc luyện các kỹ thuật căn bản và bài tập chiến đấu, nó cũng được huấn luyện một cách vô thức qua việc thực hành các bài tập bộ pháp và chuyển dịch cơ thể đặc biệt.</p>
+<h3>Thở Qua Lòng Bàn Chân</h3>
+<p>Cố võ sư W.C. Chen thường bắt tôi tập đứng trên những viên gạch trong lúc luyện các tư thế đơn lẻ của mình. Khi tôi mới bắt đầu thói quen này, tôi lắc lư qua lại, run rẩy, và thỉnh thoảng vung vẩy hai tay khi vật lộn để giữ thăng bằng. Chen cười khúc khích và chỉ nói: &#8220;Thở đi! Em phải thở chứ!&#8221;</p>
+<p>&#8220;Đương nhiên là em phải thở! Em chẳng cần ai nhắc nhở điều đó! Vấn đề là thăng bằng của em.&#8221;</p>
+<p>Chen để tôi vật lộn qua vài buổi trước khi ông tiến lại gần và chỉ vào chân tôi. &#8220;Hãy thở từ đó! Thế thì em mới thăng bằng được.&#8221; Thấy vẻ mặt bối rối tột độ trên mặt tôi, ông giải thích thêm. &#8220;Hãy thở qua đáy bàn chân và đặt tâm trí vào Đan Điền của em, để em khỏi sợ hãi đến thế,&#8221; ông nói. &#8220;Hơi thở của em quá cao và em đang sợ hãi. Đấy là vấn đề.&#8221;</p>
+<p>Tôi nghe theo lời ông và bắt đầu tưởng tượng mình đang thở qua các huyệt Dũng Tuyền (yongquan) ở lòng bàn chân. Tôi thấy hơi thở bụng sâu giúp mình thư giãn, và, chỉ trong vài giây, tôi đã bình tĩnh lại đáng kể. Từ ngày đó trở đi, tôi gặp ít khó khăn hơn rất nhiều trong việc giữ thăng bằng trên những viên gạch ấy. Quả thật, tôi đã học được một bài học vô giá!</p>
+</section>
+
+<section id="sec11">
+<h2>Chương 11: Tầm Quan Trọng Của Sự Thẳng Hàng Cột Sống</h2>
+<h3>Đứng Thẳng Lên!</h3>
+<p>Để thống nhất thân trên và thân dưới sao cho bạn có thể vận động mạnh mẽ từ Đan Điền (dantien) của mình, bạn phải duy trì sự thẳng hàng đúng đắn của cột sống. Điều này nghe có vẻ dễ dàng, nhưng trên thực tế nó đòi hỏi phải luyện tập đáng kể. Đó là một kỹ năng cần được tu dưỡng không ngừng, nên nếu bạn chỉ giới hạn việc luyện tập sự đối xứng cột sống vào thời gian ở tại võ đường, nó sẽ chẳng bao giờ trở thành một thói quen vô thức được.</p>
+<p>&#8220;Tại sao nó lại phải trở thành một thói quen vô thức?&#8221; bạn hỏi.</p>
+<p>Bởi vì khi tình thế trở nên căng thẳng và bạn đối mặt với một đối thủ có vóc dáng và diện mạo của một cầu thủ khúc côn cầu chuyên nghiệp, khi sự hoảng sợ (&#8216;pucker factor&#8217;) vọt lên tận trần và adrenaline được bơm vào hệ thống của bạn từng galông, bạn chẳng có thời gian cũng chẳng có tâm trạng mà dừng lại để nghĩ xem cột sống mình có đang được thẳng hàng đúng cách hay không. Vậy nên, hãy bắt đầu luyện tập ngay từ bây giờ để biến nó thành một nét tự nhiên trong dáng đứng của bạn.</p>
+<h3>Đẩy Đầu Hướng Lên Trên</h3>
+<p>Làm cứng đơ lưng hay cổ sẽ khóa chết năng lượng của bạn và khiến bạn di chuyển với tất cả sự nhanh nhẹn và uyển chuyển của một người lính gỗ. Sự thẳng hàng cột sống phải được quản giữ mà không làm căng quá mức các cơ ở lưng hay cổ. Để thực hiện điều này, bạn sẽ bắt đầu bằng cách nhẹ nhàng nâng đỉnh đầu lên.</p>
+<p>Các kinh điển Thái Cực Quyền (Taijiquan) nhắc nhở chúng ta &#8220;ấn đầu hướng lên&#8221; hoặc &#8220;giữ đầu như thể bị treo bởi một sợi dây (từ phía trên)&#8221;. Cá nhân tôi thấy việc này dễ thực hiện hơn nếu tưởng tượng mình đang cố chạm đầu vào một trần nhà thấp chỉ cách đầu mình chừng một inch. Bằng cách &#8220;đẩy đỉnh đầu hướng lên&#8221;, các đốt sống cổ được &#8220;đẩy&#8221; thẳng và thẳng hàng với các đốt sống ngực (Hình 11-1).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-1.jpg" alt="Hình 11.1" loading="lazy"><figcaption><strong>Hình 11-1.</strong>Đẩy đỉnh đầu hướng lên: các đốt sống cổ được đẩy thẳng và thẳng hàng với các đốt sống ngực, giúp đầu giữ được tư thế nhẹ nhàng, không căng cứng.</figcaption></div>
+<h3>Những Lỗi Thường Gặp</h3>
+<p>Đừng vòng cổ ra sau và ngẩng cằm lên, cũng đừng siết chặt hàm. Không nên có bất kỳ sự căng cứng nào trong sự điều chỉnh tinh tế các đốt sống cổ này.</p>
+<p>Hãy cẩn thận đừng cố &#8220;giấu tai bằng vai&#8221;. Giữ vai buông xuống và thư giãn.</p>
+<h3>Vểnh Xương Cụt Lên</h3>
+<p>Xương cụt nên được hơi vểnh vào trong và hướng lên, hướng về phía Đan Điền (Hình 11-2) của bạn. Điều này giúp giữ các đốt sống ngực thẳng và thẳng hàng với các đốt sống cổ. Nó nhẹ nhàng &#8220;kéo giãn&#8221; phần dưới của cột sống và tạo ra một loại nén bên trong Đan Điền, nhờ đó bạn có thể phát ra sức mạnh đáng kể.</p>
+<p>Nếu sự thẳng hàng này được duy trì xuyên suốt việc thi triển một cử động hay kỹ thuật thân thể, tính toàn vẹn cấu trúc của cơ thể sẽ được vững chắc.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-2.jpg" alt="Hình 11.2" loading="lazy"><figcaption><strong>Hình 11-2.</strong>Vểnh xương cụt vào trong và hướng lên về phía Đan Điền: các đốt sống ngực được giữ thẳng và thẳng hàng với các đốt sống cổ.</figcaption></div>
+<h3>Những Lỗi Thường Gặp</h3>
+<p>Trừ khi bạn đang tập luyện để trở thành một vũ công thoát y, bằng không đừng đẩy xương cụt về phía trước quá mức và &#8220;làm phẳng&#8221; phần lưng dưới của bạn.</p>
+<p>Cử động quá trớn này chỉ làm suy giảm sức mạnh của bạn mà thôi.</p>
+<h3>Sự Thẳng Hàng Cột Sống Và Các Cú Đá</h3>
+<p>Dù việc duy trì sự thẳng hàng cột sống đúng đắn tương đối dễ thực hiện khi bạn đang thi triển các kỹ thuật thân trên, thì các kỹ thuật đá lại là một câu chuyện khác.</p>
+<p>Các kỹ thuật thân dưới như cú đá đẩy ngang (side thrust kick), cú đá đẩy lùi (back thrust kick), và cú đá quét (roundhouse kick) đòi hỏi bạn phải hơi nghiêng người, nên việc mất sức mạnh tiếp theo là điều không thể tránh khỏi. Thế nhưng, luyện tập các bài tập giãn cơ khác nhau để tăng tính linh hoạt sẽ giúp giảm bớt mức độ bạn phải nghiêng người và, do đó, lượng sức mạnh bị mất đi. Đúng vậy! Nếu bạn muốn có những cú đá mạnh, bạn cần phải g-i-ã-n c-ơ! Thường xuyên.</p>
+<h3>Kiểm Nghiệm Hiệu Quả Của Sự Thẳng Hàng Cột Sống</h3>
+<p>Vậy, bạn nghĩ tất cả những chuyện thẳng hàng cột sống này chỉ là thứ giáo điều vô dụng, hả? À, hãy thử bốn bài kiểm tra nhỏ nhé.</p>
+<h3>Bài Kiểm Tra Một</h3>
+<p>Đứng vào một thế tấn vững chãi và duỗi một nắm đấm ra như thể đang đấm. Nhờ một bạn tập nắm cổ tay bạn và cố kéo bạn mất thăng bằng (Hình 11-3).</p>
+<p>Nếu cột sống bạn được thẳng hàng đúng, dáng đứng của bạn sẽ khá vững. Thế nhưng, nếu bạn nghiêng về bất kỳ hướng nào, bạn tập sẽ có thể kéo bạn về phía trước mà chẳng mấy khó khăn (Hình 11-4 và 11-5).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-3.jpg" alt="Hình 11.3" loading="lazy"><figcaption><strong>Hình 11-3, 11-4 và 11-5.</strong>Bài Kiểm Tra Một: đứng thế tấn vững, duỗi nắm đấm như đấm; bạn tập nắm cổ tay và kéo mất thăng bằng. Cột sống thẳng hàng thì vững chãi, còn nghiêng người thì dễ bị kéo ngã về phía trước.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-4.jpg" alt="Hình 11.4" loading="lazy"><figcaption><strong>Hình 11.4.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-5.jpg" alt="Hình 11.5" loading="lazy"><figcaption><strong>Hình 11.5.</strong></figcaption></div>
+<h3>Bài Kiểm Tra Hai</h3>
+<p>Bắt đầu như trong Bài Kiểm Tra Một. Khi bạn tập cố kéo bạn mất thăng bằng, hãy cúi đầu về phía trước hoặc ngả đầu ra sau (Hình 11-6 và 11-7). Bạn sẽ thấy anh ấy dễ dàng làm bạn di chuyển. Giữ các đốt sống cổ thẳng và đẩy đỉnh đầu hướng lên là yếu tố then chốt để duy trì một dáng đứng vững chãi, từ đó bạn có thể phát ra sức mạnh.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-6.jpg" alt="Hình 11.6" loading="lazy"><figcaption><strong>Hình 11-6 và 11-7.</strong>Bài Kiểm Tra Hai: khi bạn tập kéo mất thăng bằng, cúi đầu tới trước hoặc ngả đầu ra sau khiến bạn dễ dàng bị động; giữ cổ thẳng và đẩy đỉnh đầu lên mới vững.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-7.jpg" alt="Hình 11.7" loading="lazy"><figcaption><strong>Hình 11.7.</strong></figcaption></div>
+<h3>Bài Kiểm Tra Ba</h3>
+<p>Bảo bạn tập đứng bình thường với một tay duỗi ra. Khi bạn nắm cổ tay anh ấy và cố kéo anh ấy về phía mình, hãy uốn cong lưng hay cổ về bất kỳ hướng nào (Hình 11-8 và 11-9). Bạn sẽ thấy mình không thể làm anh ấy di chuyển. Sức mạnh của bạn bị suy giảm đáng kể.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-8.jpg" alt="Hình 11.8" loading="lazy"><figcaption><strong>Hình 11-8 và 11-9.</strong>Bài Kiểm Tra Ba: khi bạn cố kéo bạn tập về phía mình mà uốn cong lưng hay cổ, sức mạnh của bạn suy giảm và bạn không tài nào kéo anh ấy đi được.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-9.jpg" alt="Hình 11.9" loading="lazy"><figcaption><strong>Hình 11.9.</strong></figcaption></div>
+<p>Thế nhưng, nếu bạn duy trì sự thẳng hàng cột sống đúng đắn, bạn sẽ có thể kéo anh ấy mất thăng bằng mà chẳng mấy khó khăn (Hình 11-10).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-10.jpg" alt="Hình 11.10" loading="lazy"><figcaption><strong>Hình 11-10.</strong>Bài Kiểm Tra Ba (tiếp): duy trì thẳng hàng cột sống đúng đắn giúp bạn dễ dàng kéo bạn tập mất thăng bằng.</figcaption></div>
+<h3>Bài Kiểm Tra Bốn</h3>
+<p>Hãy thử bài kiểm tra này để đo lường sự ổn định của bạn khi đá.</p>
+<p>Đứng trước mặt bạn tập. Nâng gối lên như thể đang tung ra một cú đá. Khi bạn làm vậy, bạn tập nên ấn xuống đỉnh gối bạn để cố ép chân bạn hạ xuống lại. Nếu bạn đang duy trì sự thẳng hàng đốt sống đúng đắn, anh ấy sẽ không tài nào làm được điều đó (Hình 11-11 và 11-12).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-11.jpg" alt="Hình 11.11" loading="lazy"><figcaption><strong>Hình 11-11 và 11-12.</strong>Bài Kiểm Tra Bốn: nâng gối như tung cú đá, bạn tập ấn xuống đỉnh gối; thẳng hàng đốt sống đúng thì anh ấy không ép được chân bạn xuống.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-12.jpg" alt="Hình 11.12" loading="lazy"><figcaption><strong>Hình 11.12.</strong></figcaption></div>
+<h3>Những Lợi Ích Bổ Sung</h3>
+<p>Bạn có cụp rạp người khi ngồi không? Ừ, tôi thấy bạn vừa giật mình ngồi thẳng dậy đấy. Thế thì, bạn có đi hay đứng với dáng cụp rạp không? Người ta đứng và ngồi ở những tư thế cụp rạp vì họ đang cố thư giãn. Vấn đề là tư thế cụp rạp chẳng bao giờ thoải mái được lâu, và bạn phải đổi tư thế khá thường xuyên. Thư giãn không đồng nghĩa với việc nhũn ra. Khi cơ thể bạn xệ xuống như một bao gạo ướt, các tạng phủ bên trong bị ép chụm lại và trọng lượng cơ thể không được phân bố đúng cách. Nếu bạn cần di chuyển nhanh và bất thình lình, bạn sẽ chẳng có may mắn gì (Hình 11-13 và 11-14).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-13.jpg" alt="Hình 11.13" loading="lazy"><figcaption><strong>Hình 11-13 và 11-14.</strong>Tư thế cụp rạp: cơ thể xệ xuống làm các tạng phủ ép chụm, trọng lượng không phân bố đúng, khiến việc di chuyển nhanh gặp bất lợi.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-14.jpg" alt="Hình 11.14" loading="lazy"><figcaption><strong>Hình 11.14.</strong></figcaption></div>
+<p>Mặt khác, nếu bạn đẩy đầu hướng lên, rời khỏi vai, khi đứng lên hay ngồi xuống, dáng đứng của bạn sẽ được nghỉ ngơi và các cơ quan nội tạng sẽ được giữ ở vị trí đúng đắn của chúng (Hình 11-15 và 11-16). Điều này thực sự có một tác động tích cực bổ sung lên sức khỏe tổng thể của bạn.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-15.jpg" alt="Hình 11.15" loading="lazy"><figcaption><strong>Hình 11-15 và 11-16.</strong>Tư thế đúng: đẩy đầu hướng lên, rời khỏi vai, giúp dáng đứng nghỉ ngơi và các cơ quan nội tạng giữ được vị trí đúng đắn (đối lập với tư thế cụp rạp ở Hình 11-13 và 11-14).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig11-16.jpg" alt="Hình 11.16" loading="lazy"><figcaption><strong>Hình 11.16.</strong></figcaption></div>
+<div class='tr-note'>Người dịch: trang in gốc đặt Hình 11-15 và 11-16 trên một tờ ảnh minh họa riêng, nhưng bản quét có độ tương phản rất thấp khiến phần chú thích in đi kèm không thể đọc nổi qua OCR lẫn khi xem ảnh. Nội dung chú thích ở trên được người dịch diễn đạt từ ngữ cảnh văn bản xung quanh (đoạn &#8220;Mặt khác, nếu bạn đẩy đầu hướng lên&#8230;&#8221;), không phải sao chép nguyên văn từ sách gốc; xin bạn đọc lưu ý khi đối chiếu với bản in.</div>
+<p>Những người luôn cụp rạp người thường khá yếu ốm. Họ dễ bị cảm lạnh và, bất cứ khi nào một chủng cúm mới xuất hiện, họ hầu như luôn mắc phải. Hệ miễn dịch của họ yếu đi vì những tư thế nhăn nhúm của họ cản trở sự lưu thông tự do của khí (qi) qua các kinh mạch năng lượng của cơ thể.</p>
+</section>
+
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
