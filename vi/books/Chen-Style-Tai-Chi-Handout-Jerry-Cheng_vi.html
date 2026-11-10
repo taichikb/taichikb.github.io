@@ -1,91 +1,618 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thái Cực Quyền Trần Thức — Tài Liệu Phát Tay (Jerry Cheng) · Bản dịch tiếng Việt</title>
+<meta name="description" content="Thái Cực Quyền Trần Thức — Tài Liệu Phát Tay của Jerry Cheng: 12 nguyên lý, 11 phép khí công, 30 bài cuốn tơ lụa và bộ 38 thức, kèm nguyên bản PDF 16 trang.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-         background: #f8fafc; color: #1e293b; line-height: 1.7; margin: 0; padding: 0; }
-  .reader-topnav {
-    background: #0f172a; color: #fff; padding: 0.75rem 1.5rem;
-    display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  }
-  .reader-topnav .brand { font-weight: 700; font-size: 1.15rem; color: #fff; text-decoration: none; }
-  .reader-container { max-width: 800px; margin: 0 auto; padding: 2rem; }
-  .reader-title { font-size: 2rem; font-weight: 800; color: #0284c7; margin-bottom: 0.5rem; }
-  .reader-subtitle { color: #64748b; margin-bottom: 2rem; }
-  .page { background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-          margin-bottom: 2rem; padding: 2rem; page-break-after: always; }
-  .page-header { display: flex; justify-content: space-between; align-items: center;
-                 border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
-  .page-number { font-size: 1rem; font-weight: 700; color: #0284c7; }
-  .content-block { white-space: pre-wrap; word-wrap: break-word; font-size: 1rem; }
-  .content-block p { margin: 0 0 1em 0; }
-  .inline-image { max-width: 100%; height: auto; display: block; margin: 1em auto; border-radius: 4px; }
-  .dark-toggle { background: #1e293b; color: #fff; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; }
-  @media (max-width: 768px) {
-    .reader-container { padding: 1rem; }
-  }
+:root {
+  --bg-page: #fbfbfb; --bg-card: #ffffff; --bg-sidebar: #f4f4f5;
+  --ink: #18181b; --ink-muted: #52525b; --ink-faint: #a1a1aa;
+  --gold: #b45309; --gold-light: #fef3c7; --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', 'Songti SC', serif;
+}
+[data-theme="dark"] {
+  --bg-page: #09090b; --bg-card: #18181b; --bg-sidebar: #121214;
+  --ink: #f4f4f5; --ink-muted: #a1a1aa; --ink-faint: #71717a;
+  --gold: #f59e0b; --gold-light: #451a03; --border: #27272a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page); color: var(--ink);
+  font-family: var(--sans); line-height: 1.85; font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+.reader-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header { background: rgba(18,18,20,0.95); }
+.brand-area { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.1rem; }
+.brand-area svg { width: 32px; height: 32px; }
+.header-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn-control {
+  background: none; border: 1px solid var(--border); color: var(--ink);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: all 0.2s;
+}
+.btn-control:hover { background: var(--border); }
+.btn-control.on { background: var(--gold); border-color: var(--gold); color: #fff; }
+#progress-container { position: fixed; top: 53px; left: 0; width: 100%; height: 3px; z-index: 99; }
+#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #ea580c); transition: width 0.1s ease; }
+.book-wrapper { max-width: 1380px; margin: 0 auto; display: flex; min-height: calc(100vh - 60px); }
+.book-sidebar {
+  width: 320px; flex-shrink: 0; background: var(--bg-sidebar);
+  border-right: 1px solid var(--border); padding: 24px 16px;
+  position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+}
+.toc-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 12px; padding-left: 8px; }
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a { display: block; padding: 8px 12px; color: var(--ink-muted); text-decoration: none; font-size: 0.92rem; border-radius: 6px; transition: all 0.15s; line-height: 1.4; }
+.toc-nav a:hover, .toc-nav a.active { color: var(--ink); background: var(--bg-card); font-weight: 600; border-left: 3px solid var(--gold); }
+.book-content { flex-grow: 1; max-width: 880px; margin: 0 auto; padding: 48px 32px 100px; }
+.book-hero { text-align: center; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
+.book-hero .badge { display: inline-block; background: var(--gold-light); color: var(--gold); font-weight: 600; font-size: 0.8rem; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
+.book-hero h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.2; margin-bottom: 12px; font-weight: 600; }
+.book-hero .subtitle { font-size: 1.2rem; color: var(--ink-muted); font-style: italic; margin-bottom: 16px; }
+.book-hero .meta-row { display: flex; justify-content: center; gap: 24px; color: var(--ink-faint); font-size: 0.9rem; flex-wrap: wrap; }
+h2 { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; margin: 56px 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); color: var(--ink); scroll-margin-top: 80px; }
+h2 .zh { font-family: var(--cjk); font-size: 1.35rem; color: var(--ink-muted); margin-left: 10px; }
+h3.run-in { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin: 30px 0 14px; scroll-margin-top: 90px; }
+p { margin-bottom: 1.35rem; }
+.stanza { margin-bottom: 1.35rem; }
+.note-box { background: var(--bg-sidebar); border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; font-size: 0.94rem; color: var(--ink-muted); }
+.chapter-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+.chapter-nav a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 600; padding: 10px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
+.chapter-nav a:hover { background: var(--border); }
+@media (max-width: 900px) {
+  .book-sidebar { display: none; }
+  .book-content { padding: 24px 16px; }
+  .book-hero h1 { font-size: 2rem; }
+}
+/* ==== Inline PDF viewer (shared component) ==== */
+#pdf-overlay{position:fixed;inset:0;z-index:300;display:none;flex-direction:column;background:#3f3f46;}
+#pdf-overlay.open{display:flex;}
+.pdf-toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(24,24,27,.97);color:#f4f4f5;border-bottom:1px solid #52525b;flex-wrap:wrap;}
+.pdf-toolbar .pdf-title{font-weight:600;font-size:.92rem;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw;display:flex;align-items:center;gap:8px;}
+.pdf-btn{background:none;border:1px solid #71717a;color:#f4f4f5;padding:5px 11px;border-radius:6px;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:6px;text-decoration:none;line-height:1.4;}
+.pdf-btn:hover{background:#52525b;}
+.pdf-btn:disabled{opacity:.35;cursor:default;}
+#pdf-pages{position:relative;flex:1;overflow:auto;padding:16px 0 48px;text-align:center;-webkit-overflow-scrolling:touch;}
+.pdf-page{display:block;margin:0 auto 14px;box-shadow:0 2px 14px rgba(0,0,0,.5);background:#fff;}
+#pdf-status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#f4f4f5;font-size:.95rem;background:rgba(24,24,27,.94);padding:14px 22px;border-radius:8px;display:none;max-width:80%;}
+body.pdf-lock{overflow:hidden;}
+@media (max-width:640px){.pdf-toolbar .pdf-title{display:none;}#pdf-pageinfo{min-width:62px;}}
 </style>
 </head>
 <body>
-<div class="reader-topnav">
-  <span class="brand">Thu Vien Phong Trao</span>
-  <button class="dark-toggle" onclick="document.body.classList.toggle('dark-mode')">Chuyen de</button>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW &middot; Thư Viện Tinh Hoa</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="pdf-open" title="Doc truc tuyen trong trang"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
+    <a href="/assets/pdf/chen-style-tai-chi-handout-jerry-cheng.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện Tối/Sáng"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <aside class="book-sidebar">
+    <div class="toc-title">Tủ Sách Thái Cực Quyền</div>
+    <nav class="toc-nav">
+            <ul>
+<li><a href="/vi/books/thai_cuc_quyen_toan_thu_hong_linh_vi.html">Thái Cực Quyền Toàn Thư</a></li>
+<li><a href="/vi/books/thai_cuc_quyen_quyen_ly_vu_ngoc_hien_vi.html">Thái Cực Quyền Quyền Lý</a></li>
+<li><a href="/vi/books/thai_cuc_quyen_ban_bien_tap_vi.html">Thái Cực Quyền (Bản Biên Tập)</a></li>
+<li><a href="/vi/books/tuyet_ky_thoi_thu_tcq_tap_1_vi.html">Tuyệt Kỹ Thôi Thủ Thái Cực Quyền — Tập 1</a></li>
+<li><a href="/vi/books/thoi_thu_thai_cuc_quyen_tap_2_vi.html">Thôi Thủ Thái Cực Quyền — Tập 2</a></li>
+<li><a href="/vi/books/wu_style_taijiquan_xu_zhiyi_overview_vi.html">Ngô Thức Thái Cực Quyền — Tổng Quan</a></li>
+<li class="active"><a href="/vi/books/Chen-Style-Tai-Chi-Handout-Jerry-Cheng_vi.html">Thái Cực Quyền Trần Thức — Tài Liệu Phát Tay</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Jerry Cheng · Tài Liệu Lớp Học · Trần Thức</span>
+      <h1>Thái Cực Quyền Trần Thức — Tài Liệu Phát Tay</h1>
+      <div class="subtitle">Chen Style Tai Chi Handout</div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-user-ninja"></i> Jerry Cheng</span>
+        <span><i class="fa-solid fa-file-lines"></i> 16 trang</span>
+        <span><i class="fa-solid fa-earth-americas"></i> Tài liệu lớp học Trần Thức</span>
+      </div>
+    </div>
+
+<section class="chapter" id="ch1">
+<h2>Mười Hai Nguyên Lý của Thái Cực Quyền <span class="en">(Twelve Principles of Taijiquan)</span></h2>
+<ol>
+<li>Tâm và thần hư không, tĩnh lặng từ đầu đến cuối.</li>
+<li>Giữ vững thăng bằng ở trung tâm.</li>
+<li>Dùng tâm/ý để dẫn khí <span class="en">(qi)</span>. Tâm là vị chỉ huy.</li>
+<li>Bắt đầu bằng sự chìm và hạ xuống; tìm kiếm sự mềm mại và trôi chảy.</li>
+<li>Bên trong/bên ngoài và phần trên/phần dưới phải phối hợp với nhau.</li>
+<li>Sự chuyển biến từ hư sang thực và từ thực sang hư tùy thuộc vào vùng thắt lưng.</li>
+<li>Sự chuyển hóa âm/dương sẽ giúp bạn tìm được cứng/mềm.</li>
+<li>Lực cuốn tơ lụa <span class="en">(chan si)</span> phải hiện diện khắp toàn thân.</li>
+<li>Tìm sự khai/hợp bằng cách gập vùng ngực và bụng.</li>
+<li>Tập trung vào đan điền <span class="en">(dan tien)</span> để nâng cao nội công <span class="en">(neigong, internal force)</span>.</li>
+<li>Giữ tâm an nhiên, ý tưởng tĩnh lặng, và tập luyện chậm rãi — tĩnh trong động <span class="en">(stillness in movement)</span>. Bộ quyền là cọc sống — đứng cọc trong chuyển động <span class="en">(huo zhuang, moving standing pole)</span>.</li>
+<li>Bạn sẽ thành công nếu biết cả cách tập luyện lẫn cách dưỡng sinh <span class="en">(yang sheng, nurturing yourself)</span>.</li>
+</ol>
+</section>
+
+<section class="chapter" id="ch2">
+<h2>Khí Công Thái Cực Quyền Trần Thức <span class="en">(Chen Style Tai Chi Qi Gong)</span></h2>
+<p>Dưới đây là danh sách mười một phép của môn Khí Công Thái Cực Quyền Trần Thức trong giáo trình.</p>
+<ol>
+<li>Phép Dẫn Khí Thế Vô Cực <span class="en">(Wu Ji Stance Chi Guiding Method)</span></li>
+<li>Phép Thu Khí Nhật Nguyệt <span class="en">(Sun Moon Chi Collecting Method)</span></li>
+<li>Phép Trảo Khí Hồi Xuân <span class="en">(Rejuvenating Chi Grabbing Method)</span></li>
+<li>Phép Hợp Khí Tuần Hoàn Vũ Trụ <span class="en">(Circulating Cosmic Orbit Chi Gathering Method)</span></li>
+<li>Phép Nhận Khí Phát Trí <span class="en">(Developing Wisdom Chi Receiving Method)</span></li>
+<li>Phép Vận Khí Cân Bằng Âm Dương <span class="en">(Yin Yang Balancing Chi Mobilizing Method)</span></li>
+<li>Phép An Khí Kéo Dãn Cân Tẩy Tủy <span class="en">(Tendon Lengthening Marrow Washing Chi Soothing Method)</span></li>
+<li>Phép Ngưng Khí Xoay Đan Điền <span class="en">(Rotating Dan Tian Chi Condensing Method)</span></li>
+<li>Phép Trữ Năng Lượng Bằng Thế Đứng <span class="en">(Storing Energy Standing Method)</span></li>
+<li>Phép Tam Tâm Hợp Nhất <span class="en">(Three Hearts Together Method)</span></li>
+<li>Phép Nội Khí Công Thái Cực Quy Nguyên <span class="en">(Tai Chi Internal Qi Gong Return to Natural Method)</span></li>
+</ol>
+</section>
+
+<section class="chapter" id="ch3">
+<h2>Bài Tập Cuốn Tơ Lụa Trần Thức <span class="en">(Chen Style Taiji Reeling Silk Exercises)</span></h2>
+<p><em>Bài viết của Đại sư Phùng Chí Cường <span class="en">(Grandmaster Feng Zhiqiang)</span></em></p>
+<p>Công cuốn tơ lụa <span class="en">(chan si gong, reeling silk skills)</span> là bài tập chỉ tìm thấy trong hệ thống Thái Cực Quyền Trần Thức. Nó gồm những động tác xoắn ốc kết hợp với sự khí lưu chuyển bên trong của nguyên khí <span class="en">(qi)</span> và chuyển động xoay tròn bên ngoài.</p>
+<p>Sau một thời gian tập luyện những bài tập này, người tập có thể phát triển chân khí <span class="en">(zhen qi, real energy)</span> để mở thông tám kinh, cải thiện sự cân bằng âm dương của thân thể và làm cho dòng máu lưu thông. Về mặt nội, các bài tập giúp tâm/ý dẫn khí; về mặt ngoại, chúng giúp cường tráng thân thể. Khi khí nâng lên, cánh tay xoay và cổ tay vặn; khi khí hạ xuống, đầu gối xoay và cổ chân vặn. Khi khí ở phần trung tâm của thân thể, nó luân chuyển theo đường xoắn ốc qua ngực, thắt lưng, bụng và thận. Khí còn làm sống lại và rèn luyện mười tám vùng khớp lớn của cơ thể: vai, khuỷu tay, cổ tay, hông, đầu gối, bàn chân, ngực, sườn, thắt lưng, bụng và thận; qua đó dần dần điều hòa phần nội và phần ngoại. Toàn thân cuối cùng sẽ trở thành một "cầu khí" <span class="en">(qi sphere)</span> có sức kháng cự, đạt được sự cân bằng âm dương.</p>
+<p>Khi tập công cuốn tơ lụa, toàn thân phải có chuyển động tròn. Loại chuyển động này do tâm/ý <span class="en">(mind/intent)</span> điều khiển. Nó biểu hiện từ bên trong thành những sự vặn, xoắn chia từng đoạn và có quan hệ hỗ tương với nhau. Chuyển động ấy không thể xem là một chuyển động hỗn loạn đơn lẻ. Mỗi khi thực hiện một bài công cuốn tơ lụa đơn lẻ, ý/tâm phát ra từ trung tâm đến các bộ phận khác nhau của thân thể; đồng thời, hình dạng bên ngoài dần dần kết hợp với tâm và khí, và khí nội từ từ luân chuyển đến những đích đã định trong thân thể. Nhờ đó máu lưu thông suốt cơ thể, khai thông các kinh lạc và làm mạnh cơ bắp. Điều này tạo nên một thân thể nhanh nhẹn và mềm dẻo. Tập luyện lâu ngày, người tập có thể có được một sức mạnh không ngừng biến hóa và tiến bộ. Đây là điều rất quan trọng cho việc rèn luyện căn bản quyền thuật.</p>
+<p>Để thực hiện công cuốn tơ lụa một cách đúng đắn, người tập phải đứng ở thế Vô Cực <span class="en">(wuji, void)</span> và tập trung vào đan điền <span class="en">(dantian, focal point of abdomen)</span> từ 3 đến 9 phút. Sau đó xoa mặt và xoa bụng.</p>
+<p>Những bài tập sau đây có thể tập từ đầu đến cuối hoặc theo từng phần. Người tập cũng có thể tập tùy theo nhu cầu của mình bằng cách chọn từng động tác riêng lẻ. Nếu tập trọn bộ, mỗi bài tập riêng lẻ phải được lặp lại ít nhất chín lần hoặc hơn; số lần lặp lại là không giới hạn.</p>
+<p>Phần sau giới thiệu từng bài tập để luyện công cuốn tơ lụa.</p>
+</section>
+
+<section class="chapter" id="ch4">
+<h2>30 Bài Tập Cuốn Tơ Lụa <span class="en">(The Thirty Reeling Silk Exercises)</span></h2>
+
+<h3 class="run-in">1. Xoay Đầu <span class="en">(1. Turning the Head)</span></h3>
+<p>Từ thế Vô Cực, đặt hai tay lên hông đồng thời xoay đầu ngang sang trái và sang phải. Động tác phải êm thuận và đều đặn; đầu và vai phải giữ tư thế thẳng. Sau khi tập bài này một số lần, thực hiện phép thu công.</p>
+
+<h3 class="run-in">Phép Thu Công <span class="en">(Closing Exercise)</span></h3>
+<p>Thân thể tự nhiên và thả lỏng (Hình 1-2). Mặt nhìn thẳng về phía trước. Đặt hai tay trước vùng bụng. Hai cánh tay vẽ vòng cung đi lên về hai bên thân thể; sau đó hai bàn tay đi ngang qua trước mặt, trước ngực rồi xuống hai bên hông. Hai lòng bàn tay úp xuống và các ngón tay chỉ về phía trước. Khí từ từ lắng xuống và thần khí tụ lại vào trong (Hình 3-6). Sau khi tĩnh lặng một lúc, trở về trạng thái tâm bình thường.</p>
+
+<h3 class="run-in">2. Xoay Cổ <span class="en">(2. Revolving the Neck)</span></h3>
+<p>Từ thế Vô Cực, đặt hai tay lên hông; thả lỏng cổ để đầu nhẹ nhàng, uyển chuyển cúi về phía trước, sang trái, ra phía sau rồi sang phải (Hình 7-10). Đầu nên xoay theo chiều kim đồng hồ một số lần, sau đó xoay ngược chiều kim đồng hồ với số lần tương ứng. Các động tác phải đều đặn, liên tục và tự nhiên. Thân trên không nên cúi quá sâu. Khí và chuyển động của đầu phải hợp nhất trong khi tập bài này. Bên trong cơ thể sẽ có cảm giác dễ chịu trong lúc tập. Bài tập có thể dừng lại một cách tự nhiên vào bất cứ lúc nào. Khi hoàn tất, thực hiện phép thu công như đã mô tả ở động tác số 1.</p>
+
+<h3 class="run-in">3. Xoay Vai <span class="en">(3. Revolving the Shoulders)</span></h3>
+<p><strong>A) Xoay vai trái và phải:</strong> Từ thế Vô Cực, hai tay nắm thành nắm đấm lỏng. Thân trên xoay nhẹ sang phải và vai trái chĩa ra phía trước khiến vai trũng xuống. Chú tâm đưa khí xuống dưới (Hình 11). Xoay vai trái lên và ra phía sau đồng thời thả lỏng vai; vai phải hạ nhẹ xuống bên cạnh (Hình 12). Tiếp tục động tác này một số lần; sau đó đổi chiều sang phía trước, rồi xuống dưới, ra phía sau và cuối cùng lên trên. Các hình minh họa cho việc xoay vai trái; vai phải làm hoàn toàn giống vai trái (Hình 13-14). Sau khi hoàn thành, thực hiện phép thu công.</p>
+<p><strong>B) Xoay hai vai:</strong> Từ thế Vô Cực, bước chân phải sang phải nửa bước. Hai đầu gối nên hơi khuỵu và hai nắm đấm đặt sát bên đùi. Ngực trũng xuống và hai vai tròn trịa. Hạ khí xuống dưới (Hình 15). Dần dần mở rộng ngực trong khi hai vai xoay theo vòng tròn từ phía trước, lên trên rồi ra phía sau. Hai khuỷu tay cong và hai nắm đấm được nâng lên ngang hông (Hình 16). Sau khi tập động tác này một số lần, hai vai xoay theo vòng tròn từ phía trước, xuống dưới, ra phía sau rồi lên trên. Khi tập bài này, thân thể phải thả lỏng. Các khớp vai và khuỷu xoay một cách tự nhiên. Thở tự nhiên, và khi hoàn thành thì thực hiện phép thu công.</p>
+
+<h3 class="run-in">4. Ép Vai Về Trước Và Sau <span class="en">(4. Pressing the Shoulders to the Front and Rear)</span></h3>
+<p>Từ thế Vô Cực, chân phải bước lên phía trước nửa bước và hai đầu gối hơi khuỵu. Trọng tâm dồn lên chân trái. Hai tay nắm thành nắm đấm. Hai cánh tay nhanh chóng xoay ra hai bên. Hai vai ép về phía sau. Hai lòng nắm đấm ngửa lên. Thân trên mở rộng ra khi hai vai ép về phía sau. Mắt nhìn về phía trước (Hình 17 và hình nhìn từ phía trước). Tiếp tục từ động tác trên, hai cánh tay xoay vào trong và ngực lõm vào. Hai vai ép về phía trước. Hai lòng bàn tay hướng ra phía sau. Mắt nhìn xuống (Hình 18 và hình 18 nhìn từ bên). Sau đó lặp lại chuỗi động tác với chân trái ở phía trước. Khi hoàn thành, thực hiện phép thu công.</p>
+<p>GHI CHÚ: Người mới tập không nên dùng bất kỳ lực nào khi tập bài này vì nội khí của họ chưa phát triển đủ. Nếu dùng lực, một người có thể bị thương nặng cả thân thể lẫn khí. Hãy tập các động tác này chậm rãi và nuôi dưỡng khí một cách tĩnh tâm. Giữ chuyển động tự nhiên cho từng phần của cơ thể để điều hòa nội khí, khi đó khí sẽ tự nhiên gia tăng, mở đường cho phát kính (fa jing — giải phóng năng lượng).</p>
+
+<h3 class="run-in">5. Cuốn Tơ Lụa Tay Trái Và Tay Phải <span class="en">(5. Left and Right Arm Chan Si)</span></h3>
+<p><strong>Cuốn tơ lụa (chan si) tay trái ngược chiều kim đồng hồ:</strong> Bắt đầu trong thế Vô Cực. Tay phải đặt lên hông. Chân trái bước nửa bước sang trái. Các ngón chân trái xoay ra ngoài. Cánh tay trái xoay ra ngoài trong khi tay trái xoay ngửa lên trước vai phải. Sau đó, mặt trước cánh tay trái xoay vào trong trong khi tay trái được kéo ngang theo vòng cung sang trái. Khi duỗi hết, mặt trước cánh tay trái xoay nhẹ ra ngoài và tay trái nâng lên. Trọng tâm cơ thể nên dịch chuyển theo chuyển động của cánh tay trái (Hình 19-22).</p>
+<p>Phía phải thực hiện theo cách ngược lại với phía trái (Hình 23-26). Sau khi tập một số lần, thực hiện phép thu công.</p>
+
+<h3 class="run-in">6. Cuốn Tơ Lụa Xoáy Ốc Tay Trái Và Tay Phải <span class="en">(6. Left and Right Arm Spiralling Chan Si)</span></h3>
+<p><strong>Cuốn tơ lụa (chan si) xoáy ốc tay trái:</strong> Bắt đầu từ thế Vô Cực; tay phải đặt lên hông. Hơi khuỵu hai đầu gối và dịch trọng tâm sang phải một chút. Xoay cánh tay trái ra ngoài trong khi tay trái xoáy ngược chiều kim đồng hồ lên trước ngực. Lòng bàn tay hướng lên; sau đó, chân trái bước một bước sang bên trái, khuỵu gối tạo thành bước cung, và xoay cánh tay trái vào trong. Tay trái duỗi về phía trước-trái-dưới với lòng bàn tay lật ngược hướng lên. Mắt nhìn vào tay trái (Hình 27-29).</p>
+<p>Chuyển động của tay phải giống như tay trái, chỉ thay đổi phương hướng (Hình 30-32). Thực hiện phép thu công khi hoàn thành.</p>
+
+<h3 class="run-in">7. Cuốn Tơ Lụa Xoáy Ốc Tay Trái Và Tay Phải <span class="en">(7. Left and Right Arm Spiral Chan Si)</span></h3>
+<p><strong>Cuốn tơ lụa (chan si) xoáy ốc tay kép phía phải:</strong> Bắt đầu trong thế Vô Cực; cánh tay phải nâng lên với khuỷu cong, tiếp theo là gập cổ tay. Mu bàn tay trượt xuống sát bên sườn phải. Sau đó, thân trên xoay sang phải; chân phải bước sang phải nửa bước, và hai đầu gối cúi về phía trước. Lòng bàn tay được lật lại để hướng ra phía sau. Cánh tay trái xoay ra ngoài với khuỷu cong, trong khi tay trái được nâng lên bên trái đầu. Lòng bàn tay hướng sang trái. Mắt nhìn vào tay phải (Hình 33-36).</p>
+<p><strong>Cuốn tơ lụa (chan si) xoáy ốc tay kép phía trái:</strong> Dịch trọng tâm sang chân phải trong khi thân trên xoay nhẹ sang trái. Cánh tay phải xoay ra ngoài với khuỷu cong. Tay phải nâng lên bên phải đầu. Tay trái gập ở cổ tay khi trượt xuống bên trái lồng sườn. Sau đó, chân trái khuỵu và lòng bàn tay hướng ra phía sau. Mắt nhìn vào tay trái (Hình 37-38). Tập cả hai bên bằng cách nối các động tác với Hình 35 và xen kẽ cho nhau. Tập chuỗi động tác này nhiều lần để khí lưu thông êm thuận và thân thể tự nhiên thả lỏng. Thực hiện phép thu công.</p>
+
+<h3 class="run-in">8. Cuốn Tơ Lụa Tay Kép <span class="en">(8. Double Arm Chan Si)</span></h3>
+<p>Bắt đầu trong thế Vô Cực. Cánh tay phải xoay vào trong trong khi tay phải từ từ duỗi lên phía trên-phải; sau đó tay phải đi theo vòng cung xuống trước hông trái khi cánh tay phải xoay ra ngoài. Lòng bàn tay hướng sang trái và các ngón tay chỉ về phía trước-dưới. Cánh tay trái xoay ra ngoài khi được nâng lên với khuỷu cong. Tay trái đến trước vai phải; lòng bàn tay hướng sang phải và các ngón tay chỉ lên trên. Thân thể xoay nhẹ sang trái. Các ngón chân phải xoay ra ngoài và bước nửa bước ra ngoài. Mắt nhìn sang phải (Hình 39-40). Như vậy hoàn tất cuốn tơ lụa (chan si) theo chiều kim đồng hồ.</p>
+<p>Cánh tay phải xoay vào trong và thân thể xoay nhẹ sang phải. Cánh tay kéo lên phía trên-phải. Đồng thời, tay trái đặt vào mặt trong khuỷu tay phải và vẽ vòng cung xuống ngoài hông trái. Cánh tay trái nằm dưới cánh tay phải trong khi hai tay kéo tách nhau ra. Cần chú ý không được nín thở. Nhịp thở phải tự nhiên. Hai vai nên thả lỏng và tròn (Hình 41). Như vậy hoàn tất cuốn tơ lụa (chan si) ngược chiều kim đồng hồ. Để lặp lại ở phía đối diện, mở bước sang trái và bắt đầu lặp lại các động tác ở phía đối diện (Hình 42-44). Thực hiện phép thu công khi kết thúc.</p>
+
+<h3 class="run-in">9. Cuốn Tơ Lụa Chéo Mở Và Hợp Tay Kép <span class="en">(9. Double Arm Diagonal Opening and Closing Chan Si)</span></h3>
+<p>Bắt đầu trong thế Vô Cực. Xoay các ngón chân trái ra ngoài và đặt chân phải lên phía trước. Lòng bàn chân phải trống, không chịu lực. Cánh tay trái gập ở khuỷu trong khi tay trái nâng lên trước ngực. Lòng bàn tay khoết nhẹ với các ngón tay chỉ xuống. Cánh tay phải xoay vào trong khi tay phải đi qua mặt ngoài cánh tay trái để nâng lên phía trên-trái. Sau đó, mặt trước cánh tay xoay ra ngoài khi kéo lên trên vai phải, lòng bàn tay hướng ra phía trước và hổ khẩu (khe giữa ngón cái và ngón trỏ) hướng xuống. Cánh tay trái xoay ra ngoài trong khi tay đi theo vòng cung sang trái, ra phía sau rồi đến bên tai. Lòng bàn tay hướng lên về phía trước và các ngón tay chỉ về phía sau. Cánh tay phải tiếp tục xoay ra ngoài trong khi tay phải duỗi ra phía sau sát thân rồi chuyển theo vòng cung về phía trước. Lòng bàn tay hướng lên và các ngón tay chỉ về phía trước. Mắt nhìn về phía trước (Hình 45-47). Sau khi tập chuỗi động tác này một số lần, đưa chân trái lên phía trước và lặp lại ở phía đối diện (Hình 48-50). Thực hiện phép thu công.</p>
+
+<h3 class="run-in">10. Cuốn Tơ Lụa Xoáy Thẳng Lên Tay Kép <span class="en">(10. Double Arm Straight Spiral Up Chan Si)</span></h3>
+<p>Từ thế Vô Cực, hai đầu gối từ từ khuỵu và hai cánh tay xoay ra ngoài. Hai bàn tay duỗi lên trên đầu khi đi qua trước vùng bụng. Hai chân dần dần duỗi thẳng khi hai bàn tay nâng lên. Hai cánh tay xoay vào trong khi hai bàn tay từ từ hạ xuống trước bụng, di chuyển dọc theo hai bên thân thể (Hình 51-54). Các động tác phải êm thuận và mở rộng. Sau khi tập một số lần, thực hiện phép thu công.</p>
+
+<h3 class="run-in">11. Cuốn Tơ Lụa Xoáy Thẳng Xuống Tay Kép <span class="en">(11. Double Arm Straight Spiral Down Chan Si)</span></h3>
+<p>Từ thế Vô Cực, xoay cả hai cánh tay ra ngoài khi nâng hai cánh tay lên dọc theo hai bên thân thể. Hai cổ tay gập và các ngón tay của hai bàn tay trước tiên đi qua trước mặt, sau đó hạ xuống trước bụng. Hai chân từ từ khuỵu xuống. Mu bàn tay của hai bên chạm vào nhau. Sau đó, từ từ tách hai bàn tay hướng xuống hai bên hông. Hai lòng bàn tay úp xuống và các ngón tay chỉ về phía trước. Mắt nhìn về phía trước (Hình 55-58). Khi động tác được tập liên tục, hai chân nên duỗi thẳng và hai bàn tay di chuyển đến vị trí như trên Hình 55. Thực hiện phép thu công khi hoàn thành.</p>
+
+<h3 class="run-in">12. Cuốn Tơ Lụa Xoáy Thẳng Về Trước Tay Kép <span class="en">(12. Double Arm Straight Spiral Forward Chan Si)</span></h3>
+<p>Từ thế Vô Cực, chân phải bước một bước về phía trước. Trọng tâm cơ thể dồn lên chân trái. Hai cánh tay xoay vào trong khi nâng lên dọc theo hai bên thân thể. Sau đó, hai bàn tay vẽ vòng cung ra phía sau rồi duỗi về phía trước bằng cách đi qua hai bên lồng sườn. Đồng thời, đầu gối phải cúi về phía trước. Mắt nhìn về phía trước (Hình 59-62). Để tiếp tục chuyển động, cả hai cánh tay xoay vào trong về hai bên để nối với động tác của Hình 59. Thực hiện phép thu công.</p>
+
+<h3 class="run-in">13. Cuốn Tơ Lụa Xoáy Thẳng Về Sau Tay Kép <span class="en">(13. Double Arm Straight Spiral Backward Chan Si)</span></h3>
+<p>Từ thế Vô Cực, chân phải bước một bước về phía sau. Hai cánh tay xoay ra ngoài khi hai bàn tay nâng lên hai bên. Hai lòng bàn tay hướng chéo lên. Thân trên hơi cúi về phía trước. Hai cánh tay gập ở khuỷu và cổ tay. Hai bàn tay đi qua phần trên lồng sườn để duỗi ra phía sau. Hai lòng bàn tay ngửa lên. Chân trái khuỵu về phía trước ở đầu gối, ngực mở rộng, đầu ngẩng lên và mắt nhìn về phía trước (Hình 63-66). Hai cánh tay xoay ra ngoài khi hai bàn tay đi qua hai bên theo chuyển động vòng cung để nối với động tác ở Hình 63. Lặp lại trong chuyển động liên tục. Sau đó thực hiện phép thu công.</p>
+
+<h3 class="run-in">14. Cuốn Tơ Lụa Xoáy Thẳng Ngang Tay Kép <span class="en">(14. Double Arm Straight Spiral Horizontal Chan Si)</span></h3>
+<p>Bắt đầu trong thế Vô Cực; hai cánh tay từ từ xoay ra ngoài khi hai lòng bàn tay lật ra hướng ra ngoài. Sau đó, hai cánh tay xoay vào trong và được nâng lên ngang vai. Hai khuỷu và cổ tay gập khi hai bàn tay đi qua hai bên phần trên lồng sườn. Hai lòng bàn tay hướng ra phía sau. Hai chân hơi khuỵu. Sau đó, hai chân từ từ duỗi thẳng. Hai cánh tay xoay ra ngoài với khuỷu cong, và hai bàn tay từ từ di chuyển vào trong. Hai lòng bàn tay đối diện nhau theo hướng chéo, và các ngón tay chỉ chéo ra ngoài. Mắt nhìn về phía trước (Hình 67-70). Để tiếp tục chuyển động, nối động tác cuối với Hình 68.</p>
+<p>Chuyển động của hai cánh tay phải tròn trịa, tự nhiên và phối hợp nhịp nhàng với sự khuỵu và duỗi thẳng của hai chân. Thực hiện phép thu công.</p>
+
+<h3 class="run-in">15. Cuốn Tơ Lụa Xoáy Ốc Trái Lên Phải Xuống <span class="en">(15. Left Up Right Down Spiral Chan Si)</span></h3>
+<p>Từ thế Vô Cực, nâng cánh tay phải lên với khuỷu cong. Tay phải nâng lên dọc theo bên thân thể với lòng bàn tay hướng sang trái. Cánh tay trái xoay ra ngoài với khuỷu cong khi tay trái đi qua trước ngực để duỗi vào mặt trong cánh tay phải. Trọng tâm cơ thể dần dần dịch sang chân phải. Hai chân hơi khuỵu ở đầu gối. Sau đó, tay trái xoay vào trong khi duỗi lên phía trên-trái. Lòng bàn tay hướng lên phía trên-trái và các ngón tay chỉ về phía trên-phải. Tay phải vẽ vòng cung xuống hông phải khi cánh tay xoay vào trong. Lòng bàn tay hướng xuống phía sau. Hai chân duỗi thẳng khi tay trái duỗi lên trên. Mắt nhìn về phía trước (Hình 71-73).</p>
+<p>Các chuyển động này phải mềm mại và chậm rãi, và thân thể không được dùng bất kỳ lực nào để tập bài này. Sau khi tập một số lần, thực hiện phép thu công.</p>
+
+<h3 class="run-in">16. Xoắn Xuống Bên Phải Xoắn Lên Bên Trái <span class="en">(16. Right Up Left Down Spiral Chan Si)</span></h3>
+<p>Các động tác giống hệt bài tập trước đó (#15), nhưng được thực hiện ở bên đối diện (Hình 74-76).</p>
+
+<h3 class="run-in">17. Cuốn Tơ Lụa Mở Và Đóng Hai Cánh Tay <span class="en">(17. Double Arm Opening and Closing Chan Si)</span></h3>
+<p>Từ thế Vô Cực, gập hai đầu gối khi hai cổ tay giao nhau phía trước cơ thể. Tiếp theo, hai chân thẳng ra khi hai cánh tay xoắn ra ngoài và hai bàn tay nâng lên qua mặt rồi hướng ra hai bên. Hai lòng bàn tay hướng ra ngoài và các ngón tay chỉ lên. Mắt nhìn phía trước (Hình 77-79). Hai chân lại gập xuống khi hai bàn tay vẽ một vòng cung ra ngoài về phía trước bụng. Tiếp tục từ Hình 77 để lặp lại chuỗi động tác. Sau khi hoàn thành, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">18. Cuốn Tơ Lụa Mở Và Đóng Hai Khuỷu Tay <span class="en">(18. Double Elbow Opening and Closing Chan Si)</span></h3>
+<p>Từ thế Vô Cực, chân phải bước nửa bước sang phải rồi hai đầu gối gập xuống. Hai cánh tay xoắn vào trong khi hai tay nắm thành đấm và chìm xuống vùng bẹn. Phần thân trên tròn về phía trước. Hai cánh tay xoắn ra ngoài với hai khuỷu tay gập khi các nắm đấm chuyển đến hai bên khuỷu tay. Mặt nắm đấm hướng về phía trên sau. Hai chân hơi nhấc lên khi phần thân trên nở rộng ra. Hai khuỷu tay đi qua phía trước ngực khi chúng vẽ vòng cung đến hai bên cơ thể. Mặt nắm đấm hướng xuống và mắt nhìn phía trước (Hình 80-82). Để lặp lại chuỗi động tác, hai cánh tay xoắn ra ngoài khi các nắm đấm vẽ vòng cung xuống phía trước bụng để nối với động tác ở Hình 81. Sau khi hoàn thành, thực hiện Phép Thu Công.</p>
+<p>Sự mở và đóng của hai khuỷu tay phải phối hợp với sự gập và thẳng của hai chân. Sự co và nở của ngực và bụng phải thống nhất với jin và khí của cơ thể; chỉ khi đó các động tác mới tròn trịa và tự nhiên.</p>
+
+<h3 class="run-in">19. Cuốn Tơ Lụa Khuỷu Tay Trái Và Phải <span class="en">(19. Left and Right Elbow Chan Si)</span></h3>
+<p>Khuỷu tay trái chan si theo chiều kim đồng hồ và ngược chiều kim đồng hồ: Từ thế Vô Cực, bàn tay phải nắm thành đấm và đặt ở bên hông phải. Bàn tay trái cũng nắm thành đấm khi cánh tay xoắn ra ngoài. Tiếp theo, nắm đấm trái thẳng ra về phía trên phải khi cơ thể quay sang phải. Đây là chan si theo chiều kim đồng hồ. Jin và khí của cơ thể được tập trung vào bên trong. Sau đó, phần thân trên quay sang trái khi khuỷu tay trái vòng lên và sang trái. Khuỷu tay chỉ sang trái và mắt nhìn vào khuỷu tay trái. Đây là chan si ngược chiều kim đồng hồ. Jin khí của cơ thể được phát ra bên ngoài trong phép này (Hình 83-84).</p>
+<p>Khuỷu tay phải chan si theo chiều kim đồng hồ và ngược chiều kim đồng hồ cũng giống như mô tả trên, chỉ khác là các hướng ngược lại (Hình 85-86). Sau khi hoàn thành, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">20. Xoắn Cổ Tay Trái Và Phải <span class="en">(20. Twisting the Wrist Left and Right)</span></h3>
+<p>Xoắn cổ tay: Từ thế Vô Cực, gập hai đầu gối nhẹ và đặt bàn tay phải lên thắt lưng. Cánh tay trái gập khi lòng bàn tay nâng lên phía trước ngực. Lòng bàn tay hướng lên. Sau đó, cánh tay trái xoắn vào trong khi lòng bàn tay vẽ vòng cung xuống về bên trái. Lòng bàn tay hướng về phía trước trái; mắt nhìn vào lòng bàn tay trái (Hình 87-88). Để tiếp tục chuyển động, nối với động tác ở Hình 87. Chuyển động của bàn tay nên theo hình số tám. Xoắn cổ tay phải: Các động tác giống như trên, chỉ thay đổi các hướng (Hình 89-90). Sau đó thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">21. Xoắn Hai Cổ Tay <span class="en">(21. Double Twisting Wrists)</span></h3>
+<p>Từ thế Vô Cực, hai cánh tay nâng lên phía trước lấy cổ tay làm trục. Xoay thành vòng tròn từ trong ra ngoài. Sau khi tập một số lần, thực hiện động tác theo hướng ngược lại. Toàn bộ cơ thể phải thả lỏng, đặc biệt là vai, khuỷu tay và cổ tay (Hình 91-92). Sau khi hoàn thành, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">22. Đấm Xoắn Trái Và Phải <span class="en">(22. Left and Right Spiral Punch)</span></h3>
+<p>Từ thế Vô Cực, chân trái bước một bước về phía trước. Nắm đấm phải đấm về phía trước khi cánh tay xoắn vào trong từ thắt lưng. Sau đó, cánh tay xoắn ra ngoài khi nắm đấm trở về thắt lưng. Nắm đấm trái đấm về phía trước khi cánh tay xoắn vào trong từ thắt lưng. Lặp lại chuỗi này với cả hai nắm đấm một số lần. Mắt nhìn vào nắm đấm đang đấm ra (Hình 93-96). Sau đó, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">23. Xoay Bụng Và Thận <span class="en">(23. Rotating the Abdomen and Kidneys)</span></h3>
+<p>Từ thế Vô Cực, đặt hai tay lên thắt lưng. Hai đầu gối gập nhẹ khi thắt lưng xoay vòng theo chiều kim đồng hồ. Sau khi xoay vòng một số lần, lặp lại động tác theo hướng ngược lại. Mắt nhìn xuống. Tâm nên tập trung khí vào bụng và thận khi động tác xoay vòng quanh (Hình 97-100). Sau khi hoàn thành, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">24. Xoay Thắt Lưng <span class="en">(24. Rotating the Waist)</span></h3>
+<p>Từ thế Vô Cực, hai chân gập nhẹ ở hai đầu gối. Hai cánh tay xoắn ra ngoài khi được nâng lên phía trước hai bên cơ thể. Hai khuỷu tay gập. Hai tay nắm thành đấm với hai lòng bàn tay hướng vào nhau. Sau đó, thắt lưng quay sang trái và phải trong khi hai cánh tay giữ ngang. Mắt nhìn vào hai cánh tay (Hình 101-103). Thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">25. Xoáy Xoắn Thắt Lưng <span class="en">(25. Spiralling the Waist)</span></h3>
+<p>Từ thế Vô Cực, chân trái bước nửa bước sang trái. Hai đầu gối gập xuống và phần thân trên nghiêng về phía trước. Đầu hơi ngả về phía trước. Hai tay nắm thành đấm và thẳng ra về phía trước dưới bên phải. Sau đó, phần thân trên xoáy xoắn sang trái lấy thắt lưng làm trục. Hai cánh tay chuyển sang trái, rồi về phía sau và cuối cùng sang phải. Ngực và bụng nở ra theo động tác này. Lặp lại động tác này một số lần, rồi lặp lại theo hướng ngược lại. Mức độ xoáy xoắn từ nhỏ đến lớn và tốc độ phải chậm và êm. Toàn bộ cơ thể nên mềm dẻo (Hình 104-106). Sau đó thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">26. Xoắn Đầu Gối Trái Và Phải <span class="en">(26. Left and Right Knee Spiral)</span></h3>
+<p>Xoắn đầu gối trái: Từ thế Vô Cực, các ngón bàn chân trái xoay ra ngoài và bước sang trái nửa bước. Đầu gối trái gập tạo thành bước cung. Hai tay đặt trên đầu gối trái với tay trái ở trên tay phải. Sau đó, quay khớp gối theo chuyển động chiều kim đồng hồ. Khi đầu gối vòng về phía sau, trọng lượng cơ thể nên dồn sang chân phải. Đầu gối phải nên gập và đầu gối trái thẳng ra; và khi đầu gối trái quay về phía trước, đầu gối trái gập và đầu gối phải thẳng ra. Sau khi làm động tác này một số lần, lặp lại theo hướng ngược lại (Hình 107-109).</p>
+<p>Xoắn đầu gối phải giống như bên trái, nhưng được thực hiện theo hướng ngược lại (Hình 110-112). Sau khi dừng lại, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">27. Xoắn Hai Đầu Gối <span class="en">(27. Double Knee Spiral)</span></h3>
+<p>Từ thế Vô Cực, chân trái đặt cạnh chân phải. Gập hai đầu gối thành tư thế nửa ngồi xổm. Hai tay đặt trên hai đầu gối khi các đầu gối xoắn theo chiều kim đồng hồ. Sau đó, lặp lại theo hướng ngược lại (Hình 113-115).</p>
+
+<h3 class="run-in">28. Đá Ngang Cuốn Tơ Lụa Trái Và Phải <span class="en">(28. Left and Right Chan Si Side Kick)</span></h3>
+<p>Từ thế Vô Cực, đặt hai tay lên thắt lưng. Chân trái xoắn vào trong khi gập đầu gối nâng lên. Bàn chân trái đặt cạnh mặt trong của đầu gối phải. Mở rộng các khớp háng khi chân trái đá ngang về phía dưới trái. Mắt nhìn về phía dưới trái (Hình 116-117). Bên phải giống như bên trái; chỉ các hướng là khác nhau (Hình 118-119). Sau khi hoàn thành, thực hiện Phép Thu Công.</p>
+
+<h3 class="run-in">29. Xoắn Bàn Chân Trái Và Phải <span class="en">(29. Twisting the Foot Left and Right)</span></h3>
+<p>Xoắn bàn chân trái: Từ thế Vô Cực, đặt hai tay lên thắt lưng. Chân trái thẳng ra và xoắn vào trong. Các ngón bàn chân trái nhấc lên, xoay vào trong rồi hạ trở lại mặt đất. Sau đó, chân trái xoắn ra ngoài và các ngón chân cũng xoay ra ngoài. Lặp lại chuyển động này một số lần. Điều này sẽ có lợi cho sự mềm dẻo và linh hoạt của mắt cá chân (Hình 120-122). Bên phải được trình bày ở Hình 123-125. Sau khi tập xong, hoàn tất Phép Thu Công.</p>
+
+<h3 class="run-in">30. Kim Kê Độc Lập <span class="en">(30. Golden Cock Shakes Its Wings)</span></h3>
+<p>Chuyển động này được dùng để thả lỏng các cơ của toàn bộ cơ thể. Từ thế Vô Cực, gập khuỷu tay của mỗi cánh tay và nắm thành đấm. Rung lắc phần thân trên sang trái và phải khiến các cơ của cơ thể thả lỏng và chìm xuống. Chuyển động phải đi từ chậm đến nhanh. Sau khi rung lắc cơ thể, cơ thể vẫn còn rung động khiến quần áo phất phơ. Sự rung lắc nên có cảm giác như da của cơ thể sắp rời khỏi xương. Toàn bộ cơ thể nên cảm thấy hoàn toàn thoải mái (Hình 126-127). Các động tác rung lắc được trình bày ở Hình 128-129. Sau khi cơ thể đã thả lỏng, thực hiện Phép Thu Công.</p>
+
+</section>
+
+<section class="chapter" id="ch5">
+<h2>Thái Cực Quyền Trần Thức — Bộ 38 Thức <span class="en">(Chen Style Tai Chi Quan — 38 Section Routine)</span></h2>
+<p>Khởi đầu: Thế Dự Bị (Start: Preparing Form).</p>
+<ol>
+<li>Kim Cương Đảo Đối <span class="en">(Indra Pounds with Tilt Hammer)</span></li>
+<li>Vắt Áo Lười <span class="en">(Lazy About Grasping Robe)</span></li>
+<li>Lục Phong Tứ Bế <span class="en">(Six Sealing and Four Closing)</span></li>
+<li>Đơn Biên <span class="en">(Single Whip)</span></li>
+<li>Kim Cương Đảo Đối <span class="en">(Indra Pounds with Tilt Hammer)</span></li>
+<li>Bạch Hạc Lượng Sí <span class="en">(White Crane Spreads Wings)</span></li>
+<li>Tà Hành <span class="en">(Oblique Form)</span></li>
+<li>Lâu Tất Ngạo Bộ <span class="en">(Brush Knee and Twist Step)</span></li>
+<li>Yểm Thủ Hồng Chuy <span class="en">(Hidden Hand Punch)</span></li>
+<li>Kim Cương Đảo Đối <span class="en">(Indra Pounds with Tilt Hammer)</span></li>
+<li>Bối Trá Kháo <span class="en">(Lean with Back)</span></li>
+<li>Thanh Long Xuất Thủy <span class="en">(Blue Dragon Out of Water)</span></li>
+<li>Song Thủ Đẩy <span class="en">(Both Hands Push)</span></li>
+<li>Đấm Dưới Khuỷu Tay <span class="en">(Fist Under Elbow)</span></li>
+<li>Đảo Quyển Hồng <span class="en">(Twist Arm Retreat)</span></li>
+<li>Bạch Hạc Lượng Sí <span class="en">(White Crane Spreads Wings)</span></li>
+<li>Tà Hành <span class="en">(Oblique Form)</span></li>
+<li>Sảm Thông Bối <span class="en">(Flash the Back)</span></li>
+<li>Yểm Thủ Hồng Chuy <span class="en">(Hidden Hand Punch)</span></li>
+<li>Lục Phong Tứ Bế <span class="en">(Six Sealing and Four Closing)</span></li>
+<li>Đơn Biên <span class="en">(Single Whip)</span></li>
+<li>Vân Thủ <span class="en">(Move Hands)</span></li>
+<li>Cao Thám Mã <span class="en">(High Pat Horse)</span></li>
+<li>Thập Tự Bãi Cước <span class="en">(Cross Hands and Swing Leg)</span></li>
+<li>Kích Địa Chuy <span class="en">(Punch at Underbelly)</span></li>
+<li>Viên Hầu Thám Quả <span class="en">(Monkey Looks for Fruit)</span></li>
+<li>Đơn Biên <span class="en">(Single Whip)</span></li>
+<li>Hộ Tâm Chuy <span class="en">(Shield Heart with Fist)</span></li>
+<li>Tà Hành <span class="en">(Oblique Form)</span></li>
+<li>Hồi Thân Kim Cương Đảo Đối <span class="en">(Turning Back and Indra Pounds with Tilt Hammer)</span></li>
+<li>Vắt Áo Lười <span class="en">(Lazy About Grasping Robe)</span></li>
+<li>Lục Phong Tứ Bế <span class="en">(Six Sealing and Four Closing)</span></li>
+<li>Đơn Biên <span class="en">(Single Whip)</span></li>
+<li>Hai Tay Quét Chân <span class="en">(Sweep Leg with Both Hands)</span></li>
+<li>Thượng Bộ Thất Tinh <span class="en">(Step Up to Form Seven Stars)</span></li>
+<li>Hạ Bộ Cưỡi Hổ <span class="en">(Step Down to Ride the Tiger)</span></li>
+<li>Quét Chân Pháo Về Trước <span class="en">(Sweep Leg and Cannon Forward)</span></li>
+<li>Kim Cương Đảo Đối <span class="en">(Indra Pounds with Tilt Hammer)</span></li>
+</ol>
+<p>Kết thúc: Phép Thu Công (End: Closing Form).</p>
+</section>
+
+<div class="note-box">
+      <strong>Về bản này.</strong> Tài liệu phát tay dùng trong lớp Thái Cực Quyền Trần Thức của Jerry Cheng: mười hai nguyên lý của Thái Cực Quyền, mười một phép khí công Trần Thức, bài viết mở đầu về công cuốn tơ lụa của Đại sư Phùng Chí Cường, ba mươi bài tập cuốn tơ lụa và danh mục 38 thức của bộ quyền.
+      <br><br>
+      Đây là <strong>nguyên bản PDF tiếng Anh</strong> được lưu trữ trong thư viện. Nhấn nút <strong>Đọc</strong> trên thanh công cụ (hoặc nút bên dưới) để đọc song ngữ trực tuyến ngay trong trang, hoặc tải về để đọc ngoại tuyến.
+      <br><span style="font-size:0.85rem;">Bản quyền thuộc về tác giả. Tài liệu được lưu trữ tại đây cho mục đích học tập cá nhân, phi thương mại.</span>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin: 1.5rem 0 0;">
+      <button class="btn-control" onclick="document.getElementById('pdf-open').click();" style="padding:12px 24px; font-size:1rem; cursor:pointer;"><i class="fa-solid fa-book-open-reader"></i> Đọc trực tuyến</button>
+      <a class="btn-control" href="/assets/pdf/chen-style-tai-chi-handout-jerry-cheng.pdf" download style="text-decoration:none; padding:12px 24px; font-size:1rem;"><i class="fa-solid fa-download"></i> Tải PDF (16 trang)</a>
+      <a class="btn-control" href="/vi/books/" style="text-decoration:none; padding:12px 24px; font-size:1rem;"><i class="fa-solid fa-arrow-left"></i> Về Thư Viện</a>
+    </div>
+
+    <div class="note-box" style="margin-top:2rem;">
+      <strong>Tủ Sách Thái Cực Quyền.</strong> Tài liệu này nằm trong chuyên mục Thái Cực của thư viện — cùng bộ với <a href="/vi/books/tuyet_ky_thoi_thu_tcq_tap_1_vi.html" style="color: var(--gold); font-weight: 600;">Tuyệt Kỹ Thôi Thủ Thái Cực Quyền</a>, <a href="/vi/books/wu_style_taijiquan_xu_zhiyi_overview_vi.html" style="color: var(--gold); font-weight: 600;">Ngô Thức Thái Cực Quyền — Tổng Quan</a> và các quyển quyền lý, toàn thư khác.
+    </div>
+
+  </main>
 </div>
-<div class="reader-container">
-  <h1 class="reader-title">Thái Cực Quyền Trần Thức — Tài Liệu Phát Tay (Jerry Cheng)</h1>
-  <p class="reader-subtitle">Bản dịch tiếng Việt</p>
-  
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p001_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
+
+<script>
+
+// theme
+var themeBtn = document.getElementById('theme-toggle');
+var savedTheme = localStorage.getItem('fiverings-theme');
+if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+themeBtn.addEventListener('click', function(){
+  var d = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (d) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('fiverings-theme','light'); this.innerHTML = '<i class="fa-solid fa-moon"></i>'; }
+  else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('fiverings-theme','dark'); this.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+});
+// font size
+var fs = parseInt(localStorage.getItem('fiverings-fs') || '17');
+function applyFs(){ document.querySelector('.book-content').style.fontSize = fs + 'px'; }
+applyFs();
+document.getElementById('font-up').addEventListener('click', function(){ fs = Math.min(24, fs+1); localStorage.setItem('fiverings-fs', fs); applyFs(); });
+document.getElementById('font-down').addEventListener('click', function(){ fs = Math.max(13, fs-1); localStorage.setItem('fiverings-fs', fs); applyFs(); });
+// progress
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+  document.getElementById('progress-bar').style.width = p + '%';
+});
+// TOC active
+var links = document.querySelectorAll('.toc-nav a');
+var sections = document.querySelectorAll('section.chapter');
+window.addEventListener('scroll', function(){
+  var pos = window.scrollY + 120;
+  sections.forEach(function(sec){
+    if (sec.offsetTop <= pos && sec.offsetTop + sec.offsetHeight > pos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var al = document.querySelector('.toc-nav a[href="#' + sec.id + '"]');
+      if (al) al.classList.add('active');
+    }
+  });
+});
+</script>
+
+<div id="pdf-overlay" data-pdf="/assets/pdf/chen-style-tai-chi-handout-jerry-cheng.pdf" data-title="Thái Cực Quyền Trần Thức — Tài Liệu Phát Tay" role="dialog" aria-modal="true" aria-label="Trình đọc PDF">
+  <div class="pdf-toolbar">
+    <span class="pdf-title"><i class="fa-solid fa-file-pdf"></i> <span id="pdf-title-text">Đọc bản in</span></span>
+    <button class="pdf-btn" id="pdf-prev" title="Trang trước"><i class="fa-solid fa-chevron-up"></i></button>
+    <span id="pdf-pageinfo" style="font-size:.85rem;min-width:88px;text-align:center;">&ndash; / &ndash;</span>
+    <button class="pdf-btn" id="pdf-next" title="Trang sau"><i class="fa-solid fa-chevron-down"></i></button>
+    <button class="pdf-btn" id="pdf-zoom-out" title="Thu nhỏ">A-</button>
+    <button class="pdf-btn" id="pdf-zoom-in" title="Phóng to">A+</button>
+    <a class="pdf-btn" id="pdf-download" href="#" download><i class="fa-solid fa-download"></i> Tải về</a>
+    <button class="pdf-btn" id="pdf-close" title="Đóng (Esc)"><i class="fa-solid fa-xmark"></i> Đóng</button>
   </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p002_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p003_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p004_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p005_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p006_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p007_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p008_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p009_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p010_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p011_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p012_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p013_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p014_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p015_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
-  <div class="page">
-    <div class="content-block"><div class="image-container"><img src="/assets/book_images/chen-style-handout/p016_img00.png" class="inline-image" alt="Hình ảnh" loading="lazy"></div></div>
-  </div>
+  <div id="pdf-pages"></div>
+  <div id="pdf-status">Đang tải…</div>
 </div>
+
+<script>
+/* ==== Inline PDF viewer (shared component) ==== */
+(function () {
+  var overlay = document.getElementById('pdf-overlay');
+  if (!overlay) return;
+  var pagesEl  = document.getElementById('pdf-pages');
+  var statusEl = document.getElementById('pdf-status');
+  var infoEl   = document.getElementById('pdf-pageinfo');
+  var dlLink   = document.getElementById('pdf-download');
+  var dlAnchor = document.querySelector('.header-controls a[download]') ||
+                 document.querySelector('a[href$=".pdf"]');
+  var url = overlay.getAttribute('data-pdf') || (dlAnchor && dlAnchor.getAttribute('href'));
+  if (!url) return;
+  if (dlLink) dlLink.href = url;
+  var titleEl = document.getElementById('pdf-title-text');
+  if (titleEl) {
+    var t = (document.title || '').split('\u00b7')[0].trim();
+    titleEl.textContent = overlay.getAttribute('data-title') || t || '\u0110\u1ecdc b\u1ea3n in';
+  }
+
+  var PDFJS_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+  var libState = 0;                 /* 0 none, 1 loading, 2 ready, 3 failed */
+  var pdfDoc = null, zoom = 1, items = [], current = 1, observer = null;
+  var FAIL = 'Kh\u00f4ng t\u1ea3i \u0111\u01b0\u1ee3c tr\u00ecnh \u0111\u1ecdc PDF. H\u00e3y d\u00f9ng n\u00fat \u201cT\u1ea3i v\u1ec1\u201d.';
+
+  function setStatus(msg) {
+    if (!statusEl) return;
+    if (msg) { statusEl.textContent = msg; statusEl.style.display = 'block'; }
+    else { statusEl.style.display = 'none'; }
+  }
+
+  function loadLib(cb) {
+    if (libState === 2) return cb();
+    if (libState === 3) { setStatus(FAIL); return; }
+    if (libState === 1) {
+      var t = setInterval(function () {
+        if (libState === 1) return;
+        clearInterval(t);
+        if (libState === 2) cb(); else setStatus(FAIL);
+      }, 80);
+      return;
+    }
+    libState = 1;
+    var s = document.createElement('script');
+    s.src = PDFJS_BASE + 'pdf.min.js';
+    s.onload = function () {
+      try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_BASE + 'pdf.worker.min.js'; } catch (e) {}
+      libState = 2; cb();
+    };
+    s.onerror = function () { libState = 3; setStatus(FAIL); };
+    document.head.appendChild(s);
+  }
+
+  function fit() {
+    var avail = pagesEl.clientWidth - 28;
+    if (!avail || avail < 100) avail = 640;
+    return Math.max(0.35, Math.min(avail / 420, 1.7));   /* A5 width ~= 420pt */
+  }
+
+  function draw(it) {
+    if (!it || it.done || it.busy) return;
+    it.busy = true;
+    it.page.render({ canvasContext: it.canvas.getContext('2d'),
+                     viewport: it.page.getViewport({ scale: it.scale }) }).promise
+      .then(function () { it.done = true; it.busy = false; })
+      .catch(function () { it.busy = false; });
+  }
+
+  /* the counter follows the scroll position, not the pre-render margin */
+  function updateCurrent() {
+    if (!items.length) return;
+    var top = pagesEl.scrollTop + 20, best = 1, bd = Infinity;
+    for (var i = 0; i < items.length; i++) {
+      var d = Math.abs(items[i].canvas.offsetTop - top);
+      if (d < bd) { bd = d; best = items[i].n; }
+    }
+    if (best !== current) {
+      current = best;
+      infoEl.textContent = current + ' / ' + pdfDoc.numPages;
+    }
+  }
+
+  function observe() {
+    if (observer) observer.disconnect();
+    if (!('IntersectionObserver' in window)) { items.forEach(draw); return; }
+    observer = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var n = +e.target.dataset.page;
+        draw(items[n - 1]);
+        if (items[n]) draw(items[n]);          /* pre-render next */
+      });
+    }, { root: pagesEl, rootMargin: '700px 0px' });
+    items.forEach(function (it) { observer.observe(it.canvas); });
+  }
+
+  function build() {
+    pagesEl.innerHTML = '';
+    items = []; current = 1;
+    setStatus('\u0110ang d\u1ef1ng trang\u2026');
+    var chain = Promise.resolve();
+    for (var i = 1; i <= pdfDoc.numPages; i++) {
+      (function (n) {
+        chain = chain.then(function () {
+          return pdfDoc.getPage(n).then(function (page) {
+            var s = fit() * zoom;
+            var vp = page.getViewport({ scale: s });
+            var cv = document.createElement('canvas');
+            cv.className = 'pdf-page';
+            cv.dataset.page = n;
+            cv.width = Math.floor(vp.width);
+            cv.height = Math.floor(vp.height);
+            cv.style.width = Math.floor(vp.width) + 'px';
+            cv.style.height = Math.floor(vp.height) + 'px';
+            pagesEl.appendChild(cv);
+            items.push({ n: n, canvas: cv, page: page, scale: s, done: false, busy: false });
+          });
+        });
+      })(i);
+    }
+    chain.then(function () {
+      setStatus(null);
+      infoEl.textContent = '1 / ' + pdfDoc.numPages;
+      observe();
+      updateCurrent();
+    }).catch(function (e) { setStatus('L\u1ed7i: ' + (e && e.message ? e.message : e)); });
+  }
+
+  function goto(n) {
+    if (!pdfDoc) return;
+    n = Math.max(1, Math.min(pdfDoc.numPages, n));
+    var it = items[n - 1];
+    if (it) { pagesEl.scrollTop = it.canvas.offsetTop - 12; current = n; infoEl.textContent = n + ' / ' + pdfDoc.numPages; }
+  }
+
+  function refit() {
+    if (!pdfDoc || !items.length) return;
+    var s = fit() * zoom;
+    items.forEach(function (it) {
+      var vp = it.page.getViewport({ scale: s });
+      it.scale = s; it.done = false;
+      it.canvas.width = Math.floor(vp.width);
+      it.canvas.height = Math.floor(vp.height);
+      it.canvas.style.width = Math.floor(vp.width) + 'px';
+      it.canvas.style.height = Math.floor(vp.height) + 'px';
+    });
+    var pr = pagesEl.getBoundingClientRect();
+    items.forEach(function (it) {
+      var r = it.canvas.getBoundingClientRect();
+      if (r.bottom > pr.top - 700 && r.top < pr.bottom + 700) draw(it);
+    });
+  }
+
+  function open() {
+    overlay.classList.add('open');
+    document.body.classList.add('pdf-lock');
+    if (pdfDoc) return;
+    setStatus('\u0110ang t\u1ea3i t\u00e0i li\u1ec7u\u2026');
+    loadLib(function () {
+      window.pdfjsLib.getDocument(url).promise
+        .then(function (d) { pdfDoc = d; build(); })
+        .catch(function (e) { setStatus('Kh\u00f4ng m\u1edf \u0111\u01b0\u1ee3c PDF: ' + (e && e.message ? e.message : e)); });
+    });
+  }
+  function close() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('pdf-lock');
+  }
+
+  var openBtn = document.getElementById('pdf-open');
+  if (openBtn) openBtn.addEventListener('click', function (e) { e.preventDefault(); open(); });
+  var bind = function (id, fn) { var el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+  bind('pdf-close', close);
+  bind('pdf-prev', function () { goto(current - 1); });
+  bind('pdf-next', function () { goto(current + 1); });
+  bind('pdf-zoom-in', function () { zoom = Math.min(3, zoom + 0.2); refit(); });
+  bind('pdf-zoom-out', function () { zoom = Math.max(0.4, zoom - 0.2); refit(); });
+  document.addEventListener('keydown', function (e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'PageDown') goto(current + 1);
+    else if (e.key === 'PageUp') goto(current - 1);
+  });
+  var st = false;
+  pagesEl.addEventListener('scroll', function () {
+    if (st) return;
+    st = true;
+    requestAnimationFrame(function () { st = false; updateCurrent(); });
+  });
+  var rt;
+  window.addEventListener('resize', function () {
+    if (!overlay.classList.contains('open')) return;
+    clearTimeout(rt); rt = setTimeout(refit, 220);
+  });
+})();
+</script>
 </body>
 </html>
