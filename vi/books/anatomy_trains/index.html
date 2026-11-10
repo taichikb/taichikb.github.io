@@ -26,20 +26,40 @@
   letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
 @media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
   .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
-/* --- TOC index page --- */
+/* --- TOC index page: fixed-width label column, no wrapping --- */
 .tocwrap{margin:1.4rem 0 0;}
-.chlist{list-style:none;margin:.5rem 0 0;padding:0;}
-.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+.tochd,.chlist a{display:grid;grid-template-columns:7.6rem minmax(0,1fr);
+  gap:0 1.1rem;align-items:baseline;}
+.tochd{padding:0 .6rem .45rem;border-bottom:2px solid var(--line);
+  font-family:Inter,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;}
+.chlist{list-style:none;margin:0;padding:0;}
+.chlist li{margin:0;padding:0;border-bottom:1px dotted #e2e8f0;}
 .chlist li:last-child{border-bottom:0;}
-.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
-.chlist a:hover{color:#0f766e;}
-.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;font-size:.86rem;}
-.chlist .ttl{flex:1;}
-.chlist .auth{color:#64748b;font-size:.84rem;}
+.chlist a{color:#0f172a;text-decoration:none;padding:.5rem .6rem;
+  border-radius:6px;transition:background .15s ease;}
+.chlist a:hover{background:#f0fdfa;}
+.chlist a:hover .ttl{color:#0f766e;}
+.chlist .num{color:#0f766e;font-weight:600;font-size:.82rem;
+  white-space:nowrap;font-variant-numeric:tabular-nums;}
+.chlist .ttl{font-size:.97rem;line-height:1.6;font-weight:500;}
+.chlist .auth{color:#64748b;font-size:.82rem;font-weight:400;}
+.chlist li.tocgroup{padding:1rem .6rem .35rem;border-bottom:0;
+  font-family:Inter,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;}
+.chlist li.tocgroup:not(:first-child){border-top:1px solid var(--line);margin-top:.7rem;}
 .tocbar{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 1.4rem;}
 .tocbar a{display:inline-block;padding:.34rem .75rem;border:1px solid var(--line);
   border-radius:999px;font-size:.82rem;color:#0f766e;text-decoration:none;background:#fff;}
 .tocbar a:hover{background:#f0fdfa;}
+@media(max-width:560px){
+  .reader-topnav{flex-wrap:wrap;gap:.3rem .75rem;padding:.65rem 1rem;}
+  .reader-topnav .nav-links a{margin-left:0;margin-right:.9rem;}
+  .crumb{overflow-wrap:anywhere;}
+  .tochd{display:none;}
+  .chlist a{grid-template-columns:minmax(0,1fr);gap:.12rem;}
+  .chlist .num{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;}
+  .chlist .ttl{font-size:.95rem;}}
 </style></head>
 <body>
 
@@ -68,24 +88,28 @@
 <p>Mỗi phần dưới đây là một trang riêng, cuối trang có thanh điều hướng để đi tiếp hoặc quay lại mục lục. Cách chia này giữ cho từng trang nhẹ và dễ tra cứu.</p>
 
 <div class="tocwrap">
+<div class="tochd"><span>Phần</span><span>Nội dung</span></div>
 <ul class="chlist">
-<li><a href="ch00-loi-tua.html"><span class="num">Lời tựa</span><span class="ttl">Lời tựa (ấn bản 4 &amp; ấn bản đầu) <span class="auth">— Thomas W. Myers</span></span></a></li>
-<li><a href="ch01-dat-duong-ray.html"><span class="num">Chương 1</span><span class="ttl">Đặt Đường Ray <span class="auth">— Chương 1</span></span></a></li>
-<li><a href="ch02-nhung-quy-tac-duong-dua.html"><span class="num">Chương 2</span><span class="ttl">Những Quy Tắc Đường Đua <span class="auth">— Chương 2</span></span></a></li>
-<li><a href="ch03-mat-sau-nong.html"><span class="num">Chương 3</span><span class="ttl">Mặt Sau Nông <span class="auth">— Chương 3</span></span></a></li>
-<li><a href="ch04-mat-truoc-nong.html"><span class="num">Chương 4</span><span class="ttl">Mặt Trước Nông <span class="auth">— Chương 4</span></span></a></li>
-<li><a href="ch05-duong-ben.html"><span class="num">Chương 5</span><span class="ttl">Đường Bên <span class="auth">— Chương 5</span></span></a></li>
-<li><a href="ch06-duong-xoan-oc.html"><span class="num">Chương 6</span><span class="ttl">Đường Xoắn Ốc <span class="auth">— Chương 6</span></span></a></li>
-<li><a href="ch07-duong-canh-tay.html"><span class="num">Chương 7</span><span class="ttl">Đường Cánh Tay <span class="auth">— Chương 7</span></span></a></li>
-<li><a href="ch08-cac-duong-chuc-nang.html"><span class="num">Chương 8</span><span class="ttl">Đường Chức Năng <span class="auth">— Chương 8</span></span></a></li>
-<li><a href="ch09-mat-truoc-sau.html"><span class="num">Chương 9</span><span class="ttl">Mặt Trước Sâu <span class="auth">— Chương 9</span></span></a></li>
+<li class="tocgroup">Nội dung chính</li>
+<li><a href="ch00-loi-tua.html"><span class="num">Lời tựa</span><span class="ttl">Ấn bản 4 &amp; ấn bản đầu <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li><a href="ch01-dat-duong-ray.html"><span class="num">Chương 1</span><span class="ttl">Đặt Đường Ray</span></a></li>
+<li><a href="ch02-nhung-quy-tac-duong-dua.html"><span class="num">Chương 2</span><span class="ttl">Những Quy Tắc Đường Đua</span></a></li>
+<li><a href="ch03-mat-sau-nong.html"><span class="num">Chương 3</span><span class="ttl">Mặt Sau Nông</span></a></li>
+<li><a href="ch04-mat-truoc-nong.html"><span class="num">Chương 4</span><span class="ttl">Mặt Trước Nông</span></a></li>
+<li><a href="ch05-duong-ben.html"><span class="num">Chương 5</span><span class="ttl">Đường Bên</span></a></li>
+<li><a href="ch06-duong-xoan-oc.html"><span class="num">Chương 6</span><span class="ttl">Đường Xoắn Ốc</span></a></li>
+<li><a href="ch07-duong-canh-tay.html"><span class="num">Chương 7</span><span class="ttl">Đường Cánh Tay</span></a></li>
+<li><a href="ch08-cac-duong-chuc-nang.html"><span class="num">Chương 8</span><span class="ttl">Đường Chức Năng</span></a></li>
+<li><a href="ch09-mat-truoc-sau.html"><span class="num">Chương 9</span><span class="ttl">Mặt Trước Sâu</span></a></li>
 <li><a href="ch10-anatomy-trains-trong-van-dong.html"><span class="num">Chương 10</span><span class="ttl">Anatomy Trains trong Vận Động <span class="auth">— Thomas W. Myers — với các phần đóng góp của James Earls và Karin Gurtner</span></span></a></li>
 <li><a href="ch11-bodyreading-phan-tich-cau-truc.html"><span class="num">Chương 11</span><span class="ttl">BodyReading® — Phân Tích Cấu Trúc <span class="auth">— Thomas W. Myers</span></span></a></li>
-<li><a href="ch12-phu-luc-1-cam-nang-doc-ve-mac.html"><span class="num">Phụ lục 1</span><span class="ttl">Phụ lục 1 — Cẩm Nang Đọc Về Mạc <span class="auth">— Thomas W. Myers</span></span></a></li>
-<li><a href="ch13-phu-luc-2-ghi-chu-ve-duong-kinh-vi-do.html"><span class="num">Phụ lục 2</span><span class="ttl">Phụ lục 2 — Ghi Chú Về Các Đường Kinh Vĩ Độ <span class="auth">— Thomas W. Myers</span></span></a></li>
-<li><a href="ch14-phu-luc-3-tich-hop-cau-truc.html"><span class="num">Phụ lục 3</span><span class="ttl">Phụ lục 3 — Tích Hợp Cấu Trúc <span class="auth">— Thomas W. Myers</span></span></a></li>
-<li><a href="ch15-phu-luc-4-duong-co-mac-va-y-hoc-chau-a.html"><span class="num">Phụ lục 4</span><span class="ttl">Phụ lục 4 — Các Đường Cơ–Mạc Và Y Học Châu Á <span class="auth">— Thomas W. Myers</span></span></a></li>
-<li><a href="ch16-phu-luc-5-anatomy-trains-o-dong-vat-bon-chan.html"><span class="num">Phụ lục 5</span><span class="ttl">Phụ lục 5 — Anatomy Trains Ở Động Vật Bốn Chân <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li class="tocgroup">Phụ lục</li>
+<li><a href="ch12-phu-luc-1-cam-nang-doc-ve-mac.html"><span class="num">Phụ lục 1</span><span class="ttl">Cẩm Nang Đọc Về Mạc <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li><a href="ch13-phu-luc-2-ghi-chu-ve-duong-kinh-vi-do.html"><span class="num">Phụ lục 2</span><span class="ttl">Ghi Chú Về Các Đường Kinh Vĩ Độ <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li><a href="ch14-phu-luc-3-tich-hop-cau-truc.html"><span class="num">Phụ lục 3</span><span class="ttl">Tích Hợp Cấu Trúc <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li><a href="ch15-phu-luc-4-duong-co-mac-va-y-hoc-chau-a.html"><span class="num">Phụ lục 4</span><span class="ttl">Các Đường Cơ–Mạc Và Y Học Châu Á <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li><a href="ch16-phu-luc-5-anatomy-trains-o-dong-vat-bon-chan.html"><span class="num">Phụ lục 5</span><span class="ttl">Anatomy Trains Ở Động Vật Bốn Chân <span class="auth">— Thomas W. Myers</span></span></a></li>
+<li class="tocgroup">Tài liệu tham khảo</li>
 <li><a href="ch17-thuat-ngu.html"><span class="num">Thuật ngữ</span><span class="ttl">Thuật Ngữ (Glossary) <span class="auth">— Thomas W. Myers</span></span></a></li>
 <li><a href="ch18-thu-muc.html"><span class="num">Thư mục</span><span class="ttl">Thư Mục (Bibliography) <span class="auth">— Thomas W. Myers</span></span></a></li>
 <li><a href="ch19-chi-muc.html"><span class="num">Chỉ mục</span><span class="ttl">Chỉ Mục (Index) <span class="auth">— Thomas W. Myers</span></span></a></li>
