@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #0f766e;
+  --accent-crimson: #134e4a;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+}
+body.dark-mode {
+  --bg-primary: #121212; --text-primary: #f5f5f4; --text-secondary: #a8a29e;
+  background-color: #121212 !important; color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #10302f; color: #99f6e4; border-color: #0f766e; }
+body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
+body.dark-mode .tech-table th { background: #134e4a; color: #99f6e4; }
+body.dark-mode .tech-table td { border-color: #333; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0f766e, #134e4a); z-index: 9999; width: 0%; transition: width 0.1s; }
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.45rem; }
+.toc-link { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; line-height: 1.35; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.2s; }
+.toc-link:hover { background: rgba(15, 118, 110, 0.12); color: #134e4a; transform: translateX(3px); }
+.reader-content { flex: 1; min-width: 0; background: var(--bg-primary); line-height: 1.85; font-size: 1.05rem; }
+.book-hero { border-bottom: 2px solid #0f766e; padding-bottom: 2rem; margin-bottom: 3rem; text-align: center; }
+.book-badge { display: inline-block; background: #ccfbf1; color: #134e4a; font-weight: 700; font-size: 0.82rem; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid #99f6e4; }
+.book-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; color: #134e4a; line-height: 1.25; margin: 0 0 0.5rem; }
+.book-orig-title { font-family: 'Noto Serif SC', serif; font-size: 1.25rem; color: #78716c; margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.98rem; color: #57534e; margin-bottom: 1.2rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+.book-tag { background: #f0fdfa; color: #115e59; padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; border: 1px solid #99f6e4; }
+body.dark-mode .book-tag { background: #134e4a; color: #ccfbf1; border-color: #0f766e; }
+.chapter-block { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+.chapter-header { border-left: 4px solid #0f766e; padding-left: 1.2rem; margin-bottom: 1.8rem; }
+.chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: #0f766e; display: block; }
+.chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
+.key-point { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+.tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: #0f766e; text-decoration: none; font-weight: 600; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer { border: 1px solid #e7e5e4; border-radius: 10px; background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem; }
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0f766e; padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
+.page-nav a.home { color: #0f766e; }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chương 21: Bài Tập Huấn Luyện Và Thiết Bị — Cơ Học Võ Thuật | TaichiNOW</title>
+<meta name="description" content="Chương 21 của Cơ Học Võ Thuật: Bài Tập Huấn Luyện Và Thiết Bị">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+/* starr_CSS */
+.ornament { text-align: center; color: var(--gold); letter-spacing: .5em; margin: 2.2rem 0; font-size: 1.2rem; }
+.chapter-teaser { font-style: italic; color: var(--ink-muted); border-left: 3px solid var(--border); padding: .5rem 1rem; margin: 1.4rem 0; }
+.journal-date { display: block; font-size: .8rem; color: var(--ink-muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .04em; }
+.tr-note { background: #fffbeb; border-left: 4px solid var(--gold); padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #713f12; }
+body.dark-mode .tr-note { background: #2a2415; color: #fde68a; border-color: var(--gold); }
+.key-takeaway { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+body.dark-mode .key-takeaway { background: #10302f; color: #99f6e4; }
+.starr-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
+.starr-table th, .starr-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+.starr-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.fig-cap { font-size: .93rem; color: var(--ink-muted); font-style: italic; border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 22px; }
+.fig-cap strong { font-style: normal; color: var(--ink); }
+body.dark-mode .fig-cap { color: #a1a1aa; }
+.book-figure { margin: 26px auto; text-align: center; }
+.book-figure img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+.book-figure figcaption { font-size: .93rem; color: var(--ink-muted); margin-top: 10px; font-style: italic; }
+.book-figure figcaption strong { font-style: normal; color: var(--ink); }
+body.dark-mode .book-figure figcaption { color: #a1a1aa; }
+.bib-intro { font-size: .95rem; color: var(--ink-muted); border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 26px; }
+.bib-entry { font-size: .95rem; line-height: 1.7; margin: 0 0 12px; padding-left: 1.4rem; text-indent: -1.4rem; }
+.bib-entry strong { color: var(--ink); }
+body.dark-mode .bib-intro { color: #a1a1aa; }
+</style>
+
+<style>
+
+:root{
+  /* Cormorant Garamond covers Vietnamese; Georgia does NOT (U+1EA0–U+1EF9).
+     Keep a Vietnamese-safe face ahead of Georgia in the fallback chain. */
+  --serif:'Cormorant Garamond','Palatino Linotype',Cambria,'Times New Roman','Noto Serif',Georgia,serif;
+  --zhfont:'Songti SC','SimSun','Noto Serif CJK SC',serif;
+}
+body{font-size:17px;}
+.wrap{max-width:820px;}
+h1{font-size:2.15rem;}
+h2{font-size:1.62rem;margin-top:2.9rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:1.4rem;}
+h3{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:#0f172a;
+  margin-top:2.3rem;margin-bottom:.2rem;}
+
+p{font-size:1.02rem;line-height:1.82;text-align:justify;hyphens:auto;margin-top:.85rem;}
+p.lead{font-size:1.1rem;}
+sup.ref{font-size:.66em;color:var(--gold);font-weight:600;padding-left:1px;}
+.zh{font-family:var(--zhfont);}
+
+/* classical quotations, set off from the argument */
+blockquote{margin:1.3em 0 1.5em;padding:.2em 0 .2em 22px;
+  border-left:2px solid var(--line);color:#403a34;font-size:1rem;line-height:1.8;}
+blockquote p{margin:0 0 .6em;}
+blockquote p:last-child{margin-bottom:0;}
+
+/* footnotes, kept page by page as printed */
+ol.fn{margin:1rem 0 .2rem;padding:.8rem 0 0 1.5rem;border-top:1px solid var(--line);
+  font-size:.79rem;line-height:1.7;color:#64748b;}
+ol.fn li{margin-bottom:.35rem;}
+ol.fn .zh{font-size:.92em;}
+
+.badge{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#0f766e;background:#ccfbf1;
+  border-radius:999px;padding:.3rem .85rem;margin:.9rem 0 .2rem;}
+.note{margin-top:2.6rem;padding:1.3rem 1.5rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.note h5{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#64748b;margin-bottom:.7rem;}
+.note p{font-size:.87rem;line-height:1.75;color:#475569;margin-top:.7rem;}
+
+.diagram{margin:1.7em 0;padding:1.1rem 1.2rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;}
+.diagram .dg-root{font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  color:#0f172a;text-align:center;margin-bottom:.75rem;}
+.diagram .dg-branches{display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+.diagram .dg-row{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+  justify-content:center;font-family:var(--sans);font-size:.82rem;}
+.diagram .dg-node{display:inline-block;background:#fff;border:1px solid var(--line);
+  border-radius:5px;padding:.28rem .6rem;color:#334155;}
+.diagram .dg-arrow{color:var(--gold);font-weight:700;}
+.diagram figcaption{margin-top:.85rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.65;color:#64748b;}
+
+@media(max-width:640px){
+  h1{font-size:1.6rem;}
+  h2{font-size:1.3rem;}
+  body{font-size:16px;}
+  .note{padding:1rem;}
+}
+
+
+
+/* ZHONGJING-STYLE TABLE + PLATE SUPPORT (essay 7) */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.tbl{width:100%;border-collapse:collapse;margin:1.7em 0 1.9em;font-size:.86rem;line-height:1.6;}
+table.tbl caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:.8rem;
+  font-weight:700;letter-spacing:.02em;color:#475569;padding-bottom:.55rem;}
+table.tbl th,table.tbl td{border:1px solid #d8d2c6;padding:.4rem .55rem;vertical-align:top;text-align:left;}
+table.tbl th{background:#f5f1e8;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  text-align:center;color:#334155;}
+table.tbl td.n{width:2.4rem;text-align:center;color:#94a3b8;font-family:var(--sans);font-size:.78rem;}
+table.tbl .zh{font-size:.92em;}
+figure.ms{margin:1.9em 0;text-align:center;}
+figure.ms img{max-width:290px;width:100%;height:auto;border:1px solid #d8d2c6;background:#fff;padding:4px;}
+figure.ms figcaption{margin-top:.6rem;font-family:var(--sans);font-size:.78rem;
+  line-height:1.6;color:#64748b;}
+@media(max-width:640px){
+  table.tbl{font-size:.78rem;min-width:520px;}
+  table.tbl th,table.tbl td{padding:.3rem .35rem;}
+}
+
+
+/* --- split-reader navigation (Y Giả Ý Dã) --- */
+.tocbar{margin:1.1rem 0 1.8rem;padding:.75rem 1rem;background:#f8fafc;
+  border:1px solid var(--line);border-radius:8px;font-family:var(--sans);
+  font-size:.86rem;line-height:2.1;}
+.tocbar a{display:inline-block;margin-right:.35rem;padding:.28rem .7rem;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:#0f766e;text-decoration:none;}
+.tocbar a:hover{background:#f0fdfa;text-decoration:underline;}
+.tocbar .sep{color:#94a3b8;margin:0 .2rem;}
+.chead{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#0f766e;margin:.2rem 0 .5rem;}
+.partnav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.partnav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.partnav a:hover{text-decoration:underline;}
+.partnav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.partnav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.partnav .disabled .k{color:#94a3b8;}
+.tocwrap{margin:1.6rem 0 0;}
+.toclist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+.toclist li{border-bottom:1px solid var(--line);}
+.toclist li a{display:flex;gap:.85rem;align-items:baseline;padding:.62rem .3rem;
+  text-decoration:none;color:#0f172a;}
+.toclist li a:hover{background:#f8fafc;}
+.toclist .num{font-family:var(--sans);min-width:2.6rem;text-align:center;
+  background:#e2e8f0;color:#1e293b;border-radius:999px;padding:.12rem .5rem;
+  font-size:.72rem;font-weight:700;white-space:nowrap;}
+.toclist .ttl{font-family:var(--serif);font-size:1.04rem;line-height:1.45;}
+.toclist .pg{margin-left:auto;font-family:var(--sans);font-size:.76rem;
+  color:#64748b;white-space:nowrap;}
+.toclist li.pending{display:flex;gap:.85rem;align-items:baseline;
+  padding:.62rem .3rem;opacity:.62;}
+.toclist li.pending .num{background:#f1f5f9;color:#94a3b8;}
+.toclist li.pending .ttl{color:#64748b;}
+.toclist li.pending .pg{color:#94a3b8;}
+p.tnote{font-family:var(--sans);font-size:.82rem;line-height:1.7;color:#64748b;
+  margin-top:1.4rem;}
+.tocbar a,.tnote a,.partnav a{color:#0f766e;}
+.tnote a{text-decoration:none;}
+.tnote a:hover{text-decoration:underline;}
+h2.tocpart-h{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#0f766e;margin:2rem 0 .2rem;
+  padding-top:1rem;border-top:1px solid var(--line);}
+h2[id],h3[id],h2.part{scroll-margin-top:4.5rem;}
+@media(max-width:640px){.partnav{flex-direction:column;gap:10px;}
+  .partnav a,.partnav .disabled{max-width:100%;}
+  .toclist li a,.toclist li.pending{flex-wrap:wrap;}
+  .toclist .pg{margin-left:3.4rem;}}
+/* --- chapter-level TOC / per-essay pages (mirrors the_trigger_point_manual) --- */
+ul.chlist{list-style:none;margin:.5rem 0 1.8rem;padding:0;}
+ul.chlist li{margin:0;padding:.34rem 0;border-bottom:1px dotted #e2e8f0;}
+ul.chlist li:last-child{border-bottom:0;}
+ul.chlist a{color:#0f172a;text-decoration:none;display:flex;gap:.6rem;align-items:baseline;}
+ul.chlist a:hover{color:#0f766e;}
+ul.chlist .num{flex:0 0 2.1rem;color:#94a3b8;font-variant-numeric:tabular-nums;
+  font-size:.86rem;}
+ul.chlist .ttl{flex:1;line-height:1.45;}
+h2.tocpart-h .partlink{float:right;font-family:var(--sans);font-size:.74rem;
+  font-weight:600;text-transform:none;letter-spacing:0;}
+.chapter-nav{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  margin:2.6rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;}
+.chapter-nav a{color:#0f766e;text-decoration:none;max-width:44%;}
+.chapter-nav a:hover{text-decoration:underline;}
+.chapter-nav .k{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:#64748b;margin-bottom:3px;font-weight:600;}
+.chapter-nav .disabled{color:#94a3b8;opacity:.6;max-width:44%;}
+.chapter-nav .disabled .k{color:#94a3b8;}
+.chsecnav{margin:1rem 0 1.6rem;font-size:.86rem;line-height:1.9;color:#334155;
+  background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:.7rem 1rem;}
+.chsecnav a{color:#0f766e;text-decoration:none;}
+.chsecnav a:hover{text-decoration:underline;}
+.chsecnav .lab{display:block;font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#64748b;margin-bottom:.15rem;}
+h3.chapter{scroll-margin-top:4.5rem;}
+p.introlab{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b;margin:0 0 .8rem;}
+@media(max-width:640px){.chapter-nav{flex-direction:column;gap:10px;}
+  .chapter-nav a,.chapter-nav .disabled{max-width:100%;}}
+</style>
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="index.html#sec_note">Ghi Chú Của Người Dịch</a></li>
+        <li><a href="index.html#sec_ack">Lời Cảm Ơn</a></li>
+        <li><a href="index.html#sec_foreword">Lời Tựa</a></li>
+        <li><a href="index.html#sec_intro">Dẫn Nhập</a></li>
+        <li><a href="ch01-chuong-1-chung-ta-da-tung-nhu-the.html#sec01">Chương 1 &#8226; Chúng Ta Đã Từng Như Thế</a></li>
+        <li><a href="ch02-chuong-2-nguyen-ly-suc-manh.html#sec02">Chương 2 &#8226; Những Nguyên Lý Của Sức Mạnh</a></li>
+        <li><a href="ch03-chuong-3-cu-no-lon.html#sec03">Chương 3 &#8226; Cú Nổ Lớn</a></li>
+        <li><a href="ch04-chuong-4-can-toc-do.html#sec04">Chương 4 &#8226; Cần Có Tốc Độ</a></li>
+        <li><a href="ch05-chuong-5-chuyen-ay-that-soc.html#sec05">Chương 5 &#8226; Chuyện Ấy Thật Sốc!</a></li>
+        <li><a href="ch06-chuong-6-cang-ngan-cang-tot.html#sec06">Chương 6 &#8226; Càng Ngắn Càng Tốt</a></li>
+        <li><a href="ch07-chuong-7-diem-tua.html#sec07">Chương 7 &#8226; Điểm Tựa</a></li>
+        <li><a href="ch08-chuong-8-tam-quan-buoc-chan.html#sec08">Chương 8 &#8226; Tầm Quan Trọng Của Bước Chân</a></li>
+        <li><a href="ch09-chuong-9-dung-the-nhu-nam-dam.html#sec09">Chương 9 &#8226; Dùng Cơ Thể Như Một Nắm Đấm</a></li>
+        <li><a href="ch10-chuong-10-bi-mat-hoi-tho.html#sec10">Chương 10 &#8226; Những Bí Mật Của Hơi Thở</a></li>
+        <li><a href="ch11-chuong-11-tam-quan-su-thang-hang-cot-song.html#sec11">Chương 11 &#8226; Tầm Quan Trọng Của Sự Thẳng Hàng Cột Sống</a></li>
+        <li><a href="ch12-chuong-12-dung-lap-hay-thong.html#sec12">Chương 12 &#8226; Đừng Cô Lập&#8230;Hãy Thống Nhất!</a></li>
+        <li><a href="ch13-chuong-13-the-dung-chien-dau.html#sec13">Chương 13 &#8226; Thế Đứng Chiến Đấu</a></li>
+        <li><a href="ch14-chuong-14-xuong.html#sec14">Chương 14 &#8226; Xưởng Cơ Khí</a></li>
+        <li><a href="ch15-chuong-15-ky-thuat-phoi-hop.html#sec15">Chương 15 &#8226; Kỹ Thuật Phối Hợp</a></li>
+        <li><a href="ch16-chuong-16-hai-kich-tinh-yeu-vo-thuat.html#sec16">Chương 16 &#8226; Hài Kịch, Tình Yêu Và Võ Thuật</a></li>
+        <li><a href="ch17-chuong-17-suc-manh-nam-ngang.html#sec17">Chương 17 &#8226; Sức Mạnh Nằm Ngang</a></li>
+        <li><a href="ch18-chuong-18-tro-nen-dac-dieu-tot.html#sec18">Chương 18 &#8226; Trở Nên Đặc Là Một Điều Tốt</a></li>
+        <li><a href="ch19-chuong-19-cai-gi-do-dac-biet.html#sec19">Chương 19 &#8226; Cái Gì Đó Đặc Biệt</a></li>
+        <li><a href="ch20-chuong-20-nguyen-tac-do-don.html#sec20">Chương 20 &#8226; Nguyên Tắc Đỡ Đòn</a></li>
+        <li><a href="ch21-chuong-21-bai-tap-huan-luyen-thiet-bi.html#sec21">Chương 21 &#8226; Bài Tập Huấn Luyện Và Thiết Bị</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+<nav class="tocbar"><a href="./">← Mục lục sách</a><span class="sep">·</span><a href="../martial-mechanics_vi.html">Đọc toàn bộ trong một trang</a><span class="sep">·</span><a href="./index.html">Trang mục</a></nav>
+<p class="chead">Cơ Học Võ Thuật · Phillip Starr</p>
+<a id="sec21"></a>
+<h3 class="chapter" id="ch21">Chương 21: Bài Tập Huấn Luyện Và Thiết Bị</h3>
+<div class="chsecnav"><span class="lab">Trong chương này</span><a href="#s1">Hiểu Vì Sao Và Làm Thế Nào</a> · <a href="#s2">Cột Tập Đấm</a> · <a href="#s3">Làm Cột Tập Đấm</a> · <a href="#s4">Sử Dụng Cột Tập Đấm</a> · <a href="#s5">Ngọn Nến</a> · <a href="#s6">Dựng Ngọn Nến</a> · <a href="#s7">Sử Dụng Ngọn Nến</a> · <a href="#s8">Tập Đòn Đấm</a> · <a href="#s9">Tập Tay Kiếm</a> · <a href="#s10">Tập Đòn Gốc Tay</a> · <a href="#s11">Tập Đá Thẳng Và Đá Ngang</a> · <a href="#s12">Tập Đá Vòng Cầu</a> · <a href="#s13">Bao Cát</a> · <a href="#s14">Bóng Bay</a> · <a href="#s15">Bài Tập Kháng Lực</a></div>
+<div class="partnav"><a href="ch20-chuong-20-nguyen-tac-do-don.html"><span class="k">← Chương 20</span>Chương 20: Nguyên Tắc Đỡ Đòn</a>
+<a href="./" style="text-align:center"><span class="k">Trang chủ</span>Mục lục sách</a>
+<span class="disabled"><span class="k">Hết sách →</span>Kết thúc cuốn sách</span>
+</div>
+<p class="tnote">Bản dịch tiếng Việt trên TaichiNOW. Nội dung gốc: Phillip Starr.</p>
+<h3 id="s1">Hiểu Vì Sao Và Làm Thế Nào</h3>
+<p>Những ai mê tiết kiệm chắc hẳn sẽ vui mừng khi biết rằng hầu như toàn bộ các thiết bị luyện tập kiểu cũ mà tổ tiên võ thuật của chúng ta từng dùng đều khá rẻ tiền và dễ tự làm. Phần đông bậc tiền bối của chúng ta không có nhiều tiền để đốt vào những dụng cụ cầu kỳ, và trước hết, đồ tập cầu kỳ khi ấy chưa hề được phát minh. Hơn nữa, <em>cầu kỳ và đắt tiền</em> không nhất thiết đồng nghĩa với <em>tốt hơn</em>. Trong đa số trường hợp, những dụng cụ đơn giản và rẻ tiền nhất hầu như luôn là những thứ hiệu quả nhất. Đến nay vẫn vậy. Nhưng bạn phải dùng chúng đúng cách thì mới mong gặt hái được thành quả.</p>
+<h3 id="s2">Cột Tập Đấm</h3>
+<p>Có nhiều loại cột tập đấm, nhưng loại tốt nhất mà tôi từng thấy là cột được bào mỏng một bên, phía quay về phía bạn. Loại cột này rất được ưa chuộng trong giới tập karate Okinawa và Nhật Bản. Lý do tôi ưa loại cột tập đấm này là vì nó có độ mềm dẻo nhất định. Nghĩa là, nó &#8220;nhún&#8221; nhẹ khi bạn đánh vào. Độ đàn hồi của cột tập đấm là đặc tính quan trọng nhất của nó, bởi nhờ đó bạn có thể truyền lực đánh của mình trực tiếp vào cột.</p>
+<p>Đừng bao giờ đánh vào thứ gì đó không chuyển động. Đừng gắn tấm đệm tập của bạn vào tường, vào gốc cây, hay vào một cột nặng không nhúc nhích khi bạn đấm vào. Vì sao? Thôi được, tôi sẽ nhắc lại thêm một lần nữa&#8230;</p>
+<p>Nếu bạn đánh vào một thứ không chuyển động; vào một thứ vững vàng và ăn gốc hơn chính bạn, điều gì sẽ xảy ra? Bạn sẽ tự hấp thụ phần lớn lực đánh của chính mình! Thực chất bạn đang đánh vào chính mình! Và nếu bạn luyện tập đều đặn việc đánh vào một vật bất động, rồi đến lúc nào đó bạn sẽ làm hư hại một số gân, dây chằng và khớp nhất định. Bạn cũng có thể bị thương tổn nội tạng. Nếu bạn chưa hiểu nguyên lý này, hãy đọc lại Chương 5.</p>
+<p>Theo tôi, cột tập đấm là thứ hoàn toàn không thể thiếu để phát triển lực đánh. Tôi biết sẽ có người bất đồng, nhưng hãy tin tôi khi tôi nói rằng các chiến binh thời xưa, kể cả những người nổi danh về công phu nội gia, đều luyện tập thường xuyên với một loại cột tập đấm nào đó. Việc ra đòn mạnh vào không trung rồi tin rằng mình có thể đánh rất mạnh là một chuyện. Còn việc biết chắc chắn &#8212; biết rõ ràng &#8212; rằng mình đánh rất mạnh, vì có thể liên tục tung tay vào một cột tập đấm bằng gỗ mà không hề thấy khó chịu, lại là chuyện hoàn toàn khác.</p>
+<h3 id="s3">Làm Cột Tập Đấm</h3>
+<p>Hình 21-1 và 21-2 cho thấy một cột tập đấm đúng chuẩn, làm từ một thanh gỗ 4x4 inch được bào vót thu nhỏ dần còn độ dày nửa inch ở đầu trên. Khi lắp đặt, đỉnh cột sẽ xấp xỉ ngang với vùng thương cung của bạn. Hai thanh chống dài 16 inch được gắn vào phần đáy của cột. Thanh thứ nhất gắn ở mặt trước, cách đáy khoảng 2 inch. Thanh chống thứ hai gắn vào mặt sau của cột, cao hơn thanh thứ nhất khoảng 16 inch. Phần đệm có thể làm từ một miếng đệm cao su cứng (dày khoảng 2 inch) hoặc bất kỳ bề mặt nào khác có thể làm đệm che chở cho bàn tay của bạn. Tấm đệm có thể được bọc bằng một chiếc đai karate cũ hoặc bằng sợi bông mềm hay dây gai. Nếu bọc đệm bằng dây, bạn nên ngâm dây thật kỹ trong nước trước, rồi trải ra và dùng búa đập cho mềm.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-1.jpg" alt="Hình 21.1" loading="lazy"><figcaption><strong>Hình 21-1 và 21-2.</strong>Cột tập đấm gỗ: nhìn từ mặt trước với hai thanh chống đặt chéo nhau dưới đáy (trái) và nhìn từ bên, thấy mặt hẹp được bào mỏng dần về đỉnh (phải).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-2.jpg" alt="Hình 21.2" loading="lazy"><figcaption><strong>Hình 21.2.</strong></figcaption></div>
+<p>Đào một hố sâu 3 đến 4 feet, rộng chừng 20 inch từ bên này sang bên kia. Đổ vào đáy hố khoảng một inch sỏi rồi đặt cột vào. Tấm đệm tập nên được đặt ngang tầm ngực. Lấp hố và nén đất thật chặt. Mặt tập của cột phải nhún dẻo được khoảng 6 inch khi bạn dùng nắm đấm đẩy mạnh vào nó.</p>
+<h3 id="s4">Sử Dụng Cột Tập Đấm</h3>
+<p>Giờ thì bạn đã sẵn sàng để tìm hiểu vì sao tôi nói rằng cột tập đấm thù ghét tất cả mọi người như nhau. Đừng vung tay trùm lên nó bằng cú đấm hay nhất của bạn! Rất có thể nắm đấm của bạn sẽ không tiếp xúc vuông vức. Nó thường sẽ hơi vòng móc, khiến bạn cọ các đốt ngón tay vào tấm đệm bọc và nhân thể làm trầy đi vài lớp da đầu tiên. Đừng nản lòng. Đó chỉ là cách cô cột tự giới thiệu bản thân với bạn, đồng thời bảo đảm rằng bạn tôn trọng cô ta cùng cách cô ta vận hành.</p>
+<p>Bạn có thể đánh vào cột với nhiều loại vũ khí khác nhau: nắm đấm, đòn tay kiếm (cạnh bàn tay), đòn chém, đòn gốc tay, và thậm chí cả các đòn khuỷu tay (Hình 21-3 đến 21-6).</p>
+<p>Bắt đầu chỉ với hai mươi đến hai mươi lăm đòn cho mỗi loại vũ khí. Khi các vũ khí trên cơ thể của bạn đã quen dần với việc đánh vào cột, hãy tăng dần số lần lặp lại. Nếu chẳng may bạn làm rách da tay, hãy xúc miệng bằng xà phòng (vì tôi thầm biết chắc bạn sẽ buột miệng tuôn ra một loạt từ ngữ rất màu mè) và bôi thuốc lên vết thương ngay lập tức. Đừng tiếp tục luyện tập cho đến khi vết thương lành hẳn.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-3.jpg" alt="Hình 21.3" loading="lazy"><figcaption><strong>Hình 21-3 đến 21-6.</strong>Một số vũ khí cơ thể đánh vào cột tập đấm: nắm đấm, tay kiếm, đòn chém và khuỷu tay.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-4.jpg" alt="Hình 21.4" loading="lazy"><figcaption><strong>Hình 21.4.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-5.jpg" alt="Hình 21.5" loading="lazy"><figcaption><strong>Hình 21.5.</strong></figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-6.jpg" alt="Hình 21.6" loading="lazy"><figcaption><strong>Hình 21.6.</strong></figcaption></div>
+<h3 id="s5">Ngọn Nến</h3>
+<p>Để giúp phát triển tốc độ và khả năng hội tụ điểm rơi phi thường trong kỹ thuật, không có dụng cụ nào tốt hơn ngọn nến. Và giống như cột tập đấm, nó rẻ tiền và dễ dàng tự làm.</p>
+<h3 id="s6">Dựng Ngọn Nến</h3>
+<p>Giá đỡ nến có thể làm từ một thanh gỗ tròn gắn vào một cái đế (Hình 21-7). Một đĩa nhỏ được đóng đinh hoặc dán vào đầu trên của thanh gỗ. Đun chảy một ít sáp nhỏ lên đĩa, đặt ngọn nến của bạn vào, và bạn sẽ có một trong những dụng cụ luyện tập tuyệt hảo nhất hiện có! Ngọn lửa của ngọn nến nên ở độ cao xấp xỉ ngực.</p>
+<p>Hãy chuẩn bị sẵn một chiếc bật lửa rẻ tiền hoặc cả đống diêm. Đảm bảo rằng bạn đặt giá nến trên một bề mặt không bắt lửa và treo một tấm nền phía sau cũng không bắt lửa, vì trước khi xong việc bạn sẽ bắn sáp tung toé khắp nơi.</p>
+<h3 id="s7">Sử Dụng Ngọn Nến</h3>
+<p>Các bài tập huấn luyện dưới đây nghe qua có vẻ dễ, nhưng hãy tin tôi, chúng thực sự khó thực hiện và đòi hỏi rất nhiều luyện tập. Nếu bạn đang tập kỹ thuật tay và áo võ của bạn có tay dài, hãy cởi nó ra trước khi bắt đầu buổi tập. Nếu không, ống tay áo sẽ &#8220;quạt gió&#8221; vào ngọn lửa và dập tắt nó. Nếu bạn đang tập kỹ thuật đá, đừng lo, bạn không phải cởi quần. Chỉ cần chuẩn bị tinh thần dọn rất nhiều sáp.</p>
+<h3 id="s8">Tập Đòn Đấm</h3>
+<p>Đứng bằng tấn tiến và đấm nhanh và mạnh nhất có thể vào ngọn lửa, thu đòn lại cách ngọn nến 2 inch (Hình 21-8). Mục tiêu là thổi tắt ngọn lửa bằng lực của cú thọc đấm.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-8.jpg" alt="Hình 21.8" loading="lazy"><figcaption><strong>Hình 21-8.</strong>Đấm vào ngọn lửa nến bằng cú thọc nhanh mạnh, thu đòn lại cách ngọn nến khoảng 2 inch.</figcaption></div>
+<h3 id="s9">Tập Tay Kiếm</h3>
+<p>Tập đánh ngang và theo chuyển động vòng cung (Hình 21-9 và 21-10). Một lần nữa, hãy luyện để thổi tắt ngọn lửa bằng lực của đòn đánh.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-9.jpg" alt="Hình 21.9" loading="lazy"><figcaption><strong>Hình 21-9 và 21-10.</strong>Tay kiếm đánh ngang theo chuyển động vòng cung, dùng lực của đòn đánh để thổi tắt ngọn lửa.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-10.jpg" alt="Hình 21.10" loading="lazy"><figcaption><strong>Hình 21.10.</strong></figcaption></div>
+<h3 id="s10">Tập Đòn Gốc Tay</h3>
+<p>Đòn này thực hiện khác với các kỹ thuật đấm và tay kiếm. Mục tiêu là hút ngọn lửa theo khi cánh tay của bạn quất ngược trở lại ở cuối đòn đánh (Hình 21-11). Chắc chắn không để cổ tay của bạn cong lại chút nào, kẻo bạn sẽ &#8220;quạt tắt&#8221; ngọn lửa. Chú ý chuyển động của ngọn lửa. Nếu cú gốc tay của bạn thổi tắt ngọn lửa, thì kỹ thuật của bạn dở tệ (vì lẽ ra nó phải <em>hút</em> tắt chứ). Hãy kiểm tra để bảo đảm bạn không bẻ cổ tay ra sau, và dành chút thời gian tập trước gương để chắc chắn rằng bạn tạo được chuyển động quất thật mạnh ở khuỷu tay.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-11.jpg" alt="Hình 21.11" loading="lazy"><figcaption><strong>Hình 21-11.</strong>Đòn gốc tay: cánh tay quất ngược trở lại ở cuối đòn để hút ngọn lửa theo.</figcaption></div>
+<h3 id="s11">Tập Đá Thẳng Và Đá Ngang</h3>
+<p>Bạn phải thu đòn đá của mình cách ngọn lửa ít nhất 2 inch. Mục tiêu là hút ngọn lửa theo khi bàn chân của bạn quật ngược trở lại. Chắc chắn rằng bạn không duỗi thẳng mũi chân khi thực hiện cú đá thẳng, vì điều đó sẽ &#8220;quạt tắt&#8221; ngọn lửa. Hãy quan sát ngọn lửa và bảo đảm nó bị hút tắt chứ không phải thổi tắt (Hình 21-12 và 21-13).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-12.jpg" alt="Hình 21.12" loading="lazy"><figcaption><strong>Hình 21-12 và 21-13.</strong>Đá thẳng và đá ngang: thu đòn cách ngọn lửa để hút tắt lửa khi bàn chân quật ngược trở lại.</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-13.jpg" alt="Hình 21.13" loading="lazy"><figcaption><strong>Hình 21.13.</strong></figcaption></div>
+<h3 id="s12">Tập Đá Vòng Cầu</h3>
+<p>Giống như đá thẳng và đá ngang, mục tiêu của cú đá vòng cầu là dập tắt ngọn lửa nhờ lực hút tạo ra bởi bàn chân của bạn khi nó quất ngược trở lại sau khi tung đòn. Đừng đá bằng phần trên của lưng bàn chân. Điều đó chỉ sẽ làm ngọn lửa lay động mà tắt thôi. Và dù sao, nếu bạn từng trúng một mục tiêu xương cốt bằng lưng bàn chân, bạn sẽ hiểu vì sao đó là cách đá ngốc nghếch. Hãy đá bằng phần trước lòng bàn chân và hút ngọn lửa theo (Hình 21-14).</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-14.jpg" alt="Hình 21.14" loading="lazy"><figcaption><strong>Hình 21-14.</strong>Đá vòng cầu bằng phần trước lòng bàn chân, thu đòn để hút tắt ngọn lửa.</figcaption></div>
+<p>Một khi bạn đã phát triển được khả năng dập tắt ngọn nến một cách dễ dàng, hãy dùng dây cao su buộc hai ngọn nến lại với nhau và luyện dập tắt chúng trong một đòn duy nhất (không có ý chơi chữ đâu đấy). Khó lắm đấy. Dần dần tăng lên ba rồi bốn ngọn nến. Khi bạn có thể thường xuyên dập tắt bốn ngọn nến, bạn đã phát triển được một lực và tốc độ đáng nể!</p>
+<h3 id="s13">Bao Cát</h3>
+<p>Vậy, bạn nghĩ rằng mình biết dùng bao cát đúng cách ư? Nó di chuyển được bao xa khi bạn đánh trúng? Bạn nói nó văng ra rất xa ư? Thôi, hãy nghĩ điều này: Nếu nó văng ra xa bạn, thì bạn đang <em>đẩy</em> nó! Tôi biết, tôi biết. Ngắm bao cát văng xa khi bạn ra đòn hết sức thật là vui. Nó cho bạn cảm giác mạnh mẽ. Nhưng sự thật đáng buồn là phản ứng văng ra của bao cát cho thấy lực của đòn đánh của bạn đã tiêu tán trên bề mặt của bao cát thay vì xuyên qua được nó.</p>
+<p>Xung lực hội tụ sẽ không khiến bao cát vung vẩy bao nhiêu. Nếu tôi áp một khẩu súng lục .357 magnum vào bao cát và bắn, bao cát sẽ làm gì? Chắc chắn nó sẽ không văng ra xa khỏi phát bắn. Nó có thể &#8220;chụm lại như cắt kéo&#8221;. Nó thậm chí có thể giật lên một chút. Nhưng nó sẽ không vung ngược lại bao nhiêu cả. Điều tương tự cũng phải đúng với các kỹ thuật của bạn. Nếu đòn đánh của bạn được hội tụ đúng cách sao cho xung lực xuyên <em>xuyên qua</em> bao cát thay vì trải rộng trên bề mặt của nó, bao cát sẽ không văng. Nó có thể &#8220;chụm như cắt kéo&#8221; hoặc giật lên, nhưng nó sẽ không vung.</p>
+<h3 id="s14">Bóng Bay</h3>
+<p>Bạn tin rằng mình khá nhanh trí, hả? Vậy, đây là một dụng cụ sẽ thực sự thử thách tốc độ cũng như quyết tâm của bạn. Nó còn rẻ nữa! Đơn giản là thổi phồng và buộc chặt một quả bóng bay. Ném nó lên không và cố đánh vỡ nó bằng một cú đấm (Hình 21-15). Khi làm được điều đó, bạn đã có thể ra đòn với tốc độ và xung lực đáng kể.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-15.jpg" alt="Hình 21.15" loading="lazy"><figcaption><strong>Hình 21-15.</strong>Đánh vỡ quả bóng bay đang rơi bằng một cú đấm: phép thử tốc độ và xung lực.</figcaption></div>
+<h3 id="s15">Bài Tập Kháng Lực</h3>
+<p>Bạn đã từng thấy những quảng cáo kiểu như: &#8220;Môn võ này không đòi hỏi chút sức mạnh thể chất nào, và nó chết chóc đến mức các cao thủ karate và kung-fu chỉ dám thì thầm tên nó&#8230;&#8221; chưa?</p>
+<p>Ừ. Chắc chắn rồi.</p>
+<p>Trước hết, xin nói rằng không hề tồn tại một môn võ nào không đòi hỏi một mức độ sức mạnh và sức bền thể chất nào đó. Tuy nhiên, điều đó không có nghĩa là bạn phải vồ vập lao vào một chương trình tập tạ nặng nhọc và cố trở thành ứng cử viên cho danh hiệu cử tạ của tiểu bang. Sức mạnh và cách sử dụng sức mạnh đúng đắn là hai chuyện khác nhau. Việc bạn sở hữu một bộ ngực vạm vỡ kèm hai bờ vai vồ và cơ nhị đầu chắc nịch chưa chắc đã có nghĩa là bạn có thể tạo ra bất kỳ lực đánh thật sự nào.</p>
+<p>Các bài tập kháng lực rất tốt để duy trì thể lực tổng thể. Nhưng nếu bạn định dùng chúng để nâng cao kỹ năng võ thuật, bạn cần nghiên cứu kỹ chúng và chỉ tập những bài <em>chuyên biệt cho kỹ thuật</em>. Suy cho cùng, nếu muốn phát triển cú đấm mạnh hơn, bạn cần tập đấm! Bạn có thể tập squats cho đến khi một tầng siêu hình nào đó trong vũ trụ đóng băng hẳn, nhưng chúng sẽ không giúp bạn phát triển cú đấm mạnh hơn. Trên thực tế, những bài tập kiểu đó có xu hướng rèn cơ cho việc nâng xách thay vì uốn nắn chúng cho đấm, đánh và đá. Tổ tiên võ thuật của chúng ta không có tạ Olympic mạ crôm hay máy tập cầu kỳ tại nhà. Họ dùng những dụng cụ thô sơ và những bài tập được thiết kế để củng cố một số loại kỹ thuật nhất định.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-16.jpg" alt="Hình 21.16" loading="lazy"><figcaption><strong>Hình 21-16 và 21-17.</strong>Chishi &#8212; gậy tập có tạ (trái) và nigiri-game &#8212; bình tập nắm tay (phải).</figcaption></div><div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-17.jpg" alt="Hình 21.17" loading="lazy"><figcaption><strong>Hình 21.17.</strong></figcaption></div>
+<p>Chẳng hạn, các võ sinh karate Okinawa dùng <em>chishi</em> và <em>nigiri-game</em> để củng cố cẳng tay, cổ tay và bàn tay cho việc nắm bắt (Hình 21-16 và 21-17).</p>
+<p>Các môn sinh của nhiều dòng kung-fu khác nhau sử dụng rất nhiều dụng cụ đơn giản nhưng cực kỳ hiệu quả. Chẳng hạn, gậy <em>chin-na</em>, thường được làm đơn giản chỉ từ một khúc tre ngắn, giúp phát triển sức nắm bắt phi thường (Hình 21-18).</p>
+<p>Những quả tạ cổ tay và tạ cổ chân hay tạ bàn chân thô sơ đã từng được dùng &#8212; và đến nay vẫn được dùng &#8212; để giúp củng cố các kỹ thuật khác nhau. Tôi hết sức khuyên các bạn luyện tập với những dụng cụ tương tự.</p>
+<div class="book-figure"><img src="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/images/books/martial-mechanics-reader/fig21-18.jpg" alt="Hình 21.18" loading="lazy"><figcaption><strong>Hình 21-18.</strong>Luyện tập với gậy chin-na: chuyển động quật lực quanh cổ tay.</figcaption></div>
+<div class='tr-note'>Người dịch: bản in gốc kết thúc chương này bằng một tờ ảnh minh họa riêng (trang in 184) gồm một ảnh chụp cỡ lớn cùng hai ảnh vật dụng nhỏ hơn, kèm chú thích in. Bản quét của trang này có độ tương phản cực thấp khiến cả ảnh lẫn phần chú thích in đi kèm đều không thể đọc nổi qua OCR lẫn khi xem bản quét, dù đã thử tăng cường tương phản nhiều lần; người dịch vì thế không đặt số hiệu hình minh họa cho các ảnh này để tránh bịa số, và mời bạn đọc đối chiếu bản in gốc.</div></main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
