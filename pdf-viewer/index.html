@@ -518,8 +518,30 @@ if (typeof pdfjsLib === 'undefined') {
     pageElements.forEach(card => observer.observe(card));
   }
 
+  // Cross-origin PDFs live on raw.githubusercontent.com, which DOES answer Range
+  // requests with 206 and ACAO:* (no preflight -- `Range: bytes=a-b` is
+  // CORS-safelisted). But it does not send Access-Control-Expose-Headers, so page
+  // JS cannot see Accept-Ranges/Content-Range; pdf.js's own stream detection then
+  // assumes Range is unsupported and downloads the entire 50-90 MB file before
+  // painting (~10 s). Driving the ranges through our own transport fetches just
+  // the tail xref + page 1 (~3 requests, ~3 s) with no loss of fidelity.
+  class CORSRangeTransport extends pdfjsLib.PDFDataRangeTransport {
+    constructor(url, length) {
+      super(length);
+      this.url = url;
+      this.destroyed = false;
+    }
+    requestDataRange(begin, end) {
+      fetch(this.url, { headers: { Range: `bytes=${begin}-${end - 1}` } })
+        .then(r => r.arrayBuffer())
+        .then(buf => { if (!this.destroyed) this.onDataRange(begin, new Uint8Array(buf)); })
+        .catch(() => { if (!this.destroyed) this.onDataRange(begin, new Uint8Array(0)); });
+    }
+    abort() { this.destroyed = true; }
+  }
+
   // Load the PDF Document
-  function loadDocument() {
+  async function loadDocument() {
     if (!window.pdfjsLib) {
       showError('Không thể nạp thư viện PDF.js.');
       return;
@@ -528,26 +550,37 @@ if (typeof pdfjsLib === 'undefined') {
     loadingText.textContent = 'Đang kết nối thư viện tài liệu...';
     progressBar.style.width = '20%';
 
-    // Same-origin PDFs (localized in https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/): fetch only the chunks that
-    // are actually needed. Aborting the full-file GET pdf.js starts for every
-    // document, plus 4 MB range chunks instead of the 64 KB default, takes first
-    // paint of a 50-90 MB book from ~9 s to ~2 s.
-    // Cross-origin media repos cannot range-fetch at all (their OPTIONS preflight
-    // returns 403 without Access-Control-Allow-Headers), so there the streamed
-    // full download is left as-is -- aborting it would break those readers.
     const sameOriginPdf = pdfUrl.startsWith('/') ||
                           pdfUrl.startsWith(window.location.origin + '/');
-
-    const loadingTask = pdfjsLib.getDocument({
-      url: pdfUrl,
+    const baseOpts = {
       cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
       cMapPacked: true,
       enableXfa: true,
-      ...(sameOriginPdf ? {
+    };
+
+    let loadingTask;
+    if (sameOriginPdf) {
+      // Same-origin: pdf.js sees Accept-Ranges itself; abort the full-file GET
+      // and use 4 MB chunks instead of the 64 KB default.
+      loadingTask = pdfjsLib.getDocument({
+        url: pdfUrl,
+        ...baseOpts,
         rangeChunkSize: 4 * 1024 * 1024,
         disableStream: true,
-      } : {}),
-    });
+      });
+    } else {
+      // Cross-origin: HEAD exposes Content-Length (a CORS-safelisted response
+      // header) even when Accept-Ranges does not. Build a transport from it.
+      // If HEAD is blocked, fall back to pdf.js's normal streaming download.
+      let length = 0;
+      try {
+        const head = await fetch(pdfUrl, { method: 'HEAD' });
+        if (head.ok) length = parseInt(head.headers.get('content-length'), 10) || 0;
+      } catch (e) { /* fall through to streaming */ }
+      loadingTask = length > 0
+        ? pdfjsLib.getDocument({ range: new CORSRangeTransport(pdfUrl, length), ...baseOpts, rangeChunkSize: 4 * 1024 * 1024 })
+        : pdfjsLib.getDocument({ url: pdfUrl, ...baseOpts });
+    }
 
     loadingTask.onProgress = function(progress) {
       if (progress.total > 0) {
