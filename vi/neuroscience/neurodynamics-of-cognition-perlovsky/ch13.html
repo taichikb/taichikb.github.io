@@ -63,7 +63,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>4.1.2 Kết quả Thực nghiệm</p>
 <p>Theo phương pháp đo hoạt động của mạng KIII như mô tả trong Mục 3.2, khoảng thời gian có các mẫu kích thích được chia thành 5 phân đoạn để tính toán hoạt động của các nút với mỗi phân đoạn kéo dài 40 ms. Vì có 10 mẫu liên quan lẫn nhau để phân loại, thuật toán 2 cho quy tắc học Hebb được chọn cho bài toán phân loại này với hệ số thiên lệch K = 0,4. Các giá trị s = 5 và</p>
 <p>K = 0,4 được chọn dựa trên các thực nghiệm trước đây về ứng dụng mô hình KIII [7]. Tốc độ tăng r được đặt thành 1,2. Chúng tôi chọn 1,2 một cách tùy ý trong khoảng</p>
-<figure class="bookfig"><img src="img/img_p269_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p269_1.webp" alt="" loading="lazy"></figure>
 <h3>Hình 6 Một ví dụ về phân đoạn chữ số viết tay</h3>
 <p>(1,0, 1,5). Nếu r > 1,5, ω(mml)ij sẽ nhanh chóng trở nên quá lớn và do đó, mô hình KIII không thể hoạt động bình thường như một bộ phân loại. Hơn nữa, giá trị ngưỡng đã đề cập ở trên được đặt bằng một phần hai mươi khoảng cách giữa trọng tâm cụm dữ liệu kiểm thử và trọng tâm cụm dữ liệu huấn luyện. Trong các thực nghiệm của mình, chúng tôi có tổng cộng 200 nhóm ký tự số viết tay. Mỗi nhóm gồm mười ký tự (từ ′0′ đến ′9′). Chúng tôi chọn ngẫu nhiên 10 nhóm trong số đó để huấn luyện và sử dụng tất cả 200 nhóm để phân loại.</p>
 <p>Hơn nữa, chúng tôi đã so sánh tỷ lệ phân loại của mình với các tỷ lệ thu được bằng cách sử dụng các loại mạng nơ-ron nhân tạo (ANN) truyền thống sau đây: bộ lọc tuyến tính, perceptron hai lớp và mạng Hopfield, để phân loại cùng các ký tự số viết tay này. Việc lựa chọn tập huấn luyện và tập kiểm thử đều giống như trong các thực nghiệm của KIII. Bộ lọc tuyến tính rất đơn giản và có khả năng phân loại rất hạn chế. Nó bao gồm 64 nơ-ron đầu vào và 10 nơ-ron đầu ra, tương ứng với 64 đặc trưng đầu vào và 10 lớp đầu ra, trong khi hàm truyền Purelin được sử dụng. Quy tắc Học Windrow-Hoff, một phương pháp Bình phương Tối thiểu Trung bình, đã được sử dụng để huấn luyện [9]. Trong perceptron hai lớp, chúng tôi sử dụng hai lớp perceptron: một lớp đầu vào gồm 64 nơ-ron và một lớp đầu ra gồm 10 nơ-ron. Lớp đầu vào sử dụng hàm truyền log-sigmoid và lớp đầu ra sử dụng hàm truyền tuyến tính. Chúng tôi lấy mỗi cột của ma trận đơn vị 10 × 10 làm đầu ra mục tiêu của perceptron hai lớp, tương ứng với một loại ký tự số trong tập huấn luyện. (tức là cột thứ 1 tương ứng với ký tự ‘0′, v.v.) Các giá trị trọng số và độ lệch trong perceptron hai lớp được cập nhật theo tối ưu hóa Levenberg-Marquardt với tất cả các tốc độ học được đặt thành 0,01. Mạng Hopfield không có quy luật học gắn liền với nó. Nó không được huấn luyện, cũng không tự học. Thay vào đó, một quy trình thiết kế dựa trên hàm Lyapunov đã được sử dụng để xác định ma trận trọng số. Chúng tôi coi vector cột trong tập huấn luyện, tức là ma trận 64 × 10, là tập hợp các điểm ổn định trong mạng và thiết kế một mạng Hopfield với một lớp duy nhất sử dụng hàm truyền tuyến tính bão hòa đối xứng. Quy trình kiểm thử của perceptron hai lớp và mạng Hopfield rất giống nhau. Sau khi đưa tập đầu vào kiểm thử vào mạng, chúng tôi so sánh đầu ra của mạng với các vector mục tiêu được thiết kế trước. Vector mục tiêu có phương sai tối thiểu với vector đầu ra sẽ xác định hạng mục mà tập kiểm thử thuộc về.</p>
@@ -101,13 +101,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>2-DCT có thể tập trung phần lớn năng lượng tín hiệu ở góc trên bên trái. Trong Hình 9, (a) là ảnh khuôn mặt gốc, (b) là ảnh tái tạo không loại bỏ bất kỳ hệ số nào, (c) là ảnh tái tạo sau khi loại bỏ khoảng 90% hệ số và (d) là ảnh tái tạo chỉ loại bỏ một hệ số cực đại. Chúng tôi chọn hệ số lớn nhất làm đặc trưng của ảnh con.</p>
 <p>Trong SVD, các giá trị kỳ dị tạo thành một vector đặc trưng n chiều và có thể được sử dụng để thay thế ảnh khuôn mặt. Trong Hình 10, trục X biểu thị 10 giá trị kỳ dị lớn trong mỗi ảnh con, và trục Y biểu thị số lượng đặc trưng (8 ×|yi|, tức là 8, 16, 24, v.v.). Trục Z biểu thị tỷ lệ của mỗi giá trị kỳ dị trên tổng tất cả các giá trị kỳ dị sau SVD được tính trung bình trên tất cả các ảnh con. Trong mô phỏng, giá trị kỳ dị lớn nhất, chứa phần lớn năng lượng của ảnh, được chọn làm đặc trưng.</p>
 <p>WPT của ảnh tạo ra một mảng các hệ số sóng nhỏ trong các dải tần số khác nhau. WPT hai mức được sử dụng để tính toán các hệ số, và chuẩn (norm) của tất cả các hệ số ở dải tần số thấp nhất trong các dải con được chọn làm đặc trưng.</p>
-<figure class="bookfig"><img src="img/img_p273_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p273_1.webp" alt="" loading="lazy"></figure>
 <h3>Hình 8 Xây dựng một vector đặc trưng</h3>
-<figure class="bookfig"><img src="img/img_p273_2.png" alt="" loading="lazy"></figure>
-<figure class="bookfig"><img src="img/img_p273_3.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p273_2.webp" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p273_3.webp" alt="" loading="lazy"></figure>
 <p>(a) (b)</p>
-<figure class="bookfig"><img src="img/img_p273_4.png" alt="" loading="lazy"></figure>
-<figure class="bookfig"><img src="img/img_p273_5.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p273_4.webp" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p273_5.webp" alt="" loading="lazy"></figure>
 <p>(c) (d)</p>
 <h3>Hình 9 So sánh ảnh khuôn mặt được xử lý bằng DCT</h3>
 <p>0.8</p>
@@ -173,10 +173,10 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Khoảng nhớ Chữ số Thính giác Cộng và Trừ</h3>
 <h3>Đối tượng Bình thường Thiếu oxy Bình thường Thiếu oxy</h3>
 <p>Số 1 30 29 28 21 Số 2 28 24 31 26 Số 3 25 21 20 20 Số 4 32 23 24 15 Số 5 19 9 24 12 Trung bình 26.8 21.2 24.2 16.8</p>
-<figure class="bookfig"><img src="img/img_p277_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p277_1.webp" alt="" loading="lazy"></figure>
 <h3>Hình 12 Một bản đồ địa hình đặc trưng điển hình</h3>
 <p>chứa 80 mẫu EEG bình thường và thiếu oxy cho từng cá nhân bởi 5 đối tượng khác nhau. Chúng tôi chọn ngẫu nhiên 40 nhóm mẫu ở vị trí lẻ để huấn luyện và sử dụng tất cả 80 nhóm mẫu để phân loại, sau đó chúng tôi chọn 40 mẫu ở vị trí chẵn để huấn luyện và sử dụng tất cả 80 mẫu để phân loại. Tỷ lệ chính xác cuối cùng là trung bình của hai lần tỷ lệ chính xác. Trong ứng dụng này, mạng KIII 30 kênh được sử dụng với các tham số hệ thống. Các giá trị s = 5, K = 0,4 và r = 1,25 được chọn dựa trên các thực nghiệm trước đây về ứng dụng của mô hình KIII. Vector đặc trưng được nạp vào lớp R của mô hình KIII được tính toán để phân loại các mẫu đầu vào. Chỉ khi hiệu giữa các khoảng cách Euclid từ mẫu đầu vào mới đến hai loại mẫu đã lưu trữ đạt đến ngưỡng xác định trước, việc phân loại mới được coi là hợp lệ và có tính thuyết phục. Các kết quả thực nghiệm được trình bày trong Hình 13. Thực tế, giá trị trung bình của tỷ lệ phân loại cho tập dữ liệu kiểm thử bằng 92%. Rõ ràng, EEG thiếu oxy có thể được nhận dạng từ EEG bình thường bằng mạng KIII. Nói cách khác, một mẫu hình mới trong EEG, khác với mẫu bình thường, đã hình thành do tình trạng thiếu oxy gây ra. Kết luận của việc phân loại EEG nhất quán với NE. Tỷ lệ chính xác tối thiểu (85%) là từ đối tượng SỐ 3 bằng mạng KIII. Đồng thời, ngoại trừ đối tượng SỐ 3, điểm số NE trong điều kiện thiếu oxy thấp hơn hoàn toàn so với điều kiện bình thường. Điểm số cộng và trừ liên tiếp của NE từ đối tượng SỐ 3 không thay đổi trong điều kiện bình thường và thiếu oxy. Kết quả của EEG và NE thực sự thống nhất. Ở một mức độ nào đó, tỷ lệ chính xác của mạng KIII đại diện cho mức độ thiếu oxy và xác suất xuất hiện mẫu thiếu oxy. Nó mở ra khả năng phát hiện định lượng tình trạng thiếu oxy.</p>
-<figure class="bookfig"><img src="img/img_p278_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p278_1.webp" alt="" loading="lazy"></figure>
 <h3>Hình 13 Kết quả phân loại EEG</h3>
 <p>4.4 Nhận dạng Trà</p>
 <p>ANN thường được coi là phương pháp nhận dạng mẫu hứa hẹn nhất để xử lý tín hiệu từ mảng cảm biến hóa học của mũi điện tử. Đặc biệt, khi mô hình hóa khứu giác sinh học, mô hình KIII nên phù hợp hơn cho khứu giác nhân tạo nhờ khả năng khái quát hóa mạnh mẽ giúp hệ thống mang tính sinh học hơn [8]. Ở đây mô hình KIII được một mũi điện tử sử dụng để phân loại các loại trà khác nhau.</p>
@@ -232,15 +232,15 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Một nút RPE nguyên mẫu thường được sử dụng trong nghiên cứu các quá trình có hiện tượng tập thể phức tạp, cũng như trong việc triển khai các kiến trúc nơ-ron để mô hình hóa các tập hợp nơ-ron có động lực học phong phú, là phép đệ quy logistic, được cho bởi (1) [21, 26, 27].</p>
 <p>xn+1 = p.xn.(1 −xn). (1)</p>
 <p>Một số nghiên cứu (được thảo luận sau trong chương này) về các mạng sử dụng các nút logistic này</p>
-<figure class="bookfig"><img src="img/img_p286_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p286_1.webp" alt="" loading="lazy"></figure>
 <p>Hình 1 Họ các phép đệ quy tham số, với 3 ví dụ về ánh xạ hồi quy liên kết xn và xn+1. Tùy theo giá trị của tham số p, Rp ánh xạ các giá trị của xn và xn+1 theo các dạng khác nhau [13]</p>
 <p>đã chứng minh các chức năng tự liên kết và dị liên kết. Các kết quả chính và các phương pháp liên quan được phát triển trong các nghiên cứu này không chỉ có giá trị đối với các RPE logistic như trên, mà còn cho các nút đệ quy khác có sự phân nhánh phong phú và phân tầng hỗn loạn [11, 12].</p>
 <p>Các phép đệ quy logistic là một minh chứng rõ ràng rằng một hiện tượng học phức tạp và đa dạng có thể được thể hiện bởi các nút đệ quy với định nghĩa toán học tương đối đơn giản. Hình 2 cho thấy các ví dụ về hành vi đa dạng được thể hiện bởi chuỗi xn do một nút đệ quy logistic tạo ra. Trong hình, các trục hoành biểu diễn thời gian rời rạc n và các trục tung biểu diễn các giá trị xn. Trong nhiều ví dụ về sự tiến hóa của RPE, chúng ta quan sát thấy một phần quá độ ở đầu chuỗi và sự ổn định dần dần của quỹ đạo tại một loại tập hút nào đó. Hình 2a) minh họa sự ổn định, trong dài hạn, tại một tập hút điểm cố định. Trong b), có một tập hút tuần hoàn. Trong c), có một chuỗi hỗn loạn, không có hành vi tuần hoàn; chỉ các khía cạnh vĩ mô của chuỗi là ổn định, chẳng hạn như các vùng giá trị mà chuỗi thời gian ghé thăm và tần suất tương đối của các lần ghé thăm tới từng vùng của không gian trạng thái.</p>
-<figure class="bookfig"><img src="img/img_p287_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p287_1.webp" alt="" loading="lazy"></figure>
 <p>(a)</p>
-<figure class="bookfig"><img src="img/img_p287_2.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p287_2.webp" alt="" loading="lazy"></figure>
 <p>(b)</p>
-<figure class="bookfig"><img src="img/img_p287_3.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p287_3.webp" alt="" loading="lazy"></figure>
 <p>(c)</p>
 <p>Hình 2 Các ví dụ về hành vi đa dạng được thể hiện bởi chuỗi xn của một nút đệ quy có độ đa dạng động lực học cao (ánh xạ logistic). Các trục hoành là thời gian rời rạc n và các trục tung là các giá trị xn. (a) cho thấy sự ổn định tại một tập hút điểm cố định (các giá trị p nhỏ); (b) một tập hút tuần hoàn (các giá trị p trung bình); (c) chuỗi hỗn loạn (các giá trị p lớn)</p>
 <p>Trọng tâm của hiện tượng học minh họa trong Hình 2 là khái niệm về các quỹ đạo tuần hoàn nhất quán với một phép đệ quy Rp. Để đơn giản, hãy xét một quỹ đạo tuần hoàn chu kỳ 2, được thực hiện bởi một nút đệ quy tuân theo xn+1 = Rp(xn). Đối với các chu kỳ 2, bắt đầu từ một giá trị xn cho trước, phép đệ quy Rp tác động hai lần nối tiếp nhau và tạo ra một giá trị xn+2 bằng với giá trị ban đầu xn. Điều này được biểu diễn trong (2).</p>
@@ -253,7 +253,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Sự thiếu ổn định này đối với các chu kỳ 2 hợp lệ xảy ra trong ánh xạ logistic chẳng hạn khi p = 3,50 (đây là giá trị được sử dụng để tạo ra phần trên của Hình 3).</p>
 <p>Ở phần dưới của hình, chúng ta có tình huống ngược lại, tức là độ ổn định lớn đối với các quỹ đạo chu kỳ 2, có thể quan sát được khi giá trị nhỏ hơn p = 3,25 (trong ví dụ này) được sử dụng. Trong trường hợp này, quỹ đạo chu kỳ 2 hợp lệ, liên quan đến hai giá trị A và B được liên kết bởi Rp, không chỉ là một chu kỳ ổn định, mà còn hút các quỹ đạo vốn ban đầu rất xa các giá trị A và B.</p>
 <p>Điều kiện thiết yếu cho tính ổn định của một quỹ đạo chu kỳ 2 hợp lệ là đạo hàm của chuỗi kép các phép đệ quy Rp phải có độ lớn nhỏ hơn đơn vị. Điều kiện toán học này phải đúng với bất kỳ giá trị x nào liên quan đến chu kỳ (A và B, hoặc tổng quát hơn là xcycle). Nó đảm bảo rằng bất kỳ nhiễu loạn nhỏ nào trong chu kỳ sẽ dần dần được hấp thụ theo thời gian. Điều này được biểu diễn về mặt toán học trong (3), trong đó ở phần thứ hai viết lại điều kiện này bằng cách sử dụng</p>
-<figure class="bookfig"><img src="img/img_p289_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p289_1.webp" alt="" loading="lazy"></figure>
 <h3>A – 0.001 A + 0.0001</h3>
 <h3>A + 0.17 A</h3>
 <h3>A</h3>

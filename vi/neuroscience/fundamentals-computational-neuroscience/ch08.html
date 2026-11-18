@@ -386,8 +386,8 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>−1 1</p>
 <p>Tích chập kết quả được hiển thị trong Hình 7.13. Như có thể thấy, bộ lọc này làm nổi bật các cạnh dọc. Cụ thể hơn, giá trị màu xám ở đó chỉ ra rằng không có cạnh nào. Các điểm ảnh tối hơn cho thấy nơi có sự chuyển tiếp từ giá trị nhỏ hơn sang giá trị thang xám cao hơn trong ảnh gốc, trong khi điểm ảnh sáng hơn chỉ ra nơi có sự chuyển tiếp theo chiều ngang giữa giá trị cao hơn và nhỏ hơn trong ảnh gốc. Các cạnh ngang bị triệt tiêu, mặc dù chúng ta có thể thiết kế một bộ lọc tương tự cho các cạnh ngang hoặc thậm chí các chuyển tiếp phức tạp hơn.</p>
 <p>Tất nhiên, bộ lọc của chúng ta rất nhỏ và chỉ hiển thị các cạnh có sự thay đổi đáng kể giữa hai cạnh liên tiếp. Do đó có những thiết kế bộ phát hiện cạnh tốt hơn, chẳng hạn như bộ phát hiện cạnh Canny. Các kỹ thuật này kết hợp các bộ lọc gradient như vậy với làm mịn Gaussian và loại bỏ một số trường hợp giả. Ngoài ra, một phiên bản liên tục</p>
-<figure class="bookfig"><img src="img/img_p209_2.png" alt="" loading="lazy"></figure>
-<figure class="bookfig"><img src="img/img_p209_3.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p209_2.webp" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p209_3.webp" alt="" loading="lazy"></figure>
 <h2>1 * =</h2>
 <p>-1 -1 1</p>
 <p>Hình 7.13 Một ví dụ về bộ phát hiện cạnh nhỏ được áp dụng cho chữ số 4 từ tập dữ liệu MNIST.</p>
@@ -416,7 +416,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Tầng tiếp theo chúng ta thêm vào là một tầng dropout. Đây thực sự không phải là một tầng mới mà là một bước hậu xử lý của tầng hiện tại nhằm tắt ngẫu nhiên một số nút. Xác suất một nơ-ron bị tắt được đặt là 25% trong ví dụ của chúng ta. Dropout là một kỹ thuật phổ biến để ngăn ngừa quá khớp. Quá khớp trong mạng nơ-ron có thể xảy ra khi các nơ-ron riêng lẻ trở nên rất nhạy cảm với các ví dụ huấn luyện cụ thể, và việc tắt ngẫu nhiên các nơ-ron trong quá trình huấn luyện buộc phải có một biểu diễn phân tán hơn. Điều này có thể được xem như một dạng tăng cường dữ liệu vì tầng tiếp theo phải học các phiên bản nhiễu của các mẫu và do đó không thể chuyên biệt hóa vào các đặc trưng sắc nét đơn lẻ. Dropout chỉ được bật trong quá trình huấn luyện vì chúng ta muốn tất cả các nơ-ron hoạt động trong quá trình truy hồi dự đoán. Vì dropout ảnh hưởng đến độ chính xác huấn luyện nên có thể độ chính xác huấn luyện sẽ thấp hơn độ chính xác trên tập kiểm tra.</p>
 <p>Cuối cùng, chúng ta đưa biểu diễn mới này của hình ảnh vào một mạng phân loại, bản thân nó là một MLP. Hàm layers.Flatten() làm phẳng các đặc trưng thành một vectơ một chiều làm đầu vào cho MLP. Phần còn lại của mã nguồn chỉ định việc huấn luyện mạng này và đánh giá nó tương tự như các ví dụ trước của chúng ta.</p>
 <p>CNN cải thiện khả năng nhận dạng MNIST hơn nữa và hiện nay đã đạt đến mức có thể nhận dạng hầu hết các ví dụ trong tập kiểm tra. Việc chạy mạng này trong một khoảng thời gian hợp lý đòi hỏi phải có GPU, nhưng rất dễ đạt được độ chính xác trên 99%. Thật vậy, chúng ta đang tiến đến điểm mà một vài sai sót của mạng thậm chí có thể bị đặt dấu hỏi xem có phải là sai sót thực sự hay không. Ví dụ, một biến thể thú vị của các mạng như vậy đã được nghiên cứu bởi phòng thí nghiệm của Jürgen Schmidhuber sử dụng thiết kế với nhiều luồng CNN song song giống với một phương pháp tập hợp tương tự như rừng phân loại đã thảo luận trong Chương 3. Họ đã chỉ ra rằng một mạng như vậy có thể nhận dạng tất cả trừ 32 ví dụ. Những ví dụ này được hiển thị trong Hình 7.15 cùng với nhãn ‘đúng’ của chúng ở góc trên bên phải và lựa chọn thứ nhất và thứ hai do mạng tạo ra ở dưới cùng của mỗi hình ảnh. Tôi để độc giả tự đánh giá xem những nhãn này có hợp lý hay không.</p>
-<figure class="bookfig"><img src="img/img_p212_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p212_1.webp" alt="" loading="lazy"></figure>
 <p>Hình 7.15 Các ví dụ trong tập kiểm tra MNIST bị phân loại sai trong các mạng [từ Dan Ciresan, Ueli Meier, và Jürgen Schmidhuber, Multi-column Deep Neural Networks for Image Classification: Technical Report Number IDSIA-04-12, tr. 4, Hình 2b, © Các tác giả, 2012].</p>
 <p>7.4 Diễn giải xác suất của MLP</p>
 <p>Trọng tâm của các phần trên trong chương này là sự hiện thực hóa quan trọng của các mạng nơ-ron truyền thẳng với tư cách là bộ xấp xỉ hàm và bộ phân loại. Trong phần này, chúng ta sẽ đi sâu hơn vào việc lồng ghép chúng trong một diễn giải xác suất, điều rất quan trọng trong bối cảnh một lý thuyết não bộ nhấn mạnh mô hình cho một thế giới bất định.</p>
@@ -571,14 +571,14 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>p(s′; G). (7.85)</p>
 <p>Nghịch đảo của mô hình có thể được xem như một mô hình nhận dạng (recognition model), Q, thứ khơi gợi các khái niệm nội tại từ các nguyên nhân trong môi trường. Mô hình thế giới, vốn được nhúng trong hệ thần kinh trung ương, được mổ xẻ theo cuộc thảo luận trên trong Hình 7.21 với một cấu trúc phân tầng bao gồm các kết nối hai chiều cần thiết. Các mô hình liên quan như vậy được gọi là mạng niềm tin sâu (deep belief networks); ‘mạng niềm tin’ vì khả năng tạo ra kỳ vọng của chúng, và ‘sâu’ vì kiến trúc phân tầng của chúng. Ở giai đoạn này không dễ để tách bạch rõ ràng mô hình sinh khỏi mô hình nhận dạng, vì toàn bộ hệ thống có tính tương tác cao, nhưng sự phân biệt giữa mô hình sinh và mô hình nhận dạng đôi khi có thể được làm rõ ràng, như sẽ thảo luận bên dưới.</p>
 <h3>Tác nhân Môi trường</h3>
-<figure class="bookfig"><img src="img/img_p223_1.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p223_1.webp" alt="" loading="lazy"></figure>
 <h3>Cảm giác PNS</h3>
 <h3>Cảm giác CNS</h3>
 <h3>Nội tại</h3>
 <p>) | c, a ( s p</p>
 <p>) |s , c ( s p trạng thái ,c ) | ( s p c ) | ( a c p Ngoại tại c ,c ) | ( p c</p>
-<figure class="bookfig"><img src="img/img_p223_2.png" alt="" loading="lazy"></figure>
-<figure class="bookfig"><img src="img/img_p223_3.png" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p223_2.webp" alt="" loading="lazy"></figure>
+<figure class="bookfig"><img src="img/img_p223_3.webp" alt="" loading="lazy"></figure>
 <p>trạng thái</p>
 <p>) | ( a , s p a</p>
 <p>) ( p a</p>
