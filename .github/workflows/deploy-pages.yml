@@ -27,6 +27,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          # Skip the multi-GB offloaded trees during checkout as well as staging;
+          # otherwise the checkout step can stall for an hour on this repo.
+          sparse-checkout: |
+            /*
+            !/assets/books
+            !/books/pdfs
+            !/assets/images/books
+            !/assets/pdf
+            !/downloads
+            !/facebook/media/videos
+            !/facebook/media/generated
+          sparse-checkout-cone-mode: false
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
