@@ -86,20 +86,16 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>9.2 Mạng nơ-ron điểm hút (ANN)</p>
 <p>Nhiều nhà nghiên cứu đã suy đoán về tầm quan trọng của các kết nối hồi tiếp trong các mạng lưới não bộ. Grossberg là một trong những người đầu tiên đề xuất, phân tích, và phổ biến các mạng như vậy liên quan đến các quá trình não bộ, từ cuối những năm 1950. Những người tiên phong quan trọng khác bao gồm Caianiello, Longuet-Higgins, Willshaw, Edelman, Amari, và Kohonen, cùng nhiều người khác. Để xem một tuyển tập hay các bài báo sơ khai, hãy xem Shaw và Palm, Brain theory, ấn bản tiền in, World Scientific (1988). John Hopfield đã phổ biến các mạng này trong giới vật lý vào đầu những năm 1980. Phần lớn nội dung sau đây dựa trên công trình của Amit, Gutfreund, và Sompolinsky. Bây giờ chúng ta sẽ thảo luận về các trạng thái hút, vì chúng chi phối sự tiến hóa theo thời gian của các hệ động lực được thảo luận ở đây, ít nhất là về mặt tiệm cận. Vì có thể mất một khoảng thời gian đáng kể để hệ thống tiến gần đến các trạng thái như vậy, tính liên quan của các trạng thái đó đối với các quá trình não bộ từng bị đặt nghi vấn. Tuy nhiên, chúng ta sẽ thấy rằng các trạng thái hút đạt được khá nhanh trong hầu hết các tình huống được thảo luận ở đây. Ngoài ra, não bộ không cần thiết phải ổn định hoàn toàn vào các trạng thái hút. Thay vào đó, con đường nhanh chóng hướng tới các trạng thái hút có thể là đủ để sử dụng chúng làm bộ nhớ liên kết. Mặc dù điều này phù hợp hơn nhiều với các yêu cầu xử lý thời gian thực của các chức năng não bộ, chúng ta thảo luận về các trạng thái hút để phân tích các chế độ động lực học của mạng.</p>
 <p>9.2.1 Động lực học mạng và huấn luyện</p>
-<p>Quy tắc động lực học của ANN giống với quy tắc được đề cập trong Chương 8, mặc dù một mô tả với các nút riêng lẻ phù hợp hơn để sử dụng ở đây. Do đó, chúng ta sử dụng phiên bản rời rạc (pt 8.1) với các đầu vào bên ngoài như trong pt 8.6, τ dui(t)</p>
-<p>dt = −ui(t) + 1</p>
+<p>Quy tắc động lực học của ANN giống với quy tắc được đề cập trong Chương 8, mặc dù một mô tả với các nút riêng lẻ phù hợp hơn để sử dụng ở đây. Do đó, chúng ta sử dụng phiên bản rời rạc (pt 8.1) với các đầu vào bên ngoài như trong pt 8.6, τ dui(t) dt = −ui(t) + 1</p>
 <h3>X</h3>
 <p>wijrj(t) + Iext i (t) (9.1)</p>
 <h3>N</h3>
-<p>j ri = g(ui), (9.2)</p>
-<p>và quy tắc hiệp phương sai Hebb để học Np mẫu với các thành phần rµ i cho mẫu µ. Khi bắt đầu quy tắc này với một ma trận trọng số toàn số không và sử dụng tốc độ học ϵ (xem thêm Mục 6.4.2, pt 6.23), chúng ta có thể viết ma trận trọng số thu được là</p>
+<p>j ri = g(ui), (9.2) và quy tắc hiệp phương sai Hebb để học Np mẫu với các thành phần rµ i cho mẫu µ. Khi bắt đầu quy tắc này với một ma trận trọng số toàn số không và sử dụng tốc độ học ϵ (xem thêm Mục 6.4.2, pt 6.23), chúng ta có thể viết ma trận trọng số thu được là</p>
 <h3>Np X</h3>
-<p>(rµ i −⟨ri⟩)(rµ j −⟨rj⟩) −ci. (9.3)</p>
-<p>wij = ϵ µ=1</p>
+<p>(rµ i −⟨ri⟩)(rµ j −⟨rj⟩) −ci. (9.3) wij = ϵ µ=1</p>
 <p>Qua đó chúng ta đã đưa vào một hằng số ức chế, ci cho mỗi nút nhận, tương tự như sự ức chế bổ sung được sử dụng trong Chương 8. Các dấu ngoặc nhọn biểu thị giá trị kỳ vọng như đã dùng trước đây. Chương này chủ yếu xem xét việc huấn luyện các mẫu nhị phân. Để giữ ký hiệu nhất quán với chương trước, chúng ta bắt đầu với các biểu diễn rµ i ∈{0, 1}, đối với chúng một hàm kích hoạt ngưỡng,</p>
 <p>1 nếu ui > θ ri = Θ(ui; θ) =</p>
-<p>0 nếu khác , (9.4)</p>
-<p>là phù hợp. Lưu ý rằng các giá trị mẫu, trái ngược với các giá trị trạng thái của mạng, được ký hiệu bằng chỉ số trên cho các số thứ tự mẫu khác nhau.</p>
+<p>0 nếu khác , (9.4) là phù hợp. Lưu ý rằng các giá trị mẫu, trái ngược với các giá trị trạng thái của mạng, được ký hiệu bằng chỉ số trên cho các số thứ tự mẫu khác nhau.</p>
 <h3>Tài liệu về ANN thường sử dụng các mẫu với biểu diễn sµ</h3>
 <p>i ∈{−1, 1}, trong đó chữ s được dùng để ám chỉ sự tương đồng với các mô hình spin, được thảo luận thêm bên dưới. Biểu diễn này được sử dụng cho phần lớn các cuộc thảo luận trong chương này. Tất nhiên, các lập luận rút ra ở đây không nên phụ thuộc vào biểu diễn, vì vậy cần cẩn trọng để chuyển đổi chính xác giữa các ký hiệu. Để chuyển đổi các tần số r ∈{0, 1} sang spin s ∈{−1, 1}, chúng ta chỉ cần nhân các giá trị tần số với 2 và trừ đi 1, s = 2r −1. Do đó, để biến đổi các pt 9.1–9.3 sang biểu diễn s, người ta chỉ cần sử dụng các phép thế ri = 1</p>
 <p>2(si + 1), ui = 1 2(us i + 1). (9.5)</p>
@@ -107,11 +103,9 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>τ dus i(t) dt = −us i(t) + 1</p>
 <h3>X</h3>
 <h3>X</h3>
-<p>wij + 2Iext i (t) −1, (9.6)</p>
-<p>wijsj +</p>
+<p>wij + 2Iext i (t) −1, (9.6) wijsj +</p>
 <h3>N</h3>
-<p>j j si = gs(us i) = sign(us i −2θ + 1), (9.7)</p>
-<p>trong đó hàm kích hoạt giờ đây là hàm dấu (sign) với một ngưỡng được điều chỉnh phù hợp. Các giá trị trọng số, khi được biểu diễn bằng các mẫu trong biểu diễn s, là</p>
+<p>j j si = gs(us i) = sign(us i −2θ + 1), (9.7) trong đó hàm kích hoạt giờ đây là hàm dấu (sign) với một ngưỡng được điều chỉnh phù hợp. Các giá trị trọng số, khi được biểu diễn bằng các mẫu trong biểu diễn s, là</p>
 <h3>Np X</h3>
 <p>wij = ϵ1 (sµ i −⟨si⟩)(sµ j −⟨sj⟩) −ci, (9.8)</p>
 <p>4 µ=1 có cùng dạng như trong biểu diễn r, nhưng có sự điều chỉnh ở tốc độ học.</p>
@@ -119,15 +113,12 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p></p>
 <p></p>
 <p>X si(t + 1) = sign wijsj(t)</p>
-<p> (9.9)</p>
-<p>j trong đó chúng ta đã áp dụng hàm kích hoạt cho cả hai vế của phương trình trạng thái dừng. Trước hết chúng ta thảo luận trường hợp ci = 0. Cả mô hình thời gian liên tục (pt 9.6 và 9.7), và mô hình điểm bất động rời rạc (pt 9.9) đều có thể minh họa các đặc trưng tiệm cận của hệ thống với ma trận trọng số pt 9.8. Chỉ khi chúng ta quan tâm đến động lực học đáp ứng quá độ của mô hình, ví dụ như khi mô hình hóa thời gian phản ứng của hệ thống, chúng ta mới phải sử dụng các phương trình liên tục.</p>
+<p> (9.9) j trong đó chúng ta đã áp dụng hàm kích hoạt cho cả hai vế của phương trình trạng thái dừng. Trước hết chúng ta thảo luận trường hợp ci = 0. Cả mô hình thời gian liên tục (pt 9.6 và 9.7), và mô hình điểm bất động rời rạc (pt 9.9) đều có thể minh họa các đặc trưng tiệm cận của hệ thống với ma trận trọng số pt 9.8. Chỉ khi chúng ta quan tâm đến động lực học đáp ứng quá độ của mô hình, ví dụ như khi mô hình hóa thời gian phản ứng của hệ thống, chúng ta mới phải sử dụng các phương trình liên tục.</p>
 <p>Các mô hình bộ hút có thể được xem xét trong bối cảnh xác suất, hoặc với đầu vào nền ngẫu nhiên, trọng số nhiễu, hoặc truyền dẫn xác suất. Chúng ta thường nói đơn giản là nhiễu trong bối cảnh này, mặc dù cần hiểu rõ rằng mô tả xác suất này có thể còn hơn là chỉ những tác động môi trường không mong muốn. Một mô hình nhiễu phổ biến được sử dụng cho các kết quả trình bày sau này là quy tắc cập nhật xác suất, thay thế hàm kích hoạt tất định (pt 9.9)</p>
 <p></p>
 <p></p>
-<p>X wijsj(t −1)</p>
-<p>si(t) = sign</p>
-<p> (9.10)</p>
-<p>j bằng một phiên bản xác suất</p>
+<p>X wijsj(t −1) si(t) = sign</p>
+<p> (9.10) j bằng một phiên bản xác suất</p>
 <p>P(si(t) = +1) = 1 1 + exp(−2 P j wijsj(t −1)/T). (9.11)</p>
 <p>Mô hình nhiễu này tương ứng với thống kê Boltzmann trong các hệ nhiệt động lực học, và tham số nhiễu T do đó đôi khi được gọi là nhiệt độ. Hàm dấu được khôi phục lại trong giới hạn T →0 (xem bài tập).</p>
 <p>Kết luận chính của chương này là các mạng động lực học, như được giới thiệu trong phần này, có thể hoạt động như một thiết bị bộ nhớ tự liên kết. Điều này được minh họa cho mô hình điểm bất động và mô hình thời gian liên tục trong Hình 9.4. Cả hai mạng ban đầu được huấn luyện trên 10 mẫu ngẫu nhiên. Mô hình điểm bất động (Hình 9.4A) sau đó được khởi tạo với một mẫu ngẫu nhiên, và một phiên bản nhiễu của một mẫu được sử dụng làm đầu vào bên ngoài cho đến t = 10τ đối với mô hình thời gian liên tục. Cả hai đồ thị đều cho thấy tích vô hướng chuẩn hóa, được gọi là độ chồng lấp (overlap) trong các đồ thị này, giữa các trạng thái mạng với từng mẫu đã lưu trong khi cập nhật mạng. Tích vô hướng chuẩn hóa đo cosin của góc giữa hai vectơ và do đó bằng một nếu hai vectơ hướng cùng chiều và bằng không khi chúng vuông góc. Trong hình, một trong các đường tiến tới một, cho thấy một mẫu đã được truy xuất. Mô phỏng với mô hình liên tục minh họa sự phục hồi của một ký ức (bị nhiễu) vì chúng ta đã sử dụng một trạng thái nhiễu như vậy làm mẫu đầu vào cho đến t = 10τ. Chúng ta cho thấy trong hình này một trường hợp đặc biệt thú vị trong đó hai mẫu cạnh tranh nhau trong một khoảng thời gian trước khi mẫu lưu trữ đúng được truy xuất. Các mô phỏng trong trường hợp rời rạc được bắt đầu với một mẫu ngẫu nhiên và chứng minh rằng một trong các mẫu đã lưu đã được truy xuất. Cả hai mô phỏng cũng minh họa trí nhớ làm việc với sự phát xung duy trì sau khi loại bỏ đầu vào bên ngoài.</p>
@@ -144,8 +135,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>0 10 5 0 20 10</p>
 <h3>Số lần lặp Thời gian [ τ]</h3>
 <p>Hình 9.4 Ví dụ về kết quả từ các mô phỏng của các mô hình ANN. (A) Mô phỏng mô hình điểm bất động với chương trình ann fixpoint.m. Độ chồng lấp ở đây là tích vô hướng chuẩn hóa của các trạng thái mạng trong quá trình cập nhật với tất cả 10 mẫu đã được khắc ghi bằng học tập Hebb vào mạng. Mạng được khởi tạo ngẫu nhiên, và một trong các mẫu đã lưu đã được truy xuất. (B) Mô phỏng phiên bản thời gian liên tục của mạng bộ hút với chương trình ann cont.m. Một phiên bản nhiễu của một mẫu đã lưu được áp dụng làm đầu vào bên ngoài cho đến t = 10τ.</p>
-<p>Để minh họa bộ nhớ liên kết, chúng ta chạy một thí nghiệm nhỏ với các nơ-ron nhị phân. Chúng ta chọn biểu diễn hai trạng thái này là −1 và 1. Chúng ta có thể dễ dàng biến đổi mạng sang các biểu diễn trạng thái khác, nhưng hóa ra biểu diễn này giúp cho chương trình sau đây gọn gàng hơn. Chúng ta sử dụng các đơn vị ngưỡng cứng trong ví dụ này với ‘quy tắc cập nhật’</p>
-<p>s(t + 1) = sign(ws(t −1)). (9.12)</p>
+<p>Để minh họa bộ nhớ liên kết, chúng ta chạy một thí nghiệm nhỏ với các nơ-ron nhị phân. Chúng ta chọn biểu diễn hai trạng thái này là −1 và 1. Chúng ta có thể dễ dàng biến đổi mạng sang các biểu diễn trạng thái khác, nhưng hóa ra biểu diễn này giúp cho chương trình sau đây gọn gàng hơn. Chúng ta sử dụng các đơn vị ngưỡng cứng trong ví dụ này với ‘quy tắc cập nhật’ s(t + 1) = sign(ws(t −1)). (9.12)</p>
 <p>Hàm dấu trả về −1 nếu đối số nhỏ hơn không và ngược lại trả về 1. Đây chỉ là một phiên bản khác của một perceptron ngưỡng. Bây giờ chúng ta muốn lưu trữ một số mẫu xµ trong mạng này. Phần mới ở đây là cách chúng ta huấn luyện mạng này. Chúng ta sử dụng ở đây</p>
 <h3>X</h3>
 <p>xx′ (9.13)</p>
@@ -167,8 +157,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>X</h3>
 <h3>X</h3>
 <h3>N s1</h3>
-<p>s1 j sj(t)]. (9.15)</p>
-<p>i</p>
+<p>s1 j sj(t)]. (9.15) i</p>
 <h3>N</h3>
 <p>µ=2 j j</p>
 <h3>Biểu thức s1</h3>
@@ -191,8 +180,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Bây giờ hãy chuyển sang tình huống khi chúng ta huấn luyện mạng trên nhiều hơn một mẫu, (N pat > 1). Hãy thảo luận thêm trường hợp của một thành phần mẫu s1 i = 1. Trạng thái của nút tương ứng được bảo toàn khi mạng được khởi tạo với mẫu đầu tiên, chỉ khi đóng góp từ số hạng nhiễu chéo (nhiễu) lớn hơn −1. Số hạng nhiễu chéo là một biến ngẫu nhiên vì chúng ta đã sử dụng các biến ngẫu nhiên sµ i làm mẫu huấn luyện, như đã đề cập trước đó. Giá trị trung bình của số hạng ngẫu nhiên bằng không vì các thành phần riêng lẻ độc lập và trung bình của các thành phần riêng lẻ bằng không. Do đó, chúng ta có thể kỳ vọng một số trường hợp trong đó một số trong nhiều mẫu đã huấn luyện được ổn định. Tuy nhiên, xác suất số hạng nhiễu chéo đảo ngược trạng thái của nút phụ thuộc vào phương sai của số hạng nhiễu. Vì vậy, chúng ta phải ước tính phương sai của số hạng nhiễu chéo.</p>
 <p>Trong ví dụ của chúng ta, chúng ta đã sử dụng một mẫu huấn luyện với các thành phần được phân bố đều giữa các giá trị −1 và 1. Do đó, mỗi phần của tổng trong số hạng nhiễu chéo là một số phân bố đều với giá trị −1 hoặc 1. Tổng của các số ngẫu nhiên nhị phân như vậy trên các mẫu huấn luyện (ngoại trừ mẫu mà chúng ta dùng làm điều kiện ban đầu cho mạng) là một số ngẫu nhiên phân bố nhị thức với trung bình bằng không và độ lệch chuẩn</p>
 <p>√</p>
-<p>N pat −1. Tổng lớn của các số ngẫu nhiên như vậy trên số lượng nút trong mạng khi đó được xấp xỉ tốt bởi một phân bố Gaussian với trung bình bằng không và độ lệch chuẩn (N pat −1)N (xem Phụ lục 3.5). Cuối cùng chúng ta phải tính đến hệ số chuẩn hóa, N, trong số hạng nhiễu chéo, và do đó độ lệch chuẩn của số hạng ‘nhiễu’ này là, p (N pat −1)</p>
-<p>r r</p>
+<p>N pat −1. Tổng lớn của các số ngẫu nhiên như vậy trên số lượng nút trong mạng khi đó được xấp xỉ tốt bởi một phân bố Gaussian với trung bình bằng không và độ lệch chuẩn (N pat −1)N (xem Phụ lục 3.5). Cuối cùng chúng ta phải tính đến hệ số chuẩn hóa, N, trong số hạng nhiễu chéo, và do đó độ lệch chuẩn của số hạng ‘nhiễu’ này là, p (N pat −1) r r</p>
 <h3>N = √α. (9.18)</h3>
 <h3>N pat</h3>
 <h3>N ≈</h3>
@@ -210,8 +198,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Với kiến thức về phân bố xác suất của số hạng nhiễu chéo, chúng ta có thể xác định xác suất số hạng nhiễu chéo làm thay đổi giá trị hoạt động của nút. Xác suất số hạng nhiễu chéo tạo ra các giá trị nhỏ hơn −1 được minh họa trong Hình 9.5. Tích phân như vậy của một hàm Gaussian được cho bởi hàm sai số (xem pt 3.54),</p>
 <h3>Perror = 1</h3>
 <p>2[1 −erf( S √</p>
-<p>2σ )], (9.19)</p>
-<p>trong đó S là cường độ của tín hiệu, bằng một trong trường hợp của chúng ta, và σ là phương sai của số hạng nhiễu chéo, như đã ước tính ở trên. Để đảm bảo rằng xác suất số hạng nhiễu chéo đổi dấu nhỏ hơn một giá trị nhất định, tức là Perror < Pbound, chúng ta cần một tham số tải nhỏ hơn α < 1 2[erf−1(1 −2Pbound)]2 . (9.20)</p>
+<p>2σ )], (9.19) trong đó S là cường độ của tín hiệu, bằng một trong trường hợp của chúng ta, và σ là phương sai của số hạng nhiễu chéo, như đã ước tính ở trên. Để đảm bảo rằng xác suất số hạng nhiễu chéo đổi dấu nhỏ hơn một giá trị nhất định, tức là Perror < Pbound, chúng ta cần một tham số tải nhỏ hơn α < 1 2[erf−1(1 −2Pbound)]2 . (9.20)</p>
 <p>Biểu thức phân bố số hạng nhiễu chéo cho chúng ta biết rằng xác suất thành phần bị đảo dấu là nhỏ khi tham số tải của mạng nhỏ (α ≪1), tức là nếu số lượng mẫu trong tập huấn luyện nhỏ hơn nhiều so với số kết nối trên mỗi nút trong mạng (P ≪N). Cụ thể, nếu chúng ta huấn luyện mạng trên một số lượng mẫu bằng 10% số nút trong mạng, tức là P = 0.1N, thì xác suất thành phần bị đảo dấu nhỏ hơn 0.001. Một số ví dụ khác được liệt kê trong bảng ở Hình 9.5.</p>
 <p>9.2.3 Giản đồ pha</p>
 <p>Phân tích tỷ lệ tín hiệu trên nhiễu cho thấy rằng có khả năng một số lượng vừa phải các mẫu đã huấn luyện vẫn là các điểm bất động của động lực học mạng. Tuy nhiên, việc tăng số lượng mẫu huấn luyện sẽ làm tăng xác suất đảo dấu trong hoạt động của các nút. Các trạng thái bị đảo có thể khiến các nút khác tiếp tục đảo dấu ở bước thời gian tiếp theo, và thậm chí gây ra hiệu ứng thác lũ (avalanche effect) dẫn trạng thái mạng đi chệch khỏi mẫu đã huấn luyện. Các giá trị định lượng cho các tham số mà tại đó trí nhớ bị sụp đổ</p>
@@ -232,8 +219,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Hình 9.6 Kết quả mô phỏng cho một mạng tự liên kết với động lực học thời gian liên tục, bộ tích phân rò rỉ, N = 1000 nút, và hằng số thời gian τ = 10 ms. (A) Độ bền vững khi gợi nhớ mẫu nhiễu. Khoảng cách trung bình giữa trạng thái mạng và trạng thái trí nhớ tại t = 1 ms theo hàm của khoảng cách tại thời điểm t = 0 ms, đối với một số lượng mẫu huấn luyện cố định (Np = 100). (B) Khoảng cách trung bình với các mức tải khác nhau đối với một khoảng cách cố định của các trạng thái ban đầu (d0 = 0.01).</p>
 <p>chỉ có thể được suy ra từ một phân tích chi tiết hơn về động lực học. Một cách để làm điều này là sử dụng các mô phỏng như đã phác thảo trong Hình 9.4.</p>
 <p>Khả năng hoàn thành mẫu của các nút liên kết làm cho các mẫu đã huấn luyện trở thành các điểm hút của động lực học mạng trong các mạng có tham số tải nhỏ, như được minh họa trong Hình 9.4. Hình 9.6 minh họa sự sụp đổ trí nhớ một cách có hệ thống hơn. Các mô phỏng này được thực hiện với một mạng lớn hơn gồm N = 1000 nút với một ANN thời gian liên tục có hằng số thời gian τ = 10 ms và biên độ trọng số lớn hơn để cho phép hội tụ nhanh hơn. Chúng ta theo dõi trạng thái của mạng bằng cách tính khoảng cách, được định nghĩa bởi</p>
-<p>2(1 − a′b ||a|| ||b||), (9.21)</p>
-<p>d(a, b) = 1 giữa vectơ huấn luyện a = s1 và trạng thái của hệ thống b = s. Trái ngược với thước đo độ chồng lấp được sử dụng trong Hình 9.4, ở đây chúng ta chuẩn hóa tích vô hướng sao cho giá trị bằng tỷ lệ phần trăm các dấu bị thay đổi so với các vectơ huấn luyện.</p>
+<p>2(1 − a′b ||a|| ||b||), (9.21) d(a, b) = 1 giữa vectơ huấn luyện a = s1 và trạng thái của hệ thống b = s. Trái ngược với thước đo độ chồng lấp được sử dụng trong Hình 9.4, ở đây chúng ta chuẩn hóa tích vô hướng sao cho giá trị bằng tỷ lệ phần trăm các dấu bị thay đổi so với các vectơ huấn luyện.</p>
 <p>Trong Hình 9.6A, mạng được khởi động với một số lượng cụ thể các thành phần bị đảo (các bit bị lật) của một vectơ huấn luyện, và khoảng cách của mạng tới vectơ huấn luyện này được đo tại t = 1 ms (0.1τ). Kết quả chứng minh rằng mạng hội tụ, tính trung bình, về một mẫu đã huấn luyện nếu khoảng cách ban đầu nhỏ hơn một giá trị nhất định vào khoảng dBA ≈0.3. Do đó, mẫu đã huấn luyện là một điểm hút dưới động lực học của mạng với một lưu vực hút (basin of attraction) có kích thước dBA.</p>
 <p>Trong Hình 9.6B, chúng ta trình bày kết quả khi số lượng mẫu huấn luyện được thay đổi và mạng được khởi tạo với một số lượng nhỏ cố định (1%) các bit bị lật của một mẫu huấn luyện. Một phân tích về các mạng có kết nối thưa cho thấy tham số tải phù hợp là số lượng mẫu huấn luyện tương đối so với số kết nối trên mỗi nút, C, α = N pat</p>
 <h3>C . (9.22)</h3>
@@ -278,21 +264,17 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Số hạng cuối cùng một lần nữa là một số hạng nhiễu chéo, có thể được chứng minh là có cùng độ lớn với số hạng nhiễu chéo trong trường hợp một mẫu đã huấn luyện. Bản thân độ lớn của số hạng tín hiệu có thể có các giá trị khác nhau. Ví dụ, nếu các thành phần s1 i , s2 i , và s3 i đều có cùng giá trị, điều xảy ra với xác suất 1/4, thì chúng ta có thể rút giá trị này ra khỏi tổng trong số hạng tín hiệu,</p>
 <p>1 N</p>
 <h3>X</h3>
-<p>(s1 i s1 j + s2 i s2 j + s3 i s3 j)sign(s1 j + s2 j + s3 j)</p>
-<p>j</p>
+<p>(s1 i s1 j + s2 i s2 j + s3 i s3 j)sign(s1 j + s2 j + s3 j) j</p>
 <p>1 N</p>
 <h3>X</h3>
-<p>= s1 (s1 j + s2 j + s3 j)sign(s1 j + s2 j + s3 j). (9.25)</p>
-<p>i j</p>
+<p>= s1 (s1 j + s2 j + s3 j)sign(s1 j + s2 j + s3 j). (9.25) i j</p>
 <p>Các thành phần trong tổng còn lại của số hạng tín hiệu có thể có nhiều giá trị khác nhau như có thể thấy từ các tổ hợp thành phần khả dĩ được liệt kê trong Bảng 9.1. Chúng ta nhận được đóng góp bằng 3 nếu dấu của cả ba nút s1 j, s2 j, và s3 j giống nhau. Điều này một lần nữa xảy ra với xác suất 1/4. Trong 3/4 còn lại của thời gian chúng ta nhận được đóng góp bằng 1. Tính trung bình, do đó chúng ta nhận được một tín hiệu bằng 3/2 tín hiệu của một mẫu đã huấn luyện. Tuy nhiên, số hạng tín hiệu sẽ khác khi một dấu của các nút s1 i , s2 i , hoặc s3 i khác với dấu của các nút còn lại, điều xảy ra với xác suất 3/4. Ví dụ, nếu s3 i có dấu khác với s1 i và s2 i , chúng ta có thể viết số hạng tín hiệu là</p>
 <p>1 N</p>
 <h3>X</h3>
-<p>(s1 i s1 j + s2 i s2 j + s3 i s3 j)sign(s1 j + s2 j + s3 j)</p>
-<p>j</p>
+<p>(s1 i s1 j + s2 i s2 j + s3 i s3 j)sign(s1 j + s2 j + s3 j) j</p>
 <h2>1 N</h2>
 <h3>X</h3>
-<p>= s1 (s1 j + s2 j −s3 j)sign(s1 j + s2 j + s3 j). (9.26)</p>
-<p>i j</p>
+<p>= s1 (s1 j + s2 j −s3 j)sign(s1 j + s2 j + s3 j). (9.26) i j</p>
 <p>Giá trị trung bình của tổng còn lại có thể được đánh giá như trước, cho thấy giá trị này bằng 1/2. Chúng ta kết luận rằng, tính trung bình, chúng ta có một tín hiệu có cường độ bằng</p>
 <h2>1 4 ∗3 2 + 3 4 ∗1 2 = 3 4</h2>
 <p>lần tín hiệu khi cập nhật một mẫu đã huấn luyện. Điều này chỉ ra rằng có thể có các trạng thái hỗn hợp của các mẫu đã huấn luyện cũng là các bộ hút trong hệ thống. Đây là một ví dụ về cái gọi là trạng thái giả (spurious state) trong mạng; các bộ hút khác với mẫu được sử dụng để huấn luyện mạng. Những trạng thái trí nhớ kỳ lạ này đã được gọi là trạng thái tâm thần phân liệt (schizophrenic states) để ám chỉ những lần gợi nhớ ký ức rõ ràng có nội dung kỳ lạ. Phân tích ở đây cho thấy khả năng dưới những điều kiện nhất định, một số lần gợi nhớ ký ức bị nhiễm bẩn bởi các trạng thái ký ức khác, thậm chí nhiều hơn cả qua số hạng nhiễu chéo thông thường được phân tích ở trên.</p>
@@ -333,8 +315,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>X</h3>
 <p>i sν</p>
 <h3>Qµν =</h3>
-<p>i . (9.29)</p>
-<p>i</p>
+<p>i . (9.29) i</p>
 <p>Đối với các vectơ huấn luyện độc lập tuyến tính, chúng ta có thể nghịch đảo ma trận này và sử dụng nó trong quy tắc học để trực giao hóa các mẫu. Quy tắc học này được gọi là phương pháp giả nghịch đảo (pseudoinverse method), wij = 1 sµ</p>
 <h3>X</h3>
 <p>i (Q−1)µνsν j , (9.30)</p>
@@ -366,8 +347,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>0 0 1 0</p>
 <p>0 0 0 1</p>
 <p>Hình 9.9 Ví dụ về mã hóa lại mở rộng có thể trực giao hóa một biểu diễn mẫu bằng perceptron một lớp. Các nút trong perceptron là các đơn vị ngưỡng, và chúng ta đã đưa vào một độ lệch như một nút riêng biệt có đầu vào không đổi. Đầu ra trực giao có thể được đưa vào một mạng bộ hút hồi quy nơi tất cả các đầu vào đều là điểm bất động của động lực học bộ hút.</p>
-<p>và tìm thấy, trong giới hạn của a nhỏ và các mạng lớn, một dung lượng lưu trữ là αc ≈ k a ln(1/a), (9.31)</p>
-<p>trong đó k là một hằng số phụ thuộc yếu vào một số chi tiết của mạng và các biểu diễn mẫu, nhưng đại khái vào khoảng 0.2–0.3. Do đó, số lượng mẫu trong một tập mẫu có độ thưa a = 0.1 có thể được lưu trữ trong một mạng bộ hút với các nút có 10,000 synap có thể vượt quá 20,000, quá đủ cho nhiều yêu cầu trí nhớ trong các vùng não nhỏ. Tuy nhiên, lưu ý rằng hàm lượng thông tin không thay đổi. Dung lượng lưu trữ được nâng cao của mạng phải được so sánh với sự sụt giảm lượng thông tin có thể được lưu trữ trong một biểu diễn thưa so với lượng thông tin trong một biểu diễn có nhiều thành phần hoạt động hơn. Thông tin tỷ lệ với a ln(1/a), mẫu số trong pt 9.31. Lượng thông tin có thể được lưu trữ trong mạng giữ nguyên xấp xỉ không đổi.</p>
+<p>và tìm thấy, trong giới hạn của a nhỏ và các mạng lớn, một dung lượng lưu trữ là αc ≈ k a ln(1/a), (9.31) trong đó k là một hằng số phụ thuộc yếu vào một số chi tiết của mạng và các biểu diễn mẫu, nhưng đại khái vào khoảng 0.2–0.3. Do đó, số lượng mẫu trong một tập mẫu có độ thưa a = 0.1 có thể được lưu trữ trong một mạng bộ hút với các nút có 10,000 synap có thể vượt quá 20,000, quá đủ cho nhiều yêu cầu trí nhớ trong các vùng não nhỏ. Tuy nhiên, lưu ý rằng hàm lượng thông tin không thay đổi. Dung lượng lưu trữ được nâng cao của mạng phải được so sánh với sự sụt giảm lượng thông tin có thể được lưu trữ trong một biểu diễn thưa so với lượng thông tin trong một biểu diễn có nhiều thành phần hoạt động hơn. Thông tin tỷ lệ với a ln(1/a), mẫu số trong pt 9.31. Lượng thông tin có thể được lưu trữ trong mạng giữ nguyên xấp xỉ không đổi.</p>
 <p>Chúng ta mới chỉ phân tích các ma trận trọng số được tạo ra bằng các quy tắc tương quan Hebb cơ bản. Có nhiều thuật toán học tập khả dĩ khác có thể tạo ra các ma trận trọng số khác nhau. Thú vị là đặt câu hỏi giải pháp tốt nhất có thể cho một ma trận trọng số sẽ là gì. Nói chính xác hơn, nếu chúng ta có một tập huấn luyện nhất định, chúng ta có thể hỏi dung lượng tải của mạng là bao nhiêu, với một ma trận trọng số được tạo ra bằng quy tắc học tối ưu. Để trả lời câu hỏi này, chúng ta phải thử tất cả các ma trận trọng số khả dĩ, tất nhiên đó là một nhiệm vụ đồ sộ. Tuy nhiên, các phương pháp từ vật lý thống kê có thể giúp chúng ta có được câu trả lời cho câu hỏi này, như đã được Elizabeth Gardner chỉ ra. Bà đã tìm thấy rằng dung lượng lưu trữ tối đa của các mạng tự liên kết với các mẫu nhị phân và các biểu diễn thưa là:</p>
 <p>Bảng 9.2 Đóng góp của bốn mẫu phát xung khả dĩ của tần số phát xung tiền và hậu synap vào ma trận hiệp phương sai Hebb, và xác suất xuất hiện của các mẫu này đối với các tập huấn luyện có các mẫu độ thưa a ri rj ˜w P( ˜w)</p>
 <h2>0 0 a2 (1 −a)2</h2>
@@ -386,8 +366,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>X</h3>
 <p>⟨˜w⟩=</p>
 <p>˜wP( ˜w) (9.34)</p>
-<p>= a2 −(1 −a)2 −2a2(1 −a)2 + a2(1 −a)2 = 0, (9.35)</p>
-<p>và phương sai là</p>
+<p>= a2 −(1 −a)2 −2a2(1 −a)2 + a2(1 −a)2 = 0, (9.35) và phương sai là</p>
 <h3>X</h3>
 <p>⟨˜w2⟩=</p>
 <p>˜w2P( ˜w) = a2(1 −a)2. (9.36)</p>
@@ -395,8 +374,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>⟨w⟩= −C (9.37) ⟨w2⟩= a2(1 −a)2. (9.38)</p>
 <p>Nếu ma trận trọng số này được sử dụng với một quy tắc lặp để cập nhật các trạng thái của hệ thống,</p>
 <h3>X</h3>
-<p>wijrj −θ), (9.39)</p>
-<p>ri = Θ(hi) = Θ( j trong đó Θ là hàm khuếch đại bậc thang và θ là ngưỡng phát xung, trạng thái dừng phải tuân theo điều kiện tự nhất quán,</p>
+<p>wijrj −θ), (9.39) ri = Θ(hi) = Θ( j trong đó Θ là hàm khuếch đại bậc thang và θ là ngưỡng phát xung, trạng thái dừng phải tuân theo điều kiện tự nhất quán,</p>
 <h3>P(hi > 0) P(hi < 0) = aret</h3>
 <p>1 −aret . (9.40)</p>
 <p>Vì có aret nút đang hoạt động, mật độ xác suất của đầu vào ròng, P(h) là một phân bố Gaussian với trung bình −Caret và phương sai σ2 = a2(1−a)2aret, như được minh họa trong Hình 9.10. Do đó,</p>
@@ -405,8 +383,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>2σ ), (9.41)</p>
 <p>2 + erf(Caret + θ √</p>
 <h3>P(hi < 0) = 1</h3>
-<p>2σ ), (9.42)</p>
-<p>và hằng số ức chế thích hợp, hoặc ngưỡng, có thể được tính từ</p>
+<p>2σ ), (9.42) và hằng số ức chế thích hợp, hoặc ngưỡng, có thể được tính từ</p>
 <p>2 −erf(Caret + θ √ aret = 1</p>
 <p>2σ ). (9.43)</p>
 <p>Phương trình này dường như chỉ ra rằng cần phải tinh chỉnh các tham số một cách cẩn thận. Tuy nhiên, chúng ta chưa tính đến động lực học bộ hút của các mẫu đã lưu. Động lực học này sẽ thiên vị các mạng về phía độ thưa mong muốn một khi sự ức chế (hoặc ngưỡng) đưa hoạt động của mạng vào đúng phạm vi. Kết quả mô phỏng cho một mạng gồm 500 nút, được huấn luyện trên 40 mẫu với độ thưa a = 0.1, được thể hiện trong Hình 9.11. Hai đường cong lần lượt hiển thị độ thưa truy xuất trung bình và khoảng cách Hamming trung bình, và độ lệch chuẩn trong 10 lần chạy được biểu thị bằng các thanh sai số. Qua đó ngưỡng được đặt thành θ = 0, và các đường cong hiển thị kết quả cho các giá trị khác nhau của hằng số ức chế C.</p>
@@ -433,14 +410,11 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Sẽ rất hữu ích nếu biết một số thuật ngữ cơ bản của lý thuyết hệ động lực. Số lượng phương trình, tức là số lượng nút trong mạng, xác định số chiều của hệ thống, và do đó các mạng nơ-ron hồi quy phải được coi là các hệ động lực nhiều chiều. Vectơ x trong pt 9.44 được gọi là vectơ trạng thái, và một tập hợp các giá trị cho tất cả các thành phần được gọi là một trạng thái. Một trạng thái mô tả một điểm trong không gian trạng thái nhiều chiều, không gian của tất cả các giá trị trạng thái có thể có. Sự tiến hóa của trạng thái, được xác định bởi các phương trình chuyển động, mô tả một quỹ đạo, một đường đi trong không gian trạng thái.</p>
 <p>9.4.1 Các bộ hút</p>
 <p>Các hệ động lực có thể thể hiện nhiều loại hành vi động lực học khác nhau. Chúng ta đã thấy một số ví dụ về mạng hồi quy trong đó các mạng hội tụ về một điểm bất động của các phương trình động lực học. Đây là một điểm trong không gian trạng thái, và chính vì lý do này mà chúng ta gọi điểm này là điểm hút (point attractor). Các dạng bộ hút khác cũng có thể có trong các hệ động lực. Ví dụ, bộ hút có thể là một vòng lặp trong không gian trạng thái, cái gọi là chu trình giới hạn (limit cycle), trong đó hệ thống lặp vòng qua một tập hợp liên tục các điểm. Những chuyển động như vậy trong không gian trạng thái sẽ xuất hiện ở các thành phần dưới dạng các dao động, và các dao động trong não rất có thể được mô tả bằng các loại bộ hút như vậy của mạng nơ-ron. Chúng ta cũng có thể xác định số chiều của một bộ hút. Ví dụ, một bộ hút đường có số chiều bằng một, và một điểm trong không gian trạng thái có số chiều bằng không. Các bộ hút nhiều chiều hơn cũng có thể có trong các hệ động lực, mặc dù thường rất khó để tìm thấy các quy luật tương ứng trong chuyển động của hệ thống.</p>
-<p>Cho đến nay, chúng ta mới chỉ xem xét các chuyển động đều đặn của các hệ động lực. Tuy nhiên, chúng ta biết các ví dụ về hệ động lực thể hiện những chuyển động không hoàn toàn đều đặn, nhưng cũng không hoàn toàn ngẫu nhiên (như nhiễu). Ví dụ, một hệ thống có thể bị hút bởi hai điểm trong không gian pha với sự thống trị bất quy tắc của hai điểm hút này. Một ví dụ phổ biến về hệ hỗn loạn là hệ Lorenz được xác định bởi các phương trình chuyển động dx1 dt = a(x2 −x1) (9.45)</p>
-<p>dx2 dt = x1(b −x3) −x2 (9.46)</p>
-<p>dx3 dt = x1x2 −cx3. (9.47)</p>
+<p>Cho đến nay, chúng ta mới chỉ xem xét các chuyển động đều đặn của các hệ động lực. Tuy nhiên, chúng ta biết các ví dụ về hệ động lực thể hiện những chuyển động không hoàn toàn đều đặn, nhưng cũng không hoàn toàn ngẫu nhiên (như nhiễu). Ví dụ, một hệ thống có thể bị hút bởi hai điểm trong không gian pha với sự thống trị bất quy tắc của hai điểm hút này. Một ví dụ phổ biến về hệ hỗn loạn là hệ Lorenz được xác định bởi các phương trình chuyển động dx1 dt = a(x2 −x1) (9.45) dx2 dt = x1(b −x3) −x2 (9.46) dx3 dt = x1x2 −cx3. (9.47)</p>
 <p>Lưu ý rằng chúng ta có thể viết hệ thống này như một mạng hồi quy gồm ba nút với các ghép nối sigma và sigma–pi như dxi</p>
 <h3>X</h3>
 <h3>X</h3>
-<p>w1 w2 dt = ijxi + ijkxjxk (9.48)</p>
-<p>j jk với w2</p>
+<p>w1 w2 dt = ijxi + ijkxjxk (9.48) j jk với w2</p>
 <p> </p>
 <p></p>
 <p></p>
@@ -471,13 +445,10 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>V(x)</h3>
 <p>x</p>
 <p>Hình 9.13 Một quả bóng trong một cảnh quan ‘năng lượng’.</p>
-<p>hàm Lyapunov. Ý tưởng đằng sau phát biểu này có thể được minh họa với sự trợ giúp của Hình 9.13. Ở đó chúng ta minh họa một ‘cảnh quan’ trong đó một quả bóng, chịu tác động của trọng lực và ảnh hưởng của ma sát, có thể lăn xuống đồi vào một thung lũng. Quả bóng cuối cùng sẽ dừng lại ở cực tiểu (thung lũng) của hàm mô tả cảnh quan. Một cách hình thức hơn, nếu có một hàm V (x) không bao giờ tăng dưới động lực học của hệ thống, dV (x)</p>
-<p>dt ≤0, (9.50)</p>
-<p>trong đó x được chi phối bởi các phương trình động lực học của hệ thống (pt 9.44), thì phải có một điểm hút trong hệ thống (miễn là không gian trạng thái bị chặn), tương ứng với cực tiểu của hàm V . Nếu tồn tại một hàm như vậy với các tính chất yêu cầu, thì hàm này được gọi là hàm Lyapunov trong lý thuyết hệ động lực và hàm năng lượng trong vật lý. Thực tế, chúng ta đã gặp góc nhìn này về động lực học mạng trong mã hóa dự đoán ở Chương 7.</p>
+<p>hàm Lyapunov. Ý tưởng đằng sau phát biểu này có thể được minh họa với sự trợ giúp của Hình 9.13. Ở đó chúng ta minh họa một ‘cảnh quan’ trong đó một quả bóng, chịu tác động của trọng lực và ảnh hưởng của ma sát, có thể lăn xuống đồi vào một thung lũng. Quả bóng cuối cùng sẽ dừng lại ở cực tiểu (thung lũng) của hàm mô tả cảnh quan. Một cách hình thức hơn, nếu có một hàm V (x) không bao giờ tăng dưới động lực học của hệ thống, dV (x) dt ≤0, (9.50) trong đó x được chi phối bởi các phương trình động lực học của hệ thống (pt 9.44), thì phải có một điểm hút trong hệ thống (miễn là không gian trạng thái bị chặn), tương ứng với cực tiểu của hàm V . Nếu tồn tại một hàm như vậy với các tính chất yêu cầu, thì hàm này được gọi là hàm Lyapunov trong lý thuyết hệ động lực và hàm năng lượng trong vật lý. Thực tế, chúng ta đã gặp góc nhìn này về động lực học mạng trong mã hóa dự đoán ở Chương 7.</p>
 <p>Chúng ta có thể tìm thấy một hàm như vậy cho các mạng hồi quy không? Câu trả lời là chúng ta biết một hàm thỏa mãn các điều kiện trong những hoàn cảnh nhất định. Hãy minh họa điều này cho trường hợp đặc biệt của động lực học rời rạc, pt 8.1,</p>
 <h3>X</h3>
-<p>wijrj(t) + Iext hi(t + 1) = i (t). (9.51)</p>
-<p>j</p>
+<p>wijrj(t) + Iext hi(t + 1) = i (t). (9.51) j</p>
 <p>Đối với hệ thống này, chúng ta đề xuất nghiên cứu hàm sau đây,</p>
 <h3>V (r1, ..., rN) = −1</h3>
 <h3>X</h3>
@@ -503,12 +474,10 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Chỉ các số hạng từ nút i đóng góp vào sự thay đổi của hàm V , và sự thay đổi của hàm này tại thời điểm này được cho bởi</p>
 <p>∆V = −1 wijrj(t) −1</p>
 <p>2ri(t + 1) X</p>
-<p>2ri(t + 1) X wkirk(t)</p>
-<p>j̸=i k̸=i</p>
+<p>2ri(t + 1) X wkirk(t) j̸=i k̸=i</p>
 <p>+1 wijrj(t) + 1</p>
 <p>2ri(t) X</p>
-<p>2ri(t) X wkirk(t) −Iext i [ri(t + 1) −ri(t)]</p>
-<p>j̸=i k̸=i</p>
+<p>2ri(t) X wkirk(t) −Iext i [ri(t + 1) −ri(t)] j̸=i k̸=i</p>
 <p>{1</p>
 <h3>X</h3>
 <p>2(wij + wji)rj(t)} + Iext i ]. (9.54)</p>
@@ -523,14 +492,11 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>N X</h3>
 <p>dxi dt = −ai(xi)</p>
 <p>bi(xi) − (wijgj(xj))</p>
-<p> (9.56)</p>
-<p>j=1 với các hàm ai và bi. Phương trình động lực học này tương ứng với động lực học bộ tích phân rò rỉ (pt 9.1) với các tổng quát hóa sao cho các hằng số thời gian và các hàm kích hoạt có thể khác nhau đối với từng nút riêng lẻ trong mạng. Cohen và Grossberg đã tìm thấy một hàm Lyapunov dưới các điều kiện rằng</p>
+<p> (9.56) j=1 với các hàm ai và bi. Phương trình động lực học này tương ứng với động lực học bộ tích phân rò rỉ (pt 9.1) với các tổng quát hóa sao cho các hằng số thời gian và các hàm kích hoạt có thể khác nhau đối với từng nút riêng lẻ trong mạng. Cohen và Grossberg đã tìm thấy một hàm Lyapunov dưới các điều kiện rằng</p>
 <p>1. Tính dương ai ≥0: Động lực học phải là bộ tích phân rò rỉ chứ không phải bộ tích phân khuếch đại. 2. Tính đối xứng wij = wji: Ảnh hưởng của một nút lên nút khác phải giống với ảnh hưởng ngược lại. 3. Tính đơn điệu sign(dg(x)/dx) = const: Hàm kích hoạt phải là một hàm đơn điệu. Phát biểu rằng dưới các điều kiện này tồn tại một hàm Lyapunov đã được biết đến với tên gọi định lý Cohen–Grossberg. Định lý này chứng minh sự tồn tại của các điểm hút của các mạng hồi quy không nhiễu dưới các điều kiện vừa nêu.</p>
 <p>9.4.4 Mạng không đối xứng</p>
 <p>Các trọng số synap giữa các nơ-ron trong hệ thần kinh không thể được kỳ vọng là thỏa mãn điều kiện đối xứng của ma trận trọng số vốn cần thiết để đảm bảo các bộ hút ổn định trong các mạng này. Ngoài ra, cho đến nay chúng ta đã nghiên cứu các ma trận trọng số có các giá trị âm và dương tùy ý. Các giá trị trọng số dương biểu thị các synap kích thích, trong khi các giá trị âm biểu thị các synap ức chế (âm). Các nơ-ron nhận hỗn hợp đầu vào từ các nơ-ron tiền synap kích thích và ức chế, nhưng mỗi lớp nơ-ron thường chỉ tạo ra một loại tiếp xúc synap, điều này xác định loại nơ-ron là kích thích hoặc ức chế. Lưu ý rằng điều này được gọi là nguyên lý Dale, mặc dù điều này cũng không phải lúc nào cũng được tuân thủ. Ví dụ, có hai loại thụ thể dopamine, D1 và D2, ở các nơ-ron gai của nhân đuôi (caudate nucleus), có tác dụng trái ngược nhau lên EPSP. Tuy nhiên, nếu chúng ta tuân thủ quy tắc này ở đây, điều này tương ứng với một ma trận trọng số trong đó các dấu trong mỗi cột phải nhất quán (tất cả các phần tử trong một cột, tương ứng với hiệu quả synap của một nơ-ron tiền synap, đều dương hoặc đều âm). Điều này vi phạm điều kiện đối xứng của ma trận trọng số trong định lý Cohen–Grossberg, vì một nút ức chế khi đó chỉ có thể nhận các kết nối ức chế và ngược lại. Tuy nhiên, định lý Cohen–Grossberg chỉ mô tả trường hợp đặc biệt mà chúng ta có thể chứng minh rằng mạng có các điểm hút, trong khi vẫn có thể mạng có các điểm hút ngay cả khi các điều kiện của định lý Cohen–Grossberg không được thỏa mãn. Bây giờ chúng ta sẽ kiểm tra xem các mạng vi phạm một số điều kiện của định lý Cohen–Grossberg hành xử như thế nào.</p>
-<p>Hãy bắt đầu bằng cách nghiên cứu một trường hợp đặc biệt đơn giản của ma trận trọng số không đối xứng. Mỗi ma trận có thể được phân tích thành một phần đối xứng và một phần phản đối xứng, w = gsws + gawa, (9.57)</p>
-<p>trong đó ws ij = ws ji (9.58) wa ij = −wa ji, (9.59)</p>
-<p>và gs và ga là các tham số. Các tham số này cho phép chúng ta nghiên cứu các điều kiện mạng trong khi thay đổi cường độ của phần đối xứng và phần phản đối xứng của ma trận trọng số. Một ví dụ đơn giản về các ma trận đối xứng và phản đối xứng là đặt độ lớn của tất cả các thành phần của ws và wa bằng một, gs + ga với i > j 0 với i = j gs −ga với i < j</p>
+<p>Hãy bắt đầu bằng cách nghiên cứu một trường hợp đặc biệt đơn giản của ma trận trọng số không đối xứng. Mỗi ma trận có thể được phân tích thành một phần đối xứng và một phần phản đối xứng, w = gsws + gawa, (9.57) trong đó ws ij = ws ji (9.58) wa ij = −wa ji, (9.59) và gs và ga là các tham số. Các tham số này cho phép chúng ta nghiên cứu các điều kiện mạng trong khi thay đổi cường độ của phần đối xứng và phần phản đối xứng của ma trận trọng số. Một ví dụ đơn giản về các ma trận đối xứng và phản đối xứng là đặt độ lớn của tất cả các thành phần của ws và wa bằng một, gs + ga với i > j 0 với i = j gs −ga với i < j</p>
 <p>  wij = (9.60)</p>
 <p></p>
 <p>Hãy nghiên cứu bằng mô phỏng xem các mạng có ma trận như vậy hành xử như thế nào. Chúng ta sẽ sử dụng một mạng với động lực học được chỉ định bởi pt 8.1 sử dụng hàm kích hoạt sigmoid. Để có dấu hiệu cho biết liệu mạng đã đạt đến trạng thái dừng (điểm hút) hay chưa, chúng ta đo bình phương hiệu của các trạng thái ở hai bước thời gian liên tiếp của mạng, d(t) = (|r(t)| −|r(t −1)|)2. (9.61)</p>
@@ -572,8 +538,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>X</h3>
 <p>wijsn i sm j . (9.62)</p>
 <p>2 ij</p>
-<p>Các biến trạng thái, s, có chỉ số trên n hoặc m có thể nhận giá trị v hoặc h để chỉ các nút khả kiến và nút ẩn. Chúng ta xem xét quy tắc cập nhật xác suất, i = +1) = 1 1 + exp(−β P j wijsn p(sn j ), (9.63)</p>
-<p>với nghịch đảo nhiệt độ, β, được gọi là động lực học Glauber trong vật lý, và mô tả sự tương tác cạnh tranh giữa việc tối thiểu hóa năng lượng và lực nhiệt ngẫu nhiên hóa. Phân bố xác suất cho một hệ ngẫu nhiên như vậy được gọi là phân bố Boltzmann–Gibbs. Theo phân bố này, phân bố của các trạng thái khả kiến, ở trạng thái cân bằng nhiệt, được cho bởi p(sv; w) = 1</p>
+<p>Các biến trạng thái, s, có chỉ số trên n hoặc m có thể nhận giá trị v hoặc h để chỉ các nút khả kiến và nút ẩn. Chúng ta xem xét quy tắc cập nhật xác suất, i = +1) = 1 1 + exp(−β P j wijsn p(sn j ), (9.63) với nghịch đảo nhiệt độ, β, được gọi là động lực học Glauber trong vật lý, và mô tả sự tương tác cạnh tranh giữa việc tối thiểu hóa năng lượng và lực nhiệt ngẫu nhiên hóa. Phân bố xác suất cho một hệ ngẫu nhiên như vậy được gọi là phân bố Boltzmann–Gibbs. Theo phân bố này, phân bố của các trạng thái khả kiến, ở trạng thái cân bằng nhiệt, được cho bởi p(sv; w) = 1</p>
 <h3>X</h3>
 <p>exp(−βHvm), (9.64)</p>
 <h3>Z</h3>
@@ -582,8 +547,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>KL(p(sv), p(sv; w))=</h3>
 <p>s v X v X p(sv) log p(sv)− p(sv) log p(sv; w). (9.66)</p>
 <p>= s s</p>
-<p>Để tối thiểu hóa phân kỳ này bằng phương pháp gradient, chúng ta cần tính đạo hàm của ‘thước đo khoảng cách’ này theo các trọng số. Số hạng đầu tiên trong hiệu ở pt 9.66 là entropy của các trạng thái giác quan, không phụ thuộc vào trọng số của máy Boltzmann. Do đó, việc tối thiểu hóa phân kỳ Kullback–Leibler tương đương với việc tối đa hóa hàm log-likelihood trung bình, v X p(sv) log p(sv; w) = ⟨log p(sv; w)⟩. (9.67)</p>
-<p>l(w) = s</p>
+<p>Để tối thiểu hóa phân kỳ này bằng phương pháp gradient, chúng ta cần tính đạo hàm của ‘thước đo khoảng cách’ này theo các trọng số. Số hạng đầu tiên trong hiệu ở pt 9.66 là entropy của các trạng thái giác quan, không phụ thuộc vào trọng số của máy Boltzmann. Do đó, việc tối thiểu hóa phân kỳ Kullback–Leibler tương đương với việc tối đa hóa hàm log-likelihood trung bình, v X p(sv) log p(sv; w) = ⟨log p(sv; w)⟩. (9.67) l(w) = s</p>
 <p>Tất nhiên, chúng ta đã thấy lập luận về việc tối đa hóa hàm log-likelihood nhiều lần trước đây, mặc dù bây giờ chúng ta đặt điều này vào bối cảnh của một mô hình hồi quy. Nói cách khác, chúng ta coi phân bố xác suất được tạo ra bởi máy Boltzmann dùng làm mô hình sinh như một hàm của các tham số, wij, và chọn các tham số tối đa hóa khả năng (likelihood) của dữ liệu huấn luyện (các trạng thái thế giới thực tế). Do đó, các giá trị trung bình của mô hình được đánh giá trên các trạng thái khả kiến thực tế do môi trường tạo ra. Log-likelihood của mô hình tăng lên khi mô hình xấp xỉ thế giới tốt hơn. Một phương pháp chuẩn để tối đa hóa hàm này là leo dốc (gradient ascent), đối với phương pháp này chúng ta cần tính đạo hàm của l(w) theo các trọng số. Chúng ta bỏ qua phần dẫn giải chi tiết ở đây, nhưng lưu ý rằng quy tắc học thu được có thể viết dưới dạng</p>
 <p>∆wij = η ∂l</p>
 <p>= η β</p>
@@ -626,8 +590,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Võng mạc mô hình</h3>
 <h3>Đầu vào hình ảnh</h3>
 <p>Hình 9.20 Mô phỏng máy Boltzmann hạn chế của Geoffrey Hinton và các đồng nghiệp, có tại https://www.cs.toronto.edu/ hinton/digits.html.</p>
-<p>và yêu cầu nhận dạng, hoặc bằng cách yêu cầu hệ thống tạo ra hình ảnh của một chữ cái nhất định. Hai chế độ này có thể được khởi chạy bằng cách chọn một hình ảnh hoặc chọn một hạng mục chữ cái ở phía bên trái. Trong ví dụ thể hiện ở Hình 9.20, chúng ta đã chọn một ví dụ về hình ảnh của số 4. Khi chạy mô phỏng, hình ảnh này kích hoạt các mẫu phản ứng trong các lớp. Các mẫu này thay đổi ở mỗi bước thời gian, do bản chất xác suất của quy tắc cập nhật. Do đó, kết quả đọc nhận dạng của lớp trên cùng cũng dao động. Trong ví dụ được hiển thị, phản ứng của hệ thống là 4, nhưng chữ số 9 cũng thường xuyên được báo cáo. Điều này hợp lý, vì hình ảnh này trông cũng hơi giống chữ số 9. Một biểu đồ tần suất các phản ứng có thể được xây dựng khi đếm các phản ứng theo thời gian, và khi được chuẩn hóa thích hợp, sẽ tương ứng với một ước tính xác suất trên các khái niệm cấp cao được tạo ra bởi trạng thái giác quan này. Do đó, chế độ này kiểm tra khả năng nhận dạng</p>
-<p>của mô hình.</p>
+<p>và yêu cầu nhận dạng, hoặc bằng cách yêu cầu hệ thống tạo ra hình ảnh của một chữ cái nhất định. Hai chế độ này có thể được khởi chạy bằng cách chọn một hình ảnh hoặc chọn một hạng mục chữ cái ở phía bên trái. Trong ví dụ thể hiện ở Hình 9.20, chúng ta đã chọn một ví dụ về hình ảnh của số 4. Khi chạy mô phỏng, hình ảnh này kích hoạt các mẫu phản ứng trong các lớp. Các mẫu này thay đổi ở mỗi bước thời gian, do bản chất xác suất của quy tắc cập nhật. Do đó, kết quả đọc nhận dạng của lớp trên cùng cũng dao động. Trong ví dụ được hiển thị, phản ứng của hệ thống là 4, nhưng chữ số 9 cũng thường xuyên được báo cáo. Điều này hợp lý, vì hình ảnh này trông cũng hơi giống chữ số 9. Một biểu đồ tần suất các phản ứng có thể được xây dựng khi đếm các phản ứng theo thời gian, và khi được chuẩn hóa thích hợp, sẽ tương ứng với một ước tính xác suất trên các khái niệm cấp cao được tạo ra bởi trạng thái giác quan này. Do đó, chế độ này kiểm tra khả năng nhận dạng của mô hình.</p>
 <p>Thiết bị kích thích kết nối với lớp RBM trên cho phép chúng ta chỉ dẫn hệ thống ‘hình dung’ các chữ cái cụ thể, tương ứng với việc kiểm tra khả năng sinh của mô hình. Ví dụ, nếu chúng ta yêu cầu hệ thống hình dung một chữ số 4 bằng cách gợi lên các mẫu tương ứng ở lớp trên, hệ thống sẽ phản hồi bằng các hình ảnh khác nhau trên võng mạc mô hình. Không có một câu trả lời đúng duy nhất, và các câu trả lời của hệ thống thay đổi theo thời gian. Bằng cách này, hệ thống tạo ra các ví dụ về các hình ảnh khả dĩ của chữ số 4, tỷ lệ thuận với khả năng (likelihood) mà những hình ảnh này được bắt gặp trong thế giới giác quan mà hệ thống đã được huấn luyện. Bản chất xác suất của hệ thống giống với khả năng của con người trong việc tạo ra nhiều phản ứng khác nhau tốt hơn nhiều, trái ngược với các mạng ánh xạ được thảo luận trong Chương 7 vốn chỉ có thể tạo ra các câu trả lời đơn lẻ cho mỗi đầu vào.</p>
 <p>9.6 Mạng hồi tiếp lại và mạng hồi quy có cổng</p>
 <p>Cho đến nay chúng ta đã thảo luận về các mạng hồi quy với các trọng số đối xứng như được thể hiện ở bên trái trong Hình 9.21. Mặc dù các kết nối đối xứng giữa các nơ-ron thoạt nhìn có vẻ không thực tế, có lẽ nên nhắc lại rằng cuộc thảo luận chủ yếu ở cấp độ các nút quần thể, và nhiều kết nối giữa các vùng não thường có tính tương hỗ (reciprocal). Do đó, mặc dù không nên kỳ vọng một sự đối xứng nghiêm ngặt trong não, tầm quan trọng của các mô hình như vậy nằm ở khả năng làm sáng tỏ một số tính chất động lực học của mạng nơ-ron.</p>
@@ -641,8 +604,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Bây giờ chúng ta sẽ xem xét một số kiến trúc hệ thống cho việc xử lý theo thời gian như vậy. Kiến trúc đầu tiên chúng ta nên xem xét là sử dụng một mạng truyền thẳng thông thường để thực hiện dự đoán chuỗi từ một số lượng hữu hạn các dữ liệu chuỗi trước đó. Ví dụ, chúng ta có thể đặt các giá trị chuỗi của n giá trị trước đó của chuỗi vào một vectơ đầu vào</p>
 <p></p>
 <p> x(t −1)</p>
-<p>... x(t −1 −n)</p>
-<p>x =</p>
+<p>... x(t −1 −n) x =</p>
 <p>, (9.71)</p>
 <p> và sau đó thực hiện dự đoán trước một bước cho giá trị s(t) làm đầu ra, y = x(t). (9.72)</p>
 <p>Trong Hình 9.22, chúng ta đã trực quan hóa việc tạo ra vectơ đầu vào bằng cách trích nhánh chuỗi đầu vào với các đường trễ có độ dài khác nhau. Việc biểu diễn một phần hữu hạn của một chuỗi theo cách không gian này do đó đôi khi được gọi là đường trễ có nhánh (tapped delay line). Với một biểu diễn như vậy của chuỗi thời gian, chúng ta có thể áp dụng ngay lập tức các mạng nơ-ron sâu cho việc dự báo chuỗi. Một ví dụ về mạng đơn giản như vậy với một lớp ẩn cũng được thể hiện trong Hình 9.22.</p>
@@ -650,17 +612,12 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Chúng ta có thể giảm độ phức tạp của mạng hơn nữa nếu giả định rằng các bước thời gian trước đó chỉ ảnh hưởng đến thời điểm hiện tại theo cách nhất thời hoặc suy giảm dần. Điều này</h3>
 <p>A. MLP đường trễ có nhánh B. Mạng nơ-ron hồi quy (RNN)</p>
 <h3>u xt-1 xt x w1 w2 v t-n xt-2 xt-1 xt-2 xt w3</h3>
-<p>C. RNN có cổng</p>
-<p>xt-3 bộ nhớ xt xt-n xt-2 xt-1 wn xt-n</p>
+<p>C. RNN có cổng xt-3 bộ nhớ xt xt-n xt-2 xt-1 wn xt-n</p>
 <p>Hình 9.23 Các cách khác nhau để xử lý chuỗi với mạng nơ-ron. Các hình minh họa chỉ cho thấy một ví dụ nút ẩn, nhưng các mạng này nên được xem xét với nhiều nút và thường là nhiều lớp hơn. (A) Một mạng truyền thẳng chuẩn (MLP) trong đó đầu vào biểu diễn một vectơ của dữ liệu chuỗi trước đó. (B) Một mạng nơ-ron hồi quy cơ bản (RNN). (C) Một mạng nơ-ron hồi quy có cổng (gRNN) với bộ nhớ tường minh.</p>
-<p>thường là một giả định tốt. Ví dụ, ai cũng biết rằng xác suất của một ngày nắng cao hơn sau một ngày nắng so với một ngày mưa. Chúng ta có thể mô tả một tình huống trong đó giá trị hiện tại ảnh hưởng đến các thời điểm tương lai tại t + uδt của sự kích hoạt các nút ẩn bằng h(t) = vx(t) + uvx(t −1) + u2vx(t −2) + ..., (9.73)</p>
-<p>trong đó u là các trọng số có giá trị nhỏ hơn 1. Sau đó chúng ta có thể đơn giản hóa mạng này với kiến trúc thể hiện trong Hình 9.23C, nơi chúng ta biểu diễn bộ nhớ suy giảm theo hàm mũ của đầu vào bằng một đầu vào trễ tới nút ẩn của giá trị trước đó của nó. Về mặt toán học, chúng ta chỉ thay thế một tổng suy giảm dần bằng một dạng đệ quy, h(t) = vx(t) + u (vx(t −1) + uvx(t −2) + ...) (9.74) = vx(t) + uh(t −1), (9.75)</p>
-<p>được minh họa trong Hình 9.23C. Bằng cách này, chúng ta không còn bị giới hạn trong việc xây dựng các mạng cho một chuỗi hữu hạn với cách tiếp cận đường trễ có nhánh. So với các trọng số riêng biệt cho các đầu vào tại các thời điểm khác nhau, ở đây chúng ta đã đưa vào một dạng chia sẻ trọng số theo nghĩa là chỉ các thời gian tương đối của chuỗi mới quan trọng. Giả định này tương tự như giả định bất biến vị trí trong mạng tích chập, và việc tích hợp giả định này vào kiến trúc của chúng ta giúp giảm số lượng tham số. Lưu ý rằng dạng này biểu diễn các mạng hồi quy cho một bộ tự liên kết như đã thảo luận trước đây. Chúng ta giới thiệu lại điều này ở đây dưới dạng này để thảo luận các tổng quát hóa quan trọng. Giả định về ảnh hưởng suy giảm dần từ các bước thời gian trước đó có dạng suy giảm theo hàm mũ, điều này không phải lúc nào cũng phù hợp. Ví dụ trong xử lý ngôn ngữ tự nhiên, việc một từ nhất định có quan hệ với các từ ở xa là phổ biến. Chúng ta có thể khắc phục vấn đề này bằng bộ nhớ tường minh, như minh họa trong Hình 9.23C. Chúng ta sẽ sớm khám phá cách chúng ta có thể triển khai một bộ nhớ như vậy trong mạng nơ-ron, ví dụ như với các mạng có cổng.</p>
+<p>thường là một giả định tốt. Ví dụ, ai cũng biết rằng xác suất của một ngày nắng cao hơn sau một ngày nắng so với một ngày mưa. Chúng ta có thể mô tả một tình huống trong đó giá trị hiện tại ảnh hưởng đến các thời điểm tương lai tại t + uδt của sự kích hoạt các nút ẩn bằng h(t) = vx(t) + uvx(t −1) + u2vx(t −2) + ..., (9.73) trong đó u là các trọng số có giá trị nhỏ hơn 1. Sau đó chúng ta có thể đơn giản hóa mạng này với kiến trúc thể hiện trong Hình 9.23C, nơi chúng ta biểu diễn bộ nhớ suy giảm theo hàm mũ của đầu vào bằng một đầu vào trễ tới nút ẩn của giá trị trước đó của nó. Về mặt toán học, chúng ta chỉ thay thế một tổng suy giảm dần bằng một dạng đệ quy, h(t) = vx(t) + u (vx(t −1) + uvx(t −2) + ...) (9.74) = vx(t) + uh(t −1), (9.75) được minh họa trong Hình 9.23C. Bằng cách này, chúng ta không còn bị giới hạn trong việc xây dựng các mạng cho một chuỗi hữu hạn với cách tiếp cận đường trễ có nhánh. So với các trọng số riêng biệt cho các đầu vào tại các thời điểm khác nhau, ở đây chúng ta đã đưa vào một dạng chia sẻ trọng số theo nghĩa là chỉ các thời gian tương đối của chuỗi mới quan trọng. Giả định này tương tự như giả định bất biến vị trí trong mạng tích chập, và việc tích hợp giả định này vào kiến trúc của chúng ta giúp giảm số lượng tham số. Lưu ý rằng dạng này biểu diễn các mạng hồi quy cho một bộ tự liên kết như đã thảo luận trước đây. Chúng ta giới thiệu lại điều này ở đây dưới dạng này để thảo luận các tổng quát hóa quan trọng. Giả định về ảnh hưởng suy giảm dần từ các bước thời gian trước đó có dạng suy giảm theo hàm mũ, điều này không phải lúc nào cũng phù hợp. Ví dụ trong xử lý ngôn ngữ tự nhiên, việc một từ nhất định có quan hệ với các từ ở xa là phổ biến. Chúng ta có thể khắc phục vấn đề này bằng bộ nhớ tường minh, như minh họa trong Hình 9.23C. Chúng ta sẽ sớm khám phá cách chúng ta có thể triển khai một bộ nhớ như vậy trong mạng nơ-ron, ví dụ như với các mạng có cổng.</p>
 <p>Để hoàn thiện dạng đơn giản nhất này của mạng nơ-ron hồi quy, chúng ta đưa vào một tính phi tuyến trong lớp. Ví dụ, các phương trình cho một lớp hồi quy với hàm kích hoạt tanh(x) là, h(t) = tanh (w{x(t), h(t −1)}) . (9.76)</p>
 <p>Qua đó chúng ta đã sử dụng ký hiệu ghép nối ở dòng thứ hai, {x, h} cho các vectơ x và h, và chúng ta cũng đã ghép nối các vectơ trọng số v và u thành vectơ w.</p>
-<p>h(t-2) tanh w w h(t) tanh w h(t) tanh x(t-2)</p>
-<p>x(t-1)</p>
-<p>x(t)</p>
+<p>h(t-2) tanh w w h(t) tanh w h(t) tanh x(t-2) x(t-1) x(t)</p>
 <p>Hình 9.24 Minh họa một RNN cơ bản được trải ra theo thời gian (phỏng theo blog của Chris Olah).</p>
 <p>Một cách hữu ích để trực quan hóa RNN đơn giản này được thể hiện trong Hình 9.24, đây là một bản phỏng theo từ blog nổi tiếng của Chris Olah. Cách biểu diễn mạng hồi quy này sẽ giúp chúng ta thảo luận một số dạng RNN tiên tiến sau này. Hình minh họa cho thấy đồ thị tính toán cho ba bước thời gian, tức là nó cho thấy việc trải mạng ra theo thời gian (unrolling the network in time). Điều này giải quyết một câu hỏi lớn mà bạn có thể có về cách huấn luyện các mạng như vậy, vì các giá trị kích hoạt của các nút phụ thuộc vào các kích hoạt ở các bước thời gian trước đó. Với việc mở rộng theo thời gian cho một số bước thời gian nhất định, chúng ta thấy rằng mạng về cơ bản tương đương với một mạng truyền thẳng sâu, mặc dù với các trọng số được chia sẻ ở các lớp (thời gian) khác nhau. Do đó, có thể sử dụng học tập lan truyền ngược trên các mạng này, được gọi là lan truyền ngược qua thời gian (backpropagation-through-time).</p>
 <p>Vậy cuối cùng, chúng ta đã thu được gì? Chúng ta đã đơn giản hóa đồ thị của một mạng truyền thẳng và thay thế nó bằng một phiên bản đệ quy, chỉ để mở rộng nó ra theo thời gian một lần nữa nhằm huấn luyện nó. Tuy nhiên, lưu ý rằng chúng ta chỉ phải thực hiện việc trải ra này trong quá trình huấn luyện. Ngoài ra, chúng ta có một dạng chia sẻ trọng số có ý nghĩa tương tự như các lớp tích chập khi chúng ta tìm kiếm các phép toán tương tự tại các thời điểm khác nhau trong một chuỗi. Các mô hình có trọng số chia sẻ có phần dễ huấn luyện hơn so với các mô hình có nhiều trọng số độc lập hơn và không dễ bị quá khớp. Dạng hàm mũ của bộ nhớ hạn chế tính hữu ích của các mạng như vậy. Phần tiếp theo sẽ giải quyết vấn đề này.</p>
@@ -710,8 +667,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Phần bổ sung bộ nhớ mới phụ thuộc vào đầu vào mới và được tính là</p>
 <p>˜c(t) = tanh(wc{x(t), h(t −1)} + bc) (9.79)</p>
 <p>Xin nhắc lại, dấu ngoặc nhọn ở đây biểu thị phép toán ghép nối. Điều này giống như một phương trình lớp ẩn thông thường được sử dụng trong RNN cơ bản. Bản thân các hàm cổng được học với các giá trị trọng số tương ứng và một hàm khuếch đại sigmoid thuộc loại logistic để co giãn các số hạng này về phạm vi từ 0 (quên hoàn toàn, không cập nhật bộ nhớ) đến 1 (giữ nguyên trạng thái bộ nhớ, thêm đầy đủ đầu vào mới), f(t) = σ(wf{x(t), h(t −1)} + bf) (9.80) i(t) = σ(wi{x(t), h(t −1)} + bi). (9.81)</p>
-<p>Cuối cùng, chúng ta tạo ra một đầu ra cho nút hồi quy từ trạng thái bộ nhớ mới này h(t) = o(t) tanh(c(t)) (9.82)</p>
-<p>mà bản thân nó được đóng cổng bởi các ảnh hưởng đã học của các đầu vào, cụ thể là o(t) = σ(wo{x(t), h(t −1)} + bo). (9.83)</p>
+<p>Cuối cùng, chúng ta tạo ra một đầu ra cho nút hồi quy từ trạng thái bộ nhớ mới này h(t) = o(t) tanh(c(t)) (9.82) mà bản thân nó được đóng cổng bởi các ảnh hưởng đã học của các đầu vào, cụ thể là o(t) = σ(wo{x(t), h(t −1)} + bo). (9.83)</p>
 <p>Để minh họa một LSTM trong Keras, chúng ta theo dõi ví dụ phổ biến về phân tích cảm xúc (sentiment analysis). Phân tích cảm xúc ở đây chỉ là một ví dụ khác về phân loại trong bối cảnh gán cho các tài liệu một số nhãn biểu thị cảm xúc như tốt hoặc xấu. Ở đây chúng ta sử dụng Tập dữ liệu Đánh giá Phim Lớn (IMDB), chứa 50,000 bài đánh giá phim mang tính tích cực hoặc tiêu cực. Nhiệm vụ là sử dụng một nửa số tài liệu để huấn luyện và kiểm tra nửa còn lại xem cảm xúc của các bài đánh giá kiểm tra có thể được dự đoán hay không. Một chương trình như vậy được bao gồm trong các ví dụ của Keras mà chúng ta cung cấp ở đây một phiên bản đơn giản hóa.</p>
 <p>Ví dụ này mang lại cho chúng ta cơ hội thảo luận một số biểu diễn văn bản. Biểu diễn được gọi là túi từ (bag of words) bao gồm một vectơ lớn có kích thước bằng từ vựng với mỗi thành phần của vectơ này biểu thị số lần từ này xuất hiện trong văn bản. Bây giờ chúng ta muốn biểu diễn chính văn bản đó dưới dạng một chuỗi các từ, đây là một cách tiếp cận tốt hơn nhiều đối với xử lý ngôn ngữ tự nhiên (NLP). Với biểu diễn one-hot của một từ vựng, khi đó chúng ta sẽ có một biểu diễn nhiều chiều nhưng rất thưa. Một chuỗi khi đó sẽ là một chuỗi các vectơ thưa nhiều chiều như vậy. Một cách biểu diễn từ khác là gán cho mỗi từ một số nguyên duy nhất. Mặc dù điều này giúp ích cho số chiều của biểu diễn, biểu diễn này không nắm bắt được các quan hệ giữa các từ. Do đó, một bước đầu tiên phổ biến trong NLP là học một phép nhúng (embedding). Một phép nhúng, cụ thể hơn là nhúng từ (word embedding) ở đây, biến đổi một biểu diễn tùy ý thành một biểu diễn không gian vectơ dày đặc trong đó các từ thường liên quan đến nhau trong một tác vụ nằm gần nhau trong không gian nhúng. Trong Keras, chúng ta có thể hiện thực hóa điều này bằng một lớp Embedding. Tập dữ liệu Keras bao gồm tập dữ liệu IMDB dưới dạng danh sách các từ duy nhất ở dạng số nguyên. Đoạn mã sau đọc dữ liệu vào, giới hạn kích thước từ vựng ở 20,000 từ duy nhất, và sau đó biểu diễn mỗi tài liệu dưới dạng một chuỗi gồm tám từ duy nhất (maxlen = 8) để giảm kích thước của ví dụ này sao cho chúng ta có thể thực thi nó trên một máy tính xách tay đơn giản. Nếu tài liệu có ít hơn tám từ, thì hàm pad sequences() của Keras sẽ sử dụng một số đệm số 0 để đảm bảo mỗi tài liệu ở đây đều có độ dài maxlen.</p>
 <p>Listing 9.6 LSTM.ipynb (phần 1) 1 from keras . p r e p r o c e s s i n g import sequence 2 from keras import models , l a y e r s , optimizers , d a t a s e t s , u t i l s , l o s s e s 3 4 v o c a b u l a r y s i z e = 20000 5 maxlen = 8 6 b a t c h s i z e = 32 7 8 ( x t r a i n , y t r a i n ) , ( x t e s t , y t e s t ) = 9 d a t a s e t s . imdb . l o a d d a t a ( num words= v o c a b u l a r y s i z e ) 10 x t r a i n = sequence . pad sequences ( x t r a i n , maxlen ) 11 x t e s t = sequence . pad sequences ( x t e s t , maxlen )</p>
@@ -724,8 +680,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Mô hình này vẫn có một cổng đọc r và một cổng ghi z, nhưng nó sử dụng chính trạng thái ẩn làm trạng thái bộ nhớ. Do đó, nó là một phiên bản hơi gọn nhẹ hơn của LSTM với ít tham số hơn. Cả GRU và LSTM thường thể hiện hiệu suất tương tự nhau.</p>
 <p>Ngoài ra còn có nhiều mở rộng khác của các đơn vị hồi quy có cổng cơ bản được thảo luận ở trên. Một bước tiến lớn hơn nữa là đưa ý tưởng này đi xa hơn dưới dạng một bộ nhớ ngoài. Phiên bản đầu tiên của một mô hình như vậy được gọi là máy Turing nơ-ron (neural Turing machine - NTM). Ý tưởng cơ bản là sử dụng một bộ nhớ ngoài riêng biệt với các cổng đọc và ghi.</p>
 <h3>Bộ nhớ</h3>
-<p>h(t) h(t-1)</p>
-<p>s s wi tanh wf wc wo s đọc ghi</p>
+<p>h(t) h(t-1) s s wi tanh wf wc wo s đọc ghi</p>
 <h3>Đầu vào đầu ra</h3>
 <p>x(t)</p>
 <h3>Mạng điều khiển</h3>

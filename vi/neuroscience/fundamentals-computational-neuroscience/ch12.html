@@ -124,8 +124,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Quỹ đạo</h3>
 <p>Hình 11.5 Minh họa RL không mô hình với một mạng nơ-ron làm bộ xấp xỉ cho hàm giá trị. Việc huấn luyện đạt được thông qua học Sai phân Thời gian (TD), và đầu ra của bộ phê bình (critic) này được sử dụng để hướng dẫn hành vi của tác tử.</p>
 <p>bằng mạng nơ-ron như minh họa trong Hình 11.5. Vấn đề duy nhất là tác tử không có giáo viên cho biết giá trị thực sự của trạng thái là bao nhiêu. Giáo viên chỉ cho biết phần thưởng tức thời. Ý tưởng chính bây giờ là một dạng tự khởi động (bootstrapping), trong đó tác tử ước lượng phần thưởng tương lai từ hàm giá trị ở trạng thái tiếp theo mà tác tử ghé thăm. Do đó, quy tắc học bao gồm hiệu số giữa giá trị mới (được ước lượng) r(s) + γV (s + 1) và giá trị mà nó giả định trước trải nghiệm mới, V (s). Hiệu số này được gọi là lỗi sai phân thời gian (temporal difference error)</p>
-<p>TD = r(s) + γV (s + 1) −V (s), (11.1)</p>
-<p>và mạng có thể được huấn luyện, ví dụ, bằng cách cực tiểu hóa trung bình bình phương của lỗi sai phân thời gian.</p>
+<p>TD = r(s) + γV (s + 1) −V (s), (11.1) và mạng có thể được huấn luyện, ví dụ, bằng cách cực tiểu hóa trung bình bình phương của lỗi sai phân thời gian.</p>
 <p>Mặc dù điều này nắm bắt được ý tưởng chính của học tăng cường không mô hình, nhưng có nhiều thách thức khi áp dụng các phương pháp này vào các môi trường phức tạp hơn. Đã có nhiều tiến bộ gần đây trong lĩnh vực này dựa trên các cân nhắc bổ sung mà chúng ta sẽ đề cập ở phần dưới. Tuy nhiên, điều quan trọng cần lưu ý là não bộ sử dụng nhiều phương pháp hơn nữa để đóng góp vào việc ra quyết định tốt, bao gồm cả việc ra quyết định dựa trên mô hình.</p>
 <p>11.3 Hình thức hóa học tăng cường</p>
 <p>Trước tiên chúng ta hình thức hóa bài toán học tập trong một quá trình quyết định Markov và sau đó thảo luận một loạt các thuật toán liên quan. Đầu tiên chúng ta sẽ thảo luận về RL trong bối cảnh dạng bảng (tabular) truyền thống, nơi môi trường được mô tả bằng các trạng thái rời rạc và các hành động cũng là các lựa chọn rời rạc. Sau đó, chúng ta sẽ mô tả phần thứ hai của chương này sử dụng các bộ xấp xỉ hàm với mạng nơ-ron, vốn đã tạo ra những tiến bộ gần đây dưới tên gọi RL sâu (deep RL).</p>
@@ -134,8 +133,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Chính sách: at = π(st) tất định π(at|st) ngẫu nhiên. (11.2)</h3>
 <p>Theo đó, chúng ta đã cung cấp hai công thức: một công thức tất định với hàm thông thường và một công thức ngẫu nhiên bằng cách chỉ định một hàm xác suất. Nhìn chung, việc xem xét các bối cảnh xác suất là rất hữu ích. Ví dụ, mặc dù bộ điều khiển thực thi chính sách có ý định di chuyển một phương tiện tiến về phía trước, một trục trặc trong chương trình lại thực thi một quy trình rẽ. Do đó, trong trường hợp này, chính sách chỉ định xác suất mà một hành động được thực hiện, π(at|ss). Chúng ta sẽ phác thảo phần lớn các thảo luận trong bối cảnh tất định để đơn giản và giảm thiểu ký hiệu. Chúng ta sử dụng bối cảnh xác suất trong các phần sau khi thích hợp và sẽ tiếp tục phác thảo các công thức của bài toán trong cả hai bối cảnh.</p>
 <p>Có hai hàm nữa mà chúng ta cần giới thiệu để mô tả môi trường mà bộ điều khiển phải hoạt động. Hàm đầu tiên là</p>
-<p>Hàm chuyển tiếp: st+1 = τ(st, at) tất định τ(st+1|st, at) ngẫu nhiên. (11.3)</p>
-<p>hàm này chỉ đơn giản chỉ định trạng thái kết quả khi một tác tử thực hiện hành động at từ trạng thái st. Một lần nữa, việc xem xét bối cảnh xác suất là hữu ích vì trạng thái thực tế của tác tử có thể khác với dự định do các yếu tố bên ngoài không nằm dưới sự kiểm soát của tác tử. Ví dụ, ngay cả khi bộ điều khiển thực thi hàm tiến về phía trước trong một khoảng cách nhất định, một độ dốc trên đường có thể dẫn đến việc vượt quá vị trí mong muốn. Trong một bối cảnh xác suất như vậy, hàm chuyển tiếp chỉ định xác suất chuyển tiếp τ(st+1|st, at) để kết thúc ở trạng thái st+1, khi thực hiện hành động at từ trạng thái st.</p>
+<p>Hàm chuyển tiếp: st+1 = τ(st, at) tất định τ(st+1|st, at) ngẫu nhiên. (11.3) hàm này chỉ đơn giản chỉ định trạng thái kết quả khi một tác tử thực hiện hành động at từ trạng thái st. Một lần nữa, việc xem xét bối cảnh xác suất là hữu ích vì trạng thái thực tế của tác tử có thể khác với dự định do các yếu tố bên ngoài không nằm dưới sự kiểm soát của tác tử. Ví dụ, ngay cả khi bộ điều khiển thực thi hàm tiến về phía trước trong một khoảng cách nhất định, một độ dốc trên đường có thể dẫn đến việc vượt quá vị trí mong muốn. Trong một bối cảnh xác suất như vậy, hàm chuyển tiếp chỉ định xác suất chuyển tiếp τ(st+1|st, at) để kết thúc ở trạng thái st+1, khi thực hiện hành động at từ trạng thái st.</p>
 <p>Chúng ta giới hạn thảo luận ở đây theo giả định phổ biến rằng hàm chuyển tiếp chỉ phụ thuộc vào trạng thái trước đó và hành động dự định từ trạng thái tương ứng. Điều này được gọi là điều kiện Markov. Chuỗi các trạng thái với các xác suất chuyển tiếp là một chuỗi Markov, và chuỗi dành cho ví dụ mê cung chữ T được hiển thị trong Hình 11.4D. Một điều kiện phi Markov sẽ là trường hợp trong đó trạng thái tiếp theo phụ thuộc vào một chuỗi các trạng thái và hành động trước đó, và tác tử của chúng ta khi đó sẽ cần một bộ nhớ để đưa ra các quyết định tối ưu. Tình huống được mô tả bởi điều kiện Markov là khá tự nhiên vì nhiều quá trình ra quyết định chỉ phụ thuộc vào trạng thái hiện tại. Do đó, điều kiện Markov là một kịch bản tốt và không phải là hạn chế thực sự của các phương pháp học tăng cường mà chúng ta sẽ thảo luận sau, nhưng nó sẽ đơn giản hóa một số ký hiệu và thảo luận.</p>
 <p>Hàm môi trường quan trọng thứ hai gói gọn giả định rằng môi trường hoặc một giáo viên cung cấp phần thưởng theo</p>
 <p>Hàm phần thưởng: rt+1 = ρ(st, at) tất định ρ(rt+1|st, at) ngẫu nhiên. (11.4)</p>
@@ -166,15 +164,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Listing 11.2 RL.ipynb (Part 2) 1 # Discount Factor 2 gamma=0.5 mặc dù các giá trị gần 1 hơn nhiều như γ = 0.99 cũng rất phổ biến. Đối với trường hợp này, bây giờ chúng ta định nghĩa một hàm giá trị trạng thái-hành động. Hàm này cho chúng ta một giá trị số của lợi tức (tất cả phần thưởng được chiết khấu trong tương lai) khi tác tử đang ở trạng thái s, thực hiện hành động a và sau đó tuân theo chính sách cho các hành động tiếp theo,</p>
 <p>∞ X</p>
 <h3>Hàm giá trị (trạng thái-hành động): Qπ(s, a) = ρ(s, a) +</h3>
-<p>γtρ(st, π(st)). (11.5)</p>
-<p>t=1</p>
+<p>γtρ(st, π(st)). (11.5) t=1</p>
 <p>Nói cách khác, hàm này cho chúng ta biết hành động a tốt như thế nào ở trạng thái s, và do đó kiến thức về hàm giá trị này sẽ hướng dẫn các hành động của tác tử. Mục đích của học tăng cường dựa trên giá trị là ước lượng hàm này. Ở đây, trước tiên chúng ta xem xét trường hợp tất định và quay lại một công thức khác trong trường hợp ngẫu nhiên cho các trường hợp chân trời hữu hạn sau.</p>
 <p>Đôi khi chúng ta chỉ quan tâm đến hàm giá trị ngay cả khi chúng ta tuân theo chính sách cho bước đầu tiên trong chuỗi hành động từ trạng thái s. Khi đó, hàm giá trị này không phụ thuộc tường minh vào hành động, tất nhiên chỉ phụ thuộc gián tiếp vào chính sách, và được định nghĩa là tổng lợi tức chiết khấu từ trạng thái s = s0 tuân theo chính sách π,</p>
 <h3>Hàm giá trị (trạng thái): V π(s) = Qπ(s, π(s)). (11.6)</h3>
 <p>Mục tiêu của RL là tìm chính sách tối đa hóa lợi tức. Nếu tác tử biết</p>
 <h3>Hàm giá trị tối ưu : V ∗(s) = max</h3>
-<p>a Q∗(s, a), (11.7)</p>
-<p>thì chính sách tối ưu chỉ đơn giản được đưa ra bằng cách thực hiện hành động dẫn đến lợi tức kỳ vọng lớn nhất, cụ thể là</p>
+<p>a Q∗(s, a), (11.7) thì chính sách tối ưu chỉ đơn giản được đưa ra bằng cách thực hiện hành động dẫn đến lợi tức kỳ vọng lớn nhất, cụ thể là</p>
 <h3>Chính sách tối ưu : π∗(s) = arg max</h3>
 <p>a Q∗(s, a). (11.8)</p>
 <p>Hàm này được triển khai ở đây bằng mã python cho calc policy.</p>
@@ -185,8 +181,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Chìa khóa để học các hàm giá trị là nhận ra rằng vế phải của phương trình 11.5 có thể được viết theo chính hàm Q, cụ thể là</p>
 <p>∞ X</p>
 <h3>Qπ(s, a) = ρ(s, a) + γ</h3>
-<p>γt−1ρ(st, π(st))</p>
-<p>t=1</p>
+<p>γt−1ρ(st, π(st)) t=1</p>
 <p>∞ X</p>
 <p>"</p>
 <p># γt−2ρ(st, π(st))</p>
@@ -213,8 +208,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Chúng ta đã định hình lại hàm Q kết quả sao cho hàng đầu tiên hiển thị các giá trị cho các chuyển động sang trái ở mỗi trạng thái và hàng thứ hai hiển thị các giá trị cho chuyển động sang phải ở mỗi trạng thái. Từ đây, chúng ta có thể tính toán chuyển động nào cần thực hiện ở mỗi trạng thái, cụ thể chỉ là hành động tương ứng với giá trị lớn nhất trong mỗi cột,</p>
 <p>Listing 11.6 RL.ipynb (Part 6) 1 p o l i c y = c a l c p o l i c y (Q)</p>
 <h3>Cuối cùng chúng ta in kết quả bằng</h3>
-<p>Listing 11.7 RL.ipynb (Part 7) 1 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 2 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) )</p>
-<p>cho kết quả đầu ra --> Analytic solution for optimal policy Q values:</p>
+<p>Listing 11.7 RL.ipynb (Part 7) 1 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 2 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) cho kết quả đầu ra --> Analytic solution for optimal policy Q values:</p>
 <p>[[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy:</p>
 <p>[ 0 -1 1 1 0] Tác tử đang di chuyển sang trái ở trạng thái 1 vì điều này sẽ dẫn đến phần thưởng tức thời là 1 và di chuyển sang phải ở các trạng thái khác vì điều này sẽ mang lại phần thưởng lớn hơn, ngay cả khi đã tính đến việc chiết khấu cho nhiều bước hơn. Tất nhiên, tại thời điểm này lập luận của chúng ta là tuần hoàn vì chúng ta đã bắt đầu với giả định rằng chúng ta sử dụng chính sách tối ưu như được chỉ định trong ma trận chuyển tiếp ngay từ đầu. Chúng ta sẽ sớm thấy cách bắt đầu với một chính sách tùy ý và cải thiện nó để tìm ra chiến lược tối ưu. Cũng lưu ý rằng ma trận chuyển tiếp là hoàn hảo theo nghĩa là bước di chuyển dự định luôn dẫn đến trạng thái cuối cùng dự định. Một mở rộng xác suất của ma trận chuyển tiếp này khá hữu ích trong việc mô tả các tình huống thực tế hơn.</p>
 <p>Trong mã nguồn, chúng ta lưu các giá trị Q tối ưu cho chính sách tối ưu</p>
@@ -225,8 +219,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>i+1(s, a) ←ρ(s, a) + γQπ i (τ(s, a), π(τ(s, a))).</p>
 <p>(11.14) Điểm bất động của phương trình này, tức là các giá trị không thay đổi qua các lần lặp này, chính là các giá trị mong muốn của Qπ. Một cách khác để nghĩ về thuật toán này là đẳng thức Bellman chỉ đúng với các giá trị Qπ chính xác. Đối với phỏng đoán của chúng ta, hiệu số giữa vế trái và vế phải khác 0, nhưng chúng ta đang cực tiểu hóa hiệu số này bằng quy trình lặp ở trên. Mã nguồn tương ứng là</p>
 <p>Listing 11.9 RL.ipynb (Part 9) 1 p r i n t ( ’−−> Dynamic Programming ’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] )</p>
-<p>4 f o r i t e r in range ( 3 ) : 5 f o r s in range ( 0 , 5 ) : 6 f o r a in range ( −1 ,2 ,2): 7 a c t = np . i n t ( p o l i c y [ tau ( s , a ) ] ) 8 Q[ s , idx ( a )]= rho ( s , a )+gamma∗Q[ tau ( s , a ) , idx ( a c t ) ] 9 10 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 11 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) )</p>
-<p>với đầu ra --> Dynamic Programming: Q values:</p>
+<p>4 f o r i t e r in range ( 3 ) : 5 f o r s in range ( 0 , 5 ) : 6 f o r a in range ( −1 ,2 ,2): 7 a c t = np . i n t ( p o l i c y [ tau ( s , a ) ] ) 8 Q[ s , idx ( a )]= rho ( s , a )+gamma∗Q[ tau ( s , a ) , idx ( a c t ) ] 9 10 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 11 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) với đầu ra --> Dynamic Programming: Q values:</p>
 <p>[[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy:</p>
 <p>[ 0 -1 1 1 0] đây tất nhiên là cùng một nghiệm đúng như được tìm thấy bằng phép nghịch đảo ma trận tường minh. Phương pháp lặp này là một cách triển khai phổ biến hơn nhiều và nó không đòi hỏi việc viết mã tường minh cho ma trận chuyển tiếp. Các cách tiếp cận lặp sẽ được sử dụng trong tất cả các phương pháp tiếp theo được thảo luận sau này. Lưu ý rằng chúng ta mới chỉ sử dụng ba lần lặp để hội tụ về nghiệm đúng. Mặc dù ở đây chúng ta đặt số lần lặp bằng tay, nhưng trong thực tế chúng ta lặp cho đến khi những thay đổi trong các giá trị đủ nhỏ.</p>
 <p>11.3.2.2 Lặp chính sách (Policy iteration)</p>
@@ -237,8 +230,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Hàm giá trị tương ứng là Q∗. Trong ví dụ mê cung, chúng ta có thể thấy rằng giá trị lớn nhất trong mỗi cột của ma trận Q chính là chính sách mà chúng ta đã bắt đầu. Đây là chính sách tối ưu, như chúng ta đã nêu trước đó.</p>
 <h3>Mã nguồn tương ứng cho ví dụ mê cung của chúng ta là</h3>
 <p>Listing 11.10 RL.ipynb (Part 10) 1 p r i n t ( ’−−> Policy i t e r a t i o n ’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] ) 4 p o l i c y = c a l c p o l i c y (Q) 5 f o r i t e r in range ( 3 ) : 6 f o r s in range ( 0 , 5 ) : 7 f o r a in range ( −1 ,2 ,2):</p>
-<p>8 a c t = np . i n t ( p o l i c y [ tau ( s , a ) ] ) 9 Q[ s , idx ( a )]= rho ( s , a )+gamma∗Q[ tau ( s , a ) , idx ( a c t ) ] 10 p o l i c y = c a l c p o l i c y (Q) 11 12 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 13 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) )</p>
-<p>với đầu ra --> Policy iteration Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0] một lần nữa dẫn đến kết quả đúng. Lưu ý rằng trong ví dụ này, chúng ta một lần nữa chỉ lặp ba lần trên các chính sách. Về nguyên tắc, chúng ta có thể và nên lặp nhiều lần cho mỗi chính sách để hội tụ đến một ước lượng ổn định cho Qπ này. Tuy nhiên, các cải tiến sẽ dẫn đến trạng thái ổn định rất nhanh, ít nhất là trong ví dụ đơn giản này.</p>
+<p>8 a c t = np . i n t ( p o l i c y [ tau ( s , a ) ] ) 9 Q[ s , idx ( a )]= rho ( s , a )+gamma∗Q[ tau ( s , a ) , idx ( a c t ) ] 10 p o l i c y = c a l c p o l i c y (Q) 11 12 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 13 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) với đầu ra --> Policy iteration Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0] một lần nữa dẫn đến kết quả đúng. Lưu ý rằng trong ví dụ này, chúng ta một lần nữa chỉ lặp ba lần trên các chính sách. Về nguyên tắc, chúng ta có thể và nên lặp nhiều lần cho mỗi chính sách để hội tụ đến một ước lượng ổn định cho Qπ này. Tuy nhiên, các cải tiến sẽ dẫn đến trạng thái ổn định rất nhanh, ít nhất là trong ví dụ đơn giản này.</p>
 <p>11.3.2.3 Hàm Bellman cho chính sách tối ưu và lặp giá trị (Q)</p>
 <p></p>
 <p>Vì chúng ta chủ yếu quan tâm đến chính sách tối ưu, chúng ta có thể thử giải phương trình Bellman ngay lập tức cho chính sách này,</p>
@@ -246,12 +238,10 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Vấn đề là phương trình này hiện phụ thuộc vào π∗ chưa biết. Tuy nhiên, chúng ta có thể kiểm tra ở mỗi trạng thái tất cả các hành động và chọn hành động mang lại cho chúng ta lợi tức tốt nhất. Điều này phải tương đương với phương trình trên trong trường hợp tối ưu. Do đó, chúng ta đề xuất</p>
 <p>Phương trình Bellman tối ưu: Q∗(s, a) = ρ(s, a) + γ max a′ Q∗(τ(s, a), a′). (11.18)</p>
 <h3>Chúng ta có thể giải phương trình này một lần nữa bằng phương pháp lặp khi hàm chuyển tiếp và các hàm phần thưởng đã biết,</h3>
-<p>Lặp Q: Q∗</p>
-<p>a′ Q∗(τ(s, a), a′). (11.19)</p>
+<p>Lặp Q: Q∗ a′ Q∗(τ(s, a), a′). (11.19)</p>
 <h3>i+1(s, a) ←ρ(s, a) + γ max</h3>
 <p>Mã nguồn tương ứng cho ví dụ mê cung của chúng ta là</p>
-<p>Listing 11.11 RL.ipynb (Part 11) 1 p r i n t ( ’−−> Q−i t e r a t i o n ’ ) 2 3 Q new=np . zeros ( [ 5 , 2 ] ) 4 Q=np . zeros ( [ 5 , 2 ] ) 5 f o r i t e r in range ( 3 ) : 6 f o r s in range ( 0 , 5 ) : 7 f o r a in range ( −1 ,2 ,2): 8 maxValue = np . maximum (Q[ tau ( s , a ) , 0 ] ,Q[ tau ( s , a ) , 1 ] ) 9 Q new [ s , idx ( a )]= rho ( s , a )+gamma∗maxValue 10 Q=np . copy ( Q new ) ; 11 12 p o l i c y = c a l c p o l i c y (Q) 13 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 14 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) )</p>
-<p>với đầu ra</p>
+<p>Listing 11.11 RL.ipynb (Part 11) 1 p r i n t ( ’−−> Q−i t e r a t i o n ’ ) 2 3 Q new=np . zeros ( [ 5 , 2 ] ) 4 Q=np . zeros ( [ 5 , 2 ] ) 5 f o r i t e r in range ( 3 ) : 6 f o r s in range ( 0 , 5 ) : 7 f o r a in range ( −1 ,2 ,2): 8 maxValue = np . maximum (Q[ tau ( s , a ) , 0 ] ,Q[ tau ( s , a ) , 1 ] ) 9 Q new [ s , idx ( a )]= rho ( s , a )+gamma∗maxValue 10 Q=np . copy ( Q new ) ; 11 12 p o l i c y = c a l c p o l i c y (Q) 13 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 14 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) với đầu ra</p>
 <p>--> Q-iteration Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0]</p>
 <p>Trong ví dụ này, chúng ta một lần nữa chỉ sử dụng ba lần lặp, điều này là đủ để đạt được các giá trị chính xác. Trong thực tế, chúng ta có thể kết thúc chương trình nếu các thay đổi đủ nhỏ, điều mà chúng ta đã không triển khai ở đây để giữ cho mã nguồn ngắn gọn.</p>
 <p>Có một sự khác biệt thú vị giữa phương pháp lặp giá trị này và phương pháp lặp chính sách trước đó. Trong phương pháp lặp chính sách, chúng ta đã tuân theo chính sách để tính toán hàm giá trị được cập nhật. Chúng ta gọi một phương pháp như vậy là theo chính sách (on-policy). Ngược lại, trong lặp giá trị (Q), chúng ta kiểm tra tất cả các hành động khả dĩ từ trạng thái này để cập nhật hàm giá trị. Quy trình như vậy được gọi là ngoài chính sách (off-policy).</p>
@@ -266,11 +256,9 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Bước tiếp theo là sử dụng ước lượng của hàm Q để cải thiện chính sách. Tuy nhiên, vì chúng ta chủ yếu quan tâm đến chính sách tối ưu, chúng ta nên cải thiện chính sách bằng cách thực hiện các bước tối đa hóa phần thưởng. Tuy nhiên, một vấn đề trong sơ đồ này là chúng ta phải ước lượng các giá trị Q bằng cách lấy mẫu, do đó chúng ta phải đảm bảo cân bằng giữa khai thác và khám phá. Một cách phổ biến để chọn chính sách trong sơ đồ này là</p>
 <p></p>
 <p></p>
-<p>= 1 −ϵ. (11.21)</p>
-<p>chính sách ϵ-tham lam: p arg max a Q(s, a)</p>
+<p>= 1 −ϵ. (11.21) chính sách ϵ-tham lam: p arg max a Q(s, a)</p>
 <p>Vì vậy, chúng ta thực sự đang đánh giá chính sách tối ưu, điều này đòi hỏi chúng ta phải đưa việc khám phá về 0 ở cuối, ϵ →0. Mã nguồn tương ứng cho SARSA là:</p>
-<p>Listing 11.12 RL.ipynb (Part 12) 1 p r i n t ( ’−−> SARSA’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] ) 4 e r r o r = [ ] 5 alpha =1; 6 f o r t r i a l in range ( 2 0 0 ) : 7 p o l i c y = c a l c p o l i c y (Q) 8 s=2 9 f o r t in range ( 0 , 5 ) : 10 a= p o l i c y [ s ] 11 i f np . random . rand () <0.1: a=−a # e p s i l o n greedy 12 a2=idx ( p o l i c y [ tau ( s , a ) ] ) 13 TD=rho ( s , a )+gamma∗Q[ tau ( s , a ) , a2]−Q[ s , idx ( a ) ] 14 Q[ s , idx ( a )]=Q[ s , idx ( a )]+ alpha ∗TD 15 s= tau ( s , a ) 16 e r r o r . append ( np . sum ( np . sum ( np . abs ( np . s u b t r a c t (Q, Qana ) ) ) ) ) 17 18 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 19 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) 20 p l t . f i g u r e ( ) ; p l t . p l o t ( e r r o r ) 21 p l t . x l a b e l ( ’ i t e r a t i o n ’ ) ; p l t . y l a b e l ( ’ e r r o r ’ )</p>
-<p>với đầu ra --> SARSA Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0] Hình 11.7 cho thấy hiệu số giữa giá trị Q của thuật toán này và giá trị Q của nghiệm giải tích tiến về 0 và do đó hội tụ về nghiệm đúng.</p>
+<p>Listing 11.12 RL.ipynb (Part 12) 1 p r i n t ( ’−−> SARSA’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] ) 4 e r r o r = [ ] 5 alpha =1; 6 f o r t r i a l in range ( 2 0 0 ) : 7 p o l i c y = c a l c p o l i c y (Q) 8 s=2 9 f o r t in range ( 0 , 5 ) : 10 a= p o l i c y [ s ] 11 i f np . random . rand () <0.1: a=−a # e p s i l o n greedy 12 a2=idx ( p o l i c y [ tau ( s , a ) ] ) 13 TD=rho ( s , a )+gamma∗Q[ tau ( s , a ) , a2]−Q[ s , idx ( a ) ] 14 Q[ s , idx ( a )]=Q[ s , idx ( a )]+ alpha ∗TD 15 s= tau ( s , a ) 16 e r r o r . append ( np . sum ( np . sum ( np . abs ( np . s u b t r a c t (Q, Qana ) ) ) ) ) 17 18 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 19 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) 20 p l t . f i g u r e ( ) ; p l t . p l o t ( e r r o r ) 21 p l t . x l a b e l ( ’ i t e r a t i o n ’ ) ; p l t . y l a b e l ( ’ e r r o r ’ ) với đầu ra --> SARSA Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0] Hình 11.7 cho thấy hiệu số giữa giá trị Q của thuật toán này và giá trị Q của nghiệm giải tích tiến về 0 và do đó hội tụ về nghiệm đúng.</p>
 <p>Đôi khi việc này có thể mất nhiều lần lặp hơn vì việc khám phá các trạng thái ngoài chính sách không thường xuyên. Tất nhiên, điều này cũng phụ thuộc vào chiến lược khám phá.</p>
 <p>4</p>
 <p>3 lỗi</p>
@@ -327,8 +315,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Q-learning: Qi+1(si, ai) = Qi(si, ai)+α`</p>
 <p>(ri+1 + γ max (11.23) Chúng ta vẫn phải khám phá môi trường, thường tuân theo chính sách ước lượng tối ưu, với một số cho phép khám phá chẳng hạn như chiến lược khám phá ϵ-tham lam hoặc softmax. Mã nguồn tương ứng cho Q-learning là</p>
 <p>Listing 11.13 RL.ipynb (Part 13) 1 p r i n t ( ’−−> Q−Learning : ’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] ) 4 alpha =1 5 e r r o r = [ ] 6 f o r t r i a l in range ( 2 0 0 ) : 7 p o l i c y = c a l c p o l i c y (Q) 8 s=2 9 f o r t in range ( 0 , 5 ) : 10 a= p o l i c y [ s ] 11 i f np . random . rand () <0.2: a=−a # e p s i l o n greedy 12 TD=rho ( s , a )+gamma ∗ 13 np . maximum (Q[ tau ( s , a ) , 0 ] ,Q[ tau ( s , a ) ,1]) −Q[ s , idx ( a ) ] 14 Q[ s , idx ( a )]=Q[ s , idx ( a )]+ alpha ∗TD 15 Q[ 0 ] = 0 ;Q[ 4 ] = 0 ; 16 s= tau ( s , a ) 17 e r r o r . append ( np . sum ( np . sum ( np . abs ( np . s u b t r a c t (Q, Qana ) ) ) ) ) 18 19 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 20 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) )</p>
-<p>21 p l t . p l o t ( e r r o r , ’ r ’ ) ; 22 p l t . x l a b e l ( ’ i t e r a t i o n ’ ) ; p l t . y l a b e l ( ’ e r r o r ’ )</p>
-<p>với đầu ra --> Q-Learning: Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0]</p>
+<p>21 p l t . p l o t ( e r r o r , ’ r ’ ) ; 22 p l t . x l a b e l ( ’ i t e r a t i o n ’ ) ; p l t . y l a b e l ( ’ e r r o r ’ ) với đầu ra --> Q-Learning: Q values: [[0. 1. 0.5 0.5 0. ] [0. 0.5 1. 2. 0. ]] policy: [ 0 -1 1 1 0]</p>
 <p>11.3.3.2 TD(λ)</p>
 <p>Ví dụ về mê cung tuyến tính trong phần trước đã cho thấy rằng kỳ vọng phần thưởng lan truyền ngược trong mỗi tập, do đó đòi hỏi nhiều lần lặp lại các tập để đánh giá hàm giá trị. Lý do cho điều này là chúng ta chỉ ghi công cho bước đi đến một trạng thái có giá trị cho bước ngay trước đó và do đó chỉ cập nhật hàm giá trị tương ứng. Một cách tiếp cận khác là theo dõi những trạng thái nào đã dẫn đến phần thưởng và gán công trạng cho từng bước đã được ghé thăm. Tuy nhiên, vì chúng ta chiết khấu phần thưởng tỷ lệ với thời gian cần thiết để đến được trạng thái có phần thưởng, chúng ta cũng cần tính đến điều này.</p>
 <h3>r(x): 0 0 0 0 1 π(x):</h3>
@@ -345,8 +332,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Q(s, a) ←Q(s, a) + αTD ∗e(s, a). (11.25)</p>
 <p>Mặc dù thuật toán này đòi hỏi một chút bộ nhớ, chúng ta thấy rằng chúng ta chỉ cần lưu trữ một vết đủ điều kiện chỉ định gián tiếp chuỗi hành động mà tác tử đã thực hiện. Cũng rất dễ mở rộng thuật toán này sang một dạng tổng quát hơn gọi là TD(λ), trong đó chúng ta có thể nội suy giữa thuật toán TD gốc không có vết đủ điều kiện, gọi là TD(0), với vết bộ nhớ hoàn hảo của TD(1). Sự suy giảm theo hàm mũ của một vết đủ điều kiện có thể được triển khai đơn giản bằng cách đưa vào một hệ số λ trong phương trình 11.24, e(s, a) ←e(s, a)γλ cho mọi s,a. (11.26)</p>
 <p>Thuật toán này được triển khai cho phiên bản Q-learning của học sai phân thời gian trong mã nguồn ở Listing 10.15.</p>
-<p>Listing 11.14 RL.ipynb (Part 14) 1 p r i n t ( ’−−> TD( lambda ) f o r Q−l e a r n i n g ’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] ) 4 alpha =1 5 e r r o r = [ ] 6 e l i g i b i l i t y =np . zeros ( [ 5 , 2 ] ) 7 lam =0.7 8 9 f o r t r i a l in range ( 2 0 0 ) : 10 p o l i c y = c a l c p o l i c y (Q) 11 s=2 12 f o r t in range ( 0 , 5 ) : 13 a= p o l i c y [ s ] 14 i f np . random . rand () <0.1: a=−a # e p s i l o n greedy 15 TD=rho ( s , a )+gamma ∗ 16 np . maximum (Q[ tau ( s , a ) , 0 ] ,Q[ tau ( s , a ) ,1]) −Q[ s , idx ( a ) ] 17 e l i g i b i l i t y ∗=gamma∗lam 18 e l i g i b i l i t y [ s , idx ( a )]=1 19 f o r s i in range ( 1 , 4 ) : 20 f o r a i in range ( 2 ) : 21 Q[ si , a i ]=Q[ si , a i ]+ alpha ∗TD∗e l i g i b i l i t y [ si , a i ] 22 Q[ 0 ] = 0 ;Q[ 4 ] = 0 ; 23 s= tau ( s , a ) 24 e r r o r . append ( np . sum ( np . sum ( np . abs ( np . s u b t r a c t (Q, Qana ) ) ) ) ) 25 26 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 27 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) 28 p l t . p l o t ( e r r o r , ’ r ’ ) ; 29 p l t . x l a b e l ( ’ i t e r a t i o n ’ ) ; p l t . y l a b e l ( ’ e r r o r ’ )</p>
-<p>với đầu ra</p>
+<p>Listing 11.14 RL.ipynb (Part 14) 1 p r i n t ( ’−−> TD( lambda ) f o r Q−l e a r n i n g ’ ) 2 3 Q=np . zeros ( [ 5 , 2 ] ) 4 alpha =1 5 e r r o r = [ ] 6 e l i g i b i l i t y =np . zeros ( [ 5 , 2 ] ) 7 lam =0.7 8 9 f o r t r i a l in range ( 2 0 0 ) : 10 p o l i c y = c a l c p o l i c y (Q) 11 s=2 12 f o r t in range ( 0 , 5 ) : 13 a= p o l i c y [ s ] 14 i f np . random . rand () <0.1: a=−a # e p s i l o n greedy 15 TD=rho ( s , a )+gamma ∗ 16 np . maximum (Q[ tau ( s , a ) , 0 ] ,Q[ tau ( s , a ) ,1]) −Q[ s , idx ( a ) ] 17 e l i g i b i l i t y ∗=gamma∗lam 18 e l i g i b i l i t y [ s , idx ( a )]=1 19 f o r s i in range ( 1 , 4 ) : 20 f o r a i in range ( 2 ) : 21 Q[ si , a i ]=Q[ si , a i ]+ alpha ∗TD∗e l i g i b i l i t y [ si , a i ] 22 Q[ 0 ] = 0 ;Q[ 4 ] = 0 ; 23 s= tau ( s , a ) 24 e r r o r . append ( np . sum ( np . sum ( np . abs ( np . s u b t r a c t (Q, Qana ) ) ) ) ) 25 26 p r i n t ( ’Q values : \n ’ , np . t r a n s p o s e (Q) ) 27 p r i n t ( ’ p o l i c y : \n ’ , np . t r a n s p o s e ( p o l i c y ) ) 28 p l t . p l o t ( e r r o r , ’ r ’ ) ; 29 p l t . x l a b e l ( ’ i t e r a t i o n ’ ) ; p l t . y l a b e l ( ’ e r r o r ’ ) với đầu ra</p>
 <p>--> TD(lambda) for Q-learning Q values:</p>
 <p>[[0. 0.99999999 0.49999994 0.49998045 0. ] [0. 0.25 1. 2. 0. ]] policy: [ 0 -1 1 1 0]</p>
 <p>TD(λ) được Gerald Tesauro làm cho nổi tiếng vào đầu những năm 1990 vì đã đạt được hiệu suất ngang tầm con người khi chơi cờ backgammon. Ngoài ra, giải pháp của Tesauro đã sử dụng mạng nơ-ron làm bộ xấp xỉ hàm, điều này rất quan trọng để nắm bắt không gian trạng thái-hành động có số chiều lớn. Điều này sẽ được thảo luận trong phần tiếp theo.</p>
@@ -358,11 +344,8 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p></p>
 <p>Hình 11.10 Ví dụ về các màn hình video của trình mô phỏng trò chơi Atari 2600.</p>
 <p>Để minh họa ý tưởng cơ bản của việc sử dụng mạng nơ-ron với RL, chúng ta quay lại ví dụ mê cung của mình. Dạng cơ bản của việc triển khai hàm Q bằng mạng nơ-ron là tạo ra một mạng nơ-ron nhận đầu vào là một trạng thái và một hành động, sau đó xuất ra các giá trị Q như minh họa trong Hình 11.11 với mạng A. Để huấn luyện mạng này bằng học có giám sát, chúng ta sẽ cần các ví dụ về hàm giá trị, thứ mà tất nhiên chúng ta không có. Tuy nhiên, chúng ta đã thảo luận cách có thể ước lượng các giá trị như vậy bằng sai phân thời gian trong khi khám phá các quỹ đạo trong môi trường. Ví dụ, chúng ta có thể bắt đầu với một hàm Q tùy ý, sử dụng SARSA để ước lượng một phiên bản cải thiện của Q, và sau đó sử dụng phiên bản này làm trạng thái mong muốn trong một hàm mất mát bình phương trung bình. Nghĩa là, chúng ta có thể định nghĩa số hạng lỗi (hàm mất mát) sau đây</p>
-<p>E(st, at) = (rt+1 + γQ(st+1, ut+1; w) −Q(st, at; w))2 (11.27)</p>
-<p>và sử dụng lan truyền ngược để huấn luyện các trọng số của mạng biểu diễn hàm Q.</p>
-<p>3 Q(a ) Q(a )</p>
-<p>s1 a Q Q(a ) Q(a )</p>
-<p>s</p>
+<p>E(st, at) = (rt+1 + γQ(st+1, ut+1; w) −Q(st, at; w))2 (11.27) và sử dụng lan truyền ngược để huấn luyện các trọng số của mạng biểu diễn hàm Q.</p>
+<p>3 Q(a ) Q(a ) s1 a Q Q(a ) Q(a ) s</p>
 <p>1</p>
 <p>1</p>
 <h3>3 A B C</h3>
@@ -374,8 +357,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>3</p>
 <p>Hình 11.11 Các cách khác nhau để triển khai một bộ xấp xỉ hàm cho hàm giá trị.</p>
 <h3>Mặc dù cách tiếp cận mạng nơ-ron cho SARSA có thể được áp dụng ngay lập tức cho một không gian trạng thái và hành động liên tục, nhiều ứng dụng có một tập hợp các hành động khả dĩ hữu hạn và tương đối nhỏ, và phổ biến hơn là sử dụng chiến lược Q-learning (ngoài chính sách) trong trường hợp này. Ở đây chúng ta phải so sánh các giá trị Q của tất cả các hành động khả dĩ từ một trạng thái cụ thể. Mặc dù chúng ta có thể chỉ cần lặp qua mạng trước đó, chúng ta cũng có thể học một mạng cung cấp các giá trị Q cho tất cả các hành động khả dĩ. Cách tiếp cận này đã được Riedmiller thực hiện vào năm 2005 với thuật toán lặp Q khớp thần kinh (neurally fitted Q-iteration - NFQ). Ý tưởng cơ bản được hiển thị trong Hình 11.11 với mạng B. Trong trường hợp này, chúng ta có thể huấn luyện mạng với hàm mất mát sau đây a Q(st+1, a; w) −Q(st, at; w))2 (11.28)</h3>
-<p>E(st, at) = (rt+1 + γ max</p>
-<p>tương ứng với việc huấn luyện các kết nối đến nút chiến thắng cũng như tất cả các kết nối đi vào nó thông qua lan truyền ngược. Để áp dụng chiến lược này cho ví dụ mê cung, ở đây chúng ta sẽ biểu diễn vectơ trạng thái dưới dạng vectơ 1-hot. Ví dụ, nếu tác tử đang ở trạng thái 2 thì chúng ta có thể viết vectơ đầu vào 1-hot cho mạng là s=np.array([0,0,1,0,0]). Một mạng như vậy được minh họa trong Hình 11.11C. Sau đó, chúng ta phải sửa đổi nhẹ các hàm trợ giúp của mình để tính toán trạng thái tiếp theo, và chúng ta cũng cần một hàm nhỏ để xác định xem trạng thái đó có phải là trạng thái cuối cùng hay không.</p>
+<p>E(st, at) = (rt+1 + γ max tương ứng với việc huấn luyện các kết nối đến nút chiến thắng cũng như tất cả các kết nối đi vào nó thông qua lan truyền ngược. Để áp dụng chiến lược này cho ví dụ mê cung, ở đây chúng ta sẽ biểu diễn vectơ trạng thái dưới dạng vectơ 1-hot. Ví dụ, nếu tác tử đang ở trạng thái 2 thì chúng ta có thể viết vectơ đầu vào 1-hot cho mạng là s=np.array([0,0,1,0,0]). Một mạng như vậy được minh họa trong Hình 11.11C. Sau đó, chúng ta phải sửa đổi nhẹ các hàm trợ giúp của mình để tính toán trạng thái tiếp theo, và chúng ta cũng cần một hàm nhỏ để xác định xem trạng thái đó có phải là trạng thái cuối cùng hay không.</p>
 <p>Listing 11.15 RLmlp.ipynb (Part 1) 1 import numpy as np 2 import m a t p l o t l i b . pyplot as p l t 3 from keras import models , l a y e r s , o p t i m i z e r s 4 5 def tau ( s , a ) : 6 i f ( s [ 0 ] and s [ 4 ] ) == 0 : 7 s=np . r o l l ( s , a ) 8 r e t u r n s 9 def rho ( s ) : 10 r e t u r n ( ( s [0]==1)+2∗( s [4]==1)) 11 def t e r m i n a l s t a t e ( s ) : 12 r e t u r n ( s [0]==1 or s [4]==1) 13 14 gamma=0.5 15 invT = 1</p>
 <p>Biến invT đại diện cho nghịch đảo nhiệt độ cho việc khám phá. Nó được đặt rất cao lúc ban đầu, nhưng sau đó chúng ta sẽ làm suy giảm giá trị này. Vì vậy, có rất nhiều sự khám phá ở giai đoạn đầu nhưng ít hơn nhiều về sau.</p>
 <p>Sau đó chúng ta định nghĩa một mạng kết nối dày đặc (dense) nhỏ với năm đầu vào cho vectơ trạng thái, mười nút ẩn và hai nút đầu ra, mỗi nút biểu diễn giá trị Q cho mỗi hành động khả dĩ, đó là đi sang trái hoặc sang phải.</p>
@@ -401,20 +383,15 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Có nhiều kỹ thuật khác được sử dụng kết hợp với các mô hình cơ bản. Ví dụ, cắt ngưỡng phần thưởng (clipping rewards) hoặc một số dạng chuẩn hóa mạng có thể giúp ngăn chặn sự tích tụ cực đoan của các giá trị Q. Có những kỹ thuật khác để giữ cho mạng phần nào ổn định vì những thay đổi nhỏ trong phần thưởng có thể gây ra những dao động lớn trong chính sách. Một khía cạnh quan trọng khác của các ứng dụng lớn hơn nữa là tìm một vị trí bắt đầu tốt để tạo ra các phản ứng có giá trị. Nghĩa là, nếu một người bắt đầu chơi trò chơi với các trọng số ngẫu nhiên thì khó có thể đạt đến điểm mà việc học có ý nghĩa có thể diễn ra. Quả thực, AlphaGo đã sử dụng học có giám sát trên dữ liệu chuyên gia để huấn luyện hệ thống ban đầu, trong khi các quy trình RL sau đó có thể tiếp tục và nâng cao hệ thống đến mức nó có thể vượt qua các kỳ thủ con người. Do đó, sự kết hợp giữa RL với học có giám sát dưới dạng học bắt chước là một kỹ thuật phổ biến, đặc biệt trong các ứng dụng rô-bốt. Tuy nhiên, thay vì đi sâu hơn vào các kỹ thuật này ở đây, có hai kỹ thuật lớn khác rất quan trọng và sẽ được thảo luận tiếp theo.</p>
 <p>11.4.3 Bộ hành động (Actors) và tìm kiếm chính sách</p>
 <h3>Cho đến nay chúng ta đã tập trung vào việc tìm một hàm giá trị và suy ra từ đó chính sách tham lam là hành động dẫn đến trạng thái có lợi tức lớn nhất. Hàm giá trị có thể được xem như một bộ phê bình (critic) để điều chỉnh chính sách. Một cách tiếp cận khác, đặc biệt khi sử dụng các bộ xấp xỉ hàm, là xem xét trực tiếp một chính sách được tham số hóa và tìm kiếm các tham số tốt của chính sách. Cách tiếp cận như vậy được gọi là bộ hành động (actor). Chúng ta cần tìm các tham số tối đa hóa phần thưởng nhận được. Chúng ta minh họa một thiết lập như vậy trong Hình 11.13. Bây giờ là lúc nghĩ về việc triển khai bộ hành động này như một mạng nơ-ron sâu nhận các quan sát chẳng hạn như hình ảnh từ camera và tạo ra các đầu ra như lệnh vận động cho một rô-bốt di động.</h3>
-<p>S s</p>
-<p>quỹ đạo</p>
+<p>S s quỹ đạo</p>
 <p>Hình 11.13 Minh họa một bộ hành động (actor) được triển khai bằng mạng nơ-ron sâu.</p>
 <p>Chúng ta sẽ thảo luận cách tiếp cận này trong một bối cảnh ngẫu nhiên với các tập có chân trời hữu hạn thường được sử dụng cho tìm kiếm chính sách được thảo luận sau đây. Trong bối cảnh ngẫu nhiên, phần thưởng mang tính ngẫu nhiên nên chúng ta cần lấy mẫu trên các quỹ đạo. Một quỹ đạo là danh sách tất cả các trạng thái và hành động được thực hiện trong một tập, x = {s0, a0, s1, a1, ..., sT , aT }. (11.31)</p>
 <h3>Vì chính sách và các phép chuyển tiếp cũng mang tính xác suất, chúng ta có thể viết xác suất của một quỹ đạo p(x) = p(s0, a0, s1, a1, ..., sT , aT ) là</h3>
-<p>T Y</p>
-<p>p(x|; w) = p(s0)</p>
-<p>τ(st+1|st, at)π(at|st; w). (11.32)</p>
-<p>t=0</p>
+<p>T Y p(x|; w) = p(s0) τ(st+1|st, at)π(at|st; w). (11.32) t=0</p>
 <h3>Ở đây chúng ta đã chỉ ra xác suất nào phụ thuộc vào các tham số của mô hình vì đây là những gì chúng ta muốn học. Trong trường hợp ngẫu nhiên, phần thưởng là ngẫu nhiên và chúng ta cần lấy mẫu trên các quỹ đạo. Vì ở đây chúng ta sử dụng trường hợp chân trời hữu hạn nên chúng ta không cần chiết khấu, và hàm mục tiêu có thể được viết đơn giản là giá trị trung bình của phần thưởng qua các tập lặp lại.</h3>
 <p>T X</p>
 <h3>ρ(st, π(at|st; w))]x∼p(x|w). (11.33)</h3>
-<p>Hàm giá trị của actor: J(w) = E[</p>
-<p>t=0</p>
+<p>Hàm giá trị của actor: J(w) = E[ t=0</p>
 <h3>Đây là một giá trị kỳ vọng nên chúng ta cần lấy mẫu để tìm một xấp xỉ của giá trị này</h3>
 <h3>T X</h3>
 <h3>J(w) ≈ 1 Nx</h3>
@@ -423,17 +400,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Nx</p>
 <h3>Z</h3>
 <p>∇wJ =</p>
-<p>∇wp(x|w)ρ(x)dx. (11.35)</p>
-<p>x</p>
+<p>∇wp(x|w)ρ(x)dx. (11.35) x</p>
 <p>Vì p(x|w) là tích của nhiều số hạng, việc xét logarit của số hạng này sẽ rất hữu ích</p>
-<p>∇w log p(x|w) = 1 p(x|w)∇wp(x|w), (11.36)</p>
-<p>nhờ đó chúng ta có thể thay thế số hạng gradient trong phương trình 11.35,</p>
+<p>∇w log p(x|w) = 1 p(x|w)∇wp(x|w), (11.36) nhờ đó chúng ta có thể thay thế số hạng gradient trong phương trình 11.35,</p>
 <h3>Z</h3>
-<p>∇wJ = p(x|w)∇w log p(x|w)ρ(x)dx. (11.37)</p>
-<p>x</p>
+<p>∇wJ = p(x|w)∇w log p(x|w)ρ(x)dx. (11.37) x</p>
 <h3>Nếu bây giờ chúng ta khai triển xác suất logarit của một quỹ đạo</h3>
-<p>∇w log p(x|w) = ∇w log(s0) + ∇w log π(a|s; w) + ∇w log τ(s′|s, a) (11.38)</p>
-<p>và xác suất của trạng thái đầu tiên cùng xác suất chuyển trạng thái không phụ thuộc vào các tham số mô hình, ∇w log(s0) = 0 và ∇w log τ(s′|s, a) = 0, chúng ta thấy rằng mình không cần một mô hình để đánh giá gradient. Ngoài ra, giờ đây chúng ta có thể viết lại gradient của hàm mất mát dưới dạng một giá trị kỳ vọng,</p>
+<p>∇w log p(x|w) = ∇w log(s0) + ∇w log π(a|s; w) + ∇w log τ(s′|s, a) (11.38) và xác suất của trạng thái đầu tiên cùng xác suất chuyển trạng thái không phụ thuộc vào các tham số mô hình, ∇w log(s0) = 0 và ∇w log τ(s′|s, a) = 0, chúng ta thấy rằng mình không cần một mô hình để đánh giá gradient. Ngoài ra, giờ đây chúng ta có thể viết lại gradient của hàm mất mát dưới dạng một giá trị kỳ vọng,</p>
 <p>∇wJ = E[∇w log π(a|s; w)ρ(x)]x∼π(a|s;w) (11.39)</p>
 <p>Kết quả đẹp đẽ này cho việc học không cần mô hình (model-free) của actor được gọi là định lý gradient chính sách (policy gradient theorem). Với định lý này, chúng ta thấy rằng mình có thể ước lượng gradient bằng cách lấy mẫu xác suất logarit của các chính sách và nhân với phần thưởng mẫu của các quỹ đạo,</p>
 <h3>T X</h3>
@@ -490,15 +463,9 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>X</h3>
 <p>wi(t)rin</p>
 <h3>V (s) =</h3>
-<p>i (s). (11.45)</p>
-<p>i</p>
+<p>i (s). (11.45) i</p>
 <p>Các giá trị tốc độ của perceptron tất nhiên là phụ thuộc thời gian vì các trạng thái đầu vào s phụ thuộc thời gian. Chúng ta cũng chỉ ra một cách tường minh sự phụ thuộc thời gian của các giá trị trọng số, wi(t), vì chúng sẽ thay đổi theo thời gian như một hàm của các tín hiệu củng cố.</p>
-<p>C. Quy tắc sai phân thời gian B. Quy tắc delta thời gian A. Nút dự đoán tuyến tính in r 1 in r 3 in (t) (t) (t)</p>
-<p>in (t) r 4 in r 1 in r 3 in (t) (t) (t)</p>
-<p>in (t) r 4 r 2 r 2 in r 1 in r 3 in (t) (t) (t)</p>
-<p>in (t) r 4 r 2 in(t-1)</p>
-<p>in(t-1) r j r j r (t)</p>
-<p>r (t)</p>
+<p>C. Quy tắc sai phân thời gian B. Quy tắc delta thời gian A. Nút dự đoán tuyến tính in r 1 in r 3 in (t) (t) (t) in (t) r 4 in r 1 in r 3 in (t) (t) (t) in (t) r 4 r 2 r 2 in r 1 in r 3 in (t) (t) (t) in (t) r 4 r 2 in(t-1) in(t-1) r j r j r (t) r (t)</p>
 <h3>V(t) V(t)</h3>
 <h3>V(t −1) chậm</h3>
 <p>chậm</p>

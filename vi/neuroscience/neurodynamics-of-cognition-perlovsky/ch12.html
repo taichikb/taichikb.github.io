@@ -63,8 +63,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Hình 6 a) Kiến trúc của mạng nơ-ron đệ quy dựa trên xác suất sử dụng GMM cho Biểu diễn Nút Nơ-ron; b) cấu trúc của Mô hình Hỗn hợp Gaussian [1] cho một nút nơ-ron GMM, trong đó   và  lần lượt biểu thị phép lấy tổng và các phép toán hàm cơ sở Gaussian</p>
 <p>Các nút tận cùng trong trường hợp này được gọi là các nút biên (frontier nodes). Quá trình xử lý truyền thẳng của các cấu trúc cây đi từ các nút biên đến nút gốc theo cách từ dưới lên. Quá trình xử lý từ dưới lên từ một nút con đến nút cha của nó có thể được ký hiệu bằng toán tử q−1.</p>
 <p>Bây giờ, gọi m là số chiều của các đặc trưng đầu vào của mỗi nút trong cây, và p là số chiều của đầu ra của mỗi nút. Mẫu đầu vào của mỗi GMM có thể được ký hiệu là u q−1yT χ =</p>
-<p>= {xi; i = 1, 2, . . . (m + p × c)}, (10)</p>
-<p>trong đó u và y lần lượt là vector đầu vào m chiều và vector đầu ra p chiều. q−1 là ký hiệu cho thấy đầu vào của nút được lấy từ nút con của nó sao cho q−1y tương đương với:</p>
+<p>= {xi; i = 1, 2, . . . (m + p × c)}, (10) trong đó u và y lần lượt là vector đầu vào m chiều và vector đầu ra p chiều. q−1 là ký hiệu cho thấy đầu vào của nút được lấy từ nút con của nó sao cho q−1y tương đương với:</p>
 <h3>T</h3>
 <p>q−1</p>
 <p>1 yq−1 2 y · · · q−1 c y q−1y =</p>
@@ -87,8 +86,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>⎞ p1(χ|ω)</p>
 <p>⎜⎝</p>
 <p>⎟⎠. Fk(.) là vector k chiều, trong đó các phần tử của nó là</p>
-<p>... pn(χ|ω))</p>
-<p>trong đó p = hàm kích hoạt sigmoid phi tuyến. W và V lần lượt là các tham số trọng số trong các ma trận (p × n) và (p × m) chiều ở lớp đầu ra.</p>
+<p>... pn(χ|ω)) trong đó p = hàm kích hoạt sigmoid phi tuyến. W và V lần lượt là các tham số trọng số trong các ma trận (p × n) và (p × m) chiều ở lớp đầu ra.</p>
 <p>Theo [35], một lớp ẩn duy nhất của mạng đệ quy dựa trên xác suất này là đủ để xấp xỉ bất kỳ bài toán ánh xạ cấu trúc nào. Nhiệm vụ học trong cách tiếp cận này không đòi hỏi kiến thức tiên nghiệm về bất kỳ mẫu có cấu trúc nào hoặc bất kỳ thông tin tiên nghiệm nào liên quan đến cấu trúc bên trong của các đặc trưng đầu vào. Tuy nhiên, việc học mô hình được đề xuất này bằng thuật toán BPTS dựa trên gradient [25] có thể gặp phải các vấn đề đã đề cập trước đó về cực tiểu cục bộ và phụ thuộc dài hạn [36]. Điều này là do khi gradient tiêu biến; thông tin học có thể biến mất ở một mức nào đó của cấu trúc cây trước khi nó đến được các nút biên [26]. Sự hội tụ có thể bị đình trệ và dẫn đến khả năng khái quát hóa kém. Một loại thuật toán học cấu trúc đặc biệt được đề xuất trong chương này để khắc phục các vấn đề này. Chúng tôi trình bày chi tiết trong tiểu mục tiếp theo.</p>
 <p>3.2 Thuật toán học</p>
 <p>Lược đồ học được chia thành hai giai đoạn. Trong giai đoạn đầu tiên, thuật toán không giám sát cục bộ cho các tham số của GMM có thể áp dụng các thuật toán Kỳ vọng–Tối đa hóa (EM). Trong giai đoạn thứ hai, học có giám sát có cấu trúc toàn cục diễn ra cho các mạng nơ-ron đệ quy ở lớp đầu ra. Thuật toán tối ưu hóa có phạt được áp dụng trong quá trình xử lý cấu trúc trong giai đoạn thứ hai này. Cả hai giai đoạn học đều yêu cầu một số epoch để hội tụ và quá trình học có giám sát có cấu trúc toàn cục bắt đầu sau khi quá trình học không giám sát cục bộ đã hội tụ.</p>
@@ -104,14 +102,12 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>G</h3>
 <p></p>
 <p>l(χ∗, Θ) = α jk logP(Θg|ω) + log p(χ j|ω, Θg)</p>
-<p>(16)</p>
-<p>j=1 g=1</p>
+<p>(16) j=1 g=1</p>
 <p>1, nếu mẫu có cấu trúc χ j thuộc về cụm k trong đó α jk =</p>
 <p>0, ngược lại .</p>
 <p>Trong bước E, chúng ta lấy kỳ vọng của hàm hợp lý dữ liệu quan sát được trong (16), xác suất hậu nghiệm có điều kiện có thể thu được bằng quy tắc Bayes:</p>
 <h3>P(Θg|χ j, ˆΘ(tL)) = P(Θg|ω)p(χ j|ω, Θg)  R</h3>
-<p>, tại lần lặp thứ tL (17)</p>
-<p>r=1 P(Θr|ω)p(χ j|ω, Θr)</p>
+<p>, tại lần lặp thứ tL (17) r=1 P(Θr|ω)p(χ j|ω, Θr)</p>
 <p>Trong bước M, các tham số của GMM được ước lượng lặp đi lặp lại bằng cách tối đa hóa kỳ vọng của hàm hợp lý dữ liệu quan sát được đối với  , chúng ta có thể tính toán trung bình cụm và hiệp phương sai tối ưu của các mô hình GMM.</p>
 <p>3.2.2 Giai đoạn học có giám sát có cấu trúc toàn cục cho các nút đệ quy</p>
 <p>Quá trình học cấu trúc xuyên suốt toàn bộ các cây bắt đầu sau khi quá trình học EM hội tụ ở giai đoạn trước. Mục tiêu của giai đoạn học này là tối ưu hóa các tham số cho toàn bộ mô hình theo cách có cấu trúc. Việc tối ưu hóa làm giảm thiểu hàm chi phí được tạo bởi sai số giữa các lớp mục tiêu đã biết của cảm xúc và các giá trị đầu ra của nút gốc trong các cây. Trong giai đoạn học này, việc tinh chỉnh trong các ranh giới quyết định của GMM được thực hiện bằng cách sử dụng các giá trị mục tiêu đã biết. Các kỹ thuật học tăng cường và/hoặc phản tăng cường [37] được áp dụng để cập nhật trung bình cụm và hiệp phương sai của mỗi lớp.</p>
@@ -119,9 +115,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>3.2.3 Các bước học</p>
 <h3>Bước 1. Khởi tạo</h3>
 <p>a. Đặt tL = 0 và tG = 0, trong đó tL và tG lần lượt là chỉ số lặp của giai đoạn học 1 và giai đoạn 2. b. Khởi tạo ngẫu nhiên các tham số A=(W V) và  g trong mô hình đệ quy dựa trên xác suất được đề xuất. c. Tính toán xác suất tiên nghiệm</p>
-<p>NT</p>
-<p>g|χ j, ˆ (tL)</p>
-<p>j=1 P</p>
+<p>NT g|χ j, ˆ (tL) j=1 P</p>
 <h3>P( g|ω) =</h3>
 <p>, (18)</p>
 <h3>NT</h3>
@@ -129,22 +123,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Bước 2. Học không giám sát cục bộ cho các GMM</h3>
 <p>a. Cho các thuộc tính đầu vào {χ1, . . . , χNT } của mỗi nút trong tất cả các mẫu có cấu trúc. b. Với tL = 1 . . . TL:</p>
 <p>Tính toán lặp lại các tham số trung bình và hiệp phương sai:</p>
-<p>NT</p>
-<p>g|χ j, ˆ (tL)</p>
-<p>χ j  NT j=1 P , (19)</p>
-<p>μg(tL + 1) =</p>
-<p>g|χ j, ˆ (tL)</p>
-<p>j=1 P</p>
-<p>NT</p>
-<p>g|χ j, ˆ (tL)</p>
-<p>(χ j −μg(tL + 1))T χ j −μg(tL + 1)</p>
-<p>j=1 P</p>
+<p>NT g|χ j, ˆ (tL) χ j  NT j=1 P , (19) μg(tL + 1) = g|χ j, ˆ (tL) j=1 P</p>
+<p>NT g|χ j, ˆ (tL)</p>
+<p>(χ j −μg(tL + 1))T χ j −μg(tL + 1) j=1 P</p>
 <p></p>
 <p>.</p>
 <p>(tL + 1) =</p>
-<p>NT</p>
-<p>g|χ j, ˆ (tL)</p>
-<p>j=1 P g (20) Bước 3. Học có giám sát cấu trúc toàn cục</p>
+<p>NT g|χ j, ˆ (tL) j=1 P g (20) Bước 3. Học có giám sát cấu trúc toàn cục</p>
 <h3>Với tG = 1 . . . TG</h3>
 <p>a. Tính toán các đầu ra p(χ|ω) của mỗi GMM trong mỗi mẫu có cấu trúc và mỗi lớp. b. Tinh chỉnh các ranh giới quyết định của mỗi GMM bằng cách sử dụng các kỹ thuật học tăng cường và/hoặc phản tăng cường.</p>
 <p>c. Ước lượng lặp lại các tham số trọng số, A = ak p×(m+n) ở lớp đầu ra:</p>
@@ -225,8 +210,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Q(x j(t), q) =</h3>
 <p>,</p>
 <p>⎪⎪⎪⎩</p>
-<p>−1, nếu x(t) < x0 (2)</p>
-<p>x0 = ln(1 −q ln(1 + 1 q )),</p>
+<p>−1, nếu x(t) < x0 (2) x0 = ln(1 −q ln(1 + 1 q )),</p>
 <figure class="bookfig"><img src="img/img_p263_1.webp" alt="" loading="lazy"></figure>
 <h3>Hình 1 Cấu trúc liên kết của mô hình KIII</h3>
 <p>trong đó q biểu thị tiệm cận cực đại của hàm sigmoid, cũng thu được từ các thực nghiệm sinh học. Mỗi nút đại diện cho một quần thể nơ-ron hoặc tập hợp tế bào. Nếu tập hợp tế bào không chứa bất kỳ tương tác nào giữa các nơ-ron của nó, nó được biểu diễn bằng mô hình K0. Mô hình KI biểu diễn các quần thể nơ-ron được kết nối lẫn nhau, với các kết nối synap kích thích hoặc ức chế. KII là một bộ dao động phi tuyến ghép nối được sử dụng để mô phỏng các kênh trong lớp OB, AON và PC với cả kết nối dương và âm. Mạng KIII mô tả toàn bộ hệ thống thần kinh khứu giác. Nó gồm các quần thể nơ-ron, kết nối synap cục bộ, và các vòng lặp truyền thẳng dài và hồi tiếp trễ thời gian phân tán. Trong cấu trúc liên kết của mạng KIII, R đại diện cho thụ thể khứu giác, nhạy cảm với phân tử mùi và cung cấp đầu vào cho mạng KIII. Lớp quanh cầu (PG) và lớp hành khứu giác (OB) được phân tán, trong bài báo này chứa 64 kênh. Lớp AON và PC chỉ bao gồm một mạng KII duy nhất. Các tham số trong mạng KIII, bao gồm các giá trị cường độ kết nối giữa các nút khác nhau và các giá trị độ lợi của các kết nối ngang, vòng lặp truyền thẳng và hồi tiếp, được tối ưu hóa bằng cách đo điện thế gợi khứu giác và EEG, mô phỏng dạng sóng và các tính chất thống kê của chúng, và khớp các hàm mô phỏng với dữ liệu bằng hồi quy phi tuyến [5]. Sau khi tối ưu hóa tham số, mạng KIII tạo ra dạng sóng giống EEG với phổ công suất 1/f [1, 2]. Một số phân tích số của mạng KIII, sử dụng bộ tham số trong [2], được trình bày trong các Hình 2, 3 và 4. Khi không có kích thích, hệ thống biểu hiện một dao động không tuần hoàn, điều này cho thấy hệ thống đang ở trạng thái cơ sở – một tập hút hỗn loạn toàn cục, như thể hiện trong Hình 2. Khi có kích thích, tương ứng với một phân tử mùi nào đó được thụ thể khứu giác thu nhận, quỹ đạo của hệ thống nhanh chóng đi vào lưu vực cục bộ cụ thể và hội tụ về một tập hút. Chuỗi thực xuất hiện dưới dạng một đợt bùng phát bán tuần hoàn trong dải gamma. Hệ thống cư trú trong lưu vực cục bộ trong khoảng thời gian gần bằng thời lượng của kích thích bên ngoài. Sau khi kích thích chấm dứt, mạng KIII trở về trạng thái cơ sở.</p>
@@ -291,8 +275,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Đầu ra của mạng KIII ở mức tế bào mũ (M) được lấy làm thước đo hoạt động của mô hình KIII gây ra bởi vector đặc trưng đầu vào. Hoạt động của kênh thứ i được biểu diễn bằng SDαi, là độ lệch chuẩn trung bình của đầu ra của nút tế bào mũ thứ i (Mi) trong suốt khoảng thời gian trình diễn các mẫu đầu vào, như (3). Khoảng thời gian đáp ứng với các mẫu đầu vào được chia đều thành các phân đoạn và độ lệch chuẩn của phân đoạn thứ i được tính là SDαik, SDαi là giá trị trung bình của s phân đoạn này. SDα là một vector hoạt động 1 ∗n chứa thước đo hoạt động của tất cả các nút ở mức tế bào mũ. SDm α là thước đo hoạt động trung bình trên toàn bộ lớp OB với n nút (4).</p>
 <h3>SDαi = 1</h3>
 <h3>S  S</h3>
-<p>k=1SDαik (3)</p>
-<p>α = 1</p>
+<p>k=1SDαik (3) α = 1</p>
 <h3>SDm</h3>
 <p>n  n k=1SDαi (4)</p>
 <p>Trước khi thực hiện phân loại, mạng KIII cần được huấn luyện cũng như các mạng nơ-ron nhân tạo thông thường. Các quy tắc huấn luyện sẽ được thảo luận sau trong Mục 3.2.</p>

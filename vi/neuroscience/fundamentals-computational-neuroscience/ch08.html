@@ -54,8 +54,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>0 1 2 3 4 5 6 7 8 9</p>
 <p>Hình 7.2 Một mạng nơ-ron sâu (tương đối) cho bài toán chuẩn nhận dạng chữ số viết tay MNIST.</p>
 <p>Một vectơ hoặc mảng đặc trưng cảm giác là đầu vào cần thiết cho bất kỳ hệ thống nhận dạng đối tượng nào. Với đầu vào cảm giác đã cho, chúng ta có thể phát biểu bài toán nhận dạng ký tự như quá trình ánh xạ vectơ đặc trưng cảm giác này thành một vectơ mới biểu diễn ý nghĩa của đối tượng, y dưới dạng f : x ∈Sn</p>
-<p>1 →y ∈Sm 2 , (7.1)</p>
-<p>trong đó n là số chiều của không gian đặc trưng cảm giác (n = 144 trong ví dụ của chúng ta), và m là số chiều của không gian biểu diễn đối tượng ngữ nghĩa (m = 8 nếu chúng ta xét phép biến đổi sang mã ASCII). S1 và S2 là các tập hợp các giá trị khả dĩ cho từng thành phần riêng lẻ của các vectơ. Ví dụ, các thành phần của vectơ có thể bao gồm các giá trị nhị phân (S = [0, 1]), các giá trị rời rạc (S = N), hoặc các giá trị thực (S = R) chẳng hạn như tốc độ phát xung của nơ-ron. Ví dụ OCR của chúng ta là một ánh xạ từ vectơ đặc trưng nhị phân sang vectơ nhị phân của mã ASCII. Hoặc, như được minh họa trong Hình 7.2, có thể là một vectơ với các thành phần mà sự kích hoạt của một thành phần duy nhất sẽ chỉ ra một con số cụ thể như minh họa ở bên phải trong Hình 7.2. Trong não, đây sẽ là mẫu phát xung cảm giác của các nơ-ron võng mạc dẫn đến có thể là các mẫu phát xung của nơ-ron vận động gây ra phản ứng vật lý là phát âm ý nghĩa của con số trực quan đó.</p>
+<p>1 →y ∈Sm 2 , (7.1) trong đó n là số chiều của không gian đặc trưng cảm giác (n = 144 trong ví dụ của chúng ta), và m là số chiều của không gian biểu diễn đối tượng ngữ nghĩa (m = 8 nếu chúng ta xét phép biến đổi sang mã ASCII). S1 và S2 là các tập hợp các giá trị khả dĩ cho từng thành phần riêng lẻ của các vectơ. Ví dụ, các thành phần của vectơ có thể bao gồm các giá trị nhị phân (S = [0, 1]), các giá trị rời rạc (S = N), hoặc các giá trị thực (S = R) chẳng hạn như tốc độ phát xung của nơ-ron. Ví dụ OCR của chúng ta là một ánh xạ từ vectơ đặc trưng nhị phân sang vectơ nhị phân của mã ASCII. Hoặc, như được minh họa trong Hình 7.2, có thể là một vectơ với các thành phần mà sự kích hoạt của một thành phần duy nhất sẽ chỉ ra một con số cụ thể như minh họa ở bên phải trong Hình 7.2. Trong não, đây sẽ là mẫu phát xung cảm giác của các nơ-ron võng mạc dẫn đến có thể là các mẫu phát xung của nơ-ron vận động gây ra phản ứng vật lý là phát âm ý nghĩa của con số trực quan đó.</p>
 <p>Trong việc triển khai các hàm ánh xạ như vậy, ngày nay người ta thường biến đổi biểu diễn cảm giác thành một chuỗi các biểu diễn trung gian, còn gọi là các biểu diễn ẩn vì các kích hoạt này thường không được quan sát trực tiếp. Tất nhiên, chúng ta có thể quan sát chúng trong các mô phỏng máy tính của mình, hoặc chúng ta có thể đo hoạt động não nếu so sánh các mô hình như vậy với quá trình xử lý của não. Tất nhiên, câu hỏi then chốt là làm thế nào chúng ta tìm thấy các phép biến đổi giữa các biểu diễn. Chúng ta sẽ phác thảo trong chương này cách điều này được thực hiện thông qua việc học các tham số kết nối gọi là trọng số giữa các phần tử của mạng, thứ mà chúng ta phỏng đoán là đại diện cho việc học các kết nối synap giữa các tầng nơ-ron.</p>
 <p>Ngày nay, việc sử dụng nhiều tầng ẩn trong các ứng dụng của mạng ánh xạ như vậy, chẳng hạn như trong thị giác máy tính, đã trở nên phổ biến. Đây là lý do tại sao các phương pháp như vậy trong AI ngày nay được gọi là học sâu (deep learning). Việc mở rộng quy mô mạng với nhiều tầng và số lượng lớn nơ-ron ở mỗi tầng đã từng là thách thức trong nhiều năm vì chi phí tính toán của các mô phỏng như vậy tăng lên đáng kể khi kích thước mạng tăng. Hơn nữa, số lượng tham số trong mô hình như vậy cũng tăng lên đáng kể, đòi hỏi phải tăng số lượng mẫu huấn luyện để ngăn ngừa hiện tượng quá khớp (overfitting). Tiến bộ vượt bậc trong vài năm qua là nhờ sự kết hợp của nhiều yếu tố, trong số đó có sự sẵn có của các tập huấn luyện lớn, việc triển khai hiệu quả các mạng như vậy trên Bộ xử lý Đồ họa (GPU), và những tiến bộ trong các kỹ thuật chính quy hóa (regularization) để ngăn ngừa quá khớp. Thành công của học sâu có thể được quy cho thực tế là rất nhiều bài toán có cấu trúc phân cấp vốn có, giống như nhận dạng đối tượng nơi các đối tượng được tạo thành từ việc kết hợp các đặc trưng cơ bản. Một cách hay để nghĩ về học sâu là nó chủ yếu nói về việc học các biểu diễn. Điều này sau đó cho phép một phép biến đổi khó được chia nhỏ thành các phép biến đổi đơn giản hơn như được chỉ ra trong Hình 7.2.</p>
 <p>Để thảo luận về cách học biểu diễn và xây dựng một hệ thống nhận dạng, chúng ta bắt đầu với hệ thống nhỏ nhất có thể gọi là perceptron, thứ thậm chí không có tầng ẩn nào. Sau đó chúng ta chuyển sang perceptron đa tầng có các nút ẩn, và cuối cùng tổng quát hóa điều này lên nhiều tầng hơn cũng như các phép toán được sửa đổi đôi chút cho mỗi tầng như thường thấy trong các ứng dụng học sâu. Chuỗi các phép toán tổng quát với những mạng như vậy do đó khá trực tiếp. Mỗi nút nhận ở mỗi tầng lấy một tổ hợp các giá trị kích hoạt của tầng trước đó, hãy gọi chúng là ri,j cho nút thứ j ở tầng i, để xác định giá trị kích hoạt của chúng,</p>
@@ -80,12 +79,9 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>1 x x0</p>
 <p>Hình 7.4 Hàm logistic fl(x) như một ví dụ về hàm sigmoid. Trong lịch sử, nhiều perceptron cũng sử dụng hàm tanh(x) = 2 ∗flx −1 có liên quan.</p>
 <p>có thể biểu diễn giá trị hàm</p>
-<p>˜y = rout = g(w1x1 + w2x2; θ), (7.5)</p>
-<p>trong đó g là một hàm kích hoạt có thể có tham số θ chẳng hạn như ngưỡng phát xung, và w1, w2 là các giá trị trọng số được gán cho mỗi kênh đầu vào. Lưu ý rằng chúng ta có thể dễ dàng mở rộng điều này ra nhiều kênh đầu vào hơn và thậm chí cho các hệ thống có nhiều nút đầu ra, rout = g(wrin; θ). (7.6)</p>
+<p>˜y = rout = g(w1x1 + w2x2; θ), (7.5) trong đó g là một hàm kích hoạt có thể có tham số θ chẳng hạn như ngưỡng phát xung, và w1, w2 là các giá trị trọng số được gán cho mỗi kênh đầu vào. Lưu ý rằng chúng ta có thể dễ dàng mở rộng điều này ra nhiều kênh đầu vào hơn và thậm chí cho các hệ thống có nhiều nút đầu ra, rout = g(wrin; θ). (7.6)</p>
 <p>Ở đây chúng ta đã sử dụng ký hiệu ma trận (xem phương trình 6.20).</p>
-<p>Để xác định hàm cụ thể mà chúng ta muốn perceptron học, chúng ta phải đưa ra các ví dụ về đầu ra mục tiêu mong muốn của perceptron. Trong trường hợp của một hàm Boolean, chúng ta có thể xác định tất cả các giá trị đầu ra khả dĩ cho mọi tổ hợp trong số nc = 22 = 4 tổ hợp giá trị đặc trưng khác nhau, {(0, 0), (0, 1), (1, 0), (1, 1)}. Một lựa chọn cụ thể của hàm Boolean, đó là hàm Boolean AND, được trình bày trong Bảng 7.1. Để xấp xỉ các giá trị đầu ra khả dĩ này, chúng ta chọn làm hàm độ lợi (gain function) của perceptron là hàm sigmoid (hàm logistic)</p>
-<p>g(x; β) = 1 1 + e−βx (7.7)</p>
-<p>như được minh họa trong Hình 7.4.</p>
+<p>Để xác định hàm cụ thể mà chúng ta muốn perceptron học, chúng ta phải đưa ra các ví dụ về đầu ra mục tiêu mong muốn của perceptron. Trong trường hợp của một hàm Boolean, chúng ta có thể xác định tất cả các giá trị đầu ra khả dĩ cho mọi tổ hợp trong số nc = 22 = 4 tổ hợp giá trị đặc trưng khác nhau, {(0, 0), (0, 1), (1, 0), (1, 1)}. Một lựa chọn cụ thể của hàm Boolean, đó là hàm Boolean AND, được trình bày trong Bảng 7.1. Để xấp xỉ các giá trị đầu ra khả dĩ này, chúng ta chọn làm hàm độ lợi (gain function) của perceptron là hàm sigmoid (hàm logistic) g(x; β) = 1 1 + e−βx (7.7) như được minh họa trong Hình 7.4.</p>
 <p>Tất nhiên, hàm này chỉ cho chúng ta giá trị chính xác 0 hoặc 1 một cách tiệm cận, nhưng chúng ta có thể đơn giản coi một giá trị rout nhỏ hơn 0.5 là số 0 và các đầu ra lớn hơn 0.5 là số 1. Ngoài ra, đây là một phép xấp xỉ khả vi của hàm ngưỡng theo nghĩa là khi tham số β mô tả độ dốc của hàm xung quanh x = 0 tiến tới vô cùng, thì hàm ngưỡng được khôi phục.</p>
 <p>Bây giờ chúng ta đã sẵn sàng để nói về việc huấn luyện perceptron. Ý tưởng là chúng ta chọn các số tùy ý cho các giá trị trọng số và sau đó tính toán xem đầu ra của</p>
 <h3>E(w)</h3>
@@ -96,17 +92,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>2 y(i) −y(x(i); w)</p>
 <p></p>
 <h3>X</h3>
-<p>. (7.8)</p>
-<p>i</p>
+<p>. (7.8) i</p>
 <p>N là số lượng các cặp ví dụ (x(i), y(i)) được sử dụng để huấn luyện, và chỉ số trong ngoặc đơn (i) biểu thị chỉ số của ví dụ huấn luyện thứ i để phân biệt với số mũ.</p>
 <p>Để tìm các tham số w cực tiểu hóa hàm mất mát (sự khác biệt giữa đầu ra thực tế và đầu ra mong muốn của perceptron), chúng ta sử dụng một kỹ thuật tính toán gọi là hạ gradient (gradient descent). Phương pháp này là một quy trình lặp trong đó chúng ta bắt đầu với các lựa chọn ngẫu nhiên cho các tham số và cải thiện chúng qua từng bước lặp để cho ra các giá trị mất mát nhỏ hơn. Điều này được minh họa trong Hình 7.5 cho trường hợp chúng ta chỉ có một giá trị trọng số. Vì chúng ta thường có nhiều giá trị trọng số, đây thực tế là một hàm nhiều chiều hoặc một bề mặt lỗi. Để tìm cực tiểu của hàm mất mát, chúng ta thay đổi các tham số trọng số dọc theo độ dốc âm của hàm, tức là gradient âm nếu đây là một hàm có nhiều hơn một tham số, wj ←wj −α ∂L</p>
 <p>. (7.9)</p>
 <p>∂wj</p>
 <p>Hằng số α là tốc độ học (learning rate).</p>
-<p>Một cách hình thức hơn, để tính gradient trong quy tắc hạ gradient phương trình (7.9), chúng ta phải nhớ lại hai quy tắc từ giải tích, đó là đạo hàm của hàm lũy thừa là d dxxn = nxn−1, (7.10)</p>
-<p>và đạo hàm của hàm mũ Euler là d dxex = ex, (7.11)</p>
-<p>có nghĩa là hàm này tại mọi điểm đều bằng chính độ dốc của nó. Cuối cùng chúng ta cần quy tắc dây chuyền d dxf(g(x)) = df dg dx. (7.12)</p>
-<p>dg</p>
+<p>Một cách hình thức hơn, để tính gradient trong quy tắc hạ gradient phương trình (7.9), chúng ta phải nhớ lại hai quy tắc từ giải tích, đó là đạo hàm của hàm lũy thừa là d dxxn = nxn−1, (7.10) và đạo hàm của hàm mũ Euler là d dxex = ex, (7.11) có nghĩa là hàm này tại mọi điểm đều bằng chính độ dốc của nó. Cuối cùng chúng ta cần quy tắc dây chuyền d dxf(g(x)) = df dg dx. (7.12) dg</p>
 <h3>Với các quy tắc này, ta thu được</h3>
 <p></p>
 <p></p>
@@ -133,15 +125,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>(7.17)</p>
 <h3>N</h3>
 <p>i</p>
-<p>Phần đầu tiên trong tổng thường được gọi là số hạng delta δ(x(i); w) = (y(i) −y(x(i); w))y(x(i); w)(1 −y(x(i); w)), (7.18)</p>
-<p>hoặc, nếu viết không kèm các đối số để thấy rõ cấu trúc hơn, nó là δ(i) = (y(i) −y)y(1 −y) (7.19)</p>
+<p>Phần đầu tiên trong tổng thường được gọi là số hạng delta δ(x(i); w) = (y(i) −y(x(i); w))y(x(i); w)(1 −y(x(i); w)), (7.18) hoặc, nếu viết không kèm các đối số để thấy rõ cấu trúc hơn, nó là δ(i) = (y(i) −y)y(1 −y) (7.19)</p>
 <h3>Do đó chúng ta có thể viết quy tắc học thành</h3>
 <p>wj ←wj + α 1</p>
 <p></p>
 <p>δ(i)(x(i); w)x(i)</p>
 <h3>X</h3>
-<p>(7.20)</p>
-<p>j</p>
+<p>(7.20) j</p>
 <h3>N</h3>
 <p>i</p>
 <p>Quy tắc học này được gọi là quy tắc delta vì sự thay đổi của các giá trị trọng số tỷ lệ với hiệu giữa đầu ra mong muốn và đầu ra thực tế thường được biểu diễn dưới dạng số hạng δ, δ = yi −rout i . Đối với một perceptron tuyến tính, tức là perceptron với hàm kích hoạt tuyến tính f(x) = x, điều này đơn giản được cho bởi f ′ = 1. Do đó, sự thay đổi trọng số đối với perceptron tuyến tính là</p>
@@ -200,8 +190,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>2 x y n m x o w w h</p>
 <p>Hình 7.7 Kiến trúc tiêu chuẩn của một mạng truyền thẳng đa tầng với một tầng ẩn, trong đó các giá trị đầu vào được phân phối đến tất cả các nút ẩn với các hệ số trọng số được tổng hợp trong ma trận trọng số wh. Các giá trị đầu ra của các nút thuộc tầng ẩn được truyền đến tầng đầu ra, một lần nữa được nhân tỷ lệ bởi các giá trị độ mạnh kết nối được xác định bởi các phần tử trong ma trận trọng số wo.</p>
 <p>Bây giờ chúng ta sẽ xem xét các mạng gồm các nơ-ron sigmoid đơn giản để xây dựng thứ thường được gọi là mạng nơ-ron nhân tạo vì perceptron về cơ bản chỉ là một nơ-ron. Trước tiên chúng ta sẽ xem xét một cấu trúc mạng như minh họa trong Hình 7.7. Mạng có một tầng gồm m nút đầu vào, một tầng gồm h nút ẩn, và một tầng gồm n nút đầu ra. Tầng đầu vào chỉ đơn thuần biểu diễn các giá trị đầu vào, trong khi tầng ẩn và tầng đầu ra thực hiện các phép tính tích cực đã xác định trước đó với nơ-ron perceptron (phương trình 7.7). Thuật ngữ nút ẩn xuất phát từ thực tế là các nút này không có kết nối với thế giới bên ngoài như các nút đầu vào và đầu ra. Mạng là một biểu diễn đồ họa của một hàm phi tuyến có dạng y = g(wog(whx)). (7.22)</p>
-<p>Rất dễ để đưa thêm nhiều tầng ẩn hơn vào công thức này. Ví dụ, quy tắc kích hoạt cho đầu ra của một mạng bốn tầng với ba tầng ẩn và một tầng đầu ra có thể được viết là y = g(wog(wh3g(wh2g(wh1x)))), (7.23)</p>
-<p>trong đó mỗi tầng sử dụng cùng một hàm kích hoạt. Hãy thảo luận một trường hợp đặc biệt của mạng ánh xạ đa tầng trong đó tất cả các nút ở tất cả các tầng ẩn đều có hàm kích hoạt tuyến tính (g(x) = x). Phương trình 7.23 khi đó đơn giản hóa thành y = wowh3wh2wh1x</p>
+<p>Rất dễ để đưa thêm nhiều tầng ẩn hơn vào công thức này. Ví dụ, quy tắc kích hoạt cho đầu ra của một mạng bốn tầng với ba tầng ẩn và một tầng đầu ra có thể được viết là y = g(wog(wh3g(wh2g(wh1x)))), (7.23) trong đó mỗi tầng sử dụng cùng một hàm kích hoạt. Hãy thảo luận một trường hợp đặc biệt của mạng ánh xạ đa tầng trong đó tất cả các nút ở tất cả các tầng ẩn đều có hàm kích hoạt tuyến tính (g(x) = x). Phương trình 7.23 khi đó đơn giản hóa thành y = wowh3wh2wh1x</p>
 <p>= ˜wx. (7.24)</p>
 <p>Ở bước cuối cùng, chúng ta đã sử dụng thực tế là phép nhân của một chuỗi các ma trận đơn giản chỉ tạo ra một ma trận khác, mà chúng ta ký hiệu là ˜w. Phương trình 7.24 biểu diễn một mạng một tầng như đã thảo luận trước đó. Do đó, việc đưa vào các hàm kích hoạt phi tuyến, ít nhất là ở các tầng ẩn, là thiết yếu để tận dụng các lợi thế tính toán của các tầng ẩn mà chúng ta sắp thảo luận. Lưu ý rằng cũng có thể xây dựng các mạng đa dạng hơn, chẳng hạn như bằng cách bao gồm các kết nối giữa các tầng ẩn khác nhau, không chỉ giữa các tầng liên tiếp như minh họa trong Hình 7.7. Tuy nhiên, cấu trúc phân tầng cơ bản là đủ cho các thảo luận sau đây và chúng ta sẽ quay lại điểm này sau trong cuốn sách.</p>
 <p>Vì perceptron không thể biểu diễn một số hàm Boolean nhất định, bây giờ chúng ta nên hỏi những hàm nào có thể được xấp xỉ bởi perceptron đa tầng. Câu trả lời về nguyên tắc là bất kỳ hàm nào. Một mạng truyền thẳng đa tầng là một bộ xấp xỉ hàm vạn năng (universal function approximator). Điều này có nghĩa là, với đủ số nút ẩn, bất kỳ hàm ánh xạ nào cũng có thể được xấp xỉ với độ chính xác tùy ý bởi các mạng này. Mặc dù điều này có thể được chứng minh một cách hình thức, nhưng cũng rất dễ hiểu tại sao lại như vậy. Mỗi nút ẩn thêm vào một nhân tố khác với các tham số tự do riêng của nó vào hàm được biểu diễn bởi mạng. Ví dụ, bằng cách kết hợp hai nút sigmoid có trọng số đối ngược nhau và độ dịch khác nhau, người ta có thể xây dựng một hàm cục bộ giống như hàm được hiển thị ở bên trái trong Hình 7.8. Với những hàm cục bộ như vậy, có thể điều chỉnh kích thước và vị trí của phần nhô lên, người ta có thể xây dựng các hàm phi tuyến tùy ý với độ chính xác nhiều như mong muốn.</p>
@@ -247,16 +236,12 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>2 y(k) −g(wog(whx(k)))</p>
 <p></p>
 <h3>X</h3>
-<p>. (7.29)</p>
-<p>ij k</p>
+<p>. (7.29) ij k</p>
 <p>Sau một hồi vật lộn với các chỉ số (điều có thể dễ dàng tránh được với các chương trình tính toán giải tích như MAPLE hoặc MATHEMATICA), chúng ta có thể viết đạo hàm dưới dạng tương tự như đạo hàm của tầng đầu ra, cụ thể là</p>
 <p>∂E ∂wh</p>
-<p>= δh i xj, (7.30)</p>
-<p>ij khi chúng ta định nghĩa số hạng delta của số hạng ẩn là</p>
+<p>= δh i xj, (7.30) ij khi chúng ta định nghĩa số hạng delta của số hạng ẩn là</p>
 <h3>X</h3>
-<p>i = gh′(hin δh wo ikδo i )</p>
-<p>k. (7.31)</p>
-<p>k</p>
+<p>i = gh′(hin δh wo ikδo i ) k. (7.31) k</p>
 <h3>Số hạng lỗi δh</h3>
 <p>i được tính từ số hạng lỗi của tầng đầu ra bằng một công thức trông tương tự như công thức cập nhật tổng quát của mạng, ngoại trừ việc một tín hiệu đang lan truyền từ tầng đầu ra về tầng trước đó. Đây là lý do tại sao thuật toán này được gọi là thuật toán lan truyền ngược lỗi (error-backpropagation).</p>
 <h3>Bảng 7.4 Tóm tắt thuật toán lan truyền ngược lỗi</h3>
@@ -277,9 +262,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Số lần lặp</h3>
 <p>Hình 7.9 Đường cong học tập của một MLP được huấn luyện trên hàm Boolean XOR. Đồ thị ở phía bên trái cho thấy đường cong học tập của sai khác tuyệt đối giữa đầu ra mong muốn và kích hoạt sigmoid của nút đầu ra. Đồ thị bên phải cho thấy một ví dụ về hiệu suất khi chúng ta sử dụng giá trị làm tròn của nút đầu ra làm dự đoán.</p>
 <p>7.2.3 MNIST với MLP</p>
-<p>Hầu hết các kỹ thuật perceptron đa tầng đã được biết đến ít nhất là từ cuối những năm 1960, mặc dù chúng chỉ được công nhận rộng rãi hơn vào giữa những năm 1980. Mặc dù vào thời điểm đó có rất nhiều sự phấn khích, việc mở rộng quy mô các mạng này lên các kích thước bài toán lớn hơn trong thực tế lại khó khăn hơn dự kiến. Ví dụ, khi chỉ đơn giản thay thế mẫu XOR ở trên bằng tập dữ liệu MNIST hóa ra lại khó huấn luyện. Một vấn đề khác khi huấn luyện mạng sâu hơn nữa, các MLP với nhiều tầng ẩn hơn, là vấn đề tiêu biến gradient (vanishing gradient) đã được Sepp Hochreiter và Jürgen Schmidhuber nhận ra. Bản chất của vấn đề này là các gradient có thể trở nên rất nhỏ, chẳng hạn như ở các phần đuôi của hàm sigmoid, và việc lan truyền ngược các gradient nhỏ như vậy càng làm loãng chúng hơn nữa. Giải pháp của họ đã dẫn Schmidhuber và Hochreiter đến đề xuất Bộ nhớ Ngắn-Dài hạn (LSTM) sẽ được thảo luận thêm trong Chương 9. Ở đây chúng ta sẽ chỉ đơn giản cho thấy vấn đề phần nào được giảm bớt bằng cách sử dụng hàm độ lợi tuyến tính chỉnh lưu rò rỉ (leaky-rectified-linear),</p>
-<p>x if x > 0 0.1 otherwise (7.32)</p>
-<p>g(x) = thay vì hàm sigmoid. Mặc dù hàm này khả vi tại x = 0 (theo nghĩa một phía), chúng ta có thể đơn giản lấy đạo hàm một phía tại điểm này. Hơn nữa, chúng ta cũng sẽ thay đổi hàm đầu ra thành một hàm phù hợp hơn cho phân loại đa lớp xác suất. Đầu tiên chúng ta yêu cầu vectơ đầu ra được chuẩn hóa sao cho tổng các phần tử vectơ bằng một.</p>
+<p>Hầu hết các kỹ thuật perceptron đa tầng đã được biết đến ít nhất là từ cuối những năm 1960, mặc dù chúng chỉ được công nhận rộng rãi hơn vào giữa những năm 1980. Mặc dù vào thời điểm đó có rất nhiều sự phấn khích, việc mở rộng quy mô các mạng này lên các kích thước bài toán lớn hơn trong thực tế lại khó khăn hơn dự kiến. Ví dụ, khi chỉ đơn giản thay thế mẫu XOR ở trên bằng tập dữ liệu MNIST hóa ra lại khó huấn luyện. Một vấn đề khác khi huấn luyện mạng sâu hơn nữa, các MLP với nhiều tầng ẩn hơn, là vấn đề tiêu biến gradient (vanishing gradient) đã được Sepp Hochreiter và Jürgen Schmidhuber nhận ra. Bản chất của vấn đề này là các gradient có thể trở nên rất nhỏ, chẳng hạn như ở các phần đuôi của hàm sigmoid, và việc lan truyền ngược các gradient nhỏ như vậy càng làm loãng chúng hơn nữa. Giải pháp của họ đã dẫn Schmidhuber và Hochreiter đến đề xuất Bộ nhớ Ngắn-Dài hạn (LSTM) sẽ được thảo luận thêm trong Chương 9. Ở đây chúng ta sẽ chỉ đơn giản cho thấy vấn đề phần nào được giảm bớt bằng cách sử dụng hàm độ lợi tuyến tính chỉnh lưu rò rỉ (leaky-rectified-linear), x if x > 0 0.1 otherwise (7.32) g(x) = thay vì hàm sigmoid. Mặc dù hàm này khả vi tại x = 0 (theo nghĩa một phía), chúng ta có thể đơn giản lấy đạo hàm một phía tại điểm này. Hơn nữa, chúng ta cũng sẽ thay đổi hàm đầu ra thành một hàm phù hợp hơn cho phân loại đa lớp xác suất. Đầu tiên chúng ta yêu cầu vectơ đầu ra được chuẩn hóa sao cho tổng các phần tử vectơ bằng một.</p>
 <p>y ← exp(y) P exp(y). (7.33)</p>
 <p>Chúng ta sẽ thấy điều này phù hợp khi xem xét phân loại trong một khuôn khổ xác suất. Chúng ta sẽ thảo luận thêm về điều này trong Mục 7.4. Ở đó chúng ta cũng sẽ chỉ ra rằng entropy chéo âm (negative cross-entropy)</p>
 <h3>Y (j) log y(j) (7.34)</h3>
@@ -297,9 +280,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Programs/MNISTmlpKeras.py 1 import numpy as np 2 import m a t p l o t l i b . pyplot as p l t 3 from keras import models , l a y e r s , optimizers , d a t a s e t s , u t i l s 4 5 6 ( x t r a i n , y t r a i n ) , ( x t e s t , y t e s t ) = d a t a s e t s . mnist . l o a d d a t a ( ) 7 8 x t r a i n = x t r a i n . reshape (60000 , 784)/255 9 x t e s t = x t e s t . reshape (10000 , 784)/255 10 y t r a i n = u t i l s . t o c a t e g o r i c a l ( y t r a i n , 10) 11 y t e s t = u t i l s . t o c a t e g o r i c a l ( y t e s t , 10) 12 13 i n p u t s = l a y e r s . Input ( shape =(784 ,)) 14 x = l a y e r s . Dense (128 , a c t i v a t i o n = ’ r e l u ’ ) ( i n p u t s ) 15 x = l a y e r s . Dense (128 , a c t i v a t i o n = ’ r e l u ’ ) ( x ) 16 x = l a y e r s . Dense (128 , a c t i v a t i o n = ’ r e l u ’ ) ( x ) 17 x = l a y e r s . Dense (128 , a c t i v a t i o n = ’ r e l u ’ ) ( x ) 18 x = l a y e r s . Dense (128 , a c t i v a t i o n = ’ r e l u ’ ) ( x ) 19 o u t p u t s = l a y e r s . Dense (10 , a c t i v a t i o n = ’ softmax ’ ) ( x ) 20 21 model = models . Model ( i n p u t s = inputs , o u t p u t s = o u t p u t s ) 22 23 model . compile ( l o s s = ’ c a t e g o r i c a l c r o s s e n t r o p y ’ , 24 o p t i m i z e r = ’Nadam ’ , m e t r i c s =[ ’ accuracy ’ ] ) 25</p>
 <p>26 h i s t o r y =model . f i t ( x t r a i n , y t r a i n , 27 b a t c h s i z e =128 , 28 epochs =10 , 29 v a l i d a t i o n d a t a =( x t e s t , y t e s t ) ) 30 score = model . e v a l u a t e ( x t e s t , y t e s t ) 31 p r i n t ( ’ Test l o s s : ’ , score [ 0 ] , ’ Test accuracy : ’ , score [ 1 ] )</p>
 <p>Phần thú vị ở đây là cách mạng nơ-ron có thể được đặc tả trong Keras. Keras cung cấp hai cách chính để đặc tả mô hình, một cách gọi là mô hình tuần tự (sequential model) bị giới hạn ở các mô hình thuần túy tuần tự với một đầu vào và một đầu ra duy nhất, và mô hình hàm (functional model) tổng quát hơn có thể dùng để lắp ráp các mô hình phức tạp hơn. Ký hiệu mô hình hàm không khó hơn nhiều và thậm chí còn hợp lý hơn một chút nên chúng ta sẽ sử dụng chế độ này ngay lập tức. Một mô hình hàm trong Keras được đặc tả bằng cách chỉ định một đầu vào chung, sau đó chỉ định các hàm cho các tầng và kết nối chúng bằng cách chỉ định các đầu vào riêng lẻ của chúng, và cuối cùng gom thành một mô hình duy nhất bằng cách gọi hàm Model() trong đó chúng ta chỉ định đầu vào và đầu ra của toàn bộ mô hình. Lưu ý rằng một hàm có hai cặp dấu ngoặc đơn, như Dense()(), có nghĩa là hàm thứ nhất trả về một hàm, sau đó hàm này được gọi với danh sách đối số thứ hai.</p>
-<p>MLP được đặc trưng bởi một tầng kết nối đầy đủ (fully connected layer) nơi mỗi nơ-ron của tầng trước được kết nối với mọi nơ-ron ở tầng nhận. Các tầng như vậy ngày nay thường được gọi là tầng dày đặc (dense layers). Chúng ta phải chỉ định hàm kích hoạt cho mỗi tầng nếu nó không tuyến tính, ở đây là hàm tuyến tính chỉnh lưu (relu)</p>
-<p>xi if xi > 0 0 otherwise (7.36)</p>
-<p>g(xi) = ngoại trừ tầng cuối cùng có hàm kích hoạt là hàm softmax g(xi) = e−xi P j e−xj . (7.37)</p>
+<p>MLP được đặc trưng bởi một tầng kết nối đầy đủ (fully connected layer) nơi mỗi nơ-ron của tầng trước được kết nối với mọi nơ-ron ở tầng nhận. Các tầng như vậy ngày nay thường được gọi là tầng dày đặc (dense layers). Chúng ta phải chỉ định hàm kích hoạt cho mỗi tầng nếu nó không tuyến tính, ở đây là hàm tuyến tính chỉnh lưu (relu) xi if xi > 0 0 otherwise (7.36) g(xi) = ngoại trừ tầng cuối cùng có hàm kích hoạt là hàm softmax g(xi) = e−xi P j e−xj . (7.37)</p>
 <p>Mô hình phải được biên dịch, điều này là cần thiết để chương trình được chuẩn bị cho việc thực thi trên GPU nếu có sẵn. Hầu hết các ví dụ trong cuốn sách này được chuẩn bị đủ nhỏ để không cần đến GPU. Trong bước biên dịch, chúng ta chỉ định hàm mất mát nào sẽ sử dụng, bộ tối ưu hóa (optimizer) nào chúng ta sẽ dùng, và cả thước đo nào chúng ta dùng để đánh giá kết quả. Tất nhiên, chúng ta sẽ phải thảo luận chi tiết hơn về các lựa chọn này, nhưng hiện tại chúng ta muốn cho thấy rằng những mạng như vậy với các lựa chọn phổ biến này có thể hoạt động tốt một cách đáng kinh ngạc. Thông thường mô hình đơn giản này đạt độ chính xác trên tập kiểm tra khoảng 98% trên tập dữ liệu MNIST. Ngược lại, một Máy vectơ hỗ trợ (SVM) tương đương, vốn là một phương pháp phổ biến trước thời kỳ học sâu, đạt khoảng 91% trên tập dữ liệu MNIST.</p>
 <p>Hiệu suất của mô hình sau khi học là quan trọng đối với chúng ta. Tuy nhiên, việc theo dõi hiệu suất của mô hình trong quá trình học cũng rất bổ ích và quan trọng đối với việc phát triển mô hình. Chúng ta gọi các đồ thị như vậy là đường cong học tập (learning curves). Chúng ta có thể vẽ các loại đường cong khác nhau, hoặc được đánh giá trên tập huấn luyện hoặc được đánh giá trên tập thẩm định (validation set). Rất dễ vẽ các đường cong như vậy trong Keras vì hàm fit đã bao gồm lịch sử đánh giá dưới dạng một hàm gọi lại (callback function), và Keras cung cấp khuôn khổ để tự viết hàm gọi lại của riêng bạn. Các khuôn khổ học sâu khác cũng thường bao gồm cách trực quan hóa tiến trình trong khi học. Trong đoạn mã trên, chúng ta đã gán con trỏ trả về của hàm fit cho biến danh sách từ điển history. Hàm key() liệt kê tên các khóa cho các giá trị được bao gồm, cho ra đồ thị như trong Hình 7.11. Chúng ta có thể thấy rằng độ chính xác thẩm định khá ổn định quanh mức 0.975, trong khi độ chính xác huấn luyện đang tăng lên, điều này có thể là dấu hiệu của hiện tượng quá khớp. Hành vi của các đường cong như vậy rất hữu ích để quan sát khi phát triển mô hình. Nó có thể cung cấp một số giá trị chẩn đoán khi mô hình không học đúng cách.</p>
 <p>0.98 độ chính xác</p>
@@ -393,20 +374,16 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Hình 7.13 Một ví dụ về bộ phát hiện cạnh nhỏ được áp dụng cho chữ số 4 từ tập dữ liệu MNIST.</p>
 <p>của bộ lọc cạnh chẳng hạn được mô tả bởi các hàm Gabor như những hàm được minh họa trong Hình 7.14A và B. Một hàm Gabor được mô tả bởi một hàm Gaussian điều biến hình sin,</p>
 <p>2∗σ2 cos(2π f(u, v) = e−u2+γv2 λ u + φ). (7.43)</p>
-<p>Ví dụ về một bộ lọc 642 điểm ảnh với các tham số γ = 0.5, σ = 10, λ = 32, và φ = π/2 được hiển thị trong Hình 7.14A. Bộ lọc này có thể được xoay bằng một ma trận xoay</p>
-<p>x</p>
-<p>cos(φ) sin(φ)</p>
+<p>Ví dụ về một bộ lọc 642 điểm ảnh với các tham số γ = 0.5, σ = 10, λ = 32, và φ = π/2 được hiển thị trong Hình 7.14A. Bộ lọc này có thể được xoay bằng một ma trận xoay x cos(φ) sin(φ)</p>
 <p></p>
 <p>x</p>
 <p></p>
 <p>← (7.44)</p>
-<p>−sin(φ) cos(φ)</p>
-<p>y y như minh họa trong Hình 7.14B cho φ = π. Điều thú vị là những hàm như vậy mô tả một số nơ-ron trong vỏ não thị giác sơ cấp của linh trưởng. Do đó, việc phát hiện cạnh dường như là một bước đầu tiên tốt để xử lý hình ảnh, một thực tế mà chúng ta sẽ gặp lại trong phần thảo luận sau.</p>
+<p>−sin(φ) cos(φ) y y như minh họa trong Hình 7.14B cho φ = π. Điều thú vị là những hàm như vậy mô tả một số nơ-ron trong vỏ não thị giác sơ cấp của linh trưởng. Do đó, việc phát hiện cạnh dường như là một bước đầu tiên tốt để xử lý hình ảnh, một thực tế mà chúng ta sẽ gặp lại trong phần thảo luận sau.</p>
 <h3>A. Hàm Gabor với B. Phiên bản xoay của A</h3>
 <p>Hình 7.14 Ví dụ về các hàm Gabor để phát hiện cạnh (A) dọc và (B) ngang.</p>
 <p>7.3.3 CNN và MNIST</p>
-<p>Ý tưởng thiết kế các bộ phát hiện đặc trưng bất biến vị trí trong mạng nơ-ron lần đầu tiên được mô tả bởi Fukushima vào năm 1980. Fukushima làm việc vào thời điểm đó cho NHK,</p>
-<p>đài truyền hình công cộng Nhật Bản, cùng với các nhà sinh lý học vì NHK quan tâm đến việc tìm hiểu cơ chế thị giác của con người. Từ đầu những năm 1960, qua các thí nghiệm của Hubel và Wiesel, người ta đã biết rõ rằng một số nơ-ron trong vỏ não thị giác sơ cấp, giai đoạn đầu tiên của quá trình xử lý thị giác ở vỏ não, là các bộ phát hiện cạnh, và các bộ phát hiện đặc trưng như vậy phải được kết hợp theo cách sao cho việc nhận dạng đối tượng trở nên bất biến đối với vị trí trong không gian.</p>
+<p>Ý tưởng thiết kế các bộ phát hiện đặc trưng bất biến vị trí trong mạng nơ-ron lần đầu tiên được mô tả bởi Fukushima vào năm 1980. Fukushima làm việc vào thời điểm đó cho NHK, đài truyền hình công cộng Nhật Bản, cùng với các nhà sinh lý học vì NHK quan tâm đến việc tìm hiểu cơ chế thị giác của con người. Từ đầu những năm 1960, qua các thí nghiệm của Hubel và Wiesel, người ta đã biết rõ rằng một số nơ-ron trong vỏ não thị giác sơ cấp, giai đoạn đầu tiên của quá trình xử lý thị giác ở vỏ não, là các bộ phát hiện cạnh, và các bộ phát hiện đặc trưng như vậy phải được kết hợp theo cách sao cho việc nhận dạng đối tượng trở nên bất biến đối với vị trí trong không gian.</p>
 <p>Các bộ phát hiện cạnh là công cụ chủ lực của thị giác máy tính truyền thống, và chúng ta đã thảo luận trong Chương 2 cách các bộ lọc như vậy được triển khai bằng phép tích chập. Các mạng nơ-ron mà chúng ta đã thảo luận trước đây phải học các trọng số riêng lẻ cho từng vị trí điểm ảnh. Ngay cả khi mạng này học được cách biểu diễn một bộ phát hiện cạnh, các bộ phát hiện riêng biệt vẫn phải được học cho từng vị trí trong hình ảnh vì các cạnh có thể xuất hiện ở mọi vị trí. Một cách khác để nghĩ về phép tích chập là một nơ-ron (bộ lọc cụ thể) được áp dụng cho mọi vị trí khả dĩ trong hình ảnh. Điều này dẫn chúng ta đến ý tưởng chia sẻ trọng số (weight sharing) và mạng nơ-ron tích chập (CNN).</p>
 <p>Để thảo luận về việc triển khai loại mạng này với Keras, chúng ta quay lại ví dụ chuẩn MNIST. Ý tưởng cơ bản của một mạng tích chập là thay thế các kết nối dày đặc của các mạng thông thường, vốn được triển khai bằng phép nhân ma trận h = wx, bằng phép tích chập h = w ∗x. Vì vậy mạng có thể trông rất giống mạng được minh họa trong Hình 7.2. Mặc dù một mạng tích chập như vậy có ít tham số hơn nhiều so với một mạng dày đặc, việc triển khai phép tích chập và chạy nó một cách hiệu quả trên máy tính là một thách thức. Do đó, chúng ta cần sử dụng bộ xử lý đồ họa (GPU). GPU là các bộ xử lý chuyên dụng được thiết kế cho các phép toán ma trận hiệu quả, và những bộ xử lý này đã rất hữu ích trong học sâu. Đặc biệt, NVIDIA đã bổ sung hỗ trợ cụ thể cho các phép toán học sâu, và chính sự hỗ trợ cấp thấp hơn như vậy là thứ chúng ta dựa vào sau đây. Mặc dù có những khuôn khổ cụ thể thậm chí hỗ trợ trực tiếp việc lập trình với GPU, chẳng hạn như Tensorflow hoặc Theano, ở đây chúng ta chọn áp dụng Keras, bản thân nó sử dụng các backend như Tensorflow và Theano, cũng như các hỗ trợ khác trên GPU, để triển khai các phép toán chúng ta cần trong học sâu. Do đó, miễn là môi trường lập trình của bạn được thiết lập để tận dụng GPU, chúng ta có thể bỏ qua các chi tiết và làm việc ở cấp độ cao hơn với các kiến trúc hệ thống. Nếu bạn không có GPU thì tôi khuyên bạn nên chạy các ví dụ MNIST sau đây trên một tập huấn luyện nhỏ hơn.</p>
 <p>Programs/MNISTcnn.py 1 import numpy as np 2 import m a t p l o t l i b . pyplot as p l t 3 from keras import models , l a y e r s , optimizers , d a t a s e t s , u t i l s , l o s s e s 4 5 ( x t r a i n , y t r a i n ) , ( x t e s t , y t e s t ) = d a t a s e t s . mnist . l o a d d a t a ( ) 6 p r i n t ( np . shape ( x t r a i n ) ) 7 p l t . matshow(255−x t r a i n [ 5 , : , : ] , cmap= ’ gray ’ ) 8 9 x t r a i n = x t r a i n . reshape (60000 , 28 , 28 , 1)/255 10 x t r a i n = x t r a i n [ : 1 0 2 4 , : , : , : ] 11 x t e s t = x t e s t . reshape (10000 , 28 , 28 , 1)/255 12 y t r a i n = u t i l s . t o c a t e g o r i c a l ( y t r a i n [ : 1 0 2 4 ] , 10) 13 y t e s t = u t i l s . t o c a t e g o r i c a l ( y t e s t , 10) 14 15 i n p u t s = l a y e r s . Input ( shape =(28 , 28 , 1 , ) ) 16 x= l a y e r s . Conv2D (32 , k e r n e l s i z e =(3 , 3) , a c t i v a t i o n = ’ r e l u ’ ) ( i n p u t s )</p>
@@ -446,15 +423,13 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Việc thay các giá trị của điểm dữ liệu đã cho vào sẽ tạo ra một hàm của các tham số. Hàm này được gọi là hàm hợp lý (likelihood function)</p>
 <h3>L(w) = Πm</h3>
 <p>i p(w; y(i), x(i)). (7.48)</p>
-<p>Vì hàm này không phải là một hàm mật độ xác suất, chúng ta đã thay ký hiệu vạch đứng ‘|’ bằng dấu chấm phẩy ‘;’. Thay vì tính toán tích lớn này, người ta thường sử dụng logarit của hàm hợp lý, để chúng ta có thể dùng tổng trên các ví dụ huấn luyện, m X log(p(w; y(i), x(i))). (7.49)</p>
-<p>l(w) = log L(w) = i</p>
+<p>Vì hàm này không phải là một hàm mật độ xác suất, chúng ta đã thay ký hiệu vạch đứng ‘|’ bằng dấu chấm phẩy ‘;’. Thay vì tính toán tích lớn này, người ta thường sử dụng logarit của hàm hợp lý, để chúng ta có thể dùng tổng trên các ví dụ huấn luyện, m X log(p(w; y(i), x(i))). (7.49) l(w) = log L(w) = i</p>
 <p>Hàm logarit tăng đơn điệu. Do đó, cực đại của L cũng là cực đại của l. Hợp lý (log-) cực đại do đó có thể được tính từ dữ liệu huấn luyện là wMLE = argmaxwl(w; x(1), y(1)..., x(m), y(m)). (7.50)</p>
 <p>Trong trường hợp ví dụ Gaussian ở trên, điều này được cho bởi</p>
 <p>−(y(i) −wx(i))2</p>
 <p>2π exp</p>
 <p></p>
-<p>1 √ l(w) = log Πm (7.51)</p>
-<p>i=1</p>
+<p>1 √ l(w) = log Πm (7.51) i=1</p>
 <p>2</p>
 <p>2π −(y(i) −wx(i))2 m X</p>
 <p></p>
@@ -463,8 +438,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>2 i=1 (y(i) −wx(i))2 m X</p>
 <p>= −m</p>
 <p>2 log 2π −</p>
-<p>2 . (7.53)</p>
-<p>i=1</p>
+<p>2 . (7.53) i=1</p>
 <p>Ở đây bạn có thể thấy tại sao logarit là một lựa chọn tốt vì chúng ta có thể xét một tổng thay vì phải có một tích dài các số có khả năng rất nhỏ. Vì số hạng đầu tiên trong biểu thức ở phương trình 7.53, −m</p>
 <p>2 log 2π, độc lập với w, việc cực đại hóa hàm log-hợp lý tương đương với việc cực tiểu hóa (do dấu trừ) một số hạng lỗi bậc hai. Vì vậy, nói chung, với dữ liệu phân bố Gaussian xung quanh một hàm giả thuyết phi tuyến và có khả năng nhiều chiều h(x; w), việc cực đại hóa hợp lý của dữ liệu tương đương với việc cực tiểu hóa hàm lỗi bình phương trung bình tối thiểu (LMS).</p>
 <h3>E = 1</h3>
@@ -473,14 +447,12 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>7.4.2 Phân loại xác suất</p>
 <p>Theo cách tương tự, chúng ta có thể xem xét phân loại dưới dạng hồi quy logistic xác suất. Trong phân loại, các đặc trưng được ánh xạ tới một số lượng hữu hạn các hạng mục khả dĩ, và ví dụ đơn giản nhất cho điều này là phân loại nhị phân. Một phiên bản xác suất của điều này là mô hình Bernoulli trong đó một số ngẫu nhiên nhận giá trị y = 1 với xác suất ϕ, và giá trị y = 0 với xác suất 1−ϕ. Hãy xem xét trường hợp phân loại khi tham số ϕ phụ thuộc vào một thuộc tính theo cách phi tuyến chẳng hạn như p(y) = ϕ(x; w)y1 −ϕ(x; w)1−y. (7.55)</p>
 <h3>Hàm log-hợp lý tương ứng là entropy chéo (cross-entropy)</h3>
-<p>m X y(i) log(ϕ(x; w)) + (1 −y(i)) log(1 −ϕ(x; w)). (7.56)</p>
-<p>l(w) = i=1</p>
+<p>m X y(i) log(ϕ(x; w)) + (1 −y(i)) log(1 −ϕ(x; w)). (7.56) l(w) = i=1</p>
 <p>Để tìm cực đại tương ứng, chúng ta có thể sử dụng thuật toán leo gradient (gradient ascent), w ←w + α∇wl(w). (7.57)</p>
 <p>Để tính gradient, chúng ta có thể tính đạo hàm riêng của hàm log-hợp lý theo từng tham số,</p>
 <p>∂ϕ(w)</p>
 <p></p>
-<p>∂l(w)</p>
-<p>y 1 ϕ −(1 −y) 1 1 −ϕ</p>
+<p>∂l(w) y 1 ϕ −(1 −y) 1 1 −ϕ</p>
 <p>= (7.58)</p>
 <p>∂wj</p>
 <p>∂wj trong đó chúng ta đã lược bỏ các chỉ số để dễ đọc hơn.</p>
@@ -503,24 +475,20 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Sử dụng kết quả này trong phương trình 7.58 và thay vào phương trình 7.57 với đồng nhất thức</p>
 <p></p>
 <p>y 1 ϕ −(1 −y) 1 1 −ϕ ϕ(1 −ϕ) = y(1 −ϕ) −(1 −y)ϕ (7.64)</p>
-<p>= y −yϕ −ϕ + yϕ (7.65) = y −ϕ (7.66)</p>
-<p>cho ra quy tắc học y(i) −f(x(i); w)</p>
+<p>= y −yϕ −ϕ + yϕ (7.65) = y −ϕ (7.66) cho ra quy tắc học y(i) −f(x(i); w)</p>
 <p></p>
-<p>x(i)</p>
-<p>wj ←wj + α j (7.67)</p>
+<p>x(i) wj ←wj + α j (7.67)</p>
 <p>Điều này tương đương với quy tắc học perceptron mà chúng ta đã thảo luận trước đây. Phép suy diễn của chúng ta cho thấy rằng quy tắc học này liên quan đến các giả định của một mô hình xác suất.</p>
 <p>7.4.3 Cực đại hậu nghiệm (MAP) và chính quy hóa với phân bố tiên nghiệm</p>
 <p>Trước khi chuyển sang các mô hình đa biến phức tạp hơn, đây là cơ hội tốt để thảo luận về chính quy hóa dưới dạng suy giảm trọng số (weight decay) trong một khuôn khổ xác suất (Bayes). Ước lượng hợp lý cực đại là công cụ chủ lực của học có giám sát xác suất, mặc dù việc đặt điều này vào một bối cảnh rộng hơn nữa của mô hình hóa xác suất là rất hữu ích. Theo nghĩa xác suất, việc chọn các giá trị tham số khi biết dữ liệu nên dựa trên một mô hình của chính các tham số đó, p(w|x, y). (7.68)</p>
-<p>Hãy giả sử chúng ta có thể biết phân bố có điều kiện này. Ví dụ, hãy giả sử nó trông giống như ví dụ một chiều được hiển thị trong Hình 7.18. Nếu chúng ta biết phân bố này, chúng ta có thể chọn một giá trị tham số mà mình thích. Chẳng hạn, chúng ta có thể chọn giá trị w1, là giá trị có xác suất cao nhất khi biết dữ liệu cụ thể. Điều này được gọi là cực đại hậu nghiệm (maximum a posteriori - MAP)</p>
-<p>wMAP = argmaxwp(w|x, y). (7.69)</p>
+<p>Hãy giả sử chúng ta có thể biết phân bố có điều kiện này. Ví dụ, hãy giả sử nó trông giống như ví dụ một chiều được hiển thị trong Hình 7.18. Nếu chúng ta biết phân bố này, chúng ta có thể chọn một giá trị tham số mà mình thích. Chẳng hạn, chúng ta có thể chọn giá trị w1, là giá trị có xác suất cao nhất khi biết dữ liệu cụ thể. Điều này được gọi là cực đại hậu nghiệm (maximum a posteriori - MAP) wMAP = argmaxwp(w|x, y). (7.69)</p>
 <h3>P(w|x,y)</h3>
 <p>w w w 1 2</p>
 <p>Hình 7.18 Ví dụ về một phân bố xác suất khả dĩ của tham số w khi biết một số dữ liệu.</p>
 <p>Khó khăn chính với MAP hoặc việc sử dụng một quy trình khác dựa trên phân bố p(w|x, y) là chúng ta thường không biết trước (a priori) phân bố này. Thay vào đó, cách tiếp cận của chúng ta là phát biểu một mô hình xác suất dưới dạng một hàm mật độ được tham số hóa như p(y|x; w). (7.70)</p>
 <p>Bây giờ chúng ta sẽ thảo luận mối liên hệ của các hàm mật độ này. Để bắt đầu, trong mô hình xác suất của phương trình 7.70, chúng ta giả sử rằng dữ liệu đặc trưng được cho sẵn một cách kỳ diệu, nhưng chúng ta cũng có thể xem xét cách chúng ta chọn các giá trị dữ liệu theo kiểu ngẫu nhiên hóa để có thể xét lại trường hợp tổng quát hơn p(y, x|w) = p(y|x; w)p(x|w). (7.71)</p>
 <p>Một lần nữa, nếu chúng ta chọn dữ liệu huấn luyện một cách đồng đều, sao cho phân bố biên trên các đặc trưng chỉ là một hằng số, thì p(y, x|w) ∝p(y|x; w). (7.72)</p>
-<p>Tiếp theo, chúng ta có thể sử dụng định lý Bayes để liên hệ hậu nghiệm p(w|x, y) với mô hình dữ liệu, cụ thể là p(w|x, y) = p(y, x|w)p(w) R w′∈W p(x, y|w′)p(w′)dw′ , (7.73)</p>
-<p>trong đó W là miền các giá trị tham số khả dĩ.</p>
+<p>Tiếp theo, chúng ta có thể sử dụng định lý Bayes để liên hệ hậu nghiệm p(w|x, y) với mô hình dữ liệu, cụ thể là p(w|x, y) = p(y, x|w)p(w) R w′∈W p(x, y|w′)p(w′)dw′ , (7.73) trong đó W là miền các giá trị tham số khả dĩ.</p>
 <p>Biểu thức này có thể được sử dụng để ước lượng các giá trị hợp lý nhất cho các tham số. Để làm điều này, chúng ta nên chú ý rằng mẫu số, vốn được gọi là hàm phân hoạch (partition function), không phụ thuộc vào các tham số w vì chúng ta đang lấy tích phân (tính tổng) trên tất cả các giá trị khả dĩ. Do đó, các giá trị hợp lý nhất cho các tham số có thể được tính mà không cần số hạng này và được cho bởi ước lượng cực đại hậu nghiệm (MAP), wMAP = argmaxwp(x, y|w)p(w). (7.74)</p>
 <p>Tên gọi của phương pháp xuất phát từ thực tế là chúng ta điều chỉnh kiến thức tiên nghiệm của mình về các tham số, được tóm tắt dưới dạng phân bố tiên nghiệm p(w) bằng cách kết hợp nó với các phép đo (x, y) từ các hiện thực hóa cụ thể của các tham số, được cho bởi hàm hợp lý p(x, y|w). Phân bố hậu nghiệm kết quả khi đó sẽ là một ước lượng tốt hơn về xác suất các giá trị cho các tham số. Hàm argmaxx(f(x)) chọn đối số x mà tại đó hàm f(x) đạt cực đại. Đối số của hàm là tập hợp các tham số mà theo nghĩa Bayes, là giá trị hợp lý nhất cho các tham số, trong đó, tất nhiên, giờ đây chúng ta coi hàm xác suất như một hàm của các tham số (ví dụ, một hàm hợp lý). Đối với phân bố tiên nghiệm đều, p(w) = const, ta thu được wMAP = wMLE. (7.75)</p>
 <h3>Laplace</h3>
@@ -533,13 +501,10 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Laplace : MAP = MLE + L</h3>
 <p>Hình 7.19 Ba phân bố thường được sử dụng làm phân bố tiên nghiệm cho các tham số khi học cùng với ước lượng hợp lý cực đại.</p>
 <p>Mặc dù phân bố tiên nghiệm đều của các tham số là một lựa chọn đầu tiên dễ dàng, chúng ta có thể nghĩ đến các phân bố tiên nghiệm khác. Ví dụ, hãy giả sử rằng giá trị của các tham số nên có khả năng nhỏ hơn là lớn. Cụ thể hơn, hãy giả sử chúng ta nghĩ rằng chúng nên phân bố chuẩn xung quanh 0. Khi đó chúng ta có thể viết ước lượng MAP (phương trình 7.74) là wMAP = argmaxwp(x, y|w)N(0, σ2) . (7.76)</p>
-<p>Như thường lệ, thay vào đó chúng ta cực đại hóa logarit của các hàm hợp lý tương ứng, điều này dẫn đến wMAP = argmaxw log(p(x, y|w)) + α||w||2, (7.77)</p>
-<p>với α = log 1 2σ2 . (7.78)</p>
+<p>Như thường lệ, thay vào đó chúng ta cực đại hóa logarit của các hàm hợp lý tương ứng, điều này dẫn đến wMAP = argmaxw log(p(x, y|w)) + α||w||2, (7.77) với α = log 1 2σ2 . (7.78)</p>
 <p>Đây cũng được gọi là chính quy hóa L2, thứ do đó tương ứng với một phân bố tiên nghiệm Gaussian trên các trọng số. Tương tự, chính quy hóa L1 tương ứng với phân bố tiên nghiệm của một phân bố Laplace đẳng hướng</p>
 <p>2 b exp</p>
-<p>−|w|</p>
-<p>p(w) = 1 , (7.79)</p>
-<p>b thứ nhọn hơn về phía 0 như có thể thấy qua việc so sánh các phân bố này trong Hình 7.19. Do đó chính quy hóa L1 ép nhiều trọng số về 0 hơn so với chính quy hóa L2. Đây là một ví dụ khác cho thấy cách một diễn giải xác suất làm sáng tỏ các kỹ thuật vốn ban đầu được giới thiệu mang tính kinh nghiệm (heuristic) nhiều hơn. Một bảng tóm tắt đơn giản về ba phân bố tiên nghiệm và sự tương đương kết quả giữa MLE và MAP được hiển thị ở bảng bên phải của hình.</p>
+<p>−|w| p(w) = 1 , (7.79) b thứ nhọn hơn về phía 0 như có thể thấy qua việc so sánh các phân bố này trong Hình 7.19. Do đó chính quy hóa L1 ép nhiều trọng số về 0 hơn so với chính quy hóa L2. Đây là một ví dụ khác cho thấy cách một diễn giải xác suất làm sáng tỏ các kỹ thuật vốn ban đầu được giới thiệu mang tính kinh nghiệm (heuristic) nhiều hơn. Một bảng tóm tắt đơn giản về ba phân bố tiên nghiệm và sự tương đương kết quả giữa MLE và MAP được hiển thị ở bảng bên phải của hình.</p>
 <p>Cuối cùng, mặc dù chúng ta đã thảo luận các đại lượng phổ biến là MAP và MLE trong học máy, điều tốt là cần nhận ra rằng cả hai phương pháp học này chỉ cho chúng ta một ước lượng điểm (point estimate), một câu trả lời duy nhất cho các giá trị hợp lý nhất của các tham số khi biết một tập dữ liệu cụ thể mà từ đó hợp lý này phải được ước lượng. Một ước lượng điểm thường được sử dụng để đưa ra quyết định nên thực hiện hành động nào. Tuy nhiên, có khả năng các tập hợp giá trị tham số khác chỉ có giá trị hợp lý nhỏ hơn một chút, và tình huống có thể nhanh chóng thay đổi với thêm một vài điểm dữ liệu. Do đó sẽ thận trọng hơn nhiều nếu xem xét cả các giá trị khác. Ví dụ, nhìn lại ví dụ trong Hình 7.18, một chiến lược khác có thể là chọn một giá trị trọng số trong một phạm vi mà các biến thiên trong giá trị này sẽ không làm thay đổi đáng kể xác suất trong một khoảng nào đó, chẳng hạn như các giá trị xung quanh w2.</p>
 <p>Hơn nữa, theo nghĩa Bayes, tất cả các lựa chọn khác nên được tính đến cùng với hợp lý tương ứng của chúng. Điều này đặc biệt đúng khi ước lượng độ tin cậy của chúng ta cho một ước lượng. Theo nghĩa Bayes, chúng ta cần kết hợp tất cả các ước lượng khả dĩ với hợp lý của chúng. Do đó, một hạn chế của các phương pháp ước lượng cực đại đã thảo luận trước đó, vốn đang thống trị phần lớn các thực hành hiện nay trong các ứng dụng học máy, là chúng không tính đến phân bố của các câu trả lời. Một số người do đó phân biệt học máy với lập trình xác suất (probabilistic programming) tiên tiến hơn. Mặc dù các kỹ thuật mô hình hóa xác suất tiên tiến như vậy có thể cho chúng ta câu trả lời cho những câu hỏi sâu sắc hơn nhiều, các phương pháp học máy được thảo luận trong cuốn sách này với các ước lượng điểm thường dễ áp dụng hơn cho các bài toán nhiều chiều.</p>
 <p>7.4.4 Mạng ánh xạ với các đơn vị ngữ cảnh</p>
@@ -575,13 +540,10 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <h3>Cảm giác PNS</h3>
 <h3>Cảm giác CNS</h3>
 <h3>Nội tại</h3>
-<p>) | c, a ( s p</p>
-<p>) |s , c ( s p trạng thái ,c ) | ( s p c ) | ( a c p Ngoại tại c ,c ) | ( p c</p>
+<p>) | c, a ( s p ) |s , c ( s p trạng thái ,c ) | ( s p c ) | ( a c p Ngoại tại c ,c ) | ( p c</p>
 <figure class="bookfig"><img src="img/img_p223_2.webp" alt="" loading="lazy"></figure>
 <figure class="bookfig"><img src="img/img_p223_3.webp" alt="" loading="lazy"></figure>
-<p>trạng thái</p>
-<p>) | ( a , s p a</p>
-<p>) ( p a</p>
+<p>trạng thái ) | ( a , s p a ) ( p a</p>
 <p>|s , c</p>
 <h3>Hành động PNS</h3>
 <h3>Hành động CNS</h3>
@@ -623,8 +585,7 @@ h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietna
 <p>Trước khi thảo luận ràng buộc mong muốn thứ hai của chúng ta, chúng ta muốn làm cho mô hình sinh này có tính phân cấp để có thể mở rộng điều này sang học sâu. Điều này dễ dàng được thực hiện bằng cách lặp lại ý tưởng rằng một kích hoạt nơ-ron bậc cao hơn dự đoán hoạt động ở cấp độ thấp hơn như r1 = g(</p>
 <h3>X</h3>
 <h3>W2</h3>
-<p>i r2 i ) + µ2 (7.98)</p>
-<p>i</p>
+<p>i r2 i ) + µ2 (7.98) i</p>
 <p>= g(wr) + µ2. (7.99)</p>
 <p>Hàm mục tiêu cần cực tiểu hóa khi đó phải là số hạng lỗi từ cả hai cấp độ,</p>
 <p>E = 1 (σ1)2 ||I −g(w1r1)||2 + 1 (σ1)2 ||I −g(w1r1)||2. (7.100)</p>
