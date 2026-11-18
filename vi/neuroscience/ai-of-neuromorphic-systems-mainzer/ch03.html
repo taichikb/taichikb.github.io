@@ -1,0 +1,202 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 2 — Nền tảng của tính toán khả tính số — Hệ Thống Mô Phỏng Thần Kinh | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.12rem;font-weight:700;margin:1.4rem 0 .5rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 1rem;text-align:justify}
+.reader-body blockquote{margin:1.1rem 1.4rem;padding:.6rem 1rem;border-left:3px solid var(--teal);background:var(--soft);color:var(--mid);font-style:italic}
+.reader-body ul.vi-list{margin:0 0 1rem;padding-left:1.5rem}
+.reader-body ul.vi-list li{margin-bottom:.35rem}
+.reader-body figure.bookfig{margin:1.6rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-width:680px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto}
+.reader-body figure.bookfig figcaption{font-size:.85rem;color:var(--mid);margin-top:.7rem;line-height:1.6;text-align:left;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh — Klaus Mainzer"></div>
+<div class="book-meta-details"><h1>Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</h1><p class="sub"><em>Artificial Intelligence of Neuromorphic Systems: From Digital and Quantum Computing to Neuromorphic Computing</em> — Klaus Mainzer. Bản dịch tiếng Việt toàn văn.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/ai-of-neuromorphic-systems-mainzer.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Chương 2 — Nền tảng của tính toán khả tính số</h2><div class="reader-body"><h2>Chương 2</h2>
+<h3>Nền tảng của Tính khả tính Số</h3>
+<p>Trong chương này, nền tảng của tính khả tính số được truy nguyên về tính khả tính Turing. Theo luận đề Church, khái niệm lý thuyết về máy Turing định nghĩa một thuật toán số nói chung. Về nguyên tắc, bài toán dừng của một máy Turing là không thể quyết định được. Do đó, mọi bài toán tương đương về mặt toán học đều bất khả quyết định về mặt số. Hiện thực hóa kỹ thuật của máy Turing chính là kiến trúc von Neumann của tất cả các máy tính số điều khiển bằng chương trình ngày nay. Vì vậy, các giới hạn kỹ thuật của tính khả tính được xác định bởi các giới hạn lý thuyết của chủ nghĩa hình thức toán học được giả định cho tính khả tính số.</p>
+<p>Những cội nguồn lịch sử sơ khai của khoa học máy tính bắt nguồn từ thời đại cơ học cổ điển. Quá trình cơ giới hóa tư duy bắt đầu với việc phát minh ra các thiết bị cơ khí để thực hiện các phép tính số học cơ bản một cách tự động. Máy tính cơ học, chẳng hạn như cỗ máy do Leibniz chế tạo, thực thi các chỉ thị tuần tự từng bước một. Nhìn chung, thiết kế truyền thống của một máy tính cơ học bao gồm các bộ phận sau.</p>
+<p>Đầu tiên, có một cơ cấu đầu vào để nhập một con số vào máy. Một cơ cấu chọn sẽ lựa chọn và cung cấp chuyển động cơ học để thực hiện phép cộng hoặc phép trừ các giá trị trên cơ cấu thanh ghi. Cơ cấu thanh ghi là cần thiết để biểu thị giá trị của một con số được lưu trữ bên trong máy, được hiện thực hóa về mặt kỹ thuật bằng một loạt các bánh xe hoặc đĩa. Nếu một số nhớ được tạo ra do một trong các chữ số trong thanh ghi kết quả tăng từ 9 lên 0, thì số nhớ đó phải được cơ cấu nhớ truyền tới chữ số tiếp theo hoặc thậm chí qua toàn bộ thanh ghi kết quả. Một cơ cấu điều khiển đảm bảo rằng</p>
+<p>41</p>
+<p>42 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh tất cả các bánh răng được định vị đúng cách vào cuối mỗi chu kỳ cộng để tránh kết quả sai hoặc làm kẹt máy. Một cơ cấu xóa phải đặt lại cơ cấu thanh ghi về giá trị lưu trữ bằng không.</p>
+<p>Máy tính tay của Leibniz có thể dễ dàng được tổng quát hóa thành cái gọi là máy thanh ghi của Marvin Minsky (Minsky, 1961; Sheperdson và Sturgis, 1963). Nó cho phép định nghĩa khái niệm tổng quát về tính khả tính trong khoa học máy tính hiện đại.</p>
+<h3>Định nghĩa Máy Thanh ghi</h3>
+<p>Một máy tính tay chỉ có ba thanh ghi gồm cơ cấu thiết lập (đầu vào) (SM), cơ cấu quay cho tay quay, và cơ cấu kết quả (RM). Một máy thanh ghi lý tưởng có một số hữu hạn các thanh ghi có thể lưu trữ bất kỳ số lượng hữu hạn nào của một đại lượng mong muốn. Các thanh ghi được ký hiệu bằng các số tự nhiên i = 1, 2, 3, . . .. Nội dung của thanh ghi i được ký hiệu là ⟨i⟩. Ví dụ, phép gán ⟨4⟩:= 1 có nghĩa là nội dung của thanh ghi số 4 là 1. Thanh ghi là rỗng nếu nó có nội dung bằng 0.</p>
+<p>Trong máy tính tay, phép cộng hoặc phép trừ chỉ được thực hiện cho hai thanh ghi ⟨SM⟩ và ⟨RM⟩, với ⟨SM⟩+⟨RM⟩ hoặc ⟨RM⟩−⟨SM⟩ được đưa vào thanh ghi RM. Trong một máy thanh ghi, kết quả của phép trừ ⟨i⟩−⟨j⟩ phải bằng 0 nếu ⟨j⟩ lớn hơn ⟨i⟩. Phép trừ hiệu chỉnh này được ký hiệu là ⟨i⟩.−⟨j⟩. Nhìn chung, chương trình của một máy thanh ghi lý tưởng được định nghĩa bằng cách sử dụng các thủ tục sơ cấp sau làm khối xây dựng:</p>
+<p>(1) Cộng 1 vào ⟨i⟩ và đặt kết quả vào thanh ghi i, viết gọn là ⟨i⟩:=</p>
+<p>⟨i⟩+ 1. (2) Trừ 1 khỏi ⟨i⟩ và đặt kết quả vào thanh ghi i, viết gọn là</p>
+<p>⟨i⟩:= ⟨i⟩.−1.</p>
+<p>Hai thủ tục sơ cấp này có thể được kết hợp bằng cách sử dụng các khái niệm sau:</p>
+<p>(3) Nếu P và Q là các chương trình được định nghĩa tốt, thì chuỗi P →Q là một chương trình được định nghĩa tốt. P →Q có nghĩa là máy phải thực thi chương trình Q sau chương trình P.</p>
+<h3>Nền tảng của Tính khả tính Số 43</h3>
+<p>(4) Sự lặp lại của một chương trình, vốn cần thiết chẳng hạn cho phép nhân như một phép cộng lặp lại, được điều khiển bởi câu hỏi liệu một thanh ghi nhất định có rỗng hay không.</p>
+<p>Sơ đồ sau đây minh họa vòng phản hồi này:</p>
+<figure class="bookfig"><img src="img/img_p054_1.png" alt="" loading="lazy"></figure>
+<p>Nếu P là một chương trình được định nghĩa tốt, thì thực thi P cho đến khi nội dung của thanh ghi số i bằng không.</p>
+<h3>Ví dụ về một máy thanh ghi</h3>
+<p>Mỗi phép toán sơ cấp (1) và (2) của một chương trình được tính là một bước tính toán. Một ví dụ đơn giản là chương trình cộng sau đây:</p>
+<figure class="bookfig"><img src="img/img_p054_2.png" alt="" loading="lazy"></figure>
+<p>Mỗi trạng thái của máy được minh họa bằng ma trận sau, trong đó cộng dồn nội dung y của thanh ghi ⟨j⟩ vào nội dung x của</p>
+<p>44 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh thanh ghi ⟨i⟩ và đồng thời giảm nội dung của ⟨j⟩ về không. Kết quả x + y của phép cộng được hiển thị trong thanh ghi ⟨j⟩ như sau:</p>
+<p>⟨i⟩ ⟨j⟩ x y x + 1 y .−1 ... ...</p>
+<p>x + y y .−y</p>
+<h3>Định nghĩa Tính khả tính của Máy Thanh ghi</h3>
+<p>Một máy thanh ghi với chương trình F được định nghĩa là tính một hàm f với n đối số nếu với mọi x1, . . . , xn tùy ý trong các thanh ghi 1, . . . , n (và số không trong tất cả các thanh ghi khác), chương trình F được thực thi và dừng lại sau một số hữu hạn bước với các đối số của hàm nằm trong thanh ghi 1, . . . , n và giá trị hàm f(x1, . . . , xn) nằm trong thanh ghi n + 1.</p>
+<h3>Chương trình</h3>
+<p>⟨1⟩:= x1; . . . ; ⟨n⟩:= xn</p>
+<p>↓</p>
+<h3>F</h3>
+<p>↓</p>
+<p>⟨n + 1⟩:= f(x1, . . . , xn)</p>
+<p>hoạt động theo một ma trận tương ứng. Một hàm f được gọi là khả tính bởi máy thanh ghi RM (khả tính RM) nếu có một chương trình F tính f.</p>
+<p>Số bước mà một chương trình F nhất định cần để tính một hàm f được xác định bởi chương trình đó và phụ thuộc vào các đối số của hàm. Độ phức tạp của chương trình F được đo bằng một hàm sF(x1, . . . , xn) tính số bước tính toán theo chương trình F. Đôi khi, sF(x1, . . . , xn) cũng được gọi là thước đo thời gian tính toán của chương trình F. Ví dụ, ma trận của chương trình cộng cho x + y cho thấy cần y bước sơ cấp</p>
+<h3>Nền tảng của Tính khả tính Số 45</h3>
+<p>cộng 1 và y bước sơ cấp trừ 1. Do đó, sF(x, y) = 2y.</p>
+<h3>Định nghĩa Độ phức tạp RM</h3>
+<p>Vì một hàm khả tính RM f có thể được tính bởi nhiều chương trình khác nhau, một hàm g được gọi là hàm đếm bước của f nếu có một chương trình F tính f sao cho g(x1, . . . , xn) = sF(x1, . . . , xn) với mọi đối số x1, . . . , xn. Độ phức tạp của một hàm được định nghĩa là độ phức tạp của chương trình tốt nhất tính hàm đó với số bước ít nhất.</p>
+<p>Rõ ràng, máy thanh ghi của Minsky là một sự tổng quát hóa trực quan từ máy tính tay (theo kiểu của Leibniz). Tuy nhiên, về mặt lịch sử, một số công thức hóa máy tương đương khác đã được giới thiệu độc lập lần đầu tiên bởi Alan Turing (1936) và Emil Post (1936).</p>
+<h3>Định nghĩa Máy Turing</h3>
+<p>Một máy Turing (Hình 1) có thể thực hiện bất kỳ thủ tục hiệu quả nào miễn là nó được lập trình đúng cách. Nó bao gồm (a) một hộp điều khiển chứa một chương trình hữu hạn, (b) một băng giấy vô hạn tiềm năng, được chia theo chiều dài thành các ô vuông, (c) một thiết bị để quét hoặc in lên từng ô vuông của băng tại một thời điểm, và để di chuyển dọc theo băng hoặc dừng lại, tất cả đều dưới sự điều khiển của hộp điều khiển.</p>
+<figure class="bookfig"><img src="img/img_p056_1.png" alt="" loading="lazy"></figure>
+<p>Hình 1. Một máy Turing (Mainzer, 2018, tr. 22).</p>
+<p>46 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh</p>
+<p>Nếu các ký hiệu được máy Turing sử dụng chỉ giới hạn ở một nét gạch / và một khoảng trắng *, thì một hàm khả tính RM có thể được chứng minh là khả tính bởi máy Turing và ngược lại. Chúng ta phải nhớ rằng mọi số tự nhiên x có thể được biểu diễn bằng một dãy x nét gạch (ví dụ, 3 bằng ///), với mỗi nét gạch nằm trên một ô vuông của băng Turing. Khoảng trắng * được dùng để biểu thị ô vuông đó trống (nếu số tương ứng là số không). Cụ thể, một khoảng trắng là cần thiết để phân tách các dãy nét gạch biểu diễn các con số. Do đó, một máy Turing tính một hàm f với các đối số x1, . . . , xn bắt đầu với băng · · · ∗x1 ∗x2 ∗· · · xn ∗· · · và dừng lại với · · · ∗x1 ∗x2 ∗· · · xn ∗f(x1, . . . , xn) ∗· · · trên băng. Theo quan điểm logic, một máy tính đa năng — như được chế tạo bởi các cộng sự của John von Neumann ở Mỹ và một cách độc lập bởi Konrad Zuse ở Đức — là sự hiện thực hóa kỹ thuật của một máy Turing phổ dụng có thể mô phỏng bất kỳ loại chương trình Turing nào (Herken, 1995). Tương tự, chúng ta có thể định nghĩa một máy thanh ghi phổ dụng có thể thực thi bất kỳ loại chương trình thanh ghi nào. Trên thực tế, thiết kế chung của một máy tính von Neumann bao gồm một bộ xử lý trung tâm (bộ điều khiển chương trình), một bộ nhớ, một khối số học và các thiết bị đầu vào–đầu ra. Nó hoạt động từng bước theo cách chủ yếu là tuần tự. Máy tính ngày nay (theo kiểu von Neumann) thực chất là một máy Turing tổng quát và một máy thanh ghi.</p>
+<p>Bên cạnh máy Turing và máy thanh ghi, còn có nhiều thủ tục tương đương toán học khác để định nghĩa các hàm khả tính. Các hàm đệ quy được định nghĩa bằng các thủ tục thế hàm và lặp, bắt đầu với một số hàm sơ cấp, chẳng hạn như phép thế và phép lặp, bắt đầu với một số hàm sơ cấp (ví dụ, hàm kế tiếp n(x) = x + 1), vốn hiển nhiên là khả tính. Tất cả các định nghĩa về tính khả tính này bằng máy Turing, máy thanh ghi, hàm đệ quy, v.v., đều có thể được chứng minh là tương đương về mặt toán học. Rõ ràng, mỗi khái niệm chính xác này định nghĩa một thủ tục hiệu quả về mặt trực giác. Do đó, Alonzo Church đã đề xuất luận đề nổi tiếng của mình rằng khái niệm trực giác phi hình thức về một thủ tục hiệu quả là đồng nhất với một trong những khái niệm chính xác tương đương này, chẳng hạn như khái niệm máy Turing.</p>
+<h3>Nền tảng của Tính khả tính Số 47</h3>
+<h3>Luận đề Church</h3>
+<p>Mọi thủ tục tính toán (thuật toán) đều có thể được tính bởi một máy Turing.</p>
+<p>Tất nhiên, luận đề Church không thể được chứng minh, bởi vì các khái niệm chính xác về mặt toán học được so sánh với một khái niệm trực giác phi hình thức. Tuy nhiên, sự tương đương toán học của nhiều khái niệm chính xác về tính khả tính vốn hiệu quả về mặt trực giác đã xác nhận luận đề Church. Do đó, chúng ta có thể nói về tính khả tính, tính hiệu quả và các hàm khả tính mà không cần đề cập đến các thủ tục hiệu quả cụ thể (“thuật toán”), chẳng hạn như máy Turing, máy thanh ghi và hàm đệ quy. Theo luận đề Church, chúng ta đặc biệt có thể nói rằng mọi thủ tục tính toán (thuật toán) đều có thể được tính bởi một máy Turing. Vì vậy, mọi hàm đệ quy, như một loại chương trình máy, đều có thể được tính bởi một máy tính đa năng (Feferman, 2006).</p>
+<p>Để chính xác hơn, hãy xem xét một lớp các hàm được chấp nhận là khả tính một cách trực giác ngay từ đầu (Kleene, 1974; Shoenfield, 1967).</p>
+<h3>Định nghĩa các Hàm Đệ quy Nguyên thủy</h3>
+<p>Lớp Fpr của các hàm đệ quy nguyên thủy được định nghĩa bởi các điều kiện sau:</p>
+<p>(1) Z, S, pn i thuộc Fpr:</p>
+<p>Z là hàm không với Z(x) = 0, S là hàm kế tiếp với S(x) = x + 1, pn i là hàm chiếu với pn i (x0, . . . , xn) = xi (0 ≤i ≤n).</p>
+<p>(2) Fpr đóng dưới phép hợp:</p>
+<p>Nếu các hàm f, gj thuộc Fpr với f: Nk →N và gj: Nn → N (1 ≤j ≤k), thì có một hàm h thuộc Fpr, thỏa mãn</p>
+<p>⇀x) = f(g1(</p>
+<p>⇀x), . . . , gk(</p>
+<p>⇀x)) (với</p>
+<p>⇀x = x1, . . . , xn).</p>
+<p>h(</p>
+<p>48 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh (3) Fpr đóng dưới phép đệ quy:</p>
+<p>Với các hàm f: Nn →N và g: Nn+2 →N, có một hàm h thuộc Fpr sao cho</p>
+<p>⇀x) = f(</p>
+<p>⇀x), h(0,</p>
+<p>⇀x). (4) Fpr là lớp nhỏ nhất thỏa mãn các điều kiện (1)–(3).</p>
+<p>⇀x) = g(h(y,</p>
+<p>⇀x), y, h(S(y),</p>
+<p>Lớp các hàm đệ quy nguyên thủy có thể được mở rộng bằng một thủ tục tìm kiếm khả tính trực giác đối với các số nhỏ nhất thỏa mãn các điều kiện khả tính nhất định.</p>
+<h3>Định nghĩa các Hàm Đệ quy</h3>
+<p>Lớp Fr của các hàm đệ quy toàn phần là lớp nhỏ nhất của các hàm thỏa mãn các điều kiện (1)–(3) của Fpr (với Fr thay cho Fpr) và điều kiện sau:</p>
+<p>(5) Fr đóng dưới phép áp dụng toán tử μ:</p>
+<p>⇀y) = 0, với g thuộc Fr nếu tồn tại một x như vậy, hay viết hình thức là ∀y∃x(x,</p>
+<p>⇀y) = μx(g(x,</p>
+<p>⇀y) = 0), tức là giá trị x nhỏ nhất thỏa mãn g(x, f(</p>
+<p>⇀y) = 0.</p>
+<p>Đôi khi, không rõ liệu các hàm có được xác định toàn phần hay không. f(x) ≃ g(x) có nghĩa là hàm f(x) được xác định khi và chỉ khi hàm g(x) được xác định, và nếu chúng được xác định, thì giá trị của chúng bằng nhau. Bây giờ, chúng ta có thể mở rộng lớp các hàm đệ quy toàn phần thành lớp các hàm đệ quy bộ phận.</p>
+<h3>Định nghĩa các Hàm Đệ quy Bộ phận</h3>
+<h3>Lớp F′</h3>
+<p>r của các hàm đệ quy bộ phận được định nghĩa bởi các điều kiện sau:</p>
+<p>(1) Fr là một tập con của F′ r. (2) F′ r đóng dưới phép hợp: Nếu các hàm h, gj thuộc F′ r với h: Nk →N và gj: Nn → N (1 ≤j ≤k), thì có một hàm f thuộc F′ r, thỏa mãn</p>
+<p>⇀x) ≃h(g1(</p>
+<p>⇀x), . . . , gk(</p>
+<p>⇀x)).</p>
+<p>f(</p>
+<h3>Nền tảng của Tính khả tính Số 49</h3>
+<p>(3) F′ r đóng dưới phép áp dụng toán tử μ: f(</p>
+<p>⇀y) = 0, với g thuộc Fr nếu tồn tại một x như vậy, hay viết hình thức là ∀y∃x(x,</p>
+<p>⇀y) ≃μx(g(x,</p>
+<p>⇀y) = 0), tức là giá trị x nhỏ nhất thỏa mãn g(x,</p>
+<p>⇀y) = 0.</p>
+<p>Hóa ra mọi hàm đệ quy bộ phận đều khả tính theo nghĩa của luận đề Church. Bây giờ, chúng ta có thể định nghĩa các thủ tục hiệu quả về quyết định và liệt kê, vốn đã được đòi hỏi bởi chương trình mathesis universalis của Leibniz (Davis, 1958). Hàm đặc trưng χM của một tập con M các số tự nhiên được định nghĩa là χM(x) = 1 nếu x là một phần tử của M và χM(x) = 0 trong trường hợp ngược lại.</p>
+<h3>Định nghĩa các Thủ tục Quyết định và Liệt kê Hiệu quả</h3>
+<p>Một tập hợp M được định nghĩa là khả quyết định hiệu quả nếu hàm đặc trưng của nó cho biết một số có thuộc M hay không là khả tính hiệu quả.</p>
+<p>Các chương trình và phép tính bao gồm các danh sách ký hiệu có thể được mã hóa bằng các số tự nhiên. Khi đó, chúng ta có thể định nghĩa một vị từ khả quyết định T(x,</p>
+<p>⇀y, z) (vị từ T của Kleene) với ý nghĩa rằng “z mã hóa một phép tính (dừng) theo chương trình x cho các đối số</p>
+<p>⇀y”. Hàm trích xuất kết quả khả tính toàn phần U trích xuất kết quả từ mã của một phép tính dừng. Có thể chứng minh rằng mỗi hàm khả tính f với mã x của chương trình máy của nó có thể được biểu diễn như sau:</p>
+<p>Dạng chuẩn Kleene:</p>
+<p>⇀y) ≃U(μz χT (x,</p>
+<p>⇀y, z) = 1)</p>
+<p>f(</p>
+<p>⇀y, z)).</p>
+<p>≃U(μz T(x,</p>
+<p>⇀y) biểu thị kết quả của việc áp dụng chương trình x cho các đối số của hàm f. Thực chất, x là số mã của một chương trình máy mà cũng được gọi là “số máy” của hàm khả tính f. Rõ ràng, [x](</p>
+<h3>Biểu thức xác định bộ phận [x](</h3>
+<p>⇀y) được xác định nếu có một phép tính (dừng) z theo chương trình x cho các đối số đầu vào</p>
+<p>⇀y:</p>
+<p>⇀y) được xác định ↔∃z T(x,</p>
+<p>⇀y, z).</p>
+<p>[x](</p>
+<p>50 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh</p>
+<p>Một tập hợp M được định nghĩa là khả liệt kê hiệu quả nếu tồn tại một thủ tục hiệu quả (khả tính) f để sinh ra các phần tử của nó, lần lượt từng cái một (viết hình thức là f(1) = x1, f(2) = x2, . . . với mọi phần tử x1, x2, . . . từ M). Định nghĩa về tính khả liệt kê đệ quy có thể được tổng quát hóa từ tập hợp sang vị từ.</p>
+<h3>Định nghĩa Tính khả liệt kê Đệ quy</h3>
+<p>Một vị từ P là khả liệt kê đệ quy nếu P rỗng hoặc tồn tại một hàm đệ quy f với P(x) ↔∃yf(y) = x với mọi x.</p>
+<p>Có thể chứng minh (Hermes, 1978) rằng với mọi vị từ khả liệt kê đệ quy P đều có một vị từ khả quyết định đệ quy Q sao cho</p>
+<p>Định lý:</p>
+<h3>P(x) ↔∃yQ(x, y) với mọi x</h3>
+<p>Định lý cuối cùng này và dạng chuẩn Kleene giờ đây có thể được sử dụng để đặc trưng hóa các vị từ khả liệt kê đệ quy (RE) (Rogers, 1967):</p>
+<p>Phép liệt kê của Kleene đối với các vị từ khả liệt kê đệ quy:</p>
+<h3>Giả sử P là một vị từ khả liệt kê đệ quy</h3>
+<p>P(y) ↔∃zQ(y, z), với Q đệ quy với mọi y. Định nghĩa một hàm bộ phận đệ quy f(y) ≃ μzQ(y, z) với số máy x. Khi đó,</p>
+<p>P(y) ↔[x](y) được xác định ↔∃zT(x, y, z).</p>
+<p>Số x được gọi là chỉ số RE của vị từ RE P. Nói một cách trực giác, vị từ T của Kleene liệt kê tất cả các vị từ RE theo chỉ số RE của chúng (Soare, 1987).</p>
+<h3>Định lý Post về Tính khả quyết định và Tính khả liệt kê</h3>
+<p>Tính khả quyết định có thể được đặc trưng bởi tính khả liệt kê: Một tập hợp hoặc vị từ là khả quyết định đệ quy nếu tập hợp hoặc vị từ đó và phần bù của nó</p>
+<h3>Nền tảng của Tính khả tính Số 51</h3>
+<p>đều là khả liệt kê đệ quy (định lý Post). Tập hợp bù ¯ M của M chứa tất cả các phần tử không thuộc M. Nếu M và ¯ M đều khả liệt kê đệ quy, thì chúng ta có thể liệt kê các phần tử của chúng từng bước một để quyết định xem một số đã cho có thuộc M hay không. Do đó, M là khả quyết định đệ quy. Theo định nghĩa, suy ra rằng mọi tập hợp khả quyết định đệ quy đều khả liệt kê đệ quy. Tuy nhiên, có những tập hợp khả liệt kê đệ quy nhưng không khả quyết định. Đây là những dấu hiệu đầu tiên cho thấy có những giới hạn đối với khuôn khổ số của tính khả tính vốn dựa trên niềm tin vào các thủ tục quyết định phổ quát.</p>
+<p>Tại thời điểm này, bài toán dừng nổi tiếng của Turing xuất hiện: Liệu có một thủ tục quyết định phổ quát nào để xác định xem một chương trình máy tính tùy ý có dừng lại sau hữu hạn bước đối với một đầu vào tùy ý hay không? Turing đã chứng minh rằng về nguyên tắc, bài toán dừng là không thể giải được. Khi đó, tính bất toàn của Gödel (Gödel, 1931) chỉ là một hệ quả của chứng minh của Turing (Chaitin, 1998).</p>
+<p>Turing bắt đầu chứng minh của mình với câu hỏi liệu các số thực có khả tính hay không. Một số thực như π = 3,1415926 . . . có vô số chữ số dường như được phân bố ngẫu nhiên sau dấu phẩy thập phân. Tuy nhiên, vẫn có những chương trình hữu hạn đơn giản để tính từng chữ số một với độ chính xác tăng dần của π. Theo nghĩa này, π được gọi là một số thực khả tính. Ở bước đầu tiên, Turing đã xây dựng một số thực bất khả tính.</p>
+<h3>Định nghĩa một Số Bất khả tính</h3>
+<p>Theo dạng chuẩn Kleene, một chương trình máy có thể được mã hóa bằng một số máy. Hãy tưởng tượng một danh sách tất cả các chương trình máy tính có thể có được sắp xếp theo thứ tự số máy tăng dần p1, p2, p2, . . . Nếu một chương trình tính ra một số thực có vô số chữ số sau dấu phẩy thập phân (ví dụ, π), thì chúng sẽ được viết xuống sau số hiệu chương trình tương ứng. (Phần số trước dấu phẩy thập phân được bỏ qua.) Ngược lại, sẽ có</p>
+<p>52 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh một dòng trống trong danh sách như sau:</p>
+<p>p1 −· d11d12d13d14d15d16d17 . . .</p>
+<p>p2 −· d21d22d23d24d25d26d27 . . .</p>
+<p>p3 −· d31d32d33d34d35d36d37 . . .</p>
+<p>p4 p5 −· d51d52d53d54d55d56d57 . . .</p>
+<p>...</p>
+<p>Theo thủ tục đường chéo của Cantor, Turing đã thay đổi các chữ số được gạch chân trên đường chéo của danh sách và ghép các chữ số đã thay đổi này lại thành một số mới có dấu chấm thập phân ở phía trước như sau:</p>
+<p>−·̸ = d11̸ = d12̸ = d13̸ = d14̸ = d15̸ = d16̸ = d17 . . .</p>
+<p>Số mới này không thể nằm trong danh sách vì nó khác với chữ số đầu tiên của số thứ nhất sau p1, chữ số thứ hai của số thứ hai sau p2, v.v. Do đó, nó là một số thực bất khả tính. Với con số này, Turing đã thu được tính không thể giải được của bài toán dừng.</p>
+<h3>Tính Không thể Giải được của Bài toán Dừng</h3>
+<p>Nếu chúng ta có thể giải quyết bài toán dừng, thì chúng ta có thể quyết định xem chương trình máy tính thứ n có bao giờ xuất ra chữ số thứ n sau dấu phẩy thập phân hay không. Trong trường hợp này, chúng ta thực sự có thể thực hiện thủ tục đường chéo của Cantor và tính ra một số thực mà theo định nghĩa của nó, phải khác với bất kỳ số thực khả tính nào.</p>
+<p>Tính không thể giải được của bài toán dừng đã bác bỏ bài toán Entscheidungsproblem của Hilbert. Nếu có một hệ tiên đề hình thức đầy đủ mà từ đó mọi chân lý toán học đều suy ra được, thì nó sẽ cung cấp cho chúng ta một thủ tục để quyết định xem một chương trình máy tính có bao giờ dừng lại hay không. Chúng ta chỉ cần chạy qua tất cả các chứng minh có thể cho đến khi tìm thấy một chứng minh rằng chương trình dừng, hoặc tìm thấy một chứng minh rằng nó không bao giờ dừng. Vì vậy, nếu tập tiên đề hữu hạn của Hilbert mà từ đó mọi chân lý toán học</p>
+<h3>Nền tảng của Tính khả tính Số 53</h3>
+<p>đều có thể suy ra là khả thi, thì bằng cách chạy qua tất cả các chứng minh có thể trong khi kiểm tra xem chứng minh nào đúng, chúng ta sẽ có thể quyết định xem một chương trình máy tính có dừng hay không. Điều đó là bất khả thi theo chứng minh của Turing.</p>
+<p>Tính không thể giải được của bài toán dừng Turing không chỉ có ý nghĩa nền tảng đối với lý thuyết tính khả tính mà còn có những hệ quả sâu sắc đối với các nền tảng toán học. Một ví dụ là bài toán thứ 10 của Hilbert, cũng được chứng minh là về nguyên tắc không thể giải được do bài toán dừng của Turing. Năm 1900, David Hilbert đã yêu cầu tìm một thuật toán có thể quyết định xem cái gọi là phương trình Diophantine có nghiệm hay không. Đây là bài toán thứ 10 trong danh sách nổi tiếng gồm 23 bài toán của ông vẫn chưa có lời giải vào đầu thế kỷ 20. Các phương trình đại số chỉ liên quan đến phép nhân, phép cộng và phép lũy thừa của các số nguyên được đặt theo tên của nhà toán học Hy Lạp thế kỷ thứ 3 Diophantos thành Alexandria.</p>
+<h3>Tính Không thể Giải được của Bài toán thứ 10 của Hilbert</h3>
+<p>Năm 1970, Matijasevic và Cudnovskij từ Viện V.A. Steklov ở Leningrad cũ (St. Petersburg) đã chứng minh rằng bài toán thứ 10 của Hilbert tương đương với bài toán dừng của Turing và do đó, không thể quyết định được.</p>
+<p>Họ đã sử dụng các kết quả của Davis, Putnam và Robinson (1961). Theo biểu diễn của Lagrange về các số tự nhiên dưới dạng tổng của bốn bình phương số nguyên, bài toán thứ 10 của Hilbert có thể được quy về sự tồn tại của nghiệm trong tập số tự nhiên.</p>
+<p>Một vị từ D được gọi là Diophantine nếu nó có thể định nghĩa được bằng các vị từ x + y = z, x · y = z, và xy = z cùng các phép toán logic ∨ (hoặc), ∧ (và), và ∃ (lượng từ tồn tại):</p>
+<p>D(x1, . . . , xn) ↔∃y1 . . . , yrP(x1, . . . , xn, y1, . . . , yr), với P đệ quy</p>
+<p>↔∃y1 . . . , yrχp(x1, . . . , xn, y1, . . . , yr) = 1, với hàm đặc trưng khả tính χp là một đa thức.</p>
+<p>Theo định lý của chúng ta về tính khả liệt kê đệ quy, suy ra rằng mọi vị từ Diophantine đều khả liệt kê đệ quy. Ngược lại, cũng có thể chứng minh rằng mọi vị từ khả liệt kê</p>
+<p>54 Trí tuệ Nhân tạo của Các hệ thống Phỏng thần kinh đều là Diophantine. Matijasevic và Cudnovskij đã sử dụng dãy Fibonacci để định nghĩa một vị từ Diophantine thích hợp. Bài toán dừng có thể được biểu diễn bằng một vị từ khả liệt kê, nhưng không khả quyết định. Do đó, vị từ Diophantine tương ứng cũng không khả quyết định.</p></div>
+<nav class="chapter-nav"><a href="ch02.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch04.html">Phần sau &#8594;</a></nav></div></body></html>

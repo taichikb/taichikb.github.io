@@ -1,0 +1,96 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 7 — Giới hạn số của tính toán thực — Hệ Thống Mô Phỏng Thần Kinh | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.12rem;font-weight:700;margin:1.4rem 0 .5rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 1rem;text-align:justify}
+.reader-body blockquote{margin:1.1rem 1.4rem;padding:.6rem 1rem;border-left:3px solid var(--teal);background:var(--soft);color:var(--mid);font-style:italic}
+.reader-body ul.vi-list{margin:0 0 1rem;padding-left:1.5rem}
+.reader-body ul.vi-list li{margin-bottom:.35rem}
+.reader-body figure.bookfig{margin:1.6rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-width:680px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto}
+.reader-body figure.bookfig figcaption{font-size:.85rem;color:var(--mid);margin-top:.7rem;line-height:1.6;text-align:left;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh — Klaus Mainzer"></div>
+<div class="book-meta-details"><h1>Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</h1><p class="sub"><em>Artificial Intelligence of Neuromorphic Systems: From Digital and Quantum Computing to Neuromorphic Computing</em> — Klaus Mainzer. Bản dịch tiếng Việt toàn văn.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/ai-of-neuromorphic-systems-mainzer.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Chương 7 — Giới hạn số của tính toán thực</h2><div class="reader-body"><h2>Chương 7</h2>
+<h3>Giới hạn Số của Tính toán Thực</h3>
+<p>Các giới hạn của tính khả tính số và tính khả quyết không chỉ liên quan đến những bài toán lý thuyết toán học như bài toán thứ 10 của Hilbert. Chẳng hạn, đối với chẩn đoán hình ảnh y khoa, các giới hạn về mặt nguyên lý của tính khả tính số có thể được chứng minh. Điều này được trình bày trong chương này thông qua ví dụ về các bài toán nghịch đảo trong chẩn đoán hình ảnh y khoa. Đúng là các phép xấp xỉ thực nghiệm có thể được thực hiện. Tuy nhiên, việc về nguyên lý không thể có một lời giải chính xác cũng mang lại những hệ quả thực tiễn trước nhu cầu ngày càng tăng về các lời giải chính xác hơn trong y học. Về mặt toán học, chứng minh về sự bất khả thi về nguyên lý một lần nữa phụ thuộc vào chủ nghĩa hình thức toán học được giả định.</p>
+<h3>Tính Khả tính Số của Số Thực</h3>
+<p>Lý thuyết tính khả tính số của số thực dựa trên tính khả tính Turing. Máy Turing là một mô hình lý thuyết của một cỗ máy tính toán thao tác các ký hiệu (ví dụ: các chữ số) trên một băng ghi theo các quy tắc tính toán đơn giản. Theo luận đề Church, bất kỳ thuật toán số nào cũng tương đương với một máy Turing. Một ví dụ là hàm đệ quy có thể tính được bởi các máy Turing. Các hàm đệ quy có thể được tạo ra bằng phép hợp hàm và đệ quy nguyên thủy trên cơ sở các hàm đơn giản như hàm hằng và hàm kế tiếp. Ngoài ra còn có các máy Turing vạn năng có thể mô phỏng bất kỳ máy Turing nào. Chúng là mô hình lý thuyết của một máy tính số đa năng về mặt kỹ thuật.</p>
+<p>Trong bước tiếp theo, cần định nghĩa các số thực khả tính. Số thực có thể được định nghĩa bằng những dãy số hữu tỉ nhất định.</p>
+<p>133</p>
+<p>134 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Một dãy (rn)n∈N các số hữu tỉ được gọi là khả tính nếu tồn tại các hàm đệ quy a, b, s với rn = (−1)s(n) a(n)</p>
+<p>b(n) và b(n) ̸= 0 với mọi n ∈ N (Boche và cộng sự, 2023, tr. 7 trở đi).</p>
+<p>Một dãy (rn)n∈N các số hữu tỉ hội tụ hiệu quả về một số thực x nếu tồn tại một hàm đệ quy e sao cho |rn − x| ≤ 2−N với mọi N ∈ N và n ≥ e(N).</p>
+<p>Một số thực x là khả tính nếu tồn tại một dãy khả tính (rn)n∈N các số hữu tỉ hội tụ hiệu quả về x. Trong trường hợp này, dãy (rn)n∈N được gọi là biểu diễn cho số thực x. Tập hợp Rc gồm tất cả các số thực khả tính là một tập con của lớp R các số thực với số lượng phần tử đếm được. Rc trù mật trong R vì mọi số hữu tỉ đều khả tính.</p>
+<p>Trong hình học, một vectơ v ∈ Rm là khả tính nếu mỗi thành phần của nó đều khả tính. Đặc biệt, một số phức c = x + iy là khả tính nếu phần thực x và phần ảo y của nó đều khả tính. Tập hợp tất cả các số phức khả tính được ký hiệu là Cc.</p>
+<p>Nhìn chung, sự bằng nhau của hai số thực khả tính không thể được quyết định bằng thuật toán. Nhưng đối với sự bất đẳng thức, có thể quyết định một cách hiệu quả đối với các số thực khả tính x và y xem x < y hay x > y khi x ̸= y.</p>
+<p>Trong bước tiếp theo, các dãy khả tính của số thực được giới thiệu.</p>
+<p>Cho (xn)n∈N, (xn,k)n,k∈N lần lượt là một dãy và một dãy hai chỉ số các số thực với xn,k → xn khi k → ∞ và n ∈ N. Khi đó, (xn,k)n,k∈N hội tụ về (xn)n∈N một cách hiệu quả theo k và n nếu tồn tại một hàm đệ quy e với |rn,k − xn| ≤ 2−N với mọi n, N ∈ N, và k ≥ e(n, N).</p>
+<p>Một dãy số thực (xn)n∈N là khả tính nếu tồn tại một dãy hai chỉ số khả tính các số hữu tỉ (rn,k)n,k∈N sao cho rn,k hội tụ về xn một cách hiệu quả theo k và n.</p>
+<p>Trong hình học, một dãy vectơ (vn)n∈N như một tập con của Rm là khả tính nếu mỗi thành phần của nó là một dãy khả tính. Đặc biệt, một dãy số phức là khả tính nếu phần thực và phần ảo là các dãy khả tính.</p>
+<p>Điều đáng chú ý là giới hạn của một dãy khả tính các số thực không nhất thiết phải khả tính. Vì tập Rc các số khả tính trù mật trong lớp R các số thực,</p>
+<h3>Giới hạn Số của Tính toán Thực 135</h3>
+<p>đối với một số không khả tính u ∈ R\Rc, ắt phải có một dãy các số khả tính (xn)n∈N với |u − xn| ≤ 2−n với mọi n ∈ N. Mặc dù chúng ta biết rằng dãy hội tụ (xn)n∈N tồn tại, nhưng nó không khả tính với tư cách là một dãy bất chấp tính khả tính của mọi phần tử.</p>
+<h3>Tính Khả tính Banach–Mazur</h3>
+<p>Các bài toán thực tiễn thường được biểu diễn dưới dạng một quan hệ đầu vào–đầu ra. Một hàm f : I → Rm c với miền đầu vào I ⊂ Rm c được gọi là khả tính Banach–Mazur nếu f ánh xạ các dãy khả tính (tn)n∈N từ I vào các dãy khả tính ((tn))n∈N trong Rm c (phiếm hàm Banach–Mazur, Bách khoa toàn thư Toán học). Dạng yếu nhất của tính khả tính trên các số khả tính là tính khả tính Banach–Mazur. Nếu một hàm đơn trị không khả tính Banach–Mazur, thì nó không khả tính trên máy tính số đối với bất kỳ khái niệm khả tính nào.</p>
+<p>Đối với các ứng dụng thực tiễn, khái niệm một hàm với giá trị hàm duy nhất có thể không phù hợp để toán học hóa một bài toán. Ví dụ là các bài toán tối ưu hóa với các lời giải cho một đầu vào đã cho không phải là duy nhất. Trong trường hợp này, cần xem xét một hàm đa trị, tuy nhiên vẫn có thể được định nghĩa bằng các hàm tập hợp:</p>
+<p>Một hàm đa trị f từ tập A đến tập B (viết tắt: A ⇒ B) là một hàm f : A → ℘(B) với tập lũy thừa ℘(B) của B sao cho f(a) khác rỗng với mọi a ∈ A.</p>
+<p>Đối với một hàm đa trị f : X ⇒ Y, với mỗi đầu vào x thuộc miền xác định của f tồn tại ít nhất một đầu ra y∗ ∈ f(x) ⊂ ℘(Y). Khi đó, một thu hẹp đơn trị của f có thể được định nghĩa là một hàm ˜f : X → Y với x −→ y∗. Tập hợp tất cả các hàm đơn trị đối với hàm đa trị f được ký hiệu là Mf.</p>
+<p>Cho một bài toán với quan hệ đầu vào–đầu ra được mô tả bởi một hàm đa trị f : X ⇒ Y. Hàm đa trị f giải được bằng thuật toán trên máy Turing theo nghĩa Banach–Mazur nếu tồn tại một hàm ˜f ∈ Mf khả tính Banach–Mazur (Boche và cộng sự, 2023, tr. 10).</p>
+<p>136 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<h3>Giới hạn Logic–Toán học của Tính Khả tính Số</h3>
+<p>Trong logic toán học, người ta biết rõ rằng có những bài toán logic–toán học không thể quyết định được bởi máy Turing (ví dụ: bài toán dừng, bài toán thứ 10 của Hilbert). Do đó, chúng cũng không thể quyết định được bởi một máy tính số kỹ thuật. Hóa ra cũng có những bài toán thực tế trong đời thực về nguyên lý không thể quyết định được trên máy tính số. Nguyên nhân không nằm ở những hạn chế kỹ thuật–thực tiễn của phần cứng mà nằm ở nền tảng của toán học số được giả định.</p>
+<p>Một ví dụ là chẩn đoán hình ảnh y khoa bằng chụp cộng hưởng từ (MRI) hoặc chụp cắt lớp vi tính (CT) (Ongie và cộng sự, 2020). Cho một đối tượng x (ví dụ: cơ quan nội tạng) được cho bởi các phép đo nhiễu y = Ax + e ∈ Cm với ma trận A ∈ Cm×N (m < N) của các phương pháp đo (ví dụ: biến đổi Fourier), vectơ nhiễu e ∈ Cm, vectơ ảnh đo được y ∈ Cm, và x ∈ CN là đối tượng cần tái tạo (thường được cho dưới dạng ảnh rời rạc đã vectơ hóa). Làm thế nào để có thể tái tạo cơ quan ban đầu từ các phép đo nhiễu? Về mặt toán học, việc tái tạo đối tượng nghịch đảo (ví dụ: một cơ quan nội tạng) được giải quyết bằng một bài toán tối ưu hóa đối với một toán tử lấy mẫu cho trước A ∈ Cm×N và một vectơ phép đo y ∈ Cm.</p>
+<p>Một cách tiếp cận khả thi là cực tiểu hóa một bài toán bình phương tối thiểu với arg min∥Ax − y∥l2 cho x ∈ Cm và chuẩn l2 bình phương (Candès và cộng sự, 2006). Nhiều quy trình thực tiễn đã được đề xuất, nhưng đi kèm với các hạn chế và ràng buộc cho các ứng dụng cụ thể. Những đột phá của học máy dường như mở ra một hệ hình mới cho các chiến lược giải quyết.</p>
+<p>Trong lý thuyết học cổ điển, mục tiêu là rút ra một thuật toán học từ một tập mẫu hữu hạn gồm các đặc trưng và nhãn tương ứng để tổng quát hóa các dự đoán cho dữ liệu chưa từng thấy. Khả năng tổng quát hóa được đo bằng một hàm mất mát phụ thuộc vào dữ liệu và một mô hình hoạt động tốt trên dữ liệu huấn luyện.</p>
+<h3>Tính Khả tính của Các Bài toán Nghịch đảo</h3>
+<p>Làm thế nào để ánh xạ tái tạo của các bài toán nghịch đảo (ví dụ: trong khoa học hình ảnh) có thể được tính toán bởi các thuật toán học của mạng nơ-ron sâu?</p>
+<h3>Giới hạn Số của Tính toán Thực 137</h3>
+<p>Do đó, trước hết, mạng nơ-ron được giới thiệu liên quan đến ứng dụng cho các bài toán nghịch đảo trong khoa học hình ảnh (Boche và cộng sự, 2023, tr. 12 trở đi).</p>
+<p>Về mặt toán học, một mạng nơ-ron truyền thẳng với L lớp là một ánh xạ Φ : Rd → Rd với Φ(x) = TLρ(TL−1ρ(. . . ρ( T1x) . . .)) và x ∈ Rd, trong đó Tl : Rnl−1 → Rnl với 1 ≤ l ≤ L là các ánh xạ afin-tuyến tính Tlx = Wlx + bl với các trọng số Wl ∈ Rnl−nl−1 và các độ lệch bl ∈ Rnl. Hàm kích hoạt phi tuyến ρ : R → R tác động lên từng thành phần của vectơ. Độ sâu của mạng được ký hiệu là L và bề rộng của mạng là n = (n1, . . . , nL) với số chiều đầu vào n0 = d và số chiều đầu ra nL = m.</p>
+<p>Trong một mạng nơ-ron truyền thẳng kết nối đầy đủ, các tiền kích hoạt Φ(l) và các kích hoạt ˜Φ(l) của các nơ-ron ở lớp l biểu thị các phép tính trung gian, trong đó Φ(1)(x) = W1x + b1 và Φ(l+1)(x) = Wl+1 ˜Φ(l)x + bl+1 với ˜Φ(l)(x) = ρ(Φ(1)(x)) cho 1 ≤ l ≤ L − 1. Để tính toán ánh xạ tái tạo của một bài toán nghịch đảo, mạng được huấn luyện bằng một tập hữu hạn các cặp mẫu phép đo y = Ax + e và các ảnh tương ứng x với tập huấn luyện τ = {(yj, xj) | yj = Axj + e, 1 ≤ j ≤ R}.</p>
+<p>Một mạng nơ-ron cũng có thể được áp dụng cho đầu vào giá trị phức y ∈ Cm và đầu ra x ∈ Cm. Trong trường hợp này, phần thực và phần ảo của y và x cho phép chúng ta quy giản bài toán về các hàm mạng giá trị thực từ R2m đến R2N.</p>
+<p>Dựa trên dữ liệu huấn luyện, một mạng Φ được huấn luyện bằng cách giải bài toán cực tiểu hóa arg minΦ</p>
+<p>R l=1 L(˜Φ(yj), xj) với hàm mất mát (ví dụ: mất mát l2)</p>
+<h3>Ll2(˜Φ(yj), xj) := ∥˜Φ(yj) − xj∥2</h3>
+<p>l2.</p>
+<p>Các quy trình số như các phương pháp kiểu gradient được sử dụng để giải bài toán tối ưu hóa. Câu hỏi đặt ra là liệu ánh xạ tái tạo ảnh x từ các phép đo y có thể được xấp xỉ một cách hiệu quả bởi một mạng nơ-ron trên phần cứng số hay không và liệu mạng này có thể được tính toán bằng thuật toán hay không. Dưới một số điều kiện rất tổng quát, ánh xạ được thực hiện bởi một mạng</p>
+<p>138 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh nơ-ron là khả tính. Các trọng số, độ lệch và hàm kích hoạt (ví dụ: ReLU(x) := max{x, 0}) đều khả tính. Mạng nơ-ron với tư cách là phép hợp của các hàm khả tính cùng phép nhân ma trận, phép cộng vectơ và việc áp dụng hàm kích hoạt cũng khả tính. Vì quá trình huấn luyện được thực thi trên máy tính số, các trọng số và độ lệch học được cũng khả tính.</p>
+<p>Tuy nhiên, câu hỏi then chốt là liệu một thuật toán huấn luyện hiệu quả của mạng nơ-ron có thể tồn tại hay không: Cho trước các phép đo của một bức ảnh, liệu có tồn tại một mạng nơ-ron xấp xỉ ánh xạ tái tạo của đối tượng được chụp hay không, và liệu mạng này có thể được huấn luyện bởi một thuật toán theo nghĩa Banach–Mazur hay không? Điểm mấu chốt là liệu thuật toán có thể áp dụng cho bất kỳ bài toán nghịch đảo nào có số chiều cho trước chứ không chỉ cho một bài toán cố định. Trong trường hợp này, thuật toán không thể phụ thuộc vào các đặc trưng của những bài toán nghịch đảo cụ thể. Thuật toán tổng quát chỉ có thể tồn tại nếu ánh xạ tái tạo của bất kỳ bài toán nghịch đảo nào có số chiều cho trước đều khả tính.</p>
+<p>Để giải một bài toán nghịch đảo bằng một mạng nơ-ron xấp xỉ, cần có một mẫu hữu hạn của tập huấn luyện dựa trên mô tả bài toán. Với một toán tử lấy mẫu A cho trước và một tham số tối ưu hóa μ, tập huấn luyện τP chứa hữu hạn các cặp phép đo yj và các lời giải tương ứng xj của một bài toán tối ưu hóa P với τP = {(yj, xj) | xj ∈ P(A, yj, μ), 1 ≤ j ≤ R} và tập các điểm cực tiểu P(A, yj, μ) cho bài toán tối ưu hóa P.</p>
+<p>Do đó, câu hỏi then chốt là liệu với bất kỳ toán tử lấy mẫu A cho trước và một mẫu hữu hạn các phép đo nào, có tồn tại một mạng nơ-ron xấp xỉ ánh xạ tái tạo và có thể được huấn luyện bởi một thuật toán khả tính (theo nghĩa Banach–Mazur) hay không. Một thuật toán như vậy của quy trình huấn luyện chỉ có thể tồn tại nếu ánh xạ tái tạo của một bài toán nghịch đảo là khả tính.</p>
+<p>Về mặt hình thức, các bài toán tối ưu hóa có thể được định nghĩa bởi các hàm đa trị. Do đó, ánh xạ tái tạo là hàm đa trị ΞP,µ : Cm×N × Cm ⇒ CN với (A, μ) → P(A, y, μ) cho một toán tử lấy mẫu A ∈ Cm×N cho trước và một phép đo liên kết y ∈ Cm. Tập các điểm cực tiểu P(A, y, μ) được biểu diễn bởi ΞP,µ(A, y) hoặc với A cho trước là ΞP,A,µ(y).</p>
+<h3>Giới hạn Số của Tính toán Thực 139</h3>
+<p>Đối với các ánh xạ Ξ mô tả lời giải của các bài toán nghịch đảo thông qua các bài toán tối ưu hóa, có thể đưa ra các điều kiện bất khả xấp xỉ tổng quát theo nghĩa Banach–Mazur. Trong một chứng minh phản chứng, có thể chỉ ra rằng giả định về tính khả tính Banach–Mazur của các ánh xạ này dẫn đến mâu thuẫn với các điều kiện đó (Boche và cộng sự, 2023, tr. 15–25). Hơn nữa, khả năng xấp xỉ bằng thuật toán ánh xạ lời giải của các bài toán nghịch đảo theo nghĩa Banach–Mazur có thể bị loại trừ. Vì vậy, tồn tại những giới hạn tính toán nghiêm ngặt trong việc giải các bài toán nghịch đảo trên phần cứng số.</p>
+<p>Trang này được để trống có chủ đích Trang này được để trống có chủ đích Trang này được để trống có chủ đích Trang này được để trống có chủ đích</p></div>
+<nav class="chapter-nav"><a href="ch07.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch09.html">Phần sau &#8594;</a></nav></div></body></html>

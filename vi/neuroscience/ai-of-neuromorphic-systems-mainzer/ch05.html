@@ -1,0 +1,216 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 4 — Nền tảng của tính toán khả tính thực — Hệ Thống Mô Phỏng Thần Kinh | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.12rem;font-weight:700;margin:1.4rem 0 .5rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 1rem;text-align:justify}
+.reader-body blockquote{margin:1.1rem 1.4rem;padding:.6rem 1rem;border-left:3px solid var(--teal);background:var(--soft);color:var(--mid);font-style:italic}
+.reader-body ul.vi-list{margin:0 0 1rem;padding-left:1.5rem}
+.reader-body ul.vi-list li{margin-bottom:.35rem}
+.reader-body figure.bookfig{margin:1.6rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-width:680px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto}
+.reader-body figure.bookfig figcaption{font-size:.85rem;color:var(--mid);margin-top:.7rem;line-height:1.6;text-align:left;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh — Klaus Mainzer"></div>
+<div class="book-meta-details"><h1>Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</h1><p class="sub"><em>Artificial Intelligence of Neuromorphic Systems: From Digital and Quantum Computing to Neuromorphic Computing</em> — Klaus Mainzer. Bản dịch tiếng Việt toàn văn.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/ai-of-neuromorphic-systems-mainzer.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Chương 4 — Nền tảng của tính toán khả tính thực</h2><div class="reader-body"><h2>Chương 4</h2>
+<h3>Cơ sở của Tính khả tính Thực</h3>
+<p>Tính khả tính Turing của máy tính số về mặt toán học dựa trên số học của các số kỹ thuật số. Trong chương này, tính khả tính của máy tính tương tự được truy nguyên về mặt toán học tới giải tích của các số thực và số phức. Giống như máy Turing của tính khả tính số, một mô hình máy lý thuyết cho các số thực và số phức được giới thiệu. Về mặt lịch sử, các thuật toán thực và phức đã được sử dụng trong toán học số từ rất lâu trước khi có các thuật toán số. Điều này có nghĩa là, về nguyên tắc, có thể phân biệt giữa các bài toán khả quyết và bất khả quyết trong tính toán thực (tương tự). Một định lý của nhà logic học Tarski (1951), theo đó các bài toán có thể được định nghĩa bằng cách sử dụng các tập hợp số thực và số phức cũng là khả quyết, đóng vai trò trung tâm cho ý tưởng này. Ngược lại, theo Gödel, có những bài toán có thể được định nghĩa trên các tập hợp số kỹ thuật số nhưng không thể quyết định được bằng kỹ thuật số (1931). Điều này cho thấy tính khả quyết và tính khả tính của các bài toán phụ thuộc vào hình thức luận toán học được giả định.</p>
+<p>Toán học thông thường không thể được quy giản hoàn toàn về số học bậc hai. Từ góc độ tính toán, nó không thể được quy giản hoàn toàn về thế giới kỹ thuật số của máy tính. Vậy còn tư duy toán học vượt ra ngoài tính khả tính Turing thì sao? Còn các lý thuyết toán học dựa trên, chẳng hạn, các trường R và C tương ứng của số thực và số phức thì sao (Ebbinghaus et al., 1991)? Lý thuyết toán học về các hệ thống động lực phức hợp dựa trên các phương trình vi phân liên tục trên R và C (Mainzer, 2007a). Hầu hết các thuật toán trong toán học (ví dụ: Newton, Euler, Gauss) đều được định nghĩa trên R và C. Nhưng lý thuyết logic về tính khả quyết và tính khả tính lại được định nghĩa trên các số kỹ thuật số Z2.</p>
+<p>75</p>
+<p>76 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Sự xung đột giữa mô hình rời rạc và mô hình liên tục của thế giới bắt nguồn sâu xa từ buổi đầu của khoa học hiện đại. Các triết gia cổ đại theo thuyết nguyên tử (Democritus và cộng sự) tin vào một thế giới gồm các hạt rời rạc tương tác với nhau như những khối xây dựng không thể phân chia (nguyên tử). Họ bị chỉ trích bởi các triết gia của tính liên tục (Aristotle và cộng sự), những người cho rằng tính liên tục không thể được giải thích bằng một chuỗi các hạt ngọc trai liên kết với nhau. Aristotle mô tả sự thay đổi trong tự nhiên bằng động lực học liên tục. Vào buổi đầu của khoa học hiện đại, các nhà vật lý giả định một thế giới cơ học gồm các nguyên tử tương tác. Nhưng về mặt toán học, các nguyên tử được coi là các chất điểm được xác định bởi các phương trình vi phân liên tục. Leibniz, với tư cách là người phát minh ra phép tính vi phân, đã cố gắng bắc cầu giữa thế giới rời rạc và thế giới liên tục bằng khái niệm triết học về đơn tử (monad), vốn được biểu diễn về mặt toán học bằng các đại lượng vô cùng nhỏ nhưng khác không gọi là vi phân (Mainzer, 1981).</p>
+<p>Tính toán khoa học trong vật lý và hóa học chủ yếu dựa trên các hàm liên tục. Trong các trường hợp thực tế, nghiệm của các phương trình (thực hoặc phức) của chúng chỉ có thể được xấp xỉ bằng các thuật toán của giải tích số (ví dụ: phương pháp Newton). Do đó, các quy trình của giải tích số phụ thuộc mạnh mẽ vào khái niệm liên tục của số thực. Nhưng cho đến ngày nay, giải tích số vẫn là một tập hợp các quy trình giải quyết vấn đề thành công và hiệu quả cao nhưng lại thiếu một nền tảng logic chặt chẽ. Lý thuyết rời rạc về tính khả tính được đặt nền móng vững chắc bởi khái niệm rời rạc của máy Turing (luận đề Church).</p>
+<p>Bên cạnh các quy trình thuật toán, còn có một truyền thống lâu đời về các bài toán khả quyết trong giải tích và đại số. Từ thời cổ đại, tính khả quyết của các phép dựng hình học như cầu phương hình tròn, chia ba góc, hay bài toán Delian đã được thảo luận. Nhưng chính số thực siêu việt π và chứng minh của Galois về tính không giải được bằng căn thức của các phương trình đa thức bậc 5 trở lên đã quyết định các bài toán này (Mainzer, 1980). Do đó, nền tảng của các thuật toán với số thực phải được làm rõ.</p>
+<h3>Cơ sở của Tính khả tính Thực 77</h3>
+<p>John von Neumann, với tư cách là người tiên phong về máy tính và nhà toán học, đã cảm nhận được khoảng cách giữa thế giới kỹ thuật số của logic và máy tính với thế giới “thực” của toán học thông thường khi ông tuyên bố trong Bài giảng Hội nghị Hixon năm 1948:</p>
+<p>Ngày nay tồn tại một hệ thống logic hình thức rất công phu, và cụ thể là logic được áp dụng cho toán học. Đây là một ngành học có nhiều mặt tốt, nhưng cũng có điểm yếu nghiêm trọng. . . . Lý do là nó xử lý các khái niệm cứng nhắc, tất-cả-hoặc-không-có-gì, và có rất ít sự tiếp xúc với khái niệm liên tục của số thực hoặc số phức, tức là với giải tích toán học. Tuy nhiên, giải tích lại là phần thành công nhất về mặt kỹ thuật và được trau chuốt kỹ lưỡng nhất của toán học. . . .” (Neumann, 1948).</p>
+<p>Roger Penrose đã lập luận chính xác theo hướng này khi ông xem xét lý thuyết hỗn loạn trong cuốn sách The Emperor’s New Mind của mình (Penrose, 1991, tr. 124):</p>
+<p>Bây giờ chúng ta chứng kiến trong một tập hợp có vẻ ngoài phức tạp phi thường, cụ thể là tập Mandelbrot. Mặc dù các quy tắc đưa ra định nghĩa của nó đơn giản đến ngạc nhiên, bản thân tập hợp lại biểu lộ vô số cấu trúc vô cùng tinh vi. Liệu đây có thể là một ví dụ về tập hợp không đệ quy (tức là bất khả quyết), thực sự được bày ra trước mắt phàm trần của chúng ta không?</p>
+<p>Penrose bác bỏ giải tích đệ quy bởi vì trong trường hợp này, một số thực (hoặc phức) phải được nhập vào máy Turing từng bit một: Các vấn đề nảy sinh khi người ta muốn quyết định xem hai số có bằng nhau hay không. Cũng rất có vấn đề khi quy giản một bài toán thực (tương ứng phức) về “bộ khung” hữu tỷ của nó, bởi vì, chẳng hạn, đường cong x3 + y3 = 1 không có điểm hữu tỷ nào với cả x và y đều dương.</p>
+<p>Do đó, chúng ta cần một khái niệm tổng quát về máy trên một vành R (ví dụ: vành Z hoặc các trường R và C) để thống nhất lý thuyết về các hệ thống động lực phức hợp với độ phức tạp tính toán trong giải tích số và vật lý toán học. Một mô hình chính tắc về tính toán trên tập số thực đã được giới thiệu bởi Leonore Blum, Mike Shub và Steve Smale (Blum et al., 1989). Theo lập luận của họ, chúng ta bắt đầu với các câu hỏi: Làm thế nào người ta có thể quyết định xem một phương trình vi phân có hỗn loạn hay không? Tập Mandelbrot có khả quyết hay không (Mandelbrot, 1990)?</p>
+<p>78 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<h3>Thuật toán Quyết định của Tập Mandelbrot</h3>
+<h3>Xét một hệ động lực phức với hàm trạng thái (tự đồng cấu)</h3>
+<p>gc : C →C(C = R × R) với gc(z) = z2 + c.</p>
+<p>Tập Mandelbrot M bao gồm tất cả các số phức c sao cho dãy (“quỹ đạo”) gc(0) = c, g2 c(0) = (c2 + c)2 + c, . . . vẫn bị chặn. M là tập hợp tất cả các đầu vào c của lưu đồ trong Hình 5 không dừng lại. (Nếu quỹ đạo từng thoát ra khỏi đĩa bán kính 2, nó sẽ đi ra vô cùng.) Lưu đồ được định nghĩa bởi một sơ đồ hữu hạn với một nút nhập, một nút tính toán, một nút rẽ nhánh và một nút xuất (Hình 1). Nó có khả năng tiếp nhận và so sánh các số phức cũng như thực hiện các phép toán số học cơ bản trên chúng. Tập dừng của lưu đồ là tập hợp các đầu vào mà tại đó quá trình tính toán (“quỹ đạo”) dừng lại.</p>
+<p>c(0) = c2 + c, g3</p>
+<p>Bài toán quyết định của tập Mandelbrot cần một thuật toán (“máy”) mà khi cho đầu vào c (số phức), sẽ quyết định trong một số bước hữu hạn xem c có thuộc M hay không (Hình 2).</p>
+<p>Phương pháp Newton là một thuật toán tìm kiếm điển hình của giải tích số và tính toán khoa học (Goldstine, 1977). Đây là một phương pháp lặp để xấp xỉ nghiệm của các phương trình phi tuyến. Do đó, nó là một ví dụ kinh điển về việc bắc cầu giữa các thuật toán kỹ thuật số của logic và lý thuyết tính khả tính với các thuật toán thực của toán học thông thường:</p>
+<p>Hình 1. Lưu đồ của tập Mandelbrot M (Mainzer, 2018, tr. 204).</p>
+<h3>Cơ sở của Tính khả tính Thực 79</h3>
+<h3>Phương pháp Newton trên tập số thực R và số phức C</h3>
+<p>Cho một xấp xỉ ban đầu a tới một nghiệm của phương trình đa thức f(z) = 0. Phương pháp Newton thay thế a bằng nghiệm chính xác a′ của xấp xỉ tuyến tính tốt nhất đối với f được cho bởi tiếp tuyến của đồ thị hàm f tại điểm (a, f(a)) trong Hình 3. Với a′, phép xấp xỉ được lặp lại để tạo ra a′′, v.v.</p>
+<p>Hình 2. Thuật toán quyết định cho M (Mainzer, 2018, tr. 204).</p>
+<figure class="bookfig"><img src="img/img_p090_1.png" alt="" loading="lazy"></figure>
+<p>Hình 3. Phương pháp Newton (Mainzer, 2018, tr. 205).</p>
+<p>80 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Thuật toán được định nghĩa bởi tự đồng cấu Newton Nf: C −→C với</p>
+<h3>Nf(z) = z −f(z)</h3>
+<p>f ′(z).</p>
+<p>Phương pháp Newton nói chung không hội tụ.</p>
+<p>Máy tìm kiếm của phương pháp Newton trên tập số thực R và số phức C</p>
+<p>Máy của Newton được biểu diễn bởi một đồ thị có hướng hữu hạn trong Hình 4 với bốn loại nút – nhập, tính toán, rẽ nhánh và xuất – mỗi nút có các hàm và điều kiện liên kết trên các cạnh đi vào và đi ra.</p>
+<p>Với một đầu vào z0, máy tạo ra quỹ đạo z0, z1 = Nf(z0), z2 = Nf(z1), . . . , zk+1 = Nf(zk) = N k+1 f (z0), . . .. Quy tắc dừng là “dừng nếu |f(zk| < ε và xuất ra zk</p>
+<p>′′. Nếu Nf(zk) không xác định tại một bước nào đó, thì không có đầu ra.</p>
+<p>Máy nói chung sẽ không dừng trên mọi đầu vào (ví dụ: các vòng lặp vô hạn). Tập Ω ⊂C được gọi là tập dừng của máy khi và chỉ khi nó chứa tất cả các đầu vào mà máy dừng lại với một đầu ra. Ánh xạ đầu vào–đầu ra ϕ được định nghĩa trên Ω với ϕ : Ω −→C.</p>
+<p>Máy của Newton (Hình 5) thực chất là một máy trên R với C = R2 làm không gian đầu vào, đầu ra và trạng thái. Tự đồng cấu Newton (nút tính toán) được cho bởi một hàm hữu tỷ (thương của</p>
+<p>Hình 4. Thuật toán tìm kiếm cho phương pháp Newton (Mainzer, 2018, tr. 206).</p>
+<h3>Cơ sở của Tính khả tính Thực 81</h3>
+<p>Hình 5. Nút tính toán của máy Newton (Mainzer, 2018, tr. 206).</p>
+<p>hai đa thức):</p>
+<p>g = (g1, g2): R2 −→R2, với g1(x, y) = Re Nf(x + iy) và g2(x, y) = Im Nf(x + iy).</p>
+<p>Những ví dụ về máy dựa trên R và C này có thể được tổng quát hóa về mặt toán học cho một vành giao hoán có thứ tự R. Các ví dụ là các số nguyên R = Z và các số thực R = R. Tổng trực tiếp của R với chính nó n lần được ký hiệu là Rn. Những ví dụ về hệ thống đồ thị này có thể được tổng quát hóa thành một máy hữu hạn chiều trên một vành (Blum et al., 1998).</p>
+<h3>Định nghĩa Máy Đồ thị Hữu hạn Chiều trên Vành R</h3>
+<p>Một máy đồ thị hữu hạn chiều M trên R (vành giao hoán có thứ tự hoặc trường có đơn vị) bao gồm một đồ thị có hướng hữu hạn với bốn loại nút (nhập, tính toán, rẽ nhánh và xuất) và ba không gian (không gian đầu vào IM = Rn, không gian trạng thái SM = Rm, và không gian đầu ra OM = Rl). Gắn với mỗi nút là các ánh xạ của những không gian này và các nút tiếp theo:</p>
+<p>(1) Nút nhập: Điều này liên quan đến ánh xạ tuyến tính I: IM −→SM và nút tiếp theo duy nhất β1.</p>
+<p>82 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh (2) Nút tính toán n: Điều này liên quan đến ánh xạ đa thức (hoặc hữu tỷ)</p>
+<p>gn: SM −→SM và nút tiếp theo duy nhất βn. Nếu R là một trường, gn có thể là một ánh xạ hữu tỷ. (3) Nút rẽ nhánh n: Điều này liên quan đến hàm đa thức khác không hn: SM −→R. Nút tiếp theo dọc theo cạnh đi ra “có” β+ n gắn với điều kiện hn(z) ≥0 và nút tiếp theo dọc theo cạnh đi ra “không” β− n gắn với hn(z) < 0. (4) Nút xuất n: Điều này liên quan đến ánh xạ tuyến tính On: SM −→OM không có nút tiếp theo.</p>
+<p>Một ánh xạ đa thức g: Rm −→Rm được cho bởi m đa thức gj: Rm −→R(1 ≤j ≤m). Một ánh xạ hữu tỷ (trong trường hợp R là một trường) được cho bởi một cặp đa thức cố định (pj, qj) với gj(x) = pj(x)</p>
+<p>qj(x). Nếu R là một vành hoặc trường không có thứ tự (ví dụ: R = C), trong (3), β+ n gắn với hn(z) = 0 và β− n gắn với hn(z)̸ = 0.</p>
+<h3>Định nghĩa Tập dừng của một Máy Đồ thị</h3>
+<p>Nếu M là một máy đồ thị hữu hạn chiều trên R, tập dừng của M được định nghĩa là tập con ΩM của không gian đầu vào IM gồm tất cả các y, tại đó phép tính của M dừng lại.</p>
+<p>Một ánh xạ đầu vào–đầu ra ϕM: ΩM →OM của tập dừng ΩM trong không gian đầu ra OM định nghĩa quy trình tính toán của M. Đối với đầu vào y ∈IM, phép tính trên y bắt đầu với trạng thái I(y) ∈SM tại nút 1:</p>
+<p>• Nếu β(1) = n là một nút tính toán, phép tính gn được thực hiện trên trạng thái x = I(y) để tạo ra gn(x), giá trị này thay thế x. • Nếu n là một nút rẽ nhánh và hn(x) < 0, nút tiếp theo là β−(n). Ngược lại, nút tiếp theo là β+(n). Trong cả hai trường hợp, trạng thái tiếp theo vẫn là x. • Quá trình tính toán tiếp tục cho đến khi đạt đến một nút xuất n và On(x) đối với một x ∈SM nào đó được tính. Trong trường hợp này, phép tính được gọi là dừng với ϕM(x) = On(x).</p>
+<h3>Cơ sở của Tính khả tính Thực 83</h3>
+<figure class="bookfig"><img src="img/img_p094_1.png" alt="" loading="lazy"></figure>
+<p>Hình 6. Sửa đổi cho các đa thức không xác định (Mainzer, 2018, tr. 208).</p>
+<p>Nếu đối với một nút tính toán n nào đó, giá trị hàm gn(x) không xác định vì mẫu số đa thức h bằng 0 tại x, chúng ta có thể sửa đổi máy bằng cách thay đổi như trong Hình 6.</p>
+<p>Trong một máy vô hạn chiều, không gian đầu vào và không gian đầu ra bằng các tổng trực tiếp đếm được vô hạn R∞với các phần tử là các dãy vô hạn. Bốn nút giống như trước đây trong trường hợp hữu hạn chiều. Loại nút thứ năm được bổ sung để xử lý các dãy hữu hạn nhưng không bị chặn.</p>
+<h3>Định nghĩa Máy Đồ thị trên Vành R</h3>
+<p>Một máy đồ thị M trên R là một đồ thị có hướng liên thông hữu hạn, chứa bốn loại nút như trong trường hợp hữu hạn chiều (nhập, tính toán, rẽ nhánh và xuất) và một tập ΣM gồm các nút dịch chuyển với các ánh xạ đi kèm, có thể xử lý các dãy hữu hạn nhưng không bị chặn (Blum et al., 1989).</p>
+<p>Không gian đầu vào IM và không gian đầu ra OM là hợp rời R∞= ∪n≥0Rn(R0 = {0}).</p>
+<p>84 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Không gian trạng thái SM là tổng trực tiếp vô hạn hai phía trên R với các phần tử x = (. . . , x−2, x−1, x0. x1, x2, . . .) với xk = 0 khi |k| đủ lớn và dấu đánh dấu “.” giữa x0 và x1.</p>
+<p>Mỗi nút dịch chuyển n gắn với một phép dịch chuyển, dịch trái σl và dịch phải σr, trong đó σl(x)i = xi+1 và σr(x)i = xi−1.</p>
+<p>Chiều KM và bậc DM của M là giá trị lớn nhất của các chiều và các bậc của tất cả các ánh xạ gắn với các nút tính toán và nút rẽ nhánh của nó.</p>
+<p>Một máy Turing cổ điển là một máy trên Z2. Do đó, một máy đồ thị trên R có thể được coi là một máy Turing “thực”.</p>
+<p>Ánh xạ đầu vào–đầu ra ϕM đối với máy vô hạn chiều M được định nghĩa tương tự như đối với các máy hữu hạn chiều.</p>
+<h3>Định nghĩa Tính khả tính trên Vành R</h3>
+<p>Với l, m ≤∞, một ánh xạ bộ phận ϕ : Rl →Rm được gọi là khả tính trên R khi và chỉ khi tồn tại một máy M trên R sao cho miền xác định Ωϕ của ánh xạ ϕ bằng tập dừng ΩM của máy M, tức là Ωϕ = ΩM với ϕM(x) = ϕ(x) với mọi x ∈Ωϕ. Trong trường hợp này, máy M được gọi là tính toán ánh xạ ϕ.</p>
+<p>Các máy M và M′ được gọi là tương đương khi và chỉ khi chúng tính toán cùng một ánh xạ.</p>
+<h3>Định nghĩa Tính Đệ quy Đếm được trên Vành R</h3>
+<p>Một tập con Y ⊂Rn được gọi là đệ quy đếm được trên R khi và chỉ khi nó bằng tập dừng ΩM của một máy M nào đó trên R, tức là Y = ΩM.</p>
+<h3>Định nghĩa Tính Khả quyết trên Vành R</h3>
+<p>Một tập con Y ⊂Rn được gọi là khả quyết khi và chỉ khi Y và phần bù của nó đều đệ quy đếm được trên R.</p>
+<p>Có thể chứng minh được rằng vành các số nguyên Z là một tập con khả quyết của R trên R đối với bất kỳ vành Archimedes R nào.</p>
+<h3>Cơ sở của Tính khả tính Thực 85</h3>
+<h3>Định nghĩa Mã Máy Đồ thị trên Vành R</h3>
+<p>Mã π(M) của một máy đồ thị M trên R là một dãy hữu hạn các loại nút được mã hóa n với các số 1–5 biểu thị nút nhập, nút tính toán, nút rẽ nhánh, nút xuất và nút dịch chuyển, số loại của nút tiếp theo βn (hoặc một cặp (β+ n , β− n ) đối với nút rẽ nhánh), và ánh xạ đi kèm gn của nó.</p>
+<p>Một đa thức bậc d và m biến có thể được mô tả bởi dãy (d, m, a), trong đó a biểu thị dãy các hệ số của nó (theo thứ tự từ điển). Một hàm hữu tỷ được cho bởi một cặp đa thức có thứ tự, trong khi một ánh xạ hữu tỷ được cho bởi một dãy hữu hạn các hàm hữu tỷ.</p>
+<h3>Định nghĩa Máy Đồ thị Phổ dụng trên Vành R</h3>
+<p>Một máy đồ thị phổ dụng trên R là một máy U mà khi được nhập một cặp (π(M), x) với mã số π(M) và đầu vào x ∈R∞ của máy M trên R, sẽ xuất ra φU(x) = φM(x).</p>
+<p>U đọc một cách có hệ thống mã chương trình π(M) và thực hiện các lệnh áp dụng cho x, bắt đầu với lệnh được gán nhãn 1, tiếp tục đến lệnh được gán nhãn β1, v.v. Nếu U đi đến một lệnh được gán nhãn N, nó sẽ dừng và xuất ra chính xác những gì M sẽ xuất ra.</p>
+<p>Một thành phần thiết yếu của U là bộ đánh giá đa thức phổ dụng, một chương trình con nhận đầu vào (f, x) trong R∞, với f ∈ R[x1, x2, . . . , xm] và x ∈Rm, và xuất ra f(x) ∈R.</p>
+<h3>Tự đồng cấu tính toán của máy đồ thị M trên vành R</h3>
+<p>Đặt N = {1, . . . , N} là tập hợp các nút của M (với 1 là nút nhập và N là nút xuất) và S là không gian trạng thái của nó. N × S được gọi là không gian trạng thái đầy đủ của máy với tự đồng cấu tính toán</p>
+<p>H : N × S −→N × S,</p>
+<p>86 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh tức là H ánh xạ mỗi cặp nút/trạng thái (n, x) tới cặp nút/trạng thái tiếp theo duy nhất (n′, x′) được xác định bởi đồ thị của M và các ánh xạ đi kèm.</p>
+<p>Đặt γ(= γx) là đường đi tính toán n0 = 1, n1, . . . , nk, . . . và đặt γ(k) là đường đi tính toán ban đầu (n0, n1, . . . , nk) ∈N k+1 của γ có độ dài k. Chúng ta gọi Vγ(k) = {x′ ∈Im|γx′(k) = γ(k)} là tập đường đi ban đầu gồm tất cả các đầu vào có đường đi tính toán trùng với γ trong k bước đầu tiên.</p>
+<h3>Đường đi tính toán và điều kiện rẽ nhánh</h3>
+<p>Các tập đường đi ban đầu được đặc trưng bởi các điều kiện rẽ nhánh dọc theo đường đi γ(k) với hai tập hợp các hàm rẽ nhánh bước-k trái và phải:</p>
+<p>Lγ(k) = {fγ(k′)|k′ < k, k′ bước rẽ nhánh trong γ, và nk′+1 = β−(nk′)},</p>
+<p>Rγ(k) = {fγ(k′)|k′ < k, k′ bước rẽ nhánh trong γ, và nk′+1 = β+(nk′)}.</p>
+<p>Khi đó, trong trường hợp R có thứ tự, tập đường đi ban đầu là</p>
+<p>Vγ(k) = {x ∈Im|f(x) < 0, g(x) ≥0, f ∈Lγ(k), g ∈Rγ(k)}, hoặc trong trường hợp R không có thứ tự,</p>
+<p>Vγ(k) = {x ∈Im|f(x)̸ = 0, g(x) = 0, f ∈Lγ(k), g ∈Rγ(k)}.</p>
+<p>Một tập con S của Rn được gọi là bán đại số cơ bản trên R trong trường hợp có thứ tự (hoặc tựa đại số cơ bản, trong trường hợp không có thứ tự) nếu S là tập hợp các phần tử trong Rn thỏa mãn một hệ hữu hạn các đẳng thức và bất đẳng thức đa thức trên R. Một tập bán đại số (hoặc tựa đại số) là hợp hữu hạn của các tập bán đại số cơ bản (hoặc tựa đại số cơ bản).</p>
+<h3>Tập dừng dưới dạng Tập Bán đại số</h3>
+<p>(1) Nếu R là một vành hoặc trường có thứ tự, thì tập đường đi ban đầu Vγ(k) là tập bán đại số cơ bản (hoặc tựa đại số cơ bản trong trường hợp không có thứ tự). (2) Nếu γ1(k)̸ = γ2(k), thì Vγ1(k) ∩Vγ2(k) = ∅.</p>
+<h3>Cơ sở của Tính khả tính Thực 87</h3>
+<p>Đặt ΓT = {γx(T)|TM(x) ≤T đối với x ∈IM} là tập các đường đi dừng thời gian-T với thời gian dừng TM(x), tức là T nhỏ nhất sao cho TM: ΩM −→Z+.</p>
+<p>Tập các đường đi dừng của M là ΓM = ∪T<∞ΓT và tập các đường đi dừng tối tiểu là Γ′M = {γ ∈ΓM|N chỉ xuất hiện một lần trong γ}.</p>
+<p>Đối với bất kỳ máy M nào trên R, tập dừng ΩM = ∪γ∈Γ′MVγ là hợp rời đếm được của các tập bán đại số cơ bản (tương ứng, tựa đại số cơ bản).</p>
+<p>Với các máy đồ thị, các khái niệm về tính khả tính và tính khả quyết có thể được tổng quát hóa trên một vành.</p>
+<h3>Định nghĩa Tính khả tính, Tính Đếm được và Tính Khả quyết trên Vành R</h3>
+<p>Với l, m ≤∞, một ánh xạ (bộ phận) ϕ : Rl →Rm là khả tính trên R khi và chỉ khi tồn tại một máy M trên R sao cho tập dừng của nó ΩM = Ωϕ, miền xác định của ϕ, và φM(x) = ϕ(x) với mọi x ∈Ωϕ và ánh xạ đầu vào–đầu ra φM : ΩM →O (không gian đầu ra).</p>
+<p>Một tập Y ⊂Rn được gọi là đệ quy đếm được trên R khi và chỉ khi Y = ΩM (tập dừng) đối với một máy M nào đó trên R (Y không khả tính đối với R = R). Nó được gọi là khả quyết khi và chỉ khi nó và phần bù của nó đều đệ quy đếm được trên R.</p>
+<p>Bây giờ chúng ta có thể giải quyết các bài toán khả quyết của, chẳng hạn, tập Mandelbrot, tập Julia và phương pháp Newton.</p>
+<p>Định lý. Tập Mandelbrot không khả quyết trên R.</p>
+<p>Tập Mandelbrot không phải là tập dừng của bất kỳ máy nào trên R. Tại sao? Biên của tập Mandelbrot có chiều Hausdorff bằng 2. Do đó, tập Mandelbrot không thể được biểu diễn bằng hợp đếm được của các tập bán đại số trên R. Nhưng bất kỳ tập dừng nào cũng có thể được biểu diễn bằng hợp đếm được của các tập bán đại số cơ bản trên R, bởi vì ánh xạ đầu vào–đầu ra là một ánh xạ đa thức hoặc hữu tỷ từng mảnh.</p>
+<p>Một tập S ⊂Rn là bán đại số cơ bản trên R trong trường hợp có thứ tự (hoặc tựa đại số cơ bản trong trường hợp không có thứ tự) nếu S là tập hợp các</p>
+<p>88 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh phần tử trong Rn thỏa mãn một hệ hữu hạn các đẳng thức và bất đẳng thức đa thức.</p>
+<h3>Định lý. Một tập Julia là khả quyết trên R khi và chỉ khi nó là</h3>
+<p>(1) một đường tròn, (2) một cung của đường tròn, hoặc (3) toàn bộ mặt cầu.</p>
+<p>Hầu hết các tập Julia không khả quyết trên R vì hầu hết các tập Julia có chiều Hausdorff phân số. Nhưng các tập dừng phải có chiều Hausdorff nguyên.</p>
+<p>Định lý. Tập hợp các điểm hội tụ theo phương pháp Newton nói chung là bất khả quyết trên R.</p>
+<p>Chỉ cần sử dụng hàm bậc ba f(x) = x3 −2x + 2 là đủ để thu được kết quả bất khả quyết.</p>
+<p>Người ta biết rằng tập hợp các điểm không hội tụ về một nghiệm của f dưới phép lặp của phương pháp Newton chính xác là một tập Cantor, tức là không đếm được. Một tập Cantor không thể là hợp đếm được của các tập bán đại số.</p>
+<p>Lý thuyết toán học về các hệ thống động lực dựa trên các số thực và số phức (Ebbinghaus et al., 1991). Do đó, với tính toán thực và phức, các bài toán tổng quát về tính khả quyết và tính đếm được có thể được giải quyết cho các hệ thống động lực.</p>
+<h3>Miền hút đệ quy đếm được</h3>
+<p>Một hệ động lực phức rời rạc với hàm trạng thái (hữu tỷ) g : C →C tạo ra các quỹ đạo của các điểm z0, g(z0), . . . , gk(z0), . . . Các điểm bất động (g(z0) = z0) hoặc các điểm tuần hoàn (gn(z0) = z0 với chu kỳ n) có thể là hút (tương ứng đẩy) với các điều kiện |(gn)′(z0)| < 1 (tương ứng |(gn)′(z0)| > 1), trong đó (gn)′(z0) là đạo hàm của lần lặp thứ n của g tại z0:</p>
+<p>Nếu z0 là điểm hút có chu kỳ n, điều kiện đạo hàm ngụ ý rằng tồn tại một lân cận U của z0 với gn(U) ⊂U. Do đó, quỹ đạo của các</p>
+<h3>Cơ sở của Tính khả tính Thực 89</h3>
+<p>điểm trong lân cận U của z0 với gn(U) ⊂U tiệm cận tiến tới quỹ đạo của z0, tức là miền hút của z0. Hợp của chúng là miền hút của g.</p>
+<p>Mệnh đề. Miền hút của g là một tập đệ quy đếm được trên R, tức là tồn tại một máy M có tập dừng ΩM là miền hút của g.</p>
+<p>Đối với các ánh xạ hữu tỷ, chỉ có một số hữu hạn các điểm tuần hoàn hút. Do đó, tồn tại một đa thức thực h gồm hai biến thực sao cho h(z) < 0 khi và chỉ khi z thuộc về một hợp hữu hạn các đĩa xung quanh các điểm hút được co vào chính nó bởi g. Suy ra một điểm nằm trong miền hút của g khi và chỉ khi h(z) < 0 đối với một z nào đó trong quỹ đạo của nó.</p>
+<p>Theo định nghĩa của một máy đồ thị, chúng ta gắn z với nút nhập, đa thức g với nút tính toán, và đa thức h với nút rẽ nhánh của một máy M, được định nghĩa bởi sơ đồ đồ thị sau:</p>
+<h3>Nút nhập</h3>
+<h3>Nút tính toán</h3>
+<h3>Nút rẽ nhánh</h3>
+<h3>Nút xuất</h3>
+<p>Theo định nghĩa của M, tập dừng ΩM là miền hút của g.</p>
+<p>90 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Miền hút của g là đệ quy đếm được nhưng không khả quyết. Tính khả quyết đòi hỏi phần bù của miền hút của g cũng phải đệ quy đếm được. Nhưng phần bù của miền hút chính là tập Julia của g, vốn nói chung là không khả quyết.</p>
+<p>Từ góc độ toán học, các máy đồ thị trên một vành R rất thuận tiện để minh họa các tính chất đại số của tính toán thực. Nhưng chúng có phần trừu tượng đối với kiến trúc của máy tính. Thực tế, một máy đồ thị trên vành R là một loại máy thanh ghi với bộ nhớ không giới hạn xử lý các phần tử của một vành bằng số học chính xác. Trong khoa học máy tính, việc minh họa các quá trình tính toán bằng các máy thanh ghi tổng quát tương đương với các máy đồ thị trên vành R sẽ thuận tiện hơn. Các phép tính giải tích là các phép tính vô hạn tạo ra một dãy đầu ra hội tụ.</p>
+<p>Các kết quả kinh điển về tính khả quyết và tính bất khả quyết trong logic có tác động sâu sắc đến tính toán thực. Các ví dụ bao gồm kết quả của Tarski rằng tập số thực là khả quyết, nhưng tập số nguyên thì không theo Gödel.</p>
+<h3>Định nghĩa Tính Định nghĩa được</h3>
+<p>Một tập S ⊂Rn là định nghĩa được trên (R, <) khi và chỉ khi S được suy ra từ một tập bán đại số trên R bằng một dãy hữu hạn các phép chiếu và phép bù.</p>
+<p>Mệnh đề.</p>
+<p>(1) Mọi tập định nghĩa được trên R đều khả quyết trên R (trong thời gian bị chặn)</p>
+<p>(Tarski, 1951). (2) Tồn tại các tập định nghĩa được nhưng bất khả quyết trên Z (hệ quả của</p>
+<p>Gödel (1931)).</p>
+<p>Chứng minh (2).</p>
+<p>(a) Với mỗi n ≤∞, tồn tại các tập dừng bất khả quyết trong Zn (lập luận đường chéo kiểu Cantor trên tập dừng của một máy phổ dụng).</p>
+<h3>Cơ sở của Tính khả tính Thực 91</h3>
+<p>(b) Với mỗi n < ∞, các tập dừng thời gian-T trong Zn là định nghĩa được trên</p>
+<p>Z (thông qua các phương trình bán đại số của một máy đồ thị mô tả phép tính dừng của các điểm (Blum et al., 1998, tr. 59)). (c) Với mỗi n < ∞, các tập dừng trong Zn là định nghĩa được trên Z.</p>
+<p>(b) ⇒(c) (a), (c ) ⇒(2) ■</p>
+<p>Mệnh đề. Định lý Không điểm Hilbert HN là bất khả quyết trên Z.</p>
+<p>Chứng minh. (c′) Với mỗi n < ∞, các tập dừng trong Zn là diophantine, tức là hình chiếu của các tập đại số trên Z (Matiyasevich, 1970; 1993). (a), (c′) =⇒tính bất khả quyết của Nullstellensatz trên Z. ■</p>
+<p>Nếu Z là hình chiếu của một tập đại số trên Q, thì HN sẽ không khả quyết trên Q. Nhưng điều này vẫn chưa được biết! Tuy nhiên, Z là định nghĩa được trong Q (Robinson, 1949). Do đó, tồn tại các tập định nghĩa được nhưng bất khả quyết trên Q.</p>
+<h3>Tính Định nghĩa được, Tính Khả quyết và Tính Bất khả quyết trên R</h3>
+<p>(a) Với mỗi n ≤∞, tồn tại các tập dừng bất khả quyết trong Rn. (b) Với mỗi n < ∞, các tập dừng thời gian-T trong Rn là định nghĩa được trên R. (c) Có những tập dừng trong Rn không định nghĩa được trên R (nếu không sẽ mâu thuẫn với (a) theo Tarski (1951)).</p>
+<p>Mệnh đề. Tính Không định nghĩa được của Z trên R Z không thể định nghĩa được trên R.</p>
+<p>Chứng minh.</p>
+<p>Các tập con định nghĩa được của R là bán đại số (Tarski) và do đó là hợp hữu hạn của các khoảng với các đầu mút đại số. ■</p>
+<p>Mệnh đề. Tính Khả quyết Z là khả quyết trên R.</p>
+<p>92 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Chứng minh bằng chương trình:</p>
+<p>Đầu vào x∈R z:=|x| while z ≥0 do z:=z-1 end do z:=z+1 if z=0 xuất ra 1, ngược lại xuất ra 0.</p>
+<p>Mỗi tập con S ⊆Z có thể được quyết định bởi một máy trên (R, <) với một hằng số tích hợp cs mã hóa hàm đặc trưng χs. Các máy như vậy trên R có thể được coi là một loại máy Turing oracle. ■</p>
+<p>Mệnh đề. Tính định nghĩa được và tính khả quyết trên C.</p>
+<p>(a) Mọi tập định nghĩa được trên C = R2 đều khả quyết trên C. (b) Mọi tập khả quyết trong Cn đều định nghĩa được trên C.</p>
+<p>(c) Z không thể quyết định được trên C.</p>
+<p>Chứng minh.</p>
+<p>(a) Bằng các lập luận kiểu Tarski. (b) Một tập là định nghĩa được khi và chỉ khi nó được suy ra từ một tập tựa đại số.</p>
+<p>Đối với C, các tập khả quyết trong Cn là khả quyết bởi các máy bị chặn thời gian và do đó là các tập tựa đại số (Cucker và Rosselló, 1993). (c) (Blum và Smale, 1993).</p>
+<p>Tóm lại, xét về tính định nghĩa được và tính khả quyết, C đơn giản hơn R và R đơn giản hơn N.</p></div>
+<nav class="chapter-nav"><a href="ch04.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch06.html">Phần sau &#8594;</a></nav></div></body></html>

@@ -1,0 +1,193 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 5 — Các bậc phức tạp của tính toán khả tính thực — Hệ Thống Mô Phỏng Thần Kinh | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.12rem;font-weight:700;margin:1.4rem 0 .5rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 1rem;text-align:justify}
+.reader-body blockquote{margin:1.1rem 1.4rem;padding:.6rem 1rem;border-left:3px solid var(--teal);background:var(--soft);color:var(--mid);font-style:italic}
+.reader-body ul.vi-list{margin:0 0 1rem;padding-left:1.5rem}
+.reader-body ul.vi-list li{margin-bottom:.35rem}
+.reader-body figure.bookfig{margin:1.6rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-width:680px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto}
+.reader-body figure.bookfig figcaption{font-size:.85rem;color:var(--mid);margin-top:.7rem;line-height:1.6;text-align:left;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh — Klaus Mainzer"></div>
+<div class="book-meta-details"><h1>Trí Tuệ Nhân Tạo Của Hệ Thống Mô Phỏng Thần Kinh</h1><p class="sub"><em>Artificial Intelligence of Neuromorphic Systems: From Digital and Quantum Computing to Neuromorphic Computing</em> — Klaus Mainzer. Bản dịch tiếng Việt toàn văn.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/ai-of-neuromorphic-systems-mainzer.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Chương 5 — Các bậc phức tạp của tính toán khả tính thực</h2><div class="reader-body"><h2>Chương 5</h2>
+<h3>Các Mức độ Phức tạp của Tính khả tính</h3>
+<h3>Thực</h3>
+<p>Tương tự như tính toán kỹ thuật số, tính toán tương tự với các số thực (và số phức) cũng có thể phân biệt giữa các mức độ phức tạp của tính khả tính thực. Vì mục đích này, các tiêu chuẩn khác nhau cho chi phí tính toán phải được đưa ra. Ở phía này của tính khả tính thực với số thực, có những khác biệt giữa các bài toán P và NP đối với tính khả tính kỹ thuật số. Vượt ra ngoài tính khả tính thực với số thực, một tính khả tính thực mở rộng với phân cấp đa thức và các máy oracle thực tương ứng có thể được giới thiệu. Các định lý và chứng minh tương ứng là chính xác về mặt toán học. Nếu có các hiện thực hóa kỹ thuật–vật lý của tính toán thực (xem Chương 13 và 14), thì các tiềm năng và giới hạn lý thuyết của nó lại phụ thuộc vào hình thức luận toán học được giả định.</p>
+<h3>Lý thuyết về Độ phức tạp Tính toán trên Vành R</h3>
+<p>Trong khoa học máy tính cổ điển, một thuật toán được định nghĩa bởi một máy M là khả giải hiệu quả (hay thời gian đa thức, hoặc thuộc P) khi và chỉ khi thời gian tính toán T(x) gắn với đầu vào x thỏa mãn chặn T(x) ≤c(size(x))q với mọi x với các hằng số c và q (chỉ phụ thuộc vào M). Thời gian là số lượng các phép toán của máy Turing và kích thước (size) là số lượng bit. Có những khác biệt tinh tế giữa các lý thuyết về P và NP trên R và trên Z: Bất kỳ bài toán NP nào trên Z đều có thể thấy là giải được trong thời gian 2poly(n) bằng các lập luận đếm. Một kết quả tương tự trên R còn xa mới hiển nhiên vì có một continuum các phỏng đoán khả dĩ trên R.</p>
+<p>93</p>
+<p>94 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>Độ phức tạp của một hàm được đo bằng chi phí tính toán tối ưu. Chi phí tính toán đề cập đến số lượng các phép toán cần thiết để biến đổi một đầu vào thành một đầu ra. Do đó, chi phí phụ thuộc vào kích thước đầu vào. Một máy trên R hoạt động trong thời gian đa thức nếu với mỗi đầu vào x ∈Rn ⊂R∞chi phí tính toán là cost (x) ≤cnq với một số c, q ≥1 cố định, trong đó cost(x) là số lượng các nút được sử dụng trong quá trình tính toán và n là kích thước của x. Trong trường hợp kỹ thuật số, kích thước được cho bởi độ dài bit. Trên một vành R, kích thước phụ thuộc vào một hàm chiều cao htR được định nghĩa trên R và vào độ dài vectơ. Chiều cao đơn vị htR(x) = 1 với mọi x ∈R. Chiều cao đơn vị đề cập đến độ phức tạp đại số trên R và C. Trên Z và Q, độ phức tạp bit được định nghĩa bởi chiều cao logarit hoặc chiều cao bit:</p>
+<p>htZ(x) = ⌈log(|x| + 1)⌉ với mọi x ∈Z, htQ(x) = max(htZ(p), htZ(q))</p>
+<p>đối với x ∈Q với x = p/q và p và q là các số nguyên nguyên tố cùng nhau.</p>
+<h3>Định nghĩa Độ dài và Kích thước</h3>
+<p>Với x ∈Rn ⊂R∞, đặt hàm chiều cao htR được định nghĩa trên vành R với các giá trị trong tập số nguyên không âm, tức là htR(x) = maxi htR(xi) đối với x = (x1, . . . xn) ∈Rn ⊂R∞. Khi đó, độ dài và kích thước của x được định nghĩa tương ứng bởi length(x) = n và size(x) = n · htR(x).</p>
+<p>Trên R, C, và Z2 với chiều cao đơn vị, kích thước của đầu vào là số chiều hoặc độ dài vectơ của đầu vào. Trên Z2, kích thước cũng là độ dài bit của chuỗi x. Trên Z với chiều cao logarit, kích thước tương ứng với độ dài bit của dãy x.</p>
+<h3>Định nghĩa Chi phí Tính toán trên một Vành</h3>
+<p>Cho M là một máy trên vành R với hàm chiều cao htR. Với x ∈Rn ⊂R∞, chi phí là costM(x) = T(x) × htmax(x),</p>
+<h3>Các Mức độ Phức tạp của Tính khả tính Thực 95</h3>
+<p>trong đó T(x) là thời gian dừng của M trên đầu vào x và htmax(x) là chiều cao lớn nhất của bất kỳ phần tử nào trong phép tính của M trên đầu vào x.</p>
+<p>Trên số thực hoặc một vành có chiều cao đơn vị, chi phí đơn vị hoặc chi phí đại số là thời gian dừng và liên quan đến số lượng các phép toán đại số từ đầu vào đến đầu ra. Trên số nguyên và số hữu tỷ có chiều cao logarit, chi phí logarit hoặc chi phí bit liên quan đến số lượng các phép toán bit. Độ phức tạp tính toán phải được xem xét đối với các thước đo chi phí khác nhau này.</p>
+<p>P, NP, và NP-đầy đủ có thể được đưa vào trên một vành R tùy ý (Blum et al., 1998, Chương 5). Trong khuôn khổ này, các kết quả NP-đầy đủ cũ và mới có thể thu được:</p>
+<p>• Bài toán thỏa mãn cổ điển là NP-đầy đủ trên Z2. • Định lý Không điểm Hilbert là NP-đầy đủ trên C và R. • Bài toán quyết định người du lịch thuộc NP trên R.</p>
+<h3>Định nghĩa Quy giảm Thời gian Đa thức</h3>
+<p>Một bài toán quyết định S là quy giảm được theo p (đa thức) về bài toán quyết định S′(S  →p S′) khi và chỉ khi tồn tại một ánh xạ khả tính trong thời gian đa thức ϕ: R∞−→R∞sao cho ϕ(S) ⊆S′ và ϕ(R∞−S) ⊆R∞−S′, nói cách khác, trong trường hợp S  →p S′, S′ ít nhất là “khó” ngang bằng S.</p>
+<p>Các ví dụ về bài toán quyết định như sau:</p>
+<p>HN: Định lý Không điểm Hilbert, QUAD: Tính khả thi của các hệ phương trình bậc hai, 4-FEAS: Tính khả thi của các đa thức bậc 4, TSP: Bài toán người du lịch,</p>
+<p>KP: Bài toán cái túi, SAT: Bài toán thỏa mãn.</p>
+<p>Trên bất kỳ vành hoặc trường R nào, HN  →p QUAD. Trên bất kỳ vành hoặc trường có thứ tự R nào, QUAD  →p 4-FEAS.</p>
+<p>96 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<h3>Định nghĩa Lớp NP trên R</h3>
+<p>Một bài toán quyết định S ⊆R∞thuộc lớp NP trên R(S ∈NPR) nếu tồn tại một máy M trên R với IM = R∞× R∞và các số nguyên dương c và q sao cho (1) nếu x ∈S, thì tồn tại một w ∈R∞nào đó (được gọi là một phỏng đoán hoặc bằng chứng cho một lời giải) sao cho nếu ϕM(x, w) = 1 và costM(x, w) ≤ c(size x)q; (2) nếu x /∈S, thì không có w ∈R∞nào sao cho ϕM(x, w) = 1.</p>
+<p>Một bài toán quyết định được gọi là NP-khó trên R khi và chỉ khi mọi S ∈NPR đều quy giảm p được về nó.</p>
+<p>Một bài toán quyết định được gọi là NP-đầy đủ trên R khi và chỉ khi nó là NPR-khó và thuộc lớp NPR.</p>
+<h3>Theo định nghĩa, hiển nhiên rằng</h3>
+<p>(1) đối với mọi bài toán NP-đầy đủ S trên R suy ra S ∈PR khi và chỉ khi</p>
+<p>PR = NPR; (2) đối với mọi bài toán NP-khó S′ trên R với S′  →p S suy ra rằng</p>
+<p>S là NPR-khó.</p>
+<p>Các ví dụ bao gồm:</p>
+<p>(a) HN và QUAD là NP-khó trên (F, =) đối với bất kỳ trường F nào (ví dụ: C); (b) HN, QUAD, và 4-FEAS là NP-khó trên (Z, <), (Q, <), và (R, <) (hoặc đối với bất kỳ trường đóng thực nào).</p>
+<h3>Các Thước đo Chi phí của Độ phức tạp</h3>
+<p>Trên tập số thực hoặc bất kỳ vành nào có chiều cao đơn vị, chi phí đơn vị là thời gian dừng và đề cập đến số lượng các phép toán đại số cơ bản (cũng như số lần dịch chuyển) từ đầu vào đến đầu ra.</p>
+<p>Trên tập số nguyên hoặc số hữu tỷ có chiều cao logarit, chi phí bit đề cập đến số lượng các phép toán bit. Trong Hình 1, chúng ta phân biệt chi phí đơn vị và chi phí bit của độ phức tạp tính toán trên Z, Q, R, C, và Z2.</p>
+<p>Ở hàng đầu tiên, tính bất khả quyết của Định lý Không điểm Hilbert (HN /∈Dec) trên Z ngụ ý P̸ = NP trên (Z, <) đối với</p>
+<h3>Các Mức độ Phức tạp của Tính khả tính Thực 97</h3>
+<p>Vành Rẽ nhánh Chi phí HN ∈Dec HN ∈NP NP ⊆EXP P = NP Z < đơn vị không có không không Z < bit không không có ? Z = đơn vị không có không không Z = bit không không có không Q < đơn vị ? có không không R < đơn vị có có có ? C = đơn vị có có có ? Z2 = đơn vị có có có ?</p>
+<p>Hình 1. Chi phí đơn vị và chi phí bit của độ phức tạp tính toán.</p>
+<p>chi phí đơn vị. Lý do là, theo định lý Matiyasevich (Matijasevic, 1970; 1993), NP bằng lớp HALT gồm các tập dừng trên (Z, <) vốn không thể là P, lớp các tập khả giải hiệu quả trong thời gian đa thức. EXP là lớp các bài toán khả tính trong thời gian hàm mũ. Đối với chi phí đơn vị, NP ⊆EXP không thể đúng vì giả định NP ⊆EXP và HN ∈NP dẫn đến HN ∈EXP, điều này mâu thuẫn với tính bất khả quyết của HN.</p>
+<p>Ở hàng thứ hai, đối với chi phí bit trên Z, NP ⊆EXP là đúng, tức là các bài toán NP khả tính trong thời gian hàm mũ. Do đó, HN ∈NP không thể đúng vì giả định HN ∈NP và NP ⊆EXP dẫn đến HN ∈EXP, điều này mâu thuẫn với tính bất khả quyết của HN.</p>
+<p>Ở hàng thứ ba và thứ tư, P̸ = NP trên (Z, =) với cả chi phí đơn vị hoặc chi phí bit. Trong trường hợp chi phí đơn vị, P̸ = NP suy ra từ tính bất khả quyết của HN trên Z. Tổng quát, theo định lý Lagrange trên (Z, =), với mọi u ≥0, tồn tại các số u1, u2, u3, u4 với u = u2</p>
+<p>1 + u2 2 + u2 3 + u2 4. Do đó, N thuộc lớp NP đối với chi phí đơn vị và chi phí bit. Suy ra N /∈P đối với chi phí đơn vị, nếu không N sẽ khả quyết trong thời gian hằng số. N /∈P cũng đúng trong trường hợp chi phí bit (Shub, 1993).</p>
+<p>Ở hàng thứ năm, P̸ = NP trên (Q, <) đối với chi phí đơn vị. Thực ra, chúng ta chưa biết liệu HN có bất khả quyết trên Q hay không. Do đó, P̸ = NP trên (Q, <) đối với chi phí đơn vị phải được chứng minh bằng các lập luận khác: Hình chiếu của các tập bán đại số</p>
+<p>98 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh thuộc NP. Nếu chúng ta giả sử P = NP trên (R, <), hình chiếu của các tập bán đại số thuộc NP phải thuộc P và do đó phải là bán đại số. Theo (đảo của) định lý Tarski, R phải là trường đóng thực (Macintyre et al., 1983). Nhưng Q không đóng thực. Do đó, giả định N = NP dẫn đến một mâu thuẫn.</p>
+<p>Trên R và C, NP là khả quyết và NP-đầy đủ đối với chi phí đơn vị. NP ⊆EXP là hiển nhiên trong trường hợp này, nhưng N = NP vẫn chưa được biết.</p>
+<p>Trong lý thuyết độ phức tạp cổ điển trên Z, phân cấp số học và phân cấp giải tích được đưa vào theo cách đệ quy (xem Chương 3). Tính đệ quy tương đối được định nghĩa theo các mức độ tính toán của Turing. Theo một gợi ý của Turing, tính đệ quy tương đối có thể được minh họa bởi các máy oracle vốn có thể được tổng quát hóa trên một vành R. Do đó, các máy oracle cũng được sử dụng như một công cụ để giảm độ phức tạp của các bài toán.</p>
+<p>Một ví dụ là phép quy giảm p được cho bởi tính NPR-đầy đủ của 4-FEAS: Với bất kỳ tập S nào trong NPR, tồn tại một hàm khả tính trong thời gian đa thức ϕS sao cho với mọi x ∈R∞, x ∈S khi và chỉ khi ϕS(x) ∈4-FEAS. Trong trường hợp này, chúng ta có thể hình dung một máy MS tính toán một phần tử ϕS(x) ∈R∞cho đầu vào x ∈S trong thời gian đa thức và truy vấn tập 4-FEAS xem phần tử đó có thuộc về nó hay không. Đối với chi phí đơn vị cho mỗi truy vấn, máy hoạt động trong thời gian đa thức. Do đó, nếu biết được một máy thời gian đa thức để quyết định 4-FEAS, thì máy này cũng có thể quyết định S. Các máy oracle thực hiện các truy vấn về tư cách thành viên trong một tập hợp. Chúng mạnh hơn một máy thông thường vì chúng có thể thực hiện không chỉ một truy vấn mà bao nhiêu truy vấn tùy thích trong giới hạn thời gian cho phép.</p>
+<h3>Định nghĩa Máy Oracle trên R</h3>
+<p>Một máy oracle trên R là một máy trên R mà ngoài không gian đầu vào và đầu ra R∞, và không gian trạng thái R∞, còn sở hữu một không gian oracle R = N × R∞, một tập oracle A ⊆R∞, và hai loại nút bổ sung: ghi (write) và truy vấn (query). Ký hiệu nội dung của không gian trạng thái bởi (. . . , x−1, x0. x1, . . . , ) và nội dung của không gian oracle</p>
+<h3>Các Mức độ Phức tạp của Tính khả tính Thực 99</h3>
+<p>bởi (j, y1, y2, . . .). Khi bắt đầu tính toán, nội dung của không gian oracle R là (0, 0, . . .).</p>
+<p>Cả hai nút ghi và nút truy vấn đều có một nút tiếp theo duy nhất:</p>
+<p>Nút ghi: Nội dung của tọa độ x0 của không gian trạng thái được ghi vào tọa độ thứ j của phần thực của không gian oracle, trong đó j là nội dung của tọa độ số tự nhiên của nó. Sau đó, tọa độ số tự nhiên được tăng lên 1:</p>
+<p>(. . . , x−1, x0. x1, . . .) → (. . . , x−1, x0. x1, . . .), (j, y1, . . . , yj, yj+1, yj+2, . . .) (j + 1, y1, . . . , yj, x0, yj+2, . . .).</p>
+<p>Nút truy vấn: Máy ghi 1 vào x0 nếu nội dung trong R∞ở không gian oracle thuộc về A và 0 nếu ngược lại. Một khi câu trả lời của truy vấn đã được ghi, tất cả các tọa độ của không gian oracle đều được đặt lại về 0:</p>
+<p>⎧ ⎪ ⎪ ⎪ ⎪ ⎨ (. . . , x−1, 1. x1, . . . , ), (0, 0, . . .), nếu (y1, . . . , yj) ∈A, (. . . , x−1, x0. x1, . . . , ) →</p>
+<p>⎪ ⎪ ⎪ ⎪ ⎩ (. . . , x−1, 0. x1, . . . , ), (0, 0, . . .), nếu (y1, . . . , yj) /∈A, (j, y1, . . . , yj, . . .).</p>
+<h3>Định nghĩa Phân cấp Đa thức cho Các Máy Không giới hạn trên Trường R</h3>
+<p>Các mức độ phức tạp có thể được tổng quát hóa cho các máy không giới hạn có thể cộng, nhân và chia trong một trường R (ví dụ: R hoặc C):</p>
+<h3>ΣR</h3>
+<p>0 := ΠR 0 := PR.</p>
+<h3>Một vị từ là  R</h3>
+<p>n (ΠR n ) (trong M) với n ≥1 khi và chỉ khi nó có một định nghĩa tường minh (∗) không có hai lượng từ kề nhau nào cùng loại và lượng từ đầu tiên là tồn tại (phổ dụng):</p>
+<p>(∗) A(u) ←→Q1x1 ∈Rp1(m) . . . Qnxn ∈Rpn(m)B(u, x1, . . . , xn), với ∈R, B ⊆(R∞)n+1, B ϵ PR phức đa thức, các lượng từ Qixi hoặc là ∃xi hoặc là ∀xi, và các hàm đa thức p1, . . . , pk.</p>
+<p>100 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh n (M) khi và chỉ khi nó là cả  R n (M) và  R</p>
+<h3>Một vị từ là ΔR</h3>
+<p>n (M). Các mức của phân cấp đa thức trên trường hoặc vành R được tương đối hóa với tập M có thể được đặc trưng bởi các máy oracle tương ứng.</p>
+<p>... ... ...  R n+1(M)  R n+1 (M) ΔR n+1 (M)  R n (M)  R n (M) ΔR n (M) ... ... ...  R</p>
+<p>2 (M)  R</p>
+<p>2 (M) ΔR</p>
+<p>2 (M)  R</p>
+<p>1 (M)  R</p>
+<p>1 (M) ΔR</p>
+<p>1 (M)</p>
+<h3>Ví dụ về Các Bài toán ΣR</h3>
+<p>k-Đầy đủ</p>
+<p>Các bài toán đầy đủ có thể được tổng quát hóa dọc theo các mức của phân cấp đa thức. Làm ví dụ, chúng ta xem xét tính NPR-đầy đủ của 4-FEAS:</p>
+<h3>Với mọi k ≥1, xét tập con Sk ⊂R∞với</h3>
+<p>(f, n1, n2, . . . , nk)|f là một đa thức bậc 4 trong</p>
+<p>⎧ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎨ n1 + n2 + · · · + nk biến sao cho ∃x1 ∈Rn1∀x2 ∈Rn2 . . . ∃xk ∈Rnk f(x1, . . . , xk) = 0} nếu k lẻ,  (f, n1, n2, . . . , nk)|f là một đa thức bậc 4 trong</p>
+<h3>Sk =</h3>
+<p>⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎪ ⎩ n1 + n2 + · · · + nk biến sao cho ∃x1 ∈Rn1∀x2 ∈Rn2 . . . ∀xk ∈Rnk f(x1, . . . , xk)̸ = 0} nếu k chẵn.</p>
+<p>Hiển nhiên, S1 = 4-FEAS. Phần bù của S2 là một phiên bản tham số hóa của 4-FEAS: Có hai nhóm biến, x và t, và bài toán là quyết định xem với mọi giá trị của tham số t ∈Rn1 có tồn tại một x ∈Rn2 sao cho f(t, x) = 0 hay không. Các kết quả này có thể được tổng quát hóa trong định lý sau (Cucker và Koiran, 1995; Cucker và Matamala, 1996):</p>
+<h3>Với mọi k ≥1, tập Sk là ΣR</h3>
+<p>k -đầy đủ.</p>
+<h3>Các Mức độ Phức tạp của Tính khả tính Thực 101</h3>
+<h3>Các Lớp Độ phức tạp và Ngôn ngữ Hình thức</h3>
+<p>Các lớp độ phức tạp của tính giải được và tính khả quyết trên một vành R được đặc trưng bởi năng lực của máy (ví dụ: máy đồ thị, máy oracle) và tài nguyên. Nhưng các lớp độ phức tạp của tính giải được và tính khả quyết cũng có thể được đặc trưng theo cách độc lập với máy bằng độ phức tạp của các ngôn ngữ định nghĩa và mô tả chúng. Các máy đồ thị đã được mô tả đại số bằng các phương trình thanh ghi của chúng, ví dụ, các bài toán NPR thông qua các phương trình đa thức bậc 4: Nếu ∈NPR, thì, với mỗi n, tồn tại một đa thức bậc 4 Φn(y1, . . . , yn, x1, . . . , xm) với tính chất rằng a ∈Sn khi và chỉ khi phương trình Φn(y1, . . . , yn, x1, . . . , xm) = 0 giải được trên R với a = (a1, . . . , an) và Sn = S ∩Rn. Nói ngắn gọn:</p>
+<p>a ∈Sn khi và chỉ khi ∃x1 . . . ∃xmΦn(a, x1,. . . , xm) = 0 là một phát biểu đúng trên R.</p>
+<p>Theo cách này, với mỗi n, có một mô tả về Sn bằng các đa thức Φn được suy ra từ các phương trình thanh ghi của một máy quyết định NPR cho S. Mục tiêu là tìm một ngôn ngữ hình thức để mô tả S mà không phụ thuộc vào một khái niệm máy nào.</p>
+<p>Sau đây, chúng ta phân biệt ba hệ thống logic trên các cấu trúc R:</p>
+<p>(1) bậc nhất (FOR); (2) bậc nhất điểm bất động (FPR); (3) bậc hai tồn tại (∃SOR).</p>
+<p>Các tập hợp của các cấu trúc R có thể được liên kết với các tập con của R∞, tức là các bài toán quyết định của R. Có thể chứng minh rằng một tập S ⊂R∞thuộc PR hoặc NPR khi và chỉ khi các tập hợp cấu trúc R liên kết có thể mô tả được trong logic bậc nhất điểm bất động hoặc logic bậc hai tồn tại.</p>
+<h3>Định nghĩa Tính Định nghĩa được trong Ngôn ngữ Hình thức</h3>
+<p>(a) Ngôn ngữ hình thức</p>
+<p>• Một từ vựng L là một tập hợp các ký hiệu, mỗi ký hiệu là quan hệ hoặc hàm.</p>
+<p>102 Trí tuệ Nhân tạo của Các Hệ thống Phỏng thần kinh</p>
+<p>• Một cấu trúc A của L là một tập A (vũ trụ) với các diễn giải của L. • Nếu T là một tập các câu trên L, A thỏa mãn T khi và chỉ khi mọi câu của T đều được thỏa mãn trong A(A |= T). • Các cấu trúc A với A |= T được gọi là các mô hình của T. • Các câu trong T được gọi là các tiên đề và T được gọi là một lý thuyết.</p>
+<p>(b) Tính định nghĩa được</p>
+<p>• Một quan hệ R ⊆An là định nghĩa được (bậc nhất) trong A trên L khi và chỉ khi tồn tại một công thức ϕ trên L với n biến tự do x1, . . . , xn sao cho với mọi a ∈R khi và chỉ khi A |= ϕ(a). • Một hàm bộ phận f : An −→A là định nghĩa được bằng hạng từ trong A trên L khi và chỉ khi tồn tại một hạng từ t(x1, . . . , xn) sao cho với mọi a ∈An là tA(a) = f(a). • Một tập S ⊂R∞thuộc PR(NP R) khi và chỉ khi các tập hợp cấu trúc R liên kết của nó là định nghĩa được trong logic bậc nhất điểm bất động (tương ứng, logic bậc hai tồn tại).</p>
+<h3>Ví dụ: Các cấu trúc định nghĩa được trên R và các tập bán đại số</h3>
+<p>Xét ngôn ngữ L = {<, 0, 1, +, −, ×}, cấu trúc A = ⟨R, <⟩, và từ vựng L(R). Các tập con của Rn định nghĩa được trong A trên L(R) chính xác là các tập bán đại số. Các hàm định nghĩa được bằng hạng từ f : Rn →R là các hàm đa thức. Hàm √: [0, ∞) →R là định nghĩa được, nhưng không định nghĩa được bằng hạng từ.</p>
+<p>Các lớp độ phức tạp của ngôn ngữ hình thức cũng kết nối logic với các lớp độ phức tạp của tính khả tính. Rõ ràng, có những mối quan hệ sâu sắc giữa các hệ thống động lực phức hợp trong toán học, độ phức tạp tính toán trong khoa học máy tính, và việc mô hình hóa các ngôn ngữ hình thức trong logic. Các lớp độ phức tạp này không bị giới hạn trong thế giới kỹ thuật số mà đề cập đến các bài toán thế giới thực và các thuật toán thực của toán học thông thường trong, chẳng hạn, lý thuyết phương trình vi phân, giải tích hàm và giải tích số. Do đó, chúng ta kết thúc chương này với Bảng 1 minh họa những cây cầu nối giữa logic, khoa học máy tính và toán học trong thế giới của các số thực vốn cũng là thế giới “thực” của khoa học thực hành (theo các kết quả trong</p>
+<h3>Các Mức độ Phức tạp của Tính khả tính Thực 103</h3>
+<p>Bảng 1. Độ phức tạp trong khoa học hệ thống, khoa học máy tính và logic học.</p>
+<h3>Độ phức tạp động lực Độ phức tạp tính toán Độ phức tạp logic</h3>
+<h3>NC1</h3>
+<h3>Các mạch động lực</h3>
+<p>R (lớp các tập khả quyết bởi các mạch đại số có kích thước đa thức theo n và độ sâu O(log1n))</p>
+<h3>FOR (logic bậc nhất</h3>
+<p>khả giải hiệu quả trên R trên R)</p>
+<h3>PL1</h3>
+<h3>Các hệ động lực song song</h3>
+<p>R (lớp các tập khả quyết bởi các máy song song với số lượng bộ xử lý đa thức và thời gian O(log1n))</p>
+<p>khả giải hiệu quả trên R</p>
+<p>... NCk</p>
+<p>...</p>
+<h3>R (O(logkn) PLk</h3>
+<h3>R FP1</h3>
+<p>R ...</p>
+<p>... Mọi hệ thống động lực</p>
+<h3>PR (lớp các tập khả quyết bởi</h3>
+<h3>FPR (logic bậc nhất</h3>
+<p>khả giải hiệu quả trên R điểm bất động trên R) Các máy thời gian đa thức người du lịch trên R)</p>
+<p>∃SOR (logic bậc hai</p>
+<h3>NPR (lớp các tập khả quyết</h3>
+<p>các bài toán, bài toán cái túi, v.v.</p>
+<p>bởi máy thời gian đa thức không tất định trên R)</p>
+<p>tồn tại trên R)</p>
+<h3>Tính thỏa mãn mạch</h3>
+<h3>NPR-đầy đủ (lớp các</h3>
+<p>v.v.</p>
+<h3>tập NPR quy giảm đa thức về mọi tập NPR) Các hệ thống động lực</h3>
+<p>pFP2</p>
+<p>R (logic bậc hai điểm bất động nguyên thủy cho các cấu trúc R được xếp hạng) Các hệ thống động lực</p>
+<h3>P SPACER (lớp các tập</h3>
+<p>với số lượng tọa độ được sử dụng bị chặn đa thức trong không gian trạng thái khả quyết trong không gian đa thức tương ứng thời gian đa thức song song)</p>
+<p>pFP2</p>
+<h3>EXPTIMER (lớp các tập</h3>
+<h3>R</h3>
+<p>với sự phát triển hàm mũ khả quyết bởi máy thời gian hàm mũ)</p>
+<p>Blum et al. 1998, Chương 18, tr. 23). Trong công nghệ máy tính, các kiến trúc von Neumann chỉ với một bộ xử lý được mở rộng thành các lớp độ phức tạp của các máy song song thực với nhiều bộ xử lý hoạt động song song và các họ mạch thực vốn rất thú vị đối với mạng nơ-ron tương tự (xem Chương 6).</p>
+<p>Trang này cố ý để trống Trang này cố ý để trống Trang này cố ý để trống Trang này cố ý để trống</p></div>
+<nav class="chapter-nav"><a href="ch05.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch07.html">Phần sau &#8594;</a></nav></div></body></html>
