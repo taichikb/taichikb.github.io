@@ -40,6 +40,8 @@ jobs:
       #   assets/books        (~2.2 GB) offloaded; referenced only by absolute URLs
       #   assets/images/books (~0.9 GB) offloaded; 24.5k img/href refs rewritten
       #   downloads           (~0.02 GB) unreferenced A5 PDFs
+      #   facebook/media/videos (~0.07 GB) and media/generated (~0.03 GB) are
+      #                       not referenced by facebook/index.html
       #   assets/images/*     the ~0.44 GB subset in .github/pages-media-exclude.txt:
       #                       files that NO page references, so dropping them is free
       # assets/pdf/ (~0.59 GB) is ALSO offloaded: the reader pages now embed the
@@ -57,7 +59,8 @@ jobs:
           # referenced-by-nothing images enumerated in the checked-in manifest.
           : > /tmp/exclude.txt
           printf '%s\n' "./.git" "./.github" "./assets/books" "./books/pdfs" \
-            "./assets/images/books" "./assets/pdf" "./downloads" "./_site" >> /tmp/exclude.txt
+            "./assets/images/books" "./assets/pdf" "./downloads" "./_site" \
+            "./facebook/media/videos" "./facebook/media/generated" >> /tmp/exclude.txt
           if [ -f .github/pages-media-exclude.txt ]; then
             # manifest lines are repo-relative (assets/images/...) -> prefix "./"
             sed -e 's/^/.\//' -e '/^\.\/$/d' .github/pages-media-exclude.txt >> /tmp/exclude.txt
