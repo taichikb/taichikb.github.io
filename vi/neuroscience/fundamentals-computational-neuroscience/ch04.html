@@ -1,0 +1,386 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phần I · Chương 3 — Toán học và Thống kê — Khoa Học Thần Kinh Tính Toán | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.12rem;font-weight:700;margin:1.4rem 0 .5rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 1rem;text-align:justify}
+.reader-body blockquote{margin:1.1rem 1.4rem;padding:.6rem 1rem;border-left:3px solid var(--teal);background:var(--soft);color:var(--mid);font-style:italic}
+.reader-body ul.vi-list{margin:0 0 1rem;padding-left:1.5rem}
+.reader-body ul.vi-list li{margin-bottom:.35rem}
+.reader-body figure.bookfig{margin:1.6rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-width:680px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto}
+.reader-body figure.bookfig figcaption{font-size:.85rem;color:var(--mid);margin-top:.7rem;line-height:1.6;text-align:left;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Nền Tảng Khoa Học Thần Kinh Tính Toán</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Nền Tảng Khoa Học Thần Kinh Tính Toán — Thomas P. Trappenberg"></div>
+<div class="book-meta-details"><h1>Nền Tảng Khoa Học Thần Kinh Tính Toán</h1><p class="sub"><em>Fundamentals of Computational Neuroscience (3rd Ed.)</em> — Thomas P. Trappenberg (Oxford University Press, 2023). Bản dịch tiếng Việt toàn văn.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/fundamentals-computational-neuroscience.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Phần I · Chương 3 — Toán học và Thống kê</h2><div class="reader-body"><h2>3 Toán học và Thống kê</h2>
+<p>Chương này phác thảo một số khái niệm toán học và xác suất được sử dụng trong cuốn sách này. Ở đây, chúng ta chủ yếu đóng vai trò là người sử dụng một ngôn ngữ — ngôn ngữ của các ký hiệu toán học — giúp mô tả các khái niệm một cách chi tiết để có thể chuyển trực tiếp thành các chương trình mô phỏng. Do đó, chúng ta đang sử dụng một ngôn ngữ khoa học hữu ích thay vì đi sâu vào bản chất khoa học thuần túy của các khái niệm này.</p>
+<p>3.1 Ký hiệu vector và ma trận</p>
+<p>Chúng ta thường xuyên sử dụng ký hiệu vector và ma trận trong cuốn sách này vì nó cực kỳ thuận tiện để biểu diễn các phép toán trên mảng. Đây là một cách viết tắt cho những công thức vốn trông rất dài dòng, và các công thức viết theo ký hiệu này có thể dễ dàng nhập vào Python như chúng ta đã thấy ở chương trước. Chúng ta xem xét ba kiểu dữ liệu cơ bản:</p>
+<p>1. Vô hướng: a ví dụ 41 (3.1)</p>
+<p>2. Vector:</p>
+<p></p>
+<p></p>
+<p></p>
+<p> a1 a2 a3</p>
+<p>41 7 13 a hoặc theo từng thành phần</p>
+<p>ví dụ</p>
+<p> (3.2)</p>
+<p></p>
+<p></p>
+<p>3. Ma trận:</p>
+<p></p>
+<p></p>
+<p></p>
+<p> a11 a12 a21 a22 a31 a32</p>
+<p>41 12 7 45 13 9 a hoặc theo từng thành phần</p>
+<p>ví dụ</p>
+<p> (3.3)</p>
+<p></p>
+<p></p>
+<p>Chúng tôi sử dụng các chữ cái in đậm để biểu thị cả vector và ma trận; sự khác biệt thường có thể nhận biết rõ từ ngữ cảnh. Ma trận chỉ đơn giản là một tập hợp các đại lượng vô hướng hoặc các vector. Ta nói về một ma trận n × m trong đó n là số hàng và m là số cột. Như vậy, một đại lượng vô hướng là một ma trận 1 × 1, và một vector có độ dài n có thể được xem là một ma trận n × 1. Một tập hợp dữ liệu tương tự được gọi là mảng (array) trong khoa học máy tính. Tuy nhiên, ma trận khác ở chỗ chúng ta còn định nghĩa các phép toán trên các tập hợp dữ liệu này. Các quy tắc tính toán với ma trận có thể được áp dụng cho đại lượng vô hướng và vector.</p>
+<p>Chúng ta định nghĩa cách cộng và nhân hai ma trận để có thể sử dụng chúng trong các phương trình đại số. Tổng của hai ma trận được định nghĩa là tổng của từng thành phần riêng lẻ (a + b)ij = aij + bij. (3.4)</p>
+<p>Ví dụ, a và b là các ma trận 3 × 2, khi đó</p>
+<p>Fundamentals of Computational Neuroscience. Ấn bản thứ ba. Thomas P. Trappenberg, Oxford University Press. © Oxford University Press 2023. DOI:10.1093/oso/9780192869364.003.0003</p>
+<p></p>
+<p> a11 + b11 a12 + b12 a21 + b21 a22 + b22 a31 + b31 a32 + b32 a + b =</p>
+<p> (3.5)</p>
+<p></p>
+<h3>Phép nhân ma trận được định nghĩa là</h3>
+<h3>X</h3>
+<p>(a ∗b)ij = aikbkj. (3.6)</p>
+<p>k</p>
+<p>Do đó, phép nhân ma trận chỉ được định nghĩa khi nhân hai ma trận a và b mà số cột của ma trận a bằng số hàng của ma trận b. Ví dụ, đối với hai ma trận vuông có hai hàng và hai cột, tích của chúng được cho bởi</p>
+<p> a11b11 + a12b21 a11b12 + a12b22 a21b11 + a22b21 a21b12 + a22b22</p>
+<p> a ∗b = (3.7)</p>
+<p>Một quy tắc tiện lợi cho phép nhân ma trận được minh họa trong Hình 3.1. Mỗi thành phần trong ma trận kết quả được tính từ tổng của hai số hạng nhân. Quy tắc nhân hai ma trận tuy hơi dài dòng nhưng rất thẳng thắn và có thể dễ dàng cài đặt trên máy tính. Khi sử dụng mảng numpy, phép nhân ma trận được chỉ định bằng ký hiệu ‘@’ thay vì ký hiệu ‘*’. Ký hiệu ‘*’ dùng để chỉ phép nhân theo từng thành phần đối với các mảng có cùng kích thước.</p>
+<p>a 11 b11 a 12 b21 + a 11 b12 a 12 b22 + a 11 a 12 b11 b12 = a 21 b11 a 21 b21 + a 21 b12 a 22 b22 + a 22 a 21 b22 b21</p>
+<p>Hình 3.1 Minh họa phép nhân ma trận. Mỗi phần tử trong ma trận kết quả bao gồm các số hạng được lấy từ hàng tương ứng của ma trận thứ nhất và cột tương ứng của ma trận thứ hai. Do đó, trong ví dụ này, chúng ta tính phần tử được tô sáng từ các thành phần của hàng thứ nhất của ma trận thứ nhất và cột thứ hai của ma trận thứ hai. Từ hàng và cột này, chúng ta cộng tất cả các số hạng bao gồm phép nhân theo từng phần tử của các thành phần đó.</p>
+<p>Một định nghĩa hữu ích khác là chuyển vị của ma trận. Trong ký hiệu toán học, thường có một dấu phẩy (′) hoặc một chỉ số trên (t) gắn vào ma trận. Trong Python, phép toán này được áp dụng bằng cách gắn toán tử ‘.T’ vào ma trận. Lấy chuyển vị của một ma trận có nghĩa là ma trận được xoay 90 độ; hàng thứ nhất trở thành cột thứ nhất, hàng thứ hai trở thành cột thứ hai, v.v. Ví dụ, chuyển vị của ví dụ trong 3.3 là</p>
+<p></p>
+<p></p>
+<p>41 7 13 12 45 9 a′ = (3.8)</p>
+<p>Phép chuyển vị của một vector biến đổi một vector cột thành một vector hàng và ngược lại.</p>
+<p>Như đã đề cập, ma trận được phát minh để đơn giản hóa ký hiệu cho các hệ phương trình đại số ghép cặp. Chẳng hạn, hãy xét hệ ba phương trình</p>
+<p>41x1 + 12x2 = 17 (3.9) 7x1 + 45x2 = −83 (3.10)</p>
+<p>13x1 + 9x2 = −5. (3.11)</p>
+<h3>Hệ này có thể được viết là</h3>
+<p>ax = b (3.12)</p>
+<p>với ma trận a như trong ví dụ 3.3, vector x = (x1 x2)′, và vector b = (17 −83 −5)′. Nghiệm của các hệ phương trình như vậy có thể được lập công thức bằng ký hiệu ma trận, và nhiều hàm tương ứng đã được cài đặt sẵn trong MATLAB.</p>
+<p>3.2 Các thước đo khoảng cách</p>
+<p>Chúng ta thường xuyên phải đối mặt với việc so sánh hai vector. Việc so sánh hai vector để quyết định xem chúng có giống nhau hay không rất đơn giản bằng cách kiểm tra sự tương đương của từng thành phần. Tuy nhiên, nếu chúng khác nhau, chúng ta muốn gán một giá trị, d, cho sự khác biệt đó nhằm cung cấp cho chúng ta một thước đo về mức độ khác nhau của chúng. Có nhiều định nghĩa khả dĩ khác nhau cho một thước đo sai khác như vậy, mặc dù chúng ta nên áp đặt một số ràng buộc hiển nhiên lên các thước đo này:</p>
+<p>• Giá trị phải bằng d = 0 nếu hai vector giống nhau. Chúng ta không cho phép giá trị âm vì chúng ta muốn diễn giải giá trị này như một khoảng cách. • Giá trị phải dương, d > 0, nếu chúng không giống nhau. • Khoảng cách từ vector a đến b phải bằng khoảng cách từ b đến a.</p>
+<p>Đôi khi chúng ta phải đánh giá khoảng cách giữa hai vector nhị phân a và b, trong đó các thành phần chỉ có hai giá trị khả dĩ, chẳng hạn ai, bi ∈{0, 1}. Một giá trị phổ biến cho khoảng cách của các vector như vậy thu được bằng cách đếm xem có bao nhiêu thành phần (bit) khác nhau. Thước đo này được gọi là khoảng cách Hamming, dh. Nếu chuẩn hóa giá trị này theo số lượng thành phần của vector, N, thì ta thu được một giá trị nằm giữa 0 và 1. Khoảng cách Hamming chuẩn hóa này có thể được tính bằng công thức dh(a, b) = 1</p>
+<h3>X</h3>
+<p>ai(1 −bi) + (1 −ai)bi. (3.13)</p>
+<h3>N</h3>
+<p>i</p>
+<p>Tuy nhiên, không hiển nhiên làm thế nào để tổng quát hóa thước đo này cho các vector có thành phần là số thực vì chúng ta sẽ phải đánh giá mức độ sai khác giữa các thành phần dựa trên các giá trị khả dĩ của chúng, mà ta có thể không biết trước. Một định nghĩa khả dĩ là sử dụng tích vô hướng chuẩn hóa giữa các vector. Tích vô hướng (dot product), hay tích trong (inner product), của hai vector cột a và b được cho bởi</p>
+<h3>X</h3>
+<p>a′b = aibi. (3.14)</p>
+<p>i</p>
+<p>Chúng ta đã sử dụng chuyển vị của vector thứ hai để phép tính này chỉ là một trường hợp đặc biệt của phép nhân ma trận với một vector hàng a′ và một vector cột b. Theo cách diễn giải hình học của vector (xem Hình 3.2), con số này tỷ lệ thuận với cosin của góc giữa hai vector, b α a</p>
+<p>Hình 3.2 Biểu diễn đồ họa của hai vector trong không gian hai chiều với góc α giữa chúng.</p>
+<p>ab′ = ||a|| ||b′|| cos(α), (3.15)</p>
+<p>trong đó ||a|| là độ dài hay chuẩn của vector a. Chuẩn Euclid của vector được định nghĩa là sX a2</p>
+<p>||a|| = i , (3.16)</p>
+<p>i biểu thức này cũng có thể được viết nhờ tích vô hướng là</p>
+<p>√ a′a. (3.17)</p>
+<p>||a|| =</p>
+<p>Cosin của góc α giữa hai vector là một số nằm giữa −1 và 1 và chỉ bằng không khi các vector cùng hướng. Do đó, giá trị tuyệt đối của con số này là một định nghĩa khả dĩ cho độ tương đồng của hai vector, ab′</p>
+<p>. (3.18)</p>
+<p>ddot =</p>
+<p>||a|| ||b′||</p>
+<p>Các định nghĩa khác, chẳng hạn như lấy bình phương của tích vô hướng chuẩn hóa, cũng hợp lệ. Một định nghĩa khác đôi khi được sử dụng làm thước đo khoảng cách giữa hai vector có các thành phần là số thực dương ai, bi ∈R+ có dạng của hệ số tương quan Pearson trong thống kê, cụ thể là dPearson = ∥ab∥−∥a∥∥b∥ p</p>
+<p>. (3.19)</p>
+<p>(∥a2∥−∥a∥2) (∥b2∥−∥b∥2)</p>
+<p>Chúng ta gọi thước đo khoảng cách này là khoảng cách Pearson.</p>
+<p>3.3 Hàm δ</p>
+<p>Hàm δ là một ký hiệu rất thuận tiện để mô tả các sự kiện rời rạc dưới dạng liên tục. Có thể hình dung nó như một hàm mật độ bằng không ở mọi nơi ngoại trừ tại đối số mà tại đó nó tiến tới vô cùng, và tích phân trên toàn bộ hàm δ bằng một; tức là,</p>
+<h3>Z ∞</h3>
+<p>δ(x = x1)dx = 1. (3.20)</p>
+<p>−∞</p>
+<p>Nó thường được sử dụng như một nhân tích phân (integration kernel) cùng với các hàm khác như trong</p>
+<h3>Z ∞</h3>
+<p>δ(x1)f(x)dx = f(x1). (3.21)</p>
+<p>−∞</p>
+<p>Trong ngữ cảnh toán học chặt chẽ, nó chỉ được định nghĩa như một phép toán trên một hàm, và đây là lý do tại sao đôi khi nó được gọi là một phiếm hàm (functional). Ở đây, chúng ta sẽ sử dụng nó chủ yếu để chỉ định các sự kiện rời rạc và áp dụng trong các mô phỏng số như chúng ta sẽ minh họa trong phần tiếp theo.</p>
+<p>3.4 Giải tích số</p>
+<p>3.4.1 Sai phân và tổng</p>
+<p>Chúng ta thường quan tâm đến việc một biến số, chẳng hạn như điện thế màng hoặc tốc độ phát xung quần thể của các tập hợp tế bào, thay đổi như thế nào theo thời gian. Hãy gọi đại lượng này là x(t) vào lúc này, trong đó ta chỉ ra rằng nó thay đổi theo thời gian. Độ biến thiên của biến số này từ thời điểm t đến thời điểm t′ = t + ∆t khi đó là</p>
+<p>∆x = x(t + ∆t) −x(t). (3.22)</p>
+<p>Đại lượng ∆t là sai phân hữu hạn theo thời gian, mà sau đây chúng ta sẽ gọi là bước thời gian. Đối với một đại lượng biến thiên liên tục, chúng ta cũng có thể nghĩ về giá trị biến thiên tức thời, dx, bằng cách xét một bước thời gian vô cùng nhỏ. Về mặt hình thức,</p>
+<p>∆t→0(x(t + ∆t) −x(t)). (3.23)</p>
+<p>dx = lim</p>
+<p>∆t→0 ∆x = lim</p>
+<p>Bước thời gian vô cùng nhỏ thường được viết là dt. Việc tính toán với những đại lượng vô cùng nhỏ như vậy thuộc về ngành giải tích trong toán học, nhưng trên máy tính chúng ta luôn chỉ có các sai phân hữu hạn và cần xét các bước thời gian rất nhỏ để xấp xỉ công thức liên tục. Với các bước thời gian rời rạc, vi phân trở thành sai phân và tích phân trở thành tổng dx→∆x (3.24) Z</p>
+<h3>X</h3>
+<p>dx →∆x (3.25)</p>
+<p>Lưu ý hệ số ∆x đứng trước dấu tổng trong phương trình cuối cùng. Rất dễ quên hệ số này khi thay thế tích phân bằng tổng. Phần sau đây minh họa quá trình rời rạc hóa này đối với một phương trình vi phân.</p>
+<p>3.4.2 Tích phân số của bài toán giá trị ban đầu</p>
+<p>Động lực học theo thời gian của một số mô hình trong cuốn sách này được định nghĩa bằng các phương trình vi phân chỉ rõ độ biến thiên của một đại lượng dx ứng với một bước thời gian vô cùng nhỏ dt. Độ biến thiên này được xác định bởi một hàm f(x, t), hàm này có thể phụ thuộc vào đại lượng x và đôi khi phụ thuộc tường minh vào cả thời gian. Về mặt toán học, điều này được biểu diễn bởi τ dx dt = f(x, t), (3.26)</p>
+<p>đây là một phương trình vi phân cấp một với một biến độc lập và hằng số thời gian τ. Đôi khi, đạo hàm ở vế trái được viết là dx dt = ˙x. (3.27)</p>
+<p>Đây là lý do tại sao chúng ta sử dụng tên gọi như xdot trong các chương trình. Ở đây chúng ta phác thảo các nguyên lý của một số kỹ thuật tích phân số cho trường hợp đơn giản này, nhưng các phương pháp này có thể dễ dàng tổng quát hóa cho các phương trình vi phân ghép cặp phức tạp hơn và các phương trình vi phân chứa đạo hàm bậc cao hơn. Chúng ta quan tâm đến việc tính toán các giá trị của đại lượng x(t) tại các thời điểm cụ thể t > t0 khi đã biết giá trị của đại lượng tại thời điểm t = t0, x(t0) = x0. (3.28)</p>
+<p>Đây được gọi là bài toán giá trị ban đầu. Trong văn bản, chúng ta thường gọi bài toán giá trị ban đầu là tích phân số. Tuy nhiên, tích phân số cũng có thể đề cập đến các tác vụ số khác như xấp xỉ số các tích phân dạng</p>
+<h3>R x2</h3>
+<p>x1 f(x)dx, hoặc tìm nghiệm của các phương trình vi phân với các ràng buộc khác.</p>
+<p>3.4.3 Phương pháp Euler</p>
+<p>Máy tính số chỉ có thể biểu diễn các con số rời rạc chứ không thể biểu diễn các biến thiên vô cùng nhỏ. Do đó, chúng ta phải biểu diễn động lực học liên tục cho bởi phương trình 3.26 theo các bước thời gian rời rạc. Chúng ta gọi quy trình này là rời rạc hóa. Dạng đơn giản nhất là sử dụng các bước thời gian nhỏ nhưng hữu hạn giữa hai thời điểm liên tiếp t1 và t2. Chúng ta viết bước thời gian này là</p>
+<p>∆t = t2 −t1. (3.29)</p>
+<p>Quá trình liên tục được khôi phục trong giới hạn ∆t →0, mà chúng ta gọi là giới hạn liên tục. Tích phân số ở đây đơn giản là cộng dồn các biến thiên tại mỗi bước thời gian. Về cơ bản, đây chính là điều mà các quá trình vật lý đang thực hiện mà chúng ta muốn mô tả, ngoại trừ việc chúng ta phải sử dụng các bước thời gian hữu hạn. Quá trình vật lý thường được cho bằng cách chỉ định độ biến thiên trong một bước thời gian</p>
+<p>∆x(t + ∆t) = x(t + ∆t) −x(t). (3.30)</p>
+<h3>Do đó, phương trình vi phân 3.26 được rời rạc hóa đơn giản thành</h3>
+<p>∆x(t + ∆t)</p>
+<p>∆t = f(x(t), t). (3.31)</p>
+<p>Chúng ta đã gán giá trị độ biến thiên được chỉ định ở vế phải tại thời điểm t cho độ biến thiên tại thời điểm t + ∆t, mặc dù chúng ta cũng có thể chọn f(x(t + ∆t), t) làm vế phải. Các giá trị số khi đó sẽ hơi khác một chút và các hệ rời rạc thực sự hơi khác nhau. Tuy nhiên, chúng ta phải đưa ra mọi lựa chọn sau đây dưới ánh sáng của giới hạn liên tục, trong đó chúng ta sẽ khôi phục được cùng một đáp án cho các phương pháp khác nhau. Thay phương trình 3.30 vào phương trình 3.31 cho ta x(t + ∆t) = x(t) + ∆tf(x(t), t). (3.32)</p>
+<p>Phương trình này đơn giản phát biểu ý nghĩa của một vi phân trong tình huống rời rạc. Giá trị của biến x ở bước thời gian tiếp theo được cho bởi giá trị của biến ở bước thời gian trước đó cộng với ∆t nhân với độ biến thiên được chỉ định bởi hàm f. Phương pháp lặp này theo dõi sự phát triển của đại lượng x từ giá trị ban đầu đến các thời điểm sau đó bằng cách cộng dồn các biến thiên. Phương pháp tích phân số đơn giản nhất này, vốn ngoại suy các biến thiên một cách tuyến tính, được gọi là phương pháp Euler.</p>
+<p>Hãy minh họa quy trình này bằng một ví dụ đơn giản nhưng quan trọng. Trong ví dụ này, độ biến thiên của đại lượng tỷ lệ thuận với chính đại lượng đó. Chẳng hạn, trong một quần thể có tốc độ sinh sản không đổi lớn hơn 2, số lượng con cái tăng theo kích thước của quần thể, τ dx dt = x(t) (3.33)</p>
+<p>Bây giờ, trước khi giải phương trình vi phân này bằng phương pháp số, chúng ta chỉ ra rằng có thể giải nó bằng phương pháp giải tích. Không phải tất cả các phương trình vi phân đều có thể giải được bằng giải tích, và chúng ta thường không phải lo lắng về điều này vì chúng ta sử dụng trực tiếp các kỹ thuật số. Nhưng chúng ta có thể sử dụng kiến thức về nghiệm giải tích này để thảo luận về nghiệm số của mình. Chỉ cần đọc phương trình trên, hàm chúng ta đang tìm là hàm x(t) có giá trị tỷ lệ thuận với độ dốc của nó. Hàm này chính là hàm mũ, x(t) = x(0)eτx (3.34)</p>
+<p>bạn có thể dễ dàng kiểm chứng bằng cách lấy đạo hàm. Phương trình vi phân này có thể dễ dàng được giải bằng giải tích thông qua phương pháp phân ly biến số, nhưng đây không phải là chủ đề của cuốn sách này. Thay vào đó, phiên bản rời rạc của phương trình này là τ ∆x(t + ∆t)</p>
+<p>∆t = x(t). (3.35)</p>
+<h3>Phương trình cập nhật tương đương cho bài toán giá trị ban đầu là</h3>
+<p>x(t + ∆t) = x(t) + 1 τ ∆tx(t). (3.36)</p>
+<p>Đoạn mã Python cài đặt việc giải phương trình vi phân này bằng ba phương pháp được đưa ra dưới đây với τ = 1 và x(0) = 1.</p>
+<p>Programs/ode1.py 1 # Example of numerical i n t e g r a t i o n 2 import numpy as np 3 import m a t p l o t l i b . pyplot as p l t 4 from scipy . i n t e g r a t e import o d e i n t 5 6 def xdot ( x , t ) : 7 r e t u r n x 8 9 x0 = 1 # i n i t i a l c o n d i t i o n s on a t x=0 10 dt = 0.1 # time s t e p 11 t = np . arange (0 ,3 , dt ) # i n t e g r a t e from 0 to 4 12 13 xEuler = np . a r r a y ( [ x0 ] ) 14 f o r s t e p in t : 15 xEuler = np . append ( xEuler , 16 xEuler [−1]+ dt ∗xdot ( xEuler [ −1] , s t e p ) ) 17 18 xODEint = np . squeeze ( o d e i n t ( xdot , x0 , t ) ) 19 20 xAna = x0 ∗np . exp ( t ) # a n a l y t i c s o l u t i o n 21 22 p l t . p l o t ( t , xEuler [: −1] , ’ r−−’ ) ; p l t . p l o t ( t , xAna ) 23 p l t . x l a b e l ( ’ t ’ ) ; p l t . y l a b e l ( ’ xEuler , xAna ’ )</p>
+<p>Trước tiên, chúng ta so sánh nghiệm Euler xEuler với nghiệm giải tích xAna. Nghiệm Euler với bước thời gian ∆t = 0.1 được hiển thị trong Hình 3.3A dưới dạng đường cong màu đỏ, trong khi nghiệm giải tích được hiển thị bằng màu xanh lam. Mặc dù cả hai đường cong đều thể hiện hành vi hàm mũ, nghiệm Euler ngày càng lệch khỏi nghiệm giải tích của hệ liên tục. Tại thời điểm này, điều tốt nên nhớ là nghiệm liên tục sẽ được khôi phục khi ∆t →0. Hình 3.3B cho thấy sai số tương đối (xAna − xEuler)/xAna đối với hai mức ∆t khác nhau. Đúng như kỳ vọng, sai số nhỏ dần khi kích thước bước giảm xuống.</p>
+<p>A. B. C.</p>
+<p>1e 8 (xAna-xODEint)/xAna (xAna-xEuler)/xAna</p>
+<p>0</p>
+<p>15</p>
+<p>0.10 xEuler, xAna</p>
+<p>10</p>
+<p>2</p>
+<p>0.05</p>
+<p>5</p>
+<p>4</p>
+<p>0.00</p>
+<p>0 2 t</p>
+<p>0 2 t t</p>
+<p>0 2</p>
+<p>Hình 3.3 (A) Nghiệm giải tích (đường cong màu xanh lam) và nghiệm Euler (∆t = 0.1, đường nét đứt màu đỏ) với τ = 1 cho bài toán giá trị ban đầu trong phương trình 3.33 (B) Hiệu số tương đối giữa nghiệm giải tích và nghiệm Euler với ∆t = 0.1 (đường cong màu đỏ) và ∆t = 0.01 (đường cong màu xanh lam) (C) Sai số tương đối giữa nghiệm giải tích và nghiệm số với cài đặt LSODA trong odeint.</p>
+<p>Chúng ta sẽ sử dụng phương trình vi phân cơ bản của hàm mũ nhiều lần trong cuốn sách này, đặc biệt là ở dạng có số mũ âm. Ví dụ, hãy xét một tín hiệu đầu vào với các sự kiện rời rạc, như một chuỗi xung (spike train),</p>
+<h3>X</h3>
+<p>δ(t −t′). (3.37)</p>
+<h3>X(t) =</h3>
+<p>t′</p>
+<h3>Phương trình vi phân có dạng</h3>
+<p>τ dx dt = −x + X(t) (3.38)</p>
+<p>thường được gọi là bộ tích phân rò rỉ (leaky integrator). Bộ tích phân này có thể được cài đặt bằng chương trình sau.</p>
+<p>Programs/LeakyIntegrator.py 1 import numpy as np 2 import m a t p l o t l i b . pyplot as p l t 3 4 tmax =10; dt =1; tau =2 5 X = np . zeros ( tmax∗i n t ( 1 / dt ) ) ; 6 a=np . a r r a y ( [ 1 , 3 , 8 ] ) / dt ; X[ a . astype ( i n t )]=1 7 8 x = np . a r r a y ( [ 0 ] ) ; 9 f o r t in range (0 , tmax∗i n t ( 1 / dt ) ) : 10 x = np . append ( x , x [ t ]+ dt ∗( −1/ tau ∗x [ t ])+X[ t ] ) 11 12 p l t . p l o t ( x ) ; 13 p l t . x l a b e l ( ’ t in u n i t s of dt ’ ) ; p l t . y l a b e l ( ’x ( t ) ’ ) 14 p l t . s a v e f i g ( ’ l i 1 . pdf ’ )</p>
+<p>Đây một lần nữa là một cài đặt của phương pháp Euler. Lưu ý rằng lượng suy giảm phụ thuộc vào tỷ lệ tau/dt ngoại trừ số hạng X(t) vì số hạng này được tạo thành từ các hàm delta. Bản chất của hàm delta là nó có giá trị bằng 1 trong khoảng thời gian nhỏ nhất, bất kể khoảng thời gian này nhỏ đến mức nào. Các nghiệm với hai bước thời gian khác nhau được hiển thị trong Hình 3.4.</p>
+<h2>0 50 100</h2>
+<p>1.0 x(t)</p>
+<p>0.5</p>
+<p>0.0</p>
+<p>0 5 10 t tính theo đơn vị dt</p>
+<p>Hình 3.4 Ví dụ về một bộ tích phân rò rỉ với các đầu vào delta tại ba thời điểm với dt=1 (đường cong và thang đo màu xanh lam) và dt=0.1 (đường cong và thang đo màu đỏ).</p>
+<p>Một lưu ý nhanh về hiệu quả của chương trình. Tất nhiên tốt nhất là sử dụng các nghiệm giải tích khi chúng tồn tại. Chẳng hạn, trong bộ tích phân rò rỉ, chúng ta có thể chỉ cần sử dụng nghiệm giải tích giữa các thời điểm phát xung, và đặt lại giá trị x tại các thời điểm phát xung. Điều này thường làm tăng tốc độ và độ chính xác của mô phỏng. Chúng ta hầu hết sẽ không sử dụng những kỹ thuật nâng cao như vậy trong các mô phỏng của mình vì chúng ta muốn tập trung vào các nguyên lý đằng sau các mô phỏng chứ ít tập trung vào các thủ thuật số chính xác.</p>
+<p>3.4.4 Các phương pháp bậc cao hơn</p>
+<p>Trong phương pháp Euler vừa phác thảo, chúng ta đã tính đến đạo hàm bậc nhất của hàm f (độ dốc của hàm) và sử dụng nó để ngoại suy tuyến tính giá trị của x ở bước thời gian tiếp theo t + ∆t. Điều này dẫn đến sai số tích phân nếu hàm không tuyến tính giữa các điểm tích phân. Chúng ta có thể cải thiện độ chính xác của phép xấp xỉ theo nhiều cách. Một cách là tính đến độ cong thông qua đạo hàm bậc hai hoặc bậc cao hơn. Chúng ta có thể hình thức hóa điều này bằng cách xét khai triển Taylor của hàm xung quanh thời điểm mà chúng ta muốn ước lượng giá trị. Khai triển Taylor được cho bởi</p>
+<p>2(∆t)2 d2x dt2 + O x(t + ∆t) = x(t) + ∆tdx dt + 1 (∆t)3</p>
+<p>  , (3.39)</p>
+<p>trong đó số hạng cuối cùng đại diện cho tất cả các số hạng bậc cao hơn khả dĩ. Phương trình với hai số hạng đầu tiên chính là phương pháp Euler (phương trình 3.32) vì đạo hàm được cho bởi f(x, t) như được phát biểu bởi phương trình 3.26. Nếu chúng ta xét số hạng bậc tiếp theo trong khai triển Taylor cho ví dụ của mình, ta thu được phép xấp xỉ x(t + ∆t) = x(t) + (1 −x + t)∆t + 1</p>
+<p>2(1 −x)(∆t)2, (3.40)</p>
+<p>biểu thức này cộng thêm một số hạng tỷ lệ với (∆t)2 vào biểu thức trước đó. Hiệu số tương đối bậc hai giữa nghiệm bậc hai và nghiệm chính xác cũng được hiển thị trong Hình 3.3B dưới dạng đường cong màu xanh lục. Mặc dù phương pháp này tốt hơn một chút cho ví dụ này ở các thời gian ngoại suy trung gian, sai số lại tăng lên đối với các thời gian lớn.</p>
+<p>Nếu sử dụng các số hạng bậc cao hơn, chúng ta có thể cải thiện hơn nữa phép xấp xỉ nghiệm chính xác. Phương pháp này đòi hỏi chúng ta phải biết tường minh các đạo hàm bậc cao hơn của hàm f. Trong trường hợp chúng khó tính bằng giải tích, chúng ta cũng có thể ước lượng chúng bằng số, mặc dù điều này đưa thêm vào các sai số số. Do đó, phương pháp này không được sử dụng trực tiếp mà được dùng gián tiếp theo cách sau. Nếu chúng ta chỉ sử dụng đạo hàm bậc nhất (độ dốc) của hàm tại thời điểm t, ta giả định rằng giá trị này không đổi cho các thời điểm tiếp theo. Nếu độ dốc này thay đổi (chẳng hạn, nếu hàm có độ cong) thì chúng ta sử dụng độ dốc tại một thời điểm giữa t và t + ∆t như một ước đoán tốt hơn cho độ dốc trung bình trong khoảng này. Do đó, thay vì sử dụng f(x, t) trong phương trình 3.32, chúng ta nên sử dụng f(x, t) →f(˜x, t + α∆t), (3.41)</p>
+<p>trong đó α là một tham số. Giá trị ˜x phải là giá trị của x tại t + α∆t, tức là,</p>
+<p>˜x = x(t + α∆t), giá trị mà chúng ta không biết trước. Tuy nhiên, chúng ta có thể ước đoán giá trị này bằng phương pháp Euler bậc nhất, tức là,</p>
+<p>˜x = x(t) + α∆tf(x(t), t). (3.42)</p>
+<p>Một lựa chọn phổ biến cho tham số α là α = 1/2, trong trường hợp này phương pháp được gọi là phương pháp điểm giữa (midpoint method). Phương pháp này triệt tiêu các số hạng sai số bậc nhất và do đó tương ứng với một phương pháp bậc hai. Phương pháp điểm giữa đòi hỏi hai lần gọi hàm, nhưng không cần các đạo hàm bậc cao hơn. Lưu ý rằng chúng ta đã đưa ra một số giả định vốn thường phù hợp, nhưng không phải lúc nào cũng đúng. Do đó, các phương pháp bậc cao hơn thường có thể cải thiện phép xấp xỉ nghiệm x(t), nhưng điều này không nhất thiết đúng trong mọi hoàn cảnh.</p>
+<p>Ngoài ra, không nhất thiết phải dừng lại ở phép xấp xỉ bậc hai và điểm giữa mà hoàn toàn có thể (dù khá dài dòng) tìm ra các công thức cho các phép xấp xỉ bậc cao hơn. Phương pháp được sử dụng phổ biến nhất cho tích phân số là một phương pháp bậc bốn được gọi là phương pháp Runge–Kutta, đây là một sự tổng quát hóa trực tiếp của phương pháp điểm giữa. Các kết luận mà chúng ta rút ra cho phương pháp điểm giữa vẫn giữ nguyên giá trị. Phương pháp bậc bốn này thường tốt hơn các phương pháp bậc thấp hơn, mặc dù điều này không phải lúc nào cũng được đảm bảo.</p>
+<p>Việc áp dụng bất kỳ phương pháp số nào trong số này đều đòi hỏi chúng ta phải kiểm tra xem các kết quả thu được có phụ thuộc một cách nghiêm trọng vào việc lựa chọn các tham số như bước thời gian ∆t hay không. Ít nhất, chúng ta nên kiểm tra xem các kết quả số có thay đổi vượt quá một phạm vi nhất định mà ta yêu cầu đối với nghiệm hay không khi điều chỉnh đáng kể tham số bước thời gian (ví dụ: nhân đôi và giảm một nửa giá trị đó). Nhiều bộ giải số đã cài đặt sẵn những chiến lược như vậy với các thuật toán tự động thay đổi bước thời gian miễn là các biến thiên trong kết quả thấp hơn ngưỡng sai số mà ta đặt ra cho hệ thống. Những thuật toán như vậy được gọi là các phương pháp bước thời gian thích nghi (adaptive time step methods).</p>
+<p>Có một số phương pháp khác cho tích phân số, mỗi phương pháp có những điểm mạnh và điểm yếu khác nhau trong các lĩnh vực ứng dụng nhất định. Chẳng hạn, phương pháp Runge–Kutta bị phá vỡ nếu có những thay đổi rất đột ngột trong nghiệm chính xác khiến các phép nội suy tuyến tính được sử dụng trong cách tiếp cận điểm giữa không còn đúng nữa. Mô-đun integrate từ gói SciPy cung cấp một số bộ giải thông qua hàm solve_ivp(). Chúng ta sẽ sử dụng phiên bản được khuyến nghị này trong một số chương trình, nhưng chúng ta cũng sẽ sử dụng hàm cũ hơn là odeint(). Hàm này sử dụng thuật toán LSODA vốn cũng được cài đặt trong solve_ivp(), nhưng chúng ta cũng dùng odeint() vẫn sử dụng LSODA bên trong và có cú pháp hơi gọn gàng hơn cho các chương trình ví dụ của chúng ta. Việc sử dụng hàm này để giải ví dụ giá trị ban đầu của phương trình 3.33 đã được đưa vào chương trình ode1.py trình bày trước đó. Sai số tương đối so với nghiệm giải tích được hiển thị trong Hình 3.3C. Điều quan trọng là phải quan sát thang đo của sai số này so với sai số trong Hình 3.3B.</p>
+<p>3.5 Lý thuyết xác suất cơ bản</p>
+<p>Phần này điểm qua ngắn gọn các tính chất cơ bản của số ngẫu nhiên và khung lý thuyết xác suất. Điều này bao gồm một danh sách các hàm mật độ xác suất được sử dụng trong cuốn sách này. Phần này không bàn về thống kê — lĩnh vực vốn chủ yếu quan tâm đến kiểm định giả thuyết. Thay vào đó, ở đây chúng ta ôn lại một số khái niệm cung cấp một khung mô tả hữu ích về sự bất định vì chúng ta sẽ lập luận rằng các chức năng của não bộ được tối ưu hóa cho việc ra quyết định trong các môi trường bất định.</p>
+<p>3.5.1 Số ngẫu nhiên và hàm (mật độ) xác suất của chúng</p>
+<p>Khái niệm quan trọng nhất được giới thiệu trong phần này là khái niệm về số ngẫu nhiên, ở đây được ký hiệu bằng các chữ cái viết hoa để phân biệt với các số thông thường viết bằng chữ thường. Một biến ngẫu nhiên, X, là một đại lượng có thể nhận các giá trị khác nhau mỗi khi biến đó được kiểm tra, chẳng hạn như trong các phép đo của thí nghiệm. Điều này khác biệt về cơ bản so với một biến thông thường, x, vốn không thay đổi giá trị một khi đã được gán. Do đó, một số ngẫu nhiên là một khái niệm toán học mới, không nằm trong toán học thông thường về các con số. Một giá trị cụ thể của số ngẫu nhiên vẫn có ý nghĩa vì nó có thể ảnh hưởng đến các quá trình cụ thể theo một cách tất định. Tuy nhiên, vì một số ngẫu nhiên có thể thay đổi mỗi khi được kiểm tra, việc mô tả các tính chất tổng quát hơn khi lấy mẫu nhiều lần cũng rất hữu ích. Tần suất mà các con số có thể xuất hiện khi đó là đại lượng hữu ích nhất cần tính đến. Tần suất chuẩn hóa này được nắm bắt bởi cấu trúc toán học của một xác suất.</p>
+<p>Chúng ta có thể hình thức hóa điều này bằng một số ký hiệu ngắn gọn. Ta nói về một biến ngẫu nhiên rời rạc trong trường hợp các giá trị khả dĩ của một số ngẫu nhiên là các con số rời rạc. Một biến ngẫu nhiên liên tục là một biến ngẫu nhiên có các giá trị khả dĩ nằm trong một dải số liên tục. Về nguyên tắc, không có nhiều khác biệt giữa hai loại biến ngẫu nhiên này, ngoại trừ việc công thức toán học phải hơi khác một chút để đảm bảo tính chính xác về mặt toán học. Ví dụ, hàm xác suất,</p>
+<h3>P(x) = P(X = x) (3.43)</h3>
+<p>mô tả tần suất xuất hiện của mỗi giá trị khả dĩ x của một biến rời rạc X. Lưu ý rằng x là một biến thông thường đại diện cho một giá trị cụ thể, chứ không phải một biến ngẫu nhiên có thể thay đổi. Giá trị của P(x) cho biết tỷ lệ số lần chúng ta thu được giá trị x cho biến ngẫu nhiên X nếu lấy nhiều mẫu của biến ngẫu nhiên đó. Lưu ý rằng xác suất đôi khi được viết dưới dạng phần trăm, nhưng chúng ta sẽ bám sát ký hiệu phân số. Từ định nghĩa này suy ra rằng tần suất có được bất kỳ giá trị khả dĩ nào bằng một, đây chính là điều kiện chuẩn hóa</p>
+<h3>X</h3>
+<h3>P(x) = 1. (3.44)</h3>
+<p>x</p>
+<p>Trong trường hợp các số ngẫu nhiên liên tục, chúng ta có vô số giá trị khả dĩ x nên tỷ lệ cho mỗi con số trở nên vô cùng nhỏ. Khi đó, việc viết hàm phân phối xác suất dưới dạng P(x) = p(x)dx là phù hợp, trong đó p(x) là hàm mật độ xác suất (pdf). Tổng trong phương trình 3.44 khi đó trở thành một tích phân, và điều kiện chuẩn hóa cho một biến ngẫu nhiên liên tục là</p>
+<h3>Z</h3>
+<p>p(x)dx = 1. (3.45)</p>
+<p>x</p>
+<p>Chúng ta sẽ trình bày phần còn lại của mục này theo các biến ngẫu nhiên liên tục. Các công thức tương ứng cho biến ngẫu nhiên rời rạc có thể dễ dàng suy ra bằng cách thay thế các tích phân trên pdf bằng các tổng trên hàm xác suất. Cũng có thể sử dụng hàm δ, đã được phác thảo trong mục 3.3, để viết các quá trình ngẫu nhiên rời rạc dưới dạng liên tục.</p>
+<p>3.5.2 Các mô-men: trung bình, phương sai, v.v.</p>
+<p>Sau đây chúng ta chỉ xem xét các giá trị ngẫu nhiên độc lập được rút ra từ các hàm pdf giống hệt nhau, thường được gọi là dữ liệu iid (độc lập và phân phối giống nhau - independent and identically distributed). Nghĩa là, chúng ta không xét các trường hợp có xác suất nhận được những con số nhất định khác nhau khi đã có một con số cụ thể ở lần thử trước đó. Khi đó, hàm mật độ xác suất tĩnh mô tả tất cả những gì chúng ta có thể biết về biến ngẫu nhiên tương ứng.</p>
+<p>Hãy xét hàm pdf tùy ý, p(x), với đồ thị sau đây:</p>
+<p>p(x)</p>
+<p>µ x</p>
+<p>Một phân phối như vậy được gọi là đa đỉnh (multimodal) vì nó có nhiều đỉnh. Vì đây là một hàm pdf, diện tích bên dưới đường cong này phải bằng một, như đã nêu trong phương trình 3.45. Sẽ rất hữu ích nếu biểu diễn được hàm này dưới dạng tham số hóa giải tích. Hầu hết các hàm pdf phải được xấp xỉ từ thực nghiệm, và một phương pháp phổ biến khi đó là khớp một hàm với dữ liệu. Tuy nhiên, đôi khi chỉ cần biết ít nhất một số đặc trưng cơ bản của các hàm là đủ. Chẳng hạn, chúng ta có thể hỏi giá trị xuất hiện thường xuyên nhất là gì khi rút ra nhiều mẫu ví dụ. Con số này được cho bởi giá trị tại đỉnh lớn nhất của phân phối. Một đại lượng phổ biến hơn cần biết là trung bình cộng kỳ vọng của những con số đó, được gọi là giá trị trung bình (mean), giá trị kỳ vọng (expected value), hoặc kỳ vọng (expectation value) của phân phối, được định nghĩa bởi</p>
+<h3>Z ∞</h3>
+<p>µ = xp(x)dx. (3.46)</p>
+<p>−∞</p>
+<p>Trong trường hợp rời rạc, công thức này tương ứng với công thức tính trung bình cộng, trong đó ta cộng tất cả các con số khác nhau cùng với tần suất của chúng.</p>
+<p>Giá trị trung bình của một phân phối không phải là đại lượng thú vị duy nhất đặc trưng cho một phân phối. Chẳng hạn, chúng ta có thể muốn hỏi giá trị trung vị (median) là gì — giá trị mà khả năng tìm thấy một giá trị nhỏ hơn hoặc lớn hơn nó là như nhau. Hơn nữa, độ phân tán của pdf xung quanh giá trị trung bình cũng rất giàu thông tin vì nó cho ta cảm nhận về mức độ trải rộng của các giá trị. Độ phân tán này thường được đặc trưng bởi độ lệch chuẩn (std), hoặc bình phương của nó, được gọi là phương sai, σ2, và được định nghĩa là</p>
+<h3>Z ∞</h3>
+<p>σ2 = (x −µ)2p(x)dx. (3.47)</p>
+<p>−∞</p>
+<p>Đại lượng này nhìn chung chưa đủ để đặc trưng một cách duy nhất cho hàm xác suất; điều này chỉ khả thi nếu chúng ta biết tất cả các mô-men của một phân phối, trong đó mô-men bậc n quanh giá trị trung bình được định nghĩa là</p>
+<h3>Z ∞</h3>
+<p>mn = (x −µ)np(x)dx. (3.48)</p>
+<p>−∞</p>
+<p>Phương sai là mô-men bậc hai quanh giá trị trung bình. Các mô-men bậc cao hơn chỉ định những đặc trưng sâu hơn như độ nhọn (kurtosis) và độ lệch (skewness) của phân phối. Các mô-men cao hơn nữa chưa được đặt tên riêng. Biết tất cả các mô-men của một phân phối tương đương với việc biết chính xác phân phối đó, và biết một hàm pdf tương đương với việc biết mọi thứ chúng ta có thể biết về một biến ngẫu nhiên.</p>
+<p>Trong trường hợp hàm phân phối không được cho trước, các mô-men phải được ước lượng từ dữ liệu. Ví dụ, giá trị trung bình có thể được ước lượng từ một mẫu các phép đo bằng trung bình mẫu, n X</p>
+<p>¯x = 1 xi, (3.49)</p>
+<p>n i=1 và phương sai có thể ước lượng từ phương sai mẫu chệch, n X</p>
+<p>1 = 1 n s2 (¯x −xi)2, (3.50)</p>
+<p>i=1 hoặc phương sai mẫu không chệch n X</p>
+<p>2 = 1 n −1 s2 (¯x −xi)2. (3.51)</p>
+<p>i=1</p>
+<p>Một đại lượng thống kê được gọi là chệch (biased) nếu giá trị trung bình của phân phối lấy mẫu không bằng với tham số dự định ước lượng. Biết tất cả các mô-men sẽ xác định duy nhất một hàm pdf.</p>
+<p>3.5.3 Ví dụ về các hàm (mật độ) xác suất</p>
+<p>Có vô số hàm pdf khả dĩ. Tuy nhiên, một số dạng cụ thể rất hữu ích trong việc mô tả một số quá trình đặc thù và do đó đã được đặt tên riêng. Nhiều hàm trong số đó được cài đặt sẵn trong gói random của Numpy và trong mô-đun stats của SciPy. Sau đây chúng ta phác thảo một danh sách ngắn một số phân phối thường dùng nhằm đưa ra các ví dụ và mã Python tương ứng của chúng.</p>
+<p>3.5.3.1 Phân phối đều</p>
+<p>Các số giả ngẫu nhiên phân phối đều trong khoảng 0 ≤x < 1 thường được tạo bởi một hàm gọi là rand() trong nhiều ngôn ngữ lập trình. Điều này được thể hiện trong đoạn mã liệt kê sau đây bao gồm cả mã để vẽ biểu đồ tần suất (đã chuẩn hóa) của 1000 mẫu nhằm xấp xỉ phân phối.</p>
+<p>Listing 3.1 Từ distributions.py 1 import numpy as np 2 import m a t p l o t l i b . pyplot as p l t 3 from scipy import s t a t s 4 5 x = np . random . rand (1000) 6 n , bins = np . histogram ( x ) 7 p l t . bar ( bins [: −1]+0.05 , n / 1 0 0 0 , 0 . 1 ) 8 p l t . x l a b e l ( ’x ’ ) , p l t . y l a b e l ( ’P ( x ) ’ )</p>
+<p>Các số phân phối đều trong các khoảng khác nhau được tạo bằng mã np.random.uniform(a,b,size=)</p>
+<p>Các số nguyên phân phối đều nằm giữa a ≤x < b được tạo bởi x = np.random.randint(a,b,size)</p>
+<p>p(x)</p>
+<p>Hàm mật độ xác suất:</p>
+<p>p(x) = 1 b−a trung bình: (a + b)/2 phương sai: (b −a)2/12 x</p>
+<p>3.5.3.2 Phân phối chuẩn (Gaussian)</p>
+<p>Một phân phối khác mà chúng ta thường gặp trong phần sau là phân phối Gaussian. Đây là giới hạn của phân phối nhị thức đối với số lượng phép thử lớn. Phân phối này phụ thuộc vào hai tham số là giá trị trung bình µ và độ lệch chuẩn σ, và trường hợp đặc biệt khi µ = 0 và σ = 1 được gọi là phân phối Chuẩn (Normal distribution). Các số ngẫu nhiên phân phối Gaussian có thể được rút ra bằng np.random.normal(mu, sig, size). Tầm quan trọng của phân phối chuẩn bắt nguồn từ định lý giới hạn trung tâm được phác thảo dưới đây.</p>
+<p>p(x)</p>
+<p>Hàm mật độ xác suất:</p>
+<p>σ</p>
+<p>−(x−µ)2 p(x) = 1 σ</p>
+<p>2πe</p>
+<p>√</p>
+<p>2σ2 trung bình: µ phương sai: σ2 µ x</p>
+<p>3.5.3.3 Phân phối Bernoulli</p>
+<p>Biến ngẫu nhiên Bernoulli là biến từ một thí nghiệm chỉ có hai kết cục khả dĩ: thành công với xác suất p; hoặc thất bại, với xác suất (1 −p).</p>
+<p>Hàm xác suất:</p>
+<p>P(thành công) = p; P(thất bại) = 1 −p trung bình: p phương sai: p(1 −p)</p>
+<p>3.5.3.4 Phân phối nhị thức</p>
+<p>Số lần thành công trong n phép thử Bernoulli với xác suất thành công p tuân theo phân phối nhị thức. Lưu ý rằng hệ số nhị thức được định nghĩa là</p>
+<p> n</p>
+<p></p>
+<p>= n! x!(n −x)! (3.52)</p>
+<p>x và được cho bởi hàm Python np.random.binomial(n, p, size)</p>
+<h3>P(x)</h3>
+<p>Hàm xác suất:</p>
+<p> n</p>
+<p> px(1 −p)n−x</p>
+<h3>P(x) =</h3>
+<p>x trung bình: np phương sai: np(1 −p)</p>
+<p>x np</p>
+<p>3.5.3.5 Phân phối đa thức</p>
+<p>Sự tổng quát hóa của phân phối nhị thức trong đó n phép thử có thể có k kết cục, mỗi kết cục có các xác suất khác nhau pi. Một số ngẫu nhiên như vậy có thể được tạo bằng random.multinomial(n, ps, size).</p>
+<p>Hàm xác suất:</p>
+<h3>P(xi) = n! Qk</h3>
+<p>i=1(pxi i /xi!) trung bình: npi phương sai: npi(1 −pi)</p>
+<p>3.5.3.6 Phân phối Poisson</p>
+<p>Phân phối rời rạc random.poisson(lambda, size) này thường xuyên được sử dụng để mô tả số lượng các sự kiện hiếm nhưng không giới hạn đầu trên và để mô hình hóa các chuỗi xung của tế bào thần kinh vỏ não. Nó có liên hệ mật thiết với phân phối mũ nêu trên. Tham số λ bằng cả giá trị trung bình lẫn phương sai.</p>
+<h3>P(x)</h3>
+<p>Hàm xác suất:</p>
+<h3>P(x) = λx</h3>
+<p>x! e−λ trung bình: λ phương sai: λ λ x</p>
+<p>3.5.4 Hàm (mật độ) xác suất tích lũy và hàm lỗi Gauss</p>
+<p>Xác suất để biến ngẫu nhiên X có một giá trị x nằm trong khoảng x1 ≤ x ≤x2 được cho bởi</p>
+<h3>Z x2</h3>
+<h3>P(x1 ≤X ≤x2) =</h3>
+<p>p(x)dx. (3.53)</p>
+<p>x1</p>
+<p>Lưu ý rằng chúng ta đã rút gọn ký hiệu bằng cách thay thế ký hiệu PX(x1 ≤X ≤x2) bằng P(x1 ≤X ≤x2) để đơn giản hóa các biểu thức sau đây. Trong phần chính văn, chúng ta thường cần tính xác suất để một biến phân phối chuẩn (hoặc Gaussian) nhận các giá trị nằm giữa x1 = 0 và x2 = y. Xác suất của phương trình 3.53 khi đó trở thành một hàm của y. Điều này định nghĩa hàm lỗi Gauss</p>
+<h3>Z y</h3>
+<p>2σ2 dx = 1 2erf(y −µ √</p>
+<p>1 √</p>
+<p>0 e−(x−µ)2</p>
+<p>2σ ). (3.54)</p>
+<p>2πσ</p>
+<p>Hàm lỗi Gauss (erf) này đối với các biến phân phối chuẩn (phân phối Gaussian với trung bình µ = 0 và phương sai σ = 1) thường được lập bảng trong các sách thống kê. Các thư viện lập trình cũng thường xuyên tích hợp các hàm trả về giá trị cho các đối số cụ thể. Trong MATLAB, hàm này được cài đặt bởi erf, và các giá trị cho hàm ngược của hàm lỗi được trả về bởi hàm erfinv.</p>
+<p>Một trường hợp đặc biệt khác của phương trình 3.53 là khi x1 trong phương trình bằng với giá trị nhỏ nhất có thể có của biến ngẫu nhiên (thường là −∞). Tích phân trong phương trình 3.53 khi đó tương ứng với xác suất để một biến ngẫu nhiên có giá trị nhỏ hơn một giá trị nhất định, chẳng hạn y. Hàm này của y được gọi là hàm mật độ tích lũy (cdf; lưu ý rằng đây là một hàm xác suất, không phải hàm mật độ),</p>
+<h3>Z y</h3>
+<h3>P cum(x < y) =</h3>
+<p>p(x)dx, (3.55)</p>
+<p>−∞ mà chúng ta sẽ sử dụng thêm ở bên dưới.</p>
+<p>3.5.5 Hàm của các biến ngẫu nhiên và định lý giới hạn trung tâm</p>
+<p>Một hàm của một biến ngẫu nhiên X,</p>
+<h3>Y = f(X), (3.56)</h3>
+<p>cũng là một biến ngẫu nhiên, Y , và chúng ta thường cần biết hàm pdf của biến ngẫu nhiên mới này là gì. Việc tính toán với các hàm của biến ngẫu nhiên hơi khác so với các hàm thông thường và cần phải cẩn trọng trong những tình huống như vậy. Hãy minh họa cách thực hiện điều này bằng một ví dụ. Giả sử chúng ta có một biến ngẫu nhiên phân phối đều X thường được xấp xỉ bằng các bộ tạo số giả ngẫu nhiên trên máy tính. Hàm mật độ xác suất của biến này được cho bởi</p>
+<p>1 với 0 ≤x ≤1, 0 trong trường hợp khác. (3.57)</p>
+<p>pX(x) =</p>
+<p>Chúng ta đang tìm hàm mật độ xác suất pY (y) của biến ngẫu nhiên</p>
+<h3>Y = e−X2. (3.58)</h3>
+<p>Số ngẫu nhiên Y không phân phối theo chuẩn Gaussian như chúng ta có thể nghĩ một cách ngây thơ. Để tính hàm mật độ xác suất, chúng ta có thể vận dụng hàm mật độ tích lũy phương trình 3.55 bằng cách lưu ý rằng</p>
+<h3>P(Y ≤y) = P(e−X2 ≤y) = P(X ≥</h3>
+<p>p</p>
+<p>−ln y). (3.59)</p>
+<p>Do đó, hàm xác suất tích lũy của Y có thể được tính từ hàm xác suất tích lũy của X, (R 1 √−ln y pX(x)dy = 1 −√−ln y với e−1 ≤y ≤1, 0 trong trường hợp khác.</p>
+<p>p</p>
+<h3>P(X ≥</h3>
+<p>−ln y) = (3.60) Hàm mật độ xác suất của Y là đạo hàm của hàm này,</p>
+<p>1 −√−ln y với e−1 ≤y ≤1, 0 trong trường hợp khác. (3.61)</p>
+<p>pY (y) =</p>
+<p>Các hàm mật độ xác suất của X và Y được hiển thị bên dưới.</p>
+<p>4</p>
+<p>1</p>
+<p>3</p>
+<h3>Y=e-X 2</h3>
+<p>p (x) X p (y) Y</p>
+<p>2</p>
+<p>0.5</p>
+<p>1</p>
+<p>0</p>
+<p>0</p>
+<p>0 0.5 1</p>
+<p>-0.5 0 0.5 1 1.5 y x</p>
+<p>Một hàm đặc biệt của các biến ngẫu nhiên, vốn đặc biệt được quan tâm vì nó có thể xấp xỉ nhiều quá trình trong tự nhiên, là tổng của nhiều biến ngẫu nhiên. Chẳng hạn, một tổng như vậy xuất hiện nếu chúng ta tính giá trị trung bình từ các đại lượng đo được, tức là, n X</p>
+<p>¯X = 1</p>
+<h3>Xi, (3.62)</h3>
+<p>n i=1 và chúng ta quan tâm đến hàm mật độ xác suất của các biến ngẫu nhiên như vậy. Tất nhiên, hàm này phụ thuộc vào hàm mật độ cụ thể của các biến ngẫu nhiên</p>
+<p>Xi. Tuy nhiên, có một quan sát quan trọng được tóm tắt trong định lý giới hạn trung tâm mà chúng ta thường có thể vận dụng trong cuốn sách này. Định lý này phát biểu rằng giá trị trung bình (tổng chuẩn hóa) của n biến ngẫu nhiên được rút ra từ bất kỳ phân phối nào có giá trị trung bình µ và phương sai σ sẽ xấp xỉ phân phối chuẩn với giá trị trung bình µ và phương sai σ/n khi kích thước mẫu n đủ lớn. Trong thực tế, phép xấp xỉ này thường rất tốt ngay cả đối với các kích thước mẫu nhỏ. Chẳng hạn, tổng chuẩn hóa của chỉ bảy số giả ngẫu nhiên phân phối đều thường được sử dụng làm số giả ngẫu nhiên cho phân phối chuẩn.</p>
+<p>3.5.6 Đo lường sự khác biệt giữa các phân phối</p>
+<p>Một cân nhắc thực tế quan trọng là làm thế nào để đo lường độ tương đồng hay sai khác giữa hai hàm mật độ, chẳng hạn hàm mật độ p và hàm mật độ q. Lưu ý rằng một thước đo như vậy là vấn đề định nghĩa, tương tự như các thước đo khoảng cách của số thực hoặc hàm số đã thảo luận trong Phụ lục 3.2. Tuy nhiên, một thước đo khoảng cách đúng nghĩa, d, phải bằng không nếu các đối tượng được so sánh, a và b, là giống nhau, giá trị của nó phải dương trong trường hợp ngược lại, và một thước đo khoảng cách phải có tính đối xứng, nghĩa là d(a, b) = d(b, a). Thước đo độ tương đồng phổ biến sau đây giữa hai hàm mật độ không có tính đối xứng và do đó không được gọi là một khoảng cách. Nó được gọi là phân kỳ Kulbach–Leibler và được cho bởi p(x) log(p(x)</p>
+<h3>Z</h3>
+<p>dKL(p, q) = q(x))dx (3.63)</p>
+<h3>Z</h3>
+<h3>Z</h3>
+<p>p(x) log(p(x))dx −</p>
+<p>= p(x) log(q(x))dx (3.64)</p>
+<p>Thước đo này bằng không nếu p = q vì log(1) = 0. Thước đo này có liên hệ với độ lợi thông tin (information gain) hoặc entropy tương đối (relative entropy) trong lý thuyết thông tin.</p>
+<p>3.5.7 Phân phối biên, phân phối đồng thời và phân phối có điều kiện</p>
+<p>Khi chúng ta có các hàm mật độ xác suất của nhiều biến, ta có thể phân biệt một số trường hợp. Điều này được minh họa ở đây trong trường hợp hai biến, trong khi việc tổng quát hóa lên nhiều chiều hơn rất thẳng thắn. Thông tin tổng quát nhất mà chúng ta có thể có về một quá trình phụ thuộc vào hai biến ngẫu nhiên là phân phối đồng thời (joined distribution), p(x, y), (3.65)</p>
+<p>đây là một hàm hai chiều. Lát cắt của hàm này, khi biết trước giá trị của một biến, chẳng hạn y, là phân phối có điều kiện, p(x|y). (3.66)</p>
+<p>Nếu chúng ta cộng qua tất cả các thể hiện của y, ta thu được phân phối biên,</p>
+<h3>Z</h3>
+<p>p(x) = p(x, y)dy. (3.67)</p>
+<h3>Hai biến ngẫu nhiên x và y được gọi là độc lập nếu</h3>
+<p>p(x, y) = p(x)p(y), (3.68)</p>
+<p>điều này cũng tương đương với việc nói p(x|y) = p(x). (3.69)</p>
+<p>Lưu ý rằng chúng ta có thể phân rã các hàm phân phối đồng thời thành tích của một phân phối có điều kiện và một phân phối biên, p(x, y) = p(x|y)p(y) = p(y|x)p(x), (3.70)</p>
+<p>đôi khi được gọi là quy tắc nhân. Nếu chúng ta chia phương trình này cho p(x), ta thu được đồng nhất thức p(y|x) = p(x|y)p(y)</p>
+<p>p(x) , (3.71)</p>
+<p>đây được gọi là định lý Bayes. Định lý này rất quan trọng vì nó cho chúng ta biết cách kết hợp tri thức tiên nghiệm, chẳng hạn như phân phối kỳ vọng của các kích thích, P(s), với một số bằng chứng được đo lường bởi hàm hợp lý (likelihood), P(r|s), để thu được phân phối hậu nghiệm P(s|r) từ đó có thể tính được ước lượng tối ưu (theo nghĩa thống kê) của kích thích bằng phương trình 8.31. P(r) là thừa số chuẩn hóa thích hợp để vế trái lại là một xác suất.</p></div>
+<nav class="chapter-nav"><a href="ch03.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch05.html">Phần sau &#8594;</a></nav></div></body></html>

@@ -1,0 +1,360 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phần IV · Chương 10 — Mạng mô-đun và các hệ thống bổ sung — Khoa Học Thần Kinh Tính Toán | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.12rem;font-weight:700;margin:1.4rem 0 .5rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 1rem;text-align:justify}
+.reader-body blockquote{margin:1.1rem 1.4rem;padding:.6rem 1rem;border-left:3px solid var(--teal);background:var(--soft);color:var(--mid);font-style:italic}
+.reader-body ul.vi-list{margin:0 0 1rem;padding-left:1.5rem}
+.reader-body ul.vi-list li{margin-bottom:.35rem}
+.reader-body figure.bookfig{margin:1.6rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-width:680px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto}
+.reader-body figure.bookfig figcaption{font-size:.85rem;color:var(--mid);margin-top:.7rem;line-height:1.6;text-align:left;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Nền Tảng Khoa Học Thần Kinh Tính Toán</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Nền Tảng Khoa Học Thần Kinh Tính Toán — Thomas P. Trappenberg"></div>
+<div class="book-meta-details"><h1>Nền Tảng Khoa Học Thần Kinh Tính Toán</h1><p class="sub"><em>Fundamentals of Computational Neuroscience (3rd Ed.)</em> — Thomas P. Trappenberg (Oxford University Press, 2023). Bản dịch tiếng Việt toàn văn.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/fundamentals-computational-neuroscience.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Phần IV · Chương 10 — Mạng mô-đun và các hệ thống bổ sung</h2><div class="reader-body"><h3>IV</h3>
+<h3>Các mô hình cấp hệ thống</h3>
+<h2>10 Mạng mô-đun và các hệ thống bổ trợ</h2>
+<p>Chương này khám phá các tổ hợp của những mạng cơ bản, bắt đầu bằng việc thảo luận về các mạng ánh xạ mô-đun có thể cải thiện hiệu năng của các mạng nguyên khối thông qua chiến lược chia để trị. Phần thảo luận tiếp theo về các mạng hồi quy mô-đun khám phá cách một hệ động lực ghép nối có thể cân bằng giữa tính độc lập của các mô-đun và sự hợp tác giữa chúng. Điều này dường như rất quan trọng khi xem xét các mạng ghép nối trong não bộ với những hệ quả nghiêm trọng của sự đồng bộ hóa thảm khốc khi sự cân bằng này bị phá vỡ. Một ví dụ cấp hệ thống về các mạng tương tác là mô hình của các hệ thống trí nhớ bổ trợ.</p>
+<p>10.1 Mạng ánh xạ mô-đun</p>
+<p>Trong tài liệu nghiên cứu có rất nhiều thảo luận về các kiến trúc mô-đun và cách thức các mô-đun có thể tương tác cũng như tự tổ chức. Chẳng hạn, Marvin Minsky đã bàn về một số ý tưởng của ông trong cuốn sách <i>The society of mind</i> (Xã hội của tâm trí). Một ví dụ khác là máy ủy ban (committee machine) được N. J. Nilson mô tả lần đầu năm 1965, và pandemonium do O. G. Selfridge đề xuất năm 1958. Để hiểu sâu hơn về các kiến trúc xử lý thông tin như vậy trong khuôn khổ mạng nơ-ron, chúng ta phải nghiên cứu cách các mạng nơ-ron có thể kết hợp và tương tác. Chúng ta sẽ xem xét một số tính chất của các mạng mô-đun được cấu thành từ những mạng cơ bản đã thảo luận ở các chương trước. Toàn bộ hệ thống vẫn có thể được gọi là một mạng nơ-ron, nhưng việc chúng ta có thể phân biệt các hệ thống con trong các mạng đó khiến chúng trở thành mạng mô-đun theo mục đích của chúng ta.</p>
+<p>Có thể xem các mạng mô-đun như những mạng quy mô lớn có các ràng buộc. Một ví dụ về ràng buộc thuần túy vật lý là như sau. Hãy xét một mạng kết nối hoàn toàn với số lượng phần tử (nút) vào cỡ số nơ-ron trong não (ước tính dè dặt khoảng 1011) và với các sợi trục kết nối riêng lẻ có bán kính 0,1 µm. Việc đặt các nút trên bề mặt một hình cầu và cho phép phần bên trong hình cầu được lấp đầy dày đặc bằng các sợi trục sẽ tạo ra một hình cầu có đường kính hơn 20 km. Do đó, các ràng buộc về kích thước vật lý của các "dây dẫn" kết nối đòi hỏi những giải pháp kinh tế hơn. Trong chương này, chúng ta sẽ thấy rằng có nhiều ưu điểm quan trọng của các cấu trúc mô-đun trong các hệ thống lớn.</p>
+<p>Dưới góc độ thảo luận trước đó về các mạng nơ-ron kết nối hoàn toàn như những bộ xấp xỉ hàm phổ quát (xem Chương 7), rõ ràng cần đặt câu hỏi tại sao sự chuyên môn hóa mô-đun lại được sử dụng trong não bộ. Một số gợi ý về ý nghĩa chức năng của sự chuyên môn hóa mô-đun trong xử lý thị giác đã được nhà tâm lý học người Anh Alan Covey nêu ra. Ông suy đoán rằng, nếu vỏ não sử dụng sự ức chế để làm sắc nét</p>
+<p>Fundamentals of Computational Neuroscience. Third edition. Thomas P. Trappenberg, Oxford University Press. © Oxford University Press 2023. DOI:10.1093/oso/9780192869364.003.0010 nhiều thuộc tính thị giác khác nhau, chẳng hạn như màu sắc, cạnh hoặc hướng, thì có thể sử dụng ức chế cục bộ, vốn có thể được thực hiện bằng các nơ-ron trung gian ức chế trong các bản đồ võng mạc, miễn là các thuộc tính khác nhau được giữ tách biệt. Sự chuyên môn hóa như vậy cũng sẽ cho phép khuếch đại chú ý riêng biệt đối với từng đặc trưng riêng rẽ. Các ưu điểm khác của việc phân rã tác vụ và kiến trúc mô-đun bao gồm tốc độ học, khả năng khái quát hóa, năng lực biểu diễn và việc hiện thực hóa tác vụ trong giới hạn phần cứng.</p>
+<p>10.1.1 Hỗn hợp các chuyên gia</p>
+<p>Có nhiều kiến trúc khả dĩ cho các mạng mô-đun, và ở đây chúng ta sẽ chỉ tập trung vào một số ví dụ cơ bản có thể giúp chúng ta hình dung các tính chất đặc thù của mạng mô-đun. Trong phần này, chúng ta bắt đầu bằng cách kết hợp các mạng ánh xạ truyền thẳng theo nhiều cách khác nhau. Một ví dụ về kiến trúc như vậy, được gọi là hỗn hợp các chuyên gia (mixture of experts), được minh họa trong Hình 10.1. Trong kiến trúc này, chúng ta có một cột các mô-đun hoặc chuyên gia hoạt động song song. Mỗi chuyên gia này có khả năng nhận cùng một đầu vào. Một mô-đun khác, gọi là mạng cổng (gating network), cũng nhận một số đầu vào từ luồng đầu vào chung. Mục đích của mạng cổng là đánh trọng số đầu ra của các mạng chuyên gia một cách thích hợp để giải quyết một tác vụ cụ thể. Đầu ra đã đánh trọng số của các mạng chuyên gia sau đó được kết hợp bởi mạng tích hợp. Trong các ví dụ đầu tiên dưới đây, sự kết hợp này được thực hiện bằng cách lấy tổng các đầu ra đã đánh trọng số của các chuyên gia. Vì các giá trị trọng số được cung cấp bởi đầu ra của mạng cổng, mạng tích hợp có thể được xem như một mạng với các nút sigma–pi đã đề cập ở Mục 5.6.</p>
+<p>Những lợi ích của việc sử dụng cách tiếp cận như vậy so với việc sử dụng một mạng ánh xạ lớn duy nhất là gì, đặc biệt khi chúng ta biết rằng một mạng ánh xạ lớn là một bộ xấp xỉ hàm phổ quát và do đó có thể giải quyết bất kỳ tác vụ ánh xạ nào (về mặt nguyên lý). Một ví dụ có thể minh họa một số lợi ích của kiến trúc mô-đun như vậy. Trong Hình 10.2A, chúng ta đã vẽ đồ thị hàm giá trị tuyệt đối f(x) = |x|. Rất khó để xấp xỉ hàm tuyến tính từng khúc này bằng một mạng ánh xạ đơn lẻ do sự gián đoạn sắc nét tại x = 0. Tuy nhiên, một nút tuyến tính đơn lẻ có thể biểu diễn mỗi nhánh của hàm. Bằng cách chia</p>
+<h3>Chuyên gia 1</h3>
+<h3>Đầu ra mạng tích hợp</h3>
+<h3>Chuyên gia 2</h3>
+<h3>Đầu vào</h3>
+<h3>Chuyên gia n</h3>
+<h3>Mạng cổng</h3>
+<p>Hình 10.1 Một ví dụ về một loại mạng ánh xạ mô-đun được gọi là hỗn hợp các chuyên gia. Mỗi chuyên gia, mạng cổng và mạng tích hợp thường là các mạng ánh xạ. Lớp đầu vào của mạng tích hợp gồm các nút sigma–pi, vì đầu ra của mạng cổng đánh trọng số (điều biến) đầu ra của các mạng chuyên gia để tạo thành đầu vào cho mạng tích hợp.</p>
+<h3>B. Hỗn hợp các chuyên gia cho hàm giá trị tuyệt đối A. Hàm giá trị tuyệt đối</h3>
+<p>f (x ) = abs (x ) X abs(x ) ΣΠ x</p>
+<p>Hình 10.2 (A) Minh họa hàm giá trị tuyệt đối f(x) = |x| vốn khó xấp xỉ bằng một mạng ánh xạ đơn lẻ. (B) Một mạng ánh xạ mô-đun dưới dạng hỗn hợp các chuyên gia có thể biểu diễn chính xác hàm giá trị tuyệt đối.</p>
+<p>bài toán thành các bài toán con này, chúng ta có thể sử dụng một lời giải đơn giản cho các bài toán con.</p>
+<p>Mạng mô-đun này là một ví dụ về chiến lược chia để trị thường được sử dụng trong các ứng dụng kỹ thuật. Ngoài ra, đây dường như cũng là một chiến lược được sử dụng thường xuyên trong đời sống hàng ngày để giải quyết các vấn đề phức tạp. Bằng cách chia một bài toán thành các bài toán con, có khả năng mỗi bài toán con có thể được giải quyết bằng các phương tiện đơn giản. Chẳng hạn, các hàm chỉ có thể được biểu diễn bởi một mạng ánh xạ có các nút ẩn luôn có thể được phân rã thành các hàm con khả tách tuyến tính. Khi đó chúng ta vẫn phải giải quyết bài toán kết hợp các hàm con này theo cách thích hợp, điều đôi khi không hề tầm thường. Trong trường hợp hàm giá trị tuyệt đối minh họa ở Hình 10.2A, chúng ta có thể giải quyết điều này bằng một mạng đơn giản gồm hai nút ngưỡng, một nút hoạt động cho các giá trị đầu vào dương và một nút hoạt động cho các giá trị âm, như minh họa ở Hình 10.2B. Đầu ra của các mạng chuyên gia sau đó được cổng hóa bởi đầu ra của mạng cổng bằng cách đơn giản nhân đầu ra của các chuyên gia với các giá trị cổng.</p>
+<p>Việc huấn luyện các mạng như vậy là một mối quan tâm lớn khi chúng ta muốn các hệ thống đó có khả năng giải quyết các tác vụ cụ thể một cách linh hoạt. Việc chỉ huấn luyện các chuyên gia giờ đây có hai thành phần: một là phân công các chuyên gia cho các tác vụ cụ thể, và hai là huấn luyện từng chuyên gia trên tác vụ được chỉ định. Tuy nhiên, ngay cả khi đã có các chuyên gia được huấn luyện, chúng ta vẫn phải huấn luyện mạng cổng, vốn là một dạng của bài toán phân bổ công lao (credit-assignment problem). Lưu ý rằng việc chia quá trình huấn luyện thành giai đoạn phân công tác vụ và giai đoạn huấn luyện chuyên gia có thể hữu ích trong việc giải quyết bài toán huấn luyện, nhưng trong các hệ thống sinh học chúng ta có thể không tách rời việc học thành các bước riêng biệt này. Dưới đây chúng ta sẽ xem một ví dụ nơi các bước khác nhau được kết hợp. Nhiều phương pháp huấn luyện đã được đề xuất trong tài liệu mạng nơ-ron và học máy. Chúng ta sẽ không thảo luận chi tiết về chúng ở đây vì mức độ liên quan của chúng đối với các quá trình trong não vẫn chưa rõ ràng. Thay vào đó, chúng ta sẽ theo dõi một ví dụ mang tính minh họa.</p>
+<p>10.1.2 Tác vụ "cái gì và ở đâu"</p>
+<p>Nhiều nghiên cứu đã chỉ ra rằng não bộ có hai con đường thị giác phân biệt một phần: con đường thị giác bụng, chủ yếu liên quan đến việc nhận dạng vật thể; và con đường thị giác lưng, đặc biệt thích nghi tốt với việc lựa chọn vật thể cho hành động nơi các tọa độ không gian là quan trọng. Hai con đường này đôi khi được gọi đơn giản là con đường "cái gì" (what) và con đường "ở đâu" (where), mặc dù đây chắc chắn là một sự đơn giản hóa quá mức đối với quá trình xử lý trong não. Việc thực hiện nhận dạng vật thể và xác định vị trí của vật thể trong một mạng đơn lẻ là những tác vụ khó, và do đó chúng ta sử dụng ví dụ này để minh họa lợi ích của một mạng mô-đun với các chuyên gia riêng biệt cho nhận dạng vật thể bất biến theo phép tịnh tiến và nhận dạng vị trí bất biến theo vật thể.</p>
+<h3>B. Không có thiên hướng về các kết nối ngắn</h3>
+<p>1</p>
+<h3>A. Võng mạc mô hình với hình ảnh mẫu</h3>
+<h3>Số nút đầu ra # Số nút đầu ra #</h3>
+<p>5</p>
+<p>5</p>
+<p>10</p>
+<p>4</p>
+<p>15</p>
+<p>1 5 10 15 20 25 30 35</p>
+<p>3</p>
+<h3>Số nút ẩn #</h3>
+<h3>C. Có thiên hướng về các kết nối ngắn</h3>
+<p>2</p>
+<p>1</p>
+<p>1</p>
+<p>5</p>
+<p>1 2 3 4 5</p>
+<p>10</p>
+<p>15</p>
+<p>1 5 10 15 20 25 30 35</p>
+<h3>Số nút ẩn #</h3>
+<p>Hình 10.3 Ví dụ về các tác vụ "cái gì và ở đâu". (A) Võng mạc mô hình 5×5 với hình ảnh 3×3 của một vật thể làm ví dụ. (B) Trọng số kết nối giữa các nút ẩn và nút đầu ra trong một mạng ánh xạ đơn lẻ. Trọng số dương được biểu diễn bằng ô vuông đặc, trong khi ô vuông rỗng tượng trưng cho giá trị âm. (C) Trọng số kết nối giữa các nút ẩn và nút đầu ra trong một mạng ánh xạ đơn lẻ khi được huấn luyện với thiên hướng ưu tiên các kết nối ngắn [phỏng theo Jacobs và Jordan, Journal of Cognitive Neuroscience 4: 323–36 (1992)].</p>
+<p>Robert Jacob, Michael Jordan và Andrew Barto đã chứng minh các ý tưởng chính vào năm 1991. Họ sử dụng một võng mạc mô hình đơn giản gồm 5×5 tế bào trên đó các vật thể khác nhau được biểu diễn bởi các mẫu 3×3 khác nhau có thể được đặt tại chín vị trí khác nhau (xem ví dụ ở Hình 10.3A). Một mạng có thể giải quyết tác vụ "cái gì và ở đâu" này có thể được thiết kế với 26 kênh đầu vào, gồm 25 kênh cho đầu vào võng mạc và một kênh cho đặc tả tác vụ. Đầu ra mong muốn có thể được biểu diễn bằng 18 nút, chín nút đầu tiên xác định chín vật thể và chín nút thứ hai xác định các vị trí. Biểu diễn này mang tính cục bộ trong từng tác vụ con vì tại bất kỳ thời điểm nào chỉ có một nút cho vị trí và nhận dạng vật thể hoạt động. Jacobs và các cộng sự đã chứng minh rằng một mạng đơn lẻ với lớp ẩn gồm 36 nút có thể giải quyết tác vụ sau khi huấn luyện mạng ánh xạ đa lớp bằng học lan truyền ngược. Tuy nhiên, các tác giả cũng chứng minh hiệu năng được cải thiện với các mạng mô-đun, vì những lý do được tóm tắt tiếp theo. Lưu ý rằng việc sử dụng học lan truyền ngược là chấp nhận được trong hoàn cảnh này vì thuật toán chỉ được dùng để tìm một ví dụ về mạng có thể giải quyết bài toán và không cần tuyên bố về tính hợp lý sinh học cho bước này đối với các câu hỏi được đặt ra trong nghiên cứu này.</p>
+<p>Một vấn đề chung làm giảm khả năng học trong các mạng đơn lẻ là thông tin huấn luyện xung đột. Thông tin huấn luyện xung đột có thể gây ra các vấn đề khác nhau. Chẳng hạn, mạng sẽ nhanh chóng thích nghi để đạt hiệu năng hợp lý ở tác vụ "cái gì" nếu chúng ta huấn luyện mạng trước tiên hoàn toàn trên tác vụ này. Tuy nhiên, các biểu diễn của các lớp ẩn sẽ thay đổi trong giai đoạn học tiếp theo trên tác vụ "ở đâu", điều có khả năng xung đột với biểu diễn cần thiết cho tác vụ "cái gì". Sự nhiễu chéo theo thời gian (temporal cross-talk) này nói chung là một vấn đề trong các tập huấn luyện có các mẫu huấn luyện xung đột. Ngoài ra, có thể có các tình huống xung đột ngay trong một ví dụ huấn luyện do bản chất phân tán của các biểu diễn. Điều này được gọi là nhiễu chéo không gian (spatial cross-talk). Việc phân chia các tác vụ thành các mạng riêng biệt có thể loại bỏ cả hai xung đột nhiễu chéo gây vấn đề này.</p>
+<p>Thảo luận trên gợi ý rằng các mạng mô-đun có những ưu điểm quan trọng, mặc dù chúng ta vẫn chưa giải quyết bài toán thiết lập một mạng mô-đun có thể giải quyết tác vụ cái gì và ở đâu. Một đóng góp quan trọng của Jacobs, Jordan và Barto là chứng minh rằng các mạng mô-đun có thể học cách phân rã tác vụ. Để làm điều này, họ đã sử dụng một mạng cổng giúp tăng cường độ tới mạng chuyên gia nào cải thiện đáng kể đầu ra của hệ thống. Sự chuyên biệt hóa gia tăng của chuyên gia như vậy đảm bảo việc học tăng cường của chuyên gia đó để đáp ứng các ví dụ huấn luyện tiếp theo của cùng tác vụ vì tín hiệu lỗi lan truyền ngược được điều biến bởi trọng số cổng, và mô-đun đóng góp nhiều nhất vào câu trả lời cũng sẽ thích nghi nhiều nhất với ví dụ mới. Một chuyên gia khác khi đó có thể đảm nhận biểu diễn của tác vụ khác vì một ví dụ huấn luyện của tác vụ khác có thể sẽ làm giảm hiệu năng của chuyên gia đã chuyên môn hóa trước đó.</p>
+<p>Thật thú vị khi lưu ý rằng ví dụ này cung cấp một số hiểu biết sâu sắc về cuộc tranh luận giữa bẩm sinh và nuôi dưỡng (nature–nurture). Trong ví dụ trên, rõ ràng các ràng buộc kiến trúc có thể ảnh hưởng đến sự phân rã tác vụ cụ thể được tìm thấy thông qua học tập. Tác vụ "ở đâu" là khả tách tuyến tính, nên một mạng một lớp có thể biểu diễn tác vụ này và dễ huấn luyện hơn so với một mạng phức tạp hơn. Do đó, một chuyên gia đơn giản không có lớp ẩn có xu hướng được sử dụng cho tác vụ "ở đâu". Ngược lại, tác vụ "cái gì" đòi hỏi các nút ẩn để đạt được nhận dạng vật thể bất biến theo dịch chuyển. Một chuyên gia kiểu perceptron đơn giản có khả năng tạo ra những cải thiện không đủ, nên mạng cổng sẽ không gán tác vụ này cho chuyên gia đó. Như vậy, các ràng buộc kiến trúc ảnh hưởng đến việc tiếp thu các năng lực cụ thể, nhưng những năng lực vốn có này không nhất thiết cố định và vẫn có thể được thay đổi thông qua học tập cụ thể.</p>
+<p>Trong ví dụ trên, các chuyên gia được chọn một cách tùy nghi (ad hoc). Một câu hỏi khác là làm thế nào tính mô-đun có thể tiến hóa thông qua học tập. Một ví dụ về điều này đã được Jacobs và Jordan phác thảo trong một nghiên cứu tiếp theo. Trong nghiên cứu này, họ xem xét vị trí vật lý của các nút trong một mạng ánh xạ đơn lẻ và sử dụng một số hạng phụ thuộc khoảng cách trong hàm mục tiêu, dẫn đến sự suy giảm trọng số ưu tiên các kết nối ngắn. Mạng đa lớp được huấn luyện trên hàm mục tiêu (hoặc hàm lỗi) dijw2</p>
+<h3>E = 1</h3>
+<p>i −yi)2 + λ ij 1 + w2 ij</p>
+<h3>X</h3>
+<h3>X</h3>
+<p>(rout</p>
+<p>. (10.1)</p>
+<p>2 i ij</p>
+<p>Số hạng đầu tiên là lỗi bình phương trung bình thông thường giữa đầu ra thực tế và đầu ra mong muốn của mạng (như trong phương trình 7.8), giúp ép buộc hoạt động đúng của mạng. Số hạng thứ hai là một số hạng suy giảm trọng số khác (xem Mục 6.3.2) khiến các lời giải có giá trị trọng số lớn giữa các nút ở xa nhau trở nên bất lợi. Hình 10.3B và 10.3C chỉ ra các kết nối giữa các nút ẩn và các nút đầu ra được huấn luyện trên tác vụ cái gì và ở đâu, như đã nêu trên, với một mạng ánh xạ truyền thẳng 25–36–18 đơn lẻ. Trong Hình 10.3B, mạng được huấn luyện hoàn toàn trên hàm mục tiêu MSE (tức là λ = 0), trong khi Hình 10.3C cho thấy một ví dụ về kết quả khi được huấn luyện với số hạng thiên hướng ép buộc các kết nối ngắn. Như có thể thấy, các kết nối từ các lớp ẩn tới các nút đầu ra, và do đó chính các nút ẩn, đã được tách biệt tương ứng với hai tác vụ riêng rẽ. Nhiều nút ẩn hơn nhờ đó đã được phân bổ cho tác vụ "cái gì" khó hơn. Do vậy, một quy trình học tập với các ràng buộc vật lý như vậy dẫn đến sự mô-đun hóa của mạng.</p>
+<p>10.1.3 Tích các chuyên gia</p>
+<p>Chúng ta đã đề cập ở Chương 7 rằng đầu ra đã chuẩn hóa của một mạng ánh xạ truyền thẳng với lớp đầu ra cạnh tranh có thể được diễn giải là xác suất một vectơ đầu vào có một đặc trưng nhất định hoặc thuộc về một lớp nhất định được ký hiệu bởi nút đầu ra. Các mạng mô-đun đã thảo luận trước đó có thể dễ dàng được khái quát hóa để cho phép các diễn giải tương tự nếu các đầu ra được cộng tổng của các mạng chuyên gia được chuẩn hóa. Do đó, chúng ta có thể xem hỗn hợp các chuyên gia như một tập hợp các chuyên gia mà ý kiến đã đánh trọng số của họ được lấy trung bình (cộng lại và chuẩn hóa lại) để xác định xác suất của giá trị đặc trưng. Tuy nhiên, nếu chúng ta đang xét các xác suất, việc xét tích các xác suất vốn xác định xác suất đồng thời của các sự kiện độc lập là tự nhiên hơn nhiều. Điều này đã được Geoffrey Hinton chỉ ra, và ông đã đề xuất một kiến trúc mà ông đặt tên là tích các chuyên gia (product of experts). Ông không chỉ nhấn mạnh một số ưu điểm của các mạng như vậy mà còn ám chỉ đến tính hợp lý sinh học của chúng khi so sánh với dữ liệu thực nghiệm.</p>
+<p>Để minh họa thêm điều này, hãy xét 10 chuyên gia được yêu cầu nêu ý kiến của họ về mức tăng mực nước biển có khả năng xảy ra do sự nóng lên toàn cầu. Các câu trả lời, được biểu diễn dưới dạng các phân bố xác suất (Gauss), được thể hiện trong Hình 10.4 bằng các đường chấm. Nếu chúng ta kết hợp các câu trả lời này dưới dạng một tổng, và chuẩn hóa tổng đó để thu lại một hàm mật độ xác suất, câu trả lời sẽ như đường nét đứt trong hình. Việc cộng các hàm mật độ dẫn đến phân bố rộng không cung cấp các câu trả lời chính xác. Tổng các chuyên gia chỉ cho thấy rằng có một phạm vi câu trả lời rộng. Tuy nhiên, nếu chúng ta gán cho tất cả chuyên gia cùng một trọng số (bỏ qua việc chuyên gia đầu tiên bên trái phủ nhận sự nóng lên toàn cầu), chúng ta cũng nên tính đến mức độ nhất quán của các chuyên gia và mức độ ủng hộ mà câu trả lời cuối cùng nhận được từ phân bố ý kiến của các chuyên gia. Điều này được mô tả tốt hơn nhiều bởi tích các chuyên gia, được thể hiện bằng đường nét liền trong hình.</p>
+<p>Một tích các chuyên gia có thể tạo ra các hàm xác suất sắc nét hơn nhiều. Lý do cho điều này là ngay cả một xác suất lớn được gán bởi một chuyên gia cũng có thể bị triệt tiêu phần lớn bởi các xác suất thấp được gán bởi các chuyên gia khác. Một xác suất lớn chỉ được gán cho các sự kiện có sự đồng thuận nhất định giữa các chuyên gia. Điều này giúp giải quyết một vấn đề khác trong ước lượng mật độ, đó là việc ước lượng các mật độ có xác suất thấp. Các vùng có mật độ thấp khó ước lượng tốt hơn, vì các sự kiện trong các vùng này có xác suất xảy ra thấp. Sai số trong ước lượng do đó lớn hơn so với các vùng nơi nhiều sự kiện có thể được sử dụng để ước lượng các hàm mật độ. Do vậy, việc ước lượng quá cao các sự kiện hiếm gặp là phổ biến trong phân tích thống kê. Tích các chuyên gia ít bị ảnh hưởng bởi</p>
+<p>1</p>
+<h3>P(thay đổi mực nước biển)</h3>
+<h3>Tích các chuyên gia</h3>
+<h3>Các chuyên gia</h3>
+<h3>Tổng các chuyên gia</h3>
+<p>0.5</p>
+<p>-5 0 5 10 15 0</p>
+<h3>Thay đổi mực nước biển</h3>
+<p>Hình 10.4 Minh họa việc kết hợp ý kiến của các chuyên gia theo các cách khác nhau. Ý kiến của các chuyên gia, được thể hiện dưới dạng các phân bố chuẩn với các tâm khác nhau (đường chấm), được cộng lại và chuẩn hóa lại ở đường nét đứt. Đường nét liền biểu diễn tích đã chuẩn hóa của các chuyên gia.</p>
+<p>những sai số như vậy hơn. Nói cách khác, ý kiến của các chuyên gia nằm ngoài lĩnh vực chuyên môn của họ ít có tác động hơn khi các chuyên gia khác xác nhận rằng những vùng này ít liên quan hơn.</p>
+<p>10.2 Mạng hút ghép nối</p>
+<p>Trái ngược với sự kết hợp các mạng truyền thẳng trong phần trước, phần này thảo luận về sự kết hợp các mạng hồi quy cơ bản. Các mạng hồi quy mô-đun như vậy cũng có thể được xem là một mạng hồi quy được chia nhỏ. Một ví dụ được minh họa trong Hình 10.5A nơi một mạng hồi quy tổng thể được chia thành một mạng với hai nhóm nút. Sẽ rất hữu ích khi phân biệt giữa các kết nối (hoặc trọng số) giữa các nút trong cùng một nhóm (kết nối nội mô-đun) và các kết nối (hoặc trọng số) giữa các nút thuộc các nhóm khác nhau (kết nối liên mô-đun). Tất nhiên, toàn bộ hệ thống vẫn là một mạng hồi quy và do đó về cơ bản vẫn là một hệ động lực lớn. Tuy nhiên, bằng cách phân biệt các loại kết nối và nhóm nơ-ron khác nhau, chúng ta có thể nghiên cứu rõ ràng hơn các hệ thống có các hệ thống con ghép nối mạnh và tương tác yếu giữa các hệ thống con đó. Nhìn chung, cả các nút trong các nhóm lẫn các nút giữa các nhóm đều không nhất thiết phải kết nối hoàn toàn. Tuy nhiên, chúng ta sẽ đơn giản hóa thảo luận bằng cách xem xét các mạng hút kết nối đầy đủ thuộc các loại đã thảo luận trong Chương 9.</p>
+<p>10.2.1 Các mẫu khắc ghi và mẫu tổng hợp</p>
+<p>Tương tự như các thảo luận ở chương trước, giờ đây chúng ta thảo luận về khả năng lưu trữ liên kết của các mạng hút mô-đun như vậy, chủ yếu theo một số thảo luận của Yaneer Bar-Yam. Mục đích chính là chỉ ra rằng có một sự cân bằng nhạy cảm giữa cường độ kết nối giữa các mạng con để tác động đến các quá trình ở các mạng con khác, và khả năng các mạng con hoạt động bán tự chủ.</p>
+<p>Trước tiên, hãy so sánh các thái cực của mạng hút ghép nối: một mạng hút điểm đơn lẻ như đã thảo luận trong Chương 9 so với hai mạng hút điểm đơn lẻ. Làm ví dụ, chúng ta muốn khắc ghi vào hệ thống này tất cả các vật thể có thể được mô tả</p>
+<h3>A. Các mạng hút ghép nối B. Vũ trụ trái--phải với các chữ cái</h3>
+<h3>Nhóm nút 1 Nhóm nút 2 Kết nối giữa các nhóm</h3>
+<p>0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 0 0 0 0 1 1 0 0 0 1 1 0 0 0 0 0 1 1 1 0 0 0 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 0</p>
+<p>1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 0 0 0 0 0 0 1 1 1 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 1 1 0 0 0 1 1 1 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 0 0 0 1 1 1 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 1 1 0 0 0 0 0 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0</p>
+<p>Hình 10.5 (A) Các mạng nơ-ron hồi quy ghép nối (hoặc được chia nhỏ). Các nút trong ví dụ này được chia thành hai nhóm (các nút của mỗi nhóm được biểu thị bằng các mức tô bóng khác nhau). Có các kết nối giữa các nút trong cùng một nhóm và giữa các nút thuộc các nhóm khác nhau. (B) Vũ trụ trái–phải được tạo thành từ các từ có hai chữ cái.</p>
+<p>bởi hai vectơ đặc trưng độc lập biểu diễn, chẳng hạn, hình dạng và màu sắc. Do đó, chúng ta xét ba hình dạng khác nhau {tròn, vuông, tam giác} và ba màu sắc khác nhau {đỏ, xanh dương, xanh lá}. Tập huấn luyện khả dĩ với ví dụ này vì thế gồm chín tổ hợp khả dĩ {tròn đỏ, tròn xanh dương, ...}. Một ví dụ khác, một thế giới với các hình ảnh chữ cái ở trường thị giác trái và phải tương ứng, được thể hiện trong Hình 10.5B. Tổng quát hơn, với m giá trị đặc trưng (vật thể) khả dĩ, người ta có thể tạo ra m2 vật thể (kết hợp) khả dĩ miễn là không có tương quan nào giữa các đặc trưng khiến một số tổ hợp nhất định có khả năng xảy ra cao hơn những tổ hợp khác.</p>
+<p>Giờ hãy xét một mạng hút riêng biệt cho mỗi đặc trưng. Từ phần thảo luận ở Chương 9, chúng ta biết rằng một mạng với 1000 nút có thể lưu trữ khoảng 138 mẫu (giá trị đặc trưng) khi các biểu diễn ngẫu nhiên của các giá trị đặc trưng được huấn luyện bằng quy tắc Hebb. Một mạng với hai mạng con độc lập như vậy, mỗi mạng mang thông tin của một đặc trưng, có thể lưu trữ</p>
+<h3>P = (αcN/m)m = 1382 = 19, 044 (10.2)</h3>
+<p>vật thể được biểu diễn bởi tất cả các tổ hợp đặc trưng khả dĩ, trong đó m là số đặc trưng (hoặc số mô-đun) với số lượng nút bằng nhau N/m. Số lượng mẫu có thể lưu trữ trong một mạng đơn lẻ chỉ là</p>
+<h3>P = αcN. (10.3)</h3>
+<p>Để lưu trữ tất cả 19.044 vật thể khả dĩ trong một mạng hút duy nhất, chúng ta cần một mạng có ít nhất N = 19, 044/αc = 138, 000 nút. Sự tiết kiệm tài nguyên của mạng mô-đun xét về số nút là rất ấn tượng (2000 so với 138.000), và mức tiết kiệm còn ấn tượng hơn nữa nếu chúng ta xét số lượng trọng số phải sử dụng (10002 + 10002 = 2 × 106 so với 138, 0002 ≈2 × 1010).</p>
+<p>Vậy tại sao chúng ta lại muốn sử dụng các mạng đơn lẻ lớn? Câu trả lời là chúng ta phải sử dụng chúng nếu muốn biểu diễn các tương quan của đặc trưng và ghi nhớ các vật thể cụ thể. Chẳng hạn, nếu muốn ghi nhớ một hình vuông xanh lá và một hình tam giác xanh dương, thì chúng ta phải khắc ghi hai vật thể này với tổ hợp đặc trưng cụ thể đó, chứ không phải các tổ hợp khả dĩ khác. Nếu làm vậy, chúng ta có thể hồi tưởng các vật thể từ thông tin từng phần; ví dụ, màu xanh lá có thể kích hoạt ký ức về hình vuông xanh lá. Trong trường hợp các mạng tách rời, đầu vào màu xanh lá không thể kích hoạt bất kỳ ký ức nào trong mạng "hình dạng", và chúng ta có khả năng sẽ hồi tưởng tất cả các tổ hợp đặc trưng khả dĩ ngay cả khi chúng không nằm trong tập vật thể mà chúng ta đã dùng để huấn luyện.</p>
+<p>10.2.2 Phân tích tín hiệu trên nhiễu</p>
+<p>Thảo luận trước đó gợi ý rằng một mức độ ghép nối trung gian nhất định giữa các mạng nơ-ron hút có khả năng là cần thiết cho các xử lý phức tạp hơn (và thực tế hơn) trong não. Chúng ta có thể hiểu sâu hơn về hành vi của các mạng hút ghép nối bằng cách sử dụng phân tích tín hiệu trên nhiễu theo hướng đã phác thảo ở Chương 9. Chúng ta xét một mạng tổng thể gồm N nút có thể chia thành m = N</p>
+<h3>N ′ (10.4)</h3>
+<p>mô-đun, mỗi mô-đun có cùng số nút N ′. Các trọng số được huấn luyện bằng quy tắc Hebb</p>
+<h3>P X</h3>
+<p>wij = 1 ξµ i ξµ j . (10.5)</p>
+<h3>N</h3>
+<p>µ=1</p>
+<p>Tuy nhiên, chúng ta điều biến các giá trị trọng số giữa các mô-đun bằng một hệ số g. Về mặt hình thức, chúng ta có thể định nghĩa một ma trận trọng số mới với các thành phần</p>
+<p>˜wij = gijwij. (10.6)</p>
+<h3>Các thành phần của ma trận điều biến g được cho bởi</h3>
+<p>1 nếu các nút i, j nằm trong cùng một mô-đun gij = g nếu ngược lại . (10.7)</p>
+<p>Để rút gọn phát biểu "nếu các nút i, j nằm trong cùng một mô-đun", chúng ta định nghĩa một tập hợp m(i) liệt kê tất cả các số hiệu nút nằm trong cùng mô-đun với nút số i.</p>
+<p>Bước tiếp theo trong phân tích tín hiệu trên nhiễu là đánh giá tính ổn định của mẫu được khắc ghi. Đầu tiên, chúng ta sẽ đánh giá một mẫu được khắc ghi được tạo thành từ các vectơ con của mỗi mô-đun đã được khắc ghi cùng nhau. Không mất tính tổng quát, chúng ta có thể đánh giá lại mẫu đầu tiên µ = 1, tức là si(t) = ξ1 i . Sau đó, chúng ta có thể tách các số hạng tín hiệu khỏi các số hạng nhiễu trong quy tắc cập nhật như đã phác thảo ở Chương 9. Điều này cho si(t + 1) = sign(N ′ i + g N −N ′</p>
+<h3>N ξ1</h3>
+<h3>N ξ1</h3>
+<p>i + ...</p>
+<p>... 1 j + g ξµ i ξµ ξµ i ξµ</p>
+<h3>X</h3>
+<h3>X</h3>
+<h3>X</h3>
+<h3>X</h3>
+<p>j ξ1 j ξ1 j ). (10.8)</p>
+<h3>N</h3>
+<h3>N</h3>
+<p>µ̸=1 µ̸=1 j∈m(i)</p>
+<p>j∈/m(i)</p>
+<p>Từ đây chúng ta có thể xác định các số hạng tín hiệu và nhiễu. Cường độ S của số hạng tín hiệu là hệ số đứng trước tín hiệu mong muốn ξ1 i , và phương sai của số hạng nhiễu được xác định bởi phần còn lại tương tự như quy trình đã mô tả ở Chương 9. Tóm lại chúng ta thu được tín hiệu: S = N′</p>
+<h3>N + g N−N′</h3>
+<h3>N = 1</h3>
+<p>m + g(1 −1 m)</p>
+<p>q q</p>
+<h3>P −1</h3>
+<h2>1 m + g2(1 −1</h2>
+<p>nhiễu: σ = m)</p>
+<p>(10.9)</p>
+<h3>N</h3>
+<p>m) = √αz1.</p>
+<p>q q</p>
+<h3>P N</h3>
+<h2>1 m + g2(1 −1</h2>
+<p>≈</p>
+<p>Ở dòng cuối cùng chúng ta đã đưa vào một ký hiệu viết tắt z1 gói gọn sự khác biệt giữa các mạng mô-đun (m > 1) và mạng đơn lẻ chuẩn (m = 1) mà với nó z1 = 1. Tham số α lại là tham số tải được định nghĩa trong phương trình 9.18. Các thảo luận sâu hơn về dung lượng tải lại phụ thuộc vào giới hạn sai số mà chúng ta áp đặt lên mạng (xem phương trình 9.19). Để đơn giản hóa các công thức, chúng ta đưa vào ký hiệu viết tắt, z2 = [erf−1(1 −2Perror)]2. (10.10)</p>
+<p>Với các số hạng này, chúng ta có thể viết giới hạn dung lượng (phương trình 9.20), được khái quát hóa cho các mạng mô-đun khởi đầu ở một mẫu đã huấn luyện, là α < S2</p>
+<p>2z1z2 . (10.11)</p>
+<p>Chúng ta gọi trường hợp giới hạn là tham số tải tới hạn hay dung lượng lưu trữ, αc, được vẽ cho Perror = 0.001 và các giá trị khác nhau của g và m trong Hình 10.6A. Khi chỉ có một mô-đun, chúng ta thu lại các kết quả của Chương 9. Tuy nhiên, với nhiều hơn một mô-đun (m > 1), kết quả phụ thuộc vào cường độ tương đối của các trọng số nội mô-đun so với các trọng số liên mô-đun, vốn được tham số hóa bằng g. Với các giá trị g < 1, chúng ta nhận được ít sự hỗ trợ hơn từ tín hiệu của các mô-đun khác, nên dung lượng tải của các mạng bị suy giảm.</p>
+<p>Trái ngược với trường hợp trước, chúng ta có thể khởi đầu mạng từ các trạng thái tương ứng với các mẫu con khác nhau trong các mô-đun khác nhau. Chúng ta có thể xem xét mọi loại tổ hợp mẫu trong các mô-đun khác nhau, nhưng cho thảo luận sau đây có hai trường hợp thú vị và mang tính giới hạn nhất. Trường hợp đầu tiên xảy ra khi tất cả các mẫu con trong các mô-đun được chọn là mẫu huấn luyện đầu tiên ngoại trừ mô-đun chứa nút đang xét. Đối với mô-đun này, chúng ta chọn một trạng thái ban đầu ngẫu nhiên và hỏi cường độ ghép nối liên mô-đun phải mạnh đến mức nào để các mô-đun khác kích hoạt trạng thái tương ứng trong mô-đun có trạng thái ban đầu ngẫu nhiên đó. Do vậy, chúng ta nghiên cứu mạng với trạng thái khởi đầu</p>
+<p>ηj với j ∈m(i)</p>
+<p>sj(t) = j nếu ngược lại , (10.12)</p>
+<p>ξ1 trong đó biến ηj là một số nhị phân ngẫu nhiên. Trạng thái của mạng sau một lần cập nhật khi đó là si(t + 1) = sign(g N −N ′</p>
+<h3>N ξ1</h3>
+<p>i + ...</p>
+<p>... 1</p>
+<h3>X</h3>
+<h3>N ξi</h3>
+<p>ξ1 j ηj + các số hạng nhiễu khác với µ̸ = 1). (10.13)</p>
+<p>i j∈m(i)</p>
+<p>Cường độ tương ứng của tín hiệu được xác định bởi hệ số đầu tiên. Số hạng thứ hai là một số hạng nhiễu bổ sung phải được cộng vào số hạng nhiễu của trường hợp</p>
+<p>0.12</p>
+<p>2 m = 1 g : Cường độ nội mô-đun tương đối</p>
+<p>0.1</p>
+<h3>Dung lượng tải α : c</h3>
+<p>1.5 m = 2</p>
+<p>0.08</p>
+<p>0.06</p>
+<p>1 m = 4</p>
+<p>0.04</p>
+<p>0.5</p>
+<p>0.02</p>
+<h2>0 0.2 0.4 0.6 0.8 1 0</h2>
+<h2>2 4 6 8 10 0</h2>
+<p>g : Cường độ liên mô-đun tương đối m : Số mô-đun</p>
+<p>Hình 10.6 Các mạng nơ-ron hút ghép nối: kết quả từ phân tích tín hiệu trên nhiễu. (A) Sự phụ thuộc của dung lượng tải của mẫu được khắc ghi vào cường độ ghép nối liên mô-đun tương đối g đối với các số lượng mô-đun m khác nhau. (B) Các giới hạn đối với cường độ ghép nối liên mô-đun tương đối g. Với các giá trị g lớn hơn đường cong trên, các mẫu được khắc ghi là ổn định. Với g nhỏ hơn đường cong dưới, các mẫu tổng hợp là ổn định. Trong dải hẹp ở giữa, chúng ta có thể điều chỉnh hệ thống để có một số mẫu tổng hợp và một số mẫu được khắc ghi cùng ổn định. Dải này hẹp dần khi số lượng mô-đun m tăng lên và biến mất đối với các mạng có nhiều mô-đun.</p>
+<p>trước (phương trình 10.9). Tuy nhiên, số hạng nhiễu này chỉ đóng góp với tỷ lệ 1/(mN) và, vì chúng ta xét các mạng lớn, chúng ta có thể bỏ qua đóng góp nhỏ này. Tóm lại chúng ta thu được tín hiệu: S = N−N′</p>
+<h3>N g = (1 −1</h3>
+<p>m)g nhiễu: σ ≈√αz1</p>
+<p>. (10.14)</p>
+<p>Chúng ta có thể thay các biểu thức này vào phương trình 10.11, từ đó rút ra một cận dưới cho cường độ ghép nối nội tương đối g (với một số lượng mô-đun m và tham số tải α cho trước) mà chúng ta phải áp đặt nếu muốn có thể kích hoạt mẫu đầu tiên trong mô-đun mà ta đã khởi đầu ở trạng thái ngẫu nhiên. Điều này được cho bởi g2 > 2αz2 (m −1)(1 −1 m −2αz2). (10.15)</p>
+<p>Giới hạn dưới này đối với g được vẽ trong Hình 10.6B như đường giới hạn vùng trắng từ phía dưới (với Perror = 0.001 và α = 0.01). Đường cong xác nhận phỏng đoán trực giác rằng hệ số g có thể khá nhỏ nếu số lượng mô-đun tăng lên vì số lượng mô-đun tăng lên dẫn đến số lượng tương đối các nút đang chỉ theo hướng mong muốn tăng lên.</p>
+<h3>Chúng ta cũng có thể nghiên cứu trường hợp ngược lại với</h3>
+<p>ξ1 j với j ∈m(i) ηj nếu ngược lại (10.16)</p>
+<p>sj(t) = làm trạng thái khởi đầu. Với trạng thái khởi đầu này, chúng ta có thể hỏi hệ số g phải thấp đến mức nào để trạng thái con ξ1 trong một mô-đun ổn định trong khi tất cả các mô-đun khác đang kéo theo các hướng khác. Trạng thái của mạng sau một lần cập nhật với trạng thái khởi đầu này là si(t + 1) = sign(N ′ i + g</p>
+<h3>X</h3>
+<h3>N ξ1</h3>
+<h3>N ξi</h3>
+<p>ξ1 j ηj + các số hạng nhiễu khác với µ̸ = 1). (10.17)</p>
+<p>i j∈/m(i)</p>
+<h3>Chúng ta lại có thể bỏ qua số hạng nhiễu bổ sung và sử dụng</h3>
+<p>tín hiệu: S = N ′</p>
+<h3>N = 1</h3>
+<p>m nhiễu: σ ≈√αz1 (10.18)</p>
+<p>trong phân tích tín hiệu trên nhiễu. Do đó, nếu chúng ta muốn giữ cho một trạng thái của một mô-đun ổn định (không bị nhiễu từ các mô-đun khác), hệ số g phải tuân theo g2 < 1 −2αz2m 2αz2m(m −1). (10.19)</p>
+<p>Giới hạn trên đối với g từ những xem xét này được vẽ trong Hình 10.6B như đường giới hạn vùng trắng từ phía trên. Với các hệ số g nằm đâu đó trong vùng trắng, chúng ta có thể tìm thấy các điểm mà tại đó các mẫu trong các mô-đun khác nhau tương đối ổn định trong khi vẫn đáp ứng một số ảnh hưởng từ các mẫu khác.</p>
+<p>Phân tích được thảo luận ở đây chỉ nhằm mục đích gợi ý về sự tương tác khả dĩ giữa các mạng con trong các mạng mô-đun, và nhiều giả định đơn giản hóa đã được đưa ra. Chẳng hạn, chúng ta đã giả định rằng các trọng số liên mô-đun đã được huấn luyện với tất cả các mẫu. Trong các hoàn cảnh thực tế hơn, chúng ta sẽ chỉ huấn luyện các kết nối liên mô-đun cho các tổ hợp mẫu con cụ thể và nhờ đó có thể cho phép vùng trắng mở rộng tới các giá trị m cao hơn. Ngoài ra, chúng ta đã thấy rằng các giá trị từ phân tích tín hiệu trên nhiễu không mô tả chính xác toàn bộ động lực học trong các mạng như vậy. Tuy nhiên, điều nổi bật từ phân tích của chúng ta là có một giới hạn về số lượng mô-đun trong hệ thống khi chúng ta muốn có một hệ thống với sự cân bằng hợp lý giữa tính độc lập mô-đun và tương tác mô-đun. Điều này hạn chế tính mô-đun có thể được sử dụng trong các hệ thống phức tạp ở mỗi cấp độ. Để có thể sử dụng nhiều mô-đun nhằm đóng gói các chức năng nhất định, chúng ta phải kết hợp nhiều mô-đun này trong một cấu trúc phân cấp, nơi ở mỗi cấp chúng ta có một số lượng nhánh bị giới hạn. Chúng ta phỏng đoán rằng sự cân bằng hợp lý giữa hợp tác và độc lập giữa các mạng con là rất quan trọng đối với nhiều quá trình nhận thức, và sự phá vỡ sự cân bằng này có thể liên quan đến các rối loạn tâm thần như tâm thần phân liệt (khi các mô-đun quá cô lập) hoặc động kinh (khi các mô-đun trở nên quá đồng bộ).</p>
+<p>10.3 Học chuỗi</p>
+<p>Trong khi chúng ta chủ yếu phân tích các trạng thái hút điểm để làm nổi bật khả năng hoàn thiện mẫu của các mạng liên kết, não bộ năng động hơn nhiều ở chỗ một số ký ức có thể kích hoạt những ký ức khác, và tầm quan trọng của các khía cạnh tuần tự trong xử lý của não ngày càng được nhận thức rõ. Trong phần này, chúng ta thảo luận ngắn gọn về học chuỗi và chỉ ra rằng học chuỗi trong các mạng liên kết có thể hưởng lợi từ các kiến trúc mô-đun.</p>
+<p>Ý tưởng chính đằng sau việc áp dụng các mạng hồi quy cho học chuỗi đã được thảo luận trong Mục 8.4, nơi chúng ta thấy rằng các liên kết dị hợp (hetero-associations) giữa các trạng thái liên tiếp có thể di chuyển hệ thống giữa các trạng thái hút. Sẽ rất hữu ích khi phân biệt giữa các trọng số tự liên kết (auto-associative) ij = 1 sµ i sµ</p>
+<h3>X</h3>
+<p>wA j , (10.20)</p>
+<h3>N</h3>
+<p>µ vốn liên kết các mẫu với chính chúng, và các trọng số dị liên kết (hetero-associative) ij = 1 sµ+1 i sµ</p>
+<h3>X</h3>
+<p>wH j , (10.21)</p>
+<h3>N</h3>
+<p>µ vốn là các liên kết giữa các mẫu khác nhau, trong trường hợp này là các mẫu liên tiếp. Cả kết nối tự liên kết và dị liên kết đều cần thiết để đạt được trí nhớ chuỗi bền vững. Ý tưởng chính là các dị liên kết đẩy hệ thống tới một phiên bản mới, có thể bị nhiễu, của một trạng thái trí nhớ kế tiếp, và tự liên kết giúp làm sạch phiên bản bị nhiễu của trạng thái mới đó. Chẳng hạn, Hopfield đã xem xét một mô hình với các trọng số bất đối xứng wij = wA ij + λwH ij (10.22)</p>
+<p>trong bài báo năm 1982 của ông. Tuy nhiên, ông cũng nhận thấy rằng mô hình cơ bản này chỉ hoạt động cho các chuỗi rất ngắn. Nhiều biến thể của mô hình cơ bản này sau đó đã được đề xuất, bao gồm các lựa chọn tinh chỉnh hơn cho trọng số dị liên kết và các tham số λ thay đổi theo thời gian. Tuy nhiên, ở đây chúng ta tập trung vào một giải pháp trong một mạng mô-đun.</p>
+<h3>A. Mô hình hút mô-đun B. Diễn biến theo thời gian của độ chồng lấp</h3>
+<p>3000</p>
+<h3>Đường dẫn đầu vào</h3>
+<h3>Độ chồng lấp trong A</h3>
+<p>2000</p>
+<p>1000</p>
+<p>0 w w AB</p>
+<h3>BB</h3>
+<p>0 4 8 10 12 14 16 18 20 −1000</p>
+<p>6 2 w w</p>
+<h3>AA</h3>
+<h3>BA</h3>
+<p>2000</p>
+<h3>Độ chồng lấp trong B</h3>
+<p>1500</p>
+<p>1000</p>
+<p>500</p>
+<p>0</p>
+<p>−500</p>
+<p>0 4 8 10 12 14 16 18 20 Thời gian [τ] 6 2</p>
+<h3>Mô-đun A Mô-đun B</h3>
+<p>Hình 10.7 (A) Một cặp mô-đun hồi quy kết nối A và B. (B) Độ chồng lấp của hoạt hóa thuần u(t) của các nút trong mỗi mô-đun với các mẫu đã lưu trữ trong một chuỗi có độ dài 10 trong quá trình hồi tưởng. [Phỏng theo Lawrence, Trappenberg và Fine, Neurocomputing 69: 634–41 (2006); xem thêm Sommer và Wennekers, Neurocomputing 65–66: 449–54 (2005).]</p>
+<p>Chúng ta xét một mạng mô-đun như thể hiện trong Hình 10.7A. Mạng này gồm hai mô hình tự liên kết được gán nhãn A và B, được ghép nối thông qua một ghép nối dị liên kết wAB. Ghép nối liên mô-đun ngược lại là tự liên kết. Kết quả của các mô phỏng được thể hiện trong Hình 10.7B dưới dạng độ chồng lấp giữa hoạt hóa bên trong u(t) của các nút và các mẫu đã lưu trữ. Khi độ chồng lấp hoạt hóa tăng lên cho một mẫu cụ thể trong mô-đun B (Hình 10.7B, dưới), mô-đun A bắt đầu di chuyển về phía mẫu tiếp theo trong chuỗi (Hình 10.7B, trên) do các dị liên kết B→A. Khi độ chồng lấp hoạt hóa tăng lên cho một mẫu cụ thể trong A, B theo sau ngay phía sau từ các tự liên kết A→B. Lưu ý rằng chỉ có bốn kiểu đường khác nhau được sử dụng trong Hình 10.7B, nên một số mẫu dùng chung kiểu đường.</p>
+<p>Phân tích sâu hơn về mạng này cho thấy các chuỗi dài có thể được học bởi kiến trúc này. Các kiến trúc tương tự đã được đề xuất cho các chức năng hồi hải mã, với các gợi ý rằng phân vùng CA3 đại diện cho một mạng con tự liên kết, và các vòng hồi quy trong hồi hải mã thông qua hồi răng cung cấp cơ chất giải phẫu cho bộ tự liên kết kia. Như vậy, các kiến trúc này khi đó không chỉ có thể hỗ trợ việc học nhanh các chuỗi trong hồi hải mã, mà các chuỗi đã học này còn có thể được sử dụng để dự đoán các trạng thái cảm giác và từ đó dẫn hướng hành vi. Các mạng hút mô-đun, với các thành phần tự liên kết và/hoặc dị liên kết, cũng đã được sử dụng để mô hình hóa dữ liệu hành vi như ảnh hưởng của tâm trạng lên việc hồi tưởng ký ức. Do đó, việc đặc trưng hóa các mạng hồi quy tương tác là một lĩnh vực nghiên cứu quan trọng trong khoa học thần kinh tính toán.</p>
+<p>10.4 Các hệ thống trí nhớ bổ trợ</p>
+<p>Giờ đây chúng ta sẽ bắt đầu phác thảo một số ví dụ cụ thể hơn về các mô hình cấp hệ thống của các chức năng não bộ, vẫn với trọng tâm đặc biệt vào các mạng mô-đun. Chúng ta bắt đầu với một giả thuyết cụ thể về việc hiện thực hóa trí nhớ làm việc (working memory) trong não. Chúng ta dành thuật ngữ "trí nhớ làm việc" cho một khái niệm được sử dụng bởi các nhà khoa học nhận thức, mặc dù thuật ngữ này thường được các nhà sinh lý học dùng để chỉ một dạng trí nhớ biểu kiến thông qua hoạt động nơ-ron liên tục, như đã thảo luận ở Chương 8. Chúng ta dùng thuật ngữ trí nhớ ngắn hạn cho khái niệm sau này và thảo luận ở đây về mối liên hệ của chúng.</p>
+<p>Vì trí nhớ làm việc là một khái niệm bắt nguồn từ các nghiên cứu hành vi, không dễ để định nghĩa chính xác cấu trúc này, và nhiều quan điểm khác nhau về khái niệm này xét về định nghĩa và vai trò chức năng tồn tại trong tài liệu nghiên cứu. Lý do nó hữu ích trong khoa học nhận thức là vì nó là một khái niệm rất hấp dẫn khi mô tả các cơ chế khả dĩ của các quá trình nhận thức phức tạp vốn dường như dựa vào một dạng không gian làm việc nào đó, cung cấp bộ đệm cần thiết để giữ thông tin nhằm giải quyết các tác vụ phức tạp. Ví dụ về các tác vụ nhận thức phức tạp như vậy bao gồm hiểu ngôn ngữ, tính nhẩm và mọi hình thức suy luận cần thiết cho việc giải quyết vấn đề và ra quyết định. Trí nhớ làm việc khác với dạng cụ thể của trí nhớ ngắn hạn (STM) đã thảo luận ở Chương 8 bởi vì nhiều tác vụ nhận thức phức tạp cũng dựa vào các dạng trí nhớ khác. Chẳng hạn, trí nhớ tình tiết (episodic memory), vốn có thể được trung gian bởi hồi hải mã, và trí nhớ ngữ nghĩa (semantic memory), được hỗ trợ bởi các chức năng của tân vỏ não, có thể cần thiết để trực tiếp giải quyết các tác vụ phức tạp mà con người phải đối mặt.</p>
+<p>10.4.1 Mô hình phân tán của trí nhớ làm việc</p>
+<p>Một số mô hình trí nhớ làm việc đã được đề xuất trong tài liệu nghiên cứu, và các mô hình của Alan Baddeley đặc biệt có ảnh hưởng. Tuy nhiên, ở đây chúng ta phác thảo một mô hình khái niệm về trí nhớ làm việc do Randall O’Reilly, Todd Braver và Jonathan Cohen đề xuất, dựa trên một cấu trúc mô-đun như được tóm tắt trong</p>
+<p>Hình 10.8. Ba mô-đun được đưa vào mô hình này, mỗi mô-đun có một số chức năng đặc trưng.</p>
+<p>Thường rất khó để phân bổ các chức năng cụ thể trong một hệ thống phân tán vì có các tương tác bên trong hệ thống và các tính chất hệ thống thường phụ thuộc vào toàn bộ hệ thống. Tuy nhiên, điều chúng ta hướng tới ở đây là gán cho mỗi mô-đun một chức năng trí nhớ khác nhau xét về trí nhớ ngắn hạn, trung hạn và dài hạn.</p>
+<h3>PFC</h3>
+<h3>PMC</h3>
+<h3>HCMP</h3>
+<p>Hình 10.8 Hệ thống mô-đun với trí nhớ ngắn hạn, trung hạn và dài hạn, gắn liền tương ứng với các chức năng của vỏ não trước trán (PFC), hồi hải mã và các vùng liên quan (HCMP), và vỏ não cảm giác – vận động (PMC) [phỏng theo O’Reilly, Braver và Cohen, trong Models of working memory, Miyake và Shah (chủ biên), Cambridge University Press (1999)].</p>
+<p>Mô-đun được gán nhãn PFC có nhiều hệ thống con hồi quy (chủ yếu) độc lập được biểu diễn dưới dạng các nút hồi quy đơn lẻ. Mỗi nút như vậy có thể giữ một mục thông tin cụ thể đã được trình bày trước đó trong một khoảng thời gian ngắn thông qua hoạt động thần kinh dội lại (reverberating neural activity). Do đó, mô-đun này mô phỏng các hoạt động cơ bản đôi khi được quy cho vỏ não trước trán (xem Chương 8). Cấu trúc được gán nhãn HCMP đại diện cho các cấu trúc như hồi hải mã mà chúng ta đã xác định là phù hợp cho việc học nhanh các liên kết như yêu cầu đối với trí nhớ tình tiết (xem Chương 9). Dạng trí nhớ này dựa trên tính dẻo khớp thần kinh nhanh, trái ngược với các trọng số định sẵn của trí nhớ ngắn hạn trong các bản đồ vỏ não. Mô-đun được gán nhãn PMC, viết tắt của vỏ não cảm giác và vận động (perceptual and motor cortex), nhằm mục đích mô tả các khái niệm được học chậm hơn như trí nhớ ngữ nghĩa hoặc các tập hợp hành động. Câu hỏi khoa học thú vị là nghiên cứu cách các mô hình trí nhớ khác nhau tương tác và cách não bộ sử dụng loại thông tin cần thiết để thực hiện các tác vụ tinh thần phức tạp. O’Reilly và các cộng sự đã thảo luận sâu hơn về các hệ thống bổ trợ như vậy, điều rất được khuyến nghị đọc thêm. Ở đây chúng ta sẽ chỉ tập trung vào một vấn đề cụ thể của trí nhớ làm việc vốn được thảo luận lặp đi lặp lại trong tài liệu nghiên cứu.</p>
+<p>10.4.2 Dung lượng giới hạn của trí nhớ làm việc</p>
+<p>Rất dễ để nhớ thật nhanh một danh sách nhỏ các con số chẳng hạn như "31, 27, 4, 18". Tuy nhiên, khả năng hồi tưởng một danh sách số (mà không học lặp lại) sụp đổ đáng kể khi danh sách có thêm vài mục. Hãy thử "62, 97, 12, 73, 27, 54, 8". Trí nhớ cần thiết để thực hiện một tác vụ như vậy phụ thuộc mạnh mẽ vào các cơ chế trí nhớ ngắn hạn. Tuy nhiên, dưới góc độ thảo luận ở trên, chúng ta xem chúng như những giới hạn của trí nhớ làm việc nhiều hơn. Dung lượng giới hạn của trí nhớ làm việc đã được H. S. Oberley mô tả vào năm 1928. G. Miller đã đặt ra cụm từ "con số kỳ diệu 7 ± 2" cho giới hạn này. Hiện nay rõ ràng là giới hạn chính xác phụ thuộc mạnh mẽ vào tác vụ cụ thể cần thực hiện, và giới hạn biểu kiến có thể được điều chỉnh bởi các quá trình khác. Chẳng hạn, một người phục vụ bàn thường rất thành thạo trong việc ghi nhớ nhanh các danh sách gọi món dài. Điều này khả thi nhờ sử dụng các "thủ thuật tinh thần" như gộp các mục lại với nhau. Tuy nhiên, khi loại trừ cẩn thận hơn các thủ thuật tinh thần như vậy trong các thí nghiệm, dường như giới hạn khoảng bốn mục là phổ biến hơn.</p>
+<p>Dung lượng rất hạn chế của trí nhớ làm việc gây bối rối nếu chúng ta nhớ rằng mình có thể dễ dàng xây dựng các hệ thống có thể lưu trữ nhanh chóng hàng nghìn mục. Đây cũng là một vấn đề quan trọng vì có một số dấu hiệu cho thấy dung lượng trí nhớ làm việc cá nhân là một yếu tố dự báo tốt cho sự thành công trong việc hoàn thành các khóa học, thực tế một số người còn lập luận là tốt hơn cả các phép đo IQ cổ điển. Vì vậy, một dung lượng lưu trữ lớn hơn đáng lẽ phải giúp chúng ta thích nghi tốt hơn để sinh tồn, và chúng ta có thể hỏi tại sao tiến hóa lại không thể làm tăng đáng kể dung lượng trí nhớ làm việc. Việc tìm kiếm lý do đằng sau dung lượng giới hạn của trí nhớ làm việc do đó rất nổi bật trong khoa học thần kinh nhận thức.</p>
+<p>Có nhiều giả thuyết về lý do đằng sau dung lượng giới hạn của trí nhớ làm việc. Donald Broadbent là một trong những người đầu tiên chỉ ra rằng điều này gợi ý một nút thắt cổ chai trong năng lực xử lý thông tin của não. Nelson Cowan đã phát triển điều này xa hơn bằng cách điều tra cụ thể hơn cách các giới hạn trong hệ thống chú ý, vốn thường là một phần thiết yếu của các mô hình trí nhớ làm việc, có thể giải thích dữ liệu. Một gợi ý khác là trí nhớ ngắn hạn do hoạt động thần kinh dội lại, vốn cũng là một thành phần thiết yếu trong hầu hết các mô hình trí nhớ làm việc, có thể nắm giữ chìa khóa. Chẳng hạn, chúng ta đã phác thảo ở Chương 8 và 9 cách trí nhớ ngắn hạn như vậy có thể được hiện thực hóa trong một mạng hút. Các mạng như vậy bị giới hạn chỉ biểu diễn một mục tại mỗi thời điểm. Tuy nhiên, Lisman và Idiart chỉ ra rằng các vật thể khác nhau có thể được mã hóa trong các chu kỳ con tần số cao khác nhau của các dao động tần số thấp. Sau đây chúng ta sẽ thảo luận hai gợi ý nữa, chủ yếu như một bài tập vận dụng các thảo luận trước đó vào việc lượng hóa các gợi ý này. Ví dụ đầu tiên dựa trên biểu diễn chuỗi xung của các vật thể, trong khi ví dụ thứ hai đưa chúng ta trở lại với các mô-đun hồi quy tương tác.</p>
+<p>10.4.3 Giả thuyết đồng bộ hóa giả</p>
+<p>Kết quả thực nghiệm về hiệu năng của con người trong một thí nghiệm trí nhớ làm việc điển hình được thể hiện trong Hình 10.9. Trong các thí nghiệm này, Steven Luck và Ed Vogel đã cho đối tượng xem các hình ảnh có N obj vật thể đơn giản, chẳng hạn như các vật thể có hình dạng và/hoặc màu sắc khác nhau. Sau một khoảng trễ 900 ms, đối tượng được trình bày một hình ảnh thứ hai, và đối tượng phải phán đoán xem hai hình ảnh có giống hệt nhau hay không. Hiệu năng của các đối tượng, được đo bằng tỷ lệ phần trăm trung bình các câu trả lời đúng, được vẽ trong Hình 10.9A bằng các ô vuông đặc như một hàm của số lượng vật thể (ô vuông) trong các hình ảnh. Có thể thấy sự suy giảm đột ngột về hiệu năng khi số lượng vật thể trong hình ảnh tăng lên. Với các thí nghiệm tương tự, các tác giả còn chứng minh thêm rằng: (1) giới hạn dung lượng không phụ thuộc vào số lượng đặc trưng của vật thể liên quan đến việc đưa ra quyết định; (2) trí nhớ làm việc thị giác độc lập với tải trong trí nhớ làm việc ngôn ngữ; (3) giới hạn dung lượng không phải do sự gia tăng số lượng quyết định phải đưa ra đối với một tập mẫu ngày càng tăng.</p>
+<h3>B. Giả thuyết đồng bộ hóa giả A. Giới hạn trí nhớ làm việc</h3>
+<p>100</p>
+<h3>Đỏ</h3>
+<h3>Tỷ lệ phần trăm đúng</h3>
+<p>90</p>
+<h3>Vật thể 1</h3>
+<h3>Xanh lá</h3>
+<p>80</p>
+<h3>Vật thể 2</h3>
+<h3>Dọc</h3>
+<p>70</p>
+<p>60</p>
+<h3>Ngang</h3>
+<p>2 4 6 8 10 12 50</p>
+<h3>Số lượng vật thể</h3>
+<h3>Đồng bộ hóa giả</h3>
+<p>Hình 10.9 (A) Tỷ lệ phần trăm câu trả lời đúng (khả năng hồi tưởng) ở đối tượng người trong tác vụ so sánh tuần tự hai hình ảnh với số lượng vật thể khác nhau Nobj (ô vuông đặc). Các đường chấm minh họa các ví dụ về dạng hàm theo gợi ý của giả thuyết đồng bộ hóa. Đường nét đứt tương ứng với kết quả có P SS(2) = 0.04, trong đó P SS là xác suất đồng bộ hóa giả. (B) Minh họa giả thuyết đồng bộ hóa giả. Các đặc trưng của vật thể được biểu diễn bởi các chuỗi xung khác nhau, sao cho số lượng xung đồng bộ trong một độ phân giải nhất định tăng lên khi số lượng vật thể tăng lên [phỏng theo Luck và Vogel, Trends in Cognitive Science 2: 78–80 (1998)].</p>
+<p>Luck và Vogel cũng gợi ý một lý do khả dĩ cho dung lượng giới hạn của trí nhớ làm việc. Ý tưởng của họ dựa trên giả định rằng một đặc trưng được biểu diễn bởi một chuỗi xung cụ thể, như minh họa trong Hình 10.9B. Chúng ta giả định rằng một đặc trưng được mã hóa bởi một chuỗi xung với một mã tùy ý (tức là một chuỗi xung ngẫu nhiên), và việc giải mã các chuỗi xung bị giới hạn bởi độ phân giải hữu hạn của thời điểm phát xung. Các đặc trưng khác nhau của các vật thể khác nhau có thể được biểu diễn bởi các chuỗi xung đồng bộ hóa. Đây là một cách phổ biến để giải quyết bài toán gắn kết (binding problem), bài toán liên kết các đặc trưng khác nhau của một vật thể khi các đặc trưng đó được biểu diễn ở các vùng não khác nhau. Tất nhiên, chúng ta phải giả định rằng các vật thể khác nhau được biểu diễn bởi các chuỗi xung khác nhau. Tuy nhiên, có khả năng một số xung trong các chuỗi xung khác nhau cho các vật thể khác nhau rơi vào cùng một cửa sổ thời gian, như minh họa trong Hình 10.9B. Vì điều này chỉ dựa trên sự trùng hợp ngẫu nhiên, chúng ta gọi loại đồng bộ hóa này là đồng bộ hóa giả (spurious synchronization). Số lượng xung trùng nhau giữa một số vật thể thực sự tăng lên nếu chúng ta tăng số lượng vật thể trong một tập hợp. Tại một thời điểm nào đó, mức độ đồng bộ hóa giả sẽ trở nên rất lớn, có thể đủ lớn để phá hủy khả năng phân biệt giữa các vật thể. Điều này, như Luck và Vogel lập luận, có thể giải thích sự sụp đổ hiệu năng trong các thí nghiệm của họ.</p>
+<p>Ý tưởng về đồng bộ hóa giả như là lý do đằng sau giới hạn dung lượng của trí nhớ làm việc rất hấp dẫn. Chẳng hạn, nó sẽ dự đoán rằng giới hạn dung lượng không phụ thuộc vào số lượng đặc trưng mà một vật thể có, đúng như đã tìm thấy trong thực nghiệm. Lời giải thích cho điều này trong khuôn khổ giả thuyết đồng bộ hóa giả là mỗi đặc trưng bổ sung của một vật thể trong mọi trường hợp sẽ được đồng bộ hóa với các đặc trưng khác của vật thể đó, nên chỉ số lượng vật thể có chuỗi xung khác nhau mới là điều quan trọng.</p>
+<p>Khoa học thần kinh tính toán cung cấp một số cách để kiểm định giả thuyết này sâu hơn, cụ thể bằng cách lượng hóa giả thuyết để có thể so sánh trực tiếp hơn với dữ liệu thực nghiệm. Điều này có thể thực hiện cho giả thuyết trên chỉ bằng cách sử dụng toán học tổ hợp cơ bản. Số lượng cặp N PAIRS trong một tập hợp N obj vật thể được cho bởi</p>
+<p>= N obj! 2! (N obj −2)!. (10.23)</p>
+<h3>N obj</h3>
+<p></p>
+<p></p>
+<h3>N pairs =</h3>
+<p>2</p>
+<p>Với một mã thần kinh cho trước, chẳng hạn như mã được xác định bởi một phân bố xác suất cho trước của các xung, sẽ có một xác suất đồng bộ hóa giả nhất định giữa hai chuỗi xung, mà chúng ta ký hiệu là P ss(2). Xác suất không có đồng bộ hóa giả giữa hai chuỗi xung khi đó là 1−P ss(2). Xác suất đồng bộ hóa giả giữa ít nhất hai chuỗi xung trong một tập hợp N obj chuỗi xung (mẫu) khi đó được cho bởi</p>
+<p>1 −P SS(2)  Npairs</p>
+<h3>P SS(N obj) = 1 −</h3>
+<p>, (10.24)</p>
+<p>bởi vì các chuỗi xung là độc lập, nghĩa là các xác suất chỉ việc nhân với nhau. Xác suất đồng bộ hóa giả tăng lên làm giảm hiệu năng trong tác vụ so sánh vật thể. Do đó, chúng ta có thể lượng hóa giả thuyết của Luck và Vogel bằng một kỳ vọng hàm số của tỷ lệ phần trăm hồi tưởng đúng được cho bởi</p>
+<h3>P correct =</h3>
+<p>1 −P SS(N obj)</p>
+<h3>P SS(N obj)</h3>
+<p></p>
+<p></p>
+<p></p>
+<p>+</p>
+<p>0.5. (10.25)</p>
+<p>Số hạng thứ hai ở vế phải được thêm vào vì có thể kỳ vọng một câu trả lời ngẫu nhiên nếu các vật thể không thể được tách biệt chính xác. Hiệu năng hồi tưởng từ phương trình 10.25 đối với các giá trị khác nhau của xác suất đồng bộ hóa giả giữa hai chuỗi xung được thể hiện bằng các đường chấm trong Hình 10.9A. Đường nét đứt tương ứng với giả thuyết đồng bộ hóa giả với P SS(2) = 0.04. Chúng ta thấy rằng có thể sử dụng việc lượng hóa giả thuyết để trích xuất một số tham số có thể so sánh thêm với dữ liệu thực nghiệm. Chẳng hạn, xác suất đồng bộ hóa giả giữa hai chuỗi xung có thể được so sánh với các mô hình chuỗi xung có tính đến các giá trị thực tế về phân bố xung, tần số phát xung và độ chính xác thời gian.</p>
+<p>Việc so sánh dữ liệu thực nghiệm và lý thuyết cũng chỉ ra một số sai lệch khả dĩ cần được phân tích thêm. Chẳng hạn, sự chuyển tiếp quan sát được trong thực nghiệm dường như sắc nét hơn một chút so với sự chuyển tiếp suy ra từ giả thuyết đồng bộ hóa giả. Ngoài ra, dường như có một độ lệch mạnh đối với số lượng vật thể lớn có thể chỉ ra một hiệu ứng riêng biệt lên trí nhớ làm việc. Chúng ta sẽ không theo đuổi hướng nghiên cứu này thêm nữa vì thảo luận này chỉ nhằm minh họa rằng việc lượng hóa các giả thuyết thường rất quan trọng và sẽ giúp chúng ta phát triển các mô hình tốt hơn trong tương lai.</p>
+<p>10.4.4 Giả thuyết trí nhớ dội lại tương tác</p>
+<p>Thảo luận trước đó về các mô-đun trí nhớ tương tác mang lại một lý do khả dĩ khác đằng sau dung lượng giới hạn của trí nhớ làm việc. Chúng ta đã thấy rằng có thể xây dựng các mô-đun trí nhớ riêng biệt để lưu trữ các mục riêng biệt, và việc lưu trữ nhiều mục hơn sẽ chỉ đòi hỏi nhiều mô-đun trí nhớ hơn. Tuy nhiên, chúng ta cũng đã thảo luận rằng các tương tác trong não là cần thiết để giải quyết các tác vụ phức tạp, và chúng ta đã thấy rằng có một sự cân bằng nhạy cảm giữa số lượng mô-đun và cường độ tương tác giữa chúng để cho phép sự linh hoạt nhất định trong hoạt động của hệ thống.</p>
+<p>Trong phần này, chúng ta sẽ lượng hóa quan sát này theo các mô hình trường thần kinh động (dynamic neural field), vốn, như đã lập luận ở Chương 8, mô hình hóa một số khía cạnh của các biểu diễn trong các bản đồ vỏ não. Chẳng hạn, chúng ta có thể nghĩ về hoạt động thần kinh dội lại ở vỏ não trán giúp giữ thông tin về các khái niệm cấp cao và kích hoạt các chi tiết cấp thấp tạo nên các vật thể cụ thể. Vì vậy, trong khi việc hiện thực hóa trong não có khả năng dựa trên hoạt động phân tán trong não, chúng ta sẽ đơn giản hóa thảo luận ở đây bằng cách trình bày khái niệm với một chiều đặc trưng duy nhất.</p>
+<p>Các mô hình trường thần kinh với sự cân bằng thích hợp giữa ức chế tâm–bao quanh và kích thích cục bộ có khả năng lưu trữ các đặc trưng bằng hoạt động thần kinh liên tục, như đã phác thảo ở Mục 8.3.2. Một ví dụ được thể hiện trong Hình 10.10A, chứng minh rằng một kích thích bên ngoài được áp dụng cho đến t = 10τ đã được ghi nhớ bằng hoạt động thần kinh liên tục sau khi kích thích bên ngoài bị loại bỏ. Khả năng trí nhớ ngắn hạn này là thứ chúng ta đang sử dụng trong các mô phỏng sau đây. Chương trình được dùng cho các mô phỏng này là dnf.py với các tham số được điều chỉnh nhẹ như ghi chú trong chú thích hình.</p>
+<p>120 A. Một vật thể B. Hai vật thể C. Bốn vật thể</p>
+<p>120</p>
+<p>120</p>
+<h3>Số hiệu nút</h3>
+<h3>Số hiệu nút</h3>
+<h3>Số hiệu nút</h3>
+<p>100</p>
+<p>100</p>
+<p>100</p>
+<p>80</p>
+<p>80</p>
+<p>80</p>
+<p>60</p>
+<p>60</p>
+<p>60</p>
+<p>40</p>
+<p>40</p>
+<p>40</p>
+<p>20</p>
+<p>20</p>
+<p>20</p>
+<p>0 10 20</p>
+<p>0 10 20</p>
+<p>0 10 20</p>
+<h3>Thời gian</h3>
+<h3>Thời gian</h3>
+<h3>Thời gian</h3>
+<p>Hình 10.10 Các mô phỏng của mô hình DNF dựa trên chương trình dnf.py trong đó một số tham số đã được thay đổi. Trong các mô phỏng này, 120 nút được sử dụng (nn = 120), độ rộng của các mẫu (sig = 2*pi/30) và hằng số ức chế (C=0.2) đã được giảm xuống, hệ số tỷ lệ của các trọng số được phóng đại (w=10*(w-C)), và độ rộng của các kích thích bên ngoài đã được giảm một nửa. Tất cả những thay đổi này chỉ được thực hiện để minh họa rõ hơn sự cùng tồn tại của các gói hoạt động. Thay đổi lớn so với các mô phỏng trước đó là số lượng vùng được kích thích từ bên ngoài, với (A) một, (B) hai, hoặc (C) bốn vùng kích thích bên ngoài cho đến thời điểm t = 10τ.</p>
+<p>Để thuận tiện trong thảo luận, chúng ta diễn giải mỗi trạng thái trí nhớ trong mô hình DNF trong trường hợp này là đại diện cho một vật thể. Trong trường hợp có nhiều mạng DNF tách rời, do đó chúng ta có thể biểu diễn nhiều vật thể khác nhau trong hệ thống. Tuy nhiên, chúng ta quan tâm hơn đến việc khám phá trường hợp tương tác và thảo luận điều này trong trường hợp thái cực còn lại, là có một mạng DNF lớn duy nhất. Ở giới hạn này, chúng ta chỉ có thể có một gói hoạt động tại một thời điểm do bản chất kẻ thắng lấy tất cả của mạng. Tuy nhiên, trên thực tế có một số yếu tố có thể hỗ trợ sự cùng tồn tại của nhiều gói hoạt động, ít nhất là trong một khoảng thời gian đáng kể trong giai đoạn trí nhớ ngắn hạn. Các cơ chế ổn định hóa này trong các mô hình DNF đã được thảo luận ở Mục 8.3.4. Chẳng hạn, nếu chúng ta làm cho các nơ-ron vốn đã hoạt động dễ phát xung trở lại hơn, chẳng hạn như sự hoạt hóa NMDAR trong các mạng hồi quy, thì chúng ta có thể ổn định hóa nhiều hơn một gói hoạt động. Có những cách khác để ổn định hóa một số gói, ít nhất trong một khoảng thời gian đủ dài, và chúng ta thậm chí có thể mô phỏng điều này một cách dễ dàng bằng cách sử dụng một hiện thực hóa rời rạc theo không gian của mô hình DNF. Bản chất rời rạc của các biểu diễn nút trong máy tính tạo ra một rào cản năng lượng nhất định để hai gói hoạt động trong một khoảng cách gần nhau giữ nguyên vị trí thay vì di chuyển về phía nhau hoặc hợp nhất như trong trường hợp liên tục. Một ví dụ được thể hiện trong Hình 10.10B. Tuy nhiên, khi trình bày bốn vật thể cho mạng, như thể hiện trong Hình 10.10C, hoạt động của mạng sụp đổ nhanh chóng.</p>
+<p>Mô phỏng này minh họa một số tính chất thú vị của các mạng cạnh tranh. Khi chuyển từ một sang hai vật thể trong mô phỏng, biểu diễn của các "vật thể" trở nên sắc nét hơn. Sự làm sắc nét này đã được Wilson và Cowan lưu ý, và thường được lập luận là giải thích các hiệu ứng như tăng cường biên. Hơn nữa, trong khi hoạt động định khu dẫn đến đáp ứng trí nhớ mạnh mẽ trong mạng, hoạt động lan tỏa có thể dập tắt hoạt động của mạng. Chính nguyên lý này có thể là nền tảng cho dung lượng giới hạn của trí nhớ làm việc. Tất nhiên, các mô phỏng trình bày ở đây được lý tưởng hóa rất nhiều theo nhiều cách, chẳng hạn như sử dụng các vật thể cách đều nhau tương ứng với tình huống ổn định tối đa. Trong não bộ, người ta cần xem xét các biểu diễn phân tán hơn. Chẳng hạn, các nơ-ron có thể tham gia vào các bản đồ khác nhau cùng một lúc. Khi các bản đồ như vậy không tương quan, thì có rất ít nhiễu giữa các biểu diễn trong các bản đồ, vì một gói hoạt động trong bản đồ này sẽ xuất hiện như nền ngẫu nhiên trong bản đồ kia. Ý tưởng này đã được Alexei Samsonovich hình thức hóa thành khái niệm các hải đồ (charts) trong các mô hình trường thần kinh. Chẳng hạn, các hải đồ như vậy có thể giải thích cách nhiều bản đồ trường vị trí khác nhau có thể được chứa trong hồi hải mã. Tuy nhiên, xét về trí nhớ làm việc, có khả năng sự chồng lấp trong các khái niệm bậc cao hơn của não sẽ giới hạn số lượng hải đồ có thể được kích hoạt cùng một lúc. Do đó, nghiên cứu sự tương tác của các mạng con ghép nối là một lĩnh vực nghiên cứu quan trọng.</p></div>
+<nav class="chapter-nav"><a href="ch10.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch12.html">Phần sau &#8594;</a></nav></div></body></html>
