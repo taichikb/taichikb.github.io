@@ -1,0 +1,1254 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phần 2 — Chức Năng Não Bộ &amp; Các Giác Quan — Não Bộ Hoạt Động Như Thế Nào | TaichiKB</title><meta name="description" content="">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/stylesheets/reader.css"><style>
+:root{--teal:#0f766e;--ink:#0f172a;--mid:#475569;--line:#e2e8f0;--soft:#f8fafc;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.75}
+h1,h2,h3,.chapter-title,.tocwrap h2,.book-meta-details h1{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-.01em}
+.book-meta-details p.sub,.reader-body blockquote{font-family:'Lora','Be Vietnam Pro',Georgia,serif}
+.wrap{max-width:940px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.reader-topnav{background:var(--soft);border-bottom:1px solid var(--line);padding:.8rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem}
+.reader-topnav a{color:var(--teal);text-decoration:none;font-weight:600}
+.crumb{font-size:.8rem;color:var(--mid);margin:1rem 0}
+.crumb a{color:var(--teal);text-decoration:none}
+.book-cover-banner{display:flex;gap:26px;align-items:flex-start;margin:1.5rem 0;background:var(--soft);padding:22px;border-radius:12px;border:1px solid var(--line)}
+.cover-art{flex:0 0 160px;width:160px;border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.15);overflow:hidden;background:#0f766e}
+.cover-art img{width:100%;height:auto;display:block}
+.book-meta-details h1{margin:0 0 8px;font-size:1.75rem;line-height:1.25}
+.book-meta-details p.sub{margin:0 0 12px;color:var(--mid)}
+.tocbar{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
+.tocbar a{display:inline-flex;padding:.45rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;background:#fff}
+.tocbar a.primary-btn{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chlist{list-style:none;margin:.5rem 0 0;padding:0}
+.chlist li{margin:0;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+.chlist a{color:var(--ink);text-decoration:none;display:flex;gap:.8rem;align-items:flex-start}
+.chlist a:hover{color:var(--teal)}
+.chlist .num{flex:0 0 2.2rem;color:var(--teal);font-weight:700}
+.attribution{margin:2rem 0 1rem;border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:16px 20px;font-size:.88rem;color:var(--mid)}
+.chapter-nav{display:flex;justify-content:space-between;gap:1rem;margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.92rem}
+.chapter-nav a{color:var(--teal);text-decoration:none;font-weight:600}
+.reader-body h2,.chapter-title{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.38rem;font-weight:700;margin:1.8rem 0 .7rem;color:var(--teal);line-height:1.38}
+.reader-body h3{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.08rem;font-weight:700;margin:1.2rem 0 .45rem;color:var(--ink);line-height:1.4}
+.reader-body p{line-height:1.82;margin:0 0 .9rem;text-align:justify}
+.reader-body .dk-topic{margin:2rem 0;padding-top:1.2rem;border-top:1px solid var(--line)}
+.reader-body figure.bookfig{margin:1.4rem auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;max-width:760px}
+.reader-body figure.bookfig img{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:4px}
+.reader-body figure.bookfig figcaption{font-size:.82rem;color:var(--mid);margin-top:.55rem;line-height:1.5;text-align:center;font-style:italic}
+@media(max-width:640px){.book-cover-banner{flex-direction:column}}
+</style></head><body>
+<div class="reader-topnav"><a href="index.html">&#8592; Mục lục</a><div class="nav-links"><a href="/vi/">Trang chủ</a> · <a href="/vi/neuroscience/">Thần Kinh Học</a></div></div><div class="wrap"><div class="crumb"><a href="/vi/">Trang chủ</a> &#8250; <a href="/vi/neuroscience/">Thần Kinh Học</a> &#8250; Não Bộ Hoạt Động Như Thế Nào (DK)</div>
+<div class="book-cover-banner"><div class="cover-art"><img src="img/cover.jpg" alt="Não Bộ Hoạt Động Như Thế Nào — DK Publishing"></div>
+<div class="book-meta-details"><h1>Não Bộ Hoạt Động Như Thế Nào</h1><p class="sub"><em>How the Brain Works: The Facts Visually Explained</em> — DK Publishing (2020). Bản dịch tiếng Việt toàn văn kèm 205 trang minh họa gốc.</p>
+<div class="tocbar"><a class="primary-btn" href="ch01.html">&#128214; Bắt đầu đọc &#8594;</a><a href="full.html">&#128214; Đọc toàn bộ trong một trang</a><a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/pdf/neuroscience/how-the-brain-works-dk.pdf" target="_blank" rel="noopener" download>&#11015; Tải PDF gốc</a></div></div></div><h2 class="chapter-title">Phần 2 — Chức Năng Não Bộ &amp; Các Giác Quan</h2><div class="reader-body"><div class="dk-topic">
+<figure class="bookfig"><img src="img/p064.jpeg" alt="Minh họa trang 64" loading="lazy"><figcaption>Trang 64</figcaption></figure>
+<h3>Cảm nhận thế giới</h3>
+<p>Xúc giác — được xem là giác quan đầu tiên phát triển trong bụng mẹ; các nơ-ron xúc giác</p>
+<h3>Để tồn tại trong môi trường, chúng ta phải có khả năng phản ứng và tương tác với các kích thích do hiện tượng vật lý, hóa học và sinh học tạo ra — thị giác, thính giác, khứu giác, vị giác và xúc giác. Các cảm biến trong cơ thể thu nhận những tín hiệu này và gửi chúng đến não bộ để giải mã.</h3>
+<p>đáp ứng với áp lực, nhiệt độ, rung động, cơn đau và cái chạm nhẹ. Xúc giác là cách con người tiếp xúc vật lý với môi trường và với nhau.</p>
+<p>Thính giác: Sóng âm trong không khí được tai thu nhận và truyền vào hộp sọ, nơi ốc tai biến chúng thành các xung điện. Thính giác là giác quan phát triển nhất lúc mới sinh, nhưng chỉ hoàn thiện vào cuối năm đầu đời.</p>
+<h3>Các giác quan</h3>
+<p>Mỗi giác quan có một bộ cảm biến riêng. Hầu hết tập trung ở một vùng cụ thể của cơ thể, ngoại trừ xúc giác được phân bố khắp da cũng như bên trong cơ thể. Dù các nơ-ron và thụ thể của mỗi giác quan phần lớn chỉ phục vụ riêng giác quan đó, đôi khi chúng vẫn chồng chéo. Thông tin cảm giác liên tục dội vào não bộ, nhưng chỉ một phần nhỏ trong đó đi vào ý thức. Dù vậy, thông tin “không được chú ý” vẫn có thể định hướng hành động của chúng ta, đặc biệt là ở giác quan thứ sáu — cảm giác thân thể (<em>proprioception</em>) — vốn truyền tải thông tin về vị trí của cơ thể trong không gian.</p>
+<h3>RIÊNG BIỆT</h3>
+<p>Thị giác: Thị giác liên quan đến các cảm biến ở phía sau mắt, nơi ánh sáng được chuyển thành tín hiệu điện. Những tín hiệu này được vận chuyển đến phía sau não, nơi chúng được chuyển hóa thành màu sắc, chi tiết tinh tế và chuyển động. Chúng ta nhận biết vật thể chỉ trong chưa tới nửa giây.</p>
+<h3>KHỨU GIÁC CỦA BẠN TRỞ NÊN NHẠY HƠN KHI BẠN ĐÓI</h3>
+<h3>ĐỒNG CẢM GIÁC (<em>synesthesia</em>)</h3>
+<p>Đồng cảm giác là tình trạng trong đó một kích thích có thể được hai hay nhiều giác quan diễn giải cùng lúc. Ở dạng phổ biến nhất, người ta nhìn một con số hoặc một từ như thể nó có màu sắc. Mỗi người đồng cảm giác (<em>synesthete</em>) có những liên tưởng màu sắc riêng. Gần như mọi kết hợp giác quan đều có thể bị ảnh hưởng. Những kết hợp từ ba giác quan trở lên thì hiếm gặp.</p>
+<p>Mỗi nốt được liên kết với một màu sắc khác nhau</p>
+<figure class="bookfig"><img src="img/p065.jpeg" alt="Minh họa trang 65" loading="lazy"><figcaption>Trang 65</figcaption></figure>
+<h3>CHỨC NĂNG NÃO BỘ VÀ CÁC GIÁC QUAN</h3>
+<p>Cảm giác thân thể: Não bộ liên tục xử lý thông tin từ các khớp và cơ bắp, cho nó biết cơ thể đang ở đâu trong không gian. Giác quan này giữ cho chúng ta đứng thẳng và cho phép ta thực hiện các động tác mà không cần nỗ lực có ý thức, chẳng hạn như đi lên cầu thang.</p>
+<h3>VỎ VẬN ĐỘNG</h3>
+<h3>CẢM GIÁC THỂ</h3>
+<h3>VỎ CẢM GIÁC</h3>
+<h3>VÙNG CHÍNH</h3>
+<h3>Vị giác</h3>
+<h3>VỎ THÍNH GIÁC</h3>
+<h3>VÙNG VỊ GIÁC THỨ HAI</h3>
+<p>Vị giác đóng vai trò quan trọng trong việc xác định thức ăn nào an toàn và bổ dưỡng. Các thụ thể vị giác chỉ nhận được năm vị cơ bản: ngọt, mặn, đắng, chua và vị umami (đậm đà). Chúng ta cần khứu giác để giúp nhận diện một hương vị.</p>
+<p>Vỏ khứu giác</p>
+<p>Các vùng cảm giác của vỏ não: Tín hiệu từ các thụ thể cảm giác được chiếu đến những vùng khác nhau của vỏ não. Dù các vùng này riêng biệt, chúng thường có thể phản ứng với tín hiệu từ một giác quan khác. Ví dụ, các nơ-ron thị giác phản ứng tốt hơn trong điều kiện ánh sáng yếu nếu có âm thanh đi kèm.</p>
+<h3>Khứu giác</h3>
+<p>Dù chỉ có 400 thụ thể khứu giác, con người có thể nhận biết tới một nghìn tỷ mùi khác nhau. Khứu giác quan trọng cho sự sống sót vì nó cảnh báo chúng ta về các chất hoặc sự kiện nguy hiểm, chẳng hạn như có thứ gì đó đang cháy. Nó cũng đóng vai trò then chốt trong vị giác.</p>
+<h3>CÓ BAO NHIÊU GIÁC QUAN?</h3>
+<h3>Cộng thêm sáu giác quan được mô tả ở đây, các nhà khoa học cho rằng có thể có tới 20 giác quan, dựa trên số loại thụ thể khác nhau trong cơ thể.</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p066.jpeg" alt="Minh họa trang 66" loading="lazy"><figcaption>Trang 66</figcaption></figure>
+<h3>TẠI SAO MẮT TÔI NHẮM LẠI KHI TÔI HẮT HƠI?</h3>
+<h3>Mắt có lẽ là giác quan quan trọng nhất trong năm giác quan của chúng ta. Mắt thu thập ánh sáng phản xạ từ một vật và chuyển thông tin này đến não qua dây thần kinh thị giác.</h3>
+<h3>Khi một chất kích thích trong mũi kích hoạt trung tâm điều khiển ở thân não, nó gây ra sự co cơ lan rộng, bao gồm cả cơ mí mắt. Điều đó khiến bạn chớp mắt trong chốc lát.</h3>
+<h3>Cấu trúc của mắt</h3>
+<p>Nhãn cầu đường kính khoảng 1 in (2,5 cm). Ở phía sau mắt là võng mạc, chứa các tế bào nhạy sáng nối với dây thần kinh thị giác qua các nơ-ron. Khoảng bên trong nhãn cầu chứa đầy một chất dạng thạch. Phía trước mắt có một lỗ (đồng tử), phía sau là thủy tinh thể trong suốt. Quanh đồng tử là một vòng cơ có màu, gọi là mống mắt, điều khiển lượng ánh sáng đi vào mắt. Giác mạc, một màng trong suốt, phủ lên chúng và hòa vào màng ngoài màu trắng gọi là màng cứng.</p>
+<p>Nhãn cầu được bao bọc bởi màng cứng</p>
+<p>Các tia giao nhau tạo ra hình ảnh đảo ngược trên võng mạc</p>
+<p>Các tia sáng bắt đầu khúc xạ (bẻ cong) khi đi từ không khí vào giác mạc</p>
+<h3>VÕNG MẠC</h3>
+<p>Thủy tinh thể giống như một túi thạch có thể đổi hình dạng để hỗ trợ hội tụ</p>
+<h3>ÁNH SÁNG</h3>
+<h3>GIÁC MẠC</h3>
+<h3>ĐỒNG TỬ</h3>
+<h3>ĐỒNG TỬ (PUPIL)</h3>
+<p>Mống mắt là một vòng cơ</p>
+<p>Nhìn thấy sự vật: Mắt có khả năng cung cấp cho não một lượng chi tiết khổng lồ về những gì nó đang nhìn. Tuy nhiên, hình ảnh não nhận được bị đảo ngược, nên phải được lật lại trước khi chúng ta có thể hiểu được.</p>
+<h3>MÀNG MẠCH</h3>
+<h3>MÀNG CỨNG</h3>
+<p>Giác mạc là lớp trong suốt phủ trước mắt</p>
+<p>Màng mạch là lớp giàu mạch máu bao quanh võng mạc</p>
+<h3>Ánh sáng đi vào mắt: Ánh sáng đi qua giác mạc và</h3>
+<h3>Thủy tinh thể và sự hội tụ: Phía sau mống mắt là thủy tinh thể, nơi mà</h3>
+<h3>1</h3>
+<h3>2</h3>
+<p>đi vào mắt qua đồng tử. Đồng tử được bao quanh bởi một vòng cơ có màu — mống mắt — có thể làm đồng tử co lại hoặc giãn ra để thay đổi lượng ánh sáng đi vào.</p>
+<p>các tia sáng bị bẻ cong để hình ảnh hình thành trên võng mạc. Thủy tinh thể nối với các cơ cho phép nó đổi hình dạng — nó dẹt lại khi nhìn vật ở xa và dày lên khi nhìn vật ở gần.</p>
+<figure class="bookfig"><img src="img/p067.jpeg" alt="Minh họa trang 67" loading="lazy"><figcaption>Trang 67</figcaption></figure>
+<h3>CHỨC NĂNG NÃO BỘ VÀ CÁC GIÁC QUAN</h3>
+<p>CHÚ THÍCH: Các mũi tên màu tím cho thấy hướng của tia sáng. Mũi tên màu đen và xanh dương là tín hiệu thần kinh đi tới dây thần kinh thị giác.</p>
+<h3>VÕNG MẠC</h3>
+<p>Tia sáng đi tới phía sau võng mạc</p>
+<p>Các tế bào cần (<em>rods</em>) hoạt động theo thang xám, đáp ứng với cường độ ánh sáng; chúng giúp ta nhìn trong điều kiện thiếu sáng</p>
+<p>Các tia sáng</p>
+<p>Đen và trắng</p>
+<p>Màu sắc</p>
+<p>Các tế bào nón (<em>cones</em>) gửi tín hiệu thần kinh khi có ánh sáng xanh lá, đỏ hoặc xanh dương; chúng cần ánh sáng mạnh để tạo ra tín hiệu</p>
+<p>Tín hiệu đen trắng đi từ võng mạc tới dây thần kinh thị giác</p>
+<h3>TẾ BÀO THẦN KINH</h3>
+<h3>TẾ BÀO THỤ QUẢNG</h3>
+<p>Tế bào hạch</p>
+<h3>DÂY THẦN KINH THỊ GIÁC</h3>
+<p>Tín hiệu màu đi từ võng mạc tới dây thần kinh thị giác</p>
+<h3>MÀNG MẠCH</h3>
+<p>Vách gồm các tế bào sắc tố tạo thành mặt sau của võng mạc</p>
+<p>Tế bào lưỡng cực</p>
+<h3>Võng mạc: Võng mạc được cấu tạo gồm</h3>
+<h3>3</h3>
+<h3>Tín hiệu thần kinh đến não: Các tín hiệu thần kinh kích hoạt</h3>
+<h3>4</h3>
+<p>gồm ba lớp. Các tia sáng đi xuyên qua hai lớp đầu — tế bào hạch và tế bào lưỡng cực — rồi tới lớp thứ ba, nơi chứa các tế bào cần và nón nhạy sáng. Những tế bào này chuyển tia sáng thành tín hiệu thần kinh.</p>
+<p>các xung ở tế bào hạch và tế bào lưỡng cực, vốn nối trực tiếp với dây thần kinh thị giác. Tín hiệu thần kinh sau đó đi dọc dây thần kinh thị giác đến não.</p>
+<p>Dây thần kinh thị giác mang tín hiệu từ các cảm biến ánh sáng đến não</p>
+<h3>DÂY THẦN KINH</h3>
+<h3>DÂY THẦN KINH THỊ GIÁC</h3>
+<h3>ĐIỂM MÙ</h3>
+<p>Để nối với não, các sợi thần kinh của võng mạc phải đi xuyên qua phía sau mắt để tạo thành dây thần kinh thị giác. Điều này tạo ra một “điểm mù” không có thụ thể quang học. Chúng ta không nhận ra điều đó vì mỗi mắt cung cấp dữ liệu về một cảnh, và não dùng thông tin từ mắt kia để hoàn thiện hình ảnh.</p>
+<p>Các tế bào cần và nón</p>
+<p>Điểm mù nơi các sợi thần kinh rời khỏi mắt</p>
+<h3>NHÃN CẦU CỦA BẠN GIỮ NGUYÊN KÍCH THƯỚC SUỐT CUỘC ĐỜI</h3>
+<h3>MẮT NGƯỜI</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p068.jpeg" alt="Minh họa trang 68" loading="lazy"><figcaption>Trang 68</figcaption></figure>
+<h3>3</h3>
+<p>Các đặc điểm gợi ý một khuôn mặt được</p>
+<p>gửi tới vùng nhận diện khuôn mặt và hạch hạnh nhân, nơi chúng được tìm kiếm những chi tiết gợi ra sự nhận diện.</p>
+<h3>Vỏ não</h3>
+<h3>Tín hiệu thần kinh từ mắt phải đi xuyên suốt não trước khi tới vùng chuyên giải mã thông tin này. Vùng đó được gọi là vỏ thị giác.</h3>
+<p>Nhân gối ngoài chuyển tiếp tín hiệu từ võng mạc tới vỏ thị giác</p>
+<h3>THÙY TRÁN</h3>
+<p>Thùy trán thực hiện nhận diện khuôn mặt có ý thức</p>
+<h3>ĐỒI THỊ</h3>
+<h3>Cấu trúc của vỏ não</h3>
+<p>Vỏ thị giác hiện diện ở cả hai bán cầu não và được chia tiếp thành tám vùng chính, mỗi vùng có chức năng riêng (xem bảng ở trang đối diện). Tín hiệu đi từ võng mạc (xem tr.66–67) qua đồi thị và nhân gối ngoài tới vỏ thị giác chính (V1). Dữ liệu thô sau đó đi qua nhiều vùng thị giác khác nhau, bổ sung các chi tiết về hình dạng, màu sắc, độ sâu và chuyển động trước khi kết hợp thành một hình ảnh. Một số vùng cung cấp thông tin giúp nhận diện ngay lập tức vật quen thuộc, số khác hỗ trợ định hướng không gian hoặc kỹ năng thị giác-vận động.</p>
+<p>Hạch hạnh nhân xử lý biểu cảm khuôn mặt</p>
+<h3>VỎ THỊ GIÁC</h3>
+<h3>HẠCH HẠNH NHÂN</h3>
+<h3>VÙNG NHẬN DIỆN KHUÔN MẶT</h3>
+<h3>DÂY THẦN KINH THỊ GIÁC</h3>
+<p>Tế bào cần và nón trong võng mạc chuyển ánh sáng thành tín hiệu thần kinh</p>
+<p>Dây thần kinh thị giác mang tín hiệu thần kinh đến não</p>
+<h3>Từ nhãn cầu tới vỏ thị giác: Dữ liệu từ nhãn cầu đi dọc theo</h3>
+<h3>1</h3>
+<h3>CHÚ THÍCH</h3>
+<p>dây thần kinh thị giác cho tới khi tới giao thoa thị giác (xem bên dưới), nơi một phần dữ liệu được gửi sang phía đối diện của não. Sau đó tín hiệu đi tới nhân gối ngoài, vùng này chuyển dữ liệu tới vỏ thị giác để xử lý.</p>
+<p>Thông tin từ mắt</p>
+<p>Đường nhận diện khuôn mặt</p>
+<p>Nhân gối ngoài</p>
+<p>Một nửa tín hiệu đi cùng bán cầu; nửa còn lại vượt sang bên kia</p>
+<h3>Thị giác lập thể (<em>stereoscopic vision</em>)</h3>
+<p>Nhìn vật từ mắt trái</p>
+<p>Khả năng nhìn 3-D của chúng ta — gọi là thị giác lập thể — đến từ việc cả hai mắt cùng nhìn thẳng về phía trước và di chuyển đồng bộ. Vì hai mắt hơi tách nhau, mỗi mắt nhận một góc nhìn khác nhau, dù chúng chồng lên nhau một chút. Não tính toán thông tin không gian từ mỗi mắt để tạo ra một hình ảnh tổng thể, dùng kinh nghiệm trước đó để tăng tốc xử lý và lấp đầy các khoảng trống.</p>
+<h3>BÁN CẦU TRÁI</h3>
+<h3>VỎ THỊ GIÁC TRÁI / ĐỒI THỊ</h3>
+<h3>VỎ THỊ GIÁC PHẢI</h3>
+<p>Đổi bên: Tại điểm giao thoa gọi là giao thoa thị giác, các sợi trục thần kinh từ phía trái của mỗi võng mạc hợp lại và tiếp tục đi tới vỏ thị giác bên trái, tương tự như vậy với các sợi trục từ phía phải.</p>
+<p>Các sợi trục thần kinh tách ra sau nhân gối ngoài và tỏa tới các vùng của vỏ thị giác</p>
+<p>Các dây thần kinh thị giác hội tụ tại giao thoa thị giác</p>
+<p>Nhìn vật từ mắt phải</p>
+<h3>BÁN CẦU</h3>
+<h3>PHẢI</h3>
+<figure class="bookfig"><img src="img/p069.jpeg" alt="Minh họa trang 69" loading="lazy"><figcaption>Trang 69</figcaption></figure>
+<h3>CHỨC NĂNG NÃO BỘ VÀ CÁC GIÁC QUAN</h3>
+<p>Vỏ thị giác dưới</p>
+<h3>V6</h3>
+<h3>V3A</h3>
+<h3>VỎ THỊ GIÁC RẤT MỎNG — CHỈ 0,08 IN (2 MM)</h3>
+<h3>V3D</h3>
+<h3>V2</h3>
+<h3>V1</h3>
+<h3>V2</h3>
+<p>Một số vùng xử lý thị giác cong quanh phía sau não, nằm trong rãnh giữa hai bán cầu</p>
+<h3>V4V</h3>
+<h3>CÁC VÙNG CỦA VỎ THỊ GIÁC</h3>
+<h3>V8</h3>
+<h3>VP</h3>
+<h3>CHỨC NĂNG</h3>
+<h3>VÙNG</h3>
+<h3>V1</h3>
+<p>Đáp ứng với các kích thích thị giác.</p>
+<h3>VÙNG BROCA</h3>
+<p>Chuyển tiếp thông tin và đáp ứng với các hình dạng phức tạp.</p>
+<h3>V2</h3>
+<h3>V3A, V3D, VP</h3>
+<p>Ghi nhận góc và tính đối xứng, đồng thời kết hợp chuyển động và hướng.</p>
+<h3>V7</h3>
+<p>Vỏ thị giác, nằm ở thùy chẩm</p>
+<h3>V3A V3</h3>
+<p>Đáp ứng với màu sắc, hướng, hình dạng và chuyển động.</p>
+<h3>V4D, V4V</h3>
+<h3>V2</h3>
+<h3>V5</h3>
+<p>Đáp ứng với chuyển động.</p>
+<h3>V4D</h3>
+<p>Phát hiện chuyển động ở ngoại vi của trường thị giác.</p>
+<h3>V6</h3>
+<h3>Vỏ thị giác: Các tín hiệu thần kinh tiến triển</h3>
+<h3>2</h3>
+<h3>V1</h3>
+<p>qua các lớp khác nhau của vỏ não, mỗi lớp thêm thông tin vào hình ảnh. Phải mất nửa giây để hình ảnh được đánh giá và trở thành một tri giác có ý thức.</p>
+<h3>V7</h3>
+<p>Tham gia vào tri giác tính đối xứng.</p>
+<h3>V8</h3>
+<p>Có lẽ tham gia xử lý màu sắc.</p>
+<h3>TRƯỜNG THỊ GIÁC CỦA MẮT TRÁI</h3>
+<h3>CÁC TRƯỜNG THỊ GIÁC</h3>
+<p>Động vật như linh trưởng có trường thị giác lập thể rộng và đánh giá khoảng cách tốt hơn động vật ăn cỏ hay hầu hết chim. Tuy nhiên, chúng có một vùng mù phía sau chỉ nhìn được khi quay đầu. Động vật có mắt ở hai bên và đỉnh đầu có trường thị giác 2-D rộng hơn và nhận biết toàn cảnh tốt hơn.</p>
+<p>Hình ảnh do não tạo ra sau khi kết hợp hình ảnh từ trường thị giác của mắt trái và mắt phải</p>
+<h3>TRƯỜNG THỊ GIÁC SONG MẮT</h3>
+<h3>THỎ</h3>
+<h3>CON NGƯỜI</h3>
+<h3>TRƯỜNG THỊ GIÁC CỦA MẮT PHẢI</h3>
+<p>Trường thị giác song mắt</p>
+<p>Vùng mù</p>
+<p>Trường thị giác của mắt trái</p>
+<p>Trường thị giác của mắt phải</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p070.jpeg" alt="Minh họa trang 70" loading="lazy"><figcaption>Trang 70</figcaption></figure>
+<h3>TRẺ SƠ SINH CHỈ NHÌN THẤY MÀU ĐEN, TRẮNG VÀ ĐỎ</h3>
+<h3>Nhìn là một hành động vừa có ý thức vừa không có ý thức. Mỗi loại đi theo đường riêng trong não. Đường có ý thức giúp nhận diện vật, còn đường không ý thức dẫn chuyển động.</h3>
+<h3>Vùng tế bào V1</h3>
+<h3>Vùng tế bào V2</h3>
+<h3>Vùng tế bào V3</h3>
+<p>Tín hiệu từ mắt đầu tiên được nhận tại vỏ thị giác chính (V1). Các nơ-ron ở đây nhạy với tín hiệu thị giác cơ bản, gồm hướng và chiều chuyển động của vật, cùng khả năng nhận dạng mô hình.</p>
+<p>Ở vỏ thị giác thứ hai (V2), một số nơ-ron cải thiện hình ảnh từ V1, làm sắc nét đường nét và cạnh của các hình dạng phức tạp. Nơ-ron khác tinh chỉnh cách diễn giải ban đầu về màu sắc của vật.</p>
+<p>Vùng thị giác 3 (V3) tham gia phân tích góc, vị trí, độ sâu và hướng của hình dạng. Nó cũng giúp xử lý hướng và tốc độ của vật. Một số ít tế bào còn nhạy với màu sắc.</p>
+<h3>ĐƯỜNG DẪN VỎ THỊ GIÁC</h3>
+<p>Đường thị giác tách ra sau vùng tế bào V3</p>
+<p>Các thùy đỉnh đánh giá vị trí của vật so với người quan sát</p>
+<h3>Theo dõi đường dẫn</h3>
+<p>Khi thông tin thị giác được các lớp của vỏ thị giác xử lý (xem tr.68–69), nó tách thành hai đường gọi là đường trên, hay đường lưng (<em>dorsal route</em>), và đường dưới, hay đường bụng (<em>ventral route</em>). Vị trí chính xác của điểm tách vẫn còn chút bất định, nhưng đường lưng đảm nhận nhận thức không gian về vị trí của ta và cách ta di chuyển so với đồ vật quanh ta, trong khi đường bụng giúp ta nhận diện, phân loại và nhận ra những gì ta thấy. Đường lưng quan trọng trong việc đánh giá các tình huống đáng kể, đặc biệt khi cần hành động ngay để tránh nguy hiểm, chẳng hạn như né tránh một vật đang bay tới. Khi đó, đường bụng bị đưa vào vị trí thứ yếu vì thông tin nó mang theo không mang tính quyết định.</p>
+<h3>V3</h3>
+<h3>V2</h3>
+<h3>V4</h3>
+<h3>V5</h3>
+<h3>V1</h3>
+<p>Thùy thái dương dưới tham gia nhận diện vật</p>
+<h3>CHÚ THÍCH</h3>
+<p>Đường lưng</p>
+<p>Đường bụng</p>
+<figure class="bookfig"><img src="img/p071.jpeg" alt="Minh họa trang 71" loading="lazy"><figcaption>Trang 71</figcaption></figure>
+<h3>CHỨC NĂNG NÃO BỘ VÀ CÁC GIÁC QUAN</h3>
+<h3>Vùng tế bào V5</h3>
+<h3>Thùy đỉnh: Thùy đỉnh</h3>
+<p>Vùng thái dương giữa (V5) đánh giá hướng chuyển động tổng thể của một vật thay vì hướng của từng bộ phận cấu thành. Ví dụ, nó xử lý hướng bay chung của cả bầy chim thay vì chuyển động của một con chim riêng lẻ. Nó cũng phân tích chuyển động của chính cơ thể ta.</p>
+<p>đo độ sâu và vị trí của vật so với người quan sát. Điều này cho phép người đó hành động ngay lập tức, chẳng hạn như cúi né một vật đang lao tới nhanh chóng.</p>
+<h3>ĐƯỜNG “Ở ĐÂU” (ĐƯỜNG LƯNG)</h3>
+<p>Thị giác không ý thức: Đường lưng mang thông tin thị giác tới các thùy đỉnh, đi qua các vùng tính toán vị trí, thời điểm và chuyển động của vật, rồi lập kế hoạch tương ứng. Tất cả những điều này diễn ra mà không cần suy nghĩ có ý thức.</p>
+<p>Thị giác có ý thức: Đường bụng bổ sung thêm thông tin cho vật, chẳng hạn như màu sắc và hình dạng. Thông tin đi tới thùy thái dương, nơi nó được đối chiếu với trí nhớ thị giác để hỗ trợ nhận diện. Đây là nơi kích thích thị giác trở thành một tri giác có ý thức.</p>
+<h3>ĐƯỜNG “LÀ GÌ” (ĐƯỜNG BỤNG)</h3>
+<h3>CHỨNG MẶT MÙ</h3>
+<h3>LÀ GÌ?</h3>
+<h3>Vùng tế bào V4</h3>
+<h3>Thùy thái dương dưới</h3>
+<h3>Đây là tình trạng không nhận diện được khuôn mặt, kể cả người thân trong gia đình, thường do tổn thương thùy thái dương dưới. Người mắc phải phải học cách nhận ra người khác bằng những cách khác.</h3>
+<p>Vùng thị giác 4 (V4) tham gia tri giác màu sắc, kết cấu, hướng, hình dạng và chuyển động. Vùng này chứa phần lớn các nơ-ron cảm nhận màu và quan trọng trong việc diễn giải không gian giữa các vật.</p>
+<p>Tín hiệu được chuyển tiếp tới hồi fusiform của thùy thái dương dưới, vùng tham gia nhận diện hình dạng phức tạp, vật thể và khuôn mặt. Cùng với hải mã, vùng này hỗ trợ hình thành trí nhớ mới.</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p072.jpeg" alt="Minh họa trang 72" loading="lazy"><figcaption>Trang 72</figcaption></figure>
+<p>Não bị khuôn mặt thu hút đến mức cả những bức tranh cũng được nghiên cứu kỹ</p>
+<h3>Vì việc xử lý thị giác diễn ra trong microgiây, không có gì đáng ngạc nhiên khi đôi khi não ta gặp khó trong việc hiểu thông tin do mắt gửi tới, khiến ta nghi ngờ những gì mình nhìn thấy.</h3>
+<h3>Xử lý một cảnh</h3>
+<p>Các lối mở được quét qua, có thể để đề phòng kẻ xâm nhập</p>
+<p>Khi nhìn một cảnh, chúng ta thực sự không tiếp nhận toàn bộ nó. Thay vào đó, mắt liên tục quét qua một chuỗi vùng nhỏ cỡ ảnh thu nhỏ mà não coi là điểm đáng chú ý. Phần còn lại của cảnh bị mờ đi cho đến khi sự chú ý chuyển sang một vùng mới. Khuôn mặt thường là tiêu điểm chính của một cảnh — não được lập trình để tìm kiếm khuôn mặt, vì thế ta có xu hướng thấy chúng ở những nơi ít ngờ nhất, chẳng hạn như vết cháy trên một lát bánh mì nướng. Trong khi các chi tiết của vật mục tiêu đang được xem xét kỹ, não có ý thức dựng nên câu chuyện của cảnh, hoàn chỉnh với ngữ cảnh của từng vật.</p>
+<p>Việc chỉ tay thu hút</p>
+<p>sự chú ý vào một vật và khiến nó đáng được nhìn</p>
+<p>Mắt lướt thẳng qua sàn nhà, tạm dừng rất ngắn ở một chướng ngại tiềm ẩn, nhưng không đủ lâu để nhìn rõ nó</p>
+<p>Quét tìm chi tiết: Nhìn vào một bức tranh phức tạp, chẳng hạn như cảnh quán cà phê này, kích hoạt các quá trình phân biệt vật mục tiêu, như con người, với nền, sau đó chọn những phần của mục tiêu để tập trung vào.</p>
+<p>Não tìm kiếm dấu hiệu về mối quan hệ bằng cách nhìn từng khuôn mặt riêng lẻ và sự tương tác giữa các nhân vật</p>
+<h3>TẠI SAO CHÚNG TA THẤY KHUÔN MẶT TRONG</h3>
+<h3>VẬT VÔ HỒN?</h3>
+<h3>Hiện tượng nhìn khuôn mặt ở vật vô hồn (<em>pareidolia</em>) — thấy mặt người ở nơi vốn không có — có thể là một bản năng sinh tồn, đảm bảo ta luôn cảnh giác với những nét thù địch của kẻ thù hoặc thú săn mồi.</h3>
+<figure class="bookfig"><img src="img/p073.jpeg" alt="Minh họa trang 73" loading="lazy"><figcaption>Trang 73</figcaption></figure>
+<h3>CHỨC NĂNG NÃO BỘ VÀ CÁC GIÁC QUAN</h3>
+<h3>Ảo giác</h3>
+<p>Ảo giác xảy ra khi những gì mắt thấy được não diễn giải theo cách không khớp với thực tế vật lý của hình ảnh thật. Với quá nhiều tín hiệu cạnh tranh gửi tới não, não có xu hướng tìm kiếm các mô hình quen thuộc. Nó cũng cố dự đoán điều sẽ xảy ra tiếp theo để bù cho độ trễ nhỏ giữa kích thích và tri giác. Cả hai yếu tố này đều có thể khiến não hiểu sai kích thích thị giác. Ảo giác chia thành ba loại chính: sinh lý, nhận thức và vật lý.</p>
+<h3>LƯỚI HERMANN</h3>
+<h3>TAM GIÁC KANIZSA’S</h3>
+<p>Ảo giác sinh lý: Ảo giác sinh lý được cho là phát sinh từ kích thích quá mức hoặc cạnh tranh, chẳng hạn như độ sáng, màu sắc, chuyển động và vị trí. Trong lưới này, các đốm xám dường như xuất hiện tại các điểm giao khi mắt bạn lướt qua, nhưng biến mất khi bạn nhìn chăm chú.</p>
+<p>Ảo giác nhận thức: Ảo giác nhận thức xảy ra khi não đưa ra giả định về chuyển động hoặc góc nhìn khi quan sát một vật. Đôi khi điều này khiến não chuyển đổi giữa hai hình ảnh khác nhau hoặc thấy một hình dạng không hề tồn tại.</p>
+<p>Chúng ta đi theo hướng nhìn của mắt người khác</p>
+<p>Ánh sáng bị khúc xạ khi rời khỏi nước</p>
+<p>Não hướng mắt tới những phần của cảnh mà nó cho là quan trọng — đặc biệt là khuôn mặt</p>
+<p>Vị trí biểu kiến của con cá</p>
+<p>Vị trí thực của con cá</p>
+<h3>SỰ KHÚC XẠ</h3>
+<h3>MỘT SỐ ĐỘNG VẬT CÓ VÚ VÀ CHIM CŨNG BỊ LỪA BỞI ẢO GIÁC QUANG HỌC</h3>
+<p>Ảo giác vật lý: Ảo giác vật lý do đặc tính quang học của môi trường vật lý gây ra, đặc biệt là nước. Não không thể tính đến cách ánh sáng bị bẻ cong khi đi qua giữa nước và không khí, nên nó thấy con cá ở vị trí xa hơn so với thực tế.</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p074.jpeg" alt="Minh họa trang 74" loading="lazy"><figcaption>Trang 74</figcaption></figure>
+<h3>Thế giới đầy tiếng ồn. Âm thanh truyền đi dưới dạng sóng âm qua không khí cho tới khi tới tai ta. Tại đây, sóng âm được biến thành xung điện và gửi tới não để giải mã thành những âm thanh có ý nghĩa.</h3>
+<h3>Thu nhận âm thanh</h3>
+<p>Thính giác liên quan đến việc chuyển sóng âm thành xung điện mà não có thể diễn giải. Sóng âm được dẫn từ tai ngoài tới tai giữa, nơi chúng làm một chuỗi xương và màng rung lên. Các dao động này sau đó tới ốc tai, nơi chúng trở thành xung điện. Những xung này truyền tới thân não và đồi thị, nơi hướng, tần số và cường độ được nhận biết. Dữ liệu rồi được gửi đi để vỏ thính giác ở hai bên trái và phải xử lý. Bên trái xác định âm thanh và gán ý nghĩa cho nó, trong khi bên phải đánh giá chất lượng của âm thanh.</p>
+<h3>TAI NGOÀI</h3>
+<p>Dao động làm các xương va vào nhau</p>
+<h3>XƯƠNG BÚA (MALLEUS)</h3>
+<p>Sóng âm truyền qua không khí</p>
+<p>Sóng âm làm rung màng nhĩ</p>
+<h3>XƯƠNG ĐÊ (INCUS)</h3>
+<h3>ỐNG TAI</h3>
+<h3>TAI NGOÀI</h3>
+<h3>CÁC XƯƠNG TAI</h3>
+<h3>(CÁC XƯƠNG TAI GIỮA)</h3>
+<h3>MÀNG NHĨ</h3>
+<h3>XƯƠNG BẦN ĐẸP (STAPES)</h3>
+<h3>Tai ngoài: Sóng âm được thu nhận</h3>
+<h3>Ống tai: Sóng âm đi dọc theo</h3>
+<h3>1</h3>
+<h3>2</h3>
+<p>Cửa sổ bầu dục</p>
+<p>bởi tai ngoài, vùng dẫn chúng vào bên trong đầu qua ống tai.</p>
+<p>ống tai tới màng nhĩ. Ống tai được lót bằng những sợi lông nhỏ lọc ra dị vật.</p>
+<h3>TAI GIỮA</h3>
+<p>Cửa sổ tròn</p>
+<p>Ống Eustache nối tai giữa với mũi và miệng</p>
+<h3>Màng nhĩ: Màng nhĩ, hay màng tympanic</h3>
+<h3>Các xương tai: Dao động được truyền qua</h3>
+<h3>3</h3>
+<h3>4</h3>
+<p>màng nhĩ, là một lớp mỏng gồm mô xơ tạo thành ranh giới giữa tai ngoài và tai giữa. Nó rung lên khi sóng âm đi dọc ống tai va vào.</p>
+<p>từ màng nhĩ tới một nhóm xương nối với nhau gọi là các xương tai — xương búa, xương đê và xương bàn đạp. Xương bàn đạp đẩy và kéo một màng khác gọi là cửa sổ bầu dục. Điều này truyền âm thanh tới tai trong.</p>
+<figure class="bookfig"><img src="img/p075.jpeg" alt="Minh họa trang 75" loading="lazy"><figcaption>Trang 75</figcaption></figure>
+<h3>CHỨC NĂNG NÃO BỘ VÀ CÁC GIÁC QUAN</h3>
+<h3>LỌC BỎ TIẾNG ỒN</h3>
+<p>Trên một phố đông, có rất nhiều âm thanh chồng chéo, nhưng bạn vẫn nghe được người bên cạnh nói chuyện. Đó là vì vỏ thính giác chính có thể lọc bỏ âm thanh không cần thiết và tăng cường tín hiệu nó muốn nghe. Nó làm vậy bằng cách làm suy giảm phản ứng với âm thanh liên tục, chẳng hạn như tiếng xe cộ, đồng thời tăng cường các âm thanh biến đổi hơn, như lời nói, và chủ động lắng nghe chúng.</p>
+<h3>Vỏ thính giác chính</h3>
+<h3>9</h3>
+<p>Sau khi xử lý trung gian tại đồi thị, đặc điểm của từng âm thanh được vỏ thính giác chính diễn giải; vùng này phối hợp với các vùng vỏ não khác để xác định loại âm thanh.</p>
+<p>Tiếng ồn nền bị lọc bỏ</p>
+<p>Cơ quan Corti (phần xoắn ốc trung tâm của ốc tai) nằm trên màng đáy và chứa các tế bào lông nhạy cảm</p>
+<p>Vỏ thính giác chính xử lý âm thanh</p>
+<h3>ỐC TAI</h3>
+<h3>DÂY THẦN KINH ỐC TAI</h3>
+<h3>ĐỒI THỊ</h3>
+<p>Tín hiệu điện đi dọc dây thần kinh ốc tai</p>
+<h3>NÃO BỘ</h3>
+<p>Các tế bào chuyên biệt ở đỉnh thân não giúp xác định hướng của âm thanh</p>
+<h3>THÂN NÃO</h3>
+<p>Ống tiền đình dẫn dao động âm thanh</p>
+<p>Ống nhĩ và ống tiền đình</p>
+<h3>ỐNG</h3>
+<h3>Đồi thị: Tín hiệu đầu tiên được nhận tại</h3>
+<h3>Dây thần kinh ốc tai: Các tín hiệu điện được</h3>
+<h3>8</h3>
+<h3>7</h3>
+<p>thân não. Từ đây, chúng đi lên tới các nơ-ron chuyên biệt ở đồi thị để xử lý. Sau đó các tín hiệu này được gửi tới vỏ thính giác chính, vùng cũng gửi thông tin ngược trở lại đồi thị.</p>
+<p>được vận chuyển từ mỗi tế bào lông qua các đầu dây thần kinh ốc tai hợp lại thành dây thần kinh ốc tai. Dây này có nhiệm vụ truyền tín hiệu tới các nhóm nơ-ron chuyên biệt ở thân não.</p>
+<h3>CƠ QUAN CORTI</h3>
+<p>Dao động quay trở lại cửa sổ tròn</p>
+<h3>CỬA SỔ TRÒN</h3>
+<h3>TAI TRONG</h3>
+<h3>Cơ quan Corti: Chuyển động của</h3>
+<h3>Ốc tai: Ốc tai chứa ba ống chứa dịch-</h3>
+<h3>5</h3>
+<h3>6</h3>
+<p>màng đáy làm cong các tế bào lông nhạy cảm trong cơ quan Corti (xem tr.76), đây là cơ quan thính giác chính. Các tế bào lông chuyển chuyển động này thành tín hiệu điện.</p>
+<p>chứa dịch. Dao động truyền dọc ống tiền đình dưới dạng chuyển động sóng, được truyền sang màng đáy của cơ quan Corti. Dao động dư quay trở lại dọc ống nhĩ tới cửa sổ tròn.</p>
+<h3>XƯƠNG BẦN ĐẸP LÀ XƯƠNG NHỎ NHẤT TRONG CƠ THỂ</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p076.jpeg" alt="Minh họa trang 76" loading="lazy"><figcaption>Trang 76</figcaption></figure>
+<h3>Mỗi âm thanh được tạo thành từ một số thành phần khác nhau. Não bộ phải tiếp nhận mọi chi tiết về tần số, cường độ và nhịp điệu của âm thanh để xử lý, nhận diện và ghi nhớ nó.</h3>
+<p>Vùng này nhận tín hiệu từ các âm thanh tần số thấp</p>
+<p>Tương ứng với đỉnh của ốc tai</p>
+<h3>VỎ NÃO THÍNH GIÁC CHÍNH</h3>
+<p>Vỏ não thính giác (<em>auditory cortex</em>) Vỏ não thính giác là trung tâm xử lý chính của âm thanh. Nó nằm ở thùy thái dương, ngay dưới thái dương ở hai bên đầu.</p>
+<p>Tương ứng với đáy của ốc tai</p>
+<p>Nhận tín hiệu từ các âm thanh tần số cao</p>
+<p>Vỏ não thính giác chính xác định tần số và cường độ của âm thanh</p>
+<p>Vỏ não thính giác thứ cấp giải mã các âm thanh phức tạp, chẳng hạn như ngôn ngữ</p>
+<p>Các tế bào lông bị xáo động khi màng đáy (<em>basilar membrane</em>) rung</p>
+<h3>VỎ NÃO THÍNH GIÁC</h3>
+<p>Phần mềm dẻo hơn của màng đáy rung dễ hơn</p>
+<p>Đáy của ốc tai truyền các âm thanh tần số thấp</p>
+<h3>1.000 Hz</h3>
+<h3>500 Hz</h3>
+<p>Cơ quan Corti là cơ quan chính của thính giác</p>
+<p>Vỏ não thính giác bậc ba tích hợp thính giác với các hệ cảm giác khác</p>
+<p>Màng đáy</p>
+<h3>2.000 Hz</h3>
+<p>Đỉnh của ốc tai truyền các âm thanh tần số cao</p>
+<h3>Bên trong vỏ não thính giác</h3>
+<p>Tín hiệu từ đồi thị (xem tr.75) được gửi đến vỏ não thính giác chính, vùng được chia thành các phần đáp ứng với một dải tần số. Một số phần tập trung vào cường độ thay vì tần số, trong khi những phần khác bắt lấy các âm thanh phức tạp và đặc biệt hơn, chẳng hạn như tiếng còi, tiếng nổ hoặc tiếng động vật. Sau đó, tín hiệu truyền đến vỏ não thính giác thứ cấp, được cho là tập trung vào hòa âm, nhịp điệu và giai điệu. Vỏ não thính giác bậc ba tích hợp tất cả tín hiệu để tạo ra ấn tượng tổng thể về các âm thanh mà tai thu nhận được.</p>
+<h3>4.000 Hz</h3>
+<h3>ỐC TAI</h3>
+<h3>16.000 Hz</h3>
+<h3>8.000 Hz</h3>
+<p>Hàng tế bào lông</p>
+<p>Ốc tai (<em>cochlea</em>) Các vùng dọc theo khúc xoắn của ốc tai đáp ứng với các tần số âm thanh khác nhau, từ âm cao ở đỉnh đến âm trầm thấp ở đáy. Chúng được phản chiếu bởi các vùng tương ứng trong vỏ não thính giác.</p>
+<figure class="bookfig"><img src="img/p077.jpeg" alt="Minh họa trang 77" loading="lazy"><figcaption>Trang 77</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<h3>Âm nhạc và não bộ</h3>
+<p>Lập bản đồ âm nhạc Các bản quét cho thấy một số vùng của não hoạt động khi nghe nhạc, và thậm chí nhiều vùng hơn được huy động khi bạn chơi nhạc cụ hoặc nhảy múa.</p>
+<p>Âm nhạc huy động nhiều vùng của não bộ. Ngoài việc xử lý âm thanh, nghe nhạc còn kích hoạt các trung tâm trí nhớ và cảm xúc trong não, trong khi việc nhớ lại lời bài hát liên quan đến các trung tâm ngôn ngữ. Biểu diễn âm nhạc đòi hỏi còn cao hơn: vỏ não thị giác (<em>visual cortex</em>) được kích thích khi đọc nhạc, thùy trán tham gia vào việc lập kế hoạch hành động, và vỏ não vận động (<em>motor cortex</em>) điều phối chuyển động. Người ta biết rằng nhạc sĩ có khả năng dùng cả hai tay tốt hơn vì âm nhạc đòi hỏi sự phối hợp giữa kiểm soát vận động, xúc giác cảm giác cơ thể và thông tin thính giác. Khác với người nghe — những người xử lý âm nhạc ở bán cầu não phải — nhạc sĩ chuyên nghiệp dùng bán cầu trái. Họ cũng có thể chai (<em>corpus callosum</em>) dày hơn (vùng nối hai bán cầu) và có xu hướng có vỏ não thính giác và vỏ não vận động lớn hơn.</p>
+<p>Xử lý cảm giác xúc giác khi nhảy múa hoặc chơi nhạc cụ</p>
+<p>Điều phối chuyển động khi nhảy múa hoặc chơi nhạc cụ</p>
+<p>Đặt âm thanh vào bối cảnh của ký ức và kinh nghiệm</p>
+<h3>VỎ NÃO VẬN ĐỘNG</h3>
+<p>Vỏ não cảm giác</p>
+<p>Vỏ não trước trán</p>
+<p>Thể chai</p>
+<h3>VỎ NÃO THỊ GIÁC</h3>
+<p>Vỏ não thính giác</p>
+<h3>HẢI MÃ</h3>
+<p>Tham gia vào việc lập kế hoạch và kiểm soát biểu đạt</p>
+<h3>30.000</h3>
+<h3>TIỂU NÃO</h3>
+<p>Được kích hoạt khi đọc nhạc hoặc xem múa</p>
+<p>Kết nối các bán cầu của não</p>
+<p>Hạch hạnh nhân (<em>amygdala</em>) (màu cam) và hạt nhân đệm (<em>nucleus accumbens</em>) (màu đỏ sậm) đều tham gia vào các phản ứng cảm xúc với âm nhạc</p>
+<h3>SỐ SỢI TẠO NÊN DÂY THẦN KINH THÍNH GIÁC</h3>
+<p>Tham gia vào chuyển động và phản ứng cảm xúc với âm nhạc</p>
+<h3>ÂM CAO VÀ ÂM THẤP</h3>
+<p>Con người có thể phát hiện được một dải tần số khá rộng, nhưng nhiều loài động vật có thể nghe được những âm vượt xa giới hạn của chúng ta. Các loài như dơi và cá heo dùng tần số cao trong định vị bằng tiếng vang (<em>echolocation</em>), trong khi voi và cá voi tạo ra những tiếng gầm thấp có thể truyền đi xa. Con người nhạy nhất với các tần số từ 2 kHz đến 5 kHz, vốn không cần cường độ lớn để nghe thấy. Người trẻ có dải thính giác tốt nhất, từ 20 Hz đến 20 kHz, nhưng tần số cao dần bị mất theo tuổi tác, ở người lớn tuổi giới hạn chỉ còn khoảng 15 kHz.</p>
+<ul><li>100 kHz</li></ul>
+<h3>VOI 5 Hz–12 kHz</h3>
+<ul><li>10 kHz</li></ul>
+<h3>DẢI THÍNH GIÁC TẦN SỐ CON NGƯỜI</h3>
+<ul><li>1 kHz</li></ul>
+<h3>DƠI 2 kHz–120 kHz</h3>
+<h3>CHUỘT 1 kHz–100 kHz</h3>
+<ul><li>100 Hz</li></ul>
+<p>10 Hz CON NGƯỜI 20 Hz–20 kHz 0</p>
+<h3>CHÓ 64 Hz–44 kHz</h3>
+<h3>CÁ HEO 75 Hz–150 kHz</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p078.jpeg" alt="Minh họa trang 78" loading="lazy"><figcaption>Trang 78</figcaption></figure>
+<p>Vỏ não khứu giác tiếp tục xử lý các tín hiệu do hành khứu giác gửi đến</p>
+<p>Hạch hạnh nhân gửi thông báo cảnh báo nếu mùi có liên quan đến</p>
+<p>các cấu trúc gọi là lông mao (<em>cilia</em>) gắn với tế bào thụ thể. Các tế bào này thuộc não trước, tạo thành một phần của hệ viền não. Dữ liệu sau đó được gửi đến nhiều vùng khác nhau của não, đặc biệt là vỏ não khứu giác.</p>
+<p>Tín hiệu sau đó truyền dọc theo đường khứu giác đến vỏ não khứu giác. Vỏ não này nằm trong hệ viền não, vốn chịu trách nhiệm về cảm xúc và trí nhớ. Tín hiệu cũng được gửi đến hạch hạnh nhân và vỏ não hốc mắt trán.</p>
+<p>phủ lên một lớp tế bào thần kinh và tế bào đệm gọi là biểu mô khứu giác</p>
+<h3>VỎ NÃO KHỨU GIÁC</h3>
+<p>các tế bào thụ thể trong khoang mũi, gây ra phản xạ hít sâu hơn. Trong khoang mũi, các mùi hòa tan trong chất nhầy do biểu mô khứu giác tiết ra. Các phân tử lan qua chất nhầy đến những cấu trúc giống sợi tóc. Khi chúng ta hít vào, các phân tử mùi trôi vào mũi và kích hoạt</p>
+<p>với nguy hiểm</p>
+<h3>HẠCH HẠNH NHÂN</h3>
+<p>Đường khứu giác, một bó</p>
+<p>dây thần kinh dẫn tín hiệu từ hành khứu giác đến vỏ não khứu giác</p>
+<h3>Bên trong não bộ</h3>
+<h3>3</h3>
+<p>sợi trục thần kinh phát hiện mùi và gửi thông tin đến Tế bào thụ thể thần kinh</p>
+<h3>HÀNH KHỨU GIÁC</h3>
+<p>Vỏ não hốc mắt trán tham gia vào việc ra quyết định, cảm xúc, cũng như xử lý mùi</p>
+<h3>Đón bắt mùi hương</h3>
+<h3>VỎ NÃO HỐC MẮT TRÁN</h3>
+<p>hành khứu giác</p>
+<h3>VỎ NÃO</h3>
+<h3>KHOANG MŨI</h3>
+<p>Hành khứu giác xử lý tín hiệu trước khi chuyển đến vỏ não khứu giác</p>
+<h3>SỐ LƯỢNG TẾ BÀO KHỨU GIÁC TRONG CƠ THỂ NGƯỜI</h3>
+<p>Thụ thể</p>
+<h3>12 TRIỆU</h3>
+<p>Tuyến nhầy</p>
+<p>Xương Màng cứng</p>
+<p>làm tăng mùi hương. Các phân tử hòa tan trong chất nhầy do biểu mô khứu giác tiết ra và được làm ấm khi đi qua mũi</p>
+<p>Lông mao</p>
+<p>Mỗi phân tử mùi kích hoạt một tổ hợp riêng của các thụ thể khứu giác. Các tế bào thụ thể được kích hoạt gửi xung động đi lên qua các sợi trục thần kinh đến</p>
+<p>tế bào</p>
+<p>Các phân tử mùi được hút lên</p>
+<p>kích thích các lông mao nối với</p>
+<p>Phân tử mùi hòa tan trong chất nhầy</p>
+<p>Các phân tử mùi trong không khí đi vào lỗ mũi</p>
+<h3>Mùi đi vào mũi</h3>
+<p>hành khứu giác để xử lý.</p>
+<h3>Thụ thể khứu giác</h3>
+<p>Hành khứu giác</p>
+<p>Biểu mô khứu giác</p>
+<p>các tế bào thụ thể.</p>
+<h3>1</h3>
+<p>Sợi trục thần kinh</p>
+<p>Tế bào đệm Chất nhầy</p>
+<h3>2</h3>
+<figure class="bookfig"><img src="img/p079.jpeg" alt="Minh họa trang 79" loading="lazy"><figcaption>Trang 79</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<h3>Khác với các giác quan khác của chúng ta, mùi hương</h3>
+<h3>bỏ qua đồi thị và đi thẳng đến hệ viền não. Cảm xúc và ký ức được xử lý và lưu trữ tại đây, đặc biệt ở hạch hạnh nhân.</h3>
+<h3>TẠI SAO MÙI HƯƠNG GỢI NHỚ KÝ ỨC?</h3>
+<h3>HÔI HAY NGỌT?</h3>
+<p>Một làn hương thoảng ra từ hóa chất thô — đây là một hợp chất có mùi rất nồng. Dimethyl sulphide (DMS) có thể khiến bạn tự hỏi liệu có thứ gì đang thối rữa hay có một loại phô mai nồng mùi trong phòng hay không.</p>
+<p>Tuy nhiên, các nhà hóa học hương vị lại thấy nó hữu ích trong việc tạo ra đủ loại mùi vị. Nó</p>
+<p>được dùng trong thịt, hải sản, sữa, trứng, rượu vang, bia, và các hương liệu rau củ, trái cây,</p>
+<p>nồng độ.</p>
+<p>thường ở nồng độ cực nhỏ</p>
+<p>Ngoài mùi nồng còn có mùi của thức ăn thối rữa, nước thải, khí hộ gia đình và các chất “gây buồn nôn” khác.</p>
+<p>Hơi cháy và caramen, với sắc thái ấm và béo, chẳng hạn như bắp rang bơ và bơ hạt lạc.</p>
+<p>Thường thì các mùi khó chịu như phân hoặc sữa chua, cũng như hành tây,</p>
+<p>Mát, tươi mới và sảng khoái, tiêu biểu là bạc hà, bạch đàn,</p>
+<p>Ấm áp, đậm đà, ngọt ngào với chút béo ngậy, bao gồm sô-cô-la, mạch nha và vani.</p>
+<h3>việc nhận diện một mùi trong vô số mùi quanh ta liên quan đến hệ khứu giác, hệ thống cô lập</h3>
+<h3>các hóa chất khác nhau rồi chuyển tín hiệu đến não để xác định chúng “tốt” hay “xấu”.</h3>
+<h3>Cách chúng ta nhận diện mùi vẫn còn là chủ đề tranh luận. Nghiên cứu cho rằng hầu hết mùi thuộc 10 nhóm — hay mùi chính — mỗi nhóm báo hiệu một điều gì đó trong môi trường. Hầu hết mùi được tạo thành</h3>
+<h3>MÙI NƯỚNG VÀ HẠT</h3>
+<p>tỏi và dưa muối.</p>
+<p>và long não.</p>
+<p>từ sự kết hợp của các nhóm này. Khứu giác là một phần then chốt của sự sinh tồn,</p>
+<h3>THỐI RỮA</h3>
+<h3>NỒNG HẮC</h3>
+<h3>BẠC HÀ</h3>
+<h3>NGỌT</h3>
+<p>cho chúng ta biết liệu một thứ có an toàn hay nguy hiểm.</p>
+<p>Bao gồm mùi tổng hợp, dược phẩm, dung môi,</p>
+<p>Thường gồm trái cây chín và các mùi tươi khác có cảm giác êm dịu, mượt mà khi ngửi.</p>
+<p>và mùi xăng dễ nhận ra</p>
+<p>Khác với các loại trái cây khác, cam quýt có hương thơm tươi mát, sạch sẽ và chua nhẹ</p>
+<p>Mùi nhẹ nhàng, tự nhiên như hoa, cỏ và thảo mộc, thường được dùng trong nước hoa.</p>
+<p>Mùi đất tự nhiên như phân chuồng hoai mục, nấm, gia vị, và mùi gỗ nhựa như tuyết tùng, thông, và nấm mốc.</p>
+<p>với chút ngọt ngào.</p>
+<h3>ĐIỀU GÌ TẠO NÊN MÙI HƯƠNG?</h3>
+<h3>KHỨU GIÁC</h3>
+<p>có thể nhận diện được.</p>
+<h3>HÓA CHẤT</h3>
+<h3>THƠM LỪNG</h3>
+<h3>TRÁI CÂY</h3>
+<h3>CAM QUÝT</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p080.jpeg" alt="Minh họa trang 80" loading="lazy"><figcaption>Trang 80</figcaption></figure>
+<p>Năm vị cơ bản Vị giác là một sự thích nghi tiến hóa để sinh tồn. Việc có thể xác định liệu một thứ có dinh dưỡng hay có thể độc hại trước khi đưa vào cơ thể là vô cùng quan trọng. Cho đến nay, chỉ năm vị cơ bản đã được phát hiện, dù có thể còn những vị khác.</p>
+<h3>Cung cấp năng lượng cho cơ thể đòi hỏi việc nạp vào các loại thực phẩm và chất lỏng bổ dưỡng. Việc chọn lựa những gì an toàn để ăn chịu ảnh hưởng lớn từ vị giác và khứu giác của chúng ta.</h3>
+<h3>Nhận biết vị</h3>
+<h3>Ngọt</h3>
+<p>Báo hiệu sự hiện diện của carbohydrate, vốn là nguồn cung cấp đường thiết yếu.</p>
+<p>Thực ra vị giác là một giác quan hạn chế; chỉ có năm vị cơ bản có thể được phát hiện (xem bên phải). Giống như khứu giác, vị giác là một giác quan hóa học. Các chất hóa học trong thức ăn được chổi vị (<em>taste buds</em>) bắt lấy, chủ yếu nằm trên lưỡi. Các tế bào thụ thể, nằm trong cấu trúc gọi là vi nhung mao (<em>microvilli</em>) bên trong chổi vị, phát hiện các chất hóa học này và gửi tín hiệu đến não để xử lý.</p>
+<h3>Mặn</h3>
+<p>Phát hiện các muối khoáng và khoáng chất hóa học cần thiết cho cơ thể.</p>
+<h3>Chua</h3>
+<p>Cảnh báo về thực phẩm có thể chưa chín hoặc đang hư hỏng.</p>
+<h3>Lưỡi Lưỡi là một cơ khỏe,</h3>
+<h3>1</h3>
+<h3>Đắng</h3>
+<p>cơ linh hoạt. Nó được dùng để đẩy thức ăn quanh miệng và để nói. Bề mặt trên của lưỡi phủ đầy các gai nhỏ gọi là nhúm (<em>papillae</em>). Hầu hết các nhúm là cấu trúc dạng sợi, hay hình chỉ, và không chứa chổi vị. Chúng giúp giữ và mòn thức ăn trong khi nhai.</p>
+<p>Chất độc và các độc tố khác thường có vị đắng hoặc khó ăn.</p>
+<h3>Vị umami</h3>
+<p>Phát hiện các muối glutamate và acid amin, có trong thịt, phô mai và các thực phẩm ủ chín hoặc lên men khác.</p>
+<p>Nhúm có rãnh</p>
+<p>Vi nhung mao chứa protein thụ thể, liên kết với các hóa chất trong thức ăn</p>
+<p>Sợi thần kinh</p>
+<p>Bề mặt lưỡi</p>
+<p>Lỗ chổi vị</p>
+<p>Phân tử thức ăn</p>
+<p>Nhúm dạng sợi</p>
+<p>Chổi vị</p>
+<p>Tế bào thần kinh</p>
+<p>Tế bào thụ thể vị giác</p>
+<p>Tế bào đệm</p>
+<h3>Nhúm Ngoài các nhúm dạng sợi, lưỡi còn có</h3>
+<h3>Chổi vị Chổi vị là tập hợp của 50–100</h3>
+<h3>Tế bào chổi vị Khi các phân tử thức ăn chạm vào tế bào,</h3>
+<h3>2</h3>
+<h3>3</h3>
+<h3>4</h3>
+<p>lưỡi còn có nhúm hình nấm (<em>fungiform</em>), nhúm hình lá (<em>foliate</em>) và nhúm có rãnh (<em>circumvallate</em>), tất cả đều chứa chổi vị. Hầu hết chổi vị nằm ở các nhúm hình lá trên mặt sau và hai bên lưỡi.</p>
+<p>tế bào xếp chùm lại với nhau như các múi trong một quả cam. Chúng nằm ở thành của các nhúm. Một đầu của mỗi tế bào nhô ra khỏi chổi, nơi nó được nước bọt chứa các phân tử thức ăn rửa trôi.</p>
+<p>chúng tương tác với các protein thụ thể hoặc các protein giống lỗ gọi là kênh ion. Điều này gây ra những thay đổi điện trong tế bào, khiến các nơ-ron ở đáy tế bào gửi tín hiệu đến não.</p>
+<figure class="bookfig"><img src="img/p081.jpeg" alt="Minh họa trang 81" loading="lazy"><figcaption>Trang 81</figcaption></figure>
+<p>Tín hiệu truyền đến vùng vị giác thứ cấp, nằm ở vỏ não hốc mắt trán</p>
+<h3>S</h3>
+<h3>VỎ NÃO HỐC MẮT TRÁN</h3>
+<p>Vùng vị giác chính, nằm ở hải đảo (<em>insula</em>)</p>
+<p>vùng lưỡi của</p>
+<p>vỏ não cảm giác cơ thể</p>
+<h3>Vị giác và khứu giác</h3>
+<p>Việc nhận biết hương vị phụ thuộc vào mũi cũng nhiều như vào chổi vị. Mũi bắt lấy mùi bên ngoài từ thức ăn (xem tr.78–79), nhưng điều này tăng lên đáng kể nhờ mùi của các hạt thức ăn được đưa ngược lên khoang mũi bởi khí thở ra từ phổi (khứu giác ngược dòng, <em>retronasal olfaction</em>). Một số thụ thể khứu giác cũng được tìm thấy trong chổi vị. Não kết hợp thông tin từ mũi và chổi vị để cảm nhận tất cả hương vị khác nhau trong thức ăn. Đây không phải là những cảm giác duy nhất góp phần vào trải nghiệm vị giác — vỏ não cảm giác cơ thể phát hiện kết cấu và nhiệt độ của thức ăn, thêm bối cảnh cho hương vị.</p>
+<p>Tín hiệu từ vỏ não khứu giác được gửi đến vỏ não hốc mắt trán</p>
+<h3>ĐỒI THỊ</h3>
+<p>Vỏ não khứu giác</p>
+<h3>HÀNH KHỨU GIÁC</h3>
+<h3>HẠCH HẠNH NHÂN</h3>
+<h3>KHOANG MŨI</h3>
+<p>Hạch hạnh nhân gán giá trị tích cực hoặc tiêu cực cho vị và mùi</p>
+<h3>TỦY HÀNH</h3>
+<p>Mùi từ các hạt thức ăn đã nuốt được gửi đến hành khứu giác để xử lý</p>
+<p>Đường dẫn vị giác Thông tin từ chổi vị truyền đến não qua các dây thần kinh sọ ở hàm và cổ họng. Các xung động đi lên thân não đến đồi thị, rồi được chuyển tiếp đến các vùng vị giác của vỏ não trán và hải đảo, một nếp gấp của vỏ não sâu trong não.</p>
+<p>Hạt thức ăn</p>
+<p>Dây thần kinh sinh ba và dây thần kinh lưỡi hầu mang tín hiệu đến tủy hành trong thân não</p>
+<p>Khí thở ra từ phổi đẩy các hạt thức ăn từ miệng vào khoang mũi</p>
+<h3>TẠI SAO TRẺ SƠ SINH KHÔNG THÍCH THỨC ĂN ĐẮNG?</h3>
+<h3>CHÚ GIẢI</h3>
+<h3>Trẻ sơ sinh có nhiều chổi vị hơn người lớn nên cảm nhận vị đắng mạnh hơn. Chúng bản năng từ chối những thực phẩm không ngọt hoặc béo như sữa mẹ.</h3>
+<p>Tín hiệu vị giác</p>
+<p>Mùi ngược dòng</p>
+<p>Khí thở ra</p>
+<h3>NGƯỜI LỚN TRUNG BÌNH CÓ TỪ 2.000 ĐẾN 8.000 CHỔI VỊ</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p082.jpeg" alt="Minh họa trang 82" loading="lazy"><figcaption>Trang 82</figcaption></figure>
+<h3>GIÓ NHẸ</h3>
+<h3>THAY ĐỔI NHIỆT ĐỘ</h3>
+<h3>LỚP TRÊN CÙNG, LỚP BIỂU BÌ CHẾT LỚP GAI</h3>
+<h3>BIỂU BÌ</h3>
+<h3>LỚP ĐÁY</h3>
+<p>Mạng lưới các đầu sợi thần kinh quấn quanh gốc của thân lông</p>
+<h3>THÂN LÔNG</h3>
+<h3>TRUNG BÌ (LỚP SÂU CỦA DA)</h3>
+<h3>LÔNG</h3>
+<p>Chuyển động của lông kích hoạt xung thần kinh</p>
+<p>Các ranh giới rõ ràng giúp đĩa Merkel nhạy với hình dạng và cạnh</p>
+<p>Các đầu dây thần kinh tự do vươn vào lớp bề mặt của da</p>
+<p>Đám rối lông (<em>root hair plexus</em>) Các dây thần kinh quấn quanh gốc thân lông được kích hoạt bởi những thứ chưa chạm vào da, chẳng hạn như luồng không khí hoặc vật thể lướt qua lông.</p>
+<p>Đầu dây thần kinh tự do Vươn lên tới lớp gai của biểu bì, những đầu dây thần kinh trần trụi, giống như rễ này nhạy với lạnh, nóng, chạm nhẹ và đau.</p>
+<p>Đĩa Merkel Nằm thấp hơn một chút so với các đầu dây thần kinh tự do, đĩa Merkel đặc biệt dày đặc ở môi và đầu ngón tay. Chúng đáp ứng với cú chạm nhẹ.</p>
+<h3>Xúc giác</h3>
+<h3>CÁC LOẠI THỤ THỂ CHỨC NĂNG</h3>
+<p>Các thụ thể cảm giác đáp ứng với áp lực hoặc biến dạng cơ học. Có thể là từ cú chạm nhẹ đến áp lực sâu.</p>
+<h3>Thụ thể cơ học</h3>
+<h3>Da là cơ quan lớn nhất của cơ thể, đồng thời cũng là cơ quan cảm giác lớn nhất. Chứa đầy các cảm biến, da cho phép chúng ta trải nghiệm nhiều loại cảm giác, cũng như nhận biết vị trí của mình.</h3>
+<h3>Thụ thể cảm giác thân thể</h3>
+<p>Các thụ thể nhận kích thích từ bên trong cơ thể, đặc biệt liên quan đến vị trí và chuyển động.</p>
+<h3>Thụ thể đau</h3>
+<p>Các nơ-ron cảm giác đáp ứng với kích thích gây tổn thương bằng cách gửi tín hiệu “mối đe dọa có thể xảy ra” đến tủy sống và não.</p>
+<h3>Thụ thể trong da</h3>
+<p>Các cảm biến trong da gồm những thụ thể được nối với nhau bằng sợi trục. Được tìm thấy ở các độ sâu khác nhau trong da, có khoảng 20 loại thụ thể đáp ứng với các kiểu kích thích khác nhau. Các thụ thể ghi nhận kích thích cơ học, nhiệt và trong một số trường hợp là hóa học, rồi chuyển chúng thành tín hiệu điện. Những tín hiệu này đi lên các dây thần kinh ngoại biên đến tủy sống, rồi đến thân não, và cuối cùng là vỏ não cảm giác cơ thể, nơi chúng được chuyển hóa thành cảm giác chạm.</p>
+<h3>Thụ thể nhiệt</h3>
+<p>Các tế bào thần kinh chuyên biệt có khả năng phát hiện sự khác biệt về nhiệt độ. Chúng được tìm thấy khắp da và ở một số vùng nội tạng.</p>
+<h3>Thụ thể hóa học</h3>
+<p>Các phần mở rộng của hệ thần kinh ngoại biên đáp ứng với những thay đổi về nồng độ trong máu để duy trì cân bằng nội môi (xem tr.90–91).</p>
+<figure class="bookfig"><img src="img/p083.jpeg" alt="Minh họa trang 83" loading="lazy"><figcaption>Trang 83</figcaption></figure>
+<h3>CHẠM NHẸ</h3>
+<h3>RUNG ĐỘNG</h3>
+<h3>XOA BÓP MẠNH</h3>
+<p>Thụ thể phình to, được bao bọc</p>
+<p>Các thụ thể chứa đầy dịch vươn vào lớp trung bì trên</p>
+<p>Thụ thể lớn, được che phủ ở đáy lớp trung bì</p>
+<p>Tiểu thể Meissner Các thụ thể này thích ứng nhanh, nghĩa là chúng đáp ứng nhanh với kích thích nhưng ngừng phát tín hiệu nếu kích thích tiếp diễn. Điều này cho thông tin chính xác.</p>
+<p>Đầu Ruffini Còn được gọi là tiểu thể hình bầu, những tế bào mềm, giống như viên nang này — nằm sâu trong lớp trung bì — đáp ứng khi da hoặc khớp bị kéo dãn hoặc biến dạng do áp lực.</p>
+<p>Tiểu thể Pacini Loại thụ thể xúc giác sâu nhất và lớn nhất, những thụ thể cơ học tác động nhanh này đáp ứng với áp lực liên tục cũng như rung động.</p>
+<h3>Vỏ não cảm giác cơ thể</h3>
+<p>Bản đồ xúc giác Các vùng của cơ thể giàu thụ thể xúc giác, chẳng hạn như bàn tay, cần được xử lý nhiều hơn những vùng khác, nên chúng chiếm tỷ lệ lớn hơn của vỏ não cảm giác cơ thể.</p>
+<p>Mọi thông tin từ thụ thể xúc giác đều được xử lý ở vỏ não cảm giác cơ thể. Vùng này nằm ngang qua đỉnh não như một dải tóc. Dữ liệu từ bên phải cơ thể đi sang bên trái não, và ngược lại. Mỗi bộ phận của cơ thể được ánh xạ tới một vùng riêng của vỏ não.</p>
+<h3>THÂN CHÂN</h3>
+<h3>ĐẦU</h3>
+<h3>CÁNH TAY</h3>
+<h3>BÀN TAY</h3>
+<h3>BÀN CHÂN</h3>
+<h3>SỢI TRỤC</h3>
+<h3>NGÓN CHÂN</h3>
+<h3>CƠ QUAN SINH DỤC</h3>
+<h3>MẮT MẶT</h3>
+<p>Vỏ bao myelin</p>
+<p>Tín hiệu truyền qua bó dây thần kinh</p>
+<h3>TAY PHẢI</h3>
+<h3>MÔI</h3>
+<h3>TỦY SỐNG</h3>
+<h3>LƯỠI</h3>
+<h3>BÊN TRÁI CỦA NÃO</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p084.jpeg" alt="Minh họa trang 84" loading="lazy"><figcaption>Trang 84</figcaption></figure>
+<h3>DÂY THẦN KINH NGOẠI BIÊN</h3>
+<h3>THẦN KINH NGOẠI BIÊN</h3>
+<h3>Cảm giác thân thể</h3>
+<p>Tín hiệu thần kinh từ các thụ thể cảm giác thân thể</p>
+<h3>Cơ thể có cảm giác riêng về vị trí của nó và cách nó di chuyển trong không gian. Quá trình này diễn ra gần như không có ý thức, khiến nó về bản chất là giác quan thứ sáu của cơ thể.</h3>
+<p>Các thụ thể co dãn trong da, cơ và khớp gửi thông tin về vị trí của các bộ phận cơ thể</p>
+<h3>Cảm giác vị trí cơ thể</h3>
+<p>Biết vị trí của mình Nhận thức về cơ thể đến từ sự kết hợp giữa cảm giác thân thể với các cảm giác khác: cảm giác lực, cảm giác nỗ lực hoặc trọng lượng, thị giác và thông tin từ các cơ quan giữ thăng bằng trong tai.</p>
+<h3>CỘT SỐNG</h3>
+<p>Bên trong cơ, gân và khớp là các thụ thể chuyển động gọi là thụ thể cảm giác thân thể (<em>proprioceptors</em>). Mỗi khi chúng ta di chuyển, các thụ thể này đo những thay đổi về chiều dài, sức căng và áp lực liên quan đến chuyển động đó và gửi xung động đến não. Thông tin được xử lý và một quyết định được đưa ra là dừng chuyển động hoặc đổi tư thế. Sau đó, thông điệp được chuyển ngược lại cho các cơ để thực hiện quyết định. Tất cả điều này xảy ra mà chúng ta không cần phải suy nghĩ về nó.</p>
+<p>Tín hiệu truyền dọc cột sống đến não</p>
+<p>Thùy đỉnh</p>
+<p>Tai trong gửi thông tin về sự xoay, gia tốc và trọng lực</p>
+<h3>Các dạng cảm giác thân thể</h3>
+<p>Hầu hết thông tin mà não nhận được về vị trí cơ thể được xử lý không có ý thức, chẳng hạn như cách chúng ta liên tục điều chỉnh tư thế cơ thể để giữ thăng bằng. Tuy nhiên, thông tin cảm giác thân thể có thể trở nên có ý thức nếu đòi hỏi chúng ta phải đưa ra quyết định — ví dụ, tinh chỉnh chuyển động cơ để thực hiện một động tác tự ý, điêu luyện.</p>
+<p>Mắt gửi thông tin thị giác về vị trí</p>
+<p>Thùy đỉnh</p>
+<p>Tín hiệu đầu vào từ</p>
+<p>các cảm biến áp lực và sức căng ở cánh tay</p>
+<p>Đồi thị</p>
+<p>Tiểu não</p>
+<p>Đường dẫn cảm giác thân thể Tín hiệu cảm giác thân thể có ý thức đi lên thân não đến đồi thị và kết thúc ở thùy đỉnh, vốn là một phần của vỏ não đại não. Đường không ý thức thì vòng lại tiểu não, vùng kiểm soát chuyển động.</p>
+<p>Đường không ý thức</p>
+<p>Đường có ý thức</p>
+<figure class="bookfig"><img src="img/p085.jpeg" alt="Minh họa trang 85" loading="lazy"><figcaption>Trang 85</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<h3>NHỮNG ĐỢT TĂNG TRƯỞNG ĐỘT BIẾN CÓ THỂ LÀM RỐI NÃO VÌ NÓ KHÔNG THEO KỊP SỰ THAY ĐỔI KÍCH THƯỚC CỦA CÁC CHI</h3>
+<h3>Các loại thụ thể cảm giác thân thể</h3>
+<p>Cơ thể chứa nhiều loại thụ thể cảm giác thân thể, và thông tin kết hợp từ các thụ thể này giúp não dựng nên bức tranh tổng thể về vị trí của cơ thể. Có ba loại chính: sợi thoi cơ (<em>muscle spindle fibers</em>) nằm trong cơ; cơ quan gân Golgi (<em>Golgi tendon organs</em>) nằm tại điểm nối giữa gân và cơ; và thụ thể khớp gắn vào các khớp. Các thụ thể đặc biệt trong da cũng có thể phát hiện sự co dãn (xem tr.83).</p>
+<p>Xương</p>
+<p>Cơ</p>
+<p>Cơ</p>
+<p>Cơ quan gân Golgi cảm nhận sự thay đổi sức căng của cơ</p>
+<p>Sợi thoi cơ</p>
+<p>Dây thần kinh nhạy chạm Thụ thể dây chằng</p>
+<p>Xương</p>
+<p>Tín hiệu truyền lên sợi trục thần kinh</p>
+<p>Dây chằng</p>
+<p>Gân</p>
+<p>Thụ thể khớp Các đầu dây thần kinh trong khớp phát hiện vị trí của khớp. Các thụ thể này giúp ngăn ngừa tổn thương do kéo dãn quá mức, đồng thời phát hiện vị trí trong chuyển động bình thường.</p>
+<p>Thụ thể gân Các cơ quan gân Golgi nằm trong gân ở đầu các cơ. Chúng giám sát sức căng của cơ để đảm bảo chúng ta không kéo dãn cơ quá mức.</p>
+<p>Thụ thể cơ Trong cơ có các cảm biến vị trí gọi là sợi thoi. Khi cơ dãn ra, các thoi gửi thông tin về vị trí của cơ đến não.</p>
+<h3>ẢO GIẢN PINOCCHIO</h3>
+<p>Não nghĩ tay đã di chuyển ra khỏi mặt Máy rung được bật</p>
+<p>Đôi khi cảm giác thân thể có thể bị rối loạn, khiến cơ thể cảm thấy như có điều gì đó đang xảy ra nhưng thực tế không phải. Một hiệu ứng như vậy được gọi là ảo giản Pinocchio. Một máy rung được gắn vào cơ bắp tay của một người. Nếu người đó giữ mũi trong khi máy rung bật lên, cô ấy sẽ cảm thấy như cánh tay mình đang di chuyển ra khỏi mũi. Điều này xảy ra vì máy rung kích thích các sợi thoi cơ trong cơ bắp tay theo cách giống như khi cơ bị kéo dãn. Vì các ngón tay vẫn còn chạm vào mũi, nên cảm giác là mũi như đang dài ra khỏi mặt.</p>
+<p>Tay chạm vào mũi</p>
+<p>Máy rung</p>
+<p>Trong lúc kích thích Các rung động báo cho não rằng cánh tay đang di chuyển, tạo ra cảm giác mũi đang dài ra phía trước.</p>
+<p>Trước khi kích thích Khi nghỉ ngơi, não biết rằng các ngón tay đang chạm vào mũi, nhưng cánh tay không hề di chuyển.</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p086.jpeg" alt="Minh họa trang 86" loading="lazy"><figcaption>Trang 86</figcaption></figure>
+<h3>AI CẢM NHẬN ĐAU NHIỀU NHẤT?</h3>
+<h3>Dù khó chịu, đau là một tín hiệu cảnh báo hữu ích cho thấy có điều gì đó không ổn trong cơ thể và chúng ta cần hành động nhanh để tránh tổn thương thêm.</h3>
+<h3>Phụ nữ cảm nhận đau dữ dội hơn nam giới vì họ có nhiều thụ thể thần kinh trong cơ thể hơn.</h3>
+<h3>Tín hiệu đau</h3>
+<p>Các thụ thể đau nằm khắp cơ thể và đáp ứng với nóng, lạnh, kéo dãn quá mức, rung động và các hóa chất do vết thương giải phóng. Tín hiệu điện được gửi từ chỗ bị thương đến tủy sống, tại đây chúng vắt sang và đi đến phía não đối diện với bên bị thương. Nếu cảm nhận cơn đau đột ngột, dữ dội, một phản xạ sẽ xảy ra (xem tr.101) trong tủy sống để kéo chi tránh khỏi nguồn gây đau, thậm chí trước cả khi chúng ta kịp nhận biết.</p>
+<h3>TÍN HIỆU TỦY SỐNG</h3>
+<p>Sợi C chậm</p>
+<p>Bó dây thần kinh chứa nhiều sợi trục, hay sợi thần kinh</p>
+<h3>BÓ DÂY THẦN KINH</h3>
+<h3>BÓ DÂY THẦN KINH</h3>
+<h3>TÍN HIỆU ĐAU</h3>
+<p>Sợi A nhanh</p>
+<p>Tín hiệu đau truyền lên các bó dây thần kinh Các tín hiệu từ chỗ bị thương truyền dọc theo</p>
+<p>Các sợi C chậm phân bố rộng khắp da</p>
+<h3>2</h3>
+<p>các bó dây thần kinh về phía tủy sống. Tín hiệu sợi A đến đó trong vài mili-giây và kích hoạt phản xạ rút lui khỏi nguồn gây đau.</p>
+<p>Sợi trục</p>
+<p>Tế bào thần kinh</p>
+<h3>Thụ thể đau được kích hoạt</h3>
+<h3>1</h3>
+<p>Vết thương khiến các tế bào bị tổn thương giải phóng hóa chất gọi là prostaglandin. Những chất này kích thích sợi trục thần kinh gửi xung động đến não.</p>
+<p>Sợi A nhanh được bao phủ bởi vỏ myelin</p>
+<p>Phân tử prostaglandin do tế bào giải phóng</p>
+<p>Sợi đau Có hai loại sợi thần kinh, hay sợi trục. Sợi A nhanh truyền cơn đau nhọn, khu trú từ vết thương như vết cắt. Sợi C chậm hơn truyền cảm giác âm ỉ kéo dài hơn từ vùng quanh vết thương.</p>
+<p>Tế bào bị tổn thương</p>
+<h3>BẦM TÍM</h3>
+<h3>DA</h3>
+<h3>VẾT CẮT</h3>
+<figure class="bookfig"><img src="img/p087.jpeg" alt="Minh họa trang 87" loading="lazy"><figcaption>Trang 87</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<p>Vỏ não trán đóng vai trò trong việc dự báo và kiểm soát cơn đau</p>
+<p>Vỏ não cảm giác cơ thể xác định cường độ, vị trí và loại đau Hệ viền não chịu trách nhiệm về phản ứng cảm xúc và hành vi với cơn đau</p>
+<h3>GIẢM ĐAU TỰ NHIÊN</h3>
+<p>Cơ thể giải phóng chính hóa chất của mình, gọi là endorphin và enkephalin, để làm dịu các tín hiệu đau. Chúng liên kết với thụ thể trên các đầu dây thần kinh, ngăn không cho tín hiệu đau truyền tiếp.</p>
+<p>Hệ lưới điều chỉnh tín hiệu đau</p>
+<p>Nơ-ron nhận tín hiệu</p>
+<p>Truyền tín hiệu</p>
+<p>Nơ-ron gửi tín hiệu</p>
+<p>Đồi thị chuyển tín hiệu đến các vùng khác nhau của não</p>
+<p>Các sợi thần kinh đi xuống từ não chặn và điều chỉnh tín hiệu đau đi lên</p>
+<p>Tín hiệu đau</p>
+<p>Xử lý tín hiệu đau Tín hiệu tiếp tục đến đồi thị, nơi phân phối xung động đến vỏ não và các vùng khác chịu trách nhiệm về cảm xúc, sự chú ý và đánh giá mức độ quan trọng của cơn đau.</p>
+<h3>4</h3>
+<h3>TÍN HIỆU ĐAU ĐƯỢC TRUYỀN ĐI</h3>
+<p>Endorphin chặn tín hiệu đau trước khi đến nơ-ron nhận</p>
+<h3>Giảm nhẹ cơn đau Tín hiệu đi xuống</h3>
+<h3>5</h3>
+<p>đi ngược xuống từ não để chặn các tín hiệu đau (xem ô bên phải). Những tín hiệu này kích thích thân não và tủy sống giải phóng các chất giảm đau tự nhiên làm giảm tín hiệu đau.</p>
+<p>Tín hiệu đau truyền lên tủy sống</p>
+<p>Tín hiệu tủy sống bỏ qua não</p>
+<h3>TÍN HIỆU ĐAU BỊ CHẶN</h3>
+<h3>TỦY SỐNG</h3>
+<h3>SỪNG SAU</h3>
+<h3>Tín hiệu đau đến cột sống</h3>
+<h3>3</h3>
+<p>Bó dây thần kinh đi vào tủy sống qua sừng sau. Tín hiệu đau vắt sang phía bên kia của tủy sống để tiếp tục hành trình lên não.</p>
+<p>Hầu hết các bó dây thần kinh đi vào phía sau cột sống, gọi là sừng sau</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p088.jpeg" alt="Minh họa trang 88" loading="lazy"><figcaption>Trang 88</figcaption></figure>
+<h3>Cách Dùng Não Bộ Để Kiểm Soát Cơn Đau</h3>
+<h3>Khi đang bị đau, cách xử lý thường thấy là dùng phương pháp điều trị y tế hoặc thuốc giảm đau. Tuy nhiên, chúng ta cũng có thể tự giúp kiểm soát cơn đau bằng cách điều chỉnh phản ứng tinh thần của mình—cả đối với cơn đau lẫn căng thẳng mà nó gây ra.</h3>
+<p>Đau là phản ứng mang tính cảm xúc cũng như thể chất trước một chấn thương hoặc bệnh tật. Sợ hãi tột độ hoặc <em>anxiety</em> (lo âu) là những phản ứng tức thì quan trọng, khiến bạn tránh né các nguồn gây đau bất cứ khi nào có thể. Đôi khi, tuy nhiên, cơn đau vẫn kéo dài ngay cả khi chấn thương hoặc bệnh tật không còn nữa. Cảm giác đau có thể trở nên liên kết với căng thẳng liên tục, với những ký ức khó chịu lặp đi lặp lại về nguyên nhân gây đau, hoặc với nỗi sợ thường trực rằng nó sẽ kéo dài hoặc tái phát. Những cảm xúc này có thể rất mạnh mẽ và gây bối rối. Dù bạn luôn nên tìm lời khuyên y tế nếu cơn đau nghiêm trọng hoặc kéo dài, bạn vẫn có thể dùng một số kỹ thuật để điều chỉnh nó bằng cách rèn luyện tâm trí của mình.</p>
+<p>(các) tác dụng phụ, bao gồm loét dạ dày và bệnh gan. Cơ thể bạn cũng có thể tăng mức dung nạp đối với một loại thuốc, khiến bạn thu được ít lợi ích hơn từ thuốc theo thời gian.</p>
+<p>một quả cầu năng lượng lớn bên ngoài cơ thể bạn, rồi “co nhỏ” nó trong tâm trí. Liệu pháp hành vi nhận thức (CBT) dùng một cách tiếp cận tương tự, bằng cách huấn luyện bạn thay thế những suy nghĩ tiêu cực như “Cơn đau này không thể chịu nổi,” hay “Tôi không thể ngăn được cơn đau này,” bằng những suy nghĩ tích cực như “Cơn đau này chỉ là tạm thời.” Tập chánh niệm giúp giảm căng thẳng, giúp bạn đối phó với cơn đau tốt hơn. Trong thực hành này — được điều chỉnh từ giáo lý Phật giáo — bạn chỉ cần thừa nhận cơn đau, thay vì để nó chi phối suy nghĩ của bạn hoặc làm bạn kiệt sức vì chủ động chống cự lại nó. Tóm lại, não bộ của bạn có thể là một công cụ mạnh mẽ để kiểm soát cơn đau nếu bạn: • Tập các kỹ thuật thư giãn và hít thở sâu để giảm mức căng thẳng. • Dùng các bài tập tinh thần để chuyển sự chú ý ra khỏi cơn đau. • Dùng các kỹ thuật CBT để tập trung vào suy nghĩ tích cực. • Tập chánh niệm.</p>
+<h3>Các Liệu Pháp Tâm - Thể</h3>
+<p>Ngoài thuốc men, bạn có thể dùng các kỹ thuật tâm - thể như thư giãn và hình dung để giảm hoặc giúp kiểm soát cơn đau — mà không có nguy cơ tác dụng phụ. Hầu hết các kỹ thuật này dùng sự thư giãn và hít thở sâu, có kiểm soát để giảm căng thẳng đi kèm với cơn đau và thường làm nó tệ hơn. Hãy thử nằm yên trong một căn phòng tối; hít vào thật sâu trong khi đếm đến 10, giữ hơi trong một lát, rồi thở ra chậm trong khi đếm đến 10. Tiếp tục điều này trong 10–20 phút. Việc chuyển sự chú ý thường làm giảm mức độ nghiêm trọng của cơn đau. Hãy thử chuyển sự chú ý ra khỏi vùng đau, thay vào đó tập trung vào một bộ phận không đau trên cơ thể bạn. Hoặc, hãy tưởng tượng cơn đau như</p>
+<h3>Vấn Đề Thuốc Giảm Đau</h3>
+<p>Dùng thuốc thường là cần thiết để kiểm soát cơn đau trong ngắn hạn, nhưng dùng thuốc giảm đau trong thời gian dài có thể dẫn đến các vấn đề như nghiện ngập hoặc các tác dụng phụ nghiêm trọng về thể chất</p>
+<figure class="bookfig"><img src="img/p089.jpeg" alt="Minh họa trang 89" loading="lazy"><figcaption>Trang 89</figcaption></figure>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p090.jpeg" alt="Minh họa trang 90" loading="lazy"><figcaption>Trang 90</figcaption></figure>
+<h3>GÂY MÊ TOÀN THÂN</h3>
+<h3>Hệ thống</h3>
+<p>Là một phần thiết yếu của phẫu thuật hiện đại, cách thức hoạt động của gây mê toàn thân vẫn chưa được hiểu đầy đủ. Điều đã biết là chúng tác động lên <em>hệ thống kích hoạt lưới</em> (gồm cấu trúc lưới và các kết nối của nó) để ức chế ý thức, và lên <em>hippocampus</em> (hải mã) để tạm thời đình chỉ việc hình thành trí nhớ. Thuốc mê cũng ảnh hưởng đến các nhân của <em>thalamus</em> (đồi thị), ngăn cản dòng thông tin cảm giác từ cơ thể truyền lên não.</p>
+<h3>Cơ thể người là một cộng đồng gồm 38 nghìn tỷ tế bào được tổ chức thành các hệ thống khác nhau. Giữ cho chúng hoạt động ở mức tốt nhất là một hệ thống các cơ chế phản hồi do não bộ kiểm soát.</h3>
+<h3>Duy trì sự ổn định</h3>
+<p>Quá trình duy trì một môi trường nội bộ ổn định được gọi là <em>homeostasis</em> (cân bằng nội môi). Các chức năng then chốt như hô hấp, nhịp tim, độ pH, nhiệt độ và cân bằng ion phải được giữ trong những giới hạn hoạt động nghiêm ngặt để tránh chúng ta bị ốm. Khi cơ thể hoạt động, các hệ thống của nó liên tục bị đẩy ra khỏi điểm cân bằng hoặc điểm thiết lập (giá trị mà tại đó một hệ thống hoạt động tốt nhất). Khi sự thay đổi trở nên quá lớn, cơ thể sẽ khởi động một vòng phản hồi đưa hệ thống trở lại mức lý tưởng. Nhiều chức năng trong số này được điều khiển bởi một phần của <em>brain stem</em> (thân não) gọi là <em>reticular formation</em> (cấu trúc lưới).</p>
+<p>Các tín hiệu truyền đến nhiều vùng của vỏ não</p>
+<h3>Tín hiệu được chuyển tiếp Các tín hiệu sau đó được gửi trực tiếp</h3>
+<h3>3</h3>
+<p>đến đồi thị và vùng dưới đồi, cũng như đến các vùng thích hợp của vỏ não để đưa ra quyết định và phản ứng với kích thích.</p>
+<p>Vùng dưới đồi điều hòa giấc ngủ, cảm giác đói và nhiệt độ cơ thể</p>
+<h3>ĐỒI THỊ</h3>
+<p>Vùng kích thích của cấu trúc lưới khuếch đại các tín hiệu quan trọng</p>
+<p>Đồi thị chuyển tiếp tín hiệu cảm giác đến vỏ não</p>
+<h3>Tín hiệu được xử lý Trong cấu trúc lưới,</h3>
+<h3>2</h3>
+<p>A L L EDU các tín hiệu không mong muốn bị ức chế ở vùng ức chế, trong khi các tín hiệu khác được M khuếch đại ở vùng kích thích.</p>
+<h3>CÁI GÌ LÀ</h3>
+<h3>CẤU TRÚC LƯỚI?</h3>
+<h3>Cấu trúc lưới gồm hơn 100 nhân chiếu đến não trước, tiểu não và thân não, điều khiển nhiều chức năng sống còn của cơ thể.</h3>
+<p>Vùng ức chế của cấu trúc lưới làm dịu các tín hiệu không mong muốn</p>
+<h3>TỦY SỐNG</h3>
+<h3>Tín hiệu truyền lên cột sống</h3>
+<h3>1</h3>
+<p>Các tín hiệu cảm giác đến từ khắp cơ thể truyền đến cấu trúc lưới.</p>
+<p>Các xung động truyền lên tủy sống</p>
+<figure class="bookfig"><img src="img/p091.jpeg" alt="Minh họa trang 91" loading="lazy"><figcaption>Trang 91</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<h3>CẢM BIẾN Các thụ thể căng giãn bị kích thích và gửi tín hiệu đến vùng dưới đồi.</h3>
+<h3>KÍCH THÍCH Thai nhi gây áp lực lên cổ tử cung.</h3>
+<h3>KẾT QUẢ Em bé chào đời.</h3>
+<p>Hệ phản hồi dương Trong hai loại hệ phản hồi, hệ phản hồi dương ít phổ biến hơn và kém ổn định hơn, vì nó có khả năng tạo hiệu ứng dây chuyền lên các hệ khác, hình thành một quá trình “vượt tầm kiểm soát”. Một ví dụ về hệ phản hồi dương là sự tăng cường độ và tần số của các cơn co thắt khi sinh, những cơn co này dừng lại khi em bé chào đời và cổ tử cung không còn bị căng giãn nữa.</p>
+<h3>ĐIỀU KHIỂN Vùng dưới đồi kích thích tuyến yên sau, tuyến này giải phóng oxytocin.</h3>
+<h3>CƠ QUAN HIỆU ỨNG Oxytocin thúc đẩy nhiều cơn co thắt hơn.</h3>
+<h3>Các vòng phản hồi</h3>
+<p>Các hệ sinh học vận hành theo cơ chế đầu vào và đầu ra, mỗi cái đều do một sự kiện nhất định gây ra và lại gây ra một sự kiện nhất định. Các vòng phản hồi hoặc khuếch đại đầu ra của một hệ (phản hồi dương), hoặc ức chế đầu ra của hệ đó (phản hồi âm). Các vòng phản hồi quan trọng vì chúng cho phép các sinh vật duy trì cân bằng nội môi.</p>
+<h3>CẢM BIẾN Các thụ thể nhiệt trong da cảm nhận sự thay đổi nhiệt độ này.</h3>
+<h3>KÍCH THÍCH Nhiệt độ cơ thể thay đổi.</h3>
+<h3>KẾT QUẢ Đạt được nhiệt độ cơ thể bình thường.</h3>
+<p>Hệ phản hồi âm Hầu hết các hệ dùng vòng phản hồi âm, vốn rất ổn định và có tác dụng đảo ngược chiều của sự thay đổi để đưa hệ trở lại trạng thái bình thường. Chúng bao gồm điều hòa đường huyết và nhiệt độ cơ thể.</p>
+<h3>ĐIỀU KHIỂN Vùng dưới đồi so sánh với điểm đặt nhiệt độ (98,6°F/ 37°C).</h3>
+<p>CƠ QUAN HIỆU ỨNG Nếu quá nóng, não sẽ gây ra đổ mồ hôi. Nếu quá lạnh, não sẽ khởi động run rẩy.</p>
+<h3>95˚F (35˚C)</h3>
+<h3>NHIỆT ĐỘ CƠ THỂ MÀ TẠI ĐÓ HẠ THÂN NHIỆT BẮT ĐẦU</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p092.jpeg" alt="Minh họa trang 92" loading="lazy"><figcaption>Trang 92</figcaption></figure>
+<p>Vùng dưới đồi — <em>hypothalamus</em> (US M A AL H OT YP H HE T DE SI IN).</p>
+<p>và nhịp tim</p>
+<p>Các nhân trong vùng dưới đồi Hầu hết các nhân đều có chức năng riêng biệt. Chúng tiết ra các hormone tác động lên tuyến yên, kích thích tuyến này sản xuất hormone giúp đạt được cân bằng nội môi ở bộ phận cần thiết của cơ thể.</p>
+<h3>NHÂN CẬN NÃO THẤT</h3>
+<p>Khởi phát việc nạp nước và thức ăn</p>
+<h3>VÙNG DƯỚI ĐỒI LƯNG</h3>
+<h3>NHÂN</h3>
+<p>Tham gia vào trí nhớ, sự hưng phấn, giấc ngủ và cân bằng năng lượng</p>
+<h3>TIỀN THỊ GIÁC TRONG</h3>
+<h3>NHÂN DƯỚI ĐỒI SAU BÊN</h3>
+<h3>NHÂN LƯNG-TRONG</h3>
+<h3>NHÂN TIỀN THỊ GIÁC BÊN</h3>
+<h3>NHÂN TRƯỚC NHÂN BỤNG-TRONG</h3>
+<h3>VÙNG</h3>
+<p>Ức chế ăn và giảm lượng thức ăn nạp vào</p>
+<h3>NHÂN THỂ VÚ</h3>
+<h3>THỂ</h3>
+<p>Điều khiển sự điều hòa nhiệt độ</p>
+<h3>VẬN NHÃN</h3>
+<p>“Đồng hồ” của cơ thể — điều khiển các nhịp sinh học ngày đêm</p>
+<h3>NHÂN TRÊN GIAO THỊ</h3>
+<h3>NHÂN TRÊN THỊ GIÁC</h3>
+<h3>CÁC NHÂN CỦ BÊN</h3>
+<h3>DÂY</h3>
+<h3>TUYẾN YÊN</h3>
+<h3>HORMONE ĐƯỢC SẢN XUẤT BỞI HỆ NỘI TIẾT</h3>
+<h3>Hệ Thần Kinh Nội Tiết</h3>
+<h3>MẤT CÂN BẰNG</h3>
+<p>Khi cân bằng nội môi bị rối loạn, nó có thể dẫn đến bệnh tật, cũng như làm các tế bào của chúng ta hoạt động sai. Cơ thể nỗ lực sửa chữa vấn đề nhưng đôi khi lại làm nó tệ hơn, tùy vào yếu tố đang ảnh hưởng đến sự mất cân bằng. Di truyền, lối sống và độc tố đều có thể tác động đến cân bằng nội môi.</p>
+<h3>Duy trì cân bằng nội môi (xem tr.90) đòi hỏi não bộ và cơ thể phải trao đổi thông tin. Điều này được thực hiện nhờ các chất truyền tin hóa học gọi là hormone.</h3>
+<h3>Vùng dưới đồi</h3>
+<p>Tại trung tâm của hệ cân bằng nội môi của não là <em>hypothalamus</em> (vùng dưới đồi) (xem tr.34). Nó chứa các cụm tế bào thần kinh, gọi là nhân, thực hiện những chức năng cụ thể, và có kết nối với <em>hệ thần kinh tự chủ</em> (xem tr.13), qua đó nó gửi tín hiệu để điều khiển nhịp tim, tiêu hóa và hô hấp. Khi vùng dưới đồi nhận tín hiệu từ hệ thần kinh, nó tiết ra các neurohormone, rồi đến lượt các chất này kích thích tuyến yên tiết hormone. Những hormone này tác động lên các cơ quan khắp cơ thể và thúc đẩy chúng tăng hoặc ức chế việc sản xuất hormone của chính mình.</p>
+<figure class="bookfig"><img src="img/p093.jpeg" alt="Minh họa trang 93" loading="lazy"><figcaption>Trang 93</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<p>Nhà sản xuất hormone Hormone được dùng cho hai loại trao đổi thông tin. Loại thứ nhất là giữa hai tuyến nội tiết, trong đó một hormone được giải phóng để kích thích một tuyến đích thay đổi lượng hormone mà tuyến đó đang tiết ra. Loại thứ hai là giữa một tuyến và một cơ quan đích, chẳng hạn như việc tuyến tụy giải phóng insulin thúc đẩy các tế bào cơ hấp thụ glucose.</p>
+<p>Vùng dưới đồi liên kết hệ thần kinh với hệ nội tiết</p>
+<p>Tuyến tùng giải phóng melatonin để đáp ứng với mức độ ánh sáng — melatonin điều khiển nhịp sinh học ngày đêm của cơ thể và điều hòa một số hormone sinh sản.</p>
+<p>Được vùng dưới đồi kiểm soát, tuyến yên đóng vai trò là “tuyến chủ”; nó tiết ra chính hormone của mình để điều khiển các tuyến khác.</p>
+<p>Tuyến giáp và các tuyến cận giáp điều hòa sự trao đổi chất, mức calci trong máu và nhịp tim.</p>
+<h3>TUYẾN CẬN GIÁP</h3>
+<h3>TUYẾN GIÁP</h3>
+<p>Sản xuất cortisol (điều hòa trao đổi chất, đáp ứng miễn dịch và chuyển đổi năng lượng), aldosterone (kiểm soát huyết áp và cân bằng muối), và adrenaline (hormone chiến đấu hay bỏ chạy).</p>
+<p>Sản xuất các tế bào bạch cầu bảo vệ cơ thể chống lại virus và nhiễm trùng.</p>
+<h3>TUYẾN THỤC</h3>
+<p>Giải phóng hormone gây đói ghrelin và hormone gastrin, chất kích thích sản xuất axit.</p>
+<p>Tiết renin và angiotensin, những chất kiểm soát huyết áp, cũng như erythropoietin, chất kích thích sản xuất hồng cầu.</p>
+<h3>DẠ DÀY</h3>
+<h3>TUYẾN THƯỢNG THẬN</h3>
+<h3>THẬN</h3>
+<h3>THẬN</h3>
+<p>Tiết insulin, glucagon và somatostatin để kiểm soát đường huyết; gastrin, chất kích thích tế bào dạ dày sản xuất axit; và một hormone kiểm soát sự tiết và hấp thụ nước trong ruột.</p>
+<h3>Sản xuất hormone</h3>
+<h3>TUYẾN TỤY</h3>
+<p>Hệ nội tiết gồm các tuyến chuyên biệt tiết hormone, cũng như các cơ quan — chẳng hạn dạ dày — vốn không phải là tuyến nhưng vẫn có khả năng sản xuất, lưu trữ và giải phóng hormone. Cả hai loại đều phản ứng với tín hiệu từ não bằng cách tăng hoặc giảm sản xuất hormone; các hormone này sau đó đi theo dòng máu đến một cơ quan đích, nơi chúng khóa chặt vào các thụ thể chuyên biệt trên bề mặt tế bào. Điều này kích hoạt một thay đổi sinh lý khôi phục lại cân bằng nội môi.</p>
+<p>Sản xuất các hormone sinh sản nữ là estrogen và progesterone, những chất chuẩn bị cho tử cung kỳ kinh nguyệt hoặc thai kỳ.</p>
+<h3>BUỒNG TRỨNG</h3>
+<p>Sản xuất testosterone, chất cần thiết cho việc sản xuất tinh trùng, duy trì khối cơ và sức mạnh, ham muốn tình dục và mật độ xương.</p>
+<h3>TINH HOÀN</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p094.jpeg" alt="Minh họa trang 94" loading="lazy"><figcaption>Trang 94</figcaption></figure>
+<h3>Cảm thấy no Những tín hiệu mà</h3>
+<h3>5</h3>
+<p>Vùng dưới đồi đóng vai trò cơ quan điều hòa</p>
+<p>mức leptin và insulin tăng lên kích thích vùng dưới đồi sản xuất hormone melanocortin, khiến chúng ta cảm thấy no.</p>
+<h3>và Khát</h3>
+<h3>VÙNG DƯỚI ĐỒI (S U M A L A H T PO HY)</h3>
+<h3>Thức ăn và thức uống là thiết yếu cho sự sống còn của con người. Các thúc đẩy từ hormone nhằm nạp dưỡng chất và nước được cơ thể trải nghiệm như đói và khát.</h3>
+<p>Mức ghrelin tăng báo cho vùng dưới đồi biết dạ dày đang trống</p>
+<h3>Tín hiệu từ mô mỡ</h3>
+<h3>Đói</h3>
+<h3>4</h3>
+<p>Mức insulin báo cho vùng dưới đồi biết cơ thể có đủ năng lượng hay không</p>
+<p>Có hai loại đói. Đói do ham muốn (hedonic hunger) liên quan đến việc ăn uống — đặc biệt là các thực phẩm giàu chất béo, đường và muối — ngay cả khi chúng ta đã no, trong khi đói do cân bằng nội môi (xem bên phải) là phản ứng khi các kho dự trữ năng lượng của chúng ta cạn kiệt. Sau khi thức ăn đi qua dạ dày và ruột, dạ dày lúc này đã trống rỗng giải phóng một hormone gọi là ghrelin. Chất này tác động lên các nơ-ron trong vùng dưới đồi để báo cho chúng ta biết rằng mình đang đói, thúc đẩy chúng ta ăn. Sau đó, một hormone ức chế đói gọi là leptin được mô mỡ (mô chứa chất béo) giải phóng để ngăn chúng ta ăn quá mức.</p>
+<p>Để ngăn chúng ta ăn quá mức, các tế bào mô mỡ giải phóng một hormone ức chế đói gọi là leptin, chất này đi đến vùng dưới đồi.</p>
+<h3>Tín hiệu từ tuyến tụy Sau khi chúng ta đã ăn,</h3>
+<h3>3</h3>
+<p>Mức leptin giảm báo cho vùng dưới đồi biết lượng năng lượng dự trữ thấp; mức leptin tăng giúp ức chế cảm giác thèm ăn.</p>
+<p>ruột non giải phóng hormone incretin. Chất này, kết hợp với sự căng giãn của dạ dày và mức glucose trong máu tăng lên, khiến tuyến tụy giải phóng insulin.</p>
+<h3>Ham muốn ăn Mức ghrelin tăng lên</h3>
+<h3>2</h3>
+<p>Cảm thấy đói Não bộ, hệ tiêu hóa và các kho mỡ tạo thành một hệ thống liên kết chặt chẽ điều hòa cảm giác đói của chúng ta. Cảm giác đói có thể do các yếu tố bên trong gây ra, chẳng hạn dạ dày trống rỗng hoặc mức đường huyết giảm, hoặc do các tác nhân bên ngoài, chẳng hạn nhìn hoặc ngửi thấy thức ăn.</p>
+<p>hướng dẫn vùng dưới đồi giải phóng một tín hiệu hóa học gọi là neuropeptide Y, chất kích thích cảm giác thèm ăn của chúng ta.</p>
+<p>Incretin do ruột sản xuất kích hoạt sản xuất insulin</p>
+<h3>CHÚ THÍCH</h3>
+<h3>MẤT NƯỚC ẢNH HƯỞNG ĐẾN TRÍ NHỚ NGẮN HẠN CỦA CHÚNG TA,</h3>
+<p>Các thụ thể căng giãn phát hiện sự mở rộng của dạ dày.</p>
+<ul><li>Ghrelin</li></ul>
+<ul><li>Insulin</li></ul>
+<h3>DẠ DÀY</h3>
+<ul><li>Leptin</li></ul>
+<h3>MÔ MỠ (CHỨA CHẤT BÉO)</h3>
+<h3>TUYẾN TỤY</h3>
+<h3>RUỘT NON</h3>
+<p>Tuyến tụy sản xuất insulin.</p>
+<ul><li>Incretin</li></ul>
+<h3>SỰ TẬP TRUNG VÀ MỨC ĐỘ LO ÂU</h3>
+<p>Tín hiệu dây thần kinh phế vị Chuyển động của thức ăn.</p>
+<h3>Dạ dày trống Sau khi dạ dày đã trống</h3>
+<h3>1</h3>
+<p>trong khoảng hai giờ, mức đường và insulin trong máu giảm. Điều này khiến dạ dày sản xuất hormone ghrelin.</p>
+<figure class="bookfig"><img src="img/p095.jpeg" alt="Minh họa trang 95" loading="lazy"><figcaption>Trang 95</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<p><em>Lamina terminalis</em> (LT) — màng tận cùng.</p>
+<p><em>Organum vasculosum of the lamina terminalis</em> (OVLT) — cơ quan mạch máu của màng tận cùng.</p>
+<h3>Khát</h3>
+<p>Khi lượng nước trong cơ thể giảm, mức muối trong máu tăng lên. Các vùng cảm nhận khát trong não phát hiện mức muối tăng và báo hiệu cho cơ thể tăng lượng nước bằng cách giảm lượng nước tiểu và nạp thêm chất lỏng. Sau khi uống, phải mất khoảng 15 phút trước khi nồng độ muối trong máu trở lại bình thường. Người ta cho rằng động tác nuốt ừng ực của cổ họng khi uống chất lỏng sẽ gửi tín hiệu ngăn việc uống thêm.</p>
+<p><em>Subfornical organ</em> (SFO) — cơ quan dưới màng nhện.</p>
+<p>Các vùng cảm nhận khát trong não Hai cấu trúc, <em>organum vasculosum of the lamina terminalis</em> (OVLT) và <em>subfornical organ</em> (SFO) — cả hai đều liên kết với vùng dưới đồi — giúp tạo ra cảm giác khát. Chúng không có hàng rào máu não, nên được cho là có khả năng phát hiện mức muối trong máu.</p>
+<p>Vùng dưới đồi.</p>
+<p>Tuyến yên.</p>
+<p>Các thụ thể ở tim và thận phát hiện</p>
+<p>SFO và OVLT cũng</p>
+<p>Vùng dưới đồi chuyển các tín hiệu này</p>
+<h3>1</h3>
+<h3>2</h3>
+<h3>3</h3>
+<p>sự giảm thể tích máu và tăng nồng độ muối. Chúng báo động cho não bộ.</p>
+<p>nhận tín hiệu về thể tích máu và nồng độ muối. Chúng gửi tín hiệu đến vùng dưới đồi.</p>
+<p>tín hiệu đến tuyến yên, rồi tuyến này sản xuất hormone chống bài niệu (ADH).</p>
+<p>Mức ADH cao báo cho</p>
+<h3>4</h3>
+<p>thận giữ lại nước và tiết renin. Đến lượt nó tạo thành hormone angiotensin II.</p>
+<p>Các nơ-ron ức chế trong LT thì</p>
+<p>Vùng dưới đồi tạo ra</p>
+<p>SFO phát hiện angiotensin II</p>
+<h3>7</h3>
+<h3>6</h3>
+<h3>5</h3>
+<p>được kích hoạt bởi các động tác nuốt ừng ực ở cổ họng. Các nơ-ron này ngăn việc nạp thêm nước.</p>
+<p>cảm giác khát, thúc đẩy ham muốn uống nhằm khôi phục mức nước.</p>
+<p>và kích thích vùng dưới đồi thúc đẩy hình thành thêm ADH.</p>
+<h3>BẠN CÓ ĐANG MẤT NƯỚC KHÔNG?</h3>
+<h3>RẤT ĐẦY ĐỦ NƯỚC</h3>
+<h3>BẠN CÓ THỂ SỐNG ĐƯỢC BAO LÂU NẾU KHÔNG CÓ THỨC ĂN HAY NƯỚC UỐNG?</h3>
+<p>Các triệu chứng rõ rệt nhất của mất nước là miệng và mắt khô, và có thể là một cơn đau đầu nhẹ. Một cách nhận biết tốt khác là qua màu nước tiểu. Khi cơ thể đầy đủ nước, nước tiểu có màu vàng nhạt. Màu hổ phách sẫm hơn cho thấy mất nước nghiêm trọng. Người lớn nên nạp khoảng 3½–4 pint (2–2,5 lít) chất lỏng mỗi ngày.</p>
+<h3>ĐẦY ĐỦ NƯỚC</h3>
+<h3>Trung bình là ba đến bốn ngày nếu không có nước, nhưng trong một số trường hợp nhất định bạn có thể sống tới hai tháng mà không ăn.</h3>
+<h3>MẤT NƯỚC VỪA PHẢI</h3>
+<h3>MẤT NƯỚC NHIỀU</h3>
+<h3>MẤT NƯỚC NGUY HIỂM</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p096.jpeg" alt="Minh họa trang 96" loading="lazy"><figcaption>Trang 96</figcaption></figure>
+<p>Putamen chuyển thông tin đã lưu trữ đến vỏ não đỉnh sau.</p>
+<p>Vỏ não đỉnh sau nhận thông tin từ putamen và cũng đánh giá vị trí của cơ thể trong liên hệ với môi trường xung quanh.</p>
+<h3>ĐIỆN THẾ SẴN SÀNG</h3>
+<p>Khi chúng ta chuẩn bị cho một hành động tự nguyện, một sự tích tụ hoạt động điện, gọi là điện thế sẵn sàng, sẽ xuất hiện. Nó bắt đầu ở SMA và được tăng cường bởi hoạt động ở PMA. Hoạt động ở SMA bắt đầu trước tới 2 giây trước khi chúng ta ý thức được quyết định cử động của mình — điều này có thể cho thấy chúng ta kiểm soát hành động của mình kém hơn là chúng ta tưởng (xem tr.168).</p>
+<h3>VỎ NÃO TRÁN LƯNG-BÊN</h3>
+<h3>VỎ NÃO ĐỈNH SAU</h3>
+<h3>NỀN</h3>
+<h3>ĐỒI THỊ HẠCH NỀN VỎ NÃO THỊ GIÁC</h3>
+<h3>PUTAMEN</h3>
+<p>Hoạt động ở SMA.</p>
+<p>Thời điểm cử động thực tế.</p>
+<p>Hoạt động ở PMA.</p>
+<p>Hoạt động.</p>
+<ul><li>0</li></ul>
+<p>Thông tin cảm giác được gửi từ vỏ não thị giác qua đồi thị đến vỏ não trán lưng-bên.</p>
+<ul><li>–3</li></ul>
+<ul><li>–2</li></ul>
+<p>–1 Thời gian (giây).</p>
+<ul><li>0</li></ul>
+<ul><li>1</li></ul>
+<h3>Thu thập thông tin Các vùng cảm giác, chẳng hạn vỏ não thị giác,</h3>
+<h3>1</h3>
+<h3>TỦY SỐNG</h3>
+<h3>TIỂU NÃO CHỨA HƠN 50 PHẦN TRĂM SỐ TẾ BÀO THẦN KINH CỦA NÃO</h3>
+<p>gửi tín hiệu đến vỏ não trán. Putamen, nơi lưu trữ các hành động đã học, gửi thông tin đến vỏ não đỉnh, vùng đánh giá liệu những hành động đã học này có thể được dùng trong tình huống mới này hay không.</p>
+<h3>Lập Kế Hoạch Chuyển Động</h3>
+<h3>Các cử động có ý thức là những cử động mà chúng ta cố ý quyết định thực hiện. Chúng liên quan đến nhiều vùng của não và bao gồm cả những quá trình nằm ngoài nhận thức có ý thức của chúng ta.</h3>
+<h3>Quá trình lập kế hoạch</h3>
+<h3>SAO CHÚNG TA KHÔNG QUÊN CÁCH ĐẠP XE ĐẠP?</h3>
+<p>Có nhiều giai đoạn liên quan đến việc thực hiện một cử động — từ nhận biết ban đầu về môi trường, đến lập kế hoạch, rồi đến các điều chỉnh trong lúc cử động. Các giai đoạn này có sự tham gia của nhiều vùng não khác nhau cùng phối hợp để tạo ra một phản ứng. Vùng khởi phát cử động là vỏ não vận động. Các phần khác nhau của vỏ não vận động gửi tín hiệu đến các bộ phận khác nhau của cơ thể (xem tr.98). Tuy nhiên, trước khi một hành động bắt đầu, một kế hoạch hành động được tạo ra bởi vỏ não trán lưng-bên và vỏ não đỉnh sau, rồi đi qua hai vùng của vỏ não vận động: vùng vận động bổ sung (SMA) và vùng vận động tiền (PMA). Tiểu não điều phối cử động ngay khi nó đang diễn ra. Các bước ở trên cho thấy các vùng não tham gia và trình tự tín hiệu trong một cử động điển hình.</p>
+<h3>Các tế bào thần kinh trong putamen mã hóa trình tự các cử động cơ vào kho trí nhớ dài hạn của chúng ta, sao cho chúng dễ dàng được truy xuất ngay cả nhiều năm sau.</h3>
+<figure class="bookfig"><img src="img/p097.jpeg" alt="Minh họa trang 97" loading="lazy"><figcaption>Trang 97</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<p>Vỏ não đỉnh sau gửi tín hiệu ý định cử động có ý thức qua hạch nền.</p>
+<p>Vùng vận động chính có</p>
+<p>Thân não chuyển thông tin trở lại vùng vận động chính sau khi thông tin đã được tinh chỉnh.</p>
+<p>các liên kết mệnh lệnh - phản hồi với tiểu não và hạch nền.</p>
+<h3>SMA</h3>
+<h3>VÙNG VẬN ĐỘNG CHÍNH</h3>
+<h3>VỎ NÃO TRÁN LƯNG-BÊN</h3>
+<h3>VỎ NÃO ĐỈNH SAU</h3>
+<h3>PMA</h3>
+<h3>HẠCH NỀN</h3>
+<h3>NỀN</h3>
+<h3>ĐỒI THỊ HẠCH NỀN</h3>
+<h3>PUTAMEN</h3>
+<p>Vỏ não trán lưng-bên gửi tín hiệu đến hạch nền.</p>
+<h3>TIỂU NÃO</h3>
+<h3>THÂN NÃO</h3>
+<p>Mệnh lệnh hành động được gửi qua tủy sống đến các cơ.</p>
+<p>Đồi thị chuyển tiếp tín hiệu từ hạch nền đến PMA và SMA.</p>
+<p>Hạch nền tăng cường hoặc làm yếu tín hiệu.</p>
+<h3>Quyết định cách cử động Vỏ não trán lưng-bên</h3>
+<h3>Chuẩn bị hành động Tín hiệu truyền đến vùng vận động chính</h3>
+<h3>2</h3>
+<h3>3</h3>
+<h3>TỦY SỐNG</h3>
+<h3>TỦY SỐNG</h3>
+<p>Thông tin được trao đổi giữa tiểu não và thân não.</p>
+<p>và vỏ não đỉnh cùng phối hợp để lập kế hoạch cử động. Thông tin này được gửi qua hạch nền (xem tr.32–33) đến PMA và SMA, những vùng xác định trình tự co cơ cần thiết.</p>
+<p>vận động chính, rồi vùng này chuyển tiếp chỉ thị đến tiểu não và thân não để tinh chỉnh. Tín hiệu từ các vùng này quay trở lại vùng vận động chính, và vùng này gửi tín hiệu hành động đến tủy sống.</p>
+<p>Putamen nhận tín hiệu từ các vùng trán và đỉnh.</p>
+<p>Nhân răng cưa thực hiện các điều chỉnh tinh tế đối với kế hoạch vận động.</p>
+<p>Vỏ não trán (N O I T C E S S S O R C T N O R F).</p>
+<p>Sau khi tín hiệu đã</p>
+<p>Hướng tín hiệu (N O I T C E S S S O R E D SI).</p>
+<p>được điều chỉnh, đồi thị chuyển tiếp đến PMA và SMA.</p>
+<h3>PUTAMEN</h3>
+<h3>ĐỒI THỊ</h3>
+<h3>THÂN NÃO</h3>
+<h3>NHÂN RĂNG CƯA</h3>
+<h3>CẦU NHẠT</h3>
+<p>Chất đen kiểm soát cường độ của hành động.</p>
+<p>Vỏ tiểu não (R A L L X E B E E T R R CE O C).</p>
+<p>Vỏ tiểu não điều phối thời điểm.</p>
+<p>Cầu nhạt ức chế các cử động</p>
+<p>không mong muốn. Nhân dưới đồi tham gia vào kiểm soát xung động.</p>
+<h3>CHÚ THÍCH</h3>
+<p>Điều chỉnh cử động Hạch nền là một nhóm nhân liên kết với đồi thị. Tín hiệu từ các vùng trán và đỉnh được xử lý bởi các mạch trong hạch nền, những mạch này khuếch đại hoặc ức chế tín hiệu vận động.</p>
+<p>Thực hiện điều chỉnh Tín hiệu từ vùng vận động chính được gửi đến tiểu não, vùng đóng vai trò đo lường thời gian. Nó cũng thực hiện các điều chỉnh theo thời gian thực đối với cử động để đáp ứng với môi trường xung quanh.</p>
+<p>Tín hiệu đến tiểu não.</p>
+<p>Tín hiệu từ tiểu não.</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p098.jpeg" alt="Minh họa trang 98" loading="lazy"><figcaption>Trang 98</figcaption></figure>
+<h3>AI R FB O DE SI FT LE</h3>
+<h3>VỎ NÃO ĐỈNH</h3>
+<h3>TIỂU NÃO</h3>
+<h3>HOMUNCULUS VẬN ĐỘNG</h3>
+<p>Vùng vận động chính (A RE A R O T O M Y AR M I PR).</p>
+<h3>CÁC CỬ ĐỘNG ĐƠN GIẢN VÀ PHỨC TẠP</h3>
+<h3>TỦY SỐNG</h3>
+<h3>VÙNG VẬN ĐỘNG CHÍNH</h3>
+<h3>NÃO TRUNG</h3>
+<p>Các sợi trục tập trung ở não trung và nối với</p>
+<p>Các nơ-ron từ não (nơ-ron vận động trên) truyền tín hiệu xuống tủy sống.</p>
+<p>Hầu hết tín hiệu bắt nguồn từ vùng vận động chính.</p>
+<p>những vùng tạo ra các cử động phức tạp được biểu diễn theo tỷ lệ; các bộ phận như mặt và bàn tay chiếm nhiều chỗ hơn trên vỏ não so với những vùng tạo cử động đơn giản, như bàn chân. Các vùng cho những bộ phận kề nhau thì</p>
+<p>được nhóm lại với nhau.</p>
+<p>Vỏ não vận động kiểm soát vùng nào của cơ thể — chẳng hạn cánh tay và bàn tay — thường</p>
+<p>Một homunculus vận động cho thấy</p>
+<p>chẳng hạn bàn chân.</p>
+<p>Các sợi trục vượt sang phía đối diện của cơ thể ngay bên dưới thân não.</p>
+<p>Bó vỏ-tủy bên</p>
+<p>Bó vận động này hỗ trợ các cử động tinh tế. Bó đỏ-tủy bắt đầu ở vỏ não và chạy qua đồi thị.</p>
+<p>Bó lưới-tủy giúp phối hợp cử động.</p>
+<h3>Sau khi não bộ đã lập kế hoạch cho một cử động (xem tr.96–97), nó gửi tín hiệu đến các cơ thích hợp trong cơ thể, qua hệ thần kinh, để biến ý định thành hành động.</h3>
+<p>phía đối diện của cơ thể. Các bó thần kinh khác bắt nguồn từ những phần khác của thân não, để sợi trục từ một bán cầu não kết nối với dây thần kinh vận động cho</p>
+<p>các nơ-ron trong tủy sống. Hầu hết sợi trục tạo thành một phần của bó gọi là bó vỏ-tủy bên, bó này vượt chéo ở đáy não để đi qua thân não và trao đổi với các nơ-ron vận động.</p>
+<p>Tín hiệu từ các vùng vận động và đỉnh của vỏ não được gửi dọc theo</p>
+<h3>CẦU NÃO</h3>
+<h3>Thực Hiện Cử Động</h3>
+<p>của não trung và thực hiện các chức năng vận động cụ thể.</p>
+<h3>VÙNG DƯỚI ĐỒI</h3>
+<h3>TỦY SỐNG</h3>
+<p>Bó tiền đình-tủy, bắt nguồn từ thân não, giúp điều hòa thăng bằng và hướng của cơ thể.</p>
+<p>Các sợi trục vượt sang phía đối diện của cơ thể ở não trung.</p>
+<h3>BÓ TỦY</h3>
+<p>Cấu trúc lưới.</p>
+<p>Nhân đỏ.</p>
+<h3>Từ Não Đến Tủy</h3>
+<p>các phản ứng không tự nguyện, chẳng hạn</p>
+<p>các cử động tự nguyện của chi. Các nhóm sợi trục khác đảm nhận các phản ứng không tự nguyện như thăng bằng, cũng như các cử động tinh chỉnh. Các bó thần kinh gửi tín hiệu đến những cơ nối với bộ xương để tạo ra cử động. Các sợi trục của bó vỏ-tủy bên</p>
+<p>Bó vỏ-tủy bên</p>
+<p>Sợi trục thần kinh vận động</p>
+<p>Bó đỏ-tủy. Bó tiền đình-tủy</p>
+<p>Bó lưới-tủy</p>
+<p>bó.</p>
+<p>bó.</p>
+<p>bó.</p>
+<h3>CHÚ THÍCH</h3>
+<h3>1</h3>
+<figure class="bookfig"><img src="img/p099.jpeg" alt="Minh họa trang 99" loading="lazy"><figcaption>Trang 99</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<h3>Tủy sống (D R O C L A N I P S).</h3>
+<p>Các nơ-ron vận động trên và dưới gặp nhau</p>
+<p>ở sừng bụng của tủy sống. Phần ngoài của sừng bụng chứa các dây thần kinh đi đến tay và chân; phần giữa chứa dây thần kinh đi đến cánh tay trên và đùi.</p>
+<h3>cơ với tốc độ lên tới 395 ft (120 m) mỗi giây từ não đến cơ thể chúng ta.</h3>
+<h3>CHẤT XÁM</h3>
+<h3>MỘT TÍN HIỆU MẤT BAO LÂU ĐỂ ĐI TỪ NÃO ĐẾN CƠ? Các tín hiệu có thể truyền</h3>
+<p>Các nơ-ron vận động trên.</p>
+<p>các nơ-ron.</p>
+<h3>CHẤT TRẮNG</h3>
+<h3>SỪNG BỤNG</h3>
+<p>Các nơ-ron vận động dưới từ tủy sống đến cơ</p>
+<p>truyền tín hiệu từ</p>
+<p>Các nơ-ron vận động dưới.</p>
+<p>các nơ-ron.</p>
+<h3>2</h3>
+<h3>DÂY THẦN KINH QUAY</h3>
+<p>được bao phủ bằng bao myelin, tạo thành chất trắng. Chất xám ở trung tâm tủy sống gồm các thân tế bào của nơ-ron vận động. Bên trong tủy sống, các sợi trục của bó vỏ-tủy, vốn được bao bọc bởi <em>bao myelin</em> (myelin sheath), tạo nên chất trắng. Các đầu sợi trục vỏ-tủy (gọi là nơ-ron vận động trên) tạo khớp thần kinh với các nơ-ron vận động (gọi là nơ-ron vận động dưới) ở sừng bụng của chất xám. Các sợi trục của nơ-ron dưới thoát ra khỏi tủy ... các sợi cơ. Điểm mà các đầu dây thần kinh kích hoạt sợi cơ để</p>
+<p>cột sống qua các khe hở giữa các đốt sống (xem tr.12) và kéo dài đến sừng bụng của chất xám. Các sợi trục của nơ-ron dưới thoát ra và đi đến các sợi cơ. Điểm mà các đầu dây thần kinh kích hoạt sợi cơ để</p>
+<h3>CÁNH TAY PHẢI</h3>
+<h3>CƠ</h3>
+<p>hoàn tất cử động được gọi là khớp thần kinh cơ.</p>
+<p>Cơ co lại và làm khớp cử động, khiến cánh tay gập lại.</p>
+<p>Khớp thần kinh cơ (N O I T C N U J R A L U C S U M O R U E N).</p>
+<h3>SỢI CƠ</h3>
+<p>Acetylcholine — chất dẫn truyền thần kinh.</p>
+<p><em>neurotransmitter</em> (chất dẫn truyền thần kinh) (xem tr.24). Acetylcholine</p>
+<p>gây ra các phản ứng tạo thành màng cơ. Điều này kích hoạt chất hóa học liên kết với các thụ thể trong tế bào cơ.</p>
+<p>nhiều hơn những cơ dùng cho cử động đơn giản. Các cử động tinh tế có nhiều đầu dây thần kinh hơn.</p>
+<p>Hướng của tín hiệu.</p>
+<h3>Từ Tủy Đến Cơ</h3>
+<p>co lại và kéo vào khớp ngay bên cạnh nó. Những cơ dùng cho cử động tinh tế điều khiển bộ phận của chi.</p>
+<h3>KHE KHỚP THẦN KINH</h3>
+<p>sợi cơ co lại.</p>
+<p>Tín hiệu thần kinh khiến cơ</p>
+<h3>SỢI TRỤC TẬN CÙNG</h3>
+<h3>Thực Hiện Cử Động</h3>
+<p>Thụ thể cho acetylcholine.</p>
+<h3>3</h3>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p100.jpeg" alt="Minh họa trang 100" loading="lazy"><figcaption>Trang 100</figcaption></figure>
+<h3>TẠI SAO MỆT MỎI LÀM CHẬM THỜI GIAN PHẢN ỨNG CỦA CHÚNG TA?</h3>
+<h3>Vận động</h3>
+<h3>Khi chúng ta mệt mỏi, các nơ-ron trong não hoạt động chậm lại, ảnh hưởng đến tri giác thị giác và trí nhớ của chúng ta. Điều này có nghĩa là chúng ta phản ứng với các sự kiện chậm hơn.</h3>
+<h3>Chúng ta thực hiện nhiều hành động tự nguyện mà không cần phải suy nghĩ về chúng vì chúng quá quen thuộc. Một loại vận động vô thức khác là phản xạ — một phản ứng bản năng trước nguy hiểm.</h3>
+<h3>Đường phản ứng</h3>
+<p>Thông tin thị giác rất quan trọng trong việc giúp chúng ta lập kế hoạch cho các cử động của mình. Thông tin từ vỏ não thị giác đi theo hai đường trong não (xem tr.70–71). Đường phía trên (hay đường lưng), dẫn đến thùy đỉnh, hướng dẫn các hành động của chúng ta theo thời gian thực. Trong khi đó, đường phía dưới (hay đường bụng), kết thúc ở thùy thái dương, kích hoạt những trải nghiệm thị giác đã được lưu trữ để giúp chúng ta giải thích những gì mình thấy và phản ứng cho phù hợp.</p>
+<h3>ĐƯỜNG TRÊN (LƯNG)</h3>
+<p>Các đường thị giác trong não Đường lưng mang thông tin về vị trí của cơ thể và các vật thể khác, trong khi đường bụng dùng tri giác và trí nhớ để nhận dạng vật thể. Não dùng thông tin này để đánh giá lực và hướng cần thiết cho một cử động.</p>
+<h3>ĐƯỜNG DƯỚI (BỤNG)</h3>
+<h3>VỎ NÃO THỊ GIÁC</h3>
+<p>Sự chú ý tập trung vào những gì người chơi có thể thấy, chẳng hạn như người chơi đối phương</p>
+<p>Cơ thể chuẩn bị sẵn sàng để phản ứng</p>
+<h3>Hành động phối hợp</h3>
+<p>Bất kỳ chuỗi hành động nào cũng đòi hỏi sự phối hợp giữa các bộ phận khác nhau của não — trước tiên là tập trung sự chú ý vào nhiệm vụ, sau đó tích hợp thông tin cảm giác và trí nhớ để tạo ra một kế hoạch, rồi huy động vùng vận động để hành động. Việc học một kỹ năng mới, chẳng hạn như lái xe hoặc chơi một môn thể thao, bao gồm việc học và luyện tập các chuỗi vận động để chúng trở nên gần như vô thức. Khi chúng ta học một kỹ năng, các tế bào não tạo ra những kết nối mới. Vào thời điểm chúng ta đã thành thạo một kỹ năng (xem ô bên phải), hoạt động vỏ não liên quan đến việc thực hiện nhiệm vụ đó ít hơn nhiều so với lúc chúng ta còn là người mới bắt đầu. Kết quả là, các hành động của một người lành nghề — chẳng hạn như một tay vợt chuyên nghiệp — nhanh hơn, chính xác hơn và tinh tế hơn.</p>
+<p>Đồi thị tập trung sự chú ý vào đối phương</p>
+<p>Thùy trán ức chế những ý nghĩ gây phân tán</p>
+<p>Putamen lưu trữ các hành động đã học, chẳng hạn như cách trả bóng</p>
+<h3>THÙY TRÁN</h3>
+<h3>VỎ NÃO THÙY ĐỈNH PUTAMEN</h3>
+<h3>ĐỒI THỊ</h3>
+<h3>Chú ý — Để chuẩn bị cho hành động,</h3>
+<h3>Trí nhớ — Các tín hiệu thị giác kích hoạt vỏ</h3>
+<h3>1</h3>
+<h3>2</h3>
+<p>đồi thị hướng sự chú ý đến khu vực nơi hoạt động sẽ diễn ra (chẳng hạn như người chơi đối phương), trong khi các thùy trán chặn những ý nghĩ gây phân tán để người chơi có thể tập trung vào các tín hiệu thị giác.</p>
+<p>não thùy đỉnh gọi lại các ký ức về chuỗi hành động từ putamen. Vỏ não thùy đỉnh dùng thông tin này để đánh giá bối cảnh và tạo ra một mô hình nội tại cho hành động.</p>
+<figure class="bookfig"><img src="img/p101.jpeg" alt="Minh họa trang 101" loading="lazy"><figcaption>Trang 101</figcaption></figure>
+<h3>CHỨC NĂNG NÃO VÀ CÁC GIÁC QUAN</h3>
+<h3>Phản xạ</h3>
+<p>Các nơ-ron trung gian bổ sung gửi tín hiệu đến não. Nơ-ron vận động gửi tín hiệu đến cơ để cơ co lại</p>
+<h3>CHÚ THÍCH</h3>
+<p>Phản xạ là những phản ứng trong tích tắc trước nguy hiểm mà chúng ta không cần học, thậm chí không cần suy nghĩ; cơ thể phản ứng tự động. Các hành động phản xạ dùng cùng những cơ được dùng trong vận động tự nguyện, nhưng phản ứng ban đầu, tức thì không liên quan đến não. Thay vào đó, tín hiệu từ các dây thần kinh cảm giác đi đến tủy sống, và tủy sống kích hoạt một phản ứng truyền dọc theo các dây thần kinh vận động. Các tín hiệu bổ sung được gửi đến não sau đó, để mã hóa trí nhớ phòng khi nguy hiểm lại tái diễn.</p>
+<p>Tín hiệu đến tủy sống</p>
+<p>Tín hiệu đến cơ</p>
+<p>Tín hiệu đến não</p>
+<h3>5</h3>
+<h3>TỦY SỐNG</h3>
+<h3>4</h3>
+<p>Các thụ thể trong da phát hiện nhiệt từ ngọn lửa</p>
+<h3>1</h3>
+<h3>3</h3>
+<h3>CƠ</h3>
+<h3>2</h3>
+<p>Các nơ-ron cảm giác gửi tín hiệu đến tủy sống</p>
+<p>Các nơ-ron trung gian trong tủy sống tạo ra phản ứng</p>
+<h3>KÍCH THÍCH</h3>
+<p>Bỏ qua não Phản xạ liên quan đến một phản ứng thần kinh đơn giản gọi là cung phản xạ. Các thụ thể trong da và cơ gửi tín hiệu nguy hiểm dọc theo các nơ-ron cảm giác đến tủy sống; ở đó, các nơ-ron trung gian tạo khớp thần kinh với các nơ-ron vận động để kích hoạt một phản ứng nhanh.</p>
+<h3>CÁC NƠ-RON VÀ ĐƯỜNG DẪN THẦN KINH CỦA CHÚNG TA THAY ĐỔI LIÊN TỤC ĐỂ ĐÁP ỨNG VỚI KINH NGHIỆM</h3>
+<h3>PHÁT TRIỂN NĂNG LỰC</h3>
+<p>Bất kỳ ai học một kỹ năng mới cũng trải qua vài giai đoạn. Người mới bắt đầu phải nỗ lực rất nhiều để đạt được năng lực. Nhờ luyện tập, các đường dẫn thần kinh phát triển cho đến khi người học có thể làm tốt mà không cần suy nghĩ về điều đó.</p>
+<p>Chuỗi vận động bắt đầu</p>
+<p>Quả bóng tiến về phía người chơi</p>
+<p>Vùng vận động chính lập kế hoạch và thực hiện cử động</p>
+<h3>Năng lực vô thức</h3>
+<p>Vùng vận động tiền lập kế hoạch cho cử động</p>
+<p>Thực hiện kỹ năng một cách tự động</p>
+<h3>VỎ NÃO VẬN ĐỘNG</h3>
+<h3>Năng lực có ý thức</h3>
+<p>Có thể dùng kỹ năng, nhưng chỉ khi nỗ lực</p>
+<h3>VỎ NÃO THỊ GIÁC</h3>
+<h3>Sự không thành thạo có ý thức</h3>
+<p>Nhận biết cần có kỹ năng nhưng còn thiếu sự thành thạo</p>
+<h3>Lập kế hoạch — Bộ não kết hợp thông tin thị giác theo thời gian thực</h3>
+<h3>Hành động có ý thức — Vào thời điểm người chơi bắt đầu</h3>
+<h3>3</h3>
+<h3>4</h3>
+<h3>Sự không thành thạo vô thức</h3>
+<p>cùng các chương trình đã lưu trữ cho các chuỗi vận động để tạo ra một kế hoạch hành động. Kế hoạch này trước tiên được diễn tập ở vùng vận động tiền, rồi được gửi đến vỏ não vận động chính.</p>
+<p>nhận ra mình đang hành động, chuỗi vận động đã tiến triển khá xa. Hành động rất có thể sẽ hiệu quả nếu người đó có đủ kỹ năng, kiến thức đã lưu trữ và thông tin.</p>
+<p>Không nhận biết cần có kỹ năng và cũng thiếu sự thành thạo</p>
+</div>
+<div class="dk-topic">
+<figure class="bookfig"><img src="img/p102.jpeg" alt="Minh họa trang 102" loading="lazy"><figcaption>Trang 102</figcaption></figure>
+<h3>Phản chiếu vận động</h3>
+<h3>Nơ-ron</h3>
+<p>Một số nhà khoa học cho rằng nơ-ron gương có thể đóng vai trò trong việc học cách bắt chước vận động. Theo giả thuyết này, thông tin về mục đích của một hành động được truyền đến các nơ-ron gương từ những vùng não như vỏ não tiền trán, vùng chịu trách nhiệm phân tích. Các nơ-ron gương ở nhiều vùng vận động sau đó mã hóa một mô phỏng của hành động đó, trở thành một phần trong chương trình vận động của chính chúng ta. Sau đó chúng ta có thể dùng “chương trình” này nếu cần tự mình thực hiện hành động ấy.</p>
+<h3>Việc học không chỉ bao gồm luyện tập một kỹ năng mới — chúng ta còn học bằng cách quan sát người khác. Kiểu học này được cho là liên quan đến các tế bào thần kinh trong não gọi là nơ-ron gương, cho phép chúng ta trải nghiệm các hành động mà không cần thực hiện chúng.</h3>
+<p>Quan sát một hành động Các nơ-ron gương phản ứng khác nhau với các hành động khác nhau của mặt và các chi. Đặc biệt, các nơ-ron ở những vùng não khác nhau được kích hoạt cho các cử động của chính cơ thể, chẳng hạn như nhai, và cho những cử động nhắm vào một vật thể nhìn thấy, chẳng hạn như cắn một quả trái cây.</p>
+<h3>Nơ-ron gương là gì?</h3>
+<p>Nơ-ron gương là các tế bào não bắn cả khi chúng ta thực hiện một hành động lẫn khi chúng ta thấy người khác thực hiện hành động đó. Chúng lần đầu được phát hiện ở khỉ, nhưng từ đó cũng đã được tìm thấy ở người. Hầu hết các nghiên cứu dùng chụp cộng hưởng từ chức năng (fMRI; xem tr.43), nhưng một nghiên cứu lại liên quan đến những người được cấy điện cực vào não. Trong trường hợp này, các tế bào nơ-ron gương được phát hiện ở vùng vận động bổ sung, nơi các chuỗi vận động được lập kế hoạch, cũng như ở hải mã, vùng quản lý trí nhớ và định hướng.</p>
+<p>Nhiều vùng vận động được kích hoạt, bao gồm cả những vùng liên quan đến kiểm soát các cử động của miệng và hàm</p>
+<h3>NGƯỜI QUAN SÁT</h3>
+<p>Ở đâu? Nơ-ron gương đã được tìm thấy ở một số vùng vỏ não cũng như trong các cấu trúc sâu hơn bên trong não, chẳng hạn như hải mã.</p>
+<p>Một phần thùy đỉnh được kích hoạt khi nhìn thấy hành động nhắm vào một vật thể</p>
+<h3>CHÚ THÍCH</h3>
+<p>Các phần của vùng vận động tiền và vùng Broca (vùng đóng vai trò trong việc hiểu cử động của người khác) được kích hoạt</p>
+<p>Vùng vận động tiền</p>
+<p>Vùng vận động chính</p>
+<p>Một phần của vùng Broca</p>
+<p>Vùng cảm giác cơ thể</p>
+<p>Vùng đỉnh dưới</p>
+<p>Hồi trán dưới</p>
+<p>Vùng vận động bổ sung</p>
+<h3>NGƯỜI QUAN SÁT</h3>
+</div></div>
+<nav class="chapter-nav"><a href="ch01.html">&#8592; Phần trước</a><a href="index.html">Mục lục</a><a href="ch03.html">Phần sau &#8594;</a></nav></div></body></html>
