@@ -61,7 +61,7 @@ body {
 .toc-nav li { margin-bottom: 4px; }
 .toc-nav a { display: block; padding: 8px 12px; color: var(--ink-muted); text-decoration: none; font-size: 0.92rem; border-radius: 6px; transition: all 0.15s; line-height: 1.4; }
 .toc-nav a:hover, .toc-nav a.active { color: var(--ink); background: var(--bg-card); font-weight: 600; border-left: 3px solid var(--gold); }
-.book-content { flex-grow: 1; max-width: 880px; margin: 0 auto; padding: 48px 32px 100px; }
+.book-content { flex-grow: 1; min-width: 0; width: 100%; box-sizing: border-box; max-width: 880px; margin: 0 auto; padding: 48px 32px 100px; overflow-wrap: break-word; }
 .book-hero { text-align: center; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
 .book-hero .badge { display: inline-block; background: var(--gold-light); color: var(--gold); font-weight: 600; font-size: 0.8rem; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
 .book-hero h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.2; margin-bottom: 12px; font-weight: 600; }
@@ -112,6 +112,8 @@ body.pdf-lock{overflow:hidden;}
 .figure-box.photo{max-width:460px;margin-left:auto;margin-right:auto;}
 .figure-box.photo img{max-height:none;}
 [data-theme="dark"] .figure-box img{background:#1c1c1f;}
+.otep-figure{margin:26px 0;max-width:100%;overflow:hidden;text-align:center;}
+.otep-figure img{display:block;max-width:100%;width:auto;height:auto;margin:0 auto;}
 <style>
 /* DAOIST_FULL_CSS */
 .chapter{margin:0 0 3.4rem;}
@@ -125,7 +127,6 @@ body.pdf-lock{overflow:hidden;}
 .table-wrap thead th{background:var(--bg-sidebar);font-weight:600;}
 [data-theme="dark"] .fig-cap{color:#a1a1aa;}
 </style>
-</style>
 </head>
 <body>
 
@@ -136,7 +137,7 @@ body.pdf-lock{overflow:hidden;}
   </a>
   <div class="header-controls">
     <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
-    <a href="/books/read/daoist-internal-alchemy-neigong-and-weigong-training/" class="btn-control lang-switch" title="Ban goc Tieng Anh (English Edition)"><i class="fa-solid fa-globe"></i> English</a>
+    <a href="/vi/books/read/daoist-internal-alchemy-neigong-and-weigong-training/" class="btn-control lang-switch" title="Ban goc Tieng Anh (English Edition)"><i class="fa-solid fa-globe"></i> English</a>
     <button class="btn-control" id="pdf-open" title="Doc truc tuyen trong trang"><i class="fa-solid fa-book-open-reader"></i> Đọc</button>
     <a href="https://raw.githubusercontent.com/taichikb/taichinow-media/main/assets/books/pdfs/daoist-internal-alchemy-neigong-and-weigong-training.pdf" class="btn-control" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
     <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
@@ -322,7 +323,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Mục tiêu chính yếu của người đệ tử Đạo Giáo là giữ cho năng lượng của thân thể mình luôn lưu chuyển nhất quán và hòa hợp với phần còn lại của tự nhiên. Sau khi đạt được một mức độ kỹ năng và tỉnh thức nhất định, đệ tử học cách hòa hợp thân thể mình với các cảm xúc, rồi với tâm, và sau cùng là với Nguyên Thần (Yuan Shen, Original Spirit). Một khi đệ tử đạt được giai đoạn hòa hợp này, người ấy cuối cùng có thể "Đi vào không gian vô hạn của vô cực (Wuji)" và hòa nhập vào Đạo vĩnh hằng.</p>
 
-  <p class="fig-cap"><strong>Hình 1.2.</strong> Dùng khí (Qi) để kéo ngọn lửa của một cây nến.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-2.png" alt="Hình 1.2" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.2.</strong> Dùng khí (Qi) để kéo ngọn lửa của một cây nến.</p>
 
   <p>Lần đầu tiên tôi tiếp xúc với giả kim thuật huyền môn Đạo Giáo và những kỹ thuật năng lượng bí mật của sự huấn luyện nội công (Neigong) Trung Hoa là đến từ vị sư phụ Công Phu (Gongfu) đầu tiên của tôi. Tôi đã đến nhà ông rất sớm vào một buổi sáng để luyện tập Bắc Thiếu Lâm (Northern Shaolin), và tình cờ bắt gặp một sự việc gây sửng sốt, mãi mãi thay đổi đời tôi.</p>
 
@@ -396,7 +398,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Đạo Đệ Tử (Dao Dizi, Đệ tử Đạo Giáo) — Nguyệt Quang (Yue Guang, Ánh Sáng Mặt Trăng)</strong>, Thành Tựu.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.3.</strong> Ba nhánh chính của Giả Kim Thuật Đạo Giáo: Ngoại Đan (Ma Thuật Cấp Thấp), Nội Đan (Ma Thuật Trung Cấp) và Giả Kim Thuật Bí Truyền (Ma Thuật Cao Cấp), tương ứng với ba mức chứng đắc Nguyệt Quang, Nhật Quang và Linh Quang.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-3.svg" alt="Hình 1.3" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.3.</strong> Ba nhánh chính của Giả Kim Thuật Đạo Giáo: Ngoại Đan (Ma Thuật Cấp Thấp), Nội Đan (Ma Thuật Trung Cấp) và Giả Kim Thuật Bí Truyền (Ma Thuật Cao Cấp), tương ứng với ba mức chứng đắc Nguyệt Quang, Nhật Quang và Linh Quang.</p>
 
   <p>Trong giả kim thuật huyền môn Đạo Giáo, các giai đoạn khác nhau của sự phát triển ma thuật theo truyền thống được chia thành ba cấp độ thành tựu, được biết đến là Nguyệt Quang (Yue Guang), Nhật Quang (Ri Guang) và Linh Quang (Ling Guang), được mô tả như sau:</p>
 
@@ -521,7 +524,7 @@ body.pdf-lock{overflow:hidden;}
     </li>
   </ul>
 
-  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-8.png" alt="Hình 1.8" loading="lazy" decoding="async"></figure>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-8.svg" alt="Hình 1.8" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.8.</strong> Nghiên cứu Ma Thuật Cao Cấp bao gồm sự huấn luyện về việc Tương Tác Với Các Thực Thể Tinh Linh (Interacting with Spirit Entities), từ bùa chú, chiêm tinh cho đến tu tập trường sinh.</p>
 
   <p>Cấp độ thứ ba của ma thuật Đạo Giáo tập trung vào việc thấu hiểu các Định Luật Phổ Quát của Vũ Trụ, và cách chúng tương tác và tác động lên các vị thần linh đa dạng, những đấng ảnh hưởng và kiểm soát những quyền năng năng lượng đặc thù của Trời, Đất và Người. Khi được giới thiệu vào việc nghiên cứu cấp độ này của Ma Thuật Đạo Giáo, đệ tử phải tiến triển qua nhiều giai đoạn của sự huấn luyện Nội Công Cao Cấp, Khí Công và Thần Công. Mỗi phương pháp huấn luyện đều được dùng để thiết lập một sự kết nối sâu xa hơn với các quyền năng thiên thể đa dạng. Sự kết nối quan trọng này là cần thiết để có thể thỉnh cầu sự trợ giúp của thần linh trong việc chuyển hóa cốt lõi bản thể của đệ tử.</p>
@@ -669,7 +672,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Cõi Thần Thánh:</strong> Đây là biểu đạt rung động của năng lượng cao nhất từng được biết đến. Khi nó bao trùm và trở nên hoạt động bên trong cơ thể con người, nó tiếp tục gia tăng và nhân lên tiềm năng năng lượng của cơ thể, cho phép nhân loại đạt được Ý Thức Thiêng Liêng.</li>
   </ol>
 
-  <p class="fig-cap"><strong>Hình 1.18.</strong> Cõi Khoáng Vật.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-18.png" alt="Hình 1.18" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.18.</strong> Cõi Khoáng Vật.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-19.png" alt="Hình 1.19" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.19.</strong> Cõi Thực Vật.</p>
@@ -883,7 +887,7 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Để ổn định Khí:</strong> Thực hành Tu Khí vào lúc nửa đêm (giờ Tý / Zi) và/hoặc lúc giữa trưa (giờ Ngọ / Wu).</li>
   </ul>
 
-  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-34.png" alt="Hình 1.34" loading="lazy" decoding="async"></figure>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-34.svg" alt="Hình 1.34" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.34.</strong> Năng lượng của Âm và Dương sinh ra Bốn Giai Đoạn của Năng Lượng Vũ Trụ.</p>
 
   <p>Dưới đây là lời giải thích vắn tắt về bốn thời đoạn chính yếu tương ứng với Bốn Giai Đoạn:</p>
@@ -893,7 +897,7 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Thời đoạn Mão (Can – Mộc):</strong> Thời đoạn Mão là lúc Mặt Trời mọc (từ 5:00 sáng đến 7:00 sáng), và tương ứng với năng lượng cốt lõi của Đởm (túi mật). Khi Mặt Trời mọc (6:00 sáng), nó sưởi ấm không khí ở hướng Đông, làm nhiệt độ gia tăng. Đây được xem là thời đoạn của năng lượng tiến triển tự nhiên của Tiểu Dương (Shao Yang / Lesser Yang). Trong thời gian này, năng lượng dương của Can ở trong trạng thái hài hòa trọn vẹn, và thân thể liên tục kết hợp và tích lũy năng lượng bên trong Đởm. Trong thời khắc Mặt Trời mọc, dương khí của thân thể ở trong trạng thái khuếch trương. Vì thế, thực hành các thiền pháp và bài tập Tu Khí trong thời đoạn này sẽ hỗ trợ sự tăng trưởng mạnh mẽ của dương.</li>
   </ol>
 
-  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-35.png" alt="Hình 1.35" loading="lazy" decoding="async"></figure>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-35.svg" alt="Hình 1.35" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.35.</strong> Hình tướng năng lượng luôn biến đổi của Bốn Giai Đoạn.</p>
 
   <ol start="3">
@@ -1838,7 +1842,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Điều hòa bằng tâm thức:</strong> Chức năng của năng lượng được hướng dẫn bởi ý hướng của Tâm. Nói chung, nhiều hình ảnh, tư tưởng và ý hướng khác nhau dẫn khí ra vào cơ thể một cách đều đặn và cân bằng được dùng để điều hòa trường năng lượng của cơ thể.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.84.</strong> Điều hòa (Tiao Jie): "điều chỉnh, cân bằng hay điều hòa" — chữ Tiao (điều chỉnh, pha trộn) và chữ Jie (khớp nối, nút thắt).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-84.png" alt="Hình 1.84" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.84.</strong> Điều hòa (Tiao Jie): "điều chỉnh, cân bằng hay điều hòa" — chữ Tiao (điều chỉnh, pha trộn) và chữ Jie (khớp nối, nút thắt).</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-85.png" alt="Hình 1.85" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.85.</strong> Những đệ tử của ma thuật Đạo gia tập trung phát triển năng lực siêu nhiên là tan biến vào không gian vô tận của vô cực (Wuji), và tái kết nối với Lực Sáng Tạo Nguyên Thủy của Đạo.</p>
@@ -1974,7 +1979,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>#1 Giữ Gìn Và Bảo Vệ Thần (Keeping and Protecting the Shen):</strong> Chỉ sau khi điều tiết được các tình cảm của Tâm và các ý niệm của Ý, thần mới có thể được trông nom, hướng dẫn, nuôi dưỡng và giữ tại nơi cư ngụ của nó. Điều này đạt được bằng cách dùng trí tưởng tượng và ý niệm của thức tâm (conscious mind) để hướng dẫn, nuôi dưỡng và giám sát thần. Điều này có thể được thực hiện với sự trợ giúp và hỗ trợ của những lời khẳng định tích cực (positive affirmations), được dùng để làm vững các tình cảm.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.90.</strong> Giai đoạn "An Trụ Và Tăng Cường Thần" (Housing and Strengthening the Shen) được chia thành bốn bước chính.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-90.png" alt="Hình 1.90" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.90.</strong> Giai đoạn "An Trụ Và Tăng Cường Thần" (Housing and Strengthening the Shen) được chia thành bốn bước chính.</p>
 
   <ul>
     <li><strong>#2 Củng Cố Thần (Solidifying the Shen):</strong> Một khi thần được tự nguyện giữ tại nơi cư ngụ của nó, nó có thể được củng cố và hình thành. Điều này đạt được bằng cách điều tiết mọi tư tưởng và tình cảm. Một khi mọi tư tưởng và tình cảm đã được điều tiết, tâm sẽ trở nên vững chãi và tĩnh lặng.</li>
@@ -2328,7 +2334,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Những nhà Nội Đan xem Tam Đan Điền (Three Dantians) như những lò nấu kim loại đặc biệt bên trong hay những vạc ma thuật, và sử dụng mỗi cái trong vai trò cụ thể là thu thập và biến hóa các chất sinh mệnh, các năng lượng, cùng nhiều phương diện khác nhau của sự nhận biết tâm linh (Hình 1.103).</p>
 
-  <p class="fig-cap"><strong>Hình 1.103.</strong> Tam Đan Điền và mối liên hệ của chúng với sự biến hóa của tinh, khí và thần.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-103.png" alt="Hình 1.103" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.103.</strong> Tam Đan Điền và mối liên hệ của chúng với sự biến hóa của tinh, khí và thần.</p>
 
   <p>Tất cả các phương pháp và công thức nội tại được dùng trong Giả Kim Thuật Nội Đan Đạo Giáo đều liên quan đến việc thu thập, thanh lọc, nuôi dưỡng, hòa trộn, biến hóa và hấp thu những tổ hợp cụ thể của tinh, khí và thần của cơ thể. Nhiều lần, những nhà Nội Đan giữ kín công trình nguyên thủy của mình trước công chúng bằng cách dùng những "mật ngữ" (code words) bí mật. Nhiều kim loại và khoáng vật tự nhiên như vàng, chì và chu sa thường được dùng để mô tả những biến hóa tâm linh đặc biệt đang xảy ra bên trong các chất năng lượng khác nhau của cơ thể.</p>
 
@@ -2670,7 +2677,8 @@ body.pdf-lock{overflow:hidden;}
     Một công thức trường thọ phổ biến của Đạo giáo được làm từ rượu kê thượng hạng, được điểm thêm tinh chất của vừng đen và nấm khô.</li>
     <li><strong>Tiêu (Pepper):</strong> Loại thảo dược này được dùng để gia tăng khí (Qi). Theo các giáo lý xưa, chừng nào bạn còn ăn tiêu, thì không có một con quỷ, một tà thuật hay một chất độc nào mà bạn không thể chặn đứng được về mặt năng lượng ngay tại chỗ.
 
-    <p class="fig-cap"><strong>Hình 1.116.</strong> Tiêu.</p>
+    <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-116.png" alt="Hình 1.116" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.116.</strong> Tiêu.</p>
     </li>
     <li><strong>Gừng (Ginger):</strong> Loại thảo dược này được dùng để gia tăng khí (Qi). Cây gừng thường mọc ở những vùng có khí dương (Yang Qi) mạnh, và được nói là chứa năng lực mãnh liệt của hành tinh Hỏa tinh (Mars). Vì vậy nó tạo ra sự ấm áp bên trong cơ thể, đẩy lùi thấp khí và tán hàn. Nó cũng cắt ngắn mọi bệnh tật, và theo truyền thống được dùng để đóng chặt Quỷ Môn (Ghost Gates) của cơ thể.
 
@@ -2679,7 +2687,8 @@ body.pdf-lock{overflow:hidden;}
     </li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.118.</strong> Rễ xương bồ (Calamus Root).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-118.png" alt="Hình 1.118" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.118.</strong> Rễ xương bồ (Calamus Root).</p>
 </section>
 
 <section id="daoist-10" class="chapter">
@@ -2762,11 +2771,14 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-120.png" alt="Hình 1.120" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.120.</strong> Tùng Quấn (Curly Cedar).</p>
 
-  <p class="fig-cap"><strong>Hình 1.121.</strong> Trạch Tả (Water Plantain).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-121.png" alt="Hình 1.121" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.121.</strong> Trạch Tả (Water Plantain).</p>
 
-  <p class="fig-cap"><strong>Hình 1.122.</strong> Rau Dền Lợn (Pigweed).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-122.png" alt="Hình 1.122" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.122.</strong> Rau Dền Lợn (Pigweed).</p>
 
-  <p class="fig-cap"><strong>Hình 1.123.</strong> Vân Mẫu (Mica).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-123.png" alt="Hình 1.123" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.123.</strong> Vân Mẫu (Mica).</p>
 
   <p>Một khi đã bắt đầu chế độ ăn này, trong tháng đầu của đợt tuyệt thực Bigu (Bigu Fasting) sẽ có một ít sụt cân ban đầu. Tuy nhiên, khi cơ thể bắt đầu ổn định và tự điều chỉnh theo chế độ ăn mới, sau tháng thứ hai sẽ thấy có một ít tăng cân trở lại. Mặc dù không ăn thức ăn gì, sức khỏe của đệ tử sẽ bắt đầu cải thiện một cách rõ rệt. Thính giác, thị giác và sức bền của người ấy đều sẽ tăng lên nhờ tuân thủ phương pháp tu luyện bí truyền này.</p>
 
@@ -2790,7 +2802,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Phục Linh (Fu-Ling, Poria cocos):</strong> Đây là một loại nấm thường mọc trên thân cây thông. Theo giáo lý Đạo giáo cổ, sau khi nhựa thông rơi xuống đất và nằm lại ở đó một nghìn năm, người ta tin rằng nó đã biến thành nấm Phục Linh. Về mặt y học, Phục Linh ngày nay vẫn được dùng để kiện tỳ, điều hòa trung tiêu, làm tĩnh tâm và an thần.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.125.</strong> Gạo không dính (Non-Glutinous Rice).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-125.png" alt="Hình 1.125" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.125.</strong> Gạo không dính (Non-Glutinous Rice).</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-126.png" alt="Hình 1.126" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.126.</strong> Nam Chúc (Nanzhu - Vaccinium Bracteatum).</p>
@@ -3199,7 +3212,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Bây giờ hãy đặt lưỡi của bạn vào vị trí Hoa Mai Sớm, và hít làn sương xanh rực rỡ vào cơ thể qua đường mũi.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.145.</strong> Để thu thập chồi xanh phương Đông, hãy chạm các ngón tay cái vào các ngón tay thứ nhất (ngón trỏ), rồi hít làn sương xanh vào cơ thể.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-145.png" alt="Hình 1.145" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.145.</strong> Để thu thập chồi xanh phương Đông, hãy chạm các ngón tay cái vào các ngón tay thứ nhất (ngón trỏ), rồi hít làn sương xanh vào cơ thể.</p>
 
   <ul>
     <li>Sau khi hít vào, hãy nín thở, và bắt đầu dùng lưỡi cọ xát lên bề mặt mặt ngoài của răng hàm trên.</li>
@@ -3241,7 +3255,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Làn sương vàng kim của mầm linh diệu này tụ lại tại một vùng đặc biệt được gọi là nước bọt "Nguồn Đan" (Source of Elixir) - đôi khi còn được gọi là nước bọt "Suối Ngọt" (Sweet Spring) - nằm bên trong vòm của khoang miệng (vòm khẩu cái trên), ở phía sau cuống họng, khoảng giữa các răng hàm trên (Hình 1.148).</p>
 
-  <p class="fig-cap"><strong>Hình 1.148.</strong> Để tu dưỡng nước bọt Nguồn Đan, hãy đặt lưỡi lên phía sau vòm khẩu cái trên.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-148.png" alt="Hình 1.148" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.148.</strong> Để tu dưỡng nước bọt Nguồn Đan, hãy đặt lưỡi lên phía sau vòm khẩu cái trên.</p>
 
   <ul>
     <li>Bắt đầu bằng cách hướng thân, tâm và thần của bạn về phía vì sao Bắc Thần trên cõi trời (Celestial Pole Star), và từ bên trong tưởng tượng rằng bạn đang đối diện với phương của trung tâm của Trời, Đất, Không Gian và Thời Gian.</li>
@@ -3305,7 +3320,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Bây giờ hãy đặt lưỡi của bạn vào vị trí Ngọc Tương, và hít làn sương đen rực rỡ vào cơ thể qua đường mũi.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.153.</strong> Để thu thập châu báu huyền bí phương Bắc, hãy chạm các ngón tay cái vào các ngón tay thứ tư (ngón út), rồi hít làn sương đen vào cơ thể.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-153.png" alt="Hình 1.153" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.153.</strong> Để thu thập châu báu huyền bí phương Bắc, hãy chạm các ngón tay cái vào các ngón tay thứ tư (ngón út), rồi hít làn sương đen vào cơ thể.</p>
 
   <ul>
     <li>Sau khi hít vào, hãy nín thở, và bắt đầu dùng lưỡi cọ xát lên bề mặt bên dưới lưỡi của bạn.</li>
@@ -3404,7 +3420,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Rồi sau vài phút, dẫn và hướng sự vận động năng lượng ra-vào đi lên trên, và dời chỗ xuất phát của nó đến vùng Bách Hội (Baihui) (3), nằm ở đỉnh đầu của bạn (Hình 1.156).</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.156.</strong> Dẫn hô hấp năng lượng chuyển từ Mũi, qua Thiên Nhãn, đến vùng Bách Hội.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-156.png" alt="Hình 1.156" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.156.</strong> Dẫn hô hấp năng lượng chuyển từ Mũi, qua Thiên Nhãn, đến vùng Bách Hội.</p>
 
   <p>Bạn có thể cố ý hướng khí (Qi) đang chảy vào thân thể từ vùng Bách Hội, tiến tới bất kỳ vùng nào bị tắc nghẽn bên trong thân thể mình. Kỹ thuật này theo truyền thống được dùng để tẩy sạch bất kỳ khí (Qi) tiêu cực nào có thể đã tích tụ bên trong các mô của bạn.</p>
 
@@ -3421,7 +3438,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Mọi mô thức hô hấp đều liên hệ trực tiếp với ý nghĩ và cảm xúc của một cá nhân. Bất kỳ sự xê dịch nào ở phía này cũng sẽ ảnh hưởng đến phía kia. Mỗi cảm xúc hậu thiên (Postnatal) đã nhiễm được đều gắn với một mô thức hơi thở riêng biệt, được mô tả như sau (Hình 1.157):</p>
 
-  <p class="fig-cap"><strong>Hình 1.157.</strong> Năm Mô Thức Hơi Thở Ngũ Hành (Five Element Breathing Patterns).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-157.png" alt="Hình 1.157" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.157.</strong> Năm Mô Thức Hơi Thở Ngũ Hành (Five Element Breathing Patterns).</p>
 
   <ul>
     <li><strong>Gan – Phẫn nộ:</strong> mô thức hô hấp của một người đang giận sẽ nông, với sự nhấn mạnh mạnh hơn vào việc thở ra. Điều này làm cho khí (Qi) đi lên.</li>
@@ -3507,7 +3525,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Hít vào bằng Mũi:</strong> hầu hết mọi bài tập Hơi Thở Đạo Giáo đều đòi hỏi đệ tử hít vào qua mũi, và làm đầy Phổi đến mức tối đa. Khi thực hành Hơi Thở Tự Nhiên, tác động đặc biệt này cho phép các mô thức hít vào và thở ra của cơ hoành hô hấp đẩy xuống và làm giãn vùng dạ dày, cho phép nhiều khí (Qi) hơn lấp đầy Phổi (Hình 1.161).</li>
   </ol>
 
-  <p class="fig-cap"><strong>Hình 1.161.</strong> Các Mô Thức Hít Vào và Thở Ra.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-161.png" alt="Hình 1.161" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.161.</strong> Các Mô Thức Hít Vào và Thở Ra.</p>
 
   <ol start="3">
     <li><strong>Gia Tăng Dần Mô Thức Hô Hấp:</strong> khi thực hành các mô thức hô hấp Đạo giáo, khi đệ tử học cách thư giãn vào trong các mô thức hơi thở, người ấy được khuyến khích từ từ kéo dài và làm sâu thêm các hơi hít vào và thở ra của mình.</li>
@@ -3818,7 +3837,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Trong thuật luyện đan Đạo gia, việc tu luyện và chuyển hóa tinh, khí, thần của thân thể sinh ra điều mà Trung Hoa cổ mô tả là "Ba Điều Diệu Kỳ" (Three Wonders). Ba Điều Diệu Kỳ (Diệu Kỳ Vi Tế – Subtle Wonders, Diệu Kỳ Huyền Bí – Mysterious Wonders, và Diệu Kỳ Bất Khả Tư Nghì – Incredible Wonders) bao gồm ba phạm trù riêng biệt của các cảm giác hay biểu hiện năng lượng mà đệ tử sẽ trải nghiệm khi hành trì các phép quán cao cấp. Ba Điều Diệu Kỳ được mô tả như sau (Hình 1.174):</p>
 
-  <p class="fig-cap"><strong>Hình 1.174.</strong> Ba Điều Diệu Kỳ (The Three Wonders)</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-174.png" alt="Hình 1.174" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.174.</strong> Ba Điều Diệu Kỳ (The Three Wonders)</p>
 
   <ul>
     <li><strong>Kích thích Thân Xác (cảm giác của tinh và khí) – Các Diệu Kỳ Vi Tế:</strong> các cảm giác trương nở hay co lại; nặng hay nhẹ bẫng; lạnh hay nóng; tê rần hay rung động.</li>
@@ -4179,7 +4199,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p><strong>Hít vào:</strong> Bắt đầu với Phần 1, nằm ở mặt trước của cơ thể, người môn đồ sẽ bắt đầu…</p>
 
-  <p class="fig-cap"><strong>Hình 1.192.</strong> Tám phần của cơ thể tương ứng với các quyền năng thần diệu của Bát Quái Hậu Thiên.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-192.png" alt="Hình 1.192" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.192.</strong> Tám phần của cơ thể tương ứng với các quyền năng thần diệu của Bát Quái Hậu Thiên.</p>
 </section>
 
 <section id="daoist-15" class="chapter">
@@ -4202,7 +4223,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Điều quan trọng là năng lượng phải quấn đới mạch hai lần trước khi cắm rễ vào Hạ Đan Điền qua cửa ngõ của thần khuyết (Hình 1.193).</p>
 
-  <p class="fig-cap"><strong>Hình 1.193.</strong> Khi thở ra, khí đã thu gom từ đáy chậu dưới chảy vào mệnh môn. Sau đó nó quấn quanh eo theo lộ trình trung tâm của đới mạch hai lần, trước khi được cắm rễ vào Hạ Đan Điền bằng đường qua thần khuyết (rốn).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-193.png" alt="Hình 1.193" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.193.</strong> Khi thở ra, khí đã thu gom từ đáy chậu dưới chảy vào mệnh môn. Sau đó nó quấn quanh eo theo lộ trình trung tâm của đới mạch hai lần, trước khi được cắm rễ vào Hạ Đan Điền bằng đường qua thần khuyết (rốn).</p>
 
   <p>Người đệ tử sẽ kết thúc thiền quán bằng cách kéo khí đã thu gom vào rốn của mình và rót năng lượng vào trung tâm của Hạ Đan Điền.</p>
 
@@ -4216,7 +4238,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Sự dung hợp năng lượng này được thực hiện bằng cách xoắn ốc khí của Đất vào thân thể xuyên qua Ngũ Môn của Cửa Âm Địa (Five Portals of the Earthly Yin Gate), nằm tại cơ vòng hậu môn (Hình 1.194), và kết nối nó với khí của Trời xoắn ốc đi vào thân thể qua Ngũ Môn của Thiên Môn (Five Portals of the Heavenly Gate), nằm ở đỉnh đầu (Hình 1.195). Sự dung hợp năng lượng đặc biệt này cho phép các dạng năng lực khác nhau của hồn (Hun, linh hồn thanh nhẹ thuộc dương) nơi thân thể hài hòa với các năng lực của phách (Po, linh hồn vật chất thuộc âm) nơi thân thể, cho phép một sự quân bình năng lượng sâu xa hình thành bên trong Tam Thân (Three Bodies) của người đệ tử.</p>
 
-  <p class="fig-cap"><strong>Hình 1.194.</strong> Ngũ Môn của Cửa Âm Địa được coi là Cửa của Phách. Năng lượng môi trường của Đất được hấp thu vào Thái Cực Trụ (Taiji Pole) qua Ngũ Môn của Cửa Âm Địa, nằm ở trung tâm cơ vòng hậu môn, giữa vùng hội âm (Huiyin, "Nơi Gặp Gỡ của Âm") và trường cường (Changqiang, "Sức Mạnh Trường Cửu"), tại nền của đáy chậu.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-194.png" alt="Hình 1.194" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.194.</strong> Ngũ Môn của Cửa Âm Địa được coi là Cửa của Phách. Năng lượng môi trường của Đất được hấp thu vào Thái Cực Trụ (Taiji Pole) qua Ngũ Môn của Cửa Âm Địa, nằm ở trung tâm cơ vòng hậu môn, giữa vùng hội âm (Huiyin, "Nơi Gặp Gỡ của Âm") và trường cường (Changqiang, "Sức Mạnh Trường Cửu"), tại nền của đáy chậu.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-195.png" alt="Hình 1.195" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.195.</strong> Ngũ Môn của Cửa Dương Thiên được coi là Cửa của Hồn. Năng lượng của cõi trời được hấp thu vào Thái Cực Trụ qua Ngũ Môn của Cửa Dương Thiên, nằm ở trung tâm vùng bách hội (Baihui, "Trăm Cuộc Gặp Gỡ") và tứ thần thông (Sishencong, "Bốn Thần Tỉnh Thức") tại đỉnh đầu.</p>
@@ -4258,7 +4281,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Phụ nữ:</strong> Với phụ nữ, vùng nội mạc này của thân thể cũng sẽ tác động tới âm đạo, tử cung, tĩnh mạch chủ và động mạch chủ. Nó cũng tác động tới cùng các nội tạng và các cửa nội tại khác nhau như ở nam giới (Hình 1.198).</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.198.</strong> Hành Hỏa: Phía Trước.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-198.png" alt="Hình 1.198" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.198.</strong> Hành Hỏa: Phía Trước.</p>
 
   <ul>
     <li><strong>2. Hành Thổ (Earth Element):</strong> Bằng cách co thắt và nhấc vùng giữa của hậu môn, nhiều khí hơn được kéo vào các mạch xung (Thrusting Vessels), Tam Đan Điền và Thái Cực Trụ (đối với cả nam và nữ), và tác động tới các cơ quan sinh sản, động mạch chủ, tĩnh mạch chủ, dạ dày, tim, tuyến giáp, tuyến cận giáp, miệng, lưỡi, tuyến yên, tuyến tùng và vùng bách hội (Hình 1.199).</li>
@@ -4286,7 +4310,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-201.png" alt="Hình 1.201" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.201.</strong> Hành Mộc: Phía Bên Trái.</p>
 
-  <p class="fig-cap"><strong>Hình 1.202.</strong> Hành Mộc: Phía Bên Trái.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-202.png" alt="Hình 1.202" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.202.</strong> Hành Mộc: Phía Bên Trái.</p>
 
   <ul>
     <li><strong>5. Hành Kim (Metal Element):</strong> Bằng cách co thắt phía bên phải của hậu môn, khí được nối kết với phía bên phải của thân thể.
@@ -4320,7 +4345,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Hướng về phía trước:</strong> Khi di chuyển cấu trúc thân thể, hãy bảo đảm rằng eo và hông hướng về phía trước, cùng hướng với đầu gối và bàn chân. Mũi, rốn và các ngón chân đều phải giữ thẳng hàng với nhau.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.205.</strong> Bằng cách buông lỏng và làm chìm eo, hông được phép hạ xuống và cắm rễ khí của thân thể. Sử dụng ý (Ý Niệm) và chí (Ý Chí) để làm khí chìm vào Hạ Đan Điền cho phép nguyên thần (Thần Nguyên Sơ) ở Trung Đan Điền nhận biết và cảm nhận năng lượng.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-205.png" alt="Hình 1.205" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.205.</strong> Bằng cách buông lỏng và làm chìm eo, hông được phép hạ xuống và cắm rễ khí của thân thể. Sử dụng ý (Ý Niệm) và chí (Ý Chí) để làm khí chìm vào Hạ Đan Điền cho phép nguyên thần (Thần Nguyên Sơ) ở Trung Đan Điền nhận biết và cảm nhận năng lượng.</p>
 
   <div class="callout"><p><strong>Buông lỏng eo là mở khóa vùng chậu.</strong> Khi eo chìm và mông thu vén, những túi nhỏ xuất hiện ở mặt trong đùi; nới lỏng vùng này thường giải phóng các cảm xúc bị kìm nén lâu nay, nên hãy tiến hành từ từ, không ép buộc.</p></div>
 
@@ -4390,7 +4416,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Trong suốt quá trình huấn luyện Cái Hộp, điều cũng quan trọng là người đệ tử phải thu vén hông vào dưới; đóng cơ vòng hậu môn lại, hít vào, và làm đầy bụng của mình bằng khí. Rồi, khi di chuyển, người đệ tử phải nỗ lực giữ cho Hạ Đan Điền và bụng của mình luôn đầy và giãn nở, ngay cả khi anh ta đang thở ra.</p>
 
-  <p class="fig-cap"><strong>Hình 1.211.</strong> Cấp độ thứ hai của sự huấn luyện phát triển "Sự Phóng Năng Lượng Bộc Phát" (Explosive Energy Discharge).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-211.png" alt="Hình 1.211" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.211.</strong> Cấp độ thứ hai của sự huấn luyện phát triển "Sự Phóng Năng Lượng Bộc Phát" (Explosive Energy Discharge).</p>
 
   <ul>
     <li><strong>Cấu trúc của "Chữ X":</strong> Loại cấu trúc nội tại thứ hai này tương ứng với sự "Phóng Điện Năng Lượng" (Energetic Discharging), và được dùng trong mọi dạng phát khí (Fa Qi, Sự Phóng Năng Lượng Bộc Phát), cũng như trong các loại huấn luyện Võ Nội Công của Đạo giáo là "Chưởng Nghiền Nát" (Crushing Palm) và "Thiết Chưởng" (Iron Palm) (Hình 1.211).</li>
@@ -4447,7 +4474,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Để giúp Tâm cảm nhận được trọng lượng của thân thể chìm vào Đất và các xương được chồng xếp và sắp thẳng hàng với lực của trọng lực, điều quan trọng là bạn phải giữ cho lưng mình thẳng, đầu gối khuỵu, ngực buông lỏng và đan điền (Dantian) đầy. Cột sống cũng nên được giữ vững chắc và ổn định như một ngọn Núi, với toàn bộ thân thể được buông lỏng. Theo truyền thống, người ta dạy rằng để giữ cho lưng thẳng và ở trong sự sắp xếp cấu trúc đúng đắn, bạn cũng phải sắp thẳng hàng phần sau của đầu, lưng, mông và gót chân, giữ cho chúng nằm trên một đường thẳng. Đồng thời, mũi, rốn và các ngón chân ở phía trước thân thể cũng nên được giữ trên một đường thẳng (Hình 1.215).</p>
 
-  <p class="fig-cap"><strong>Hình 1.215.</strong> Sự sắp xếp thân thể đúng đắn.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-215.png" alt="Hình 1.215" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.215.</strong> Sự sắp xếp thân thể đúng đắn.</p>
 
   <p>Chìa khóa để tiếp cận nội lực là biết cách và biết khi nào phải kéo giãn cột sống. Bởi vì năng lượng đọng lại tại và xung quanh xương cùng, phía sau đầu gối, và phía sau gót chân, vì vậy điều quan trọng là phải chú ý cẩn thận tới ba vùng này khi thiết lập sự sắp xếp xương đúng đắn. Buông lỏng đầu gối cho phép năng lượng di chuyển trơn tru qua hai chân mà không bị cản trở. Năng lượng sau đó có thể chảy thẳng xuống qua hông, đầu gối, gót chân và bàn chân mà không gây ảnh hưởng bất lợi cho cấu trúc vật lý của thân thể.</p>
 
@@ -4903,7 +4931,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Sau khi thu gom, xoay vòng và giữ Lực Sinh Thành (Generative Force) bên trong Hạ Đan Điền, đệ tử sẽ xoay cả hai mắt từ trái sang phải 36 lần để thúc đẩy sự thăng lên của Dương Hỏa dọc theo cột sống vào trong não (xem Hình 1.242). Kỹ thuật đặc biệt này được thực hiện như sau:</p>
 
-  <p class="fig-cap"><strong>Hình 1.242.</strong> "Thu gom Nội Tác Nhân Luyện Đan thuộc Dương" (Gathering the Inner Yang Alchemical Agent). Nhắm mắt lại và xoay chúng xuống dưới, sang trái, lên trên và sang phải – 36 lần – (Chu kỳ của Mặt Trời).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-242.png" alt="Hình 1.242" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.242.</strong> "Thu gom Nội Tác Nhân Luyện Đan thuộc Dương" (Gathering the Inner Yang Alchemical Agent). Nhắm mắt lại và xoay chúng xuống dưới, sang trái, lên trên và sang phải – 36 lần – (Chu kỳ của Mặt Trời).</p>
 
   <ul>
     <li>Trước hết, với cả hai mí mắt nhắm lại, hít vào và nhìn xuống dưới vào Hạ Đan Điền.</li>
@@ -4933,7 +4962,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Một khi năng lượng sinh lực (life-force energy) được chứa đựng bên trong Hạ Đan Điền đã được kích thích một cách đầy đủ, nó sau đó sẽ được củng cố bởi năng lượng tinh tế của Thiên Nhãn (Celestial Eye) (tức là Con Mắt Thứ Ba – Third Eye). Con mắt tâm linh đặc biệt này, nằm hơi nhỉnh lên phía trên gốc lông mày, nhận lấy sự rạng rỡ siêu nhiên của nó từ chính bản tính thiêng liêng bẩm sinh của chúng ta (Hình 1.244).</p>
 
-  <p class="fig-cap"><strong>Hình 1.244.</strong> Thiên Nhãn (Con Mắt Thứ Ba) (The Celestial Eye).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-244.png" alt="Hình 1.244" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.244.</strong> Thiên Nhãn (Con Mắt Thứ Ba) (The Celestial Eye).</p>
 
   <p>Thiên Nhãn trước hết phải được kích thích về mặt năng lượng, rồi sau đó được đánh thức, để sản sinh và biểu hiện các năng lực thấu thị của nó. Rồi, một khi Thiên Nhãn đã được kích thích về mặt năng lượng, nó phải được củng cố thêm bằng năng lượng sinh lực để giữ cho nó được kích hoạt. Sự củng cố năng lượng liên tục sẽ bắt đầu làm cho vùng Thiên Nhãn tỏa ra ánh sáng, và rực sáng về mặt năng lượng như một "Minh Châu" (Bright Luminous Pearl) trong lúc tĩnh tọa.</p>
 
@@ -5071,7 +5101,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-255.png" alt="Hình 1.255" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.255.</strong> Cầu Khước Tước "Hạ".</p>
 
-  <p class="fig-cap"><strong>Hình 1.256.</strong> Chiếc "khối gỗ ngồi thiền" (Sitting Block) đặc biệt, dùng để niêm phong vùng đáy chậu và ngăn không cho khí "Rơi khỏi Cầu Khước Tước Hạ".</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-256.png" alt="Hình 1.256" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.256.</strong> Chiếc "khối gỗ ngồi thiền" (Sitting Block) đặc biệt, dùng để niêm phong vùng đáy chậu và ngăn không cho khí "Rơi khỏi Cầu Khước Tước Hạ".</p>
 
   <div class="callout"><p><strong>Niêm phong hai cửa Trời – Đất.</strong> Nếu mũi hay hậu môn không được niêm phong đúng lúc năng lượng chuyển hóa, toàn bộ công phu đã tích lũy sẽ thất thoát ra ngoài; vì vậy các trường phái mới dùng kẹp mũi và khối gỗ ngồi thiền như những công cụ hỗ trợ.</p></div>
 
@@ -5736,7 +5767,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Trong tư thế đứng thiền đặc biệt này, đặt gót bàn tay phải cách trung tâm huyệt Lao Cung của lòng bàn tay trái ba inch. Hãy tưởng tượng một sợi dây thần quang giáng xuống từ cõi Trời và xuyên qua trung tâm lòng bàn tay trái. Tưởng tượng và cảm nhận thần quang ấy chảy vào Tâm qua lòng bàn tay trái ở phía dưới, làm cho Tâm tràn đầy, rồi tỏa ánh sáng của nó ra môi trường bên ngoài (Hình 1.298).</p>
 
-  <p class="fig-cap"><strong>Hình 1.298.</strong> Ấn tay Thiên - Địa (Heaven and Earth Hand Seal).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-298.png" alt="Hình 1.298" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.298.</strong> Ấn tay Thiên - Địa (Heaven and Earth Hand Seal).</p>
 
   <h3>Huấn luyện tư thế động của Đạo giáo (Daoist Dynamic Posture Training)</h3>
 
@@ -5877,7 +5909,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Tám Phương Pháp Bí Truyền dưới đây được dùng để dạy cho đệ tử những bí mật tế nhị của việc duy trì hình thức và sự hòa hợp về năng lượng trong lúc cơ thể vận động (Hình 1.306). Tám Phương Pháp Bí Truyền này không thêm vào bản tính nội tại của đệ tử bất cứ điều gì mới. Chúng chỉ nuôi dưỡng cái vốn đã có từ đầu, bằng cách làm cho đệ tử nhận thức được tiềm năng bẩm sinh của chính mình và giúp người ấy khơi gợi nó ra. Theo lời dạy cổ của Đạo giáo, nơi tốt nhất để che giấu năng lực ma thuật của một đệ tử chính là bên trong bản tính bẩm sinh của người ấy.</p>
 
-  <p class="fig-cap"><strong>Hình 1.306.</strong> Tám phương pháp bí truyền được dùng trong thực hành thần công (The Eight Secret Methods Used in Shengong Practice).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-306.png" alt="Hình 1.306" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.306.</strong> Tám phương pháp bí truyền được dùng trong thực hành thần công (The Eight Secret Methods Used in Shengong Practice).</p>
 
   <ol>
     <li><strong>Sự vận hành của khí được Thần tu dưỡng (The Movement of Qi, is Cultivated by the Shen):</strong> Tâm linh sống động của chính đệ tử được dùng để tăng cường dòng chảy năng lượng của người ấy. Theo truyền thống, có ba phương pháp tiếp cận quan trọng đối với loại huấn luyện này: Khuôn mẫu đúng đắn, Sự bền bỉ và Sự chuẩn bị. Mỗi phương pháp trong ba phương pháp ấy được mô tả như sau:
@@ -6281,7 +6314,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Sau khi thực hành bài thiền Rồng Ngủ, với hai bàn chân vẫn đang cắm rễ vững chắc sâu vào lòng Đất, hãy tưởng tượng rằng những cái rễ ấy đã xuyên thủng vào một hồ chứa ngầm dưới đất đầy uy lực. Hồ chứa uy lực này được nối thông về mặt năng lượng với trung tâm của hai bàn chân bạn, thông qua những cái rễ đã vươn dài ra của bạn.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.330.</strong> Hãy tưởng tượng cả hai bàn chân đã xuyên thủng vào một hồ chứa ngầm nằm sâu bên trong lòng Đất.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-330.png" alt="Hình 1.330" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.330.</strong> Hãy tưởng tượng cả hai bàn chân đã xuyên thủng vào một hồ chứa ngầm nằm sâu bên trong lòng Đất.</p>
 
   <ul>
     <li>Hãy cảm nhận khí Đất ngầm này lập tức chạy ào lên qua trung tâm của hai bàn chân và hai chân, và nối lại tại xương cụt, trở thành một dòng sông chính, chạy lên cột sống của bạn, qua khỏi đỉnh đầu, xuống lồng ngực, rồi chảy vào Hạ Đan Điền (Hình 1.330).</li>
@@ -6450,7 +6484,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Khi chuyển động năng lượng của hạt ngọc sáng ngời tiếp tục gia tăng, nó tan biến thành một dòng chảy ánh sáng trắng rạng rỡ mạnh mẽ, chảy qua trung tâm hai cánh tay và ngang qua hai vai bạn. Bạn càng thư giãn các mô và cảm nhận năng lượng ùa qua hai cánh tay và vai, thì các kinh mạch của cánh tay và vai càng giãn nở và gia tăng tiềm năng năng lượng.</p>
 
-  <p class="fig-cap"><strong>Hình 1.341.</strong> Cảm nhận Viên Ngọc Sáng Ngời dừng lại và phát xung ánh sáng trắng tại Đại Chùy, rồi hít vào và đưa nó lên theo Mạch Đốc đến đỉnh đầu.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-341.png" alt="Hình 1.341" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.341.</strong> Cảm nhận Viên Ngọc Sáng Ngời dừng lại và phát xung ánh sáng trắng tại Đại Chùy, rồi hít vào và đưa nó lên theo Mạch Đốc đến đỉnh đầu.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-342.png" alt="Hình 1.342" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.342.</strong> Thế Vô Cực (The Wuji Posture).</p>
@@ -6618,7 +6653,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p><strong>Nguyên Tố Mộc–Phong (Wood-Wind Element):</strong> Đệ tử sẽ dùng Ấn Tay Mộc–Phong (ngón cái chạm ngón trỏ) để "quạt lửa" bên trong Hạ Đan Điền (Hình 1.349).</p>
 
-  <p class="fig-cap"><strong>Hình 1.350.</strong> Nguyên Tố Kim (Ấn thứ ba – Phách).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-350.png" alt="Hình 1.350" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.350.</strong> Nguyên Tố Kim (Ấn thứ ba – Phách).</p>
 
   <p><strong>Nguyên Tố Kim (Metal Element):</strong> Đệ tử sẽ dùng Ấn Tay Kim (ngón cái chạm ngón áp út) để hòa quyện đầy năng lượng âm thanh và rung động bên trong Hạ Đan Điền (Hình 1.350).</p>
 
@@ -6888,7 +6924,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-370.png" alt="Hình 1.370" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.370.</strong> Bài Tập Thận (bên phải): Thở ra khi lòng bàn tay ngoài của tay trái quấn quanh Thận phải, và lòng bàn tay phải duỗi ra phía hướng trái.</p>
 
-  <p class="fig-cap"><strong>Hình 1.371.</strong> Hít vào khi lòng bàn tay phải xoay vòng lên trên, hướng ra ngoài ngang tầm mắt, và bắt đầu hạ xuống.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-371.png" alt="Hình 1.371" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.371.</strong> Hít vào khi lòng bàn tay phải xoay vòng lên trên, hướng ra ngoài ngang tầm mắt, và bắt đầu hạ xuống.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-372.png" alt="Hình 1.372" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.372.</strong> Thở ra khi bạn cúi người từ eo. Khi đầu bạn chìm xuống dưới hông, để lòng bàn tay phải xoay vòng xuống dưới về phía trái.</p>
@@ -6923,7 +6960,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-374.png" alt="Hình 1.374" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.374.</strong> Khi thân mình bắt đầu ưỡn lên trên, để cánh tay phải đi theo chuyển động của cơ thể. Khi cánh tay tới ngang tầm ngực, xoay lòng bàn tay ngoài về phía mặt và bắt đầu hít vào. Lặp lại 10 lần.</p>
 
-  <p class="fig-cap"><strong>Hình 1.375.</strong> Chuẩn bị đổi vị trí tay: Thở ra và dồn trọng lượng của cơ thể lên chân phải khi cánh tay phải di chuyển ra sau lưng tới Thận trái, và cánh tay trái rời Thận phải để di chuyển ra trước.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-375.png" alt="Hình 1.375" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.375.</strong> Chuẩn bị đổi vị trí tay: Thở ra và dồn trọng lượng của cơ thể lên chân phải khi cánh tay phải di chuyển ra sau lưng tới Thận trái, và cánh tay trái rời Thận phải để di chuyển ra trước.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-376.png" alt="Hình 1.376" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.376.</strong> Bài Tập Thận (Bên Trái): Hít vào khi lòng bàn tay trái xoay vòng lên trên và hướng ra ngoài ngang tầm mắt, rồi bắt đầu hạ xuống phía bên trái.</p>
@@ -7059,7 +7097,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-389.png" alt="Hình 1.389" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.389.</strong> Thở ra và vặn eo sang bên trái trong khi đồng thời nâng bàn tay trái lên trên đầu và duỗi bàn tay phải về phía bên trái.</p>
 
-  <p class="fig-cap"><strong>Hình 1.390.</strong> Tiếp tục ấn cho đến khi cả hai bàn tay duỗi tới điểm xa nhất.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-390.png" alt="Hình 1.390" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.390.</strong> Tiếp tục ấn cho đến khi cả hai bàn tay duỗi tới điểm xa nhất.</p>
 
   <p>Theo văn bản Đạo gia cổ Quản Tử (Guanzi), "Tâm là Hoàng Đế của cơ thể con người. Các quan chức thuộc hạ của nó phụ trách Cửu Khiếu (Nine Orifices) và các chức năng liên quan của chúng. Chừng nào Tâm còn ở đúng đường lối của nó, thì Cửu Khiếu sẽ đi theo và hoạt động đúng đắn. Tuy nhiên, nếu những ham muốn của Tâm trở nên dồi dào, thì mắt sẽ mất cảm nhận về màu sắc và tai sẽ mất cảm nhận về âm thanh. Vì vậy, các bậc thầy cổ nói rằng hãy giữ cho Tâm của bạn trống rỗng, đây là nghệ thuật bí mật của Tâm, nhờ đó Cửu Khiếu có thể được làm chủ."</p>
 
@@ -7222,7 +7261,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>2. Trong khi vẫn đang thở ra, đưa cả hai bàn tay xuống ngang tầm eo và tách hai cánh tay ra, di chuyển hai bàn tay ra xa khỏi trung tâm cơ thể (Hình 1.404).</p>
 
-  <p class="fig-cap"><strong>Hình 1.402.</strong> Từ Bài Tập Tỳ, đưa cả hai cánh tay xuống.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-402.png" alt="Hình 1.402" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.402.</strong> Từ Bài Tập Tỳ, đưa cả hai cánh tay xuống.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-406.png" alt="Hình 1.406" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.406.</strong> Thở ra và nắm hai bàn tay thành hai nắm đấm lỏng.</p>
@@ -7230,7 +7270,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-403.png" alt="Hình 1.403" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.403.</strong> Tưởng tượng đang ôm một quả cầu năng lượng lớn.</p>
 
-  <p class="fig-cap"><strong>Hình 1.404.</strong> Từ từ tách hai cánh tay ra.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-404.png" alt="Hình 1.404" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.404.</strong> Từ từ tách hai cánh tay ra.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-405.png" alt="Hình 1.405" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.405.</strong> Động tác Khai Mở của các Bài Tập Ngũ Tạng Âm của Đạo gia: Mỗi bàn tay được đặt phía trên đầu, như thể đang ôm một quả cầu.</p>
@@ -7312,7 +7353,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Nhìn Từ Trên Xuống của Đầu (Top View of Head)</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.410.</strong> Tám khu vực của cơ thể tương ứng với các Quyền Năng kỳ diệu của Bát Quái Hậu Thiên.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-410.png" alt="Hình 1.410" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.410.</strong> Tám khu vực của cơ thể tương ứng với các Quyền Năng kỳ diệu của Bát Quái Hậu Thiên.</p>
 
   <ul>
     <li>Bắt đầu với Khu Vực 1 (nằm ở phía trước cơ thể), người đệ tử sẽ bắt đầu thu thập Khí từ phía trước cơ thể mình, kéo năng lượng xuống từ các mô vào vùng hội âm dưới. Hành động thu thập năng lượng này được thực hiện bằng cách co và hơi kéo lên trên cơ thắt hậu môn, trong khi hít vào hơi thứ nhất trong năm hơi thở ngắn.</li>
@@ -7322,7 +7364,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Tiếp theo, người đệ tử sẽ thở ra, xả hơi thở, và tưởng tượng Khí đã thu gom ùa vào Thận và vùng mệnh môn của mình.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.411.</strong> Khi Thở Ra, Khí đã thu gom từ vùng hội âm dưới chảy vào mệnh môn. Sau đó nó quấn quanh eo theo lộ trình trung tâm của Đái Mạch hai lần, trước khi được bám rễ vào Hạ Đan Điền.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-411.png" alt="Hình 1.411" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.411.</strong> Khi Thở Ra, Khí đã thu gom từ vùng hội âm dưới chảy vào mệnh môn. Sau đó nó quấn quanh eo theo lộ trình trung tâm của Đái Mạch hai lần, trước khi được bám rễ vào Hạ Đan Điền.</p>
 
   <p>Khí Đã Thu Gom Đi Theo Trục Trung Tâm của Đái Mạch để Quấn Quanh Eo.</p>
 
@@ -7463,7 +7506,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-416.png" alt="Hình 1.416" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.416.</strong> Ông Lão và Vũng Thủy Triều (1).</p>
 
-  <p class="fig-cap"><strong>Hình 1.417.</strong> Ông Lão và Vũng Thủy Triều (2).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-417.png" alt="Hình 1.417" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.417.</strong> Ông Lão và Vũng Thủy Triều (2).</p>
 
   <p>2. Tiếp theo, nghiêng người về phía trước và bắt đầu thở ra, tạo ra âm thanh "Sh-h-h-h-h". Cả hai cánh tay nên vung từ bên này sang bên kia, bắt chéo nhau khi bạn tiếp tục tạo ra âm thanh tống ra (Hình 1.417).</p>
 
@@ -7830,7 +7874,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Trong mọi truyền thống phép thuật, Mặt Trăng cai quản Tâm Trí. Vị trí năng lượng của nó trong lá số tử vi có thể quyết định những khuôn mẫu suy nghĩ, cảm xúc và cách ra quyết định theo thói quen của một người đệ tử.</p>
 
-  <p class="fig-cap"><strong>Hình 1.443.</strong> Nữ Thần Mặt Trăng Hằng Nga.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-443.png" alt="Hình 1.443" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.443.</strong> Nữ Thần Mặt Trăng Hằng Nga.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-444.png" alt="Hình 1.444" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.444.</strong> Những Ảnh Hưởng Thiên Giới của Mặt Trời và Mặt Trăng.</p>
@@ -7861,7 +7906,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Ẩn giấu bên trong những quyền năng Thiên Âm của Mặt Trăng là những Chìa Khóa của Vận Mệnh và Sinh Mệnh (Mệnh), vốn tương ứng với năng lượng của Thận. Ẩn giấu bên trong những quyền năng Thiên Dương của Mặt Trời là những Chìa Khóa của Nguyên Thần (Yuan Shen), vốn tương ứng với bản tính năng lượng (Tính) của Tâm (Hình 1.444). Theo cùng cách mà Mặt Trăng phản chiếu ánh sáng từ Mặt Trời xuống Trái Đất, thì Linh Hồn cũng nhận sự soi sáng của mình từ Nguyên Thần. Mức độ Ánh Sáng Nội Tâm cụ thể được phản chiếu vào sự hiển lộ năng lượng của một cá nhân đều tùy thuộc vào sự phát triển tinh thần của chính người ấy.</p>
 
-  <p class="fig-cap"><strong>Hình 1.447.</strong> Thập Nhị Địa Chi, các Chu Kỳ của Mặt Trăng, và Thuật Luyện Đan Cổ Của Đạo Gia.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-447.png" alt="Hình 1.447" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.447.</strong> Thập Nhị Địa Chi, các Chu Kỳ của Mặt Trăng, và Thuật Luyện Đan Cổ Của Đạo Gia.</p>
 
   <ul>
     <li>Trăng Tròn (Ngày 15)</li>
@@ -8034,7 +8080,8 @@ body.pdf-lock{overflow:hidden;}
       </ul>
       <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-456.png" alt="Hình 1.456" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.456.</strong> Vị trí Lưỡi của Hành Thủy (Thận). Lưỡi được đặt trên vòm miệng mềm, nằm ở phía sau vòm miệng trên.</p>
-      <p class="fig-cap"><strong>Hình 1.457.</strong> Đứng mặt hướng về Mặt Trăng. Hạ mí mắt xuống cho đến khi bạn chỉ còn vừa đủ thấy ánh trăng.</p>
+      <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-457.png" alt="Hình 1.457" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.457.</strong> Đứng mặt hướng về Mặt Trăng. Hạ mí mắt xuống cho đến khi bạn chỉ còn vừa đủ thấy ánh trăng.</p>
     </li>
     <li>Hít vào bằng mũi và tưởng tượng nhẹ nhàng “hớp” một ngụm Tinh Hoa Mặt Trăng. Đồng thời, với đôi mắt khép hờ, quán tưởng việc “hít vào” năng lượng Tinh Hoa Mặt Trăng bằng Ba Con Mắt của bạn (tức Mắt Tự Nhiên và Thiên Nhãn) vào Thượng Đan Điền.
       <ul>
@@ -8467,7 +8514,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-479.png" alt="Hình 1.479" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.479.</strong> Đương Quy (Dong Quai – Angelica) có thể được kết hợp với Hoàng Kỳ (Astragalus – Huang Qi) và dùng để Bổ Thận.</p>
 
-  <p class="fig-cap"><strong>Hình 1.480.</strong> Hạt Lanh (Flaxseed) được dùng để Bổ Thận Dương.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-480.png" alt="Hình 1.480" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.480.</strong> Hạt Lanh (Flaxseed) được dùng để Bổ Thận Dương.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-481.png" alt="Hình 1.481" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.481.</strong> Diệp Hạ Châu (Phyllanthus Niruri) được dùng để Bổ Thận Dương.</p>
@@ -8630,7 +8678,8 @@ body.pdf-lock{overflow:hidden;}
   và để nó bay lên<br>
   như những vị Tiên Bất Tử!”</p>
 
-  <p class="fig-cap"><strong>Hình 1.488.</strong> Câu Kỷ Tử (Gou Qi Zi, Lycium barbarum) dùng để Bổ Can Huyết.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-488.png" alt="Hình 1.488" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.488.</strong> Câu Kỷ Tử (Gou Qi Zi, Lycium barbarum) dùng để Bổ Can Huyết.</p>
 
   <h3>Đan Dược Thực Vật Đạo Gia Dùng để Bổ Can (Daoist Plant Elixirs Used to Tonify the Liver)</h3>
 
@@ -9502,7 +9551,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Tiếp theo, hình dung và cảm nhận năng lượng của Ánh Sáng Trắng Thiêng Liêng này tụ lại thành lõi trung tâm thân thể, tạo thành một ống năng lượng của Thiên Khí. Ống sáng rực này kéo dài từ đỉnh đầu xuống tận gốc hội âm. Hình dung, quán tưởng và cảm nhận lõi trung tâm của mình đang rung động và cộng hưởng với năng lượng của Ánh Sáng Trắng Thiêng Liêng ấy.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.524.</strong> Hãy hình dung và cảm nhận Uy Lực thiên giới của Bảy Ngôi Sao trong Bắc Đẩu khi chúng giáng xuống thân thể bạn để bảo hộ.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-524.png" alt="Hình 1.524" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.524.</strong> Hãy hình dung và cảm nhận Uy Lực thiên giới của Bảy Ngôi Sao trong Bắc Đẩu khi chúng giáng xuống thân thể bạn để bảo hộ.</p>
 
   <p><strong>1. Tím Khí của Trời (The Purple Qi of Heaven):</strong> Hãy hình dung và cảm nhận một Luồng Sáng Tím rực rỡ giáng xuống từ trung tâm của Sao Cực Thiên Giới, và đi vào cột Thái Cực nơi lõi trung tâm của bạn. Cảm nhận trường năng lượng của mình lập tức chuyển hóa thành một Làn Sương Tím rực sáng.</p>
 
@@ -9902,7 +9952,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Công việc tập hợp những năng lượng tâm linh nguyên bản của Ngũ Hành Tiên Thiên đòi hỏi cá nhân phải tu dưỡng và trích xuất về mặt năng lượng những năng lượng kỳ diệu của Ngũ Đức Tâm Linh Nguyên Bản (tức Nhân Từ, Công Chính, Liêm Chính, Chân Thật và Trí Tuệ). Như trong mọi phép Nội Đan Đạo Gia, năm làn hơi kỳ diệu đủ màu này phải được trích xuất từ Ngũ Âm Tạng, nơi cũng chứa những trạng thái cảm xúc thu nhận của Ngũ Tinh Thần Hậu Thiên (tức Giận, Đau Lòng, Lo Lắng, Buồn Đau và Sợ Hãi). Năng lượng của những trạng thái cảm xúc thu nhận này liên tục tấn công lẫn nhau và cố chế ngự nhau; trong khi đó các đức tính tâm linh của Nguyên Thần liên tục nuôi dưỡng và nâng đỡ lẫn nhau. Khi các Đức Tính tâm linh của Nguyên Thần nuôi dưỡng và nâng đỡ lẫn nhau, chúng trở nên hòa nhập vào thiết kế thiên giới, khiến những năng lượng tâm linh nguyên bản của Ngũ Hành hợp nhất thành một năng lượng (Hình 1.541).</p>
 
-  <p class="fig-cap"><strong>Hình 1.539.</strong> Khi năng lượng thiên giới bắt đầu xuất hiện từ bên trong bóng tối của Tâm Hậu Thiên, nó được biết đến như sự thức tỉnh của Chân Thức.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-539.png" alt="Hình 1.539" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.539.</strong> Khi năng lượng thiên giới bắt đầu xuất hiện từ bên trong bóng tối của Tâm Hậu Thiên, nó được biết đến như sự thức tỉnh của Chân Thức.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-540.png" alt="Hình 1.540" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.540.</strong> Khi ánh sáng của năng lượng thiên giới lớn mạnh, bóng tối của năng lượng tục trần thu nhận dần tàn lụi.</p>
@@ -9910,7 +9961,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-541.png" alt="Hình 1.541" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.541.</strong> Khi các đức tính tâm linh của Ngũ Tinh Thần Tiên Thiên nuôi dưỡng và nâng đỡ lẫn nhau, chúng trở nên hòa nhập vào thiết kế thiên giới, khiến năng lượng tâm linh của Ngũ Hành hợp nhất thành một năng lượng.</p>
 
-  <p class="fig-cap"><strong>Hình 1.542.</strong> Khi các Đức Tính tâm linh của Ngũ Tinh Thần Tiên Thiên hợp nhất và hòa làm một năng lượng, năng lượng Âm Dương của thân thể hợp nhất làm một.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-542.png" alt="Hình 1.542" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.542.</strong> Khi các Đức Tính tâm linh của Ngũ Tinh Thần Tiên Thiên hợp nhất và hòa làm một năng lượng, năng lượng Âm Dương của thân thể hợp nhất làm một.</p>
 
   <p>Một kỹ thuật đặc biệt giúp đệ tử tiến nhanh qua giai đoạn này là buông bỏ mọi “bám chấp” vào những “câu chuyện” khác nhau trong lịch sử cá nhân của mình. Một khi hoàn thành điều này, đệ tử có thể quan sát, ghi nhận và hiểu được giá trị đích thực của tất cả những “câu chuyện”, và biết ơn những bài học đã trải nghiệm. Đệ tử khi ấy được tự do chuyển hóa Khí và Thần đã phóng thích thành ánh sáng thiêng liêng, và bắt đầu tu dưỡng thêm ánh sáng thiêng liêng vào thân thể mình.</p>
 
@@ -10115,7 +10167,8 @@ body.pdf-lock{overflow:hidden;}
   Hãy vĩnh viễn — biến khỏi tầm nhìn,<br>
   Được hóa giải, tiêu tan — trong Ánh Sáng Thanh Khiết của Thượng Đế.</p>
 
-  <p class="fig-cap"><strong>Hình 7.546.</strong> Ấn Bàn Tay Thanh Kiếm Bất Tử của Bàn Tay Phải, dùng để cắt đứt các sợi dây năng lượng.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-7-546.png" alt="Hình 7.546" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 7.546.</strong> Ấn Bàn Tay Thanh Kiếm Bất Tử của Bàn Tay Phải, dùng để cắt đứt các sợi dây năng lượng.</p>
 
   <p><strong>6. Lời Tuyên Bố Kết Thúc:</strong> Sau khi một lần nữa dùng Ấn Ngón Tay Kiếm của Bàn Tay Phải quét trước mặt để cắt những sợi dây năng lượng đã gắn giữa bạn và người đó, hãy lặp lại “Lời Tuyên Bố Kết Thúc” sau đây bằng một giọng mạnh mẽ, nghiêm trang:</p>
 
@@ -10230,7 +10283,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Hạ Quan (Huiyin).</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 7.547.</strong> Đồ Neijing Tu cổ của Đạo gia (Đồ Cảnh Quan Nội Tại), hoàn thành năm 1886.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-7-547.png" alt="Hình 7.547" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 7.547.</strong> Đồ Neijing Tu cổ của Đạo gia (Đồ Cảnh Quan Nội Tại), hoàn thành năm 1886.</p>
 
   <h3>Đầu (Phần Trên): Núi Côn Lôn (The Head (Top): Mount Kunlun)</h3>
 
@@ -10318,7 +10372,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Chỉ sau khi thiền định về bốn vị thần nam tính đầu tiên (thuộc các Quẻ Dương của bát quái (Bagua) và Kinh Dịch (Yi-Jing)) thì đệ tử mới nên cố gắng thiền định về bốn vị thần nữ tính (thuộc các Quẻ Âm của bát quái và Kinh Dịch). Sự kết hợp của bốn vị thần nam tính và bốn vị thần nữ tính thiết lập về mặt tâm linh cấu trúc năng lượng của Bát Quái Tiên Thiên (Prenatal Bagua), vốn chịu trách nhiệm cho mọi sự sáng tạo (Hình 1.554). Bốn cung tiếp theo được giới thiệu như sau:</p>
 
-  <p class="fig-cap"><strong>Hình 1.554.</strong> Các Quẻ Bát Quái Tiên Thiên (Pre-Heaven Bagua Trigrams).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-554.png" alt="Hình 1.554" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.554.</strong> Các Quẻ Bát Quái Tiên Thiên (Pre-Heaven Bagua Trigrams).</p>
 
   <div class="callout"><p><strong>Thứ tự thiền định.</strong> Phải thiền định về bốn vị thần nam tính (Dương) trước, rồi mới đến bốn vị thần nữ tính (Âm); chính sự kết hợp đúng thứ tự ấy thiết lập nên cấu trúc năng lượng của Bát Quái Tiên Thiên.</p></div>
 
@@ -10967,7 +11022,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-581.png" alt="Hình 1.581" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.581.</strong> Cô Gái Dệt Vải đang biến đổi và vận chuyển.</p>
 
-  <p class="fig-cap"><strong>Hình 1.582.</strong> Cầu Ô Thước cho phép Chàng Trâu và Cô Gái Dệt Vải gặp lại nhau.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-582.png" alt="Hình 1.582" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.582.</strong> Cầu Ô Thước cho phép Chàng Trâu và Cô Gái Dệt Vải gặp lại nhau.</p>
 
   <p>Nhiều năm trước, ở Trung Hoa cổ đại, có một chàng trai thật thà, siêng năng và tốt bụng tên là "Niu Lang" ("Chàng Chăn Trâu"). Chàng mất cha mẹ từ thuở nhỏ, và sau đó bị anh trai cùng chị dâu đuổi khỏi nhà. Cặp vợ chồng cay nghiệt ấy lấy hết mọi thứ mà cha mẹ Chàng Chăn Trâu để lại cho chàng, chỉ chừa lại một con bò già và một chiếc xe bò hỏng.</p>
 
@@ -11004,7 +11060,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Nhìn nhau, Người Thiếu Nữ Dệt Vải, Chàng Chăn Trâu và cả hai đứa trẻ đều khóc thảm thiết trên hai bờ đối diện. Nước mắt của họ rơi xuống Trần gian, tạo thành những cơn mưa nặng hạt. Tiếng khóc đòi mẹ của lũ trẻ làm rung chuyển Thiên Cung và chạm đến trái tim mọi vị thần tiên, kể cả bà của chúng. Nhưng vị nữ thần cứng đầu vẫn khăng khăng thực thi Thiên Luật – rằng một vị tiên trên trời không được kết hôn với người phàm. Bỏ ngoài tai lời van xin của con gái và các vị thần tiên khác, Vương Mẫu Nương Nương ra lệnh cho Thiên Binh buộc Chàng Chăn Trâu cùng con cái trở về Trần gian. Vào khoảnh khắc quyết định ấy, một đàn chim khách, vô cùng cảm động trước bi kịch này, cùng bay lại dựng một cây cầu ma thuật bằng chính thân mình bắc qua Sông Trời, đoàn tụ gia đình trẻ (Hình 1.586).</p>
 
-  <p class="fig-cap"><strong>Hình 1.586.</strong> Chàng Chăn Trâu, Cô Gái Dệt Vải và Cầu Ô Thước.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-586.png" alt="Hình 1.586" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.586.</strong> Chàng Chăn Trâu, Cô Gái Dệt Vải và Cầu Ô Thước.</p>
 
   <p>Cảnh tượng cảm động này đã trở thành giọt nước tràn ly. Vương Mẫu Nương Nương cuối cùng cũng nguôi lòng và đưa Chàng Chăn Trâu cùng con cái lên Thiên giới thành những ngôi sao (Hình 1.587), cho phép họ gặp Người Thiếu Nữ Dệt Vải một đêm mỗi năm, vào đêm mùng 7 tháng 7 âm lịch. Vào ngày đó hằng năm, chim khách tự nguyện bắc cây cầu ma thuật qua Dải Ngân Hà, để Người Thiếu Nữ Dệt Vải và Chàng Chăn Trâu có thể đoàn tụ ở giữa. Về sau, thành ngữ "Chàng Chăn Trâu và Cô Gái Dệt Vải" được dùng ở Trung Hoa để chỉ một cặp vợ chồng (hoặc đôi tình nhân) phải sống xa nhau, và "bắc cầu chim khách" mang nghĩa "se duyên đôi lứa".</p>
 
@@ -11077,7 +11134,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-589.png" alt="Hình 1.589" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.589.</strong> Con bò.</p>
 
-  <p class="fig-cap"><strong>Hình 1.591.</strong> Bốn Biểu Tượng Thái Cực Liên Kết Đại Diện cho Linh Đan Huyền Diệu.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-591.png" alt="Hình 1.591" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.591.</strong> Bốn Biểu Tượng Thái Cực Liên Kết Đại Diện cho Linh Đan Huyền Diệu.</p>
 
   <h3>Bốn Biểu Tượng Âm và Dương (The Four Yin and Yang Symbols)</h3>
 
@@ -11516,7 +11574,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Hạ Đan Điền (Biển Khí)</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.612.</strong> Ngồi với hai lòng bàn tay chồng lên nhau, và hai ngón cái chạm nhau.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-612.png" alt="Hình 1.612" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.612.</strong> Ngồi với hai lòng bàn tay chồng lên nhau, và hai ngón cái chạm nhau.</p>
 
   <p>4. Sau đó thở ra, và hướng tâm trí thư giãn toàn thân, nhẹ nhàng nén bụng xuống dưới và vào trong.</p>
 
@@ -11599,7 +11658,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Ánh Sáng Thần Thánh của linh hồn con người được tập trung thành một chùm duy nhất, tỏa ánh sáng rực rỡ của nó bên trong lõi trung tâm Trục Thái Cực của đệ tử. Chùm sáng này đồng thời được tách thành mười hai chùm năng lượng riêng biệt. Tất cả những chùm này tương tác để tạo nên một mẫu giao thoa phức tạp, biểu hiện thành tổng thể các trải nghiệm của đệ tử. Khi những mẫu năng lượng còn lưu lại (nghiệp) của đệ tử được lưu trữ bên trong mỗi trong bảy trung tâm luân xa nội tại, đệ tử sau đó nghiệm thấy những hiệu ứng của nghiệp quá khứ khi chúng cộng hưởng ra ngoài thành những trải nghiệm sống. Trong tiến trình thanh lọc các trung tâm luân xa, đệ tử cần để cho những mẫu này tự nhiên khởi lên, mà không cố gắng kìm nén hay kiểm soát chúng. Nhờ thực hành kiên trì, bảy trung tâm luân xa nội tại hiện hữu bên trong lõi trung tâm thân thể đệ tử sẽ dần dần giải phóng những mẫu rối loạn chức năng và những chấp trước của chúng, nhờ đó cho phép ánh sáng của linh hồn cộng hưởng không bị cản trở vào mọi khía cạnh trong cuộc sống của đệ tử. Ánh sáng nội tại này sau đó được biểu hiện ra bên ngoài qua mười hai cổng luân xa của đệ tử, vào các trường năng lượng của thân thể đệ tử.</p>
 
-  <p class="fig-cap"><strong>Hình 1.616.</strong> Mười Hai Cổng Luân Xa của thân thể mở rộng từ Bảy Trung Tâm Luân Xa nằm bên trong lõi trung tâm Trục Thái Cực, và mở rộng ra ngoài vào ba trường Vệ Khí bên ngoài.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-616.png" alt="Hình 1.616" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.616.</strong> Mười Hai Cổng Luân Xa của thân thể mở rộng từ Bảy Trung Tâm Luân Xa nằm bên trong lõi trung tâm Trục Thái Cực, và mở rộng ra ngoài vào ba trường Vệ Khí bên ngoài.</p>
 
   <h3>Các Luân Xa Xuyên Cá Nhân (The Transpersonal Chakras)</h3>
 
@@ -11780,7 +11840,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-621.png" alt="Hình 1.621" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.621.</strong> Cổng Luân Xa mở rộng ra từ Trụ Thái Cực.</p>
 
-  <p class="fig-cap"><strong>Hình 1.622.</strong> Mười Hai Cổng Luân Xa của thân thể mở rộng ra từ lõi trung tâm Trụ Thái Cực và lan tỏa ra ngoài vào ba trường Vệ Khí bên ngoài.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-622.png" alt="Hình 1.622" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.622.</strong> Mười Hai Cổng Luân Xa của thân thể mở rộng ra từ lõi trung tâm Trụ Thái Cực và lan tỏa ra ngoài vào ba trường Vệ Khí bên ngoài.</p>
 
   <p>Mười Hai Cổng Luân Xa đóng vai trò như những nhà phân phối năng lượng vi tế, giúp hấp thu và phân phối Khí Môi Trường (Environmental Qi) đến các nội tạng, các mô, và các vùng đám rối thần kinh lớn gần mỗi cổng nhất. Bởi vì mỗi Cổng Luân Xa biểu hiện một dạng nhận thức năng lượng và tâm linh riêng, giao tiếp với hệ thần kinh của thân thể, và gắn với một tuyến nội tiết cụ thể, nên bất kỳ năng lượng nào hướng tới Hệ Luân Xa của một người đều sẽ ảnh hưởng đến thân thể vật lý của người đó.</p>
 
@@ -12042,7 +12103,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p><strong>1. Đáy của Hạ Đan Điền (Vĩ Lư Quan – Cổng Thung Lũng Nơi Đuôi):</strong> Điểm thấp nhất của Hạ Đan Điền mở rộng đến huyệt Hội Âm (Huiyin – Nơi Gặp Gỡ của Âm, CV-1) tại hội âm, và nằm ở giữa bộ phận sinh dục ("Âm Trước" hay "Tiền Âm") và hậu môn ("Âm Sau" hay "Hậu Âm"). Vùng đặc biệt này theo truyền thống được biết đến trong Đạo gia Luyện Đan là "Tháp Cổng Dưới" (Lower Gate Tower). Nó chịu trách nhiệm tụ hội và hấp thụ Địa Khí (Âm) vào cơ thể và vùng Hạ Đan Điền, qua ba kinh mạch Âm ở chân (Can, Tỳ và Thận). Cổng Thung Lũng Nơi Đuôi đôi khi còn được biết đến trong Đạo gia Luyện Đan mật truyền là huyệt Giếng Rồng, và là điểm tụ hội năng lượng cho nguyên tố Thủy của Thận.</p>
 
-  <p class="fig-cap"><strong>Hình 1.632.</strong> Chín Cung của Hạ Đan Điền trong cơ thể nữ.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-632.png" alt="Hình 1.632" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.632.</strong> Chín Cung của Hạ Đan Điền trong cơ thể nữ.</p>
 
   <p>Vùng đặc biệt này cũng là điểm giao nhau của Đốc Mạch, Nhâm Mạch và Xung Mạch, và là Cổng Dưới của Trục Thái Cực (Taiji Pole), đôi khi được gọi là Cổng Đáy của Trung Tâm Luân Xa Dưới.</p>
 
@@ -12601,7 +12663,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-656.png" alt="Hình 1.656" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.656.</strong> Chín Cung của Thượng Đan Điền.</p>
 
-  <p class="fig-cap"><strong>Hình 1.657.</strong> Huyệt GV-24 Thiên Đình: Sân của Trời.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-657.png" alt="Hình 1.657" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.657.</strong> Huyệt GV-24 Thiên Đình: Sân của Trời.</p>
 
   <ul>
     <li><strong>3.</strong> Sau khi đã vào Sân của Thần Linh, hãy dẫn ánh sáng thiêng liêng đi vào cung Ni Hoàn và giữ nó ở đó trong vài nhịp tim, rồi thở ra. Hãy để ánh sáng trở nên ngày càng sáng hơn sau mỗi lần thở ra. Sau vài phút, dẫn ánh sáng thiêng liêng xuống theo trung tâm thân thể qua cột Thái Cực (Taiji Pole) (một số môn phái Đạo gia cho đệ tử dẫn Khí xuống theo Nhâm Mạch – Conception Vessel), đi qua Tim, và neo nó vào Hạ Đan Điền. Nếu trong khi giữ ánh sáng thiêng liêng trong cung Ni Hoàn, nó chuyển thành một ánh sáng trắng rực rỡ, hãy tiến sang giai đoạn luyện tập kế tiếp.</li>
@@ -13037,7 +13100,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Một vị Phụ Thần đứng đối diện Chu Sa Chủ Tư Mệnh ở phía bên phải ngài. Vị đại thần đặc biệt này được gọi là "Vị Thần của Ánh Sáng Kiên Cố" (God of Radiance Solid). Tên cấm kỵ của ngài là "Quang Kiến Vân Châu" (Guang Jian Yunzhu), và biệt danh của ngài là "Tư Linh" (Si Ling). Vị Phụ Thần là tinh chất tâm linh đã chuyển hóa của bốn tạng phủ (gan, tỳ, phổi và thận). Ngài cũng được biết đến là "Bậc Thầy của Bốn Linh Thú" (Thanh Long, Chu Tước Đỏ, Bạch Hổ, và Huyền Vũ Rùa Đen / Rắn), và cầm "Kinh Kỳ Diệu của Đại Hữu" (Wondrous Scripture of Great Being), cùng Tám Vì Sao Sáng (Eight Luminaries).</p>
 
-  <p class="fig-cap"><strong>Hình 1.678.</strong> Tam Hồn.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-678.png" alt="Hình 1.678" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.678.</strong> Tam Hồn.</p>
 
   <p>Cả Chu Sa Chủ Tư Mệnh và vị Phụ Thần của ngài cùng nhau cai quản Cung Xích. Cả hai đều mặc áo choàng màu son, và dung nhan của họ tỏa ra sự thanh khiết và ngây thơ của những đứa trẻ sơ sinh.</p>
 
@@ -13749,7 +13813,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-706.png" alt="Hình 1.706" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.706.</strong> Đập và Gõ Khí Nâng Cao #1.</p>
 
-  <p class="fig-cap"><strong>Hình 1.707.</strong> Đập và Gõ Khí Nâng Cao #2.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-707.png" alt="Hình 1.707" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.707.</strong> Đập và Gõ Khí Nâng Cao #2.</p>
 
   <ol start="2">
     <li>Bây giờ, với mắt vẫn nhắm, hãy thư giãn bụng, thở ra qua mũi, và dẫn hai quả cầu năng lượng đang đập nhịp như sau:
@@ -13779,7 +13844,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-708.png" alt="Hình 1.708" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.708.</strong> Đối với vị trí Hỏa, vốn liên quan đến Tâm, lưỡi được đặt ở phía trước vòm miệng trên, phía sau răng và đường viền nướu.</p>
 
-  <p class="fig-cap"><strong>Hình 1.709.</strong> Tư Thế Ngồi Xếp Bằng Một Chân.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-709.png" alt="Hình 1.709" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.709.</strong> Tư Thế Ngồi Xếp Bằng Một Chân.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-710.png" alt="Hình 1.710" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.710.</strong> "Hoàng Đế Dưỡng Quần Thần và Tướng Lĩnh".</p>
@@ -14010,7 +14076,8 @@ body.pdf-lock{overflow:hidden;}
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-719.png" alt="Hình 1.719" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.719.</strong> Hãy tưởng tượng dương vật là một cây cột gỗ và xương cụt là một quả chuông chùa cổ.</p>
 
-  <p class="fig-cap"><strong>Hình 1.720.</strong> Lộ trình của phép Xoa Râu Quan Công vòng lên cột sống và não, rồi đi xuống ngực, kết thúc tại Hạ Đan Điền.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-720.png" alt="Hình 1.720" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.720.</strong> Lộ trình của phép Xoa Râu Quan Công vòng lên cột sống và não, rồi đi xuống ngực, kết thúc tại Hạ Đan Điền.</p>
 
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-722.png" alt="Hình 1.722" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.722.</strong> Kết thúc bài Xoa Râu Quan Công trong trạng thái thiền tĩnh lặng.</p>
@@ -14078,9 +14145,11 @@ body.pdf-lock{overflow:hidden;}
   <p>Thở ra xuống phía sau (Đốc Mạch).</p>
   <p>Hạ Đan Điền.</p>
 
-  <p class="fig-cap"><strong>Hình 1.724.</strong> … di chuyển lên phía trước và xuống phía sau cơ thể.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-724.png" alt="Hình 1.724" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.724.</strong> … di chuyển lên phía trước và xuống phía sau cơ thể.</p>
 
-  <p class="fig-cap"><strong>Hình 1.725.</strong> … vòng quanh cột sống và não, rồi đi lên trung tâm cột sống vào Não, kết thúc tại Cung Nê Hoàn.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-725.png" alt="Hình 1.725" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.725.</strong> … vòng quanh cột sống và não, rồi đi lên trung tâm cột sống vào Não, kết thúc tại Cung Nê Hoàn.</p>
 
   <h3>Ba Cấp Độ của Hỏa Hầu Tiểu Chu Thiên (The Three Levels of the Microcosmic Orbit Fire Cycle)</h3>
 
@@ -14179,7 +14248,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Ban đầu, tất cả đệ tử bắt đầu việc tu luyện luyện kim của mình bằng cách thực hành bài tập "Đập và Gõ Khí" (Beating and Drumming the Qi) để tụ khí, rồi sau đó tiến tới Hỏa Hầu của Tiểu Chu Thiên để tuần hoàn Dược Chất một khi nhiệt và rung tràn vào đáy cột sống.</p>
 
-  <p class="fig-cap"><strong>Hình 1.728.</strong> Sự Vận Động Khí của Cơ Thể như được các Đạo gia cổ xưa mô tả trong biểu đồ "Gương Sáng của Luyện Kim Tâm Linh" (Bright Mirror of Spirit Alchemy). Mối tương quan của Thập Nhị Địa Chi với Tiểu Chu Thiên: các kênh chính ở phía sau và phía trước cơ thể tương ứng với đường hoàng đạo của Mặt Trời.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-728.png" alt="Hình 1.728" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.728.</strong> Sự Vận Động Khí của Cơ Thể như được các Đạo gia cổ xưa mô tả trong biểu đồ "Gương Sáng của Luyện Kim Tâm Linh" (Bright Mirror of Spirit Alchemy). Mối tương quan của Thập Nhị Địa Chi với Tiểu Chu Thiên: các kênh chính ở phía sau và phía trước cơ thể tương ứng với đường hoàng đạo của Mặt Trời.</p>
 
   <p>Một chức năng năng lượng của Tiểu Chu Thiên là giải phóng các cảm xúc bị mắc kẹt đã được lưu trữ bên trong các mô. Sự vận động của khí qua Đốc Mạch và Nhâm Mạch được khởi phát thông qua sự tập trung tinh thần, hơi thở, và việc hướng dẫn đôi mắt ở phía trên (Trời) cùng dương vật, tinh hoàn và hậu môn ở phía dưới (Đất).</p>
 
@@ -14621,7 +14691,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Từ Hạ Đan Điền, cảm nhận khí thoát ra từ vùng Hội Âm, và đi xuống các Kinh Âm qua mặt trong của hai chân. Hãy tưởng tượng và cảm nhận khí di chuyển xuống mặt trong của ống chân, qua các ngón chân cái, vòng quanh mặt ngoài bàn chân, đến gót chân, và cắm rễ cơ thể vào Đất tại các huyệt Dũng Tuyền (Yongquan — Kd-1), nằm ở tâm đáy bàn chân (Hình 1.760). Đây là nơi chu trình Đại Chu Thiên Giai Đoạn #1 bắt đầu.</p>
 
-  <p class="fig-cap"><strong>Hình 1.760.</strong> Đại Chu Thiên Giai Đoạn #1: Kết Nối Với Khí Của Đất</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-760.png" alt="Hình 1.760" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.760.</strong> Đại Chu Thiên Giai Đoạn #1: Kết Nối Với Khí Của Đất</p>
 
   <p><strong>Hít Vào:</strong> Khi bạn hít vào, dẫn khí từ các huyệt Dũng Tuyền (Kd-1) ở đáy bàn chân, dọc theo mặt sau của hai chân, qua tâm đầu gối, xuyên qua Hội Âm, và vào vùng Hạ Đan Điền. Từ Hạ Đan Điền, khí tiếp tục đi lên Mạch Đốc qua sống lưng, qua các huyệt Trường Cường (Changqiang — GV-1) và Đào Đạo (Taodao — GV-13), kết thúc tại vùng Bách Hội, nằm ở đỉnh đầu.</p>
 
@@ -15080,7 +15151,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Cung của Phổi giống như một Tán Lọng Đế Vương. Bên dưới tán lọng đặc biệt này là một Đứa Trẻ, ngồi trên một Tháp Canh Ngọc. Chính tại đây, Bảy Vị Hoàng Tử chuyển hóa Khí để phản ứng ra bên ngoài nơi vị trí trung tâm của mũi.</p>
 
-  <p class="fig-cap"><strong>Hình 1.785.</strong> Thần của Can (The Spirit of the Liver) — với Bốn Lá bên Phải và Ba Lá bên Trái.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-785.png" alt="Hình 1.785" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.785.</strong> Thần của Can (The Spirit of the Liver) — với Bốn Lá bên Phải và Ba Lá bên Trái.</p>
 
   <p>Đứa Trẻ mặc y phục trắng trơn thêu hoa, với một dải khăn vàng bay quanh người như mây. Nếu hơi thở của bạn không tốt, bạn sẽ được Đứa Trẻ và Sáu Năng Lượng cứu giúp. Những thần linh bất tử này trông coi Phổi của đệ tử, để không có tai họa, tổn hại hay tắc nghẽn nào hình thành.</p>
 
@@ -15115,7 +15187,8 @@ body.pdf-lock{overflow:hidden;}
 
   <h3>Tỳ (The Spleen)</h3>
 
-  <p class="fig-cap"><strong>Hình 1.787.</strong> Thần của Tỳ (The Spirit of the Spleen) — với Bảy Lá của Can cung cấp nội lực cho Dạ Dày để tạo ra cao dược.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-787.png" alt="Hình 1.787" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.787.</strong> Thần của Tỳ (The Spirit of the Spleen) — với Bảy Lá của Can cung cấp nội lực cho Dạ Dày để tạo ra cao dược.</p>
 
   <p>Thần Linh của Tỳ có hình dạng một con Phượng Hoàng (Phoenix) (Hình 1.787). Theo giáo pháp Đạo Gia cổ xưa, năng lượng nội tại của tạng Tỳ có hình dạng một chiếc cánh lộn ngược.</p>
 
@@ -15409,7 +15482,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Hình Dung Hình Ảnh Với Đôi Mắt Nhắm:</strong> Quán tưởng rõ ràng biểu tượng của bạn với đôi mắt nhắm cho phép tâm trí tạo ra một sự tái tạo mô thức năng lượng nhanh hơn.</li>
   </ol>
 
-  <p class="fig-cap"><strong>Hình 1.798.</strong> Ba Bước trong Quán Tưởng Tâm Trí (The Three Steps in Mental Visualization): Tưởng Tượng và Ý Định (Imagination and Intention) → Suy Nghĩ và Cảm Xúc (Thoughts and Feelings) → Sinh Lực/Năng Lượng (Life Force Energy); Thư Giãn Sâu Qua Thiền Định (Deep Relaxation Through Meditations); Huấn Luyện Quán Tưởng Tâm Trí (Mental Visualization Training); Độ Rõ Nét của Quán Tưởng (Clarity of Visualization): tạo ra những hình ảnh cụ thể bằng cả năm giác quan với sự rõ ràng và kiểm soát; Chuyển Động Thân Thể &amp; Quán Tưởng (Physical Movement &amp; Visualization): sự kết hợp giữa chuyển động thân thể và quán tưởng, trong trạng thái thư giãn sâu nhưng tập trung.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-798.png" alt="Hình 1.798" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.798.</strong> Ba Bước trong Quán Tưởng Tâm Trí (The Three Steps in Mental Visualization): Tưởng Tượng và Ý Định (Imagination and Intention) → Suy Nghĩ và Cảm Xúc (Thoughts and Feelings) → Sinh Lực/Năng Lượng (Life Force Energy); Thư Giãn Sâu Qua Thiền Định (Deep Relaxation Through Meditations); Huấn Luyện Quán Tưởng Tâm Trí (Mental Visualization Training); Độ Rõ Nét của Quán Tưởng (Clarity of Visualization): tạo ra những hình ảnh cụ thể bằng cả năm giác quan với sự rõ ràng và kiểm soát; Chuyển Động Thân Thể &amp; Quán Tưởng (Physical Movement &amp; Visualization): sự kết hợp giữa chuyển động thân thể và quán tưởng, trong trạng thái thư giãn sâu nhưng tập trung.</p>
 
   <div class="callout"><p><strong>Tính đều đặn hơn thời lượng.</strong> Tốt hơn là rèn luyện quán tưởng 30 phút sáu lần một tuần so với hai lần một tuần mỗi lần một giờ; việc thực hành đều đặn là điều tối quan trọng.</p></div>
 
@@ -15632,7 +15706,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Thân Phải Thư Giãn (The Body Must Relax):</strong> Khi bắt đầu khóa tu luyện Chuẩn Bị Ánh Sáng Vàng, đệ tử nên "ngồi như một quả chuông", "bất động như khúc gỗ", và tâm, ý cùng thần của người ấy nên "không gợn như tro nguội".</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.805.</strong> Tư thế ngồi thiền Dương Ôm Ấp Âm (Yang Embracing Yin).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-805.png" alt="Hình 1.805" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.805.</strong> Tư thế ngồi thiền Dương Ôm Ấp Âm (Yang Embracing Yin).</p>
 
   <ul>
     <li><strong>Chân Ôm Ấp (The Legs Embrace):</strong> Khi ngồi trong Tư Thế Thiền "Hoa Sen", chân trái (Dương) nên đặt ở phía ngoài cơ thể, còn chân phải (Âm) đặt ở phía trong. Đây được gọi là Tư Thế Ngồi "Dương Ôm Ấp Âm".</li>
@@ -15700,7 +15775,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Nếu Sinh Lực không bị xuất ra ngoài cơ thể dưới dạng Dịch Sinh Sản, mà thay vào đó được tái tuần hoàn qua Hỏa Hầu của Tiểu Chu Thiên và được dẫn chảy lên phía sau lưng (Đốc Mạch) rồi xuống phía trước cơ thể (Nhâm Mạch), thì nó có thể được Dương Hỏa của cơ thể chuyển hóa thành Chân Linh Khí (True Vitality, Ling Qi). Sinh Lực đã chuyển hóa này sau đó có thể được dẫn chảy vào bên trong Hạ Đan Điền của đệ tử và được cộng thêm vào Dược Chất Luyện Đan đã tu dưỡng trước đó (Hình 1.813).</p>
 
-  <p class="fig-cap"><strong>Hình 1.813.</strong> Tiểu Chu Thiên (Hỏa Hầu): Sinh Lực chuyển hóa thành Chân Linh Khí và được lưu trữ bên trong Hạ Đan Điền.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-813.png" alt="Hình 1.813" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.813.</strong> Tiểu Chu Thiên (Hỏa Hầu): Sinh Lực chuyển hóa thành Chân Linh Khí và được lưu trữ bên trong Hạ Đan Điền.</p>
 
   <h3>Phương Pháp Ngăn Xuất Tinh #1 — Phong Ấn Huyệt Long Hổ (Preventing Ejaculation Method #1: Sealing the Dragon and Tiger Cavity)</h3>
 
@@ -15864,7 +15940,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Trong Đạo gia luyện đan, năng lượng sinh ra từ sự hưng phấn của các cơ quan sinh sản "nuôi dưỡng" Ngọn Lửa Bên Trong của Lò Vàng, nằm bên trong Hạ Đan Điền (Hình 1.822). Lò Vàng sau đó chuyển hóa Tinh Dịch (Generative Fluid – Jing) sinh ra từ thức ăn, không khí và đồ uống đã được tiêu hóa trước đó, thành Sinh Lực Âm (Yin Generative Force), rồi được dùng để làm mạnh và bồi bổ thân thể cùng làm sống động Thần (Shen) của đệ tử (Tâm và Tinh Thần).</p>
 
-  <p class="fig-cap"><strong>Hình 1.822.</strong> Lò Vàng (Golden Stove).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-822.png" alt="Hình 1.822" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.822.</strong> Lò Vàng (Golden Stove).</p>
 
   <p>Khi thực hành phương pháp Đạo gia luyện Kim Đan, mỗi khi dương vật cương cứng, Nguyên Thần (Yuan Shen – Original Spirit) được lưu giữ trong tim phải được dẫn xuống đáy Hạ Đan Điền. Nguyên Thần sau đó được dùng để hợp nhất năng lượng của Âm Khí (Yin Qi) từ tim với Dương Khí (Yang Qi) được lưu giữ trong Hạ Đan Điền của đệ tử. Khi năng lượng Âm và Dương kết hợp, Thần (Shen) và Tinh (Jing) của đệ tử sẽ tìm thấy sự an bình. Sau đó, Dương Khí trong Hạ Đan Điền sẽ kết hợp với Âm Khí của Tâm, và Linh Khí (Ling Qi – Spiritual Energy) được lưu giữ trong Hạ Đan Điền sẽ trở nên mạnh mẽ hơn.</p>
 
@@ -15979,7 +16056,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p><strong>Kết Thúc – Thở Ra và Chìm Xuống:</strong> Hậu Thiên Khí đã hít vào nay được thở ra qua mũi, và Tiên Thiên Khí cùng Dược Tác (nay được giải phóng khỏi áp lực bụng đã co thắt), được dẫn chảy từ đỉnh đầu, xuống ngực qua Nhâm Mạch, vào Hạ Đan Điền của đệ tử. Sự vận động năng lượng này khiến Nguyên Thần (nghĩa là cái đến từ trên – Trời – Tâm – Hỏa – Tính) hợp nhất với Sinh Mệnh (nghĩa là cái đến từ dưới – Đất – Thận – Thủy – Mệnh).</p>
 
-  <p class="fig-cap"><strong>Hình 1.827.</strong> Các Chữ Hán cho Xing (Tính) và Ming (Mệnh – Sinh Mệnh).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-827.png" alt="Hình 1.827" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.827.</strong> Các Chữ Hán cho Xing (Tính) và Ming (Mệnh – Sinh Mệnh).</p>
 
   <h3>Hiểu Về Tính (Xing) và Mệnh (Ming) (Understanding Xing and Ming)</h3>
 
@@ -16042,7 +16120,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Phương pháp thu thập Nội Đan Dược Chất theo truyền thống được gọi là "Xoay Mặt Trời và Mặt Trăng" (Rotating the Sun and Moon) (Hình 1.828), và được mô tả như sau:</p>
 
-  <p class="fig-cap"><strong>Hình 1.829.</strong> "Thu Thập Nội Dương Đan Dược Chất" — Nhắm mắt lại và xoay tròn chúng xuống, sang trái, lên và sang phải — 36 lần — (Chu Kỳ của Mặt Trời).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-829.png" alt="Hình 1.829" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.829.</strong> "Thu Thập Nội Dương Đan Dược Chất" — Nhắm mắt lại và xoay tròn chúng xuống, sang trái, lên và sang phải — 36 lần — (Chu Kỳ của Mặt Trời).</p>
 
   <p><strong>1. Xoay Mặt Trời — Nâng Hỏa (Rotating the Sun, Raising the Fire):</strong> Sau khi thu thập, xoay vòng và giữ Sinh Lực Sinh Sản bên trong Hạ Đan Điền (tức Lò Vàng), với hai mắt vẫn nhắm, đệ tử sẽ bắt đầu đảo cả hai mắt từ trái sang phải 36 lần. Việc này được làm nhằm thúc đẩy sự thăng lên của Dương Hỏa theo cột sống vào bộ não. Kỹ thuật này theo truyền thống được biết đến trong Đạo gia Luyện đan với tên gọi "Xoay Mặt Trời" (Rotating the Sun) và được thực hiện theo cách sau (Hình 1.829):</p>
 
@@ -16059,7 +16138,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Rồi đảo mắt xuống dưới, và nhìn xuyên qua rốn, dẫn năng lượng chảy vào trung tâm Hạ Đan Điền.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.830.</strong> "Thu Thập Nội Âm Đan Dược Chất" — Nhắm mắt lại và xoay tròn chúng xuống, sang phải, lên và sang trái — 24 lần — (Chu Kỳ của Mặt Trăng).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-830.png" alt="Hình 1.830" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.830.</strong> "Thu Thập Nội Âm Đan Dược Chất" — Nhắm mắt lại và xoay tròn chúng xuống, sang phải, lên và sang trái — 24 lần — (Chu Kỳ của Mặt Trăng).</p>
 
   <p>Sau khi đệ tử đã đảo mắt từ trái sang phải 36 lần (36 nhịp thở), người ấy sẽ dừng lại để xem liệu ánh sáng tâm linh màu trắng của Kim Đan đã hiển lộ bên trong Huyền Quan hay chưa.</p>
 
@@ -16596,7 +16676,8 @@ body.pdf-lock{overflow:hidden;}
 
   <p>Đệ tử giờ đây sẽ bắt đầu quá trình phát triển, nuôi dưỡng và tu luyện Kim Thai để nó có thể phát triển đầy đủ. Điều này được thực hiện thông qua việc thực hành "Tắm Gội Tại Bốn Điểm" và thông qua việc thực hiện "Hô Hấp Thai Nhi Chân Thật." Cả hai kỹ thuật được mô tả như sau:</p>
 
-  <p class="fig-cap"><strong>Hình 1.856.</strong> Để nhẹ nhàng dẫn Kim Thai, hãy nhắm mắt lại và từ từ đảo mắt xuống, sang trái, và lên trên.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-856.png" alt="Hình 1.856" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.856.</strong> Để nhẹ nhàng dẫn Kim Thai, hãy nhắm mắt lại và từ từ đảo mắt xuống, sang trái, và lên trên.</p>
 
   <h3>Tắm Gội Tại Bốn Điểm Chính (Bathing at the Four Cardinal Points)</h3>
 
@@ -16778,7 +16859,8 @@ body.pdf-lock{overflow:hidden;}
     <li>Năng lực điều khiển cả vật hữu sinh lẫn vô sinh.</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.866.</strong> Tám Thần Thông.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-866.png" alt="Hình 1.866" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.866.</strong> Tám Thần Thông.</p>
 
   <h3>Tám Thần Thông (The Eight Supernatural Powers)</h3>
 
@@ -17091,7 +17173,8 @@ body.pdf-lock{overflow:hidden;}
 
   <h3>Huấn luyện trung cấp (Intermediate Training)</h3>
 
-  <p class="fig-cap"><strong>Hình 1.878.</strong> Đệ tử được đưa đến một "Thiên Học Đường" (Celestial School) đặc biệt để được huấn luyện thêm.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-878.png" alt="Hình 1.878" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.878.</strong> Đệ tử được đưa đến một "Thiên Học Đường" (Celestial School) đặc biệt để được huấn luyện thêm.</p>
 
   <p>Trong khoảng thời gian huấn luyện trung cấp này, đệ tử sẽ gặp nhiều vị Hướng Đạo Tâm Linh (Spirit Guides) khác nhau, những vị sẽ đưa người ấy đến những Thiên Học Đường (Celestial Schools) đặc biệt (Hình 1.878). Những Thiên Học Đường này được dùng để hỗ trợ đệ tử trong tiến trình chuyển hóa tâm linh và sự trưởng thành của người ấy. Theo truyền thống, các đạo sĩ thời cổ tin rằng việc huấn luyện tại những Thiên Học Đường này kéo dài chín năm hoặc hơn. Các đạo sĩ thời cổ cũng tin rằng đây là một bước ngoặt lớn trong tiến trình chuyển hóa tâm linh của đệ tử.</p>
 
@@ -17620,7 +17703,8 @@ body.pdf-lock{overflow:hidden;}
   </ul>
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-900.png" alt="Hình 1.900" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.900.</strong> Chòm Xích Phượng Hoàng: Liên quan đến Năng Lực Pháp Thuật của "Ý Định" (Intention) nơi con người.</p>
-  <p class="fig-cap"><strong>Hình 1.901.</strong> Xích Đế của phương Nam. Danh hiệu của ngài là Hạo Không Vệ Thuần (Haokong Weichun), còn gọi là Tam Dung (Sanrong). Ngài là Đấng Chí Tôn Hoàn Hảo của Đức Hỏa.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-901.png" alt="Hình 1.901" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.901.</strong> Xích Đế của phương Nam. Danh hiệu của ngài là Hạo Không Vệ Thuần (Haokong Weichun), còn gọi là Tam Dung (Sanrong). Ngài là Đấng Chí Tôn Hoàn Hảo của Đức Hỏa.</p>
 
   <h3>Giai Đoạn #6: Thần Linh (Cấp độ 1-2-3)</h3>
   <ul>
@@ -17629,7 +17713,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Cấp độ #3:</strong> Kết nối bằng năng lượng các mô của Quả Cầu Tâm với Vị Hộ Mệnh của Năm Sinh của bạn (được chọn từ Chu Kỳ 60 Năm).</li>
   </ul>
 
-  <p class="fig-cap"><strong>Hình 1.902.</strong> Thần của Tỳ được gọi là "Thường Tại" (Chang Zai — "Luôn Hiện Hữu"), và được ban tên "Cung Hồn" (Court of Hun), đôi khi được biết đến là "Hồn Đình" (Hun Ting) hay "Hồn Các" (Hun Pavilion).</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-902.png" alt="Hình 1.902" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.902.</strong> Thần của Tỳ được gọi là "Thường Tại" (Chang Zai — "Luôn Hiện Hữu"), và được ban tên "Cung Hồn" (Court of Hun), đôi khi được biết đến là "Hồn Đình" (Hun Ting) hay "Hồn Các" (Hun Pavilion).</p>
 
   <h3>Tỳ (The Spleen)</h3>
 
@@ -17671,7 +17756,8 @@ body.pdf-lock{overflow:hidden;}
     <li><strong>Cấp độ #2:</strong> Kết nối bằng năng lượng các mô của Quả Cầu Tỳ với Hành Tinh Thiên Giới của nó là Thổ Tinh (Saturn) (Hình 1.905), và Thần Hộ Pháp phương Trung Tâm của Tung Sơn (Song Shan — Núi Cao Vời Vợi).</li>
     <li><strong>Cấp độ #3:</strong> Kết nối bằng năng lượng các mô của Quả Cầu Tỳ với Hoàng Đế của phương Trung Tâm, Thương Mộ (Cang Mu) (Hình 1.906).</li>
   </ul>
-  <p class="fig-cap"><strong>Hình 1.904.</strong> Bảy Ngôi Sao của Chòm Bắc Đẩu, hãy để chúng giáng xuống trung tâm thân thể bạn để bảo hộ.</p>
+  <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-904.png" alt="Hình 1.904" loading="lazy" decoding="async"></figure>
+<p class="fig-cap"><strong>Hình 1.904.</strong> Bảy Ngôi Sao của Chòm Bắc Đẩu, hãy để chúng giáng xuống trung tâm thân thể bạn để bảo hộ.</p>
   <figure class="otep-figure"><img src="/assets/images/daoist/fig-1-906.png" alt="Hình 1.906" loading="lazy" decoding="async"></figure>
 <p class="fig-cap"><strong>Hình 1.906.</strong> Hoàng Đế của phương Trung Tâm. Danh hiệu của ngài là Thương Mộ (Cangmu), còn gọi là Đan Yên (Danyan). Ngài là Đấng Chí Tôn Hoàn Hảo của Đức Thổ.</p>
 
