@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+
+:root {
+  --accent-gold: #0f766e;
+  --accent-crimson: #134e4a;
+  --bg-primary: #fdfbf7;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+}
+body.dark-mode {
+  --bg-primary: #121212; --text-primary: #f5f5f4; --text-secondary: #a8a29e;
+  background-color: #121212 !important; color: #f5f5f4 !important;
+}
+body.dark-mode .quote-box { background: #2a2415; color: #fef08a; border-color: #ca8a04; }
+body.dark-mode .key-point { background: #10302f; color: #99f6e4; border-color: #0f766e; }
+body.dark-mode .tech-table { background: #1e1e1e; color: #e5e5e5; border-color: #333; }
+body.dark-mode .tech-table th { background: #134e4a; color: #99f6e4; }
+body.dark-mode .tech-table td { border-color: #333; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0f766e, #134e4a); z-index: 9999; width: 0%; transition: width 0.1s; }
+.reader-layout { display: block; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: 0.45rem; }
+.toc-link { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; line-height: 1.35; display: block; padding: 5px 8px; border-radius: 6px; transition: all 0.2s; }
+.toc-link:hover { background: rgba(15, 118, 110, 0.12); color: #134e4a; transform: translateX(3px); }
+.reader-content { flex: 1; min-width: 0; background: var(--bg-primary); line-height: 1.85; font-size: 1.05rem; }
+.book-hero { border-bottom: 2px solid #0f766e; padding-bottom: 2rem; margin-bottom: 3rem; text-align: center; }
+.book-badge { display: inline-block; background: #ccfbf1; color: #134e4a; font-weight: 700; font-size: 0.82rem; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid #99f6e4; }
+.book-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; color: #134e4a; line-height: 1.25; margin: 0 0 0.5rem; }
+.book-orig-title { font-family: 'Noto Serif SC', serif; font-size: 1.25rem; color: #78716c; margin-bottom: 1rem; }
+.book-author-meta { font-size: 0.98rem; color: #57534e; margin-bottom: 1.2rem; }
+.book-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+.book-tag { background: #f0fdfa; color: #115e59; padding: 3px 12px; border-radius: 12px; font-size: 0.8rem; border: 1px solid #99f6e4; }
+body.dark-mode .book-tag { background: #134e4a; color: #ccfbf1; border-color: #0f766e; }
+.chapter-block { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+.chapter-header { border-left: 4px solid #0f766e; padding-left: 1.2rem; margin-bottom: 1.8rem; }
+.chapter-num { text-transform: uppercase; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: #0f766e; display: block; }
+.chapter-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.95rem; color: var(--text-primary); margin: 0.2rem 0 0; line-height: 1.3; }
+.quote-box { background: #fefce8; border-left: 4px solid #eab308; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: #713f12; }
+.key-point { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+.tech-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.tech-table th, .tech-table td { border: 1px solid #e5e7eb; padding: 10px 14px; text-align: left; }
+.tech-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-secondary); padding: 0 0 1.1rem; margin-bottom: 1.6rem; border-bottom: 1px solid #e7e5e4; }
+body.dark-mode .breadcrumb { border-color: #333; }
+.breadcrumb a { color: #0f766e; text-decoration: none; font-weight: 600; }
+.breadcrumb .sep { color: #d6d3d1; }
+.breadcrumb .crumb-current { color: var(--text-secondary); }
+.toc-drawer { border: 1px solid #e7e5e4; border-radius: 10px; background: #fafaf9; margin-bottom: 2rem; padding: 0.2rem 1rem; }
+body.dark-mode .toc-drawer { background: #1a1a1a; border-color: #2e2e2e; }
+.toc-drawer summary { cursor: pointer; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0f766e; padding: 0.9rem 0; display: flex; align-items: center; gap: 8px; }
+.toc-drawer[open] summary { border-bottom: 1px solid #e7e5e4; margin-bottom: 0.8rem; }
+.toc-drawer .toc-list { max-height: 60vh; overflow-y: auto; padding-bottom: 0.8rem; }
+.page-nav { margin: 3.5rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid #e7e5e4; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.page-nav a { color: #0f766e; text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; }
+.page-nav a.home { color: #0f766e; }
+.page-nav a.disabled { color: #c7c2bd; pointer-events: none; cursor: default; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chữa Lành Thân Thể, Chữa Lành Tâm Hồn — Khí Công &amp; Thái Cực | TaichiNOW</title>
+<meta name="description" content="Bản dịch tiếng Việt chuyên sâu Healing Bodies, Healing Hearts (Janice Doppler) — câu chuyện của Master Lijun Cheng và Trung tâm Hòa hợp Quốc tế, trí tuệ Trung Hoa, khủng hoảng sức khỏe, và nghiên cứu định tính về tác động của Khí Công.">
+<link rel="icon" href="/assets/images/taiji-logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-page: #fbfbfb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f4f4f5;
+  --ink: #18181b;
+  --ink-muted: #52525b;
+  --ink-faint: #a1a1aa;
+  --gold: #b45309;
+  --gold-light: #fef3c7;
+  --border: #e4e4e7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --cjk: 'Noto Serif SC', serif;
+  --accent-red: #991b1b;
+  --accent-blue: #1e40af;
+  --accent-green: #065f46;
+}
+
+[data-theme="dark"] {
+  --bg-page: #09090b;
+  --bg-card: #18181b;
+  --bg-sidebar: #121214;
+  --ink: #f4f4f5;
+  --ink-muted: #a1a1aa;
+  --ink-faint: #71717a;
+  --gold: #f59e0b;
+  --gold-light: #451a03;
+  --border: #27272a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.8;
+  font-size: 17px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+}
+[data-theme="dark"] .reader-header {
+  background: rgba(18, 18, 20, 0.95);
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand-area svg { width: 32px; height: 32px; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-control {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-control:hover {
+  background: var(--border);
+}
+
+#progress-container {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 99;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #ea580c);
+  transition: width 0.1s ease;
+}
+
+.book-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.book-sidebar {
+  width: 330px;
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.toc-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+.toc-nav ul { list-style: none; }
+.toc-nav li { margin-bottom: 4px; }
+.toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.toc-nav a:hover, .toc-nav a.active {
+  color: var(--ink);
+  background: var(--bg-card);
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+}
+.toc-nav .sub-item {
+  padding-left: 20px;
+  font-size: 0.86rem;
+}
+
+.book-content {
+  flex-grow: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+
+.book-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.book-hero .badge {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-hero h1 {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.book-hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.book-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  scroll-margin-top: 80px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--gold);
+  scroll-margin-top: 80px;
+}
+h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 24px 0 10px;
+}
+p { margin-bottom: 1.4rem; }
+
+.callout {
+  background: var(--bg-sidebar);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.callout.chinese-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  border-left-color: var(--accent-red);
+  background: rgba(153, 27, 27, 0.04);
+}
+.callout .cjk-text {
+  font-family: var(--cjk);
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-red);
+}
+
+.key-takeaway {
+  background: rgba(6, 95, 70, 0.05);
+  border: 1px solid rgba(6, 95, 70, 0.2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+.key-takeaway h4 {
+  color: var(--accent-green);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-figure {
+  margin: 32px auto;
+  text-align: center;
+}
+.book-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.book-figure figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+.styled-table th, .styled-table td {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.styled-table th {
+  background: var(--bg-sidebar);
+  font-weight: 700;
+  color: var(--ink);
+}
+.styled-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav a {
+  text-decoration: none;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-wrapper { flex-direction: column; }
+  .book-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+<style>
+/* starr_CSS */
+.ornament { text-align: center; color: var(--gold); letter-spacing: .5em; margin: 2.2rem 0; font-size: 1.2rem; }
+.chapter-teaser { font-style: italic; color: var(--ink-muted); border-left: 3px solid var(--border); padding: .5rem 1rem; margin: 1.4rem 0; }
+.journal-date { display: block; font-size: .8rem; color: var(--ink-muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .04em; }
+.tr-note { background: #fffbeb; border-left: 4px solid var(--gold); padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #713f12; }
+body.dark-mode .tr-note { background: #2a2415; color: #fde68a; border-color: var(--gold); }
+.key-takeaway { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 1rem 1.4rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #115e59; }
+body.dark-mode .key-takeaway { background: #10302f; color: #99f6e4; }
+.starr-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
+.starr-table th, .starr-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+.starr-table th { background: #f0fdfa; color: #134e4a; font-weight: 600; }
+.fig-cap { font-size: .93rem; color: var(--ink-muted); font-style: italic; border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 22px; }
+.fig-cap strong { font-style: normal; color: var(--ink); }
+body.dark-mode .fig-cap { color: #a1a1aa; }
+.book-figure { margin: 26px auto; text-align: center; }
+.book-figure img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+.book-figure figcaption { font-size: .93rem; color: var(--ink-muted); margin-top: 10px; font-style: italic; }
+.book-figure figcaption strong { font-style: normal; color: var(--ink); }
+body.dark-mode .book-figure figcaption { color: #a1a1aa; }
+.bib-intro { font-size: .95rem; color: var(--ink-muted); border-left: 3px solid var(--border); padding: 6px 0 6px 14px; margin: 14px 0 26px; }
+.bib-entry { font-size: .95rem; line-height: 1.7; margin: 0 0 12px; padding-left: 1.4rem; text-indent: -1.4rem; }
+.bib-entry strong { color: var(--ink); }
+body.dark-mode .bib-intro { color: #a1a1aa; }
+</style>
+
+</head>
+<body>
+
+<header class="reader-header">
+  <a href="/" class="brand-area">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#000000" stroke-width="4"/><path d="M 100,2 A 98,98 0 0,1 100,198 A 49,49 0 0,1 100,100 A 49,49 0 0,0 100,2 Z" fill="#000000"/><circle cx="100" cy="51" r="12" fill="#ffffff"/><circle cx="100" cy="149" r="12" fill="#000000"/></svg>
+    <span>TaichiNOW</span>
+  </a>
+  <div class="header-controls">
+    <a href="/vi/books/" class="btn-control"><i class="fa-solid fa-book-open"></i> Thư Viện Sách</a>
+    <button class="btn-control" id="font-down" title="Giảm cỡ chữ">A-</button>
+    <button class="btn-control" id="font-up" title="Tăng cỡ chữ">A+</button>
+    <button class="btn-control" id="theme-toggle" title="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<div class="book-wrapper">
+  <!-- MỤC LỤC ĐIỀU HƯỚNG BÊN TRÁI -->
+  <aside class="book-sidebar">
+    <div class="toc-title">Mục Lục Toàn Thư</div>
+    <nav class="toc-nav">
+      <ul>
+        <li><a href="#sec01">Thái Cực Kiếm gia tộc Dương chính truyền</a></li>
+        <li><a href="#sec02">Ca tụng văn hóa võ thuật</a></li>
+        <li><a href="#sec03">Những điểm cần lưu ý khi luyện Thái Cực Kiếm</a></li>
+        <li><a href="#sec04">Tên các động tác Thái Cực Kiếm</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- NỘI DUNG SÁCH CHÍNH -->
+  <main class="book-content" id="book-content">
+    <div class="book-hero">
+      <span class="badge">Võ Thuật Nội Gia &middot; Hán Văn &middot; 傅聲遠 (Fu Shengyuan)
+        Nguyên tác: <em>嫡傳楊家太極劍</em> · <em>Authentic Yang Family Tai Chi Sword</em>
+        Bản dịch toàn văn tiếng Việt: Ban Biên khảo Võ học Nội gia TaichiNOW</span>
+      <h1>Thái Cực Kiếm Gia Tộc Dương Chính Truyền</h1>
+      <div class="subtitle">Bài kiếm Thái Cực chính truyền của gia tộc Dương — tư thế, ứng dụng và nguyên lý</div>
+      <div class="meta-row">Song ngữ Việt–Hán</div>
+    </div>
+<section id="sec01">
+<h2>Thái Cực Kiếm gia tộc Dương chính truyền</h2>
+<p>Tác giả: Phó Thanh Viễn (Fu Shengyuan).</p>
+<p>Nhà xuất bản Đại học Thể dục Thể thao Bắc Kinh.</p>
+<p>Biên tập hoạch định: Cách Cách Lỗ Vị Trần [?], Huy Huy Mục Danh Sa [?].</p>
+<p>Biên tập trách nhiệm; biên tập thẩm định; hiệu đính trách nhiệm; ấn chế trách nhiệm.</p>
+<p>Dữ liệu biên mục trong xuất bản (CIP): Thái Cực Kiếm gia tộc Dương chính truyền / Phó Thanh Viễn soạn, — Bắc Kinh: Nhà xuất bản Đại học Thể dục Thể thao, 2006.9.</p>
+<p>Mã ISBN: 7-81100-634-0.</p>
+<p>I. Đích… II. Bác… III. Kiếm thuật (võ thuật), Thái Cực kiếm – bài quyền [?]; ký hiệu phân loại (võ thuật) W.G852.241.9.</p>
+<p>Số đăng ký dữ liệu CIP của Thư viện Quốc gia Trung Hoa (2006) số 107177.</p>
+<p>Thái Cực Kiếm gia tộc Dương chính truyền. Phó Thanh Viễn soạn. Nhà xuất bản Đại học Thể dục Thể thao Bắc Kinh.</p>
+<p>Địa chỉ, phát hành, in ấn, khổ sách [?]: Đường Bắc Trung Quan Thôn, quận Hải Điến, Bắc Kinh, mã bưu điện 100084.</p>
+<p>Phát hành: Tổng cửa hàng sách Tân Hoa, Chi nhánh phát hành Bắc Kinh phân phối; in tại Xưởng in Tinh Công Dương Phường, Xương Bình, Bắc Kinh.</p>
+<p>Khổ sách 889×1194 mm, 1/16.</p>
+<p>Tháng 9 năm 2006, xuất bản lần đầu, in lần đầu; số lượng in 3.600 quyển.</p>
+<p>Giá bìa 30,00 nhân dân tệ.</p>
+<p>(Nếu chất lượng đóng sách không đạt tiêu chuẩn, bộ phận phát hành của nhà xuất bản chịu trách nhiệm đổi trả.)</p>
+<p>Địa chỉ tại Úc: 813 Rowley Road, Forrestdale, 6112, Perth, Tây Úc.</p>
+<p>Điện thoại tại Úc: 61-8-93970610, 13901649686.</p>
+<p>Địa chỉ tại Thượng Hải: phòng 203, số 8, ngõ 58 đường Tứ Đạt, quận Hồng Khẩu, Thượng Hải, 200081.</p>
+<p>Điện thoại tại Thượng Hải: (021) 65751686.</p>
+<p>Tổ sư Thái Cực Quyền của gia tộc Dương: Dương Lộc Thiền (Yang Lu Chan), 1799–1872.</p>
+<p>Dương Ban Hầu (Yang Ban Hou) — con trai thứ hai của ngài Dương Lộc Thiền.</p>
+<p>Dương Phong Hầu (Yang Feng Hou) — con trai cả của ngài Dương Lộc Thiền.</p>
+<p>Dương Kiện Hầu (Yang Jian Hou) — con trai thứ ba của ngài Dương Lộc Thiền.</p>
+<p>Dương Thiếu Hầu (Yang Shao Hou) — con trai cả của ngài Dương Kiện Hầu.</p>
+<p>Dương Triệu Nguyên (Yang Zhao Yuan) — con trai thứ hai của ngài Dương Kiện Hầu.</p>
+<p>Dương Trừng Phủ (Yang Cheng Fu) — con trai thứ ba của ngài Dương Kiện Hầu.</p>
+<p>Dương Triệu Lâm (Yang Zhao Lin) — con trai của ngài Dương Phong Hầu.</p>
+<p>Dương Triệu Bằng (Yang Zhao Peng) — con trai của ngài Dương Ban Hầu.</p>
+<p>Phó Chung Văn (Fu Zhong Wen) — cháu ngoại rể của ngài Dương Triệu Nguyên [?].</p>
+<p>Phó Tông Nguyên (Fu Zong Yuan) — em ruột của ngài Phó Chung Văn.</p>
+<p>Phó Thanh Viễn — con trai của ngài Phó Chung Văn; bát đoạn võ thuật Trung Hoa, hậu duệ thân tộc Thái Cực Quyền phái Dương, Chủ tịch Liên minh Thái Cực Quyền Vĩnh Niên Thế giới.</p>
+<p>Phó Thanh Tuyền (Fu Qing Quan) — con trai của ông Phó Thanh Viễn; thất đoạn võ thuật Trung Hoa, hậu duệ thân tộc Thái Cực Quyền phái Dương, Phó chủ tịch Liên minh Thái Cực Quyền Vĩnh Niên Thế giới.</p>
+<p>Thầy Dương Trừng Phủ và đệ tử Phó Chung Văn.</p>
+<p>Thầy Dương Trừng Phủ và đệ tử Phó Chung Văn tại Quảng Châu.</p>
+<p>Năm 1932, Phó Chung Văn cùng thầy Dương Trừng Phủ đến Chính phủ thành phố Quảng Châu dạy quyền.</p>
+<p>Phó Thanh Viễn và sư bá Thôi Nghị (Cui Yishi) (giữa), cùng các thầy Ngưu Xuân Minh (Niu Chunming) và Phó Chung Văn (phải) tại Thượng Hải.</p>
+<p>Phó Chung Văn và Phó Thanh Viễn luyện đẩy thủ (tuishou).</p>
+<p>Ba thế hệ họ Phó luyện quyền tại cựu cư của Dương Lộc Toàn (Yang Luchan).</p>
+<p>Phó Thanh Viễn (Fu Shengyuan) và Phó Chung Văn (Fu Zhongwen), cha con, tại Hồng Kông.</p>
+<p>Thủ tướng Úc Hoắc Khắc (Bob Hawk) thân thiện tiếp kiến cha con nhà họ Phó.</p>
+<p>Từ Tài (Xu Cai), cố vấn của Hội Thể thao Toàn quốc Trung Hoa, chụp ảnh chung với Phó Thanh Viễn (Fu Shengyuan).</p>
+</section>
+
+<section id="sec02">
+<h2>Ca tụng văn hóa võ thuật</h2>
+<h3>Từ Tài</h3>
+<p>12 năm trước, khi cuốn «Đích truyền Vĩnh Niên Dương gia Thái Cực Quyền» (嫡傳永年楊家太極拳) của ông Thanh Viễn được phát hành, tôi đã từng viết cho ông một bài tựa ngắn mang tên «Dâng võ thuật cho thế giới» (將武術獻給世界) để bày tỏ lời chúc mừng. Hai năm trước, Hội Liên hiệp Võ thuật Quốc tế, theo thế phát triển mạnh mẽ của võ thuật trên thế giới, đã quyết định cho in thêm một số cuốn sách mới và lại mời tôi viết tựa cho cuốn sách này. Tôi vô cùng cảm động trước tấm lòng của một người con Trung Hoa di cư ra nước ngoài như ông, vì thế đã nhận lời ủy thác này.</p>
+<p>Trước hết, tôi xin gửi lời kính trọng đến ông Thanh Viễn, người đã ở tuổi 76: quả là ông già mà càng tráng kiệt, tuổi cao mà vẫn có việc làm nên. Qua những việc ông làm, lại thấy được tấm lòng truyền dạy có phương pháp, truyền lại nghiệp tổ qua từng thế hệ. Quả là trời không phụ người có tâm ý chăm chỉ. Ba thế hệ trong gia tộc Thái Cực là Phó Chung Văn (Fu Zhongwen), Phó Thanh Viễn (Fu Shengyuan) và Phó Thanh Tuyền (Fu Qingquan), chắc chắn sẽ một thế hệ hơn một thế hệ.</p>
+<p>20 năm trước, ông Thanh Viễn đã di cư sang Úc với tấm lòng chân thành muốn quảng bá Thái Cực Quyền ra hải ngoại. Thời gian làm người ta già đi, nhưng cũng làm sự nghiệp của người ta hưng thịnh. Sau khi đến Úc, ông Thanh Viễn không để tuổi tác ngày một tăng làm chùng bước, vẫn quyết tâm tiến tới, đưa Thái Cực — một thương hiệu của võ thuật Trung Hoa — được truyền bá rầm rộ tại hơn bốn mươi quốc gia, lấy Úc làm điểm tựa, mỗi năm lại đi dạy khắp nơi. Đúng như lời nhà tương lai học người Mỹ nổi tiếng Nại Tư Bỉ Đặc (John Naisbitt) đã nói trong cuốn «Xu hướng lớn châu Á» (亞洲大趨勢): «Phương Tây đang học cách thích nghi với sự Đông phương hóa, và Úc là nơi chịu ảnh hưởng đầu tiên.» Việc ông Thanh Viễn truyền quyền thụ đồ ở hải ngoại cũng giống như thầy Phó Chung Văn, cha ông, đã làm: không chỉ truyền kỹ thuật, mà còn truyền lý luận và truyền cả đức hạnh. Ba điều «truyền» ấy là đạo dạy học của ông Thanh Viễn, cũng là phong cách làm thầy của ông. Tôi chân thành mong rằng bạn bè trong và ngoài nước, những người nhiệt tâm truyền bá võ thuật Trung Hoa, hãy dốc công sức vào ba điều «truyền» ấy, nỗ lực đem võ kỹ, võ lý và võ đức của Trung Hoa lan tỏa rộng rãi trong cõi nhân gian.</p>
+<p>Suốt 20 năm ông Thanh Viễn dạy quyền và lập nghiệp ở hải ngoại, có thể nói thành tích rất rực rỡ. Những năm qua, ông dũng cảm dò tìm và khám phá, chăm chỉ với ngòi bút, đã cống hiến cho người tập võ trong và ngoài nước một tài sản văn hóa của Thái Cực Quyền dưới dạng sách vở và băng hình. Trong thế giới đa nguyên hôm nay, sự giao lưu và giao thoa giữa các nền văn hóa khác nhau là một xu hướng lớn.</p>
+<p>Gần đây, tôi đọc trên báo một bài viết nói rằng: «So với việc Trung Quốc xuất siêu trong thương mại đối ngoại, thì sự giao lưu và truyền bá văn hóa ra nước ngoài của Trung Quốc lại là nhập siêu nghiêm trọng», và nhận định về «thâm hụt văn hóa» ấy đã gợi ra sự đồng cảm mạnh mẽ trong tôi. Đúng vậy! Trung Quốc là một quốc gia văn minh cổ với năm ngàn năm lịch sử, sở hữu một di sản văn hóa vô cùng phong phú, và nay người dân Trung Quốc lại đang sáng tạo thêm những tài sản văn hóa mới. Vì sao trong việc «xuất khẩu» văn hóa chúng ta lại ở vào thế yếu như vậy?</p>
+<p>Điều này có lẽ liên quan đến việc chúng ta nhận thức chưa đầy đủ về bản chất của nền văn hóa mình, cũng như nhận thức chưa đầy đủ về sự học hỏi và thâm nhập lẫn nhau giữa các nền văn hóa nhân loại. Ở đây xin nhắc đến một bậc tiền bối mà đến nay vẫn có thể khích lệ người Trung Quốc tích cực truyền bá văn hóa Trung Hoa. Đó là Trần Quý Đồng (Chen Jitong): vào cuối triều Thanh, khi thế giới phương Tây tràn ngập định kiến kỳ thị Trung Quốc và coi văn hóa Trung Hoa là lạc hậu, ông đã trước tiên dùng tiếng Pháp trôi chảy để viết các cuốn «Chân dung người Trung Quốc» (中国人自画像), «Niềm vui của người Trung Quốc» (中国人的快乐), «Sân khấu Trung Quốc» (中国戏剧)..., giới thiệu Trung Quốc và văn hóa Trung Hoa với thế giới.</p>
+<p>Trần Quý Đồng là người Phúc Kiến. Ông, cùng với Cô Hồng Minh (Gu Hongming) và Lâm Ngữ Đường (Lin Yutang) — những người cùng quê Phúc Kiến — là những người Trung Quốc thời cận đại đã dùng tiếng phương Tây để giới thiệu Trung Quốc và văn hóa Trung Hoa với thế giới. Điều đáng mừng là trong làn sóng võ thuật Trung Hoa vươn ra thế giới, đã xuất hiện một nhóm chuyên gia dùng võ thuật tinh thâm và ngòi bút đầy tâm tình để phô diễn phong thái võ thuật trước thế giới, và ông Thanh Viễn là một trong số đó.</p>
+<p>Tôi rất mong các võ gia trong và ngoài nước chung tay nâng cao văn hóa võ thuật, mang lại lợi ích cho sức khỏe, trí tuệ và sự tu dưỡng tính cách của nhân loại, cùng nhau kiến tạo một xã hội hài hòa và một thế giới hài hòa!</p>
+<p>Tháng 5 năm 2006 tại Bắc Kinh.</p>
+</section>
+
+<section id="sec03">
+<h2>Những điểm cần lưu ý khi luyện Thái Cực Kiếm</h2>
+<p>1. Đầu phải «hư linh đỉnh kình». Nghĩa là đầu phải tự nhiên, thẳng ngay, không được dùng sức mạnh cứng nhắc, mà tinh thần phải nâng lên, ánh mắt nhìn thẳng về phía trước, nhìn thật xa, miệng dường như mở mà lại không mở, dường như khép mà lại không khép, miệng thở ra, mũi hít vào, thuận theo tự nhiên.</p>
+<p>2. Thân mình phải trung chính mà không nghiêng ngả, cột sống và xương cụt phải thẳng đứng mà không lệch. Trong sự biến đổi của động tác, nhất định phải nắm được các yếu lĩnh là hàm hung bạt bối, trầm vai chuyển eo. Lúc mới học phải đặc biệt chú ý, nếu không thì lâu ngày trở thành thói quen rất khó sửa.</p>
+<p>3. Các khớp ở hai cánh tay đều phải thả lỏng, phải trầm vai, thả khuỷu xuống. Nghĩa là «trầm vai»: vai phải nới lỏng và buông xuống; nếu không buông lỏng, hai vai nhấc lên, thì khí chắc chắn cũng đi lên theo, toàn thân sẽ không có sức. Còn «trụy khuỷu» là nhất định phải buông thõng xuống; nếu khuỷu tay nhấc lên thì vai cũng không thể chìm xuống được. «Bàn tay» phải duỗi ra tự nhiên. «Đầu ngón tay» phải hơi duỗi hơi cong; khi thực hiện động tác «hai ngón» khép lại, các ngón tay phải duỗi thẳng tự nhiên.</p>
+<p>4. Cổ tay được dùng nhiều nhất, vì vậy phải đặc biệt chú ý đến cách sử dụng cổ tay. Tay cầm chuôi kiếm không được quá chặt, phải nới lỏng mà linh hoạt. Hơn nữa, phải nắm vững sự vận hành biến hóa của kiếm, thì mới có thể thuận theo ý muốn mà sử dụng tự tại. Ngược lại, sẽ dẫn đến cứng đơ, cổ tay không linh hoạt. Khi thực hiện các thế dùng kình như điểm, liêu, thứ, phải đưa nội kình vào cổ tay; trong khoảnh khắc ấy nhất định phải nắm chặt chuôi kiếm, khi chuyển sang động tác khác thì tay lại thả lỏng, cứ thế lặp đi lặp lại mà hoàn thành toàn bộ bài kiếm.</p>
+<p>5. Eo là chủ tể của toàn thân; biết thả lỏng eo thì chân có sức, phần dưới vững chắc. Sự biến hóa hư thực của mỗi động tác đều do eo xoay chuyển. Trong luyện tập, chỗ nào động tác không được sức thì phần lớn liên quan đến việc eo chưa được thả lỏng.</p>
+<p>6. Hai chân phải phân biệt rõ hư và thực. Thuật Thái Cực Quyền lấy việc phân biệt hư thực làm nghĩa đầu tiên, Thái Cực Kiếm cũng vậy. Khi toàn bộ trọng lượng dồn lên chân phải thì chân phải là thực, chân trái là hư; khi toàn bộ trọng lượng dồn lên chân trái thì chân trái là thực, chân phải là hư. Phân biệt được hư thực thì sự chuyển đổi động tác nhẹ nhàng tự tại, tránh được sự cứng đơ; nếu hư thực không rõ thì bước chân nặng nề, không linh hoạt. Cái gọi là hư không phải là hư vô, thế của nó chưa đứt, vẫn còn ý dư để co duỗi biến hóa; cái gọi là thực không phải là dùng sức mạnh quá mức, chỉ là đầy đủ mà thôi; nếu thân mình lao về trước thì mất đi sự trung chính.</p>
+<p>7. Khi hai chân tiến lui, chuyển đổi sang trái sang phải thình lình, phải nâng và hạ chân như cách đi của mèo; khi nhấc chân và đặt chân xuống, đầu ngón chân chạm đất phải nhẹ nhàng linh hoạt.</p>
+<p>8. Phải «quán xuyến nhất khí» (xuyên suốt bằng một hơi). Luyện Thái Cực Kiếm cũng như luyện Thái Cực Quyền, dùng ý chứ không dùng sức; các bộ phận của thân thể đều phải phối hợp ăn khớp, trên dưới theo nhau, một động thì không có chỗ nào không động. Phải chú ý sự phối hợp chặt chẽ giữa kiếm pháp với thủ pháp, bộ pháp và nhãn pháp; toàn bộ bài quyền từ đầu đến cuối liền mạch không đứt, nhất khí hà thành.</p>
+<p>9. Về việc nắm bắt tốc độ nhanh hay chậm. Lúc mới học thì nên chậm, không nên nhanh. Giống như khi mới học Thái Cực Quyền, cần nghiêm túc nắm vững độ chính xác của từng động tác; sau khi hoàn thành toàn bộ bài quyền, lại trải qua một thời gian luyện cho thuần thục, rồi mới có thể tăng tốc. Nhưng không được chỉ cầu nhanh mà bỏ qua sự hoàn chỉnh của mỗi động tác, đồng thời phải giữ cho tốc độ nhanh chậm đều đặn, không để xảy ra hiện tượng lúc nhanh lúc chậm, nhanh chậm không đều hay chậm chạp. Nói chung, thời gian luyện một bài vào khoảng 2 đến 3 phút.</p>
+<p>10. Các khớp toàn thân phải nới lỏng tự nhiên, miệng và bụng không được nín thở, tay chân và eo chân không được nổi sức cương mạnh. Khi tinh thần nâng lên thì động tác tự nhiên nhẹ nhàng linh hoạt. Tâm phải tĩnh, tư tưởng tập trung, đem ý thức đổ dồn vào động tác.</p>
+<p>11. Thời gian và địa điểm luyện tập: mỗi ngày sau khi ngủ dậy hoặc trước khi ngủ, hãy luyện Thái Cực Kiếm hoặc Thái Cực Đao hai đến ba lượt trước, rồi mới luyện Thái Cực Quyền. Nếu có điều kiện thì trong ngày luyện thêm vài lượt càng tốt. Nhưng nhất định phải chú ý: không nên tập sau khi say rượu hoặc sau khi ăn no. Địa điểm luyện tập tốt nhất là sân vườn hoặc phòng khách, nơi không khí lưu thông và ánh sáng đầy đủ; phải tránh gió mạnh thổi trực diện và những nơi ẩm thấp, có mùi mốc. Bởi vì khi cơ thể vận động, hơi thở tất nhiên sâu dài, lỗ chân lông mở ra, nên nếu hít phải gió mạnh hay hơi mốc vào bụng sẽ hại đến phổi, dễ sinh bệnh. Trong quá trình luyện tập, nếu ra nhiều mồ hôi thì tuyệt đối không được cởi áo, cởi trần hay tắm bằng nước lạnh. Dù mùa đông hay mùa hè, khi luyện tập nên mặc áo tay dài và quần dài.</p>
+</section>
+
+<section id="sec04">
+<h2>Tên các động tác Thái Cực Kiếm</h2>
+<h3>Thế dự bị</h3>
+<h3>1. Tam Hoàn Tháo Nguyệt (Tiếp kiếm thế)</h3>
+<h3>2. Khôi Tinh Thế (Độc lập phản thứ)</h3>
+<h3>3. Yến Tử Sao Thủy (Phổ bộ hoành tảo)</h3>
+<h3>4. Tả hữu biên lan tảo (hướng tả hữu bình đái)</h3>
+<h3>5. Tiểu Khôi Tinh Thế (tả hư bộ liêu)</h3>
+<h3>6. Yến Tử Nhập Sào (cung bộ trực thứ)</h3>
+<h3>7. Linh Miêu Bổ Thử (điện bộ tiền dược hạ thứ)</h3>
+<h3>8. Phượng Hoàng Ngẩng Đầu (cung bộ bình liêu)</h3>
+<h3>9. Hoàng Phong Nhập Động (chuyển thân hạ thứ)</h3>
+<h3>10. Phượng Hoàng Hữu Triển Sí (cung bộ hữu tảo)</h3>
+<h3>11. Tiểu Khôi Tinh (tả hư bộ liêu)</h3>
+<h3>12. Phượng Hoàng Tả Triển Sí (tả cung bộ hữu điểm)</h3>
+<h3>13. Đãi Ngư Thế (hư bộ điểm kiếm)</h3>
+<h3>14. Tả hữu Long Hành Thế (tả hữu tiền thứ)</h3>
+<h3>15. Túc Điểu Đầu Lâm (độc lập thượng thứ)</h3>
+<h3>16. Ô Long Bãi Vĩ (hư bộ hạ thứ)</h3>
+<h3>17. Thanh Long Xuất Thủy (tả cung bộ thứ)</h3>
+<h3>18. Phong Quyển Hà Diệp (chuyển thân tà đái)</h3>
+<h3>19. Tả hữu Sư Tử Ngẩng Đầu (thoái bộ tả hữu hoành tảo)</h3>
+<h3>20. Hổ Bão Đầu (đề tất suất kiếm)</h3>
+<h3>21. Dã Mã Tiêu Giản (điện bộ tiền viễn dược hạ thứ)</h3>
+<h3>22. Lặc Mã Thế (hữu trắc bối kiếm thế)</h3>
+<h3>23. Chỉ Nam Châm (cung bộ trực thứ)</h3>
+<h3>24. Tả hữu Nghênh Phong Trần (tả hữu cung bộ lan điểm)</h3>
+<h3>25. Thuận Thủy Thôi Châu (tiến bộ phản thứ)</h3>
+<h3>26. Lưu Tinh Cản Nguyệt (phản thân hồi điểm)</h3>
+<h3>27. Thiên Mã Phi Bộc (tiến bộ điểm kiếm)</h3>
+<h3>28. Thao Liêm Thế (độc lập bình thác)</h3>
+<h3>29. Tả hữu Xa Luân (tả hữu luân tảo, cung bộ tiền điểm)</h3>
+<h3>30. Yến Tử Hàm Nê (hư bộ điểm kiếm)</h3>
+<h3>31. Đại Bằng Triển Sí (triệt bộ hữu tà tảo)</h3>
+<h3>32. Hải Để Lao Nguyệt (hữu cung bộ liêu)</h3>
+<h3>33. Hoài Trung Bão Nguyệt (thoái bộ đà kiếm)</h3>
+<h3>34. Na Tra Thám Hải (độc lập hạ thứ)</h3>
+<h3>35. Tê Ngưu Vọng Nguyệt (cung bộ bình thác kiếm)</h3>
+<h3>36. Xạ Nhạn Thế (hư bộ hồi trừu)</h3>
+<h3>37. Thanh Long Hiện Trảo (tiến bộ bình thứ)</h3>
+<h3>38. Phượng Hoàng Song Triển Sí (tả hữu hoành tảo)</h3>
+<h3>39. Tả hữu Khoa Lan (tả hữu bình thác kiếm)</h3>
+<h3>40. Xạ Nhạn Thế (hư bộ hồi trừu)</h3>
+<h3>41. Bạch Viên Hiến Quả (hư bộ hoành điểm kiếm)</h3>
+<h3>42. Tả hữu Lạc Hoa (tả hữu thoái tảo)</h3>
+<h3>43. Ngọc Nữ Xuyên Thoa (kiếm thân tà bộ hạ thứ)</h3>
+<h3>44. Bạch Hổ Giảo Vĩ (chuyển thân thượng liêu)</h3>
+<h3>45. Ngư Tiêu Long Môn (điện bộ thượng tiêu tiền hạ thứ)</h3>
+<h3>46. Tả hữu Ô Long Giảo Trụ (tả giảo tảo, hữu giảo điểm)</h3>
+<h3>47. Tiên Nhân Chỉ Lộ (cung bộ kiếm hạ thứ)</h3>
+<h3>48. Triều Thiên Nhất Trụ Hương (cung bộ dựng kiếm)</h3>
+<h3>49. Phong Tảo Mai Hoa (xoay chuyển bình tảo)</h3>
+<h3>50. Nha Hốt Thế (thượng bộ tiền thượng thứ)</h3>
+<h3>51. Bão Kiếm Quy Nguyên</h3>
+
+<h3>Thế dự bị (Hình 1-3)</h3>
+<p>Đứng theo hướng mặt về phía nam, lưng về phía bắc, hai đầu ngón chân hướng về phía nam, hai chân đứng song song rộng bằng vai. Tay trái cầm kiếm ngược, buông thõng ở phía trái thân, ngón trỏ và ngón giữa áp sát chuôi kiếm, các ngón còn lại nắm tự nhiên; lòng bàn tay phải hướng vào trong, buông thõng tự nhiên, mắt nhìn thẳng về phía trước. (Hình 1-3).</p>
+<p>Lưu ý: khi đứng thẳng phải hàm hung bạt bối, xương cụt trung chính, đứng tự nhiên, hơi thở tự nhiên, tay cầm kiếm không được quá chặt. Kiếm phải dựng thẳng, không được nghiêng ngả sang trái phải hay áp sát vào thân.</p>
+
+<h3>Tam Hoàn Tháo Nguyệt (Tiếp kiếm thế) (Hình 4-8)</h3>
+<p>1. Hai cánh tay tạo thành đường cong, nâng lên tự nhiên; khi ngang tầm vai thì xoay người ngược lại 45 độ.</p>
+<p>2. Dồn trọng tâm sang chân phải, đồng thời hơi cong chân trái nâng lên tự nhiên, đầu ngón chân buông xuống; đồng thời tay trái cầm kiếm giơ ngang trước ngực, ngón giữa và ngón trỏ của tay phải khép lại thành chỉ kiếm hướng về phía tây nam, mắt hướng theo đúng chiều mà chỉ kiếm chỉ tới.</p>
+<p>3. Chân trái duỗi về phía đông thành cung bộ, thân xoay về phía đông 90 độ; đồng thời tay trái cầm kiếm theo thân vòng ra sau cánh tay, chỉ kiếm tay phải cong đến trước tai rồi đẩy thẳng về phía trước, sau đó làm thế tọa oản (đặt cổ tay), đầu chỉ kiếm ngẩng lên, mắt nhìn thẳng về phía trước. (Hình 4).</p>
+<p>4. Lấy gót chân trái làm trục, xoay đầu ngón chân về phía đông bắc, chân trái làm trụ; chân phải nâng lên trước thân, đầu ngón chân chạm đất thành hư bộ. Thân trên giữ trung chính, tay trái nâng kiếm về phía trước, tay phải đưa lên trước ngực để đỡ lấy chuôi kiếm. (Hình 5).</p>
+<p>5. Nhấc chân phải lên, gót chân chạm đất, đầu ngón chân xoay về phía đông nam 45 độ; chân trái bước tới trước thành cung bộ, hai tay tách ra vẽ đường cong, tạo thành thế giao kiếm. Lúc này đầu kiếm hướng ngang về phía bắc. (Hình 6-8).</p>
+<p>Lưu ý: xương cụt trung chính, hơi thở tự nhiên, hàm hung bạt bối, phân biệt rõ hư thực, tư tưởng tập trung, động tác liền mạch, mắt nhìn thẳng về phía trước.</p>
+<h3>Nhị. Khôi Tinh Thế (Độc lập phản thứ) (Hình 9-13)</h3>
+<p>Dùng gót chân trái làm trục, xoay người 90 độ về hướng nam, nhấc chân phải lên rồi đặt xuống tạo góc 45 độ với chân trái; đồng thời chuyển kiếm sang tay phải. Tay phải cầm kiếm, vẽ một đường cong trước thân, xoay cổ tay rồi đẩy kiếm; chỉ kiếm của bàn tay trái (ngón giữa, ngón trỏ) phối hợp với tay phải, duỗi thẳng chỉ vào cổ tay phải.</p>
+<p>Tay phải vòng tròn từ phía trên, nâng kiếm chỉ thẳng về hướng chính đông; bàn tay trái phối hợp, vòng từ phải sang trái rồi đặt cổ tay xuống; đồng thời nhấc gối chân trái lên, mũi chân buông thõng; mũi chân phải hướng về phía đông nam, chân phải đứng thẳng tự nhiên (Hình 9-13).</p>
+<p>Chú ý: Mắt nhìn xa về phía trước; khi đứng độc lập trên một chân, tư thế phải vững vàng nhưng không được căng thẳng gắng sức — phải thong lọng mà vẫn đầy thần sắc; khi nâng kiếm phải giữ ngang và thẳng.</p>
+<h3>Tam. Yến Tử Sao Thủy (Phác bộ hoành tảo) (Hình 14-16)</h3>
+<p>Tay phải co khuỷu, hạ cánh tay trên, điểm kiếm về hướng tây nam theo đường chéo lên; bàn tay trái co khuỷu phối hợp, ngón trỏ và ngón giữa khép lại, duỗi thẳng chỉ vào cổ tay phải; ánh mắt hướng theo đúng chiều đầu kiếm đang chỉ (Hình 14).</p>
+<p>Trọng tâm cơ thể hạ xuống, hạ kiếm vẽ đường cong rồi điểm ngang về hướng đông bắc; chân trái đưa ra phía đông bắc thành thế cung bộ; bàn tay trái vẽ đường cong quét lên, các ngón chỉ kiếm vút hướng lên (Hình 15-16).</p>
+<p>Chú ý: Khi điểm kiếm phải hướng lên, đường cong vẽ ra phải rõ ràng; thế cung bộ kỵ hình chữ Đinh; bàn tay trái phải phối hợp hài hòa (khi liêu kiếm lên chú ý thả thấp khuỷu tay).</p>
+<h3>Tứ. Tả Hữu Biên Lan Tảo (Hướng tả hữu bình đái) (Hình 17-18)</h3>
+<p>Nhấc chân phải tiến lên về phía đông nam thành thế cung bộ; đồng thời xoay cổ tay đẩy kiếm ngang về phía đông nam; chỉ kiếm của bàn tay trái phối hợp chỉ vào cổ tay phải; mắt nhìn ngang về phía trước (Hình 17).</p>
+<p>Nhấc chân trái tiến lên về phía đông bắc thành thế cung bộ; đồng thời xoay cổ tay đẩy kiếm ngang về phía đông bắc; bàn tay trái phối hợp, dùng ngón chỉ vào cổ tay phải (Hình 18).</p>
+<h3>Ngũ. Tiểu Khôi Tinh Thế (Tả hư bộ liêu) (Hình 19)</h3>
+<p>Nhấc chân phải tiến lên về phía đông nam; đồng thời xoay cổ tay đề kiếm về phía đông nam, đầu kiếm hướng chéo xuống; đồng thời chân trái tiến lên về phía đông nam thành thế hư bộ, trọng tâm dồn lên chân phải; bàn tay trái phối hợp, ngón chỉ kiếm chỉ vào cổ tay phải (Hình 19).</p>
+<p>Chú ý: Giữ vĩ lư trung chính, phân biệt rõ hư và thực, hàm ngực bá lưng; mắt nhìn về phía trước; khi đề kiếm, đầu kiếm phải hướng chéo xuống.</p>
+<h3>Lục. Yến Tử Nhập Sào (Cung bộ trực thứ) (Hình 20-21)</h3>
+<p>Nhấc chân trái lên, dùng phần trước lòng bàn chân phải làm trục, xoay người ngược 180 độ; khi xoay, hai cánh tay mở ra theo đường cong; đặt chân trái xuống, hai tay ôm lấy kiếm rồi thứ chéo xuống về phía tây bắc (Hình 20-21).</p>
+<p>Chú ý: Vĩ lư trung chính, hư thực phân minh, thượng hạ tương tùy, động tác nhất quán; khi xoay người lấy eo làm chính; khi thứ xuống, hai cánh tay kỵ duỗi thẳng mà phải giữ dạng cong.</p>
+<h3>Thất. Linh Miêu Bổ Thử (Điện bộ tiền dược hạ thứ) (Hình 22-25)</h3>
+<p>Mũi chân trái nhấc lên rồi xoay sang trái 45 độ; đồng thời nhấc gối chân phải, mũi chân buông thõng tự nhiên; hai tay thu về, kéo kiếm nhẹ xuống; lúc này đầu kiếm vút chéo lên.</p>
+<p>Hạ thấp chân trái, chân phải tiến lên, chạm đất rồi bật nhảy; lúc bật nhảy, kiếm theo chuyển động của thân mà tạo thành dạng sóng; sau khi hạ đất thành thế cung bộ; lúc hạ đất, bàn tay trái từ bên vẽ đường cong quét lên, ngón chỉ kiếm vút hướng lên; tay phải cầm kiếm thứ chéo xuống về phía tây bắc; ánh mắt nhìn theo đúng hướng đầu kiếm (Hình 22-25).</p>
+<p>Chú ý: Vĩ lư trung chính, hàm ngực bá lưng, động tác liền mạch; lúc bật nhảy phải nhẹ nhàng tự nhiên, khi hạ đất phải vững vàng; khi bàn tay trái liêu lên chú ý thả thấp khuỷu tay; tay phải cầm kiếm phải thứ chéo xuống đất, kỵ duỗi thẳng, phải giữ dạng cong.</p>
+<h3>Bát. Phượng Hoàng Ngẩu Đầu (Bộ bình nhảy) (Hình 26)</h3>
+<p>Ngón chỉ kiếm của bàn tay trái hạ xuống, thẳng hướng vào cổ tay phải; đồng thời phối hợp với bàn tay phải co cổ tay rồi vốc kiếm lên, đầu kiếm hướng chéo lên bên phải (Hình 26).</p>
+<p>Chú ý: Hai bàn tay phối hợp hài hòa, ánh mắt hướng theo đúng chiều đầu kiếm; chú ý hai cánh tay giữ dạng cong; khi vốc kiếm lên chú ý thả thấp khuỷu tay.</p>
+<h3>Cửu. Hoàng Phong Nhập Động (Chuyển thân hạ thứ) (Hình 27-31)</h3>
+<p>Co cổ tay, kiếm chỉ về hướng tây nam; đồng thời dùng gót chân phải làm trục xoay 90 độ về hướng nam, dồn trọng tâm lên chân phải, đầu kiếm chỉ thẳng về hướng nam.</p>
+<p>Nhấc chân trái, gót chân chạm đất, mũi chân hướng đông bắc; bàn tay trái vẽ đường cong theo chuyển động của eo; nhấc gót chân phải rồi đặt xuống, mũi chân hướng về phía bắc; nhấc chân trái tiến lên thành thế mã bộ; đồng thời hai cánh tay vẽ đường cong, mở ra rồi khép lại, thứ chéo xuống về phía tây bắc (Hình 27-31).</p>
+<p>Chú ý: Động tác lấy eo làm chính, vĩ lư trung chính, hàm ngực bá lưng, thượng hạ tương tùy, phối hợp hài hòa; chú ý động tác xoay người từ đầu đến cuối là 360 độ, ánh mắt hướng theo đúng chiều đầu kiếm.</p>
+<h3>Thập, Phượng Hoàng Triển Hữu Sí (Hình 32-33)</h3>
+<h3>Phượng Hoàng Triển Hữu Sí (Cung bộ hữu tảo)</h3>
+<p>Xoay cổ tay cho kiếm chỉ thẳng về hướng chính Tây; đồng thời lấy gót chân trái làm trục, xoay mũi chân về hướng Đông Bắc 90 độ; tay trái dùng chỉ kiếm chạm vào cổ tay phải. Nâng chân phải, đồng thời xoay eo hướng Đông Nam và bước lên thành thế cung bộ; hai tay tạo hình vòng cung và dần dần tách ra, kiếm hướng về Đông Nam, chéo lên trên rồi điểm ngang; tay trái cũng tạo hình vòng cung, ngón chỉ kiếm hướng Tây Bắc, chéo lên trên và nhấc cao (Hình 32-33).</p>
+<p>Lưu ý: Động tác lấy eo làm chủ; khi điểm ngang, hai tay phải phối hợp chặt chẽ; phản thứ và điểm ngang là một quá trình diễn ra dần dần. Thế cung bộ kỵ hình chữ Đinh; khi điểm chú ý buông khuỷu tay xuống.</p>
+<h3>Thập nhất, Tiểu Khuôi Tinh (Hình 34-35)</h3>
+<h3>Thập nhị, Phượng Hoàng Triển Tả Sí (Hình 36)</h3>
+<h3>Tiểu Khuôi Tinh, tả hư bộ liêu</h3>
+<p>Ngồi lùi trên chân trái, nâng chân phải, mũi chân buông thõng xuống; đồng thời vòng chuôi kiếm về phía sau. Chân phải bước lên hướng Đông Nam, nâng kiếm thành thế hư bộ; tay trái phối hợp, dùng chỉ kiếm chạm vào cổ tay phải (Hình 34-35).</p>
+<p>Lưu ý: Vĩ lư trung chính, phân biệt rõ hư thực, hàm hung bạt bối, động tác liên tục và hài hòa. Khi nâng kiếm chú ý buông khuỷu tay xuống; khi hư bộ, mũi chân chạm nhẹ xuống đất.</p>
+<h3>Thập nhị, Phượng Hoàng Triển Tả Sí</h3>
+<h3>(Tả hư bộ hữu điểm)</h3>
+<p>Lùi chân trái về sau, mũi chân hướng thẳng về phía Bắc; hai tay tách ra, tay trái vung ra sau về hướng Tây Bắc, tay phải hơi mở ra về hướng Đông Nam (Hình 36).</p>
+<h3>Thập tam, Đẳng Ngư Thế (Hình 37-38)</h3>
+<h3>Đẳng Ngư Thế (Hư bộ điểm kiếm)</h3>
+<p>Kiếm từ phải sang trái vòng cung rồi phản điểm; ngón chỉ kiếm tay trái phối hợp chỉ vào đầu chuôi kiếm. Chân phải thu về, mặt hướng chính Đông thành thế hư bộ (Hình 37-38).</p>
+<p>Lưu ý: Mắt theo thân kiếm xoay chuyển; khi xoay lấy eo làm chủ, vĩ lư trung chính, phân biệt rõ hư thực, động tác hài hòa; chuôi kiếm hướng thẳng vào dưới nách, đầu kiếm chỉ hướng chính Nam.</p>
+<h3>Thập tứ, Long Hành Tả Hữu (Hình 39-41)</h3>
+<h3>Thập tứ, Long Hành Tả Hữu</h3>
+<h3>(Tả hữu tiền thứ)</h3>
+<p>1. Thu chân phải về rồi ngồi lùi, hơi bước lên hướng Đông Nam thành thế cung bộ; đồng thời dẫn kiếm thu về, phiên kiếm thứ chéo hướng Đông Bắc (hơi xiên).</p>
+<p>2. Bước chân trái hướng Đông Bắc thành thế cung bộ; chuôi kiếm thu về, phiên kiếm thứ chéo hướng Đông Nam (hơi xiên).</p>
+<p>3. Bước chân phải hướng Đông Nam thành thế cung bộ; chuôi kiếm thu về, phiên kiếm thứ chéo hướng Đông Bắc (hơi xiên) (Hình 39-41).</p>
+<p>Lưu ý: Động tác lấy eo làm chủ, trên dưới theo nhau, vĩ lư trung chính, động tác hài hòa; thế cung bộ kỵ chữ Đinh; ánh mắt cùng hướng với đầu kiếm; tay trái phối hợp hài hòa.</p>
+<h3>Thập ngũ, Túc Điểu Đầu Lâm (Hình 42-44)</h3>
+<h3>Thập ngũ, Túc Điểu Đầu Lâm</h3>
+<h3>Độc lập thượng thứ</h3>
+<p>1. Nâng chân trái; đồng thời tay trái vung ra sau, xoay vòng rồi thu chuôi kiếm về hợp lại. Ngồi trên chân trái, nâng chân phải, mũi chân chạm đất thành thế hư bộ; đầu kiếm chéo hướng lên, ánh mắt nhìn theo lưỡi kiếm.</p>
+<p>2. Ngồi trên chân trái, chân phải hơi thu về, chuôi kiếm rút ra sau; tay trái phối hợp, dùng chỉ kiếm chạm vào cổ tay phải. Sau đó bước chân phải lên, chân trái nâng gối, mũi chân buông thõng tự nhiên; tay trái phối hợp với tay phải nâng kiếm thứ chéo lên trên.</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, trên dưới theo nhau, động tác hài hòa; khi đứng độc lập phải đứng vững, mắt nhìn đầu kiếm (Hình 42-44).</p>
+<h3>Thập lục, Ô Long Bãi Vĩ (Hình 45)</h3>
+<h3>Thập thất, Thanh Long Xuất Thủy (Hình 46)</h3>
+<h3>Thập lục, Ô Long Bãi Vĩ</h3>
+<h3>(Hư bộ hạ tiết)</h3>
+<p>Gót chân trái chạm đất, mũi chân hướng Đông Bắc, trọng tâm ngồi trên chân trái; chân phải chạm đất hướng Đông Nam thành thế hư bộ. Đồng thời hai tay tách ra, kiếm từ bên trái vòng cung rồi điểm xuống, tay trái phối hợp vung lên ở bên trái (Hình 45).</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, phân biệt rõ hư thực, động tác hài hòa. Chú ý để thân kiếm và cánh tay phải thành một đường thẳng; khi tay trái vung lên, chú ý buông khuỷu tay xuống.</p>
+<h3>Thập thất, Thanh Long Xuất Thủy (Tả cung bộ thứ)</h3>
+<p>Thu chân phải rồi bước lên; tay phải nâng kiếm vòng trước thân; tay trái vòng cung rồi vung lên; chân trái bước lên hướng Đông Bắc thành thế cung bộ; xoay cổ tay nâng kiếm, thứ chéo lên hướng Đông Bắc (Hình 46).</p>
+<p>Lưu ý: Động tác lấy eo làm chủ, vĩ lư trung chính, hàm hung bạt bối, động tác hài hòa; khi tay trái vung lên chú ý buông khuỷu tay xuống; thế cung bộ.</p>
+<h3>Thập bát, Phong Quấn Hà Diệp (Hình 47-48)</h3>
+<h3>Thập bát, Phong Quấn Hà Diệp</h3>
+<h3>(Chuyển thân tà đái)</h3>
+<p>1. Lấy gót chân trái làm trục, xoay mũi chân về hướng Nam 90 độ; tay trái chạm vào cổ tay phải; tay phải cầm kiếm xoay cổ tay.</p>
+<p>2. Nâng chân phải, xoay thân hướng chính Tây rồi đặt chân xuống; cầm kiếm đẩy thẳng về phía trước; đồng thời nhấc chân sau lên rồi đạp lùi thành thế cung bộ (Hình 47-48).</p>
+<p>Lưu ý: Toàn bộ động tác lấy eo làm chủ; vĩ lư trung chính, phân biệt rõ hư thực; đẩy kiếm và đạp lùi phải ăn khớp với nhau.</p>
+<h3>Thập cửu, Tả Hữu Sư Tử Dao Đầu (Hình 49-52)</h3>
+<h3>Thập cửu, Tả Hữu Sư Tử Dao Đầu</h3>
+<h3>(Lùi bộ tả hữu hoành tảo)</h3>
+<p>1. Ngồi trên chân trái, đồng thời xoay cổ tay, trọng tâm dời sang trái.</p>
+<p>2. Lùi chân phải, đồng thời xoay cổ tay, trọng tâm ngồi sang phải.</p>
+<p>3. Lùi chân trái, đồng thời xoay cổ tay, trọng tâm ngồi sang trái.</p>
+<p>4. Lùi chân phải, đồng thời xoay cổ tay, trọng tâm ngồi sang phải (Hình 49-52).</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, động tác linh hoạt, bộ pháp vững chắc, phân biệt rõ hư thực, mắt đi theo kiếm.</p>
+<h3>Nhị thập, Hổ Bão Đầu (Hình 53-54)</h3>
+<h3>Nhị thập, Hổ Bão Đầu</h3>
+<h3>(Nâng gối bồng kiếm)</h3>
+<p>Kế thừa thế trước, hai cánh tay tách ra theo hình vòng cung; đồng thời chân trái hơi [?], khi đặt chân xuống trọng tâm dời sang chân trái, chân phải nâng gối, hai tay bồng kiếm thành thế độc lập (Hình 53-54).</p>
+<p>Lưu ý: Vĩ lư trung chính, động tác hài hòa, trên dưới theo nhau; khi đứng độc lập phải đứng vững chắc, mắt đi theo kiếm.</p>
+<h3>Nhị thập nhất, Dã Mã Tiếu Giản (Hình 55-57)</h3>
+<h3>Nhị thập nhất, Dã Mã Tiếu Giản</h3>
+<h3>(Bước đệm nhảy xa về trước thứ xuống)</h3>
+<p>Ngồi thấp xuống trên chân trái, chân phải bước lên về trước rồi bật nhảy lên.</p>
+<p>Nhảy xa, lúc nhảy lên hai tay cầm kiếm vung theo hình sóng, sau khi tiếp đất thành thế cung bộ, cầm kiếm thứ ngang xuống (Hình 55-57).</p>
+<p>Lưu ý: Yêu cầu cơ bản của động tác đại thể giống như "Linh miêu phục thử"; điểm khác biệt là sau khi tiếp đất cú bật nhảy phải nhảy thật xa, khi cầm kiếm chú ý thứ ngang xuống.</p>
+<h3>Nhị thập nhị, Lặc Mã Thức (Hình 58-59)</h3>
+<h3>Lặc Mã Thức (Thế cầm kiếm sau lưng bên phải)</h3>
+<p>Chân phải lấy gót chân làm trục, theo chiều kim đồng hồ xoay người 180 độ; đồng thời chân trái dời sang trái thành thế hư bộ, hai tay cầm kiếm từ phía ngoài vai phải vòng lên rồi vung về trước theo chiều ngang (Hình 58-59).</p>
+<p>Lưu ý: Động tác liền mạch, vĩ lư trung chính, phối hợp hài hòa; khi cầm kiếm sau lưng không được áp sát vào thân, mà phải vòng từ phía trên bên phải của cánh tay phải qua.</p>
+<h3>Nhị thập tam, Chỉ Nam Châm (Hình 60)</h3>
+<h3>Nhị thập tứ, Tả Hữu Nghênh Phong Tản Trần (Hình 61-66)</h3>
+<h3>Nhị thập tam, Chỉ Nam Châm (Cung bộ thứ thẳng)</h3>
+<p>Thu chân trái lại, đồng thời kiếm dẫn về phía bên phải, chân trái bước lên, chân phải theo lên, thành thế khai lập hai chân song song, hai tay cầm kiếm thứ thẳng về trước (Hình 60).</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, phân biệt rõ hư thực; khi khai lập hai chân phải song song và rộng bằng vai; hai tay cầm kiếm tạo thành hình vòng cung.</p>
+<h3>Nhị thập tứ, Tả Hữu Nghênh Phong Tản Trần</h3>
+<h3>(Tả hữu cung bộ lan điểm)</h3>
+<p>1. Trọng tâm ngồi sang phải, chân phải hơi khom, lấy gót chân làm trục xoay 45 độ về hướng Đông Nam; chân trái nâng gối, mũi chân buông thõng tự nhiên; đồng thời kiếm dẫn sang phải, tay trái phối hợp, chỉ kiếm chạm vào cổ tay phải. Chân trái bước lên hướng Đông Bắc thành thế hư bộ, xoay cổ tay rồi điểm kiếm chéo lên hướng Đông.</p>
+<p>2. Bước chân phải lên thành thế cung bộ, xoay cổ tay rồi điểm kiếm chéo lên hướng Đông Nam.</p>
+<p>3. Bước chân trái lên thành thế cung bộ, xoay cổ tay rồi điểm kiếm chéo lên hướng Đông Bắc (Hình 61-66).</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, động tác hài hòa, phân biệt rõ hư thực, mắt đi theo bóng kiếm; khi điểm kiếm chú ý buông khuỷu tay xuống, tay trái phối hợp hài hòa.</p>
+<h3>Nhị thập ngũ, Thuận Thủy Thôi Chu (Hình 67-70)</h3>
+<h3>Nhị thập ngũ, Thuận Thủy Thôi Chu</h3>
+<h3>(Tiến bộ phản thứ)</h3>
+<p>1. Chân trái lấy gót chân làm trục xoay theo chiều kim đồng hồ; nâng chân phải bước lên hướng Tây Bắc thành thế cung bộ, căng cổ tay rồi liêu kiếm lên, tay trái phối hợp chạm vào cổ tay.</p>
+<p>2. Xoay gót chân phải, nâng khuỷu tay và xoay cổ tay, đầu kiếm hướng lên rồi vẽ vòng cung xuống chéo; thu chân trái lại rồi bước lên về trước thành thế cung bộ, đẩy kiếm về trước, tay trái phối hợp chạm vào cổ tay (Hình 67-70).</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, động tác hài hòa, phân biệt rõ hư thực, eo và chân phối hợp hài hòa, động tác thống nhất.</p>
+<h3>Nhị thập thất, Thiên Mã Phi Bộc (Hình 72)</h3>
+<h3>Nhị thập lục, Lưu Tinh Cản Nguyệt (Hình 71)</h3>
+<h3>Nhị thập lục, Lưu Tinh Cản Nguyệt (Phản thân hồi điểm)</h3>
+<p>Lấy gót chân trái làm trục xoay về hướng Tây Nam, thu chân phải lại bước lên hướng Tây Bắc thành thế cung bộ; đồng thời tách hai cánh tay ra, kiếm vẽ vòng cung rồi tách kiếm ra, điểm kiếm chéo xuống hướng Tây Bắc, tay trái phối hợp, chỉ kiếm điểm về phía sau (Hình 71).</p>
+<p>Lưu ý: Động tác lấy eo làm chủ, vĩ lư trung chính, hàm hung bạt bối, phân biệt rõ hư thực, động tác hài hòa; khi tay trái dùng chỉ kiếm điểm về phía sau chú ý buông khuỷu tay xuống.</p>
+<h3>Nhị thập thất, Thiên Mã Phi Bộc</h3>
+<h3>(Hư bộ điểm kiếm)</h3>
+<p>Nâng chân trái đổi bước về hướng Đông Nam, chân phải bước lên hướng Nam thành thế hư bộ; đồng thời nâng kiếm vẽ vòng cung rồi điểm kiếm chéo xuống hướng Nam, tay trái phối hợp, chỉ kiếm chạm vào cổ tay phải (Hình 72).</p>
+<p>Lưu ý: Vĩ lư trung chính, hàm hung bạt bối, động tác hài hòa, phân biệt rõ hư thực, ánh mắt, eo, chân và hai tay phối hợp thống nhất.</p>
+<h3>28. Thiêu Liêm Thế (nâng rèm) (Hình 73-74)</h3>
+<h3>(Độc lập bình thác)</h3>
+<p>Tay phải xoay cổ tay sang trái, đầu kiếm hướng về phía đông. Xoay người sang phải, mũi chân phải đặt xuống hướng tây bắc. Đồng thời nâng gối trái lên, mũi chân buông thõng tự nhiên, tạo thành thế độc lập; tay phải vẽ vòng cung đưa kiếm lên, tay trái phối hợp, chỉ kiếm chạm vào cổ tay phải. (Hình 73-74)</p>
+<p>Lưu ý: khi xoay người lấy eo làm chủ, động tác phối hợp hài hòa, phân biệt rõ hư và thực, hạ ngực dựng lưng, vĩ lư giữ trung chính; khi nhấc rèm chú ý ngồi sụp chân trái xuống; khi đưa kiếm lên, đầu kiếm hơi hướng chéo lên, chỉ về hướng chính nam; ở thế Thiêu Liêm, cả hai tay đều phải chú ý buông cùi chỏ xuống.</p>
+<h3>29. Tả Hữu Xe Luân (bánh xe trái phải) (Hình 75-76)</h3>
+<h3>29. Tả Hữu Xe Luân (tả hữu luân tảo, cung bộ tiền điểm)</h3>
+<p>Chân trái đặt xuống sang bên trái, chân phải bước tới trước thành cung bộ, tay phải và tay trái bắt chéo xoay vòng, tay phải điểm kiếm chéo xuống hướng tây, chỉ kiếm tay trái hợp lại thành vòng cung rồi điểm về phía sau. (Hình 75-76)</p>
+<p>Lưu ý: vĩ lư trung chính, hạ ngực dựng lưng, phân biệt rõ hư thực, trên dưới theo sát nhau; khi điểm kiếm chú ý hướng chéo xuống, thế cung bộ kỵ hình chữ Đinh, khi chỉ kiếm tay trái điểm ra sau chú ý buông cùi chỏ xuống.</p>
+<h3>30. Yên Tử Hàm Nê (chim én ngậm bùn) (Hình 77-79)</h3>
+<h3>30. Yên Tử Hàm Nê</h3>
+<h3>(Hư bộ điểm kiếm)</h3>
+<p>Lùi chân phải, tay trái hiệp kiếm; nâng chân trái, tách hai tay ra; đặt chân trái xuống, bước chân phải lên, mũi chân chạm đất thành thế hư bộ, tay trái hiệp kiếm rồi điểm kiếm chéo xuống hướng tây. (Hình 77-79)</p>
+<p>Lưu ý: vĩ lư trung chính, hạ ngực dựng lưng, động tác phối hợp hài hòa, trên dưới theo sát nhau, tay trái và tay phải phối hợp khít chặt.</p>
+<h3>31. Đại Bằng Triên Sí (chim bằng xòe cánh) (Hình 80-81)</h3>
+<h3>31. Đại Bằng Triên Sí</h3>
+<h3>(Triệt bộ, hoành tảo sang phải)</h3>
+<p>Tay phải xoay cổ tay sang trái, đầu kiếm hướng về phía nam; thu chân phải bước lên hướng đông bắc thành cung bộ; đồng thời nắm kiếm vẽ vòng cung từ trước ngực, dần dần trở kiếm và điểm ngang chéo lên hướng đông bắc, tay trái phối hợp rồi tách ra sau. (Hình 80-81)</p>
+<p>Lưu ý: động tác phối hợp hài hòa, trên dưới theo sát nhau, vĩ lư trung chính, hạ ngực dựng lưng; khi tay trái liêu lên chú ý buông cùi chỏ xuống; khi tạo thế bước, gót chân trái nhấc lên và dời ra sau, chú ý đến ánh mắt.</p>
+<h3>32. Hải Để Lao Nguyệt (vớt trăng dưới đáy biển) (Hình 82-84)</h3>
+<h3>32. Hải Để Lao Nguyệt</h3>
+<h3>(Hữu hư bộ, liêu kiếm)</h3>
+<p>Xoay gót chân phải sang trái, tay phải xoay cổ tay sang trái, chỉ kiếm tay trái chạm vào cổ tay phải. Đầu kiếm hướng lên, thu chân trái bước tới trước; sau khi đặt chân xuống, chân phải bước tới trước thành cung bộ; đồng thời xoay cổ tay theo vòng cung liêu kiếm về phía trước, tay trái vẽ vòng cung về phía sau, chỉ kiếm liêu lên. (Hình 82-84)</p>
+<p>Lưu ý: lấy eo làm chủ, vĩ lư trung chính, hạ ngực dựng lưng, trên dưới theo sát nhau, động tác phối hợp hài hòa; khi liêu kiếm về trước chú ý lòng bàn tay hướng lên.</p>
+<h3>33. Hoài Trung Bảo Nguyệt (ôm trăng trong lòng) (Hình 85)</h3>
+<h3>33. Hoài Trung Bảo Nguyệt</h3>
+<h3>(Thoái bộ, tha kiếm)</h3>
+<p>Nâng chân trái lên, sau khi đặt xuống dời trọng tâm ngồi sang trái; tiếp theo nâng chân phải, mũi chân chạm đất thành thế hư bộ, hiệp kiếm ôm trước ngực. (Hình 85)</p>
+<p>Lưu ý: lấy eo làm chủ, phân biệt rõ hư thực, trên dưới theo sát nhau, vĩ lư trung chính, hạ ngực dựng lưng; khi ôm trăng trước ngực, đầu kiếm hướng chéo lên.</p>
+<h3>34. Na Tra Thám Hải (Na Tra dò biển)</h3>
+<h3>(Độc lập hạ thứ)</h3>
+<p>Thu chân phải rồi bước tới trước, dời trọng tâm sang chân phải; đồng thời tay phải cầm kiếm rút nhẹ về. Nâng gối trái lên, mũi chân buông thõng xuống, tay phải cầm kiếm thứ chéo xuống, tay trái phối hợp vẽ vòng cung đẩy lên, thành thế độc lập. (Hình 86)</p>
+<p>Lưu ý: lấy eo làm chủ, vĩ lư trung chính, phân biệt rõ hư thực, trên dưới theo sát nhau, phối hợp khít chặt; khi thứ kiếm xuống, bàn tay cầm kiếm ngửa lòng bàn tay lên.</p>
+<h3>34. Na Tra Thám Hải (Hình 86)</h3>
+<h3>35. Tê Ngưu Vọng Nguyệt (tê giác ngắm trăng) (Hình 87)</h3>
+<h3>35. Tê Ngưu Vọng Nguyệt (hư bộ bình thác kiếm)</h3>
+<p>Tay trái xoay vòng từ trên xuống, tay phải nâng kiếm, hai tay hiệp kiếm; đồng thời chân trái bước lên hướng đông thành cung bộ, lúc này đầu kiếm hướng về phía tây, ánh mắt theo đúng hướng của đầu kiếm. (Hình 87)</p>
+<p>Lưu ý: vĩ lư trung chính, hạ ngực dựng lưng, động tác phối hợp hài hòa, trên dưới theo sát nhau, ánh mắt cùng hướng với đầu kiếm, chú ý buông cùi chỏ xuống.</p>
+<h3>37. Thanh Long Hiện Trảo (rồng xanh hiện vuốt) (Hình 89)</h3>
+<h3>36. Xạ Nhạn Thế (bắn chim nhạn) (Hình 88)</h3>
+<h3>(Hư bộ hồi trừu)</h3>
+<h3>36. Xạ Nhạn Thế</h3>
+<p>Nâng chân phải bước lên, dời trọng tâm ngồi sang phải, chân trái chạm đất nhẹ hướng đông nam thành thế hư bộ; đồng thời tay phải cầm kiếm xoay cổ tay, vẽ vòng cung xuống dưới hông, tay trái xoay vòng thành hình cung rồi chỉ về trước. (Hình 88)</p>
+<p>Lưu ý: lấy eo làm chủ, vĩ lư trung chính, hạ ngực dựng lưng, phân biệt rõ hư thực, động tác phối hợp hài hòa. Khi kiếm đưa xuống dưới hông, đầu kiếm phải hướng chéo xuống, mắt nhìn theo hướng đầu kiếm.</p>
+<h3>(Cân bộ bình thứ)</h3>
+<h3>37. Thanh Long Hiện Trảo</h3>
+<p>Nâng chân trái bước lên, chân phải bước theo, đứng song song với chân trái, mặt hướng về đông nam; đồng thời hai tay vẽ vòng cung rồi thứ kiếm về phía đông nam. (Hình 89)</p>
+<p>Lưu ý: vĩ lư trung chính, hạ ngực dựng lưng, động tác phối hợp hài hòa, trên dưới theo sát nhau; khi đứng song song, hai chân rộng bằng vai; khi thứ kiếm về trước, chú ý đầu kiếm hơi hướng chéo lên.</p>
+<h3>Phụng Hoàng Song Triển Sí (Tả Hữu Hoành Tảo)</h3>
+<p>Lấy gót chân trái làm trục, xoay mũi chân theo chiều kim đồng hồ, bước chân phải lên phía tây bắc thành thế cung; đồng thời xoay cổ tay và lật kiếm, dần dần vẽ đường cong chéo lên phía tây bắc để điểm ngang, tay trái phối hợp vuốt về sau. (Hình 90-91).</p>
+<h3>Tả Hữu Khoa Lan (Tả Hữu Bình Thác Kiếm)</h3>
+<p>Tay phải xoay cổ tay, tay trái dùng chỉ kiếm chạm vào cổ tay phải; đồng thời bước chân trái về phía tây nam thành thế cung. Lúc này cầm kiếm nằm ngang, lòng bàn tay hướng sang trái, đầu kiếm chỉ về phía bắc. (Hình 92-94).</p>
+<p>Chú ý: Vĩ gian trung chính, hàm hung bạt bối, động tác phối hợp nhịp nhàng; khi xoay cổ tay thì đầu kiếm hướng xuống, ánh mắt nhìn xa về phía trước, thế cung kỵ kiểu chân chữ "đinh".</p>
+<h3>Xạ Nhạn Thế (Hư Bộ Hồi Trừu)</h3>
+<p>Lùi chân phải ra sau rồi ngồi thấp xuống, dồn trọng tâm sang phải, đưa chân trái ra trước, mũi chân chạm đất thành thế hư; tay phải cầm kiếm xoay vòng tròn đến dưới thắt lưng bên phải. (Hình 95).</p>
+<p>Chú ý: Vĩ gian trung chính, hàm hung bạt bối, thượng hạ tương tùy, động tác phối hợp nhịp nhàng, ánh mắt cùng hướng với chỉ kiếm của tay trái.</p>
+<h3>Bạch Viên Hiến Quả (Hư Bộ Hoành Điểm Kiếm)</h3>
+<p>Bước chân trái sang phía nam, mặt quay sang hướng tây, bước chân phải lên phía tây, mũi chân chạm đất thành thế hư; đồng thời hai tay tách rồi hợp lại, điểm ngang và nâng kiếm, mặt hướng thẳng về phía tây, đầu kiếm chỉ ngang về phía tây. (Hình 96).</p>
+<p>Chú ý: Vĩ gian trung chính, hàm hung bạt bối, phân minh hư thực, thượng hạ tương tùy, động tác phối hợp nhịp nhàng. Khi nâng kiếm thì thân kiếm cao hơn vai một chút.</p>
+<h3>Tả Hữu Lạc Hoa (Tả Hữu Thoái Tảo)</h3>
+<p>Tay trái dùng chỉ kiếm chạm vào cổ tay phải, phối hợp với tay phải xoay cổ tay; đồng thời ngồi trên chân trái, lùi chân phải ra sau. (Hình 97).</p>
+<p>Ngồi trên chân phải, dồn trọng tâm sang phải rồi lùi chân trái; đồng thời hai tay phối hợp, cầm kiếm xoay vòng tròn. (Hình 98).</p>
+<p>Ngồi trên chân trái, dồn trọng tâm sang trái rồi lùi chân phải; đồng thời tay trái dùng chỉ kiếm chạm cổ tay phải, phối hợp với tay phải cầm kiếm xoay vòng tròn. (Hình 99).</p>
+<p>Ngồi trên chân phải, dồn trọng tâm sang phải rồi lùi chân trái; đồng thời tay trái dùng chỉ kiếm chạm cổ tay phải, phối hợp với tay phải cầm kiếm xoay vòng tròn. (Hình 100).</p>
+<p>Ngồi trên chân trái, dồn trọng tâm sang trái rồi lùi chân phải; đồng thời tay trái dùng chỉ kiếm chạm cổ tay phải, phối hợp với tay phải cầm kiếm xoay vòng tròn. (Hình 101).</p>
+<p>Chú ý: Lấy eo làm chủ, vĩ gian trung chính, động tác phối hợp nhịp nhàng, thượng hạ tương tùy, phân minh hư thực; đặc biệt lưu ý khi lùi thì trọng tâm ngồi càng thấp, mỗi động tác thấp hơn động tác trước.</p>
+<h3>Ngọc Nữ Xuyên Thoa (Tà Thân Cung Bộ Hạ Thứ)</h3>
+<p>Thu chân trái lại rồi bước lên phía nam thành thế cung; đồng thời xoay cổ tay và thứ chéo xuống phía nam, tay trái vẽ đường cong vuốt lên. (Hình 102-103).</p>
+<p>Chú ý: Động tác phối hợp nhịp nhàng, thượng hạ tương tùy, thế cung kỵ kiểu chân chữ "đinh"; khi vuốt lên cần chú ý thả khuỷu tay xuống.</p>
+<h3>Bạch Hổ Giảo Vĩ (Chuyển Thân Thượng Tiêu)</h3>
+<p>Lấy gót chân trái làm trục, xoay sang phải, ngồi trên chân trái; đồng thời tay phải xoay cổ tay, tay trái chạm vào cổ tay, lòng bàn tay hướng sang phải, đầu kiếm chỉ ngang về phía đông. (Hình 104).</p>
+<p>Nhấc chân phải bước lên phía bắc, xoay người thành thế cung; đồng thời tay phải cầm kiếm, đầu kiếm hướng xuống vẽ đường cong rồi đẩy kiếm lên trên. (Hình 105).</p>
+<p>Chú ý: Lấy eo làm chủ, vĩ gian trung chính, động tác phối hợp nhịp nhàng, thượng hạ tương tùy, hàm hung bạt bối; sau khi định thế thì đầu kiếm hướng lên, mắt nhìn về phía trước.</p>
+<h3>Ngư Khiêu Long Môn (Điện Bộ Thượng Nhảy Tiền Hạ Thứ)</h3>
+<p>Nhấc chân trái bước nhẹ lên phía tây, mũi chân hướng tây nam; đồng thời hai cánh tay tách ra, chân phải nâng gối, mũi chân buông thõng tự nhiên, hai tay hợp lại ôm kiếm thành thế độc lập. (Hình 106).</p>
+<p>Ngồi thấp xuống trên chân trái, kiếm rút về, chân phải bước lên, đáp đất rồi bật nhảy lên cao; lúc bật nhảy kiếm đung đưa theo hình sóng, đáp xuống thành thế [?], hai tay ôm kiếm thứ về trước. (Hình 107-111).</p>
+<p>Chú ý: Vĩ gian trung chính, động tác phối hợp nhịp nhàng, hàm hung bạt bối, thượng hạ tương tùy. Lúc đáp xuống và bật nhảy phải cao, phân biệt với Linh Miêu Phó Thử (hướng xuống) và Dã Mã Khiêu Giản (hướng về phía trước).</p>
+<h3>46. Tả hữu Long Giảo Trụ (Rồng quấn cột) (Hình 112-114)</h3>
+<h3>46. Tả hữu Long Giảo Trụ (Rồng quấn cột) (Giảo quét bên trái, giảo điểm bên phải)</h3>
+<p>Ngồi lùi xuống chân trái, tay trái dùng chỉ kiếm chạm vào cổ tay phải, tay phải cầm kiếm vòng tròn sang bên trái, đồng thời thu chân phải tiến lên một bước với mũi chân hướng về tây bắc. Theo đó, chân trái tiến một bước về hướng tây, xoay người ngồi xuống chân phải, lật cổ tay điểm chéo về hướng đông bắc, đồng thời tay trái tách ra phía sau (Hình 112-114).</p>
+<p>Lưu ý: động tác lấy eo làm trung tâm, vĩ lư giữ trung chính, phân rõ hư và thực, trên dưới tương tùy, động tác phối hợp hài hòa, mắt nhìn theo đầu kiếm. Đầu kiếm hướng chéo xuống phía đông bắc; khi liêu về sau chú ý thả cùi chỏ xuống, chỉ kiếm vểnh lên.</p>
+<h3>47. Tiên Nhân Chỉ Lộ (Tiên nhân chỉ đường) (Hình 115-116)</h3>
+<h3>47. Tiên Nhân Chỉ Lộ (Tiên nhân chỉ đường) (Bước xiên thứ chéo xuống)</h3>
+<p>Tay trái và chân trái đồng thời thu về sau, chân trái tiến lên một bước, tay trái vòng tròn đưa lên (trọng tâm dời sang trái), chân phải tiến lên thành thế cung. Đồng thời tay phải cầm kiếm vòng tròn, xoay người thứ tới phía tây (Hình 115-116).</p>
+<p>Lưu ý: động tác lấy eo làm trung tâm, vĩ lư giữ trung chính, hàm hung bạt bối, trên dưới tương tùy, động tác phối hợp hài hòa. Khi thứ về trước, lòng bàn tay hướng lên; khi liêu về sau chú ý thả cùi chỏ xuống.</p>
+<h3>48. Triều Thiên Nhất Trụ Hương (Một nén hương hướng lên trời) (Hình 117-118)</h3>
+<h3>48. Triều Thiên Nhất Trụ Hương (Một nén hương hướng lên trời) (Thế cung, kiếm dựng đứng)</h3>
+<p>Chân phải lấy gót chân làm trục, xoay theo chiều kim đồng hồ; tay trái vòng tròn từ trên xuống rồi đón lên; thu chân phải tiến một bước về phía đông thành thế cung, mặt hướng về phía nam. Đồng thời tay phải nâng kiếm, đầu kiếm hướng lên vẽ vòng cung sang phải để hội tụ với tay trái, chỉ kiếm tay trái chạm vào cổ tay phải. Lúc này đầu kiếm hướng lên, lòng bàn tay hướng vào trong, thân kiếm dựng ngược (Hình 117-118).</p>
+<p>Lưu ý: động tác lấy eo làm trung tâm, vĩ lư giữ trung chính, hàm hung bạt bối, động tác phối hợp hài hòa, trên dưới tương tùy. Khi định thế, chú ý thân kiếm lệch sang phía trái của cơ thể và chú ý thả cùi chỏ xuống.</p>
+<h3>49. Phong Tảo Mai Hoa (Gió quét hoa mai) (Hình 119-121)</h3>
+<h3>49. Phong Tảo Mai Hoa (Gió quét hoa mai) (Xoay người quét ngang)</h3>
+<p>1. Chân trái lấy gót chân làm trục, xoay mũi chân theo chiều kim đồng hồ, đồng thời xoay cổ tay về phía đông, lòng bàn tay hướng xuống, đầu kiếm hướng về phía đông (Hình 119).</p>
+<p>2. Thu chân phải, gót chân chạm đất, trọng tâm dời sang phải, lấy đệm bàn chân phải làm điểm tựa xoay người 360 độ, đồng thời hai tay dần mở ra; chân trái đặt xuống đất, trọng tâm dời sang trái, chân phải đưa về trước, mũi chân chạm đất thành thế hư, điểm ngang và ôm kiếm (Hình 120-121).</p>
+<p>Lưu ý: động tác lấy eo làm trung tâm, vĩ lư giữ trung chính, động tác phối hợp hài hòa; khi xoay người chú ý xoay trọn 360 độ, đồng thời xoay người thì hai tay dần mở ra.</p>
+<h3>50. Nha Hốt Thế (Thế cầm hốt ngà) (Hình 122-123)</h3>
+<h3>50. Nha Hốt Thế (Thế cầm hốt ngà) (Tiến bước, thứ tới phía trước và hướng lên)</h3>
+<p>Hai tay thu về, đồng thời thu chân phải tiến lên một bước, chân trái theo lên song song với chân phải, mũi chân hướng về trước, khoảng cách rộng bằng vai; khi ôm kiếm thứ về trước thì đầu kiếm hơi hướng lên phía trước (Hình 122-123).</p>
+<h3>51. Bảo Kiếm Quy Nguyên (Ôm kiếm trở về nguyên thủy) (Hình 124-126)</h3>
+<h3>51. Bảo Kiếm Quy Nguyên (Ôm kiếm trở về nguyên thủy)</h3>
+<p>Giao kiếm cho tay trái để ôm kiếm, vòng tròn trở về nguyên vị, đồng thời tay phải vòng tròn, lòng bàn tay phải tự nhiên buông xuống bên phải cơ thể, trở về thế Khởi Thế (Hình 124-146).</p>
+<p>Lưu ý: vĩ lư giữ trung chính, hàm hung bạt bối, mắt nhìn về phía trước. Động tác phối hợp hài hòa, hơi thở tự nhiên. Mũi chân hướng về trước, hai chân rộng bằng vai, song song, đứng tự nhiên.</p>
+<p>Biên tập phụ trách: Tu Huy (修晖). Thiết kế bìa: Dương Thanh Ba (杨清波). Giá: 30,00 nhân dân tệ.</p>
+</section>
+
+  </main>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+  themeToggle.innerHTML = target === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+
+let fontSize = 17;
+document.getElementById('font-up').addEventListener('click', () => {
+  if (fontSize < 24) {
+    fontSize += 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+document.getElementById('font-down').addEventListener('click', () => {
+  if (fontSize > 14) {
+    fontSize -= 1;
+    document.getElementById('book-content').style.fontSize = fontSize + 'px';
+  }
+});
+
+const sections = document.querySelectorAll('section[id], h3[id]');
+const tocLinks = document.querySelectorAll('.toc-nav a');
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) {
+      currentId = sec.getAttribute('id');
+    }
+  });
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
